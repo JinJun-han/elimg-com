@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="글로컬브릿지 AI 컨설팅 — 30년 이주민 사역 경험과 AI 기술로 하나님 나라를 확장합니다. AI 교육·이주민 법무·웹사이트 제작·글로벌 비즈니스 매칭.">
+<meta name="keywords" content="AI컨설팅,글로컬브릿지,이주민AI교육,한진준,GlocalBridge,AI선교,CBMC,김해AI컨설팅,부산AI,네팔한국어교육,베트남이주민">
+<meta property="og:title" content="GlocalBridge AI — AI로 잇는 하나님 나라">
+<meta property="og:description" content="30년 이주민 사역 × AI 기술 = 세상에 단 하나뿐인 글로컬 AI 솔루션">
+<meta property="og:url" content="https://elimg.com">
+<title>GlocalBridge AI | 글로컬브릿지 AI 컨설팅 | elimg.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#1B3A6B; --navy-deep:#0D1F3C; --navy-mid:#243F72;
+  --gold:#C49A22; --gold-light:#E8C05A; --gold-pale:#FDF6E3;
+  --white:#FFFFFF; --off-white:#F8F9FC; --gray-light:#EEF1F8;
+  --gray:#8896B0; --text:#1A2340; --green:#1A5C38;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0 5%;height:68px;background:rgba(11,22,45,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(196,154,34,0.2);transition:background .3s}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo-icon{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.nav-logo-en{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);letter-spacing:1px;display:block}
+.nav-logo-kr{font-size:10px;color:var(--gold-light);display:block}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:rgba(255,255,255,.72);text-decoration:none;font-size:13px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--gold-light)}
+.btn-nav{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy-deep)!important;padding:8px 20px;border-radius:6px;font-weight:700!important}
+.lang-wrap{display:flex;gap:6px;margin-left:12px}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.55);cursor:pointer;padding:4px 9px;border-radius:4px;font-size:11px;transition:all .2s;font-family:inherit}
+.lang-btn.active,.lang-btn:hover{border-color:var(--gold);color:var(--gold)}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--navy-deep);position:relative;display:flex;align-items:center;overflow:hidden;padding-top:68px}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 68% 50%,rgba(196,154,34,.09) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 5% 85%,rgba(27,58,107,.5) 0%,transparent 50%)}
+.hero-grid{position:absolute;inset:0;opacity:.04;background-image:linear-gradient(rgba(196,154,34,1) 1px,transparent 1px),linear-gradient(90deg,rgba(196,154,34,1) 1px,transparent 1px);background-size:60px 60px}
+.hero-content{position:relative;z-index:2;width:100%;max-width:1280px;margin:0 auto;padding:60px 5%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hero-left{animation:fadeUp .9s ease both}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(196,154,34,.14);border:1px solid rgba(196,154,34,.32);color:var(--gold-light);padding:6px 16px;border-radius:20px;font-size:12px;letter-spacing:1px;margin-bottom:28px;font-weight:500}
+.badge span{width:6px;height:6px;background:var(--gold-light);border-radius:50%;animation:pulse 2s infinite}
+.hero-en{font-family:'Playfair Display',serif;font-size:clamp(36px,5vw,60px);color:var(--white);line-height:1.15;margin-bottom:8px}
+.hero-en em{color:var(--gold-light);font-style:italic}
+.hero-kr{font-family:'Noto Serif KR',serif;font-size:clamp(18px,2.5vw,28px);color:rgba(255,255,255,.5);margin-bottom:28px;font-weight:400}
+.verse-box{border-left:3px solid var(--gold);padding:14px 20px;margin-bottom:36px;background:rgba(196,154,34,.06);border-radius:0 8px 8px 0}
+.verse-box p{font-size:13px;color:rgba(255,255,255,.62);line-height:1.75;font-style:italic}
+.verse-box cite{font-size:11px;color:var(--gold);margin-top:4px;display:block}
+.hero-desc{font-size:14.5px;color:rgba(255,255,255,.68);line-height:1.9;margin-bottom:40px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy-deep);padding:13px 28px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,154,34,.35)}
+.btn-outline{border:1px solid rgba(255,255,255,.28);color:var(--white);padding:13px 28px;border-radius:8px;font-weight:500;font-size:14px;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-right{animation:fadeUp .9s .2s ease both;display:flex;flex-direction:column;gap:14px}
+.stat-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:18px;transition:border-color .3s,background .3s}
+.stat-card:hover{border-color:rgba(196,154,34,.3);background:rgba(196,154,34,.05)}
+.stat-icon{width:50px;height:50px;border-radius:11px;background:linear-gradient(135deg,rgba(196,154,34,.2),rgba(196,154,34,.04));display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.stat-num{font-family:'Playfair Display',serif;font-size:30px;color:var(--gold-light);line-height:1;margin-bottom:2px}
+.stat-label{font-size:12.5px;color:rgba(255,255,255,.55)}
+
+/* IDENTITY STRIP */
+.identity{background:var(--gold-pale);padding:72px 5%;text-align:center}
+.identity-inner{max-width:760px;margin:0 auto}
+.identity h2{font-family:'Noto Serif KR',serif;font-size:clamp(20px,3vw,30px);color:var(--navy);margin-bottom:18px;font-weight:700;line-height:1.55}
+.divider{width:56px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));margin:20px auto;border-radius:2px}
+.identity p{font-size:14.5px;color:#4A5568;line-height:2}
+.tag-row{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:26px}
+.tag{background:var(--white);border:1px solid rgba(196,154,34,.28);color:var(--navy);padding:5px 15px;border-radius:20px;font-size:12.5px;font-weight:500}
+
+/* SERVICES */
+.services{padding:96px 5%;background:var(--white)}
+.sec-inner{max-width:1280px;margin:0 auto}
+.sec-hd{margin-bottom:56px}
+.sec-label{display:inline-block;font-size:11px;letter-spacing:2px;color:var(--gold);font-weight:600;text-transform:uppercase;margin-bottom:10px}
+.sec-hd h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,3vw,36px);color:var(--navy);font-weight:700;line-height:1.4;margin-bottom:14px}
+.sec-hd p{font-size:14.5px;color:var(--gray);line-height:1.85;max-width:540px}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px}
+.svc-card{border:1px solid var(--gray-light);border-radius:16px;padding:30px;transition:all .3s;position:relative;overflow:hidden;background:var(--white)}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--navy),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc-card:hover{border-color:rgba(27,58,107,.18);box-shadow:0 12px 40px rgba(27,58,107,.09);transform:translateY(-4px)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-icon{width:52px;height:52px;border-radius:13px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px}
+.svc-card h3{font-family:'Noto Serif KR',serif;font-size:17px;color:var(--navy);font-weight:700;margin-bottom:11px}
+.svc-card p{font-size:13px;color:#5A6880;line-height:1.85;margin-bottom:18px}
+.svc-price{font-size:12.5px;color:var(--gold);font-weight:700;border-top:1px solid var(--gray-light);padding-top:14px}
+
+/* DIFFERENTIATOR */
+.diff{background:var(--navy-deep);padding:96px 5%}
+.diff .sec-label{color:var(--gold-light)}
+.diff h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,3vw,36px);color:var(--white);font-weight:700;line-height:1.4;margin-bottom:48px}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.diff-item{padding:38px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);transition:background .3s}
+.diff-item:hover{background:rgba(196,154,34,.06)}
+.diff-num{font-family:'Playfair Display',serif;font-size:44px;color:rgba(196,154,34,.18);line-height:1;margin-bottom:14px}
+.diff-item h3{font-size:16px;color:var(--gold-light);font-weight:700;margin-bottom:11px}
+.diff-item p{font-size:13px;color:rgba(255,255,255,.52);line-height:1.85}
+
+/* MINISTRIES */
+.ministry{padding:96px 5%;background:var(--off-white)}
+.ministry h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,34px);color:var(--navy);font-weight:700;margin-bottom:10px}
+.ministry .sub{font-size:14px;color:var(--gray);margin-bottom:44px;line-height:1.85}
+.ministry .sub a{color:var(--green);font-weight:700;text-decoration:none}
+.min-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.min-card{background:var(--white);border-radius:14px;padding:26px;border:1px solid rgba(27,58,107,.07);transition:all .3s}
+.min-card:hover{box-shadow:0 8px 28px rgba(27,58,107,.1);transform:translateY(-3px)}
+.min-flag{font-size:28px;margin-bottom:13px}
+.min-card h3{font-size:15px;color:var(--navy);font-weight:700;margin-bottom:8px}
+.min-card p{font-size:12.5px;color:#6B7A8D;line-height:1.75}
+.min-link{display:inline-flex;align-items:center;gap:5px;margin-top:14px;font-size:12px;color:var(--green);text-decoration:none;font-weight:600;transition:gap .2s}
+.min-link:hover{gap:9px}
+
+/* ENGLISH GLOBAL */
+.en-sec{padding:80px 5%;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%)}
+.en-inner{max-width:880px;margin:0 auto;text-align:center}
+.en-inner h2{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,42px);color:var(--white);margin-bottom:18px;line-height:1.3}
+.en-inner h2 em{color:var(--gold-light)}
+.en-inner p{font-size:14.5px;color:rgba(255,255,255,.62);line-height:1.95;margin-bottom:32px}
+.en-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:36px}
+.en-item{background:rgba(255,255,255,.05);border-radius:10px;padding:20px;border:1px solid rgba(255,255,255,.07)}
+.en-item h4{color:var(--gold-light);font-size:13.5px;font-weight:700;margin-bottom:8px}
+.en-item p{font-size:12px;color:rgba(255,255,255,.48);line-height:1.7;margin:0}
+
+/* SEO */
+.seo-sec{padding:72px 5%;background:var(--white)}
+.seo-inner{max-width:960px;margin:0 auto}
+.seo-inner h2{font-family:'Noto Serif KR',serif;font-size:26px;color:var(--navy);font-weight:700;margin-bottom:36px}
+.seo-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.seo-col h3{font-size:13px;color:var(--gold);font-weight:700;margin-bottom:14px;letter-spacing:.5px;text-transform:uppercase}
+.kw-list{display:flex;flex-wrap:wrap;gap:7px}
+.kw{background:var(--gray-light);color:var(--navy);padding:5px 13px;border-radius:20px;font-size:12px;border:1px solid transparent;transition:all .2s;cursor:default}
+.kw:hover{border-color:var(--gold);background:var(--gold-pale)}
+
+/* PROCESS */
+.process{padding:96px 5%;background:var(--gray-light)}
+.process h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,32px);color:var(--navy);font-weight:700;margin-bottom:44px}
+.steps{display:flex;flex-direction:column}
+.step{display:grid;grid-template-columns:76px 1fr;gap:22px;padding:26px 0;border-bottom:1px solid rgba(27,58,107,.08);align-items:start}
+.step:last-child{border-bottom:none}
+.step-num{width:50px;height:50px;border-radius:50%;background:var(--navy);color:var(--gold-light);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:20px;flex-shrink:0}
+.step h3{font-size:15.5px;color:var(--navy);font-weight:700;margin-bottom:6px}
+.step p{font-size:13px;color:#5A6880;line-height:1.85}
+
+/* CONTACT */
+.contact{padding:96px 5%;background:var(--navy-deep);text-align:center}
+.contact-inner{max-width:860px;margin:0 auto}
+.contact h2{font-family:'Noto Serif KR',serif;font-size:clamp(24px,3.5vw,38px);color:var(--white);font-weight:700;margin-bottom:18px;line-height:1.45}
+.contact p{font-size:14.5px;color:rgba(255,255,255,.58);line-height:1.95;margin-bottom:40px}
+.contact-cards{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+.c-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:26px 30px;text-align:center;text-decoration:none;transition:all .3s;min-width:170px;display:flex;flex-direction:column;align-items:center;gap:9px}
+.c-card:hover{border-color:var(--gold);background:rgba(196,154,34,.08);transform:translateY(-3px)}
+.c-card .ci{font-size:26px}
+.c-card .cl{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.5px}
+.c-card .cv{font-size:14.5px;color:var(--white);font-weight:600}
+
+/* FOOTER */
+footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154,34,.14)}
+.ft-inner{max-width:1280px;margin:0 auto}
+.ft-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:44px;margin-bottom:36px}
+.ft-brand h3{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);margin-bottom:10px}
+.ft-brand p{font-size:12.5px;color:rgba(255,255,255,.38);line-height:1.85}
+.ft-col h4{font-size:11px;color:var(--gold);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.ft-col a{display:block;font-size:12.5px;color:rgba(255,255,255,.4);text-decoration:none;margin-bottom:9px;transition:color .2s}
+.ft-col a:hover{color:var(--white)}
+.ft-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.ft-bottom p{font-size:11.5px;color:rgba(255,255,255,.22)}
+.ft-mission{font-size:11px;color:rgba(196,154,34,.45);font-style:italic}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-content{grid-template-columns:1fr}
+  .hero-right{display:none}
+  .diff-grid{grid-template-columns:1fr}
+  .en-grid{grid-template-columns:1fr}
+  .seo-grid{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+@media(max-width:600px){
+  .contact-cards{flex-direction:column;align-items:center}
+  .c-card{width:100%;max-width:300px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-icon">✦</div>
+    <div>
+      <span class="nav-logo-en">GlocalBridge AI</span>
+      <span class="nav-logo-kr">글로컬브릿지 AI 컨설팅</span>
+    </div>
+  </a>
+  <div style="display:flex;align-items:center;gap:20px">
+    <div class="nav-links">
+      <a href="#services">서비스</a>
+      <a href="#about">소개</a>
+      <a href="#ministry">사역 연계</a>
+      <a href="https://elimg.kr" target="_blank" style="color:rgba(196,154,34,.7)">사역 ↗</a>
+      <a href="#contact" class="btn-nav">무료 상담</a>
+    </div>
+    <div class="lang-wrap">
+      <button class="lang-btn active" onclick="setLang('ko',this)">KO</button>
+      <button class="lang-btn" onclick="setLang('en',this)">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="badge"><span></span>2026.02.24 출범 · 김해·부산·거제·글로벌</div>
+      <h1 class="hero-en">Connecting Kingdom<br><em>Through AI</em></h1>
+      <p class="hero-kr">AI로 잇는 하나님 나라</p>
+      <div class="verse-box">
+        <p>"빛이 이같이 너희 앞에 비치게 하여 그들로 너희 착한 행실을 보고<br>하늘에 계신 너희 아버지께 영광을 돌리게 하라"</p>
+        <cite>— 마태복음 5:16</cite>
+      </div>
+      <p class="hero-desc">30년 이주민 사역의 현장 경험과 AI 최고급 기술이 만납니다.<br>세상에 단 하나뿐인 글로컬 AI 솔루션으로 하나님 나라를 조용히 확장합니다.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">✦ 무료 상담 신청</a>
+        <a href="#services" class="btn-outline">서비스 보기 →</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="stat-card"><div class="stat-icon">🌏</div><div><div class="stat-num">30+</div><div class="stat-label">년 이주민 사역 현장 경험</div></div></div>
+      <div class="stat-card"><div class="stat-icon">🌐</div><div><div class="stat-num">18</div><div class="stat-label">개국 이주민 공동체 네트워크</div></div></div>
+      <div class="stat-card"><div class="stat-icon">🤖</div><div><div class="stat-num">AI</div><div class="stat-label">Claude Max 20x 최고급 활용</div></div></div>
+      <div class="stat-card"><div class="stat-icon">✝</div><div><div class="stat-num">66</div><div class="stat-label">권 성경 연구 기반 신학적 깊이</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTITY -->
+<section class="identity">
+  <div class="identity-inner reveal">
+    <h2>비즈니스의 언어로 하나님 나라를 전합니다</h2>
+    <div class="divider"></div>
+    <p>글로컬브릿지 AI 컨설팅은 단순한 1인 기업이 아닙니다.<br>AI 교육을 통해 이주민의 역량을 키우고, CBMC 네트워크를 통해 비즈니스 리더들에게 성경적 경영 원리를 전하며,<br>조용히 그러나 분명하게 하나님의 나라가 경제·교육·법무·문화 모든 영역으로 스며들게 합니다.</p>
+    <div class="tag-row">
+      <span class="tag">AI 컨설팅</span><span class="tag">이주민 사역</span><span class="tag">CBMC 비즈니스</span>
+      <span class="tag">글로컬 교육</span><span class="tag">웹사이트 제작</span><span class="tag">무역·법무</span><span class="tag">부울경 · 동남아</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sec-inner">
+    <div class="sec-hd reveal">
+      <span class="sec-label">SERVICES</span>
+      <h2>4대 핵심 서비스</h2>
+      <p>30년 현장 경험이 뒷받침하는 AI 솔루션. 이론이 아닌 현장에서 검증된 서비스입니다.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card reveal">
+        <div class="svc-icon">🤖</div>
+        <h3>AI 컨설팅·교육</h3>
+        <p>Claude·Gemini·Canva 등 최신 AI 도구를 비즈니스와 사역에 최적화하여 셋업하고 교육합니다. 교회·기업·개인 맞춤형.</p>
+        <div class="svc-price">베이직 ₩300,000 / 월 · 프리미엄 ₩1,500,000 / 월</div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon">🌐</div>
+        <h3>웹사이트 제작</h3>
+        <p>Netlify 기반 고속 반응형 사이트. 다국어 지원, 이주민 사역 특화, SEO 최적화까지 완성형으로 제작합니다.</p>
+        <div class="svc-price">베이직 ₩1,000,000 · 유지관리 ₩150,000 / 월</div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon">📋</div>
+        <h3>이주민 법무·행정</h3>
+        <p>비자 변경·귀화·다국어 번역·외국인 근로자 관리. AI 기반 빠른 진단과 전문가 연결 서비스를 제공합니다.</p>
+        <div class="svc-price">기본 상담 ₩50,000 · 기업 계약 ₩500,000 / 월</div>
+      </div>
+      <div class="svc-card reveal">
+        <div class="svc-icon">🤝</div>
+        <h3>무역·마케팅·취업 매칭</h3>
+        <p>동남아 18개국 네트워크를 활용한 수출입 컨설팅, 다국어 마케팅, 이주민-기업 취업 매칭 서비스.</p>
+        <div class="svc-price">마케팅 ₩500,000 / 월 · 매칭 성공보수</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATOR -->
+<section class="diff" id="about">
+  <div class="sec-inner">
+    <span class="sec-label">WHY GLOCAL BRIDGE AI</span>
+    <h2 class="reveal">세상에 단 하나뿐인<br>재현 불가능한 경쟁 우위</h2>
+    <div class="diff-grid">
+      <div class="diff-item reveal">
+        <div class="diff-num">01</div>
+        <h3>Experience — 30년 현장</h3>
+        <p>AI를 가르치는 사람은 수천 명이지만, 이주민의 눈물을 30년간 함께 닦아온 사람이 가르치는 AI는 세상에 단 한 명입니다. 이 경험은 어떤 학위로도 살 수 없습니다.</p>
+      </div>
+      <div class="diff-item reveal">
+        <div class="diff-num">02</div>
+        <h3>Expertise — 18개국 전문성</h3>
+        <p>베트남·네팔·미얀마·태국·필리핀 등 18개국의 언어·문화·법무·비자 체계를 현장에서 직접 다뤄온 살아있는 전문성입니다.</p>
+      </div>
+      <div class="diff-item reveal">
+        <div class="diff-num">03</div>
+        <h3>Authority — 공식 권위</h3>
+        <p>부산남부노회 공식 파송 이주민 선교사, CBMC 김해한마음지회 지도목사. 교회와 비즈니스 양 영역에서 검증된 권위를 갖추고 있습니다.</p>
+      </div>
+      <div class="diff-item reveal">
+        <div class="diff-num">04</div>
+        <h3>Trust — 30년 신뢰 네트워크</h3>
+        <p>김해·기장·거제 이주민 공동체, 베트남 메콩아카데미, 태국 카렌족 목회자들과 쌓아온 30년의 신뢰 관계는 그 어떤 마케팅으로도 만들 수 없습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MINISTRIES LINK -->
+<section class="ministry" id="ministry">
+  <div class="sec-inner">
+    <span class="sec-label reveal">CONNECTED MINISTRY</span>
+    <h2 class="reveal">사역과 비즈니스가 하나로 연결됩니다</h2>
+    <p class="sub reveal">글로컬브릿지 AI의 모든 비즈니스는 이주민 사역과 연결되어 있습니다.<br>자세한 사역 현황은 <a href="https://elimg.kr" target="_blank">elimg.kr</a>에서 확인하실 수 있습니다.</p>
+    <div class="min-grid">
+      <div class="min-card reveal">
+        <div class="min-flag">🇳🇵</div>
+        <h3>네팔 한국어반</h3>
+        <p>김해·거제 한화오션 네팔 근로자 대상 AI 기반 한국어 교육 프로그램 운영</p>
+        <a href="https://elimg.kr/nepal" class="min-link">사역 보기 →</a>
+      </div>
+      <div class="min-card reveal">
+        <div class="min-flag">🇻🇳</div>
+        <h3>베트남 설교·상담 사역</h3>
+        <p>메콩성경아카데미 연계, AI 번역·콘텐츠 제작으로 베트남어 설교·상담 사역 지원</p>
+        <a href="https://elimg.kr/vietnam" class="min-link">사역 보기 →</a>
+      </div>
+      <div class="min-card reveal">
+        <div class="min-flag">⚓</div>
+        <h3>거제 한화오션 해외근로자</h3>
+        <p>조선업 해외 근로자 한국어 사역 — AI 활용 생활 한국어 교육 및 법무 지원</p>
+        <a href="https://elimg.kr/geoje" class="min-link">사역 보기 →</a>
+      </div>
+      <div class="min-card reveal">
+        <div class="min-flag">🌿</div>
+        <h3>기장 이주민 사역</h3>
+        <p>부산 기장 이주민 센터와 연계한 다문화 가정 지원 및 AI 교육 서비스</p>
+        <a href="https://elimg.kr/janggi" class="min-link">사역 보기 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGLISH GLOBAL -->
+<section class="en-sec" id="global">
+  <div class="en-inner">
+    <span class="sec-label" style="color:var(--gold-light)">GLOBAL PARTNERS</span>
+    <h2 class="reveal">Serving the World<br>through <em>AI &amp; Gospel</em></h2>
+    <p class="reveal">GlocalBridge AI connects 30 years of immigrant ministry experience with cutting-edge AI technology.<br>We partner with churches, NGOs, and businesses across Southeast Asia and beyond.</p>
+    <div class="en-grid">
+      <div class="en-item reveal"><h4>AI Consulting</h4><p>Custom AI workflows for churches, ministries and businesses in Korea and abroad.</p></div>
+      <div class="en-item reveal"><h4>Multilingual Education</h4><p>Korean language programs for immigrant workers — Nepali, Vietnamese, and more.</p></div>
+      <div class="en-item reveal"><h4>Global Mission Network</h4><p>Connecting Southeast Asian communities through the Glocal Bridge Academy 60-week curriculum.</p></div>
+    </div>
+    <a href="mailto:kodhjj@gmail.com" class="btn-primary" style="margin:0 auto">✉ Contact in English</a>
+  </div>
+</section>
+
+<!-- SEO -->
+<section class="seo-sec">
+  <div class="seo-inner">
+    <h2 class="reveal">찾고 계신 서비스가 있으신가요?</h2>
+    <div class="seo-grid">
+      <div class="seo-col reveal">
+        <h3>elimg.com 핵심 키워드</h3>
+        <div class="kw-list">
+          <span class="kw">AI 컨설팅 김해</span><span class="kw">글로컬브릿지</span>
+          <span class="kw">이주민 AI 교육</span><span class="kw">교회 AI 솔루션</span>
+          <span class="kw">CBMC AI</span><span class="kw">다국어 웹사이트</span>
+          <span class="kw">외국인 법무 상담</span><span class="kw">무역 컨설팅 부산</span>
+          <span class="kw">GlocalBridge AI</span><span class="kw">선교 AI 활용</span>
+          <span class="kw">글로컬 아카데미</span><span class="kw">1인 AI 창업</span>
+        </div>
+      </div>
+      <div class="seo-col reveal">
+        <h3>사역 연결 키워드</h3>
+        <div class="kw-list">
+          <span class="kw">네팔 한국어 교육</span><span class="kw">베트남 이주민 상담</span>
+          <span class="kw">거제 한화오션 외국인</span><span class="kw">기장 이주민 센터</span>
+          <span class="kw">엘림G선교회</span><span class="kw">부울경 다문화</span>
+          <span class="kw">메콩성경아카데미</span><span class="kw">한진준 대표</span>
+          <span class="kw">부산남부노회</span><span class="kw">이주민 비자 상담</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="sec-inner">
+    <span class="sec-label">HOW IT WORKS</span>
+    <h2 class="reveal">상담부터 실행까지 4단계</h2>
+    <div class="steps">
+      <div class="step reveal"><div class="step-num">1</div><div><h3>무료 초기 상담 (30분)</h3><p>카카오톡 또는 전화로 현재 상황과 필요를 파악합니다. 이주민 사역, 비즈니스, 교회 AI 활용 등 어떤 주제든 환영합니다.</p></div></div>
+      <div class="step reveal"><div class="step-num">2</div><div><h3>맞춤 솔루션 설계</h3><p>상담 내용을 바탕으로 AI 도구 선정, 워크플로우 설계, 교육 계획을 제안드립니다. 명확한 견적서와 함께 제시합니다.</p></div></div>
+      <div class="step reveal"><div class="step-num">3</div><div><h3>실행 &amp; 교육</h3><p>Claude Cowork를 활용한 실시간 구축, 현장 교육, 다국어 콘텐츠 제작까지 함께 진행합니다.</p></div></div>
+      <div class="step reveal"><div class="step-num">4</div><div><h3>지속 지원 &amp; 성장</h3><p>월별 유지관리와 새로운 AI 트렌드 업데이트, 지속적인 성장을 함께 만들어 갑니다.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <span class="sec-label" style="color:var(--gold-light)">CONTACT</span>
+    <h2 class="reveal">지금 바로 시작하십시오</h2>
+    <p class="reveal">"무슨 일을 하든지 마음을 다하여 주께 하듯 하라" — 골로새서 3:23<br><br>AI 컨설팅, 이주민 서비스, 웹사이트 제작 — 첫 상담은 무료입니다.</p>
+    <div class="contact-cards">
+      <a href="https://pf.kakao.com/_YIULn" class="c-card reveal" target="_blank"><div class="ci">💬</div><div class="cl">카카오 채널</div><div class="cv">글로컬브릿지 AI</div></a>
+      <a href="tel:+821020833106" class="c-card reveal"><div class="ci">📞</div><div class="cl">전화 상담</div><div class="cv">010-2083-3106</div></a>
+      <a href="mailto:kodhjj@gmail.com" class="c-card reveal"><div class="ci">✉</div><div class="cl">이메일</div><div class="cv">kodhjj@gmail.com</div></a>
+      <a href="https://elimg.kr" class="c-card reveal" target="_blank"><div class="ci">✝</div><div class="cl">사역 사이트</div><div class="cv">elimg.kr</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-inner">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <h3>GlocalBridge AI</h3>
+        <p>글로컬브릿지 AI 컨설팅 | 대표: 한진준<br>
+        부산남부노회 공식 파송 이주민 선교사<br>
+        CBMC 김해한마음지회 지도목사<br>
+        경상남도 김해시 | elimg.com<br>
+        📞 010-2083-3106 | ✉ kodhjj@gmail.com</p>
+      </div>
+      <div class="ft-col">
+        <h4>Services</h4>
+        <a href="#services">AI 컨설팅·교육</a>
+        <a href="#services">웹사이트 제작</a>
+        <a href="#services">이주민 법무·행정</a>
+        <a href="#services">무역·매칭</a>
+      </div>
+      <div class="ft-col">
+        <h4>Connect</h4>
+        <a href="https://elimg.kr" target="_blank">사역 사이트 (elimg.kr)</a>
+        <a href="#contact">무료 상담 신청</a>
+        <a href="#global">English (Global)</a>
+        <a href="https://youtube.com/@glocalbridge" target="_blank">YouTube</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 GlocalBridge AI 컨설팅. All rights reserved. | elimg.com</p>
+      <p class="ft-mission">"AI로 잇는 하나님 나라 — Connecting Kingdom Through AI"</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Reveal observer
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 70);
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Nav scroll effect
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').style.background =
+    window.scrollY > 60 ? 'rgba(7,14,26,0.98)' : 'rgba(11,22,45,0.96)';
+});
+
+// Language toggle
+function setLang(lang, btn) {
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if (lang === 'en') {
+    document.getElementById('global').scrollIntoView({ behavior: 'smooth' });
+  }
+}
+</script>
+</body>
+</html>
