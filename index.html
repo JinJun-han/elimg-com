@@ -21,7 +21,7 @@
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Noto Sans KR',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;padding-bottom:44px}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0 5%;height:68px;background:rgba(11,22,45,0.96);backdrop-filter:blur(12px);border-bottom:1px solid rgba(196,154,34,0.2);transition:background .3s}
@@ -211,6 +211,77 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
 .nc-url{font-size:10px;color:var(--gold);font-weight:600;word-break:break-all}
 .net-card.nc-hidden{display:none}
 
+/* HAMBURGER */
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;z-index:200}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);margin:5px 0;border-radius:2px;transition:all .3s}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;bottom:0;background:rgba(7,14,26,.98);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:28px;backdrop-filter:blur(16px)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:rgba(255,255,255,.85);text-decoration:none;font-size:18px;font-weight:500;transition:color .2s}
+.mobile-menu a:hover{color:var(--gold-light)}
+.mobile-menu .btn-nav{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy-deep)!important;padding:12px 32px;border-radius:8px;font-weight:700!important;font-size:16px}
+
+/* FOUNDER */
+.founder{padding:96px 5%;background:var(--off-white)}
+.founder-inner{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:center}
+.founder-photo{width:280px;height:340px;border-radius:18px;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.founder-photo-inner{text-align:center;color:var(--white)}
+.founder-photo-inner .fp-icon{font-size:72px;margin-bottom:14px;display:block}
+.founder-photo-inner .fp-name{font-family:'Noto Serif KR',serif;font-size:22px;font-weight:700}
+.founder-photo-inner .fp-title{font-size:12px;color:var(--gold-light);margin-top:6px}
+.founder-info h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,32px);color:var(--navy);font-weight:700;margin-bottom:18px;line-height:1.45}
+.founder-info p{font-size:14px;color:#4A5568;line-height:2;margin-bottom:18px}
+.founder-roles{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.founder-role{display:flex;align-items:center;gap:6px;background:var(--white);border:1px solid rgba(27,58,107,.12);padding:8px 14px;border-radius:8px;font-size:12.5px;color:var(--navy);font-weight:500}
+.founder-role span{font-size:16px}
+.founder-verse{border-left:3px solid var(--gold);padding:12px 18px;background:var(--gold-pale);border-radius:0 8px 8px 0;font-size:13px;color:#4A5568;line-height:1.75;font-style:italic}
+.founder-verse cite{display:block;margin-top:6px;font-size:11px;color:var(--gold);font-style:normal;font-weight:600}
+
+/* TRUST */
+.trust{padding:96px 5%;background:var(--white)}
+.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-top:48px}
+.trust-card{background:var(--off-white);border-radius:14px;padding:28px;border:1px solid rgba(27,58,107,.06);transition:all .3s}
+.trust-card:hover{box-shadow:0 8px 28px rgba(27,58,107,.1);transform:translateY(-3px)}
+.trust-icon{font-size:36px;margin-bottom:14px}
+.trust-card h3{font-family:'Noto Serif KR',serif;font-size:17px;color:var(--navy);font-weight:700;margin-bottom:10px}
+.trust-card p{font-size:13px;color:#5A6880;line-height:1.85}
+.trust-card .trust-highlight{font-size:28px;font-family:'Playfair Display',serif;color:var(--gold);margin-top:12px;font-weight:700}
+
+/* FAQ */
+.faq{padding:96px 5%;background:var(--off-white)}
+.faq-list{max-width:860px;margin:48px auto 0}
+.faq-item{border-bottom:1px solid rgba(27,58,107,.1);overflow:hidden}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:22px 0;cursor:pointer;font-size:15.5px;font-weight:600;color:var(--navy);transition:color .2s;gap:12px}
+.faq-q:hover{color:var(--gold)}
+.faq-q .faq-arrow{font-size:18px;transition:transform .3s;flex-shrink:0;color:var(--gold)}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:22px}
+.faq-a p{font-size:13.5px;color:#5A6880;line-height:1.95}
+
+/* YOUTUBE / SNS */
+.yt-sec{padding:80px 5%;background:linear-gradient(180deg,var(--white) 0%,var(--off-white) 100%)}
+.yt-inner{max-width:1000px;margin:0 auto}
+.yt-embed{position:relative;width:100%;padding-bottom:56.25%;border-radius:16px;overflow:hidden;box-shadow:0 12px 40px rgba(27,58,107,.12);margin-bottom:28px;background:#000}
+.yt-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none}
+.sns-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.sns-btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:600;transition:all .2s;border:1px solid rgba(27,58,107,.12)}
+.sns-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.sns-yt{background:#FF0000;color:#fff;border-color:#FF0000}
+.sns-kakao{background:#FEE500;color:#3C1E1E;border-color:#FEE500}
+.sns-blog{background:#03C75A;color:#fff;border-color:#03C75A}
+.sns-email{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* TRANSLATE WIDGET */
+.translate-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(7,14,26,.95);padding:8px 5%;display:flex;justify-content:center;align-items:center;gap:12px;z-index:90;backdrop-filter:blur(10px);border-top:1px solid rgba(196,154,34,.2)}
+.translate-bar select{background:rgba(255,255,255,.1);color:var(--white);border:1px solid rgba(255,255,255,.2);padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit}
+.translate-bar label{color:rgba(255,255,255,.6);font-size:11px}
+#google_translate_element{display:inline-block}
+#google_translate_element .goog-te-gadget{font-size:0!important}
+#google_translate_element .goog-te-combo{background:rgba(255,255,255,.1);color:var(--white);border:1px solid rgba(255,255,255,.2);padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer}
+
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
@@ -226,10 +297,15 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
   .seo-grid{grid-template-columns:1fr}
   .ft-top{grid-template-columns:1fr}
   .nav-links{display:none}
+  .hamburger{display:block}
+  .founder-inner{grid-template-columns:1fr;text-align:center}
+  .founder-photo{margin:0 auto;width:200px;height:240px}
+  .founder-roles{justify-content:center}
 }
 @media(max-width:600px){
   .contact-cards{flex-direction:column;align-items:center}
   .c-card{width:100%;max-width:300px}
+  .trust-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -248,6 +324,7 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
     <div class="nav-links">
       <a href="#services">서비스</a>
       <a href="#about">소개</a>
+      <a href="#founder">대표</a>
       <a href="#ministry">사역 연계</a>
       <a href="#network">네트워크</a>
       <a href="https://elimg.kr" target="_blank" style="color:rgba(196,154,34,.7)">사역 ↗</a>
@@ -257,8 +334,18 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
       <button class="lang-btn active" onclick="setLang('ko',this)">KO</button>
       <button class="lang-btn" onclick="setLang('en',this)">EN</button>
     </div>
+    <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#services" onclick="closeMenu()">서비스</a>
+  <a href="#about" onclick="closeMenu()">소개</a>
+  <a href="#founder" onclick="closeMenu()">대표</a>
+  <a href="#ministry" onclick="closeMenu()">사역 연계</a>
+  <a href="#network" onclick="closeMenu()">네트워크</a>
+  <a href="https://elimg.kr" target="_blank" onclick="closeMenu()" style="color:var(--gold-light)">사역 ↗</a>
+  <a href="#contact" class="btn-nav" onclick="closeMenu()">무료 상담</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -368,6 +455,37 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
   </div>
 </section>
 
+<!-- FOUNDER -->
+<section class="founder" id="founder">
+  <div class="sec-inner">
+    <span class="sec-label reveal">FOUNDER</span>
+    <div class="founder-inner">
+      <div class="founder-photo reveal">
+        <div class="founder-photo-inner">
+          <span class="fp-icon">✝</span>
+          <div class="fp-name">한진준</div>
+          <div class="fp-title">JinJun Han · 대표</div>
+        </div>
+      </div>
+      <div class="founder-info reveal">
+        <h2>30년 현장, AI로 새 길을 잇다</h2>
+        <p>1995년부터 이주민의 눈물과 함께한 30년. 네팔·베트남·미얀마·태국·필리핀 등 18개국 이주민들과 함께 걸어온 길 위에, 이제 AI 기술을 얹어 하나님 나라를 확장합니다. 비즈니스의 언어로 복음을 전하고, 기술의 힘으로 사역을 지원합니다.</p>
+        <div class="founder-roles">
+          <div class="founder-role"><span>✦</span>글로컬브릿지 AI 대표</div>
+          <div class="founder-role"><span>✝</span>부산남부노회 파송 선교사</div>
+          <div class="founder-role"><span>🤝</span>CBMC 김해한마음 지도목사</div>
+          <div class="founder-role"><span>🎓</span>글로컬 아카데미 60주 운영</div>
+          <div class="founder-role"><span>🤖</span>Claude Max 20x 활용 전문가</div>
+        </div>
+        <div class="founder-verse">
+          "내가 너를 이방의 빛으로 삼아 땅 끝까지 구원하게 하리라"
+          <cite>— 이사야 49:6</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- MINISTRIES LINK -->
 <section class="ministry" id="ministry">
   <div class="sec-inner">
@@ -398,6 +516,41 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
         <h3>기장 이주민 사역</h3>
         <p>부산 기장 이주민 센터와 연계한 다문화 가정 지원 및 AI 교육 서비스</p>
         <a href="https://elimg.kr/janggi" class="min-link">사역 보기 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust" id="trust">
+  <div class="sec-inner">
+    <span class="sec-label reveal">TRUST & TRACK RECORD</span>
+    <h2 style="font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,34px);color:var(--navy);font-weight:700" class="reveal">현장에서 검증된 30년의 신뢰</h2>
+    <p style="font-size:14.5px;color:var(--gray);line-height:1.85;max-width:600px" class="reveal">숫자가 아닌 관계로 증명합니다. 이주민 사역부터 AI 비즈니스까지, 현장의 결과로 말합니다.</p>
+    <div class="trust-grid">
+      <div class="trust-card reveal">
+        <div class="trust-icon">🌏</div>
+        <h3>이주민 사역 네트워크</h3>
+        <p>네팔·베트남·미얀마·태국·스리랑카 등 18개국 이주민 공동체와 30년간 구축한 신뢰 네트워크</p>
+        <div class="trust-highlight">18개국</div>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon">🏗</div>
+        <h3>웹사이트 구축 실적</h3>
+        <p>선교회·교회·CBMC·비즈니스 등 Netlify 기반 105개 사이트를 직접 기획·제작·운영 중</p>
+        <div class="trust-highlight">105개 사이트</div>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon">📖</div>
+        <h3>글로컬 아카데미</h3>
+        <p>60주 커리큘럼 기반 선교·비즈니스 통합 교육 과정 운영. 이주민 목회자·리더 양성</p>
+        <div class="trust-highlight">60주 과정</div>
+      </div>
+      <div class="trust-card reveal">
+        <div class="trust-icon">⚓</div>
+        <h3>거제 한화오션 사역</h3>
+        <p>대한민국 최대 조선소 해외 근로자 대상 한국어·상담 사역. 기업과 이주민을 연결하는 현장형 서비스</p>
+        <div class="trust-highlight">현장 사역</div>
       </div>
     </div>
   </div>
@@ -444,6 +597,25 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
           <span class="kw">부산남부노회</span><span class="kw">이주민 비자 상담</span>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- YOUTUBE / SNS -->
+<section class="yt-sec" id="youtube">
+  <div class="yt-inner">
+    <div style="text-align:center">
+      <span class="sec-label reveal">MEDIA & SNS</span>
+      <h2 style="font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,34px);color:var(--navy);font-weight:700;margin-bottom:14px" class="reveal">영상으로 만나는 글로컬브릿지</h2>
+      <p style="font-size:14px;color:var(--gray);line-height:1.85;margin-bottom:36px" class="reveal">사역 현장과 AI 활용 이야기를 영상으로 전합니다</p>
+    </div>
+    <div class="yt-embed reveal">
+      <iframe src="https://www.youtube.com/embed/?listType=user_uploads&list=glocalbridge" title="GlocalBridge YouTube" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen loading="lazy"></iframe>
+    </div>
+    <div class="sns-row reveal">
+      <a href="https://youtube.com/@glocalbridge" target="_blank" class="sns-btn sns-yt">▶ YouTube 채널</a>
+      <a href="https://pf.kakao.com/_YIULn" target="_blank" class="sns-btn sns-kakao">💬 카카오 채널</a>
+      <a href="mailto:kodhjj@gmail.com" class="sns-btn sns-email">✉ 이메일 문의</a>
     </div>
   </div>
 </section>
@@ -761,6 +933,38 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="sec-inner">
+    <div style="text-align:center">
+      <span class="sec-label reveal">FAQ</span>
+      <h2 style="font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,34px);color:var(--navy);font-weight:700" class="reveal">자주 묻는 질문</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">AI 컨설팅은 어떤 분들에게 적합한가요?<span class="faq-arrow">▼</span></div>
+        <div class="faq-a"><p>교회·선교단체에서 AI를 사역에 활용하고 싶은 목회자, 이주민 관련 사업을 하시는 기업 대표, 1인 창업을 준비하시는 분, CBMC 비즈니스 리더 등 다양한 분들이 이용하고 계십니다. AI에 대한 사전 지식이 없어도 괜찮습니다.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">비용은 어떻게 되나요?<span class="faq-arrow">▼</span></div>
+        <div class="faq-a"><p>첫 상담(30분)은 무료입니다. 이후 AI 교육은 월 30만원(베이직)~150만원(프리미엄), 웹사이트 제작은 100만원부터, 법무·행정 상담은 5만원부터 시작합니다. 정확한 견적은 상담 후 맞춤 제안드립니다.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">웹사이트는 어떤 방식으로 제작하나요?<span class="faq-arrow">▼</span></div>
+        <div class="faq-a"><p>Netlify + GitHub 기반의 정적 사이트로 제작합니다. 서버 비용이 없고, 로딩이 빠르며, SSL 보안이 기본 포함됩니다. 다국어 지원, SEO 최적화, 반응형 디자인을 기본으로 포함하며, 현재 105개 사이트를 이 방식으로 운영 중입니다.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">이주민 법무 상담도 가능한가요?<span class="faq-arrow">▼</span></div>
+        <div class="faq-a"><p>네, 비자 변경·연장, 귀화 신청, 다국어 번역, 외국인 근로자 관리 등 이주민 관련 법무·행정 서비스를 제공합니다. 30년간의 현장 경험과 AI 기반 빠른 진단으로 최적의 솔루션을 찾아드립니다.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q" onclick="toggleFaq(this)">선교 사역과 비즈니스를 어떻게 연결하나요?<span class="faq-arrow">▼</span></div>
+        <div class="faq-a"><p>글로컬브릿지 AI의 모든 비즈니스 수익은 이주민 사역을 지원하는 데 연결됩니다. CBMC 비즈니스 네트워크를 통해 성경적 경영 원리를 전하면서, 실질적인 비즈니스 성과와 사역의 확장을 동시에 이루어갑니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="contact-inner">
@@ -793,7 +997,7 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
         <a href="#services">AI 컨설팅·교육</a>
         <a href="#services">웹사이트 제작</a>
         <a href="#services">이주민 법무·행정</a>
-        <a href="#services">무역·매칭</a>
+        <a href="#faq">자주 묻는 질문</a>
       </div>
       <div class="ft-col">
         <h4>Connect</h4>
@@ -801,6 +1005,7 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
         <a href="#contact">무료 상담 신청</a>
         <a href="#global">English (Global)</a>
         <a href="https://youtube.com/@glocalbridge" target="_blank">YouTube</a>
+        <a href="#founder">대표 소개</a>
       </div>
     </div>
     <div class="ft-bottom">
@@ -810,7 +1015,23 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
   </div>
 </footer>
 
+<!-- Google Translate -->
+<div class="translate-bar">
+  <label>🌐 번역</label>
+  <div id="google_translate_element"></div>
+</div>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <script>
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    includedLanguages: 'ko,en,ne,vi,my,th,si,zh-CN,ja,tl,id',
+    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+    autoDisplay: false
+  }, 'google_translate_element');
+}
+
 // Reveal observer
 const obs = new IntersectionObserver((entries) => {
   entries.forEach((e, i) => {
@@ -825,6 +1046,18 @@ window.addEventListener('scroll', () => {
     window.scrollY > 60 ? 'rgba(7,14,26,0.98)' : 'rgba(11,22,45,0.96)';
 });
 
+// Hamburger menu
+function toggleMenu() {
+  document.querySelector('.hamburger').classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+  document.querySelector('.hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
 // Network portal tab filtering
 document.querySelectorAll('.net-tab').forEach(tab => {
   tab.addEventListener('click', () => {
@@ -836,6 +1069,11 @@ document.querySelectorAll('.net-tab').forEach(tab => {
     });
   });
 });
+
+// FAQ toggle
+function toggleFaq(el) {
+  el.parentElement.classList.toggle('open');
+}
 
 // Language toggle
 function setLang(lang, btn) {
