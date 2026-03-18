@@ -2,9 +2,6 @@
   "version": 2,
   "routes": [
     { "src": "/shop", "dest": "/shop/index.html" },
-    { "src": "/shop/(.*)", "dest": "/shop/$1" },
-    { "src": "/agency/assets/(.*)", "dest": "/agency/assets/$1" },
-    { "src": "/agency", "dest": "/agency/index.html" },
-    { "src": "/agency/(.*)", "dest": "/agency/index.html" }
+    { "src": "/shop/(.*)", "dest": "/shop/$1" }
   ]
 }
