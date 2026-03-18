@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>글로컬브릿지 디지털 스토어 | elimg.com/shop</title>
+<meta name="description" content="바이브코딩, AI 컨설팅, CBMC 비즈니스 교재 — 글로컬브릿지연구소 디지털 콘텐츠 스토어">
+<meta property="og:title" content="글로컬브릿지 디지털 스토어">
+<meta property="og:description" content="AI 시대의 브살렐 프로젝트 — 바이브코딩, CBMC 교재, 글로컬 콘텐츠">
+<meta property="og:url" content="https://elimg.com/shop">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e17; --bg2: #0d1220; --text: #e8e8e8; --muted: #8892a4;
+  --accent1: #7c4dff; --accent2: #00bfa5; --gold: #ffd54f; --rose: #f06292;
+  --card: rgba(255,255,255,0.03); --border: rgba(255,255,255,0.06);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans KR', sans-serif; background: var(--bg); color: var(--text); line-height: 1.7; }
+a { color: var(--accent1); text-decoration: none; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* Hero */
+.hero {
+  padding: 100px 0 60px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 0%, rgba(124,77,255,0.08) 0%, transparent 60%);
+}
+.hero-badge { display: inline-block; padding: 6px 16px; border-radius: 20px; background: rgba(124,77,255,0.12); border: 1px solid rgba(124,77,255,0.25); color: var(--accent1); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 20px; }
+.hero h1 { font-size: clamp(28px, 5vw, 48px); font-weight: 900; margin-bottom: 12px; background: linear-gradient(135deg, #7c4dff, #00bfa5); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.hero p { font-size: 16px; color: var(--muted); max-width: 540px; margin: 0 auto 32px; }
+.hero-scripture { font-style: italic; color: #d4a574; font-size: 14px; margin-bottom: 40px; }
+
+/* Products Grid */
+.section-title { text-align: center; margin: 60px 0 32px; }
+.section-title h2 { font-size: 28px; font-weight: 900; margin-bottom: 8px; }
+.section-title p { color: var(--muted); font-size: 14px; }
+
+.products { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; padding-bottom: 40px; }
+.product-card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+  padding: 28px 24px; transition: all 0.3s ease; position: relative; overflow: hidden;
+}
+.product-card:hover { border-color: rgba(124,77,255,0.3); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(124,77,255,0.1); }
+.product-card .icon { font-size: 40px; margin-bottom: 16px; }
+.product-card .cat { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-bottom: 8px; }
+.product-card h3 { font-size: 17px; font-weight: 800; margin-bottom: 6px; }
+.product-card .desc { font-size: 13px; color: var(--muted); margin-bottom: 16px; min-height: 36px; }
+.product-card .price-row { display: flex; justify-content: space-between; align-items: center; }
+.product-card .price { font-size: 22px; font-weight: 900; color: var(--gold); }
+.product-card .price.free { color: var(--accent2); }
+.buy-btn {
+  display: inline-block; padding: 8px 20px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--accent1), #651fff); color: #fff;
+  font-size: 13px; font-weight: 700; border: none; cursor: pointer; transition: all 0.2s;
+}
+.buy-btn:hover { transform: scale(1.05); box-shadow: 0 4px 16px rgba(124,77,255,0.4); }
+.buy-btn.free-btn { background: linear-gradient(135deg, var(--accent2), #00897b); }
+
+/* Consulting Section */
+.consulting { padding: 60px 0; }
+.consult-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+.consult-card {
+  background: linear-gradient(135deg, rgba(124,77,255,0.06), rgba(0,191,165,0.04));
+  border: 1px solid rgba(124,77,255,0.15); border-radius: 16px; padding: 24px;
+}
+.consult-card h3 { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+.consult-card .meta { font-size: 12px; color: var(--muted); margin-bottom: 12px; }
+.consult-card .features { font-size: 12px; color: var(--text); margin-bottom: 16px; }
+.consult-card .features span { display: block; padding: 2px 0; }
+.consult-price { font-size: 24px; font-weight: 900; color: var(--accent1); }
+
+/* Funnel */
+.funnel { padding: 40px 0 60px; text-align: center; }
+.funnel-flow { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.funnel-step { padding: 12px 20px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; font-size: 13px; font-weight: 600; }
+.funnel-arrow { color: var(--accent1); font-size: 20px; }
+
+/* Footer */
+footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--muted); font-size: 12px; }
+footer a { color: var(--accent1); }
+
+/* Vercel Analytics Ready */
+@media (max-width: 600px) {
+  .hero { padding: 60px 0 40px; }
+  .products { grid-template-columns: 1fr; }
+  .consult-grid { grid-template-columns: 1fr; }
+  .funnel-flow { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">GLOCAL BRIDGE DIGITAL STORE</div>
+    <h1>AI 시대의 브살렐 프로젝트</h1>
+    <p>바이브코딩, CBMC 교재, AI 컨설팅 — 하나님의 지혜로 디지털 세계를 짓는 도구들</p>
+    <div class="hero-scripture">"하나님의 영을 충만하게 하여 지혜와 총명과 지식과 여러 가지 재주로" (출 35:31)</div>
+  </div>
+</section>
+
+<!-- DIGITAL PRODUCTS -->
+<section class="container">
+  <div class="section-title">
+    <h2>📱 디지털 콘텐츠</h2>
+    <p>즉시 다운로드 · 평생 소장 · 지속 업데이트</p>
+  </div>
+  <div class="products">
+
+    <div class="product-card">
+      <div class="icon">📘</div>
+      <div class="cat">전자책 · BESTSELLER</div>
+      <h3>바이브코딩 완전정복</h3>
+      <div class="desc">코드 없이 만드는 디지털 세계 — Sola AI 9주 과정 공식 교재</div>
+      <div class="price-row">
+        <span class="price">₩19,900</span>
+        <a href="#" class="buy-btn" onclick="alert('Gumroad 결제 링크가 연결될 예정입니다.')">구매하기</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="icon">🤖</div>
+      <div class="cat">전자책</div>
+      <h3>AI 컨설팅 가이드북</h3>
+      <div class="desc">교회와 기업을 위한 AI 도입 완전 가이드 — 브살렐의 지혜</div>
+      <div class="price-row">
+        <span class="price">₩14,900</span>
+        <a href="#" class="buy-btn" onclick="alert('Gumroad 결제 링크가 연결될 예정입니다.')">구매하기</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="icon">⚡</div>
+      <div class="cat">템플릿</div>
+      <h3>프롬프트 템플릿 50선</h3>
+      <div class="desc">바이브코딩 실전 프롬프트 모음 — 복사해서 바로 사용</div>
+      <div class="price-row">
+        <span class="price">₩9,900</span>
+        <a href="#" class="buy-btn" onclick="alert('Gumroad 결제 링크가 연결될 예정입니다.')">구매하기</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="icon">📋</div>
+      <div class="cat">워크시트 · 12종 세트</div>
+      <h3>CBMC 비즈니스 원칙 12모듈</h3>
+      <div class="desc">교안 + 워크시트 + 실습과제 — 3종 × 12모듈 = 36 콘텐츠</div>
+      <div class="price-row">
+        <span class="price">₩29,900</span>
+        <a href="#" class="buy-btn" onclick="alert('Gumroad 결제 링크가 연결될 예정입니다.')">구매하기</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="icon">📖</div>
+      <div class="cat">전자책 · 12개 언어</div>
+      <h3>313일 성경읽기 가이드</h3>
+      <div class="desc">광야→엘림→가나안 여정 — 12개 언어 글로컬 읽기표+해설</div>
+      <div class="price-row">
+        <span class="price">₩12,900</span>
+        <a href="#" class="buy-btn" onclick="alert('Gumroad 결제 링크가 연결될 예정입니다.')">구매하기</a>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="icon">🎨</div>
+      <div class="cat">템플릿 · Canva/PPT</div>
+      <h3>글로컬 브랜딩 템플릿</h3>
+      <div class="desc">교회·선교단체·BAM 기업용 디자인 템플릿 30종</div>
+      <div class="price-row">
+        <span class="price">₩24,900</span>
+        <a href="#" class="buy-btn" onclick="alert('Gumroad 결제 링크가 연결될 예정입니다.')">구매하기</a>
+      </div>
+    </div>
+
+    <div class="product-card" style="border-color: rgba(0,191,165,0.3); background: rgba(0,191,165,0.04);">
+      <div class="icon">🎁</div>
+      <div class="cat" style="color: var(--accent2);">무료 · 리드 마그넷</div>
+      <h3>KIIP 다국어 학습 키트</h3>
+      <div class="desc">12개 언어 한국어 학습 교재 — 이메일 등록 후 무료 다운로드</div>
+      <div class="price-row">
+        <span class="price free">무료</span>
+        <a href="#" class="buy-btn free-btn" onclick="alert('이메일 등록 폼이 연결될 예정입니다.')">무료 받기</a>
+      </div>
+    </div>
+
+    <div class="product-card" style="border-color: rgba(124,77,255,0.3); background: linear-gradient(135deg, rgba(124,77,255,0.06), rgba(101,31,255,0.04));">
+      <div class="icon">🎓</div>
+      <div class="cat" style="color: var(--accent1);">온라인 과정 · PREMIUM</div>
+      <h3>Sola AI 아카데미 9주</h3>
+      <div class="desc">실시간 수업 + 1:1 멘토링 + 프로젝트 완성 — 바이브코딩 마스터</div>
+      <div class="price-row">
+        <span class="price">₩299,000</span>
+        <a href="#" class="buy-btn" onclick="alert('수강 신청 페이지가 연결될 예정입니다.')">수강 신청</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- AI CONSULTING -->
+<section class="consulting">
+  <div class="container">
+    <div class="section-title">
+      <h2>🤖 AI 컨설팅 패키지</h2>
+      <p>교회 · 기업 · 선교단체 · 다문화 기관을 위한 맞춤 AI 컨설팅</p>
+    </div>
+    <div class="consult-grid">
+
+      <div class="consult-card">
+        <h3>🌱 스타터</h3>
+        <div class="meta">2시간 | 소규모 교회/단체</div>
+        <div class="features">
+          <span>✓ AI 도입 진단</span>
+          <span>✓ 맞춤 도구 추천</span>
+          <span>✓ 실행 로드맵</span>
+        </div>
+        <div class="consult-price">30만원</div>
+      </div>
+
+      <div class="consult-card">
+        <h3>🚀 그로스</h3>
+        <div class="meta">4시간 + 2주 팔로업 | 중소기업/선교단체</div>
+        <div class="features">
+          <span>✓ AI 워크플로우 설계</span>
+          <span>✓ 바이브코딩 교육</span>
+          <span>✓ 자동화 3개 구축</span>
+          <span>✓ 2주 카톡 지원</span>
+        </div>
+        <div class="consult-price">80만원</div>
+      </div>
+
+      <div class="consult-card">
+        <h3>👑 엔터프라이즈</h3>
+        <div class="meta">월정액 무제한 | 기업/대형 교회</div>
+        <div class="features">
+          <span>✓ 전담 AI 컨설턴트</span>
+          <span>✓ 무제한 상담</span>
+          <span>✓ 맞춤 에이전트 구축</span>
+          <span>✓ 월간 리포트</span>
+          <span>✓ 직원 교육 월 2회</span>
+        </div>
+        <div class="consult-price">200만원/월</div>
+      </div>
+
+      <div class="consult-card">
+        <h3>✝️ BAM 특별</h3>
+        <div class="meta">3시간 + 1주 | CBMC/BAM 사업가</div>
+        <div class="features">
+          <span>✓ BAM 전략 수립</span>
+          <span>✓ CBMC 12모듈 AI 적용</span>
+          <span>✓ 성경적 비즈니스 SWOT</span>
+          <span>✓ 선교 연계 설계</span>
+        </div>
+        <div class="consult-price">50만원</div>
+      </div>
+
+      <div class="consult-card">
+        <h3>🌍 글로컬 패키지</h3>
+        <div class="meta">8주 프로그램 | 다문화 기관/지자체</div>
+        <div class="features">
+          <span>✓ 다문화 AI 전략</span>
+          <span>✓ 다국어 플랫폼 구축</span>
+          <span>✓ 글로컬 브랜딩</span>
+          <span>✓ 8주 집중 멘토링</span>
+        </div>
+        <div class="consult-price">150만원</div>
+      </div>
+
+    </div>
+    <div style="text-align: center; margin-top: 32px;">
+      <a href="mailto:kodhjj@gmail.com?subject=AI%20컨설팅%20문의" class="buy-btn" style="font-size: 16px; padding: 14px 40px;">📧 컨설팅 문의하기</a>
+    </div>
+  </div>
+</section>
+
+<!-- FUNNEL -->
+<section class="funnel">
+  <div class="container">
+    <div class="section-title">
+      <h2>🔄 당신의 여정</h2>
+      <p>무료 콘텐츠에서 시작하여 글로컬 AI 전문가로 성장하십시오</p>
+    </div>
+    <div class="funnel-flow">
+      <div class="funnel-step" style="border-color: rgba(0,191,165,0.3);">🎁 무료 키트 다운로드</div>
+      <span class="funnel-arrow">→</span>
+      <div class="funnel-step">📘 전자책 구매</div>
+      <span class="funnel-arrow">→</span>
+      <div class="funnel-step">🎓 Sola AI 9주 수강</div>
+      <span class="funnel-arrow">→</span>
+      <div class="funnel-step" style="border-color: rgba(124,77,255,0.3);">🤖 AI 컨설팅</div>
+      <span class="funnel-arrow">→</span>
+      <div class="funnel-step" style="border-color: rgba(255,213,79,0.3);">🌍 글로컬 인재</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p style="margin-bottom: 8px;">
+      <strong style="color: var(--text);">글로컬브릿지연구소</strong> · 엘림G선교회 · CBMC 김해한마음지회
+    </p>
+    <p>
+      <a href="https://elimg.kr">elimg.kr</a> · 
+      <a href="mailto:kodhjj@gmail.com">kodhjj@gmail.com</a> · 
+      010-2083-3106 · 
+      <a href="https://youtube.com/@WeBlend_Glocal">YouTube</a>
+    </p>
+    <p style="margin-top: 12px; font-size: 11px; color: rgba(255,255,255,0.2);">
+      "땅 끝까지 이르러 내 증인이 되리라" (행 1:8) · Deployed on Vercel
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
