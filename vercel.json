@@ -1,7 +1,0 @@
-{
-  "version": 2,
-  "routes": [
-    { "src": "/shop", "dest": "/shop/index.html" },
-    { "src": "/shop/(.*)", "dest": "/shop/$1" }
-  ]
-}

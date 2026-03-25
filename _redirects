@@ -1,3 +1,4 @@
-_redirects
-/ai    /    301
-/*     /    200
+/ai     /               301
+/shop   /shop/index.html 200
+/shop/* /shop/:splat     200
+/*      /               200
