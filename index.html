@@ -88,7 +88,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .svc-icon{width:52px;height:52px;border-radius:13px;background:var(--gray-light);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px}
 .svc-card h3{font-family:'Noto Serif KR',serif;font-size:17px;color:var(--navy);font-weight:700;margin-bottom:11px}
 .svc-card p{font-size:13px;color:#5A6880;line-height:1.85;margin-bottom:18px}
-.svc-price{font-size:12.5px;color:var(--gold);font-weight:700;border-top:1px solid var(--gray-light);padding-top:14px}
+.svc-cta{font-size:12.5px;color:var(--navy);font-weight:700;border-top:1px solid var(--gray-light);padding-top:14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-decoration:none;transition:color .2s}.svc-cta:hover{color:var(--gold)}.svc-cta::after{content:"→";font-size:14px;transition:transform .2s}.svc-cta:hover::after{transform:translateX(4px)}
 
 /* DIFFERENTIATOR */
 .diff{background:var(--navy-deep);padding:96px 5%}
@@ -393,34 +393,37 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
   <div class="sec-inner">
     <div class="sec-hd reveal">
       <span class="sec-label">SERVICES</span>
-      <h2>4대 핵심 서비스</h2>
-      <p>30년 현장 경험이 뒷받침하는 AI 솔루션. 이론이 아닌 현장에서 검증된 서비스입니다.</p>
+      <h2>당신의 상황에 맞춘 글로컬 전략</h2>
+      <p>정해진 패키지는 없습니다. 첫 상담에서 귀하의 비즈니스 현황을 파악한 후, 가장 효과적인 전략을 직접 설계합니다.</p>
     </div>
     <div class="svc-grid">
       <div class="svc-card reveal">
         <div class="svc-icon">🤖</div>
-        <h3>AI 컨설팅·교육</h3>
-        <p>Claude·Gemini·Canva 등 최신 AI 도구를 비즈니스와 사역에 최적화하여 셋업하고 교육합니다. 교회·기업·개인 맞춤형.</p>
-        <div class="svc-price">베이직 ₩300,000 / 월 · 프리미엄 ₩1,500,000 / 월</div>
+        <h3>AI 전략 컨설팅·교육</h3>
+        <p>도구를 아는 것과 전략적으로 활용하는 것은 전혀 다릅니다. Claude·Gemini·Canva 등 최고급 AI 도구를 귀하의 비즈니스 목표에 맞게 설계하고, 팀 전체가 현장에서 바로 쓸 수 있도록 함께 구축합니다. 교회·기업·개인 모두 적용 가능합니다.</p>
+        <a href="#contact" class="svc-cta">AI 전략 상담 요청</a>
       </div>
       <div class="svc-card reveal">
         <div class="svc-icon">🌐</div>
-        <h3>웹사이트 제작</h3>
-        <p>Netlify 기반 고속 반응형 사이트. 다국어 지원, 이주민 사역 특화, SEO 최적화까지 완성형으로 제작합니다.</p>
-        <div class="svc-price">베이직 ₩1,000,000 · 유지관리 ₩150,000 / 월</div>
+        <h3>글로컬 웹사이트 제작</h3>
+        <p>단순한 홈페이지가 아닙니다. 글로벌 고객이 검색하고, 이주민 공동체가 신뢰하며, AI 자동화로 운영 부담을 줄이는 전략적 디지털 거점을 구축합니다. 다국어·SEO·Cloudflare 최적화 기본 포함, 귀하의 목적에 맞게 설계합니다.</p>
+        <a href="#contact" class="svc-cta">웹 전략 상담 요청</a>
       </div>
       <div class="svc-card reveal">
         <div class="svc-icon">📋</div>
-        <h3>이주민 법무·행정</h3>
-        <p>비자 변경·귀화·다국어 번역·외국인 근로자 관리. AI 기반 빠른 진단과 전문가 연결 서비스를 제공합니다.</p>
-        <div class="svc-price">기본 상담 ₩50,000 · 기업 계약 ₩500,000 / 월</div>
+        <h3>이주민 법무·행정 솔루션</h3>
+        <p>30년간 18개국 이주민 곁에서 쌓아온 신뢰가 곧 자격입니다. 비자·귀화·다국어 번역·외국인 근로자 관리까지, 복잡하고 낯선 법무 절차를 명확하게 짚어드리고 적합한 전문가와 연결합니다. 혼자 고민하지 마십시오.</p>
+        <a href="#contact" class="svc-cta">법무 상담 시작하기</a>
       </div>
       <div class="svc-card reveal">
         <div class="svc-icon">🤝</div>
-        <h3>무역·마케팅·취업 매칭</h3>
-        <p>동남아 18개국 네트워크를 활용한 수출입 컨설팅, 다국어 마케팅, 이주민-기업 취업 매칭 서비스.</p>
-        <div class="svc-price">마케팅 ₩500,000 / 월 · 매칭 성공보수</div>
+        <h3>글로컬 비즈니스 연결·확장</h3>
+        <p>동남아 18개국에 걸친 실제 인맥 네트워크는 단시간에 복제되지 않습니다. 수출입 컨설팅부터 다국어 마케팅, 이주민·기업 매칭까지 — 30년 현장에서 다져진 연결고리로 귀하의 비즈니스를 글로벌 시장과 직접 잇습니다.</p>
+        <a href="#contact" class="svc-cta">비즈니스 연결 상담</a>
       </div>
+    </div>
+    <div class="svc-note reveal" style="text-align:center;margin-top:36px;padding:22px 30px;background:linear-gradient(135deg,rgba(27,58,107,.04),rgba(196,154,34,.04));border-radius:12px;border:1px solid rgba(196,154,34,.12);">
+      <p style="font-size:14px;color:#4A5568;line-height:1.85;margin:0;">모든 서비스는 <strong style="color:var(--navy)">무료 초기 상담</strong>을 통해 귀하의 상황을 먼저 파악한 후, 가장 적합한 방식으로 설계됩니다.<br>표준 패키지는 없습니다 — 귀하의 비즈니스가 기준입니다.</p>
     </div>
   </div>
 </section>
