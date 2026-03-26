@@ -72,7 +72,7 @@ section{padding:80px 20px;}
 .btn-au:hover{background:var(--au2);}
 
 /* HERO */
-#hero{min-height:calc(100vh - 58px);padding:0 20px;background:linear-gradient(135deg,#022C22 0%,#065F46 45%,#047857 75%,#064E3B 100%);display:flex;align-items:center;position:relative;overflow:hidden;}
+#hero{min-height:calc(100vh - 58px);padding:0 20px;margin-top:58px;background:linear-gradient(135deg,#022C22 0%,#065F46 45%,#047857 75%,#064E3B 100%);display:flex;align-items:center;position:relative;overflow:hidden;}
 #hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23fff' fill-opacity='0.03'%3E%3Cpath d='M20 20h20v20H20zm0-20h20v20H20zM0 20h20v20H0zM0 0h20v20H0z'/%3E%3C/g%3E%3C/svg%3E");}
 .hero-in{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;padding:80px 0 60px;position:relative;z-index:1;}
 .h-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);color:var(--au);font-size:12px;font-weight:700;padding:5px 14px;border-radius:20px;margin-bottom:18px;}
@@ -315,7 +315,7 @@ section{padding:80px 20px;}
 .fq.open .fq-a{max-height:280px;padding-bottom:16px;}
 
 /* MEMBER DASHBOARD */
-#dashboard{display:none;padding:28px 20px;background:linear-gradient(135deg,#022C22 0%,#065F46 100%);border-bottom:1px solid rgba(255,255,255,.08);}
+#dashboard{display:none;padding:28px 20px;margin-top:58px;background:linear-gradient(135deg,#022C22 0%,#065F46 100%);border-bottom:1px solid rgba(255,255,255,.08);}
 .db-in{max-width:1120px;margin:0 auto;}
 .db-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px;}
 .db-title-area .db-label{font-size:10px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
@@ -1236,6 +1236,7 @@ function doSignup(){
 
 function showDashboard(session){
   document.getElementById('dashboard').style.display='block';
+  document.getElementById('hero').style.marginTop='0';
   document.getElementById('db-name').textContent=session.name;
   document.getElementById('db-bricks').textContent=session.bricks||0;
   if(session.role==='admin'){
@@ -1246,6 +1247,7 @@ function showDashboard(session){
 function doLogout(){
   localStorage.removeItem('gb_member_session');
   document.getElementById('dashboard').style.display='none';
+  document.getElementById('hero').style.marginTop='58px';
   document.getElementById('db-admin-banner').style.display='none';
   updateNavAuth(null);
   showToast('로그아웃 되었습니다.');
@@ -1277,7 +1279,8 @@ function updateNavAuth(session){
 
 // Session check + admin bypass on load
 (function(){
-  if(window.location.search.includes('admin')){
+  const isAdminBypass=window.location.search.includes('admin');
+  if(isAdminBypass){
     const adminSession={name:'관리자',code:'GLOCALADMIN',role:'admin',bricks:999,ts:Date.now()};
     localStorage.setItem('gb_member_session',JSON.stringify(adminSession));
   }
@@ -1287,6 +1290,9 @@ function updateNavAuth(session){
       const session=JSON.parse(s);
       updateNavAuth(session);
       showDashboard(session);
+      if(isAdminBypass){
+        setTimeout(()=>{document.getElementById('dashboard').scrollIntoView({behavior:'smooth'});},300);
+      }
     }
   }catch(e){}
 })();
