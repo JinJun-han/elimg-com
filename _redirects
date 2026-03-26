@@ -1,5 +1,7 @@
-/ai         /               301
-/shop       /shop/           301
-/shop/*     /shop/:splat     200
-/member     /member/         301
-/member/*   /member/:splat   200
+/ai          /               301
+/builders    /builders/      301
+/builders/*  /builders/:splat 200
+/shop        /shop/          301
+/shop/*      /shop/:splat    200
+/member      /member/        301
+/member/*    /member/:splat  200

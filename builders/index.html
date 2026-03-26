@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes"/>
+<meta name="theme-color" content="#065F46"/>
+<meta name="description" content="AI 글로컬 Builders — AI로 로컬에서 시작해 글로벌로 성장하는 비즈니스를 구축하세요. 교재·프롬프트·커뮤니티·라이브·파트너십 제공."/>
+<meta name="keywords" content="AI 글로컬, 글로컬 비즈니스, AI 비즈니스, 글로컬 인재, elimg, GlocalBridge, AI 교육, 글로컬 파트너"/>
+<meta property="og:title" content="AI 글로컬 Builders — 로컬에서 글로벌로"/>
+<meta property="og:description" content="AI와 함께 글로컬 비즈니스를 벽돌 한 장씩 쌓아가세요."/>
+<meta property="og:url" content="https://elimg.com/builders/"/>
+<meta property="og:type" content="website"/>
+<title>AI 글로컬 Builders — 로컬에서 글로벌로 | elimg.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --emerald:#065F46;--emerald2:#047857;--emerald3:#10B981;--emerald-light:#D1FAE5;
+  --gold:#F59E0B;--gold2:#D97706;--gold-light:#FEF3C7;
+  --dark:#111827;--dark2:#1F2937;--dark3:#374151;
+  --gray:#6B7280;--gray2:#9CA3AF;--gray3:#D1D5DB;--gray4:#F3F4F6;
+  --white:#FFFFFF;
+  --font:'Noto Sans KR',sans-serif;
+  --radius:12px;--radius-lg:20px;
+  --shadow:0 4px 24px rgba(0,0,0,.08);--shadow-lg:0 12px 48px rgba(0,0,0,.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);color:var(--dark);background:var(--white);line-height:1.6;}
+
+/* ── NAV ── */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:rgba(6,95,70,.97);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,.1);
+}
+.nav-inner{
+  max-width:1200px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;height:60px;
+}
+.nav-logo{
+  display:flex;align-items:center;gap:8px;text-decoration:none;
+  color:var(--white);font-weight:700;font-size:17px;flex-shrink:0;
+}
+.nav-logo .logo-dot{
+  width:30px;height:30px;background:var(--gold);
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  font-size:16px;line-height:1;
+}
+.nav-links{
+  display:flex;align-items:center;gap:2px;
+  list-style:none;
+}
+.nav-links a{
+  display:block;padding:6px 11px;border-radius:6px;
+  color:rgba(255,255,255,.8);text-decoration:none;
+  font-size:13.5px;font-weight:500;
+  transition:all .2s;white-space:nowrap;
+}
+.nav-links a:hover{color:var(--white);background:rgba(255,255,255,.1);}
+.nav-actions{display:flex;align-items:center;gap:8px;flex-shrink:0;}
+.btn-login{
+  padding:7px 16px;border-radius:7px;font-size:13px;font-weight:600;
+  cursor:pointer;border:1.5px solid rgba(255,255,255,.4);
+  background:transparent;color:var(--white);
+  transition:all .2s;font-family:var(--font);
+}
+.btn-login:hover{background:rgba(255,255,255,.15);}
+.btn-signup{
+  padding:7px 18px;border-radius:7px;font-size:13px;font-weight:700;
+  cursor:pointer;border:none;
+  background:var(--gold);color:var(--dark);
+  transition:all .2s;font-family:var(--font);
+}
+.btn-signup:hover{background:var(--gold2);transform:translateY(-1px);}
+
+/* mobile hamburger */
+.hamburger{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--white);margin:5px 0;transition:.3s;border-radius:2px;}
+.mobile-menu{
+  display:none;background:var(--emerald);
+  padding:16px;border-top:1px solid rgba(255,255,255,.1);
+}
+.mobile-menu.open{display:block;}
+.mobile-menu a{
+  display:block;padding:11px 14px;color:rgba(255,255,255,.85);
+  text-decoration:none;font-size:15px;border-radius:8px;
+  transition:.2s;
+}
+.mobile-menu a:hover{background:rgba(255,255,255,.1);color:var(--white);}
+.mobile-menu-actions{display:flex;gap:8px;padding:12px 14px 4px;}
+.mobile-menu-actions button{flex:1;}
+
+/* ── COMMON ── */
+section{padding:88px 24px;}
+.section-inner{max-width:1120px;margin:0 auto;}
+.section-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--emerald-light);color:var(--emerald2);
+  font-size:12px;font-weight:700;padding:5px 12px;border-radius:20px;
+  margin-bottom:14px;letter-spacing:.5px;text-transform:uppercase;
+}
+.section-title{font-size:clamp(26px,4vw,40px);font-weight:900;line-height:1.2;color:var(--dark);}
+.section-title span{color:var(--emerald2);}
+.section-desc{font-size:16px;color:var(--gray);margin-top:12px;max-width:560px;line-height:1.7;}
+.card{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);padding:28px;border:1px solid var(--gray3);}
+.badge{
+  display:inline-block;padding:3px 10px;border-radius:20px;
+  font-size:11px;font-weight:700;letter-spacing:.3px;
+}
+.badge-free{background:#D1FAE5;color:#065F46;}
+.badge-member{background:#FEF3C7;color:#92400E;}
+.badge-pro{background:#EDE9FE;color:#5B21B6;}
+
+/* ── HERO ── */
+#hero{
+  min-height:100vh;padding:0 24px;
+  background:linear-gradient(135deg,#022C22 0%,#065F46 40%,#047857 70%,#064E3B 100%);
+  display:flex;align-items:center;position:relative;overflow:hidden;
+}
+#hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-inner{
+  max-width:1120px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+  padding:120px 0 80px;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);
+  color:var(--gold);font-size:12px;font-weight:700;
+  padding:6px 14px;border-radius:20px;margin-bottom:20px;
+}
+.hero-title{
+  font-size:clamp(32px,5vw,56px);font-weight:900;line-height:1.15;
+  color:var(--white);
+}
+.hero-title .highlight{color:var(--gold);}
+.hero-sub{
+  font-size:17px;color:rgba(255,255,255,.75);
+  margin:18px 0 32px;line-height:1.7;max-width:480px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-hero-primary{
+  padding:14px 28px;border-radius:10px;font-size:15px;font-weight:700;
+  background:var(--gold);color:var(--dark);border:none;cursor:pointer;
+  transition:.2s;font-family:var(--font);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-hero-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,158,11,.35);}
+.btn-hero-secondary{
+  padding:14px 28px;border-radius:10px;font-size:15px;font-weight:600;
+  background:rgba(255,255,255,.1);color:var(--white);
+  border:1.5px solid rgba(255,255,255,.25);cursor:pointer;
+  transition:.2s;font-family:var(--font);
+}
+.btn-hero-secondary:hover{background:rgba(255,255,255,.18);}
+.hero-stats{
+  display:flex;gap:28px;margin-top:36px;flex-wrap:wrap;
+}
+.hero-stat .num{font-size:24px;font-weight:900;color:var(--gold);}
+.hero-stat .label{font-size:12px;color:rgba(255,255,255,.55);margin-top:2px;}
+.hero-visual{position:relative;}
+.hero-card-main{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:20px;padding:28px;backdrop-filter:blur(8px);
+}
+.hero-card-main .card-title{color:var(--gold);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px;}
+.brick-row{display:flex;gap:6px;margin-bottom:8px;}
+.brick{
+  height:28px;border-radius:5px;flex:1;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-weight:600;color:rgba(255,255,255,.85);
+}
+.brick-done{background:var(--gold);}
+.brick-doing{background:var(--emerald3);}
+.brick-todo{background:rgba(255,255,255,.08);color:rgba(255,255,255,.3);}
+.hero-floating{
+  position:absolute;background:var(--white);border-radius:12px;
+  padding:12px 16px;box-shadow:0 8px 24px rgba(0,0,0,.2);
+  font-size:12px;font-weight:600;color:var(--dark);
+}
+.hero-floating-1{top:-20px;right:-10px;}
+.hero-floating-2{bottom:10px;left:-20px;}
+.hero-floating .ico{font-size:18px;margin-bottom:2px;}
+
+/* ── 소개 ── */
+#intro{background:var(--gray4);}
+.intro-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;
+}
+.intro-card{
+  background:var(--white);border-radius:var(--radius-lg);padding:32px 24px;
+  border:1px solid var(--gray3);text-align:center;
+  transition:.3s;
+}
+.intro-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);}
+.intro-icon{
+  width:64px;height:64px;border-radius:16px;margin:0 auto 18px;
+  display:flex;align-items:center;justify-content:center;font-size:28px;
+}
+.icon-emerald{background:var(--emerald-light);}
+.icon-gold{background:var(--gold-light);}
+.icon-purple{background:#EDE9FE;}
+.intro-card h3{font-size:19px;font-weight:800;margin-bottom:10px;color:var(--dark);}
+.intro-card p{font-size:14px;color:var(--gray);line-height:1.65;}
+.intro-bottom{
+  margin-top:48px;padding:36px;
+  background:linear-gradient(135deg,var(--emerald),var(--emerald2));
+  border-radius:var(--radius-lg);color:var(--white);
+  display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+}
+.intro-bottom h3{font-size:22px;font-weight:800;}
+.intro-bottom p{font-size:14px;color:rgba(255,255,255,.75);margin-top:6px;}
+.btn-cta-white{
+  padding:12px 24px;border-radius:9px;font-size:14px;font-weight:700;
+  background:var(--white);color:var(--emerald);border:none;cursor:pointer;
+  transition:.2s;font-family:var(--font);white-space:nowrap;flex-shrink:0;
+}
+.btn-cta-white:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2);}
+
+/* ── 교재 ── */
+#textbook{}
+.tb-header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-bottom:40px;}
+.tb-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.tb-card{
+  border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--gray3);
+  box-shadow:var(--shadow);transition:.3s;background:var(--white);
+}
+.tb-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);}
+.tb-card-top{
+  padding:28px 24px 20px;
+  background:linear-gradient(135deg,var(--emerald) 0%,var(--emerald2) 100%);
+  position:relative;
+}
+.tb-card-top.gold{background:linear-gradient(135deg,#92400E,var(--gold2));}
+.tb-card-top.purple{background:linear-gradient(135deg,#3730A3,#6D28D9);}
+.tb-level{font-size:11px;font-weight:700;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.tb-title{font-size:19px;font-weight:800;color:var(--white);line-height:1.3;margin-bottom:12px;}
+.tb-emoji{font-size:36px;position:absolute;right:20px;top:20px;opacity:.5;}
+.tb-body{padding:20px 24px 24px;}
+.tb-desc{font-size:13.5px;color:var(--gray);line-height:1.65;margin-bottom:16px;}
+.tb-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
+.tb-tag{
+  font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;
+  background:var(--gray4);color:var(--dark3);
+}
+.tb-footer{display:flex;align-items:center;justify-content:space-between;}
+.tb-price{font-size:17px;font-weight:800;color:var(--emerald2);}
+.tb-price .free{color:var(--emerald3);}
+.btn-tb{
+  padding:8px 18px;border-radius:7px;font-size:13px;font-weight:700;
+  background:var(--emerald);color:var(--white);border:none;cursor:pointer;
+  transition:.2s;font-family:var(--font);
+}
+.btn-tb:hover{background:var(--emerald2);}
+
+/* ── 프롬프트 ── */
+#prompt{background:var(--gray4);}
+.prompt-cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;margin-top:28px;}
+.prompt-cat{
+  padding:7px 16px;border-radius:20px;font-size:13px;font-weight:600;
+  border:1.5px solid var(--gray3);background:var(--white);color:var(--dark3);
+  cursor:pointer;transition:.2s;
+}
+.prompt-cat.active,.prompt-cat:hover{
+  background:var(--emerald);color:var(--white);border-color:var(--emerald);
+}
+.prompt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.prompt-item{
+  background:var(--white);border-radius:var(--radius);border:1px solid var(--gray3);
+  padding:18px;transition:.2s;position:relative;
+}
+.prompt-item:hover{border-color:var(--emerald3);box-shadow:0 4px 16px rgba(16,185,129,.12);}
+.prompt-item.locked{opacity:.7;}
+.prompt-lock{
+  position:absolute;top:12px;right:12px;
+  background:var(--gold-light);color:var(--gold2);
+  font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;
+}
+.prompt-cat-label{font-size:10px;font-weight:700;color:var(--emerald3);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px;}
+.prompt-title{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;line-height:1.4;}
+.prompt-preview{font-size:12px;color:var(--gray);line-height:1.55;}
+.prompt-cta{text-align:center;margin-top:28px;}
+
+/* ── 커뮤니티 ── */
+#community{}
+.comm-grid{display:grid;grid-template-columns:2fr 1fr;gap:28px;margin-top:40px;}
+.comm-posts{}
+.comm-post{
+  padding:20px;border:1px solid var(--gray3);border-radius:var(--radius);
+  margin-bottom:14px;background:var(--white);transition:.2s;cursor:pointer;
+}
+.comm-post:hover{border-color:var(--emerald3);box-shadow:0 4px 14px rgba(16,185,129,.1);}
+.comm-post-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+.comm-avatar{
+  width:30px;height:30px;border-radius:50%;
+  background:linear-gradient(135deg,var(--emerald),var(--emerald3));
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white);font-size:11px;font-weight:700;flex-shrink:0;
+}
+.comm-name{font-size:12px;font-weight:600;color:var(--dark3);}
+.comm-country{font-size:11px;color:var(--gray2);}
+.comm-dot{color:var(--gray3);}
+.comm-time{font-size:11px;color:var(--gray2);}
+.comm-post-title{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:6px;}
+.comm-post-body{font-size:13px;color:var(--gray);line-height:1.55;}
+.comm-post-footer{display:flex;gap:14px;margin-top:10px;}
+.comm-stat{font-size:11px;color:var(--gray2);display:flex;align-items:center;gap:4px;}
+.comm-side{}
+.comm-side-card{
+  background:var(--white);border:1px solid var(--gray3);
+  border-radius:var(--radius);padding:20px;margin-bottom:16px;
+}
+.comm-side-title{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:12px;}
+.comm-tag-list{display:flex;flex-wrap:wrap;gap:6px;}
+.comm-tag{
+  font-size:11px;padding:4px 10px;border-radius:20px;
+  background:var(--emerald-light);color:var(--emerald2);font-weight:600;cursor:pointer;
+}
+.comm-nation-list{list-style:none;}
+.comm-nation-list li{
+  display:flex;justify-content:space-between;
+  font-size:12px;padding:5px 0;border-bottom:1px solid var(--gray3);
+  color:var(--dark3);
+}
+.comm-nation-list li:last-child{border-bottom:none;}
+.comm-nation-list li span{color:var(--gray2);}
+.comm-cta{
+  background:linear-gradient(135deg,var(--emerald),var(--emerald2));
+  color:var(--white);border-radius:var(--radius);padding:18px;
+  text-align:center;margin-top:16px;
+}
+.comm-cta h4{font-size:14px;font-weight:800;margin-bottom:6px;}
+.comm-cta p{font-size:12px;color:rgba(255,255,255,.75);margin-bottom:12px;}
+.btn-comm-join{
+  width:100%;padding:10px;border-radius:7px;font-size:13px;font-weight:700;
+  background:var(--gold);color:var(--dark);border:none;cursor:pointer;
+  font-family:var(--font);transition:.2s;
+}
+.btn-comm-join:hover{background:var(--gold2);}
+
+/* ── 라이브 ── */
+#live{background:var(--gray4);}
+.live-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;}
+.live-card{
+  background:var(--white);border:1px solid var(--gray3);
+  border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);transition:.3s;
+}
+.live-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);}
+.live-thumb{
+  height:160px;display:flex;align-items:center;justify-content:center;
+  font-size:48px;position:relative;
+}
+.live-thumb.green{background:linear-gradient(135deg,#022C22,var(--emerald));}
+.live-thumb.gold{background:linear-gradient(135deg,#451A03,var(--gold2));}
+.live-thumb.blue{background:linear-gradient(135deg,#1E1B4B,#4F46E5);}
+.live-thumb.teal{background:linear-gradient(135deg,#042F2E,#0F766E);}
+.live-badge{
+  position:absolute;top:12px;left:12px;
+  padding:4px 10px;border-radius:6px;font-size:10px;font-weight:700;
+}
+.badge-upcoming{background:var(--gold);color:var(--dark);}
+.badge-live-now{background:#EF4444;color:var(--white);animation:pulse 1.5s infinite;}
+.badge-recorded{background:rgba(255,255,255,.2);color:var(--white);}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.6;}}
+.live-body{padding:18px 20px 20px;}
+.live-date{font-size:11px;font-weight:700;color:var(--emerald3);margin-bottom:6px;}
+.live-title{font-size:15px;font-weight:800;color:var(--dark);line-height:1.35;margin-bottom:8px;}
+.live-host{font-size:12px;color:var(--gray);margin-bottom:14px;}
+.live-footer{display:flex;align-items:center;justify-content:space-between;}
+.live-attendees{font-size:12px;color:var(--gray2);}
+.btn-live{
+  padding:7px 16px;border-radius:7px;font-size:12px;font-weight:700;
+  border:none;cursor:pointer;transition:.2s;font-family:var(--font);
+}
+.btn-live-reg{background:var(--emerald);color:var(--white);}
+.btn-live-reg:hover{background:var(--emerald2);}
+.btn-live-watch{background:var(--gray4);color:var(--dark3);}
+.btn-live-watch:hover{background:var(--gray3);}
+
+/* ── 벽돌 쌓기 ── */
+#bricks{}
+.bricks-intro{
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
+  margin-top:48px;
+}
+.bricks-text h3{font-size:22px;font-weight:800;margin-bottom:14px;color:var(--dark);}
+.bricks-text p{font-size:14.5px;color:var(--gray);line-height:1.7;margin-bottom:16px;}
+.bricks-steps{list-style:none;margin:20px 0;}
+.bricks-steps li{
+  display:flex;align-items:flex-start;gap:12px;
+  padding:10px 0;border-bottom:1px solid var(--gray3);font-size:13.5px;color:var(--dark3);
+}
+.bricks-steps li:last-child{border-bottom:none;}
+.step-num{
+  width:24px;height:24px;border-radius:50%;
+  background:var(--emerald);color:var(--white);
+  font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:1px;
+}
+.bricks-visual{}
+.building{padding:24px;}
+.building-title{
+  font-size:13px;font-weight:700;color:var(--dark3);margin-bottom:16px;
+  display:flex;justify-content:space-between;
+}
+.floor{margin-bottom:4px;}
+.floor-label{font-size:9px;color:var(--gray2);text-align:right;margin-bottom:2px;font-weight:600;}
+.floor-bricks{display:grid;gap:3px;}
+.floor-4 .floor-bricks{grid-template-columns:repeat(8,1fr);}
+.floor-3 .floor-bricks{grid-template-columns:repeat(6,1fr);}
+.floor-2 .floor-bricks{grid-template-columns:repeat(4,1fr);}
+.floor-1 .floor-bricks{grid-template-columns:repeat(3,1fr);}
+.b{height:22px;border-radius:3px;position:relative;}
+.b.done{background:var(--gold);}
+.b.done:hover::after{
+  content:attr(data-tip);position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+  background:var(--dark);color:var(--white);font-size:9px;padding:4px 8px;border-radius:4px;
+  white-space:nowrap;z-index:10;
+}
+.b.inprogress{background:var(--emerald3);}
+.b.todo{background:var(--gray3);}
+.b.locked{background:var(--gray4);border:1px dashed var(--gray3);}
+.building-legend{display:flex;gap:14px;margin-top:12px;flex-wrap:wrap;}
+.legend-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--gray);}
+.legend-dot{width:10px;height:10px;border-radius:2px;}
+.challenge-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.challenge-card{
+  background:var(--white);border:1px solid var(--gray3);
+  border-radius:var(--radius);padding:20px;text-align:center;
+  transition:.3s;
+}
+.challenge-card:hover{border-color:var(--emerald3);transform:translateY(-3px);}
+.challenge-icon{font-size:32px;margin-bottom:10px;}
+.challenge-card h4{font-size:14px;font-weight:800;color:var(--dark);margin-bottom:6px;}
+.challenge-card p{font-size:12px;color:var(--gray);line-height:1.55;}
+.challenge-card .challenge-badge{
+  margin-top:12px;display:inline-block;
+  padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;
+  background:var(--emerald-light);color:var(--emerald2);
+}
+
+/* ── 파트너 ── */
+#partner{background:var(--gray4);}
+.partner-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px;}
+.tier-card{
+  background:var(--white);border:1px solid var(--gray3);
+  border-radius:var(--radius-lg);padding:32px 24px;text-align:center;
+  transition:.3s;position:relative;
+}
+.tier-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);}
+.tier-card.featured{
+  border-color:var(--gold);
+  background:linear-gradient(180deg,var(--gold-light) 0%,var(--white) 30%);
+}
+.tier-popular{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:var(--dark);
+  font-size:11px;font-weight:800;padding:4px 16px;border-radius:20px;
+  white-space:nowrap;
+}
+.tier-icon{font-size:40px;margin-bottom:14px;}
+.tier-name{font-size:20px;font-weight:900;color:var(--dark);margin-bottom:6px;}
+.tier-desc{font-size:13px;color:var(--gray);margin-bottom:20px;line-height:1.55;}
+.tier-benefits{list-style:none;margin-bottom:24px;text-align:left;}
+.tier-benefits li{
+  font-size:13px;color:var(--dark3);padding:7px 0;
+  border-bottom:1px solid var(--gray4);
+  display:flex;align-items:center;gap:8px;
+}
+.tier-benefits li:last-child{border-bottom:none;}
+.tier-benefits li::before{content:'✓';color:var(--emerald3);font-weight:700;flex-shrink:0;}
+.btn-tier{
+  width:100%;padding:11px;border-radius:8px;font-size:14px;font-weight:700;
+  cursor:pointer;transition:.2s;font-family:var(--font);border:none;
+}
+.btn-tier-primary{background:var(--emerald);color:var(--white);}
+.btn-tier-primary:hover{background:var(--emerald2);}
+.btn-tier-gold{background:var(--gold);color:var(--dark);}
+.btn-tier-gold:hover{background:var(--gold2);}
+.btn-tier-outline{background:transparent;color:var(--dark3);border:1.5px solid var(--gray3);}
+.btn-tier-outline:hover{border-color:var(--emerald3);color:var(--emerald2);}
+
+/* ── FAQ ── */
+#faq{}
+.faq-list{max-width:760px;margin:40px auto 0;}
+.faq-item{
+  border-bottom:1px solid var(--gray3);
+  overflow:hidden;
+}
+.faq-q{
+  width:100%;text-align:left;padding:18px 0;
+  background:none;border:none;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  font-size:15px;font-weight:700;color:var(--dark);font-family:var(--font);
+}
+.faq-q:hover{color:var(--emerald2);}
+.faq-arrow{
+  width:24px;height:24px;border-radius:50%;background:var(--gray4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;flex-shrink:0;transition:.3s;
+}
+.faq-item.open .faq-arrow{background:var(--emerald);color:var(--white);transform:rotate(180deg);}
+.faq-a{
+  max-height:0;overflow:hidden;transition:.35s;
+  font-size:14px;color:var(--gray);line-height:1.7;
+}
+.faq-item.open .faq-a{max-height:300px;padding-bottom:18px;}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--dark);color:rgba(255,255,255,.6);
+  padding:56px 24px 32px;
+}
+.footer-inner{max-width:1120px;margin:0 auto;}
+.footer-top{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;
+  margin-bottom:40px;
+}
+.footer-brand .logo{
+  font-size:20px;font-weight:900;color:var(--white);margin-bottom:10px;
+  display:flex;align-items:center;gap:8px;
+}
+.footer-brand .logo-dot{
+  width:28px;height:28px;background:var(--gold);border-radius:7px;
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+}
+.footer-brand p{font-size:13px;line-height:1.65;max-width:260px;}
+.footer-col h5{color:var(--white);font-size:13px;font-weight:700;margin-bottom:14px;}
+.footer-col ul{list-style:none;}
+.footer-col ul li{margin-bottom:8px;}
+.footer-col ul li a{color:rgba(255,255,255,.5);text-decoration:none;font-size:13px;transition:.2s;}
+.footer-col ul li a:hover{color:var(--white);}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);padding-top:24px;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  font-size:12px;
+}
+.footer-bottom a{color:rgba(255,255,255,.4);text-decoration:none;}
+.footer-bottom a:hover{color:var(--white);}
+
+/* ── MODALS ── */
+.modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.6);z-index:2000;
+  align-items:center;justify-content:center;padding:16px;
+}
+.modal-overlay.open{display:flex;}
+.modal-box{
+  background:var(--white);border-radius:var(--radius-lg);
+  width:100%;max-width:420px;box-shadow:var(--shadow-lg);
+  padding:36px 32px;position:relative;
+}
+.modal-close{
+  position:absolute;top:16px;right:16px;
+  width:30px;height:30px;border-radius:50%;
+  background:var(--gray4);border:none;cursor:pointer;font-size:16px;
+  display:flex;align-items:center;justify-content:center;
+}
+.modal-close:hover{background:var(--gray3);}
+.modal-logo{
+  display:flex;align-items:center;gap:8px;margin-bottom:6px;
+}
+.modal-logo .dot{width:24px;height:24px;background:var(--emerald);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;}
+.modal-logo span{font-size:14px;font-weight:700;color:var(--dark);}
+.modal-title{font-size:22px;font-weight:900;color:var(--dark);margin-bottom:4px;}
+.modal-sub{font-size:13px;color:var(--gray);margin-bottom:24px;}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:12px;font-weight:700;color:var(--dark3);margin-bottom:6px;}
+.form-group input,.form-group select{
+  width:100%;padding:11px 14px;border:1.5px solid var(--gray3);
+  border-radius:8px;font-size:14px;font-family:var(--font);
+  color:var(--dark);outline:none;transition:.2s;
+}
+.form-group input:focus,.form-group select:focus{border-color:var(--emerald3);}
+.btn-submit{
+  width:100%;padding:13px;border-radius:9px;font-size:15px;font-weight:700;
+  background:var(--emerald);color:var(--white);border:none;cursor:pointer;
+  transition:.2s;font-family:var(--font);margin-top:4px;
+}
+.btn-submit:hover{background:var(--emerald2);}
+.modal-switch{
+  text-align:center;font-size:13px;color:var(--gray);margin-top:16px;
+}
+.modal-switch a{color:var(--emerald2);font-weight:700;cursor:pointer;text-decoration:none;}
+.modal-switch a:hover{text-decoration:underline;}
+.divider{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--gray2);font-size:12px;}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--gray3);}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:3000;
+  background:var(--dark);color:var(--white);
+  padding:12px 20px;border-radius:10px;font-size:14px;font-weight:600;
+  box-shadow:var(--shadow-lg);transform:translateY(80px);opacity:0;
+  transition:.35s cubic-bezier(.34,1.56,.64,1);
+  display:flex;align-items:center;gap:8px;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.success{border-left:4px solid var(--emerald3);}
+.toast.error{border-left:4px solid #EF4444;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .intro-grid,.tb-grid,.bricks-intro,.partner-tiers,.footer-top{grid-template-columns:repeat(2,1fr);}
+  .challenge-cards{grid-template-columns:repeat(2,1fr);}
+  .comm-grid{grid-template-columns:1fr;}
+  .comm-side{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .comm-cta{grid-column:span 2;}
+}
+@media(max-width:768px){
+  .nav-links,.nav-actions{display:none;}
+  .hamburger{display:block;}
+  .hero-inner{grid-template-columns:1fr;gap:32px;padding:100px 0 60px;}
+  .hero-visual{display:none;}
+  .intro-grid,.tb-grid,.bricks-intro,.live-grid,.challenge-cards{grid-template-columns:1fr;}
+  .partner-tiers{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  .prompt-grid{grid-template-columns:1fr 1fr;}
+  section{padding:64px 20px;}
+  .modal-box{padding:28px 20px;}
+}
+@media(max-width:480px){
+  .footer-top{grid-template-columns:1fr;}
+  .prompt-grid{grid-template-columns:1fr;}
+  .hero-stats{gap:16px;}
+  .comm-side{grid-template-columns:1fr;}
+  .comm-cta{grid-column:span 1;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="/builders/" class="nav-logo">
+      <div class="logo-dot">🌍</div>
+      AI 글로컬 Builders
+    </a>
+    <ul class="nav-links">
+      <li><a href="#intro">소개</a></li>
+      <li><a href="#textbook">교재</a></li>
+      <li><a href="#prompt">프롬프트</a></li>
+      <li><a href="#community">커뮤니티</a></li>
+      <li><a href="#live">라이브</a></li>
+      <li><a href="#bricks">벽돌 쌓기</a></li>
+      <li><a href="#partner">파트너</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-login" onclick="openModal('login')">Log in</button>
+      <button class="btn-signup" onclick="openModal('signup')">회원가입</button>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="메뉴">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#intro" onclick="toggleMenu()">소개</a>
+    <a href="#textbook" onclick="toggleMenu()">교재</a>
+    <a href="#prompt" onclick="toggleMenu()">프롬프트</a>
+    <a href="#community" onclick="toggleMenu()">커뮤니티</a>
+    <a href="#live" onclick="toggleMenu()">라이브</a>
+    <a href="#bricks" onclick="toggleMenu()">🧱 벽돌 쌓기</a>
+    <a href="#partner" onclick="toggleMenu()">파트너</a>
+    <a href="#faq" onclick="toggleMenu()">FAQ</a>
+    <div class="mobile-menu-actions">
+      <button class="btn-login" onclick="openModal('login');toggleMenu()">Log in</button>
+      <button class="btn-signup" onclick="openModal('signup');toggleMenu()">회원가입</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">🌱 글로컬 비즈니스 플랫폼 · 2026</div>
+      <h1 class="hero-title">
+        AI로 <span class="highlight">로컬</span>에서<br/>
+        시작해<br/>
+        <span class="highlight">글로벌</span>로 성장하세요
+      </h1>
+      <p class="hero-sub">
+        기술이 없어도 됩니다. 경험이 없어도 됩니다.<br/>
+        글로컬 마인드와 AI 도구만 있으면, 당신의 비즈니스는<br/>
+        벽돌 한 장씩 단단하게 쌓여갑니다.
+      </p>
+      <div class="hero-actions">
+        <button class="btn-hero-primary" onclick="openModal('signup')">🧱 지금 시작하기</button>
+        <button class="btn-hero-secondary" onclick="document.getElementById('intro').scrollIntoView({behavior:'smooth'})">더 알아보기 ↓</button>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="num">12+</div><div class="label">개국 파트너</div></div>
+        <div class="hero-stat"><div class="num">200+</div><div class="label">글로컬 빌더</div></div>
+        <div class="hero-stat"><div class="num">50+</div><div class="label">AI 프롬프트</div></div>
+        <div class="hero-stat"><div class="num">매주</div><div class="label">라이브 세션</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div style="position:relative;">
+        <div class="hero-card-main">
+          <div class="card-title">🧱 나의 글로컬 비즈니스 빌딩</div>
+          <div style="margin-bottom:6px;font-size:10px;color:rgba(255,255,255,.4);text-align:right;">Floor 4 (진행중)</div>
+          <div class="brick-row">
+            <div class="brick brick-done">AI</div>
+            <div class="brick brick-done">비즈</div>
+            <div class="brick brick-doing">콘텐츠</div>
+            <div class="brick brick-todo">자동화</div>
+          </div>
+          <div style="margin-top:6px;margin-bottom:6px;font-size:10px;color:rgba(255,255,255,.4);text-align:right;">Floor 3 ✓</div>
+          <div class="brick-row">
+            <div class="brick brick-done">글로벌</div>
+            <div class="brick brick-done">네트워크</div>
+            <div class="brick brick-done">파트너</div>
+          </div>
+          <div style="margin-top:6px;margin-bottom:6px;font-size:10px;color:rgba(255,255,255,.4);text-align:right;">Floor 2 ✓</div>
+          <div class="brick-row">
+            <div class="brick brick-done">기초</div>
+            <div class="brick brick-done">전략</div>
+          </div>
+          <div style="margin-top:6px;margin-bottom:6px;font-size:10px;color:rgba(255,255,255,.4);text-align:right;">Floor 1 ✓</div>
+          <div class="brick-row">
+            <div class="brick brick-done">마인드셋</div>
+          </div>
+          <div style="margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;font-size:11px;">
+            <span style="color:rgba(255,255,255,.5);">전체 진행률</span>
+            <span style="color:var(--gold);font-weight:700;">67% · Day 21/30</span>
+          </div>
+        </div>
+        <div class="hero-floating hero-floating-1">
+          <div class="ico">🎯</div>
+          <div style="font-size:11px;font-weight:800;">오늘의 벽돌</div>
+          <div style="font-size:10px;color:#6B7280;">AI 마케팅 프롬프트 작성</div>
+        </div>
+        <div class="hero-floating hero-floating-2">
+          <div class="ico">🌏</div>
+          <div style="font-size:11px;font-weight:800;">글로벌 접속 중</div>
+          <div style="font-size:10px;color:#6B7280;">🇰🇷 🇺🇸 🇯🇵 🇵🇭 🇮🇩 +7</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 소개 ══════════════════ -->
+<section id="intro">
+  <div class="section-inner">
+    <div class="section-tag">🌍 소개</div>
+    <h2 class="section-title">AI 글로컬 Builders란?<br/><span>세 가지 기둥으로 비즈니스를 만듭니다</span></h2>
+    <p class="section-desc">로컬의 강점을 유지하면서 글로벌 시장으로 확장하는 것, 그것이 글로컬입니다. AI는 그 다리가 됩니다.</p>
+    <div class="intro-grid">
+      <div class="intro-card">
+        <div class="intro-icon icon-emerald">🤖</div>
+        <h3>AI 비즈니스 도구</h3>
+        <p>ChatGPT·Gemini·Claude를 활용한 실전 비즈니스 스킬. 콘텐츠 제작, 번역, 마케팅, 자동화까지 AI가 당신의 팀이 됩니다.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-icon icon-gold">🌐</div>
+        <h3>글로컬 네트워크</h3>
+        <p>12개국 이상의 파트너와 연결됩니다. 한국과 아시아, 그리고 세계를 잇는 비즈니스 관계를 구축하세요.</p>
+      </div>
+      <div class="intro-card">
+        <div class="intro-icon icon-purple">🎓</div>
+        <h3>인재 양성 시스템</h3>
+        <p>글로컬 비즈니스를 이끌 인재를 키웁니다. 교재·프롬프트·멘토링·커뮤니티를 통한 체계적 성장 경로.</p>
+      </div>
+    </div>
+    <div class="intro-bottom">
+      <div>
+        <h3>🧱 "벽돌 한 장씩 쌓아가는 비즈니스"</h3>
+        <p>거창한 계획 대신, 오늘 할 수 있는 한 가지를 합니다. 매일 쌓이는 벽돌이 당신의 글로컬 비즈니스 빌딩이 됩니다.</p>
+      </div>
+      <button class="btn-cta-white" onclick="document.getElementById('bricks').scrollIntoView({behavior:'smooth'})">벽돌 쌓기 시작 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 교재 ══════════════════ -->
+<section id="textbook">
+  <div class="section-inner">
+    <div class="tb-header">
+      <div>
+        <div class="section-tag">📚 교재</div>
+        <h2 class="section-title">단계별 <span>글로컬 비즈니스</span> 교재</h2>
+        <p class="section-desc">초보자도 체계적으로 성장할 수 있는 커리큘럼입니다.</p>
+      </div>
+      <span class="badge badge-free" style="font-size:13px;padding:6px 14px;">일부 무료 제공</span>
+    </div>
+    <div class="tb-grid">
+      <div class="tb-card">
+        <div class="tb-card-top">
+          <div class="tb-emoji">🌱</div>
+          <div class="tb-level">Level 1 · 입문</div>
+          <div class="tb-title">AI 글로컬 비즈니스<br/>첫 걸음</div>
+        </div>
+        <div class="tb-body">
+          <p class="tb-desc">글로컬 마인드셋부터 첫 번째 AI 비즈니스 아이디어를 구체화하는 과정. 기술 경험 전혀 없어도 됩니다.</p>
+          <div class="tb-tags">
+            <span class="tb-tag">AI 기초</span>
+            <span class="tb-tag">글로컬 마인드</span>
+            <span class="tb-tag">비즈니스 모델</span>
+          </div>
+          <div class="tb-footer">
+            <div class="tb-price"><span class="free">무료</span></div>
+            <button class="btn-tb" onclick="openModal('signup')">시작하기</button>
+          </div>
+        </div>
+      </div>
+      <div class="tb-card">
+        <div class="tb-card-top gold">
+          <div class="tb-emoji">🏗️</div>
+          <div class="tb-level">Level 2 · 기초</div>
+          <div class="tb-title">AI로 글로컬<br/>콘텐츠 빌딩</div>
+        </div>
+        <div class="tb-body">
+          <p class="tb-desc">다국어 콘텐츠 제작, 번역·현지화, AI 마케팅 전략. 언어 장벽을 AI로 허물고 글로벌 고객에게 도달하세요.</p>
+          <div class="tb-tags">
+            <span class="tb-tag">다국어 AI</span>
+            <span class="tb-tag">콘텐츠 전략</span>
+            <span class="tb-tag">SNS 마케팅</span>
+          </div>
+          <div class="tb-footer">
+            <div class="tb-price">회원 전용</div>
+            <button class="btn-tb" onclick="openModal('signup')">회원가입</button>
+          </div>
+        </div>
+      </div>
+      <div class="tb-card">
+        <div class="tb-card-top purple">
+          <div class="tb-emoji">🚀</div>
+          <div class="tb-level">Level 3 · 심화</div>
+          <div class="tb-title">AI 자동화<br/>글로컬 시스템</div>
+        </div>
+        <div class="tb-body">
+          <p class="tb-desc">AI 에이전트로 비즈니스를 자동화하고, 글로벌 파트너 네트워크를 통해 수익 구조를 다각화합니다.</p>
+          <div class="tb-tags">
+            <span class="tb-tag">AI 에이전트</span>
+            <span class="tb-tag">자동화</span>
+            <span class="tb-tag">파트너십</span>
+          </div>
+          <div class="tb-footer">
+            <div class="tb-price">파트너 전용</div>
+            <button class="btn-tb" onclick="document.getElementById('partner').scrollIntoView({behavior:'smooth'})">파트너 보기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 프롬프트 ══════════════════ -->
+<section id="prompt">
+  <div class="section-inner">
+    <div class="section-tag">⚡ 프롬프트</div>
+    <h2 class="section-title">글로컬 비즈니스 <span>프롬프트 라이브러리</span></h2>
+    <p class="section-desc">복사해서 바로 쓰는 글로컬 비즈니스 프롬프트. 실전에서 검증된 것만 담았습니다.</p>
+    <div class="prompt-cats">
+      <button class="prompt-cat active" onclick="filterPrompts('all',this)">전체</button>
+      <button class="prompt-cat" onclick="filterPrompts('biz',this)">비즈니스</button>
+      <button class="prompt-cat" onclick="filterPrompts('translate',this)">번역·현지화</button>
+      <button class="prompt-cat" onclick="filterPrompts('content',this)">콘텐츠</button>
+      <button class="prompt-cat" onclick="filterPrompts('strategy',this)">전략·기획</button>
+      <button class="prompt-cat" onclick="filterPrompts('partner',this)">파트너십</button>
+    </div>
+    <div class="prompt-grid" id="promptGrid">
+      <div class="prompt-item" data-cat="biz">
+        <div class="prompt-cat-label">비즈니스</div>
+        <div class="prompt-title">글로컬 비즈니스 아이디어 발굴기</div>
+        <div class="prompt-preview">"내 지역(한국/동남아/미국)의 로컬 강점을 글로벌 시장에 연결하는 10가지 비즈니스 아이디어를 제안해줘..."</div>
+      </div>
+      <div class="prompt-item" data-cat="translate">
+        <div class="prompt-cat-label">번역·현지화</div>
+        <div class="prompt-title">문화 감수성 포함 번역 프롬프트</div>
+        <div class="prompt-preview">"다음 텍스트를 [타겟 국가] 독자를 위해 번역하되, 문화적 뉘앙스와 비즈니스 관습을 반영해줘..."</div>
+      </div>
+      <div class="prompt-item" data-cat="content">
+        <div class="prompt-cat-label">콘텐츠</div>
+        <div class="prompt-title">글로컬 SNS 콘텐츠 생성기</div>
+        <div class="prompt-preview">"[제품/서비스]를 [국가] 시장을 위한 SNS 포스트 5개 작성. 각 포스트는 로컬 감성과 글로벌 메시지를..."</div>
+      </div>
+      <div class="prompt-item locked" data-cat="strategy">
+        <div class="prompt-lock">🔒 회원</div>
+        <div class="prompt-cat-label">전략·기획</div>
+        <div class="prompt-title">글로컬 시장 진입 전략 수립</div>
+        <div class="prompt-preview">신규 국가 시장 진입을 위한 단계별 전략 프레임워크와 리스크 분석...</div>
+      </div>
+      <div class="prompt-item locked" data-cat="partner">
+        <div class="prompt-lock">🔒 회원</div>
+        <div class="prompt-cat-label">파트너십</div>
+        <div class="prompt-title">글로컬 파트너 제안서 작성기</div>
+        <div class="prompt-preview">해외 파트너에게 보내는 비즈니스 제안서를 현지 비즈니스 관습에 맞게...</div>
+      </div>
+      <div class="prompt-item locked" data-cat="biz">
+        <div class="prompt-lock">🔒 회원</div>
+        <div class="prompt-cat-label">비즈니스</div>
+        <div class="prompt-title">AI 기반 수익 모델 설계</div>
+        <div class="prompt-preview">글로컬 비즈니스에 AI를 통합한 지속 가능한 수익 구조를 설계하고...</div>
+      </div>
+    </div>
+    <div class="prompt-cta">
+      <p style="color:var(--gray);font-size:14px;margin-bottom:14px;">🔒 잠긴 프롬프트는 회원가입 후 무제한 이용 가능합니다</p>
+      <button class="btn-signup" onclick="openModal('signup')">무료로 회원가입 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 커뮤니티 ══════════════════ -->
+<section id="community">
+  <div class="section-inner">
+    <div class="section-tag">💬 커뮤니티</div>
+    <h2 class="section-title">12개국 글로컬 빌더들과<br/><span>함께 성장하세요</span></h2>
+    <p class="section-desc">혼자 하지 마세요. 같은 방향을 가진 사람들과 함께하면 더 빠르게 더 멀리 갑니다.</p>
+    <div class="comm-grid">
+      <div class="comm-posts">
+        <div class="comm-post">
+          <div class="comm-post-meta">
+            <div class="comm-avatar">김</div>
+            <span class="comm-name">김민준</span>
+            <span class="comm-country">🇰🇷 서울</span>
+            <span class="comm-dot">·</span>
+            <span class="comm-time">2시간 전</span>
+          </div>
+          <div class="comm-post-title">AI로 인도네시아 현지화 마케팅 해봤습니다 - 결과 공유</div>
+          <div class="comm-post-body">Claude를 활용해서 인도네시아 시장용 제품 설명을 현지화했는데 반응이 완전히 달랐어요. 같은 내용인데 문화적 맥락을 넣으니까 클릭률이 3배...</div>
+          <div class="comm-post-footer">
+            <span class="comm-stat">👍 24</span>
+            <span class="comm-stat">💬 11개 댓글</span>
+            <span class="comm-stat">🔖 저장 8</span>
+          </div>
+        </div>
+        <div class="comm-post">
+          <div class="comm-post-meta">
+            <div class="comm-avatar" style="background:linear-gradient(135deg,#92400E,var(--gold2));">S</div>
+            <span class="comm-name">Sarah Tan</span>
+            <span class="comm-country">🇸🇬 싱가포르</span>
+            <span class="comm-dot">·</span>
+            <span class="comm-time">5시간 전</span>
+          </div>
+          <div class="comm-post-title">벽돌 쌓기 30일 완주 후기 🎉</div>
+          <div class="comm-post-body">드디어 30일 챌린지 완주했습니다! 한국어 학습 AI 서비스를 싱가포르에서 시작하는 아이디어가 생겼고, 실제로 첫 번째 고객도 생겼어요...</div>
+          <div class="comm-post-footer">
+            <span class="comm-stat">👍 47</span>
+            <span class="comm-stat">💬 23개 댓글</span>
+            <span class="comm-stat">🔖 저장 15</span>
+          </div>
+        </div>
+        <div class="comm-post">
+          <div class="comm-post-meta">
+            <div class="comm-avatar" style="background:linear-gradient(135deg,#1E1B4B,#4F46E5);">P</div>
+            <span class="comm-name">Pastor David</span>
+            <span class="comm-country">🇵🇭 마닐라</span>
+            <span class="comm-dot">·</span>
+            <span class="comm-time">어제</span>
+          </div>
+          <div class="comm-post-title">선교 + 비즈니스 글로컬 모델로 지역 사회 임팩트 만들기</div>
+          <div class="comm-post-body">AI를 활용해서 지역 농산물 B2B 수출 플랫폼을 만들고 있습니다. 비즈니스와 사회적 임팩트를 동시에 만드는 글로컬 모델을 공유합니다...</div>
+          <div class="comm-post-footer">
+            <span class="comm-stat">👍 38</span>
+            <span class="comm-stat">💬 17개 댓글</span>
+            <span class="comm-stat">🔖 저장 20</span>
+          </div>
+        </div>
+        <div style="text-align:center;margin-top:8px;">
+          <button style="padding:10px 24px;border-radius:8px;border:1.5px solid var(--emerald3);background:transparent;color:var(--emerald2);font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);" onclick="openModal('signup')">모든 게시글 보기 →</button>
+        </div>
+      </div>
+      <div class="comm-side">
+        <div class="comm-side-card">
+          <div class="comm-side-title">🏷️ 인기 태그</div>
+          <div class="comm-tag-list">
+            <span class="comm-tag">#AI비즈니스</span>
+            <span class="comm-tag">#현지화</span>
+            <span class="comm-tag">#벽돌쌓기</span>
+            <span class="comm-tag">#동남아시아</span>
+            <span class="comm-tag">#파트너십</span>
+            <span class="comm-tag">#선교비즈니스</span>
+            <span class="comm-tag">#AI번역</span>
+            <span class="comm-tag">#수익화</span>
+          </div>
+        </div>
+        <div class="comm-side-card">
+          <div class="comm-side-title">🌍 활성 국가</div>
+          <ul class="comm-nation-list">
+            <li>🇰🇷 한국 <span>78명</span></li>
+            <li>🇵🇭 필리핀 <span>34명</span></li>
+            <li>🇮🇩 인도네시아 <span>28명</span></li>
+            <li>🇸🇬 싱가포르 <span>19명</span></li>
+            <li>🇺🇸 미국 <span>17명</span></li>
+            <li>🇯🇵 일본 <span>12명</span></li>
+          </ul>
+        </div>
+        <div class="comm-cta">
+          <h4>커뮤니티에 참여하세요</h4>
+          <p>같은 방향을 가진 글로컬 빌더들과 함께 성장하세요</p>
+          <button class="btn-comm-join" onclick="openModal('signup')">무료로 참여하기</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 라이브 ══════════════════ -->
+<section id="live">
+  <div class="section-inner">
+    <div class="section-tag">📡 라이브</div>
+    <h2 class="section-title">매주 <span>글로컬 빌더와 함께하는</span> 라이브</h2>
+    <p class="section-desc">실시간으로 배우고, 질문하고, 연결됩니다. 녹화본도 제공됩니다.</p>
+    <div class="live-grid">
+      <div class="live-card">
+        <div class="live-thumb green">
+          🌏
+          <div class="live-badge badge-upcoming">예정 · 4/2 수요일 오후 8시</div>
+        </div>
+        <div class="live-body">
+          <div class="live-date">2026.04.02 (수) 20:00 KST</div>
+          <div class="live-title">AI로 동남아 시장 진입하기 — 실전 케이스 스터디</div>
+          <div class="live-host">GlocalBridge 대표 · 한진준</div>
+          <div class="live-footer">
+            <span class="live-attendees">👥 47명 등록</span>
+            <button class="btn-live btn-live-reg" onclick="openModal('signup')">무료 등록</button>
+          </div>
+        </div>
+      </div>
+      <div class="live-card">
+        <div class="live-thumb gold">
+          🤖
+          <div class="live-badge badge-upcoming">예정 · 4/9 수요일</div>
+        </div>
+        <div class="live-body">
+          <div class="live-date">2026.04.09 (수) 20:00 KST</div>
+          <div class="live-title">ChatGPT로 글로벌 파트너 제안서 작성하기</div>
+          <div class="live-host">AI 글로컬 Builders 파트너 특강</div>
+          <div class="live-footer">
+            <span class="live-attendees">👥 23명 등록</span>
+            <button class="btn-live btn-live-reg" onclick="openModal('signup')">무료 등록</button>
+          </div>
+        </div>
+      </div>
+      <div class="live-card">
+        <div class="live-thumb blue">
+          🎓
+          <div class="live-badge badge-recorded">녹화본</div>
+        </div>
+        <div class="live-body">
+          <div class="live-date">2026.03.19 (수) 녹화</div>
+          <div class="live-title">벽돌 쌓기 챌린지 완주자 성공 사례 발표회</div>
+          <div class="live-host">싱가포르·필리핀·한국 참여자 공동 발표</div>
+          <div class="live-footer">
+            <span class="live-attendees">👁️ 189명 시청</span>
+            <button class="btn-live btn-live-watch" onclick="openModal('login')">시청하기</button>
+          </div>
+        </div>
+      </div>
+      <div class="live-card">
+        <div class="live-thumb teal">
+          💡
+          <div class="live-badge badge-recorded">녹화본</div>
+        </div>
+        <div class="live-body">
+          <div class="live-date">2026.03.12 (수) 녹화</div>
+          <div class="live-title">AI 번역·현지화 마케팅 — 비용 0원으로 글로벌</div>
+          <div class="live-host">클로드·ChatGPT 활용 실습 세션</div>
+          <div class="live-footer">
+            <span class="live-attendees">👁️ 234명 시청</span>
+            <button class="btn-live btn-live-watch" onclick="openModal('login')">시청하기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 벽돌 쌓기 ══════════════════ -->
+<section id="bricks">
+  <div class="section-inner">
+    <div class="section-tag">🧱 벽돌 쌓기</div>
+    <h2 class="section-title">30일 <span>글로컬 비즈니스</span> 챌린지</h2>
+    <p class="section-desc">매일 하나의 벽돌. 30일 후 당신의 비즈니스 빌딩 1층이 완성됩니다.</p>
+    <div class="bricks-intro">
+      <div class="bricks-text">
+        <h3>왜 "벽돌 쌓기"인가요?</h3>
+        <p>위대한 건물은 한 번에 지어지지 않습니다. 매일 하나의 벽돌을 쌓듯, 글로컬 비즈니스도 매일의 작은 실행이 쌓여 완성됩니다.</p>
+        <p>거창한 목표를 세우지 말고, <strong>오늘 할 수 있는 한 가지 행동</strong>을 하세요. 30일이면 탄탄한 기초가 만들어집니다.</p>
+        <ul class="bricks-steps">
+          <li><div class="step-num">1</div><div>매일 1개의 AI 글로컬 과제 수행 (30분 이내)</div></li>
+          <li><div class="step-num">2</div><div>커뮤니티에 진행 상황 공유 (책임감 형성)</div></li>
+          <li><div class="step-num">3</div><div>30일 완주 시 글로컬 빌더 인증서 발급</div></li>
+          <li><div class="step-num">4</div><div>파트너 네트워크 우선 입장 기회 제공</div></li>
+        </ul>
+        <button class="btn-hero-primary" onclick="openModal('signup')" style="font-size:14px;padding:12px 24px;">🧱 30일 챌린지 참여하기</button>
+      </div>
+      <div class="bricks-visual">
+        <div class="card">
+          <div class="building">
+            <div class="building-title">
+              <span>🏗️ 30일 챌린지 맵</span>
+              <span style="color:var(--emerald3);font-size:12px;">Day 1-30</span>
+            </div>
+            <div class="floor">
+              <div class="floor-label">Week 4 · 자동화·확장 (Day 22-30)</div>
+              <div class="floor-bricks floor-4">
+                <div class="b done" data-tip="AI 에이전트 설정"></div>
+                <div class="b done" data-tip="자동화 플로우"></div>
+                <div class="b inprogress"></div>
+                <div class="b todo"></div>
+                <div class="b locked"></div>
+                <div class="b locked"></div>
+                <div class="b locked"></div>
+                <div class="b locked"></div>
+              </div>
+            </div>
+            <div class="floor">
+              <div class="floor-label">Week 3 · 네트워크·파트너십 (Day 15-21)</div>
+              <div class="floor-bricks floor-3">
+                <div class="b done"></div>
+                <div class="b done"></div>
+                <div class="b done"></div>
+                <div class="b done"></div>
+                <div class="b done"></div>
+                <div class="b done"></div>
+              </div>
+            </div>
+            <div class="floor">
+              <div class="floor-label">Week 2 · 콘텐츠·마케팅 (Day 8-14)</div>
+              <div class="floor-bricks floor-2">
+                <div class="b done"></div>
+                <div class="b done"></div>
+                <div class="b done"></div>
+                <div class="b done"></div>
+              </div>
+            </div>
+            <div class="floor">
+              <div class="floor-label">Week 1 · 기초·마인드셋 (Day 1-7)</div>
+              <div class="floor-bricks floor-1">
+                <div class="b done"></div>
+                <div class="b done"></div>
+                <div class="b done"></div>
+              </div>
+            </div>
+            <div class="building-legend">
+              <div class="legend-item"><div class="legend-dot" style="background:var(--gold);"></div>완료</div>
+              <div class="legend-item"><div class="legend-dot" style="background:var(--emerald3);"></div>진행중</div>
+              <div class="legend-item"><div class="legend-dot" style="background:var(--gray3);"></div>예정</div>
+              <div class="legend-item"><div class="legend-dot" style="background:var(--gray4);border:1px dashed var(--gray3);"></div>잠김</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="challenge-cards">
+      <div class="challenge-card">
+        <div class="challenge-icon">🌱</div>
+        <h4>Week 1 · 기초</h4>
+        <p>글로컬 마인드셋, AI 도구 설정, 첫 번째 비즈니스 아이디어 발굴</p>
+        <div class="challenge-badge">누구나 참여 가능</div>
+      </div>
+      <div class="challenge-card">
+        <div class="challenge-icon">🏗️</div>
+        <h4>Week 2-3 · 빌딩</h4>
+        <p>AI 콘텐츠 제작, 글로벌 마케팅, 첫 번째 고객 또는 파트너 접촉</p>
+        <div class="challenge-badge">회원 필요</div>
+      </div>
+      <div class="challenge-card">
+        <div class="challenge-icon">🚀</div>
+        <h4>Week 4 · 확장</h4>
+        <p>AI 자동화 시스템 구축, 글로컬 파트너십 체결, 비즈니스 런치</p>
+        <div class="challenge-badge" style="background:#EDE9FE;color:#5B21B6;">파트너 추천</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 파트너 ══════════════════ -->
+<section id="partner">
+  <div class="section-inner">
+    <div class="section-tag">🤝 파트너</div>
+    <h2 class="section-title">글로컬 파트너로<br/><span>함께 성장합니다</span></h2>
+    <p class="section-desc">단순한 회원이 아닌, 글로컬 비즈니스 생태계의 파트너가 되세요. 함께 성장하는 구조를 만듭니다.</p>
+    <div class="partner-tiers">
+      <div class="tier-card">
+        <div class="tier-icon">🌱</div>
+        <div class="tier-name">빌더</div>
+        <div class="tier-desc">글로컬 비즈니스를 시작하는 분들을 위한 기본 멤버십</div>
+        <ul class="tier-benefits">
+          <li>커뮤니티 접근</li>
+          <li>무료 교재 (Level 1)</li>
+          <li>기본 프롬프트 라이브러리</li>
+          <li>라이브 세션 참여</li>
+          <li>월 뉴스레터</li>
+        </ul>
+        <button class="btn-tier btn-tier-outline" onclick="openModal('signup')">무료 가입</button>
+      </div>
+      <div class="tier-card featured">
+        <div class="tier-popular">가장 인기 있어요 🔥</div>
+        <div class="tier-icon">🏗️</div>
+        <div class="tier-name">글로컬 빌더</div>
+        <div class="tier-desc">AI 글로컬 비즈니스를 본격 구축하는 액티브 파트너</div>
+        <ul class="tier-benefits">
+          <li>빌더 혜택 전체 포함</li>
+          <li>전체 교재 (Level 1-2)</li>
+          <li>전체 프롬프트 50+개</li>
+          <li>30일 벽돌 챌린지</li>
+          <li>소그룹 멘토링 (월 2회)</li>
+          <li>파트너 네트워크 접근</li>
+        </ul>
+        <button class="btn-tier btn-tier-gold" onclick="openModal('signup')">파트너 신청</button>
+      </div>
+      <div class="tier-card">
+        <div class="tier-icon">🚀</div>
+        <div class="tier-name">글로컬 리더</div>
+        <div class="tier-desc">글로컬 비즈니스 생태계를 함께 이끄는 리더 파트너</div>
+        <ul class="tier-benefits">
+          <li>글로컬 빌더 혜택 전체</li>
+          <li>심화 교재 (Level 3)</li>
+          <li>1:1 전략 코칭 (월 1회)</li>
+          <li>해외 파트너 연결 우선권</li>
+          <li>공동 프로젝트 기회</li>
+          <li>리더 포럼 접근</li>
+        </ul>
+        <button class="btn-tier btn-tier-primary" onclick="openModal('signup')">리더 지원하기</button>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;padding:28px;background:var(--emerald-light);border-radius:var(--radius-lg);">
+      <div style="font-size:13px;font-weight:700;color:var(--emerald);margin-bottom:6px;">🌍 기관·단체 파트너십</div>
+      <div style="font-size:22px;font-weight:900;color:var(--dark);margin-bottom:8px;">교회·선교단체·NGO·기업 협력 프로그램</div>
+      <div style="font-size:14px;color:var(--gray);margin-bottom:16px;">글로컬 미션과 비즈니스를 연결하는 기관 파트너십 문의를 환영합니다.</div>
+      <a href="mailto:partner@elimg.com" style="display:inline-flex;align-items:center;gap:8px;padding:12px 24px;background:var(--emerald);color:var(--white);border-radius:9px;font-size:14px;font-weight:700;text-decoration:none;">✉️ 파트너십 문의하기</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FAQ ══════════════════ -->
+<section id="faq">
+  <div class="section-inner">
+    <div style="text-align:center;margin-bottom:16px;">
+      <div class="section-tag" style="display:inline-flex;">❓ FAQ</div>
+    </div>
+    <h2 class="section-title" style="text-align:center;">자주 묻는 질문</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          AI나 코딩을 전혀 몰라도 참여할 수 있나요?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">네, 가능합니다. AI 글로컬 Builders는 기술 경험이 없는 분들을 위해 설계되었습니다. ChatGPT·Claude·Gemini 같은 AI 도구는 자연어로 대화하듯 사용하므로 별도의 코딩 지식이 필요 없습니다. Level 1 교재는 완전 초보자를 위한 단계별 가이드입니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          "글로컬"이 뭔가요? 그냥 글로벌과 다른가요?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">글로컬(Glocal)은 Global + Local의 합성어입니다. 단순히 글로벌로 진출하는 것이 아니라, 로컬(현지)의 강점과 문화를 유지하면서 글로벌 시장에 연결하는 전략입니다. AI를 활용하면 소규모 개인·단체도 현지화된 글로벌 비즈니스가 가능합니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          벽돌 쌓기 챌린지는 얼마나 시간이 걸리나요?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">매일 30분 이내입니다. 직장인, 사업자, 선교사 등 바쁜 일상 속에서도 실천할 수 있도록 각 과제를 설계했습니다. 중요한 것은 매일 꾸준히 한 가지를 실행하는 것입니다. 하루 이틀 빠져도 커뮤니티의 도움으로 다시 시작할 수 있습니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          한국 외 다른 나라에서도 참여할 수 있나요?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">물론입니다! AI 글로컬 Builders는 현재 12개국 이상의 참여자가 있습니다. 필리핀, 인도네시아, 싱가포르, 일본, 미국 등 다양한 나라에서 활동 중이며, 커뮤니티는 한국어와 영어로 운영됩니다. 다국어 지원은 계속 확대 중입니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          선교나 비영리 사역에도 적용할 수 있나요?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">네, 글로컬 비즈니스 마인드는 선교·사역과 완벽하게 연결됩니다. 자립적인 비즈니스를 통해 현지 사역을 지속하고, AI를 통해 언어·문화 장벽을 극복하며, 비즈니스와 임팩트를 동시에 만드는 사례가 많습니다. 교회·단체를 위한 별도 파트너십 프로그램도 있습니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          elimg.com의 기존 서비스와 어떤 관계인가요?
+          <span class="faq-arrow">▼</span>
+        </button>
+        <div class="faq-a">AI 글로컬 Builders는 elimg.com(GlocalBridge AI 컨설팅)의 교육·커뮤니티 플랫폼입니다. GlocalBridge의 글로컬 비즈니스·AI 컨설팅 노하우를 누구나 접근할 수 있는 형태로 제공합니다. 기존 회원 및 컨설팅 고객은 우선 혜택을 받을 수 있습니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="logo">
+          <div class="logo-dot">🌍</div>
+          AI 글로컬 Builders
+        </div>
+        <p>AI와 글로컬 마인드로 로컬에서 시작해 글로벌로 성장하는 비즈니스를 함께 구축합니다. GlocalBridge · elimg.com</p>
+        <div style="margin-top:16px;display:flex;gap:10px;">
+          <a href="https://elimg.com" target="_blank" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);padding:6px 12px;border-radius:6px;font-size:12px;text-decoration:none;">elimg.com</a>
+          <a href="/member/" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.6);padding:6px 12px;border-radius:6px;font-size:12px;text-decoration:none;">회원 전용 아카데미</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>플랫폼</h5>
+        <ul>
+          <li><a href="#intro">소개</a></li>
+          <li><a href="#textbook">교재</a></li>
+          <li><a href="#prompt">프롬프트</a></li>
+          <li><a href="#community">커뮤니티</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>프로그램</h5>
+        <ul>
+          <li><a href="#live">라이브 세션</a></li>
+          <li><a href="#bricks">벽돌 쌓기 챌린지</a></li>
+          <li><a href="#partner">파트너십</a></li>
+          <li><a href="mailto:partner@elimg.com">기관 파트너</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>도움말</h5>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="mailto:hello@elimg.com">문의하기</a></li>
+          <li><a href="https://elimg.com">GlocalBridge</a></li>
+          <li><a href="/member/">회원 로그인</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 AI 글로컬 Builders · GlocalBridge · elimg.com</span>
+      <div style="display:flex;gap:16px;">
+        <a href="#">이용약관</a>
+        <a href="#">개인정보처리방침</a>
+        <a href="mailto:hello@elimg.com">hello@elimg.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════ LOGIN MODAL ══════════════════ -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('login')">✕</button>
+    <div class="modal-logo">
+      <div class="dot">🌍</div>
+      <span>AI 글로컬 Builders</span>
+    </div>
+    <div class="modal-title">로그인</div>
+    <div class="modal-sub">계정에 로그인하세요</div>
+    <div class="form-group">
+      <label>이메일</label>
+      <input type="email" id="loginEmail" placeholder="your@email.com"/>
+    </div>
+    <div class="form-group">
+      <label>비밀번호</label>
+      <input type="password" id="loginPw" placeholder="비밀번호 입력"/>
+    </div>
+    <button class="btn-submit" onclick="doLogin()">로그인</button>
+    <div class="divider">또는</div>
+    <div style="text-align:center;">
+      <a href="/member/?admin" style="font-size:13px;color:var(--emerald2);font-weight:600;">🔐 회원 전용 아카데미로 이동 →</a>
+    </div>
+    <div class="modal-switch">계정이 없으신가요? <a onclick="switchModal('signup')">회원가입</a></div>
+  </div>
+</div>
+
+<!-- ══════════════════ SIGNUP MODAL ══════════════════ -->
+<div class="modal-overlay" id="signupModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('signup')">✕</button>
+    <div class="modal-logo">
+      <div class="dot">🌍</div>
+      <span>AI 글로컬 Builders</span>
+    </div>
+    <div class="modal-title">무료 회원가입</div>
+    <div class="modal-sub">글로컬 비즈니스 여정을 시작하세요</div>
+    <div class="form-group">
+      <label>이름</label>
+      <input type="text" id="signupName" placeholder="홍길동 / Hong Gildong"/>
+    </div>
+    <div class="form-group">
+      <label>이메일</label>
+      <input type="email" id="signupEmail" placeholder="your@email.com"/>
+    </div>
+    <div class="form-group">
+      <label>국가 / 활동 지역</label>
+      <select id="signupCountry">
+        <option value="">선택해주세요</option>
+        <option>🇰🇷 한국</option>
+        <option>🇵🇭 필리핀</option>
+        <option>🇮🇩 인도네시아</option>
+        <option>🇸🇬 싱가포르</option>
+        <option>🇯🇵 일본</option>
+        <option>🇺🇸 미국</option>
+        <option>🇹🇭 태국</option>
+        <option>🇲🇾 말레이시아</option>
+        <option>기타</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>관심 분야</label>
+      <select id="signupGoal">
+        <option value="">선택해주세요</option>
+        <option>AI 비즈니스 창업</option>
+        <option>글로벌 마케팅·확장</option>
+        <option>선교·사역 + 비즈니스</option>
+        <option>AI 콘텐츠 제작</option>
+        <option>글로컬 파트너십</option>
+        <option>AI 자동화·효율화</option>
+      </select>
+    </div>
+    <button class="btn-submit" onclick="doSignup()">🧱 글로컬 빌더로 시작하기</button>
+    <div class="modal-switch">이미 계정이 있으신가요? <a onclick="switchModal('login')">로그인</a></div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ── NAV ──
+function toggleMenu(){
+  const m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+}
+// nav active on scroll
+window.addEventListener('scroll',()=>{
+  const nav = document.getElementById('navbar');
+  nav.style.boxShadow = window.scrollY > 10 ? '0 4px 20px rgba(0,0,0,.2)' : 'none';
+  // active link
+  const sections = ['intro','textbook','prompt','community','live','bricks','partner','faq'];
+  let cur = '';
+  sections.forEach(id=>{
+    const el = document.getElementById(id);
+    if(el && window.scrollY >= el.offsetTop - 80) cur = id;
+  });
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.style.color = a.getAttribute('href') === '#'+cur ? 'var(--gold)' : '';
+  });
+});
+
+// ── PROMPT FILTER ──
+function filterPrompts(cat, btn){
+  document.querySelectorAll('.prompt-cat').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.prompt-item').forEach(item=>{
+    if(cat === 'all' || item.dataset.cat === cat){
+      item.style.display = '';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
+// ── FAQ ──
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+// ── MODALS ──
+function openModal(type){
+  document.getElementById(type+'Modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(type){
+  document.getElementById(type+'Modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function switchModal(to){
+  const from = to === 'login' ? 'signup' : 'login';
+  closeModal(from);
+  setTimeout(()=>openModal(to), 150);
+}
+// close on overlay click
+document.querySelectorAll('.modal-overlay').forEach(overlay=>{
+  overlay.addEventListener('click', e=>{
+    if(e.target === overlay){
+      overlay.classList.remove('open');
+      document.body.style.overflow='';
+    }
+  });
+});
+// esc key
+document.addEventListener('keydown', e=>{
+  if(e.key === 'Escape'){
+    document.querySelectorAll('.modal-overlay.open').forEach(m=>{
+      m.classList.remove('open');
+      document.body.style.overflow='';
+    });
+  }
+});
+
+// ── TOAST ──
+function showToast(msg, type='success'){
+  const t = document.getElementById('toast');
+  t.textContent = (type === 'success' ? '✅ ' : '⚠️ ') + msg;
+  t.className = 'toast show ' + type;
+  setTimeout(()=>t.classList.remove('show'), 3500);
+}
+
+// ── LOGIN ──
+function doLogin(){
+  const email = document.getElementById('loginEmail').value.trim();
+  const pw    = document.getElementById('loginPw').value.trim();
+  if(!email || !pw){ showToast('이메일과 비밀번호를 입력해주세요.','error'); return; }
+  // Demo: store in localStorage and redirect to member area
+  const session = { email, name: email.split('@')[0], code:'BUILDERS', role:'builder', ts: Date.now() };
+  localStorage.setItem('gb_member_session', JSON.stringify(session));
+  closeModal('login');
+  showToast('로그인 되었습니다! 아카데미로 이동합니다...');
+  setTimeout(()=>{ window.location.href='/member/'; }, 1500);
+}
+
+// ── SIGNUP ──
+function doSignup(){
+  const name    = document.getElementById('signupName').value.trim();
+  const email   = document.getElementById('signupEmail').value.trim();
+  const country = document.getElementById('signupCountry').value;
+  const goal    = document.getElementById('signupGoal').value;
+  if(!name || !email){ showToast('이름과 이메일을 입력해주세요.','error'); return; }
+  if(!email.includes('@')){ showToast('올바른 이메일을 입력해주세요.','error'); return; }
+  // Store pending signup
+  const data = { name, email, country, goal, ts: Date.now(), status:'pending' };
+  localStorage.setItem('gb_signup_pending', JSON.stringify(data));
+  closeModal('signup');
+  // Show success message
+  showSuccessPage(name, email);
+}
+
+function showSuccessPage(name, email){
+  document.body.innerHTML = `
+    <div style="min-height:100vh;background:linear-gradient(135deg,#022C22,#065F46);
+      display:flex;align-items:center;justify-content:center;padding:24px;font-family:'Noto Sans KR',sans-serif;">
+      <div style="background:white;border-radius:24px;max-width:480px;width:100%;padding:48px 36px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.3);">
+        <div style="font-size:64px;margin-bottom:16px;">🧱</div>
+        <h2 style="font-size:24px;font-weight:900;color:#111827;margin-bottom:8px;">신청이 완료되었습니다!</h2>
+        <p style="font-size:15px;color:#6B7280;margin-bottom:6px;"><strong style="color:#065F46;">${name}</strong>님, 환영합니다!</p>
+        <p style="font-size:14px;color:#6B7280;line-height:1.7;margin-bottom:24px;">
+          <strong>${email}</strong>로 48시간 이내에<br/>
+          접근 코드가 발송됩니다.<br/>
+          스팸함도 확인해 주세요 📬
+        </p>
+        <div style="background:#D1FAE5;border-radius:12px;padding:16px;margin-bottom:24px;text-align:left;">
+          <div style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:8px;">📋 다음 단계</div>
+          <div style="font-size:13px;color:#374151;line-height:1.8;">
+            1️⃣ 이메일 확인 (접근 코드 수신)<br/>
+            2️⃣ <a href="/member/" style="color:#047857;font-weight:700;">elimg.com/member</a> 에서 코드 입력<br/>
+            3️⃣ 커뮤니티 참여 + 벽돌 쌓기 시작!
+          </div>
+        </div>
+        <a href="/builders/" style="display:inline-block;padding:12px 28px;background:#065F46;color:white;border-radius:9px;font-size:14px;font-weight:700;text-decoration:none;">← 메인으로 돌아가기</a>
+      </div>
+    </div>
+  `;
+}
+</script>
+</body>
+</html>
