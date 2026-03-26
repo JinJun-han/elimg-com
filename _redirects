@@ -1,4 +1,6 @@
-/ai     /               301
-/shop   /shop/index.html 200
-/shop/* /shop/:splat     200
-/*      /               200
+/ai         /               301
+/shop       /shop/index.html 200
+/shop/*     /shop/:splat     200
+/member     /member/index.html 200
+/member/*   /member/:splat     200
+/*          /               200
