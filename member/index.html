@@ -3,360 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GlocalBridge Academy — 글로컬 인재 양성 플랫폼 | elimg.com</title>
-<meta name="description" content="GlocalBridge Academy — AI로 무장한 글로컬 인재 양성 플랫폼. 3개 학습 트랙, AI 도구, 글로컬 커뮤니티.">
+<title>GlocalBridge Academy — 회원 전용 입장</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy:#1B3A6B; --navy-deep:#0D1F3C; --navy-mid:#243F72;
-  --gold:#C49A22; --gold-light:#E8C05A; --gold-pale:#FDF6E3;
-  --white:#FFFFFF; --off-white:#F8F9FC; --gray-light:#EEF1F8;
-  --gray:#8896B0; --text:#1A2340; --green:#1A5C38;
-  --teal:#0D9488; --purple:#7C3AED; --rose:#E11D48;
-}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Noto Sans KR',sans-serif;background:var(--navy-deep);color:var(--white);line-height:1.7;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:0 5%;height:64px;background:rgba(11,22,45,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(196,154,34,0.2)}
-.nav-logo{display:flex;align-items:center;gap:10px}
-.nav-logo-icon{width:32px;height:32px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.nav-logo-text{display:flex;flex-direction:column;line-height:1.2}
-.nav-logo-en{font-family:'Playfair Display',serif;font-size:14px;color:var(--white);letter-spacing:0.5px}
-.nav-logo-kr{font-size:10px;color:var(--gold-light)}
-.nav-right{display:flex;align-items:center;gap:16px}
-.nav-link{font-size:13px;color:rgba(255,255,255,0.65);transition:color .2s}
-.nav-link:hover{color:var(--gold-light)}
-.btn-nav{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy-deep);padding:7px 18px;border-radius:6px;font-size:13px;font-weight:700}
-
-/* HERO GATE */
-.gate{min-height:100vh;padding-top:64px;display:flex;align-items:center;position:relative;overflow:hidden}
-.gate-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 70% 50%,rgba(196,154,34,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 80% at 0% 80%,rgba(27,58,107,0.6) 0%,transparent 50%)}
-.gate-grid{position:absolute;inset:0;opacity:0.03;background-image:linear-gradient(rgba(196,154,34,1) 1px,transparent 1px),linear-gradient(90deg,rgba(196,154,34,1) 1px,transparent 1px);background-size:50px 50px}
-.gate-inner{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:80px 5%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-
-/* LEFT - Info */
-.gate-left{}
-.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(196,154,34,0.14);border:1px solid rgba(196,154,34,0.32);color:var(--gold-light);padding:6px 16px;border-radius:20px;font-size:11px;letter-spacing:1.5px;margin-bottom:24px;font-weight:600;text-transform:uppercase}
-.badge-dot{width:6px;height:6px;background:var(--gold-light);border-radius:50%;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.gate-title{font-family:'Playfair Display',serif;font-size:clamp(32px,4.5vw,52px);line-height:1.15;margin-bottom:8px;color:var(--white)}
-.gate-title em{color:var(--gold-light);font-style:italic}
-.gate-subtitle{font-family:'Noto Serif KR',serif;font-size:clamp(16px,2.2vw,22px);color:rgba(255,255,255,0.5);margin-bottom:24px;font-weight:400}
-.verse-box{border-left:3px solid var(--gold);padding:14px 20px;margin-bottom:32px;background:rgba(196,154,34,0.06);border-radius:0 8px 8px 0}
-.verse-box p{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.8;font-style:italic}
-.verse-box cite{font-size:11px;color:var(--gold);margin-top:4px;display:block}
-.gate-desc{font-size:14.5px;color:rgba(255,255,255,0.65);line-height:1.9;margin-bottom:32px}
-.feature-tags{display:flex;flex-wrap:wrap;gap:10px}
-.ftag{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);padding:8px 14px;border-radius:8px;font-size:13px;color:rgba(255,255,255,0.8)}
-.ftag:hover{border-color:rgba(196,154,34,0.4);background:rgba(196,154,34,0.08)}
-
-/* RIGHT - Login Card */
-.gate-right{display:flex;justify-content:center}
-.login-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:44px 40px;width:100%;max-width:420px;backdrop-filter:blur(8px)}
-.login-card-header{text-align:center;margin-bottom:32px}
-.login-academy-badge{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy-deep);padding:4px 14px;border-radius:12px;font-size:11px;font-weight:800;letter-spacing:1px;margin-bottom:16px;text-transform:uppercase}
-.login-card h2{font-family:'Playfair Display',serif;font-size:26px;margin-bottom:8px;color:var(--white)}
-.login-card > .login-card-header > p{font-size:13.5px;color:rgba(255,255,255,0.55);line-height:1.6}
-.form-group{margin-bottom:20px}
-.form-group label{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,0.55);margin-bottom:8px;letter-spacing:0.5px;text-transform:uppercase}
-.form-group input{width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:14px 16px;font-size:15px;color:var(--white);font-family:'Noto Sans KR',sans-serif;transition:border-color .2s,background .2s;outline:none;letter-spacing:2px}
-.form-group input::placeholder{color:rgba(255,255,255,0.25);letter-spacing:1px}
-.form-group input:focus{border-color:rgba(196,154,34,0.6);background:rgba(196,154,34,0.05)}
-.btn-login{width:100%;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy-deep);border:none;padding:15px;border-radius:10px;font-size:15px;font-weight:800;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:transform .2s,box-shadow .2s;letter-spacing:0.5px}
-.btn-login:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,154,34,0.35)}
-.btn-login:active{transform:translateY(0)}
-.error-msg{display:none;background:rgba(225,29,72,0.15);border:1px solid rgba(225,29,72,0.3);color:#fca5a5;padding:10px 14px;border-radius:8px;font-size:13px;margin-top:12px;text-align:center}
-.error-msg.show{display:block}
-.login-divider{text-align:center;margin:20px 0;color:rgba(255,255,255,0.2);font-size:12px;position:relative}
-.login-divider::before,.login-divider::after{content:'';position:absolute;top:50%;width:40%;height:1px;background:rgba(255,255,255,0.1)}
-.login-divider::before{left:0}
-.login-divider::after{right:0}
-.login-benefits{list-style:none;margin-top:24px;border-top:1px solid rgba(255,255,255,0.08);padding-top:20px}
-.login-benefits li{display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.6);padding:5px 0}
-.login-benefits li span:first-child{font-size:15px}
-.register-link{text-align:center;margin-top:20px;font-size:13px;color:rgba(255,255,255,0.4)}
-.register-link a{color:var(--gold-light);font-weight:600}
-.register-link a:hover{text-decoration:underline}
-
-/* TRACKS SECTION */
-.tracks-section{padding:96px 5%;background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.06)}
-.tracks-inner{max-width:1200px;margin:0 auto}
-.sec-header{text-align:center;margin-bottom:56px}
-.sec-label{display:inline-block;font-size:11px;letter-spacing:2px;color:var(--gold);font-weight:700;text-transform:uppercase;margin-bottom:12px}
-.sec-title{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,32px);color:var(--white);margin-bottom:14px;font-weight:700;line-height:1.45}
-.sec-desc{font-size:14.5px;color:rgba(255,255,255,0.5);max-width:540px;margin:0 auto;line-height:1.8}
-.tracks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.track-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:32px;position:relative;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s}
-.track-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-.track-card-1{border-top:3px solid var(--teal)}
-.track-card-1:hover{border-color:var(--teal)}
-.track-card-2{border-top:3px solid var(--purple)}
-.track-card-2:hover{border-color:var(--purple)}
-.track-card-3{border-top:3px solid var(--gold)}
-.track-card-3:hover{border-color:var(--gold)}
-.track-step{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;opacity:0.7}
-.track-card-1 .track-step{color:var(--teal)}
-.track-card-2 .track-step{color:#a78bfa}
-.track-card-3 .track-step{color:var(--gold-light)}
-.track-icon{font-size:40px;margin-bottom:16px}
-.track-name{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--white);margin-bottom:8px}
-.track-sub{font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:16px;line-height:1.6}
-.track-modules{list-style:none;margin-bottom:20px}
-.track-modules li{font-size:12.5px;color:rgba(255,255,255,0.55);padding:4px 0;display:flex;align-items:center;gap:6px}
-.track-modules li::before{content:'›';color:rgba(196,154,34,0.6);font-size:16px;line-height:1}
-.track-meta{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08)}
-.track-duration{font-size:12px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:4px}
-.track-level{font-size:11px;font-weight:700;padding:3px 10px;border-radius:10px;text-transform:uppercase;letter-spacing:0.5px}
-.level-beginner{background:rgba(13,148,136,0.2);color:#5eead4}
-.level-intermediate{background:rgba(124,58,237,0.2);color:#c4b5fd}
-.level-advanced{background:rgba(196,154,34,0.2);color:var(--gold-light)}
-
-/* WHY SECTION */
-.why-section{padding:80px 5%;background:var(--navy-deep)}
-.why-inner{max-width:1200px;margin:0 auto}
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:48px}
-.why-card{text-align:center;padding:32px 24px}
-.why-icon{width:64px;height:64px;border-radius:16px;background:rgba(196,154,34,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 20px}
-.why-card h3{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--white);margin-bottom:10px}
-.why-card p{font-size:13.5px;color:rgba(255,255,255,0.5);line-height:1.8}
-
-/* CTA SECTION */
-.cta-section{padding:80px 5%;background:linear-gradient(135deg,rgba(196,154,34,0.08) 0%,rgba(27,58,107,0.3) 100%);border-top:1px solid rgba(196,154,34,0.15);border-bottom:1px solid rgba(196,154,34,0.15)}
-.cta-inner{max-width:640px;margin:0 auto;text-align:center}
-.cta-inner h2{font-family:'Noto Serif KR',serif;font-size:clamp(20px,3vw,28px);color:var(--white);margin-bottom:14px;font-weight:700;line-height:1.5}
-.cta-inner p{font-size:14.5px;color:rgba(255,255,255,0.55);margin-bottom:32px;line-height:1.8}
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.btn-cta-primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy-deep);padding:14px 32px;border-radius:10px;font-size:15px;font-weight:800;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,box-shadow .2s}
-.btn-cta-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,154,34,0.35)}
-.btn-cta-outline{border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.8);padding:14px 32px;border-radius:10px;font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
-.btn-cta-outline:hover{border-color:var(--gold);color:var(--gold-light)}
-
-/* FOOTER */
-footer{padding:32px 5%;background:rgba(0,0,0,0.3);border-top:1px solid rgba(255,255,255,0.06);text-align:center}
-footer p{font-size:12.5px;color:rgba(255,255,255,0.3)}
-footer a{color:var(--gold-light);transition:opacity .2s}
-footer a:hover{opacity:0.8}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .gate-inner{grid-template-columns:1fr;gap:48px;padding:60px 5%}
-  .gate-left{text-align:center}
-  .feature-tags{justify-content:center}
-  .verse-box{text-align:left}
-  .gate-right{width:100%}
-  .login-card{max-width:100%}
-  .tracks-grid{grid-template-columns:1fr}
-  .why-grid{grid-template-columns:1fr}
+html,body{height:100%}
+body{
+  font-family:'Noto Sans KR',sans-serif;
+  background:#050d1a;
+  color:#e2e8f0;
+  display:flex;flex-direction:column;
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
 }
-@media(max-width:600px){
-  .nav-link{display:none}
-  .login-card{padding:32px 24px}
+body::before{
+  content:'';position:fixed;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 20% 20%,rgba(16,185,129,0.06) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 60% at 80% 80%,rgba(99,102,241,0.06) 0%,transparent 60%);
+  pointer-events:none;
 }
 
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.gate-left{animation:fadeUp .9s ease both}
-.gate-right{animation:fadeUp .9s .2s ease both}
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:10;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 32px;height:52px;
+  background:rgba(5,13,26,0.95);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.back-link{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color .2s}
+.back-link:hover{color:rgba(255,255,255,0.7)}
+.member-label{font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.2);text-transform:uppercase}
+
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:72px 24px 40px;min-height:100vh}
+
+.gate-wrap{width:100%;max-width:420px}
+
+.gate-icon{width:64px;height:64px;background:linear-gradient(135deg,#059669,#10b981);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 28px;box-shadow:0 0 40px rgba(16,185,129,0.25)}
+.gate-title{font-family:'Playfair Display',serif;font-size:28px;text-align:center;margin-bottom:6px;color:#fff}
+.gate-sub{text-align:center;font-size:13.5px;color:rgba(255,255,255,0.4);margin-bottom:40px;line-height:1.6}
+
+.gate-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:36px 32px}
+.form-label{display:block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:10px}
+.code-input{
+  width:100%;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:10px;
+  padding:15px 18px;
+  font-size:16px;
+  color:#fff;
+  font-family:'Noto Sans KR',sans-serif;
+  letter-spacing:3px;
+  outline:none;
+  transition:border-color .2s,background .2s;
+  text-transform:uppercase;
+  text-align:center;
+}
+.code-input::placeholder{color:rgba(255,255,255,0.15);letter-spacing:1px;font-size:13px}
+.code-input:focus{border-color:rgba(16,185,129,0.5);background:rgba(16,185,129,0.04)}
+.btn-enter{
+  width:100%;margin-top:14px;
+  background:linear-gradient(135deg,#059669,#10b981);
+  color:#fff;border:none;
+  padding:15px;border-radius:10px;
+  font-size:14px;font-weight:700;
+  cursor:pointer;font-family:'Noto Sans KR',sans-serif;
+  transition:transform .2s,box-shadow .2s,opacity .2s;
+  letter-spacing:0.5px;
+}
+.btn-enter:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(16,185,129,0.3)}
+.btn-enter:active{transform:translateY(0)}
+.error-box{
+  display:none;margin-top:12px;
+  background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.25);
+  border-radius:8px;padding:10px 14px;
+  font-size:12.5px;color:#fca5a5;text-align:center;
+}
+.error-box.show{display:block}
+
+.gate-footer{margin-top:28px;text-align:center}
+.gate-footer p{font-size:12.5px;color:rgba(255,255,255,0.25);line-height:1.8}
+.gate-footer a{color:rgba(16,185,129,0.7);transition:color .2s}
+.gate-footer a:hover{color:#10b981}
+
+.benefits{margin-top:32px;border-top:1px solid rgba(255,255,255,0.06);padding-top:28px;display:flex;flex-direction:column;gap:12px}
+.benefit-item{display:flex;align-items:flex-start;gap:12px}
+.bi-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.bi-1{background:rgba(16,185,129,0.15)}
+.bi-2{background:rgba(99,102,241,0.15)}
+.bi-3{background:rgba(245,158,11,0.15)}
+.bi-4{background:rgba(236,72,153,0.15)}
+.bi-text h4{font-size:13px;font-weight:600;color:rgba(255,255,255,0.8);margin-bottom:2px}
+.bi-text p{font-size:12px;color:rgba(255,255,255,0.35)}
+
+footer{padding:20px 32px;border-top:1px solid rgba(255,255,255,0.04);text-align:center}
+footer p{font-size:11.5px;color:rgba(255,255,255,0.18)}
+footer a{color:rgba(16,185,129,0.5)}
+footer a:hover{color:#10b981}
+
+@media(max-width:480px){
+  .gate-card{padding:28px 22px}
+  .topbar{padding:0 20px}
+}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a href="https://elimg.com" class="nav-logo">
-    <div class="nav-logo-icon">🌉</div>
-    <div class="nav-logo-text">
-      <span class="nav-logo-en">GlocalBridge</span>
-      <span class="nav-logo-kr">글로컬브릿지 AI</span>
-    </div>
-  </a>
-  <div class="nav-right">
-    <a href="https://elimg.com" class="nav-link">메인 사이트</a>
-    <a href="https://elimg.com/shop" class="nav-link">스토어</a>
-    <a href="https://elimg.com/#contact" class="btn-nav">코드 신청</a>
-  </div>
-</nav>
+<div class="topbar">
+  <a href="https://elimg.com" class="back-link">← GlocalBridge AI</a>
+  <span class="member-label">Member Area</span>
+</div>
 
-<!-- GATE HERO -->
-<section class="gate">
-  <div class="gate-bg"></div>
-  <div class="gate-grid"></div>
-  <div class="gate-inner">
+<main>
+  <div class="gate-wrap">
+    <div class="gate-icon">🌉</div>
+    <h1 class="gate-title">Academy</h1>
+    <p class="gate-sub">GlocalBridge 회원 전용 공간입니다<br>입장 코드를 입력하여 아카데미에 입장하세요</p>
 
-    <!-- Left: Info -->
-    <div class="gate-left">
-      <div class="badge"><span class="badge-dot"></span> 회원 전용 플랫폼</div>
-      <h1 class="gate-title"><em>Glocal</em>Bridge<br>Academy</h1>
-      <p class="gate-subtitle">글로컬 인재 양성 플랫폼</p>
-      <div class="verse-box">
-        <p>"땅 끝까지 이르러 내 증인이 되리라"<br>— 글로컬 비전: 현지에 뿌리내리고 세계를 품다</p>
-        <cite>사도행전 1:8 · Think Global, Act Local</cite>
-      </div>
-      <p class="gate-desc">30년 이주민 사역의 지혜와 최신 AI 기술이 만나는 곳.<br>언어의 장벽을 넘고, 문화의 다리를 놓고, AI로 세상을 바꾸는<br><strong style="color:var(--gold-light)">글로컬 인재</strong>를 이곳에서 양성합니다.</p>
-      <div class="feature-tags">
-        <div class="ftag">🌏 3개 글로컬 학습 트랙</div>
-        <div class="ftag">🤖 AI 글로컬 도구 모음</div>
-        <div class="ftag">📚 다국어 리소스 라이브러리</div>
-        <div class="ftag">🤝 글로컬 빌더 커뮤니티</div>
-      </div>
-    </div>
+    <div class="gate-card">
+      <label class="form-label" for="accessCode">액세스 코드</label>
+      <input
+        type="text"
+        id="accessCode"
+        class="code-input"
+        placeholder="코드를 입력하세요"
+        autocomplete="off"
+        spellcheck="false"
+        maxlength="20"
+      >
+      <button class="btn-enter" id="enterBtn" onclick="tryEnter()">아카데미 입장 →</button>
+      <div class="error-box" id="errorBox">올바른 코드가 아닙니다. 다시 확인해주세요.</div>
 
-    <!-- Right: Login Form -->
-    <div class="gate-right">
-      <div class="login-card">
-        <div class="login-card-header">
-          <div class="login-academy-badge">Academy Member</div>
-          <h2>멤버 입장</h2>
-          <p>발급받은 액세스 코드를 입력하여<br>글로컬 아카데미에 입장하세요</p>
-        </div>
-
-        <form id="loginForm">
-          <div class="form-group">
-            <label>액세스 코드</label>
-            <input type="text" id="accessCode" placeholder="GLOCAL-XXXX" autocomplete="off" spellcheck="false">
+      <div class="benefits">
+        <div class="benefit-item">
+          <div class="bi-icon bi-1">🌱</div>
+          <div class="bi-text">
+            <h4>3단계 글로컬 학습 트랙</h4>
+            <p>크리에이터 → 비즈니스 빌더 → 임팩트 리더</p>
           </div>
-          <button type="submit" class="btn-login">아카데미 입장하기 →</button>
-          <div class="error-msg" id="errorMsg">유효하지 않은 코드입니다. 다시 확인해주세요.</div>
-        </form>
-
-        <ul class="login-benefits">
-          <li><span>🎓</span><span>글로컬 AI 크리에이터 → 빌더 → 리더 3단계 커리큘럼</span></li>
-          <li><span>🛠️</span><span>현지화·다국어 AI 도구 즉시 사용</span></li>
-          <li><span>📖</span><span>글로컬 비즈니스 리소스 & 템플릿 다운로드</span></li>
-          <li><span>💬</span><span>글로컬 빌더 멤버 커뮤니티 참여</span></li>
-        </ul>
-
-        <p class="register-link">아직 코드가 없으신가요? <a href="https://elimg.com/#contact">입장 신청하기</a></p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- TRACKS PREVIEW -->
-<section class="tracks-section">
-  <div class="tracks-inner">
-    <div class="sec-header">
-      <div class="sec-label">Learning Tracks</div>
-      <h2 class="sec-title">3단계 글로컬 인재 성장 과정</h2>
-      <p class="sec-desc">AI City Builders가 아닙니다. 글로컬 비즈니스 마인드로 세상에 임팩트를 만드는 인재를 양성합니다.</p>
-    </div>
-    <div class="tracks-grid">
-
-      <!-- Track 1 -->
-      <div class="track-card track-card-1">
-        <div class="track-step">Track 1 · Starter</div>
-        <div class="track-icon">🌱</div>
-        <h3 class="track-name">글로컬 AI 크리에이터</h3>
-        <p class="track-sub">AI로 다국어 콘텐츠를 만들고 현지에서 빛나는 크리에이터로 성장하세요</p>
-        <ul class="track-modules">
-          <li>글로컬 크리에이터 마인드셋</li>
-          <li>AI 다국어 콘텐츠 제작 기초</li>
-          <li>현지화(Localization) 전략</li>
-          <li>AI 음성으로 현지어 콘텐츠 제작</li>
-          <li>첫 글로컬 채널 런칭</li>
-        </ul>
-        <div class="track-meta">
-          <span class="track-duration">⏱ 10일 완성</span>
-          <span class="track-level level-beginner">Beginner</span>
+        </div>
+        <div class="benefit-item">
+          <div class="bi-icon bi-2">🛠️</div>
+          <div class="bi-text">
+            <h4>AI 글로컬 도구 4종</h4>
+            <p>다국어 프롬프트, BAM 전략, 현지화 도우미</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="bi-icon bi-3">📚</div>
+          <div class="bi-text">
+            <h4>리소스 & 템플릿 라이브러리</h4>
+            <p>24개 언어 프롬프트팩, 비즈니스 캔버스 등</p>
+          </div>
+        </div>
+        <div class="benefit-item">
+          <div class="bi-icon bi-4">🤝</div>
+          <div class="bi-text">
+            <h4>글로컬 빌더 커뮤니티</h4>
+            <p>월례 온라인 모임, 카카오 오픈채팅</p>
+          </div>
         </div>
       </div>
+    </div>
 
-      <!-- Track 2 -->
-      <div class="track-card track-card-2">
-        <div class="track-step">Track 2 · Builder</div>
-        <div class="track-icon">🏗️</div>
-        <h3 class="track-name">글로컬 비즈니스 빌더</h3>
-        <p class="track-sub">AI 에이전트로 현지 시장을 뚫고 글로컬 비즈니스 시스템을 구축하세요</p>
-        <ul class="track-modules">
-          <li>글로컬 비즈니스 기회 발굴</li>
-          <li>AI로 현지 시장 분석</li>
-          <li>글로컬 네트워크 자동화</li>
-          <li>비즈니스-미션(BAM) 통합</li>
-          <li>수익 다변화 & 현지화 전략</li>
-        </ul>
-        <div class="track-meta">
-          <span class="track-duration">⏱ 14일 완성</span>
-          <span class="track-level level-intermediate">Intermediate</span>
-        </div>
-      </div>
-
-      <!-- Track 3 -->
-      <div class="track-card track-card-3">
-        <div class="track-step">Track 3 · Leader</div>
-        <div class="track-icon">🌍</div>
-        <h3 class="track-name">글로컬 임팩트 리더</h3>
-        <p class="track-sub">다음 세대 글로컬 인재를 양성하고 지역 사회에 지속가능한 임팩트를 만드세요</p>
-        <ul class="track-modules">
-          <li>글로컬 리더십 원칙</li>
-          <li>인재 발굴 & 멘토링 시스템</li>
-          <li>지역 교회-비즈니스 파트너십</li>
-          <li>커뮤니티 플랫폼 구축</li>
-          <li>글로컬 임팩트 스케일링</li>
-        </ul>
-        <div class="track-meta">
-          <span class="track-duration">⏱ 21일 완성</span>
-          <span class="track-level level-advanced">Advanced</span>
-        </div>
-      </div>
-
+    <div class="gate-footer">
+      <p>코드가 없으신가요? <a href="https://elimg.com/#contact">입장 코드 신청하기 →</a></p>
     </div>
   </div>
-</section>
+</main>
 
-<!-- WHY SECTION -->
-<section class="why-section">
-  <div class="why-inner">
-    <div class="sec-header">
-      <div class="sec-label">Why GlocalBridge Academy</div>
-      <h2 class="sec-title">왜 글로컬브릿지 아카데미인가?</h2>
-    </div>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-icon">🕊️</div>
-        <h3>사역 × 비즈니스 통합</h3>
-        <p>30년 이주민 사역의 현장 경험과 글로컬 비즈니스 전략이 통합된 유일한 플랫폼. 단순한 AI 교육이 아닌 삶의 변화를 이끕니다.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🌐</div>
-        <h3>24개 언어 글로컬 콘텐츠</h3>
-        <p>선교 전략 언어 24개를 중심으로 현지화된 콘텐츠와 도구를 제공합니다. 언어 장벽 없이 세계 어디서나 임팩트를 만드세요.</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🤖</div>
-        <h3>실전 AI 도구 즉시 활용</h3>
-        <p>이론이 아닌 실전. 다국어 AI 음성, 영상, 콘텐츠 생성 도구를 즉시 사용할 수 있도록 준비된 실전형 커리큘럼입니다.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA SECTION -->
-<section class="cta-section">
-  <div class="cta-inner">
-    <h2>글로컬 인재로의 여정,<br>지금 시작하세요</h2>
-    <p>AI로 무장한 글로컬 인재가 세상을 바꿉니다.<br>액세스 코드를 발급받고 아카데미에 입장하세요.</p>
-    <div class="cta-btns">
-      <a href="https://elimg.com/#contact" class="btn-cta-primary">입장 코드 신청하기 →</a>
-      <a href="https://elimg.com" class="btn-cta-outline">GlocalBridge 알아보기</a>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <p>© 2025 <a href="https://elimg.com">GlocalBridge AI (elimg.com)</a> · 글로컬브릿지 아카데미 회원 전용 플랫폼</p>
+  <p>© 2026 <a href="https://elimg.com">GlocalBridge AI</a> · 회원 전용 플랫폼</p>
 </footer>
 
 <script>
-// ---- AUTH CONFIG ----
-// 실제 운영 시 서버측 인증으로 교체 권장
 const VALID_CODES = [
   'GLOCAL2026',
   'BRIDGE2026',
@@ -365,52 +190,39 @@ const VALID_CODES = [
   'GBACADEMY'
 ];
 const SESSION_KEY = 'gb_academy_auth';
-const SESSION_DURATION = 30 * 24 * 60 * 60 * 1000; // 30일
+const SESSION_DURATION = 30 * 24 * 60 * 60 * 1000;
 
-// Auto-redirect if already logged in
-(function checkAuth() {
-  try {
-    const session = JSON.parse(localStorage.getItem(SESSION_KEY));
-    if (session && session.expiresAt > Date.now()) {
-      window.location.href = 'dashboard.html';
-    }
-  } catch(e) {
-    localStorage.removeItem(SESSION_KEY);
-  }
+(function(){
+  try{
+    const s = JSON.parse(localStorage.getItem(SESSION_KEY));
+    if(s && s.expiresAt > Date.now()) window.location.href = 'dashboard.html';
+  } catch(e){ localStorage.removeItem(SESSION_KEY); }
 })();
 
-// Login form handler
-document.getElementById('loginForm').addEventListener('submit', function(e) {
-  e.preventDefault();
+function tryEnter(){
   const code = document.getElementById('accessCode').value.trim().toUpperCase();
-  const errorEl = document.getElementById('errorMsg');
+  const errEl = document.getElementById('errorBox');
+  const btn = document.getElementById('enterBtn');
 
-  if (VALID_CODES.includes(code)) {
-    const session = {
-      code: code,
-      loginAt: Date.now(),
-      expiresAt: Date.now() + SESSION_DURATION
-    };
-    localStorage.setItem(SESSION_KEY, JSON.stringify(session));
-
-    // Show loading state
-    const btn = document.querySelector('.btn-login');
+  if(VALID_CODES.includes(code)){
     btn.textContent = '입장 중...';
-    btn.style.opacity = '0.8';
-
-    setTimeout(() => {
-      window.location.href = 'dashboard.html';
-    }, 600);
+    btn.style.opacity = '0.7';
+    localStorage.setItem(SESSION_KEY, JSON.stringify({
+      code, loginAt: Date.now(), expiresAt: Date.now() + SESSION_DURATION
+    }));
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 500);
   } else {
-    errorEl.classList.add('show');
+    errEl.classList.add('show');
     document.getElementById('accessCode').focus();
-    setTimeout(() => errorEl.classList.remove('show'), 3000);
+    setTimeout(() => errEl.classList.remove('show'), 3000);
   }
-});
+}
 
-// Clear error on input
-document.getElementById('accessCode').addEventListener('input', function() {
-  document.getElementById('errorMsg').classList.remove('show');
+document.getElementById('accessCode').addEventListener('keydown', e => {
+  if(e.key === 'Enter') tryEnter();
+});
+document.getElementById('accessCode').addEventListener('input', () => {
+  document.getElementById('errorBox').classList.remove('show');
 });
 </script>
 </body>
