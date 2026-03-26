@@ -501,12 +501,22 @@ footer a:hover{color:var(--green)}
 </footer>
 
 <script>
-const VALID_CODES = ['GLOCAL2026','BRIDGE2026','ELIMG2026','GLOCAL-VIP','GBACADEMY'];
+const VALID_CODES = ['GLOCAL2026','BRIDGE2026','ELIMG2026','GLOCAL-VIP','GBACADEMY','GLOCALADMIN'];
+const ADMIN_CODES = ['GLOCALADMIN'];
 const SESSION_KEY = 'gb_academy_auth';
 const SESSION_DURATION = 30 * 24 * 60 * 60 * 1000;
 
-// 이미 로그인된 경우 대시보드로
+// 관리자 URL 바이패스: elimg.com/member?admin
 (function(){
+  const params = new URLSearchParams(window.location.search);
+  if(params.has('admin')){
+    localStorage.setItem(SESSION_KEY, JSON.stringify({
+      code:'GLOCALADMIN', role:'admin', loginAt:Date.now(), expiresAt:Date.now()+SESSION_DURATION
+    }));
+    window.location.href = 'dashboard.html?admin';
+    return;
+  }
+  // 이미 로그인된 경우 대시보드로
   try{
     const s = JSON.parse(localStorage.getItem(SESSION_KEY));
     if(s && s.expiresAt > Date.now()) window.location.href = 'dashboard.html';

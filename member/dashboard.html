@@ -241,6 +241,16 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--navy-deep);color:var
 </head>
 <body>
 
+<!-- 관리자 배너 (관리자 로그인 시에만 표시) -->
+<div id="adminBanner" style="display:none;align-items:center;justify-content:space-between;padding:8px 20px;background:linear-gradient(90deg,#92400e,#b45309);font-size:12px;color:#fef3c7;flex-wrap:wrap;gap:8px;position:relative;z-index:200">
+  <span>🔑 <strong>관리자 모드</strong> — 회원 대시보드를 관리자로 보고 있습니다. 일반 회원과 동일한 화면입니다.</span>
+  <span style="display:flex;gap:16px;align-items:center">
+    <a href="index.html" style="color:#fde68a;text-decoration:underline;font-size:11px">← 회원 소개 페이지</a>
+    <a href="https://elimg.com" style="color:#fde68a;text-decoration:underline;font-size:11px">메인 사이트 →</a>
+    <span style="opacity:0.6;font-size:11px">접속 URL: /member?admin</span>
+  </span>
+</div>
+
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="topbar-left">
@@ -792,14 +802,32 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--navy-deep);color:var
 <script>
 // ---- AUTH ----
 const SESSION_KEY = 'gb_academy_auth';
+let IS_ADMIN = false;
+
 (function checkAuth() {
+  // URL ?admin 파라미터로 직접 접근 시 자동 로그인
+  const params = new URLSearchParams(window.location.search);
+  if(params.has('admin')){
+    localStorage.setItem(SESSION_KEY, JSON.stringify({
+      code:'GLOCALADMIN', role:'admin', loginAt:Date.now(), expiresAt:Date.now() + 30*24*60*60*1000
+    }));
+  }
   try {
     const session = JSON.parse(localStorage.getItem(SESSION_KEY));
     if (!session || session.expiresAt <= Date.now()) {
       window.location.href = 'index.html';
+      return;
     }
+    IS_ADMIN = (session.role === 'admin' || session.code === 'GLOCALADMIN');
   } catch(e) {
     window.location.href = 'index.html';
+    return;
+  }
+
+  // 관리자 배너 표시
+  if(IS_ADMIN){
+    const banner = document.getElementById('adminBanner');
+    if(banner) banner.style.display = 'flex';
   }
 })();
 
