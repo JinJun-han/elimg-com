@@ -8,6 +8,11 @@
 <meta property="og:title" content="GlocalBridge AI — AI로 잇는 하나님 나라">
 <meta property="og:description" content="30년 이주민 사역 × AI 기술 = 세상에 단 하나뿐인 글로컬 AI 솔루션">
 <meta property="og:url" content="https://elimg.com">
+<meta property="og:image" content="https://elimg.com/images/og.svg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:image" content="https://elimg.com/images/og.svg"/>
 <title>GlocalBridge AI | 글로컬브릿지 AI 컨설팅 | elimg.com</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -361,6 +366,65 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
 .diag-card.c .diag-btn{background:var(--green);color:#fff}
 .roadmap-note{text-align:center;padding:28px;background:linear-gradient(135deg,rgba(27,58,107,.04),rgba(196,154,34,.04));border-radius:14px;border:1px solid rgba(196,154,34,.15)}
 @media(max-width:768px){.track-grid,.story-cards,.diagnosis-cards,.impact-nums{grid-template-columns:1fr}.school-steps{flex-direction:column;gap:16px;padding:24px}.ss-arrow{transform:rotate(90deg)}}
+
+/* ── BACK TO TOP ── */
+#backTop{position:fixed;bottom:24px;right:24px;z-index:500;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--gold));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 4px 16px rgba(196,154,34,.35);}
+#backTop.vis{opacity:1;pointer-events:auto;}
+#backTop:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(196,154,34,.45);}
+/* ── FOUNDER PHOTO ── */
+.founder-photo{overflow:hidden;}
+.founder-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;border-radius:18px;}
+/* ── AI EDU NAVY THEME ── */
+.ai-edu-section{padding:96px 5%;background:var(--white);}
+.ai-edu-section .ae-label{display:inline-flex;align-items:center;gap:6px;background:rgba(196,154,34,.1);border:1px solid rgba(196,154,34,.25);color:var(--gold);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:12px;letter-spacing:1px;text-transform:uppercase;}
+.ai-edu-section h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,34px);color:var(--navy);font-weight:700;margin-bottom:8px;}
+.ai-edu-section .ae-sub{font-size:14.5px;color:var(--gray);margin-bottom:36px;max-width:540px;line-height:1.85;}
+.ae-card{display:flex;align-items:flex-start;gap:14px;background:var(--white);border:1px solid var(--gray-light);border-radius:14px;padding:20px;text-decoration:none;transition:.25s;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+.ae-card:hover{border-color:rgba(196,154,34,.4);transform:translateY(-3px);box-shadow:0 8px 24px rgba(27,58,107,.12);}
+.ae-card .ae-ico{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;}
+.ae-card .ae-brand{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:3px;}
+.ae-card .ae-name{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px;line-height:1.3;}
+.ae-card .ae-desc{font-size:12px;color:var(--gray);line-height:1.5;}
+.ae-card .ae-cta{margin-top:8px;font-size:11px;font-weight:700;color:var(--navy);}
+.ae-banner{margin-top:28px;background:linear-gradient(135deg,var(--navy),var(--navy-mid));border-radius:14px;padding:24px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.ae-banner h3{font-size:16px;font-weight:800;color:var(--white);margin-bottom:4px;}
+.ae-banner p{font-size:12.5px;color:rgba(255,255,255,.65);}
+/* ── CONTACT FORM ── */
+.cf-wrap{max-width:680px;margin:36px auto 0;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:32px 28px;}
+.cf-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.cf-field{display:flex;flex-direction:column;gap:6px;}
+.cf-field label{font-size:11px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.5px;text-transform:uppercase;}
+.cf-field input,.cf-field select,.cf-field textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:8px;padding:11px 14px;font-size:13px;color:var(--white);font-family:inherit;outline:none;transition:border-color .2s;}
+.cf-field input:focus,.cf-field select:focus,.cf-field textarea:focus{border-color:rgba(196,154,34,.5);}
+.cf-field input::placeholder,.cf-field textarea::placeholder{color:rgba(255,255,255,.25);}
+.cf-field select option{background:var(--navy-deep);color:var(--white);}
+.cf-msg{grid-column:1/-1;}
+.cf-msg textarea{resize:vertical;min-height:90px;}
+.cf-submit{width:100%;padding:13px;border-radius:8px;font-size:14px;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy-deep);border:none;cursor:pointer;transition:.2s;font-family:inherit;margin-top:4px;}
+.cf-submit:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,154,34,.35);}
+.cf-sent{display:none;text-align:center;padding:20px;color:var(--gold-light);font-size:15px;font-weight:600;}
+/* ── NETWORK COLLAPSE ── */
+.net-hidden-card{display:none;}
+.net-hidden-card.revealed{display:block;}
+#netShowMore{display:block;margin:20px auto 0;padding:10px 28px;border-radius:8px;background:transparent;border:1.5px solid rgba(27,58,107,.3);color:var(--navy);font-size:13px;font-weight:600;cursor:pointer;transition:.2s;font-family:inherit;}
+#netShowMore:hover{background:var(--navy);color:#fff;border-color:var(--navy);}
+/* ── SEO SECTION HIDDEN ── */
+.seo-sec{display:none;}
+/* ── NAV DROPDOWN ── */
+.nav-more{position:relative;}
+.nav-more-btn{background:none;border:none;color:rgba(255,255,255,.72);font-size:13px;font-weight:500;cursor:pointer;padding:6px 4px;font-family:inherit;display:flex;align-items:center;gap:3px;transition:color .2s;}
+.nav-more-btn:hover,.nav-more:hover .nav-more-btn{color:var(--gold-light);}
+.nav-drop{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);background:rgba(7,14,26,.97);border:1px solid rgba(196,154,34,.2);border-radius:10px;padding:8px 0;min-width:160px;opacity:0;pointer-events:none;transition:.2s;box-shadow:0 8px 24px rgba(0,0,0,.3);}
+.nav-more:hover .nav-drop{opacity:1;pointer-events:auto;}
+.nav-drop a{display:block;padding:9px 18px;color:rgba(255,255,255,.7);text-decoration:none;font-size:13px;transition:.15s;}
+.nav-drop a:hover{color:var(--gold-light);background:rgba(196,154,34,.06);}
+/* ── PADDING CONSISTENCY ── */
+.services,.diff,.founder,.ministry,.trust,.process,.faq{padding:96px 5%;}
+.identity{padding:72px 5%;}
+@media(max-width:768px){
+  .founder-photo{width:100%;height:280px;}
+  .cf-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
@@ -374,23 +438,24 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
       <span class="nav-logo-kr">글로컬브릿지 AI 컨설팅</span>
     </div>
   </a>
-  <div style="display:flex;align-items:center;gap:20px">
+  <div style="display:flex;align-items:center;gap:16px">
     <div class="nav-links">
       <a href="#services">서비스</a>
       <a href="#about">소개</a>
       <a href="#founder">대표</a>
-      <a href="#school">비즈니스 스쿨</a>
-      <a href="#ai-edu">🎓 AI 교육</a>
-      <a href="#ministry">사역 연계</a>
-      <a href="#network">네트워크</a>
-      <a href="https://elimg.kr" target="_blank" style="color:rgba(196,154,34,.7)">사역 ↗</a>
+      <a href="#ministry">사역</a>
+      <div class="nav-more">
+        <button class="nav-more-btn">더보기 ▾</button>
+        <div class="nav-drop">
+          <a href="#school">비즈니스 스쿨</a>
+          <a href="#ai-edu">🎓 AI 교육</a>
+          <a href="#network">네트워크</a>
+          <a href="#youtube">미디어·SNS</a>
+        </div>
+      </div>
       <a href="/builders/" style="color:rgba(245,201,80,.85);font-weight:600;">🌍 Builders</a>
-      <a href="/member/" style="border:1px solid rgba(255,255,255,0.25);padding:7px 16px;border-radius:6px;font-size:12px;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:5px">🔐 회원</a>
+      <a href="/member/" style="border:1px solid rgba(255,255,255,0.25);padding:7px 14px;border-radius:6px;font-size:12px;color:rgba(255,255,255,0.7);display:flex;align-items:center;gap:4px;">🔐 회원</a>
       <a href="#contact" class="btn-nav">무료 상담</a>
-    </div>
-    <div class="lang-wrap">
-      <button class="lang-btn active" onclick="setLang('ko',this)">KO</button>
-      <button class="lang-btn" onclick="setLang('en',this)">EN</button>
     </div>
     <button class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
@@ -491,6 +556,67 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
 </section>
 
 
+<!-- DIFFERENTIATOR -->
+<section class="diff" id="about">
+  <div class="sec-inner">
+    <span class="sec-label">WHY GLOCAL BRIDGE AI</span>
+    <h2 class="reveal">세상에 단 하나뿐인<br>재현 불가능한 경쟁 우위</h2>
+    <div class="diff-grid">
+      <div class="diff-item reveal">
+        <div class="diff-num">01</div>
+        <h3>Experience — 30년 현장</h3>
+        <p>AI를 가르치는 사람은 수천 명이지만, 이주민의 눈물을 30년간 함께 닦아온 사람이 가르치는 AI는 세상에 단 한 명입니다. 이 경험은 어떤 학위로도 살 수 없습니다.</p>
+      </div>
+      <div class="diff-item reveal">
+        <div class="diff-num">02</div>
+        <h3>Expertise — 18개국 전문성</h3>
+        <p>베트남·네팔·미얀마·태국·필리핀 등 18개국의 언어·문화·법무·비자 체계를 현장에서 직접 다뤄온 살아있는 전문성입니다.</p>
+      </div>
+      <div class="diff-item reveal">
+        <div class="diff-num">03</div>
+        <h3>Authority — 공식 권위</h3>
+        <p>부산남부노회 공식 파송 이주민 선교사, CBMC 김해한마음지회 지도목사. 교회와 비즈니스 양 영역에서 검증된 권위를 갖추고 있습니다.</p>
+      </div>
+      <div class="diff-item reveal">
+        <div class="diff-num">04</div>
+        <h3>Trust — 30년 신뢰 네트워크</h3>
+        <p>김해·기장·거제 이주민 공동체, 베트남 메콩아카데미, 태국 카렌족 목회자들과 쌓아온 30년의 신뢰 관계는 그 어떤 마케팅으로도 만들 수 없습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOUNDER -->
+<section class="founder" id="founder">
+  <div class="sec-inner">
+    <span class="sec-label reveal">FOUNDER</span>
+    <div class="founder-inner">
+      <div class="founder-photo reveal">
+        <img src="/images/founder.jpg" alt="한진준 대표 — GlocalBridge AI 글로컬브릿지 AI 컨설팅" loading="lazy" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\'founder-photo-inner\'><span class=\'fp-icon\'>✝</span><div class=\'fp-name\'>한진준</div><div class=\'fp-title\'>JinJun Han · 대표</div></div>'"/>
+      </div>
+      <div class="founder-info reveal">
+        <h2>글로컬과 AI 시대, AI로 새 길을 잇다</h2>
+        <p>이주민과의 만남, 연결, 연합을 통해 글로컬 선교와 비즈니스를 통한 AI 기술을 얹어 하나님 나라를 확장합니다. 비즈니스의 언어로 복음을 전하고, 기술의 힘으로 사역을 지원합니다.</p>
+        <div class="founder-roles">
+          <div class="founder-role"><span>✦</span>엘림G선교회(엘림G브릿지) 대표</div>
+          <div class="founder-role"><span>✝</span>부산남부노회 파송 선교사</div>
+          <div class="founder-role"><span>🤝</span>CBMC 김해한마음 지도목사</div>
+          <div class="founder-role"><span>🎓</span>글로컬 아카데미 운영</div>
+          <div class="founder-role"><span>🤖</span>AI 활용 전문가</div>
+        </div>
+        <div class="founder-verse">
+          "내가 너를 이방의 빛으로 삼아 땅 끝까지 구원하게 하리라"
+          <cite>— 이사야 49:6</cite>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
 <!-- GLOCAL BUSINESS SCHOOL -->
 <section class="glocal-school" id="school">
   <div class="sec-inner" style="max-width:1280px;margin:0 auto;">
@@ -561,102 +687,6 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
       <p style="font-size:15px;color:var(--navy);font-weight:700;margin-bottom:12px;">이주민 기술학교 1기 모집 중</p>
       <p style="font-size:13px;color:#4A5568;margin-bottom:18px;">부울경 지역 이주민 · 다문화 가정 · 귀환 선교사 자녀 우선 선발</p>
       <a href="#contact" style="display:inline-block;background:var(--navy);color:#fff;padding:13px 32px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;">입학 상담 신청하기</a>
-    </div>
-  </div>
-</section>
-
-<!-- AI EDUCATION RESOURCES -->
-<section id="ai-edu" style="padding:72px 20px;background:#F8FAFC;">
-  <div style="max-width:1120px;margin:0 auto;">
-    <span style="display:inline-flex;align-items:center;gap:6px;background:#D1FAE5;color:#065F46;font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:12px;letter-spacing:.5px;text-transform:uppercase;">🎓 AI 활용 교육</span>
-    <h2 style="font-size:clamp(22px,3.5vw,34px);font-weight:900;color:#111827;line-height:1.25;margin-bottom:8px;">글로벌 빅테크가 제공하는 <span style="color:#065F46;">무료 AI 교육</span></h2>
-    <p style="font-size:14px;color:#6B7280;margin-bottom:36px;max-width:520px;line-height:1.7;">OpenAI · Google · Anthropic · Meta · Microsoft · NVIDIA가 직접 만든 공식 AI 교육 과정입니다. 누구든지 무료로 시작할 수 있습니다.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">
-
-      <!-- OpenAI -->
-      <a href="https://academy.openai.com/" target="_blank" rel="noopener" style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:20px;text-decoration:none;transition:.25s;box-shadow:0 2px 10px rgba(0,0,0,.05);" onmouseover="this.style.borderColor='#10B981';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,.1)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='';this.style.boxShadow='0 2px 10px rgba(0,0,0,.05)'">
-        <div style="width:44px;height:44px;border-radius:10px;background:#000;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">🤖</div>
-        <div>
-          <div style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:3px;">OpenAI</div>
-          <div style="font-size:14px;font-weight:800;color:#111827;margin-bottom:4px;line-height:1.3;">OpenAI Academy</div>
-          <div style="font-size:12px;color:#6B7280;line-height:1.5;">ChatGPT·GPT-4o 공식 교육. API 활용부터 비즈니스 적용까지.</div>
-          <div style="margin-top:8px;font-size:11px;font-weight:700;color:#065F46;">무료 수강 →</div>
-        </div>
-      </a>
-
-      <!-- Google -->
-      <a href="https://www.skills.google/" target="_blank" rel="noopener" style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:20px;text-decoration:none;transition:.25s;box-shadow:0 2px 10px rgba(0,0,0,.05);" onmouseover="this.style.borderColor='#10B981';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,.1)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='';this.style.boxShadow='0 2px 10px rgba(0,0,0,.05)'">
-        <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#4285F4,#34A853);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">🔵</div>
-        <div>
-          <div style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:3px;">Google</div>
-          <div style="font-size:14px;font-weight:800;color:#111827;margin-bottom:4px;line-height:1.3;">Google Skills</div>
-          <div style="font-size:12px;color:#6B7280;line-height:1.5;">Gemini·Workspace AI·머신러닝 구글 공식 실습 과정.</div>
-          <div style="margin-top:8px;font-size:11px;font-weight:700;color:#065F46;">무료 수강 →</div>
-        </div>
-      </a>
-
-      <!-- Anthropic -->
-      <a href="https://anthropic.skilljar.com/" target="_blank" rel="noopener" style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:20px;text-decoration:none;transition:.25s;box-shadow:0 2px 10px rgba(0,0,0,.05);" onmouseover="this.style.borderColor='#10B981';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,.1)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='';this.style.boxShadow='0 2px 10px rgba(0,0,0,.05)'">
-        <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#C084FC,#7C3AED);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">🟣</div>
-        <div>
-          <div style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:3px;">Anthropic</div>
-          <div style="font-size:14px;font-weight:800;color:#111827;margin-bottom:4px;line-height:1.3;">Claude 공식 교육</div>
-          <div style="font-size:12px;color:#6B7280;line-height:1.5;">Claude 활용법·프롬프트 엔지니어링 공식 커리큘럼.</div>
-          <div style="margin-top:8px;font-size:11px;font-weight:700;color:#065F46;">무료 수강 →</div>
-        </div>
-      </a>
-
-      <!-- Meta Blueprint -->
-      <a href="https://www.facebookblueprint.com/student/path/628781-generative-ai-for-marketers" target="_blank" rel="noopener" style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:20px;text-decoration:none;transition:.25s;box-shadow:0 2px 10px rgba(0,0,0,.05);" onmouseover="this.style.borderColor='#10B981';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,.1)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='';this.style.boxShadow='0 2px 10px rgba(0,0,0,.05)'">
-        <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#1877F2,#0A66C2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">📘</div>
-        <div>
-          <div style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:3px;">Meta Blueprint</div>
-          <div style="font-size:14px;font-weight:800;color:#111827;margin-bottom:4px;line-height:1.3;">Generative AI for Marketers</div>
-          <div style="font-size:12px;color:#6B7280;line-height:1.5;">마케터를 위한 생성형 AI 활용. Meta 광고 + AI 통합 전략.</div>
-          <div style="margin-top:8px;font-size:11px;font-weight:700;color:#065F46;">무료 수강 →</div>
-        </div>
-      </a>
-
-      <!-- Meta AI Prompts -->
-      <a href="https://ko-kr.facebook.com/business/learn/lessons/ai-prompts" target="_blank" rel="noopener" style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:20px;text-decoration:none;transition:.25s;box-shadow:0 2px 10px rgba(0,0,0,.05);" onmouseover="this.style.borderColor='#10B981';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,.1)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='';this.style.boxShadow='0 2px 10px rgba(0,0,0,.05)'">
-        <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#1877F2,#E1306C);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">💬</div>
-        <div>
-          <div style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:3px;">Meta</div>
-          <div style="font-size:14px;font-weight:800;color:#111827;margin-bottom:4px;line-height:1.3;">AI 프롬프트 작성법 (한국어)</div>
-          <div style="font-size:12px;color:#6B7280;line-height:1.5;">Meta 공식 AI 프롬프트 작성 가이드. 한국어 제공.</div>
-          <div style="margin-top:8px;font-size:11px;font-weight:700;color:#065F46;">무료 수강 →</div>
-        </div>
-      </a>
-
-      <!-- Microsoft -->
-      <a href="https://learn.microsoft.com/ko-kr/ai/" target="_blank" rel="noopener" style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:20px;text-decoration:none;transition:.25s;box-shadow:0 2px 10px rgba(0,0,0,.05);" onmouseover="this.style.borderColor='#10B981';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,.1)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='';this.style.boxShadow='0 2px 10px rgba(0,0,0,.05)'">
-        <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,#00A4EF,#7FBA00);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">🪟</div>
-        <div>
-          <div style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:3px;">Microsoft</div>
-          <div style="font-size:14px;font-weight:800;color:#111827;margin-bottom:4px;line-height:1.3;">Microsoft AI 학습 (한국어)</div>
-          <div style="font-size:12px;color:#6B7280;line-height:1.5;">Azure AI·Copilot·책임감 있는 AI까지. 한국어 전체 제공.</div>
-          <div style="margin-top:8px;font-size:11px;font-weight:700;color:#065F46;">무료 수강 →</div>
-        </div>
-      </a>
-
-      <!-- NVIDIA -->
-      <a href="https://www.nvidia.com/en-sg/learn/ai-learning-essentials/" target="_blank" rel="noopener" style="display:flex;align-items:flex-start;gap:14px;background:#fff;border:1px solid #E5E7EB;border-radius:14px;padding:20px;text-decoration:none;transition:.25s;box-shadow:0 2px 10px rgba(0,0,0,.05);" onmouseover="this.style.borderColor='#10B981';this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(0,0,0,.1)'" onmouseout="this.style.borderColor='#E5E7EB';this.style.transform='';this.style.boxShadow='0 2px 10px rgba(0,0,0,.05)'">
-        <div style="width:44px;height:44px;border-radius:10px;background:#76B900;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;">💚</div>
-        <div>
-          <div style="font-size:12px;font-weight:700;color:#065F46;margin-bottom:3px;">NVIDIA</div>
-          <div style="font-size:14px;font-weight:800;color:#111827;margin-bottom:4px;line-height:1.3;">AI Learning Essentials</div>
-          <div style="font-size:12px;color:#6B7280;line-height:1.5;">딥러닝·생성형 AI·LLM 심화 과정. NVIDIA 공식 인증.</div>
-          <div style="margin-top:8px;font-size:11px;font-weight:700;color:#065F46;">무료 수강 →</div>
-        </div>
-      </a>
-
-    </div>
-    <div style="margin-top:28px;text-align:center;background:linear-gradient(135deg,#065F46,#047857);border-radius:14px;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
-      <div style="text-align:left;">
-        <div style="font-size:15px;font-weight:800;color:#fff;margin-bottom:3px;">배운 AI 기술로 글로컬 비즈니스를 구축하세요</div>
-        <div style="font-size:12px;color:rgba(255,255,255,.7);">AI 글로컬 Builders — 교육 + 도구 + 1인 기업가 생태계</div>
-      </div>
-      <a href="/builders/" style="padding:10px 22px;background:#F59E0B;color:#111827;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;flex-shrink:0;white-space:nowrap;">AI 글로컬 Builders 바로가기 →</a>
     </div>
   </div>
 </section>
@@ -763,66 +793,55 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
   </div>
 </section>
 
-<!-- DIFFERENTIATOR -->
-<section class="diff" id="about">
+<!-- AI EDUCATION RESOURCES -->
+<section class="ai-edu-section" id="ai-edu">
   <div class="sec-inner">
-    <span class="sec-label">WHY GLOCAL BRIDGE AI</span>
-    <h2 class="reveal">세상에 단 하나뿐인<br>재현 불가능한 경쟁 우위</h2>
-    <div class="diff-grid">
-      <div class="diff-item reveal">
-        <div class="diff-num">01</div>
-        <h3>Experience — 30년 현장</h3>
-        <p>AI를 가르치는 사람은 수천 명이지만, 이주민의 눈물을 30년간 함께 닦아온 사람이 가르치는 AI는 세상에 단 한 명입니다. 이 경험은 어떤 학위로도 살 수 없습니다.</p>
+    <div class="sec-hd reveal">
+      <span class="ae-label">🎓 AI 활용 교육</span>
+      <h2>글로벌 빅테크가 제공하는<br><span style="color:var(--gold)">무료 공식 AI 교육</span></h2>
+      <p class="ae-sub">OpenAI · Google · Anthropic · Meta · Microsoft · NVIDIA가 직접 만든 공식 교육 과정입니다. 누구든지 무료로 시작할 수 있습니다.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;">
+      <a href="https://academy.openai.com/" target="_blank" rel="noopener" class="ae-card reveal">
+        <div class="ae-ico" style="background:#000;">🤖</div>
+        <div><div class="ae-brand">OpenAI</div><div class="ae-name">OpenAI Academy</div><div class="ae-desc">ChatGPT·GPT-4o 공식 교육. API 활용부터 비즈니스 적용까지.</div><div class="ae-cta">무료 수강 →</div></div>
+      </a>
+      <a href="https://www.skills.google/" target="_blank" rel="noopener" class="ae-card reveal">
+        <div class="ae-ico" style="background:linear-gradient(135deg,#4285F4,#34A853);">🔵</div>
+        <div><div class="ae-brand">Google</div><div class="ae-name">Google Skills</div><div class="ae-desc">Gemini·Workspace AI·머신러닝 구글 공식 실습 과정.</div><div class="ae-cta">무료 수강 →</div></div>
+      </a>
+      <a href="https://anthropic.skilljar.com/" target="_blank" rel="noopener" class="ae-card reveal">
+        <div class="ae-ico" style="background:linear-gradient(135deg,#C084FC,#7C3AED);">🟣</div>
+        <div><div class="ae-brand">Anthropic</div><div class="ae-name">Claude 공식 교육</div><div class="ae-desc">Claude 활용법·프롬프트 엔지니어링 공식 커리큘럼.</div><div class="ae-cta">무료 수강 →</div></div>
+      </a>
+      <a href="https://www.facebookblueprint.com/student/path/628781-generative-ai-for-marketers" target="_blank" rel="noopener" class="ae-card reveal">
+        <div class="ae-ico" style="background:linear-gradient(135deg,#1877F2,#0A66C2);">📘</div>
+        <div><div class="ae-brand">Meta Blueprint</div><div class="ae-name">Generative AI for Marketers</div><div class="ae-desc">마케터를 위한 생성형 AI 활용. Meta 광고 + AI 통합 전략.</div><div class="ae-cta">무료 수강 →</div></div>
+      </a>
+      <a href="https://ko-kr.facebook.com/business/learn/lessons/ai-prompts" target="_blank" rel="noopener" class="ae-card reveal">
+        <div class="ae-ico" style="background:linear-gradient(135deg,#1877F2,#E1306C);">💬</div>
+        <div><div class="ae-brand">Meta</div><div class="ae-name">AI 프롬프트 작성법 (한국어)</div><div class="ae-desc">Meta 공식 AI 프롬프트 작성 가이드. 한국어 제공.</div><div class="ae-cta">무료 수강 →</div></div>
+      </a>
+      <a href="https://learn.microsoft.com/ko-kr/ai/" target="_blank" rel="noopener" class="ae-card reveal">
+        <div class="ae-ico" style="background:linear-gradient(135deg,#00A4EF,#7FBA00);">🪟</div>
+        <div><div class="ae-brand">Microsoft</div><div class="ae-name">Microsoft AI 학습 (한국어)</div><div class="ae-desc">Azure AI·Copilot·책임감 있는 AI까지. 한국어 전체 제공.</div><div class="ae-cta">무료 수강 →</div></div>
+      </a>
+      <a href="https://www.nvidia.com/en-sg/learn/ai-learning-essentials/" target="_blank" rel="noopener" class="ae-card reveal">
+        <div class="ae-ico" style="background:#76B900;">💚</div>
+        <div><div class="ae-brand">NVIDIA</div><div class="ae-name">AI Learning Essentials</div><div class="ae-desc">딥러닝·생성형 AI·LLM 심화 과정. NVIDIA 공식 인증.</div><div class="ae-cta">무료 수강 →</div></div>
+      </a>
+    </div>
+    <div class="ae-banner reveal">
+      <div>
+        <h3>배운 AI 기술로 글로컬 비즈니스를 구축하세요</h3>
+        <p>AI 글로컬 Builders — 교육 + 도구 + 1인 기업가 생태계</p>
       </div>
-      <div class="diff-item reveal">
-        <div class="diff-num">02</div>
-        <h3>Expertise — 18개국 전문성</h3>
-        <p>베트남·네팔·미얀마·태국·필리핀 등 18개국의 언어·문화·법무·비자 체계를 현장에서 직접 다뤄온 살아있는 전문성입니다.</p>
-      </div>
-      <div class="diff-item reveal">
-        <div class="diff-num">03</div>
-        <h3>Authority — 공식 권위</h3>
-        <p>부산남부노회 공식 파송 이주민 선교사, CBMC 김해한마음지회 지도목사. 교회와 비즈니스 양 영역에서 검증된 권위를 갖추고 있습니다.</p>
-      </div>
-      <div class="diff-item reveal">
-        <div class="diff-num">04</div>
-        <h3>Trust — 30년 신뢰 네트워크</h3>
-        <p>김해·기장·거제 이주민 공동체, 베트남 메콩아카데미, 태국 카렌족 목회자들과 쌓아온 30년의 신뢰 관계는 그 어떤 마케팅으로도 만들 수 없습니다.</p>
-      </div>
+      <a href="/builders/" class="btn-primary" style="flex-shrink:0;">AI 글로컬 Builders →</a>
     </div>
   </div>
 </section>
 
-<!-- FOUNDER -->
-<section class="founder" id="founder">
-  <div class="sec-inner">
-    <span class="sec-label reveal">FOUNDER</span>
-    <div class="founder-inner">
-      <div class="founder-photo reveal">
-        <div class="founder-photo-inner">
-          <span class="fp-icon">✝</span>
-          <div class="fp-name">한진준</div>
-          <div class="fp-title">JinJun Han · 대표</div>
-        </div>
-      </div>
-      <div class="founder-info reveal">
-        <h2>글로컬과 AI 시대, AI로 새 길을 잇다</h2>
-        <p>이주민과의 만남, 연결, 연합을 통해 글로컬 선교와 비즈니스를 통한 AI 기술을 얹어 하나님 나라를 확장합니다. 비즈니스의 언어로 복음을 전하고, 기술의 힘으로 사역을 지원합니다.</p>
-        <div class="founder-roles">
-          <div class="founder-role"><span>✦</span>엘림G선교회(엘림G브릿지) 대표</div>
-          <div class="founder-role"><span>✝</span>부산남부노회 파송 선교사</div>
-          <div class="founder-role"><span>🤝</span>CBMC 김해한마음 지도목사</div>
-          <div class="founder-role"><span>🎓</span>글로컬 아카데미 운영</div>
-          <div class="founder-role"><span>🤖</span>AI 활용 전문가</div>
-        </div>
-        <div class="founder-verse">
-          "내가 너를 이방의 빛으로 삼아 땅 끝까지 구원하게 하리라"
-          <cite>— 이사야 49:6</cite>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- MINISTRIES LINK -->
 <section class="ministry" id="ministry">
@@ -958,6 +977,8 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
   </div>
 </section>
 
+
+
 <!-- NETWORK PORTAL -->
 <section class="network-sec" id="network">
   <div class="sec-inner">
@@ -1023,237 +1044,238 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
         <div class="nc-head"><span class="nc-name">김해라이프 정보</span><span class="nc-badge">비즈</span></div>
         <div class="nc-desc">김해 생활 종합 정보</div><div class="nc-url">gimhaelife-info.netlify.app</div>
       </a>
-      <a href="https://glocal-chinese.netlify.app" class="net-card nc-biz" data-nc="biz" target="_blank">
+      <a href="https://glocal-chinese.netlify.app" class="net-card nc-biz net-hidden-card" data-nc="biz" target="_blank">
         <div class="nc-head"><span class="nc-name">글로컬 중국어</span><span class="nc-badge">비즈</span></div>
         <div class="nc-desc">중국어 AI 교육 플랫폼</div><div class="nc-url">glocal-chinese.netlify.app</div>
       </a>
 
       <!-- 선교 사역 -->
-      <a href="https://glocalbridge-np.netlify.app" class="net-card nc-mission" data-nc="mission" target="_blank">
+      <a href="https://glocalbridge-np.netlify.app" class="net-card nc-mission net-hidden-card" data-nc="mission" target="_blank">
         <div class="nc-head"><span class="nc-name">글로컬브릿지 네팔</span><span class="nc-badge">선교</span></div>
         <div class="nc-desc">네팔 한국어반 및 이주민 사역</div><div class="nc-url">glocalbridge-np.netlify.app</div>
       </a>
-      <a href="https://glocalbridge-vn.netlify.app" class="net-card nc-mission" data-nc="mission" target="_blank">
+      <a href="https://glocalbridge-vn.netlify.app" class="net-card nc-mission net-hidden-card" data-nc="mission" target="_blank">
         <div class="nc-head"><span class="nc-name">글로컬브릿지 베트남</span><span class="nc-badge">선교</span></div>
         <div class="nc-desc">베트남 설교·상담, 메콩아카데미</div><div class="nc-url">glocalbridge-vn.netlify.app</div>
       </a>
-      <a href="https://glocalbridge-thai.netlify.app" class="net-card nc-mission" data-nc="mission" target="_blank">
+      <a href="https://glocalbridge-thai.netlify.app" class="net-card nc-mission net-hidden-card" data-nc="mission" target="_blank">
         <div class="nc-head"><span class="nc-name">글로컬브릿지 태국</span><span class="nc-badge">선교</span></div>
         <div class="nc-desc">태국 카렌족 사역</div><div class="nc-url">glocalbridge-thai.netlify.app</div>
       </a>
-      <a href="https://glocalbridge-lk.netlify.app" class="net-card nc-mission" data-nc="mission" target="_blank">
+      <a href="https://glocalbridge-lk.netlify.app" class="net-card nc-mission net-hidden-card" data-nc="mission" target="_blank">
         <div class="nc-head"><span class="nc-name">글로컬브릿지 스리랑카</span><span class="nc-badge">선교</span></div>
         <div class="nc-desc">스리랑카 한국어반 사역</div><div class="nc-url">glocalbridge-lk.netlify.app</div>
       </a>
-      <a href="https://ai-glocal-chinese-korean.netlify.app" class="net-card nc-mission" data-nc="mission" target="_blank">
+      <a href="https://ai-glocal-chinese-korean.netlify.app" class="net-card nc-mission net-hidden-card" data-nc="mission" target="_blank">
         <div class="nc-head"><span class="nc-name">중국어권 사역</span><span class="nc-badge">선교</span></div>
         <div class="nc-desc">중국어권 이주민 AI 한국어 교육</div><div class="nc-url">ai-glocal-chinese-korean.netlify.app</div>
       </a>
-      <a href="https://geoje.elimg.kr" class="net-card nc-mission" data-nc="mission" target="_blank">
+      <a href="https://geoje.elimg.kr" class="net-card nc-mission net-hidden-card" data-nc="mission" target="_blank">
         <div class="nc-head"><span class="nc-name">거제 한화오션</span><span class="nc-badge">선교</span></div>
         <div class="nc-desc">거제 조선소 해외근로자 한국어 사역</div><div class="nc-url">geoje.elimg.kr</div>
       </a>
-      <a href="https://gimhae.elimg.kr" class="net-card nc-mission" data-nc="mission" target="_blank">
+      <a href="https://gimhae.elimg.kr" class="net-card nc-mission net-hidden-card" data-nc="mission" target="_blank">
         <div class="nc-head"><span class="nc-name">김해 취업 매칭</span><span class="nc-badge">선교</span></div>
         <div class="nc-desc">김해 이주민 취업 정보 플랫폼</div><div class="nc-url">gimhae.elimg.kr</div>
       </a>
-      <a href="https://elimg-gijang.netlify.app" class="net-card nc-mission" data-nc="mission" target="_blank">
+      <a href="https://elimg-gijang.netlify.app" class="net-card nc-mission net-hidden-card" data-nc="mission" target="_blank">
         <div class="nc-head"><span class="nc-name">기장 이주민 사역</span><span class="nc-badge">선교</span></div>
         <div class="nc-desc">기장·정관·장안 이주민 사역</div><div class="nc-url">elimg-gijang.netlify.app</div>
       </a>
 
       <!-- CBMC / 교회 -->
-      <a href="https://gimhae-cbmc.netlify.app" class="net-card nc-cbmc" data-nc="cbmc" target="_blank">
+      <a href="https://gimhae-cbmc.netlify.app" class="net-card nc-cbmc net-hidden-card" data-nc="cbmc" target="_blank">
         <div class="nc-head"><span class="nc-name">CBMC 김해 (메인)</span><span class="nc-badge">CBMC</span></div>
         <div class="nc-desc">CBMC 김해 한마음지회 공식</div><div class="nc-url">gimhae-cbmc.netlify.app</div>
       </a>
-      <a href="https://cbmc-biz-bridge.netlify.app" class="net-card nc-cbmc" data-nc="cbmc" target="_blank">
+      <a href="https://cbmc-biz-bridge.netlify.app" class="net-card nc-cbmc net-hidden-card" data-nc="cbmc" target="_blank">
         <div class="nc-head"><span class="nc-name">CBMC 비즈 브릿지</span><span class="nc-badge">CBMC</span></div>
         <div class="nc-desc">CBMC 비즈니스 네트워크</div><div class="nc-url">cbmc-biz-bridge.netlify.app</div>
       </a>
-      <a href="https://cbmc-hanmaeum-v3.netlify.app" class="net-card nc-cbmc" data-nc="cbmc" target="_blank">
+      <a href="https://cbmc-hanmaeum-v3.netlify.app" class="net-card nc-cbmc net-hidden-card" data-nc="cbmc" target="_blank">
         <div class="nc-head"><span class="nc-name">한마음지회 V3</span><span class="nc-badge">CBMC</span></div>
         <div class="nc-desc">CBMC 김해 한마음지회 최신</div><div class="nc-url">cbmc-hanmaeum-v3.netlify.app</div>
       </a>
-      <a href="https://cbmc-gimhae.netlify.app" class="net-card nc-cbmc" data-nc="cbmc" target="_blank">
+      <a href="https://cbmc-gimhae.netlify.app" class="net-card nc-cbmc net-hidden-card" data-nc="cbmc" target="_blank">
         <div class="nc-head"><span class="nc-name">CBMC 김해 정보</span><span class="nc-badge">CBMC</span></div>
         <div class="nc-desc">CBMC 김해 지역 정보</div><div class="nc-url">cbmc-gimhae.netlify.app</div>
       </a>
-      <a href="https://hanmaum-schedule.netlify.app" class="net-card nc-cbmc" data-nc="cbmc" target="_blank">
+      <a href="https://hanmaum-schedule.netlify.app" class="net-card nc-cbmc net-hidden-card" data-nc="cbmc" target="_blank">
         <div class="nc-head"><span class="nc-name">한마음 일정</span><span class="nc-badge">CBMC</span></div>
         <div class="nc-desc">한마음지회 일정 관리</div><div class="nc-url">hanmaum-schedule.netlify.app</div>
       </a>
-      <a href="https://cbmc-gimhae-hanmaeum.netlify.app" class="net-card nc-cbmc" data-nc="cbmc" target="_blank">
+      <a href="https://cbmc-gimhae-hanmaeum.netlify.app" class="net-card nc-cbmc net-hidden-card" data-nc="cbmc" target="_blank">
         <div class="nc-head"><span class="nc-name">CBMC 김해 한마음</span><span class="nc-badge">CBMC</span></div>
         <div class="nc-desc">CBMC 김해 한마음 기존</div><div class="nc-url">cbmc-gimhae-hanmaeum.netlify.app</div>
       </a>
-      <a href="https://cbmc-gimhae-hanmaeum1.netlify.app" class="net-card nc-cbmc" data-nc="cbmc" target="_blank">
+      <a href="https://cbmc-gimhae-hanmaeum1.netlify.app" class="net-card nc-cbmc net-hidden-card" data-nc="cbmc" target="_blank">
         <div class="nc-head"><span class="nc-name">CBMC 김해 한마음 V1</span><span class="nc-badge">CBMC</span></div>
         <div class="nc-desc">CBMC 김해 한마음 초기</div><div class="nc-url">cbmc-gimhae-hanmaeum1.netlify.app</div>
       </a>
-      <a href="https://cbmc-hanmaeum-v2.netlify.app" class="net-card nc-cbmc" data-nc="cbmc" target="_blank">
+      <a href="https://cbmc-hanmaeum-v2.netlify.app" class="net-card nc-cbmc net-hidden-card" data-nc="cbmc" target="_blank">
         <div class="nc-head"><span class="nc-name">한마음지회 V2</span><span class="nc-badge">CBMC</span></div>
         <div class="nc-desc">CBMC 한마음 V2</div><div class="nc-url">cbmc-hanmaeum-v2.netlify.app</div>
       </a>
-      <a href="https://bylaw-hanmaum.netlify.app" class="net-card nc-cbmc" data-nc="cbmc" target="_blank">
+      <a href="https://bylaw-hanmaum.netlify.app" class="net-card nc-cbmc net-hidden-card" data-nc="cbmc" target="_blank">
         <div class="nc-head"><span class="nc-name">한마음 회칙</span><span class="nc-badge">CBMC</span></div>
         <div class="nc-desc">한마음지회 회칙·규정</div><div class="nc-url">bylaw-hanmaum.netlify.app</div>
       </a>
-      <a href="https://elimg-chambit.netlify.app" class="net-card nc-cbmc" data-nc="cbmc" target="_blank">
+      <a href="https://elimg-chambit.netlify.app" class="net-card nc-cbmc net-hidden-card" data-nc="cbmc" target="_blank">
         <div class="nc-head"><span class="nc-name">참빛교회</span><span class="nc-badge">교회</span></div>
         <div class="nc-desc">참빛힐링센터 연계 사역</div><div class="nc-url">elimg-chambit.netlify.app</div>
       </a>
-      <a href="https://elimg-healing.netlify.app" class="net-card nc-cbmc" data-nc="cbmc" target="_blank">
+      <a href="https://elimg-healing.netlify.app" class="net-card nc-cbmc net-hidden-card" data-nc="cbmc" target="_blank">
         <div class="nc-head"><span class="nc-name">힐링 사역</span><span class="nc-badge">교회</span></div>
         <div class="nc-desc">치유·회복 사역 플랫폼</div><div class="nc-url">elimg-healing.netlify.app</div>
       </a>
 
       <!-- 성경 / 콘텐츠 -->
-      <a href="https://elimgimpact-genesis.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://elimgimpact-genesis.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">IMPACT 창세기</span><span class="nc-badge">성경</span></div>
         <div class="nc-desc">창세기 심층 연구</div><div class="nc-url">elimgimpact-genesis.netlify.app</div>
       </a>
-      <a href="https://elimgimpact-genesis01.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://elimgimpact-genesis01.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">IMPACT 창세기 V1</span><span class="nc-badge">성경</span></div>
         <div class="nc-desc">창세기 연구 초기</div><div class="nc-url">elimgimpact-genesis01.netlify.app</div>
       </a>
-      <a href="https://elimgimpact-exodus.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://elimgimpact-exodus.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">IMPACT 출애굽기</span><span class="nc-badge">성경</span></div>
         <div class="nc-desc">출애굽기 심층 연구</div><div class="nc-url">elimgimpact-exodus.netlify.app</div>
       </a>
-      <a href="https://elimgimpact-leviticus.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://elimgimpact-leviticus.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">IMPACT 레위기</span><span class="nc-badge">성경</span></div>
         <div class="nc-desc">레위기 심층 연구</div><div class="nc-url">elimgimpact-leviticus.netlify.app</div>
       </a>
-      <a href="https://impact-leviticus.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://impact-leviticus.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">레위기 연구</span><span class="nc-badge">성경</span></div>
         <div class="nc-desc">레위기 연구 보조</div><div class="nc-url">impact-leviticus.netlify.app</div>
       </a>
-      <a href="https://impact-leviticus-study.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://impact-leviticus-study.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">레위기 스터디</span><span class="nc-badge">성경</span></div>
         <div class="nc-desc">레위기 스터디 그룹</div><div class="nc-url">impact-leviticus-study.netlify.app</div>
       </a>
-      <a href="https://elimgimpact66.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://elimgimpact66.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">IMPACT66</span><span class="nc-badge">성경</span></div>
         <div class="nc-desc">성경 66권 암송</div><div class="nc-url">elimgimpact66.netlify.app</div>
       </a>
-      <a href="https://impact126.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://impact126.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">IMPACT126</span><span class="nc-badge">성경</span></div>
         <div class="nc-desc">성경 126 프로그램</div><div class="nc-url">impact126.netlify.app</div>
       </a>
-      <a href="https://impact-bible.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://impact-bible.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">IMPACT Bible</span><span class="nc-badge">성경</span></div>
         <div class="nc-desc">임팩트 바이블 종합</div><div class="nc-url">impact-bible.netlify.app</div>
       </a>
-      <a href="https://glocalbible.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://glocalbible.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">글로컬 바이블</span><span class="nc-badge">성경</span></div>
         <div class="nc-desc">다국어 성경 플랫폼</div><div class="nc-url">glocalbible.netlify.app</div>
       </a>
-      <a href="https://elimgbible.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://elimgbible.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">엘림G 성경연구</span><span class="nc-badge">성경</span></div>
         <div class="nc-desc">엘림G 성경연구 플랫폼</div><div class="nc-url">elimgbible.netlify.app</div>
       </a>
-      <a href="https://wilderness-way.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://wilderness-way.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">광야길</span><span class="nc-badge">성경</span></div>
         <div class="nc-desc">영적 순례 콘텐츠</div><div class="nc-url">wilderness-way.netlify.app</div>
       </a>
-      <a href="https://korean-baby.netlify.app" class="net-card nc-bible" data-nc="bible" target="_blank">
+      <a href="https://korean-baby.netlify.app" class="net-card nc-bible net-hidden-card" data-nc="bible" target="_blank">
         <div class="nc-head"><span class="nc-name">한국어 베이비</span><span class="nc-badge">교육</span></div>
         <div class="nc-desc">이주민 자녀 한국어 기초</div><div class="nc-url">korean-baby.netlify.app</div>
       </a>
 
       <!-- 파트너 / 기타 -->
-      <a href="https://hadong-elimg.netlify.app" class="net-card nc-partner" data-nc="partner" target="_blank">
+      <a href="https://hadong-elimg.netlify.app" class="net-card nc-partner net-hidden-card" data-nc="partner" target="_blank">
         <div class="nc-head"><span class="nc-name">하동 사역</span><span class="nc-badge">파트너</span></div>
         <div class="nc-desc">하동 지역 사역 파트너</div><div class="nc-url">hadong-elimg.netlify.app</div>
       </a>
-      <a href="https://grace-ok.netlify.app" class="net-card nc-partner" data-nc="partner" target="_blank">
+      <a href="https://grace-ok.netlify.app" class="net-card nc-partner net-hidden-card" data-nc="partner" target="_blank">
         <div class="nc-head"><span class="nc-name">은혜감사</span><span class="nc-badge">파트너</span></div>
         <div class="nc-desc">은혜 간증·감사 사역</div><div class="nc-url">grace-ok.netlify.app</div>
       </a>
-      <a href="https://graceok.netlify.app" class="net-card nc-partner" data-nc="partner" target="_blank">
+      <a href="https://graceok.netlify.app" class="net-card nc-partner net-hidden-card" data-nc="partner" target="_blank">
         <div class="nc-head"><span class="nc-name">GraceOK</span><span class="nc-badge">파트너</span></div>
         <div class="nc-desc">은혜 사역 보조</div><div class="nc-url">graceok.netlify.app</div>
       </a>
-      <a href="https://jungmil.netlify.app" class="net-card nc-partner" data-nc="partner" target="_blank">
+      <a href="https://jungmil.netlify.app" class="net-card nc-partner net-hidden-card" data-nc="partner" target="_blank">
         <div class="nc-head"><span class="nc-name">정밀 사역</span><span class="nc-badge">파트너</span></div>
         <div class="nc-desc">정밀 사역 콘텐츠</div><div class="nc-url">jungmil.netlify.app</div>
       </a>
-      <a href="https://2026vision.netlify.app" class="net-card nc-partner" data-nc="partner" target="_blank">
+      <a href="https://2026vision.netlify.app" class="net-card nc-partner net-hidden-card" data-nc="partner" target="_blank">
         <div class="nc-head"><span class="nc-name">2026 비전</span><span class="nc-badge">비전</span></div>
         <div class="nc-desc">2026년 사역 비전 계획</div><div class="nc-url">2026vision.netlify.app</div>
       </a>
-      <a href="https://koreabridge-np.netlify.app" class="net-card nc-partner" data-nc="partner" target="_blank">
+      <a href="https://koreabridge-np.netlify.app" class="net-card nc-partner net-hidden-card" data-nc="partner" target="_blank">
         <div class="nc-head"><span class="nc-name">코리아브릿지 네팔</span><span class="nc-badge">파트너</span></div>
         <div class="nc-desc">한국-네팔 연결 브릿지</div><div class="nc-url">koreabridge-np.netlify.app</div>
       </a>
-      <a href="https://green-mission.netlify.app" class="net-card nc-partner" data-nc="partner" target="_blank">
+      <a href="https://green-mission.netlify.app" class="net-card nc-partner net-hidden-card" data-nc="partner" target="_blank">
         <div class="nc-head"><span class="nc-name">그린 미션</span><span class="nc-badge">파트너</span></div>
         <div class="nc-desc">그린 선교 네트워크</div><div class="nc-url">green-mission.netlify.app</div>
       </a>
-      <a href="https://green4-mission.netlify.app" class="net-card nc-partner" data-nc="partner" target="_blank">
+      <a href="https://green4-mission.netlify.app" class="net-card nc-partner net-hidden-card" data-nc="partner" target="_blank">
         <div class="nc-head"><span class="nc-name">그린4 미션</span><span class="nc-badge">파트너</span></div>
         <div class="nc-desc">그린 선교 확장</div><div class="nc-url">green4-mission.netlify.app</div>
       </a>
 
       <!-- 플랫폼 / 허브 -->
-      <a href="https://elimghub.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 허브</span><span class="nc-badge">허브</span></div><div class="nc-desc">통합 허브 플랫폼</div><div class="nc-url">elimghub.netlify.app</div></a>
-      <a href="https://elimgplatform.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 플랫폼</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">종합 플랫폼</div><div class="nc-url">elimgplatform.netlify.app</div></a>
-      <a href="https://elimgonestop.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">원스톱 서비스</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">이주민 원스톱</div><div class="nc-url">elimgonestop.netlify.app</div></a>
-      <a href="https://elimgmission.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 미션</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">선교 플랫폼</div><div class="nc-url">elimgmission.netlify.app</div></a>
-      <a href="https://elimgs.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGS</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">서비스 포털</div><div class="nc-url">elimgs.netlify.app</div></a>
-      <a href="https://elimgweb.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 웹</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">웹 버전</div><div class="nc-url">elimgweb.netlify.app</div></a>
-      <a href="https://elimgw.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGW</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">워크스페이스</div><div class="nc-url">elimgw.netlify.app</div></a>
-      <a href="https://elimgw01.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGW01</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">워크스페이스 V1</div><div class="nc-url">elimgw01.netlify.app</div></a>
-      <a href="https://elimg.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">기본 사이트</div><div class="nc-url">elimg.netlify.app</div></a>
-      <a href="https://elimg0.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG0</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">초기 버전</div><div class="nc-url">elimg0.netlify.app</div></a>
-      <a href="https://elimg01.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG01</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">버전 01</div><div class="nc-url">elimg01.netlify.app</div></a>
-      <a href="https://elimg1.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG1</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">버전 1</div><div class="nc-url">elimg1.netlify.app</div></a>
-      <a href="https://elimg50.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG50</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">버전 50</div><div class="nc-url">elimg50.netlify.app</div></a>
-      <a href="https://elimg66.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG66</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">66권 버전</div><div class="nc-url">elimg66.netlify.app</div></a>
-      <a href="https://elimgaa.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGAA</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">AA 버전</div><div class="nc-url">elimgaa.netlify.app</div></a>
-      <a href="https://elimgb.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGB</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">B 버전</div><div class="nc-url">elimgb.netlify.app</div></a>
-      <a href="https://elimgf.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGF</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">F 버전</div><div class="nc-url">elimgf.netlify.app</div></a>
-      <a href="https://elimgh.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGH</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">H 버전</div><div class="nc-url">elimgh.netlify.app</div></a>
-      <a href="https://elimggmmc.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG GMMC</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">글로컬 미션 센터</div><div class="nc-url">elimggmmc.netlify.app</div></a>
-      <a href="https://elimggmmc1.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG GMMC1</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">글로컬 미션 센터 V1</div><div class="nc-url">elimggmmc1.netlify.app</div></a>
-      <a href="https://elimg-han.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 한</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">한국어 사역 버전</div><div class="nc-url">elimg-han.netlify.app</div></a>
-      <a href="https://elimg-han01.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 한 V1</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">한국어 사역 초기</div><div class="nc-url">elimg-han01.netlify.app</div></a>
-      <a href="https://elimg-han-sermon.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">설교 아카이브</span><span class="nc-badge">콘텐츠</span></div><div class="nc-desc">설교 자료 아카이브</div><div class="nc-url">elimg-han-sermon.netlify.app</div></a>
-      <a href="https://elimg-call.netlify.app" class="net-card nc-platform" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 콜</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">소명·부르심 콘텐츠</div><div class="nc-url">elimg-call.netlify.app</div></a>
+      <a href="https://elimghub.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 허브</span><span class="nc-badge">허브</span></div><div class="nc-desc">통합 허브 플랫폼</div><div class="nc-url">elimghub.netlify.app</div></a>
+      <a href="https://elimgplatform.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 플랫폼</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">종합 플랫폼</div><div class="nc-url">elimgplatform.netlify.app</div></a>
+      <a href="https://elimgonestop.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">원스톱 서비스</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">이주민 원스톱</div><div class="nc-url">elimgonestop.netlify.app</div></a>
+      <a href="https://elimgmission.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 미션</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">선교 플랫폼</div><div class="nc-url">elimgmission.netlify.app</div></a>
+      <a href="https://elimgs.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGS</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">서비스 포털</div><div class="nc-url">elimgs.netlify.app</div></a>
+      <a href="https://elimgweb.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 웹</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">웹 버전</div><div class="nc-url">elimgweb.netlify.app</div></a>
+      <a href="https://elimgw.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGW</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">워크스페이스</div><div class="nc-url">elimgw.netlify.app</div></a>
+      <a href="https://elimgw01.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGW01</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">워크스페이스 V1</div><div class="nc-url">elimgw01.netlify.app</div></a>
+      <a href="https://elimg.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">기본 사이트</div><div class="nc-url">elimg.netlify.app</div></a>
+      <a href="https://elimg0.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG0</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">초기 버전</div><div class="nc-url">elimg0.netlify.app</div></a>
+      <a href="https://elimg01.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG01</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">버전 01</div><div class="nc-url">elimg01.netlify.app</div></a>
+      <a href="https://elimg1.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG1</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">버전 1</div><div class="nc-url">elimg1.netlify.app</div></a>
+      <a href="https://elimg50.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG50</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">버전 50</div><div class="nc-url">elimg50.netlify.app</div></a>
+      <a href="https://elimg66.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG66</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">66권 버전</div><div class="nc-url">elimg66.netlify.app</div></a>
+      <a href="https://elimgaa.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGAA</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">AA 버전</div><div class="nc-url">elimgaa.netlify.app</div></a>
+      <a href="https://elimgb.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGB</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">B 버전</div><div class="nc-url">elimgb.netlify.app</div></a>
+      <a href="https://elimgf.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGF</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">F 버전</div><div class="nc-url">elimgf.netlify.app</div></a>
+      <a href="https://elimgh.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMGH</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">H 버전</div><div class="nc-url">elimgh.netlify.app</div></a>
+      <a href="https://elimggmmc.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG GMMC</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">글로컬 미션 센터</div><div class="nc-url">elimggmmc.netlify.app</div></a>
+      <a href="https://elimggmmc1.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG GMMC1</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">글로컬 미션 센터 V1</div><div class="nc-url">elimggmmc1.netlify.app</div></a>
+      <a href="https://elimg-han.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 한</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">한국어 사역 버전</div><div class="nc-url">elimg-han.netlify.app</div></a>
+      <a href="https://elimg-han01.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 한 V1</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">한국어 사역 초기</div><div class="nc-url">elimg-han01.netlify.app</div></a>
+      <a href="https://elimg-han-sermon.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">설교 아카이브</span><span class="nc-badge">콘텐츠</span></div><div class="nc-desc">설교 자료 아카이브</div><div class="nc-url">elimg-han-sermon.netlify.app</div></a>
+      <a href="https://elimg-call.netlify.app" class="net-card nc-platform net-hidden-card" data-nc="platform" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 콜</span><span class="nc-badge">플랫폼</span></div><div class="nc-desc">소명·부르심 콘텐츠</div><div class="nc-url">elimg-call.netlify.app</div></a>
 
       <!-- 브릿지 변형 -->
-      <a href="https://elimgbridge.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 브릿지</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">글로컬브릿지 기본</div><div class="nc-url">elimgbridge.netlify.app</div></a>
-      <a href="https://elimgbridge2.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 V2</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">버전 2</div><div class="nc-url">elimgbridge2.netlify.app</div></a>
-      <a href="https://elimgbridge-dark.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 다크</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">다크 테마</div><div class="nc-url">elimgbridge-dark.netlify.app</div></a>
-      <a href="https://elimgbridge-dark2.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 다크 V2</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">다크 테마 V2</div><div class="nc-url">elimgbridge-dark2.netlify.app</div></a>
-      <a href="https://elimgbridge-light.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 라이트</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">라이트 테마</div><div class="nc-url">elimgbridge-light.netlify.app</div></a>
-      <a href="https://elimgbridge-en.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 영문</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">English version</div><div class="nc-url">elimgbridge-en.netlify.app</div></a>
-      <a href="https://elimg-bridge.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 브릿지 (구)</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">기존 버전</div><div class="nc-url">elimg-bridge.netlify.app</div></a>
-      <a href="https://elimg-bridge1.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 V1</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">V1</div><div class="nc-url">elimg-bridge1.netlify.app</div></a>
-      <a href="https://glocal-bridge.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">글로컬 브릿지</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">글로컬 브릿지 포털</div><div class="nc-url">glocal-bridge.netlify.app</div></a>
-      <a href="https://glocalbridge-fusion.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 퓨전</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">퓨전 버전</div><div class="nc-url">glocalbridge-fusion.netlify.app</div></a>
-      <a href="https://glocalbridg-vn.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 베트남 (구)</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">베트남 이전 버전</div><div class="nc-url">glocalbridg-vn.netlify.app</div></a>
-      <a href="https://glocalbridge-thai01.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 태국 V1</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">태국 초기 버전</div><div class="nc-url">glocalbridge-thai01.netlify.app</div></a>
-      <a href="https://glocalaa.netlify.app" class="net-card nc-bridge" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">글로컬AA</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">글로컬 AA</div><div class="nc-url">glocalaa.netlify.app</div></a>
+      <a href="https://elimgbridge.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 브릿지</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">글로컬브릿지 기본</div><div class="nc-url">elimgbridge.netlify.app</div></a>
+      <a href="https://elimgbridge2.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 V2</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">버전 2</div><div class="nc-url">elimgbridge2.netlify.app</div></a>
+      <a href="https://elimgbridge-dark.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 다크</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">다크 테마</div><div class="nc-url">elimgbridge-dark.netlify.app</div></a>
+      <a href="https://elimgbridge-dark2.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 다크 V2</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">다크 테마 V2</div><div class="nc-url">elimgbridge-dark2.netlify.app</div></a>
+      <a href="https://elimgbridge-light.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 라이트</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">라이트 테마</div><div class="nc-url">elimgbridge-light.netlify.app</div></a>
+      <a href="https://elimgbridge-en.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 영문</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">English version</div><div class="nc-url">elimgbridge-en.netlify.app</div></a>
+      <a href="https://elimg-bridge.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">엘림G 브릿지 (구)</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">기존 버전</div><div class="nc-url">elimg-bridge.netlify.app</div></a>
+      <a href="https://elimg-bridge1.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 V1</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">V1</div><div class="nc-url">elimg-bridge1.netlify.app</div></a>
+      <a href="https://glocal-bridge.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">글로컬 브릿지</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">글로컬 브릿지 포털</div><div class="nc-url">glocal-bridge.netlify.app</div></a>
+      <a href="https://glocalbridge-fusion.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 퓨전</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">퓨전 버전</div><div class="nc-url">glocalbridge-fusion.netlify.app</div></a>
+      <a href="https://glocalbridg-vn.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 베트남 (구)</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">베트남 이전 버전</div><div class="nc-url">glocalbridg-vn.netlify.app</div></a>
+      <a href="https://glocalbridge-thai01.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">브릿지 태국 V1</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">태국 초기 버전</div><div class="nc-url">glocalbridge-thai01.netlify.app</div></a>
+      <a href="https://glocalaa.netlify.app" class="net-card nc-bridge net-hidden-card" data-nc="bridge" target="_blank"><div class="nc-head"><span class="nc-name">글로컬AA</span><span class="nc-badge">브릿지</span></div><div class="nc-desc">글로컬 AA</div><div class="nc-url">glocalaa.netlify.app</div></a>
 
       <!-- 번호 / 변형 -->
-      <a href="https://elimg-p.netlify.app" class="net-card nc-variant" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG-P</span><span class="nc-badge">변형</span></div><div class="nc-desc">프로토타입</div><div class="nc-url">elimg-p.netlify.app</div></a>
-      <a href="https://elimg-p1.netlify.app" class="net-card nc-variant" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG-P1</span><span class="nc-badge">변형</span></div><div class="nc-desc">프로토타입 V1</div><div class="nc-url">elimg-p1.netlify.app</div></a>
-      <a href="https://elimg-p2.netlify.app" class="net-card nc-variant" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG-P2</span><span class="nc-badge">변형</span></div><div class="nc-desc">프로토타입 V2</div><div class="nc-url">elimg-p2.netlify.app</div></a>
-      <a href="https://elimg-p3.netlify.app" class="net-card nc-variant" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG-P3</span><span class="nc-badge">변형</span></div><div class="nc-desc">프로토타입 V3</div><div class="nc-url">elimg-p3.netlify.app</div></a>
-      <a href="https://elimg-ai-korean.netlify.app" class="net-card nc-variant" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">AI 한국어</span><span class="nc-badge">변형</span></div><div class="nc-desc">AI 한국어 교육</div><div class="nc-url">elimg-ai-korean.netlify.app</div></a>
-      <a href="https://elimg-aikorean.netlify.app" class="net-card nc-variant" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">AI Korean</span><span class="nc-badge">변형</span></div><div class="nc-desc">AI Korean</div><div class="nc-url">elimg-aikorean.netlify.app</div></a>
-      <a href="https://elimg-src.netlify.app" class="net-card nc-variant" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG SRC</span><span class="nc-badge">변형</span></div><div class="nc-desc">소스 버전</div><div class="nc-url">elimg-src.netlify.app</div></a>
-      <a href="https://src-green.netlify.app" class="net-card nc-variant" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">SRC Green</span><span class="nc-badge">변형</span></div><div class="nc-desc">그린 소스</div><div class="nc-url">src-green.netlify.app</div></a>
-      <a href="https://src-strong.netlify.app" class="net-card nc-variant" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">SRC Strong</span><span class="nc-badge">변형</span></div><div class="nc-desc">스트롱 소스</div><div class="nc-url">src-strong.netlify.app</div></a>
-      <a href="https://gimhae1.netlify.app" class="net-card nc-variant" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">김해 V1</span><span class="nc-badge">변형</span></div><div class="nc-desc">김해 초기</div><div class="nc-url">gimhae1.netlify.app</div></a>
+      <a href="https://elimg-p.netlify.app" class="net-card nc-variant net-hidden-card" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG-P</span><span class="nc-badge">변형</span></div><div class="nc-desc">프로토타입</div><div class="nc-url">elimg-p.netlify.app</div></a>
+      <a href="https://elimg-p1.netlify.app" class="net-card nc-variant net-hidden-card" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG-P1</span><span class="nc-badge">변형</span></div><div class="nc-desc">프로토타입 V1</div><div class="nc-url">elimg-p1.netlify.app</div></a>
+      <a href="https://elimg-p2.netlify.app" class="net-card nc-variant net-hidden-card" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG-P2</span><span class="nc-badge">변형</span></div><div class="nc-desc">프로토타입 V2</div><div class="nc-url">elimg-p2.netlify.app</div></a>
+      <a href="https://elimg-p3.netlify.app" class="net-card nc-variant net-hidden-card" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG-P3</span><span class="nc-badge">변형</span></div><div class="nc-desc">프로토타입 V3</div><div class="nc-url">elimg-p3.netlify.app</div></a>
+      <a href="https://elimg-ai-korean.netlify.app" class="net-card nc-variant net-hidden-card" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">AI 한국어</span><span class="nc-badge">변형</span></div><div class="nc-desc">AI 한국어 교육</div><div class="nc-url">elimg-ai-korean.netlify.app</div></a>
+      <a href="https://elimg-aikorean.netlify.app" class="net-card nc-variant net-hidden-card" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">AI Korean</span><span class="nc-badge">변형</span></div><div class="nc-desc">AI Korean</div><div class="nc-url">elimg-aikorean.netlify.app</div></a>
+      <a href="https://elimg-src.netlify.app" class="net-card nc-variant net-hidden-card" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG SRC</span><span class="nc-badge">변형</span></div><div class="nc-desc">소스 버전</div><div class="nc-url">elimg-src.netlify.app</div></a>
+      <a href="https://src-green.netlify.app" class="net-card nc-variant net-hidden-card" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">SRC Green</span><span class="nc-badge">변형</span></div><div class="nc-desc">그린 소스</div><div class="nc-url">src-green.netlify.app</div></a>
+      <a href="https://src-strong.netlify.app" class="net-card nc-variant net-hidden-card" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">SRC Strong</span><span class="nc-badge">변형</span></div><div class="nc-desc">스트롱 소스</div><div class="nc-url">src-strong.netlify.app</div></a>
+      <a href="https://gimhae1.netlify.app" class="net-card nc-variant net-hidden-card" data-nc="variant" target="_blank"><div class="nc-head"><span class="nc-name">김해 V1</span><span class="nc-badge">변형</span></div><div class="nc-desc">김해 초기</div><div class="nc-url">gimhae1.netlify.app</div></a>
 
       <!-- 비활성 -->
-      <a href="https://glocalbridge.netlify.app" class="net-card nc-dead" data-nc="dead" target="_blank"><div class="nc-head"><span class="nc-name">글로컬브릿지 (404)</span><span class="nc-badge">비활성</span></div><div class="nc-desc">배포 없음</div><div class="nc-url">glocalbridge.netlify.app</div></a>
-      <a href="https://elimg10.netlify.app" class="net-card nc-dead" data-nc="dead" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG10 (404)</span><span class="nc-badge">비활성</span></div><div class="nc-desc">배포 없음</div><div class="nc-url">elimg10.netlify.app</div></a>
+      <a href="https://glocalbridge.netlify.app" class="net-card nc-dead net-hidden-card" data-nc="dead" target="_blank"><div class="nc-head"><span class="nc-name">글로컬브릿지 (404)</span><span class="nc-badge">비활성</span></div><div class="nc-desc">배포 없음</div><div class="nc-url">glocalbridge.netlify.app</div></a>
+      <a href="https://elimg10.netlify.app" class="net-card nc-dead net-hidden-card" data-nc="dead" target="_blank"><div class="nc-head"><span class="nc-name">ELIMG10 (404)</span><span class="nc-badge">비활성</span></div><div class="nc-desc">배포 없음</div><div class="nc-url">elimg10.netlify.app</div></a>
 
     </div>
+    <button id="netShowMore" onclick="toggleNetCards()">+ 전체 네트워크 보기 (105개)</button>
   </div>
 </section>
 
@@ -1315,6 +1337,47 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
       <a href="mailto:kodhjj@gmail.com" class="c-card reveal"><div class="ci">✉</div><div class="cl">이메일</div><div class="cv">kodhjj@gmail.com</div></a>
       <a href="https://elimg.kr" class="c-card reveal" target="_blank"><div class="ci">✝</div><div class="cl">사역 사이트</div><div class="cv">elimg.kr</div></a>
     </div>
+    <div class="cf-wrap reveal">
+      <div class="cf-grid">
+        <div class="cf-field">
+          <label>이름 / Name</label>
+          <input type="text" id="cf-name" placeholder="홍길동 / Hong Gil Dong"/>
+        </div>
+        <div class="cf-field">
+          <label>연락처 / Contact</label>
+          <input type="text" id="cf-contact" placeholder="010-0000-0000 또는 이메일"/>
+        </div>
+        <div class="cf-field">
+          <label>문의 유형</label>
+          <select id="cf-type">
+            <option value="">선택해주세요</option>
+            <option>AI 컨설팅·교육</option>
+            <option>웹사이트 제작</option>
+            <option>이주민 법무·행정</option>
+            <option>글로컬 비즈니스 연결</option>
+            <option>선교·사역 협력</option>
+            <option>기타 문의</option>
+          </select>
+        </div>
+        <div class="cf-field">
+          <label>국가 / Country</label>
+          <select id="cf-country">
+            <option value="">선택</option>
+            <option>🇰🇷 한국</option><option>🇵🇭 필리핀</option>
+            <option>🇮🇩 인도네시아</option><option>🇻🇳 베트남</option>
+            <option>🇳🇵 네팔</option><option>🇲🇲 미얀마</option>
+            <option>🇹🇭 태국</option><option>🇺🇸 미국</option>
+            <option>기타</option>
+          </select>
+        </div>
+        <div class="cf-field cf-msg">
+          <label>문의 내용</label>
+          <textarea id="cf-msg" placeholder="현재 상황과 도움이 필요한 내용을 간략히 적어주세요. 30분 무료 상담으로 시작합니다."></textarea>
+        </div>
+      </div>
+      <button class="cf-submit" onclick="submitForm()">✦ 무료 상담 신청하기</button>
+      <div class="cf-sent" id="cfSent">✅ 감사합니다! 1-2 영업일 내로 연락드리겠습니다.</div>
+    </div>
   </div>
 </section>
 
@@ -1344,6 +1407,8 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
         <a href="#global">English (Global)</a>
         <a href="https://youtube.com/@glocalbridge" target="_blank">YouTube</a>
         <a href="#founder">대표 소개</a>
+        <a href="https://youtube.com/@glocalbridge" target="_blank">▶ YouTube</a>
+        <a href="https://pf.kakao.com/_YIULn" target="_blank">💬 카카오채널</a>
       </div>
     </div>
     <div class="ft-bottom">
@@ -1352,6 +1417,7 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
     </div>
   </div>
 </footer>
+<button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">↑</button>
 
 <!-- Google Translate -->
 <div class="translate-bar">
@@ -1420,6 +1486,36 @@ function setLang(lang, btn) {
   if (lang === 'en') {
     document.getElementById('global').scrollIntoView({ behavior: 'smooth' });
   }
+}
+
+// Back to top
+window.addEventListener('scroll', () => {
+  document.getElementById('backTop').classList.toggle('vis', window.scrollY > 400);
+});
+
+// Contact form
+function submitForm() {
+  const name = document.getElementById('cf-name').value.trim();
+  const contact = document.getElementById('cf-contact').value.trim();
+  if (!name || !contact) { alert('이름과 연락처를 입력해주세요.'); return; }
+  document.getElementById('cfSent').style.display = 'block';
+  document.querySelector('.cf-submit').style.display = 'none';
+  const mailto = 'mailto:kodhjj@gmail.com?subject=글로컬브릿지 AI 상담 신청 — ' + encodeURIComponent(name) + '&body=' + encodeURIComponent(
+    '이름: ' + name + '\n연락처: ' + (document.getElementById('cf-contact').value) +
+    '\n문의유형: ' + (document.getElementById('cf-type').value) +
+    '\n국가: ' + (document.getElementById('cf-country').value) +
+    '\n\n내용:\n' + (document.getElementById('cf-msg').value)
+  );
+  setTimeout(() => { window.location.href = mailto; }, 800);
+}
+
+// Network cards toggle
+function toggleNetCards() {
+  const hidden = document.querySelectorAll('.net-hidden-card');
+  const btn = document.getElementById('netShowMore');
+  const isRevealed = hidden[0] && hidden[0].classList.contains('revealed');
+  hidden.forEach(c => c.classList.toggle('revealed', !isRevealed));
+  btn.textContent = isRevealed ? '+ 전체 네트워크 보기 (105개)' : '− 접기';
 }
 </script>
 </body>
