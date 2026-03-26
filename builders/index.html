@@ -314,6 +314,38 @@ section{padding:80px 20px;}
 .fq-a{max-height:0;overflow:hidden;transition:.35s;font-size:13px;color:var(--gr);line-height:1.7;}
 .fq.open .fq-a{max-height:280px;padding-bottom:16px;}
 
+/* MEMBER DASHBOARD */
+#dashboard{display:none;padding:28px 20px;background:linear-gradient(135deg,#022C22 0%,#065F46 100%);border-bottom:1px solid rgba(255,255,255,.08);}
+.db-in{max-width:1120px;margin:0 auto;}
+.db-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px;}
+.db-title-area .db-label{font-size:10px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.db-title-area h2{font-size:clamp(17px,2.5vw,22px);font-weight:900;color:#fff;margin-bottom:3px;}
+.db-title-area p{font-size:12px;color:rgba(255,255,255,.55);}
+.db-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.db-bricks-box{background:rgba(245,158,11,.15);border:1px solid rgba(245,158,11,.3);border-radius:10px;padding:10px 16px;text-align:center;}
+.db-bricks-num{font-size:18px;font-weight:900;color:var(--au);}
+.db-bricks-lbl{font-size:9px;color:rgba(255,255,255,.45);margin-top:1px;}
+.btn-db-out{padding:9px 16px;border-radius:8px;font-size:12px;font-weight:700;background:rgba(255,255,255,.08);color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.18);cursor:pointer;font-family:var(--f);transition:.2s;}
+.btn-db-out:hover{background:rgba(255,255,255,.15);color:#fff;}
+.db-quick{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;}
+.db-q-link{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:14px;text-align:center;text-decoration:none;transition:.2s;display:block;}
+.db-q-link:hover{background:rgba(255,255,255,.13);transform:translateY(-2px);}
+.db-q-ico{font-size:22px;margin-bottom:5px;}
+.db-q-name{font-size:11px;font-weight:700;color:#fff;}
+.db-q-sub{font-size:9px;color:rgba(255,255,255,.45);margin-top:2px;}
+.db-courses{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px;}
+.db-courses-hdr{font-size:10px;font-weight:700;color:rgba(255,255,255,.4);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px;}
+.db-step-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.db-step{text-align:center;padding:14px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);}
+.db-step.active{background:rgba(245,158,11,.12);border-color:rgba(245,158,11,.3);}
+.db-step-ico{font-size:22px;margin-bottom:6px;}
+.db-step-num{font-size:11px;font-weight:800;color:#fff;margin-bottom:2px;}
+.db-step-name{font-size:9px;color:rgba(255,255,255,.45);line-height:1.4;}
+.db-step-badge{margin-top:7px;display:inline-block;font-size:8px;font-weight:700;padding:2px 8px;border-radius:8px;}
+.db-step.active .db-step-badge{background:rgba(245,158,11,.2);color:var(--au);}
+.db-step:not(.active) .db-step-badge{background:rgba(255,255,255,.07);color:rgba(255,255,255,.35);}
+#db-admin-banner{display:none;background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.45);border-radius:9px;padding:11px 16px;margin-bottom:16px;font-size:12px;font-weight:700;color:var(--au);}
+
 /* MY COURSES */
 #mycourses{display:none;}
 #mycourses.active{display:block;}
@@ -382,6 +414,13 @@ footer{background:var(--dk);color:rgba(255,255,255,.55);padding:48px 20px 28px;}
   .pt-tiers{grid-template-columns:1fr;}
   section{padding:56px 16px;}
   .pg{grid-template-columns:1fr 1fr;}
+  .db-quick{grid-template-columns:repeat(2,1fr);}
+  .db-step-grid{grid-template-columns:repeat(2,1fr);}
+  .db-top{flex-direction:column;align-items:flex-start;}
+}
+@media(max-width:480px){
+  .db-quick{grid-template-columns:repeat(2,1fr);}
+  .db-step-grid{grid-template-columns:repeat(2,1fr);}
 }
 @media(max-width:480px){
   .ft-top{grid-template-columns:1fr;}
@@ -411,7 +450,7 @@ footer{background:var(--dk);color:rgba(255,255,255,.55);padding:48px 20px 28px;}
       <li><a href="#bricks">벽돌 쌓기</a></li>
       <li><a href="#partner">파트너</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a href="#roadmap" id="myCoursesLink" style="display:none;">내 강의</a></li>
+      <li><a href="#dashboard" id="myCoursesLink" style="display:none;">내 대시보드</a></li>
     </ul>
     <div class="na">
       <div class="brick-cnt" id="brickCnt" style="display:none;">🧱 <span id="brickNum">0</span></div>
@@ -437,6 +476,42 @@ footer{background:var(--dk);color:rgba(255,255,255,.55);padding:48px 20px 28px;}
     </div>
   </div>
 </nav>
+
+<!-- MEMBER DASHBOARD -->
+<section id="dashboard">
+  <div class="db-in">
+    <div id="db-admin-banner">🔑 관리자 모드 — 모든 콘텐츠 및 회원 정보에 접근 가능합니다</div>
+    <div class="db-top">
+      <div class="db-title-area">
+        <div class="db-label">MEMBER DASHBOARD</div>
+        <h2>환영합니다, <span id="db-name">빌더</span>님! 🌍</h2>
+        <p>오늘도 글로컬 비즈니스를 함께 만들어 갑니다 · AI 글로컬 Builders</p>
+      </div>
+      <div class="db-meta">
+        <div class="db-bricks-box">
+          <div class="db-bricks-num" id="db-bricks">0</div>
+          <div class="db-bricks-lbl">🧱 브릭 포인트</div>
+        </div>
+        <button class="btn-db-out" onclick="doLogout()">로그아웃</button>
+      </div>
+    </div>
+    <div class="db-quick">
+      <a href="#roadmap" class="db-q-link"><div class="db-q-ico">🎓</div><div class="db-q-name">강의 로드맵</div><div class="db-q-sub">4단계 과정</div></a>
+      <a href="#community" class="db-q-link"><div class="db-q-ico">💬</div><div class="db-q-name">커뮤니티</div><div class="db-q-sub">회원 전용 접근</div></a>
+      <a href="#live" class="db-q-link"><div class="db-q-ico">📡</div><div class="db-q-name">라이브 세션</div><div class="db-q-sub">매주 수요일</div></a>
+      <a href="#prompt" class="db-q-link"><div class="db-q-ico">⚡</div><div class="db-q-name">프롬프트 라이브러리</div><div class="db-q-sub">회원 전용 해제</div></a>
+    </div>
+    <div class="db-courses">
+      <div class="db-courses-hdr">나의 수강 현황</div>
+      <div class="db-step-grid">
+        <div class="db-step active"><div class="db-step-ico">🏠</div><div class="db-step-num">Step 1</div><div class="db-step-name">콘텐츠 크리에이터</div><div class="db-step-badge">수강 가능</div></div>
+        <div class="db-step"><div class="db-step-ico">🤖</div><div class="db-step-num">Step 2</div><div class="db-step-name">AI 에이전트</div><div class="db-step-badge">준비중</div></div>
+        <div class="db-step"><div class="db-step-ico">💻</div><div class="db-step-num">Step 3</div><div class="db-step-name">바이브코딩</div><div class="db-step-badge">준비중</div></div>
+        <div class="db-step"><div class="db-step-ico">🏢</div><div class="db-step-num">Step 4</div><div class="db-step-name">1인 기업 시스템</div><div class="db-step-badge">준비중</div></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ANNOUNCE -->
 <div id="ann">
@@ -467,7 +542,7 @@ footer{background:var(--dk);color:rgba(255,255,255,.55);padding:48px 20px 28px;}
       <div class="h-btns">
         <button class="hbp" onclick="openModal('signup')">🧱 무료로 시작하기</button>
         <button class="hbs" onclick="document.getElementById('roadmap').scrollIntoView({behavior:'smooth'})">4단계 로드맵 보기 ↓</button>
-        <a href="/member/" class="hbs" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">🔐 회원 전용 아카데미 →</a>
+        <button class="hbs" onclick="goToDashboard()">🔐 회원 대시보드 →</button>
       </div>
       <div class="h-stats">
         <div class="hs"><div class="n">4단계</div><div class="l">AI 1인 기업 로드맵</div></div>
@@ -1019,7 +1094,7 @@ footer{background:var(--dk);color:rgba(255,255,255,.55);padding:48px 20px 28px;}
       </div>
       <div class="ft-col"><h5>플랫폼</h5><ul><li><a href="#intro">소개</a></li><li><a href="#roadmap">강의 로드맵</a></li><li><a href="#textbook">교재</a></li><li><a href="#prompt">프롬프트</a></li></ul></div>
       <div class="ft-col"><h5>프로그램</h5><ul><li><a href="#community">커뮤니티</a></li><li><a href="#live">라이브 세션</a></li><li><a href="#bricks">벽돌 쌓기</a></li><li><a href="#partner">파트너 프로그램</a></li></ul></div>
-      <div class="ft-col"><h5>도움말</h5><ul><li><a href="#faq">FAQ</a></li><li><a href="mailto:hello@elimg.com">이메일 문의</a></li><li><a href="https://elimg.com">GlocalBridge</a></li><li><a href="/member/">회원 아카데미</a></li></ul></div>
+      <div class="ft-col"><h5>도움말</h5><ul><li><a href="#faq">FAQ</a></li><li><a href="mailto:hello@elimg.com">이메일 문의</a></li><li><a href="https://elimg.com">GlocalBridge</a></li><li><a href="#dashboard" onclick="goToDashboard()">회원 대시보드</a></li></ul></div>
     </div>
     <div class="ft-bot">
       <span>© 2026 AI 글로컬 Builders · GlocalBridge · elimg.com</span>
@@ -1033,13 +1108,17 @@ footer{background:var(--dk);color:rgba(255,255,255,.55);padding:48px 20px 28px;}
   <div class="mb">
     <button class="mc" onclick="closeModal('login')">✕</button>
     <div class="m-logo"><div class="ld">🌍</div><span>AI 글로컬 Builders</span></div>
-    <div class="m-title">로그인</div>
-    <div class="m-sub">계정에 로그인하세요</div>
+    <div class="m-title">회원 로그인</div>
+    <div class="m-sub">접근 코드 또는 이메일로 로그인하세요</div>
+    <div class="fg">
+      <label>🔑 접근 코드 (이메일로 받은 코드)</label>
+      <input type="text" id="lCode" placeholder="예: GLOCAL2026" style="text-transform:uppercase;letter-spacing:2px;font-weight:700;font-size:15px;" onkeydown="if(event.key==='Enter')doCodeLogin()"/>
+    </div>
+    <button class="btn-ms" onclick="doCodeLogin()">🔐 접근 코드로 로그인</button>
+    <div class="div-or">또는 이메일로</div>
     <div class="fg"><label>이메일</label><input type="email" id="lEmail" placeholder="your@email.com"/></div>
-    <div class="fg"><label>비밀번호</label><input type="password" id="lPw" placeholder="비밀번호 입력"/></div>
-    <button class="btn-ms" onclick="doLogin()">로그인</button>
-    <div class="div-or">또는</div>
-    <div style="text-align:center;"><a href="/member/?admin" style="font-size:12px;color:var(--g2);font-weight:600;">🔐 회원 전용 아카데미로 이동 →</a></div>
+    <div class="fg"><label>비밀번호</label><input type="password" id="lPw" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <button class="btn-ms" style="background:var(--g2);margin-top:2px;" onclick="doLogin()">이메일로 로그인</button>
     <div class="m-sw">계정이 없으신가요? <a onclick="switchModal('signup')">회원가입</a></div>
   </div>
 </div>
@@ -1117,16 +1196,36 @@ function showToast(msg,type='ok'){
   setTimeout(()=>t.classList.remove('show'),3200);
 }
 
-// Auth
+// Auth — Access Codes
+const ACCESS_CODES=['GLOCAL2026','BRIDGE2026','ELIMG2026'];
+const ADMIN_CODE='GLOCALADMIN';
+
+function doCodeLogin(){
+  const code=document.getElementById('lCode').value.trim().toUpperCase();
+  if(!code){showToast('접근 코드를 입력해주세요.','err');return;}
+  const isAdmin=code===ADMIN_CODE;
+  const isValid=isAdmin||ACCESS_CODES.includes(code);
+  if(!isValid){showToast('유효하지 않은 접근 코드입니다. 이메일을 확인해주세요.','err');return;}
+  const session={name:isAdmin?'관리자':'글로컬 빌더',code,role:isAdmin?'admin':'member',bricks:isAdmin?999:0,ts:Date.now()};
+  localStorage.setItem('gb_member_session',JSON.stringify(session));
+  closeModal('login');
+  updateNavAuth(session);
+  showDashboard(session);
+  showToast(isAdmin?'🔑 관리자로 로그인 완료!':'✅ 로그인 완료! 대시보드가 열렸습니다.');
+  setTimeout(()=>{document.getElementById('dashboard').scrollIntoView({behavior:'smooth'});},400);
+}
+
 function doLogin(){
   const email=document.getElementById('lEmail').value.trim();
   const pw=document.getElementById('lPw').value.trim();
   if(!email||!pw){showToast('이메일과 비밀번호를 입력해주세요.','err');return;}
-  const session={email,name:email.split('@')[0],code:'BUILDERS',role:'builder',bricks:0,ts:Date.now()};
+  const session={name:email.split('@')[0],email,code:'EMAIL',role:'member',bricks:0,ts:Date.now()};
   localStorage.setItem('gb_member_session',JSON.stringify(session));
   closeModal('login');
-  showToast('로그인 되었습니다! 아카데미로 이동합니다...');
-  setTimeout(()=>{window.location.href='/member/';},1400);
+  updateNavAuth(session);
+  showDashboard(session);
+  showToast('로그인 되었습니다!');
+  setTimeout(()=>{document.getElementById('dashboard').scrollIntoView({behavior:'smooth'});},400);
 }
 
 function doSignup(){
@@ -1142,10 +1241,31 @@ function doSignup(){
   showSuccessPage(name,email);
 }
 
+function showDashboard(session){
+  document.getElementById('dashboard').style.display='block';
+  document.getElementById('db-name').textContent=session.name;
+  document.getElementById('db-bricks').textContent=session.bricks||0;
+  if(session.role==='admin'){
+    document.getElementById('db-admin-banner').style.display='block';
+  }
+}
+
 function doLogout(){
   localStorage.removeItem('gb_member_session');
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('db-admin-banner').style.display='none';
   updateNavAuth(null);
   showToast('로그아웃 되었습니다.');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goToDashboard(){
+  const s=localStorage.getItem('gb_member_session');
+  if(s){
+    document.getElementById('dashboard').scrollIntoView({behavior:'smooth'});
+  } else {
+    openModal('login');
+  }
 }
 
 function updateNavAuth(session){
@@ -1162,11 +1282,19 @@ function updateNavAuth(session){
   }
 }
 
-// Check session on load
+// Session check + admin bypass on load
 (function(){
+  if(window.location.search.includes('admin')){
+    const adminSession={name:'관리자',code:'GLOCALADMIN',role:'admin',bricks:999,ts:Date.now()};
+    localStorage.setItem('gb_member_session',JSON.stringify(adminSession));
+  }
   try{
     const s=localStorage.getItem('gb_member_session');
-    if(s){const session=JSON.parse(s);updateNavAuth(session);}
+    if(s){
+      const session=JSON.parse(s);
+      updateNavAuth(session);
+      showDashboard(session);
+    }
   }catch(e){}
 })();
 
@@ -1180,7 +1308,7 @@ function showSuccessPage(name,email){
         <p style="font-size:13px;color:#6B7280;line-height:1.7;margin-bottom:20px;"><strong>${email}</strong>로 48시간 이내에<br/>접근 코드가 발송됩니다. 스팸함도 확인해 주세요 📬</p>
         <div style="background:#D1FAE5;border-radius:12px;padding:14px;margin-bottom:20px;text-align:left;">
           <div style="font-size:11px;font-weight:700;color:#065F46;margin-bottom:6px;">📋 다음 단계</div>
-          <div style="font-size:12px;color:#374151;line-height:1.8;">1️⃣ 이메일 확인 (접근 코드 수신)<br/>2️⃣ <a href="/member/" style="color:#047857;font-weight:700;">elimg.com/member</a>에서 코드 입력<br/>3️⃣ 커뮤니티 참여 + 벽돌 쌓기 시작!</div>
+          <div style="font-size:12px;color:#374151;line-height:1.8;">1️⃣ 이메일 확인 (접근 코드 수신)<br/>2️⃣ <a href="/builders/" style="color:#047857;font-weight:700;">elimg.com/builders</a> 로그인에서 코드 입력<br/>3️⃣ 대시보드에서 강의 + 커뮤니티 시작!</div>
         </div>
         <a href="/builders/" style="display:inline-block;padding:11px 24px;background:#065F46;color:white;border-radius:8px;font-size:13px;font-weight:700;text-decoration:none;">← 메인으로 돌아가기</a>
       </div>
