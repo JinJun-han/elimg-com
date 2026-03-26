@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>네트워크 사이트 관리 — GlocalBridge Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Noto Sans KR',sans-serif;background:#0f172a;color:#e2e8f0;min-height:100vh}
+  header{background:#1e293b;border-bottom:1px solid #334155;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+  header h1{font-size:18px;color:#f1f5f9;display:flex;align-items:center;gap:10px}
+  .badge-count{background:#3b82f6;color:#fff;font-size:12px;padding:3px 10px;border-radius:20px;font-weight:700}
+  .badge-del{background:#ef4444;color:#fff;font-size:12px;padding:3px 10px;border-radius:20px;font-weight:700}
+  .header-actions{display:flex;gap:10px;align-items:center}
+  .btn{padding:8px 16px;border-radius:8px;border:none;cursor:pointer;font-size:13px;font-weight:600;font-family:inherit;transition:all .2s}
+  .btn-copy{background:#f59e0b;color:#1c1917}
+  .btn-copy:hover{background:#d97706}
+  .btn-reset{background:#475569;color:#e2e8f0}
+  .btn-reset:hover{background:#64748b}
+  .controls{background:#1e293b;padding:14px 24px;border-bottom:1px solid #334155;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .filter-btn{padding:6px 14px;border-radius:20px;border:1px solid #475569;background:transparent;color:#94a3b8;cursor:pointer;font-size:12px;font-weight:600;font-family:inherit;transition:all .2s}
+  .filter-btn.active,.filter-btn:hover{background:#3b82f6;border-color:#3b82f6;color:#fff}
+  .filter-btn.del-filter.active{background:#ef4444;border-color:#ef4444}
+  .search-box{margin-left:auto;padding:7px 14px;border-radius:8px;border:1px solid #475569;background:#0f172a;color:#e2e8f0;font-size:13px;font-family:inherit;width:200px}
+  .search-box:focus{outline:none;border-color:#3b82f6}
+  table{width:100%;border-collapse:collapse}
+  thead{background:#1e293b;position:sticky;top:62px;z-index:50}
+  th{padding:11px 14px;text-align:left;font-size:12px;color:#94a3b8;font-weight:600;border-bottom:1px solid #334155;white-space:nowrap}
+  tr.site-row{border-bottom:1px solid #1e293b;transition:background .15s}
+  tr.site-row:hover{background:#1e293b}
+  tr.site-row.marked{background:#3b0000 !important}
+  tr.site-row.hidden-row{display:none}
+  td{padding:10px 14px;font-size:13px;vertical-align:middle}
+  td.td-num{color:#475569;width:40px;text-align:center}
+  td.td-check{width:44px;text-align:center}
+  input[type=checkbox]{width:18px;height:18px;cursor:pointer;accent-color:#ef4444}
+  .site-name{font-weight:600;color:#f1f5f9;margin-bottom:2px}
+  .site-desc{font-size:12px;color:#64748b}
+  .site-url{font-size:11px;color:#475569;font-family:monospace}
+  .cat-badge{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:700}
+  .cat-biz{background:#1d4ed8;color:#bfdbfe}
+  .cat-mission{background:#166534;color:#bbf7d0}
+  .cat-cbmc{background:#7c3aed;color:#ede9fe}
+  .cat-bible{background:#92400e;color:#fde68a}
+  .cat-partner{background:#0e7490;color:#cffafe}
+  .cat-platform{background:#334155;color:#94a3b8}
+  .cat-bridge{background:#1e3a5f;color:#93c5fd}
+  .cat-variant{background:#3f3f46;color:#a1a1aa}
+  .visit-btn{background:#0f172a;border:1px solid #334155;color:#94a3b8;padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+  .visit-btn:hover{border-color:#3b82f6;color:#3b82f6}
+  .del-label{font-size:11px;color:#f87171;font-weight:700;display:none}
+  tr.marked .del-label{display:block}
+  .copy-output{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:16px 20px;margin:16px 24px;font-size:13px;font-family:monospace;white-space:pre-wrap;display:none;color:#a3e635;max-height:300px;overflow-y:auto}
+  .stat-bar{background:#1e293b;padding:10px 24px;border-bottom:1px solid #334155;font-size:12px;color:#64748b;display:flex;gap:20px;flex-wrap:wrap}
+  .stat-bar span b{color:#f1f5f9}
+  .row-note{width:140px}
+  .note-input{background:#0f172a;border:1px solid #334155;color:#94a3b8;padding:4px 8px;border-radius:5px;font-size:12px;font-family:inherit;width:100%}
+  .note-input:focus{outline:none;border-color:#3b82f6}
+  .section-header{background:#0f172a;padding:10px 14px;color:#64748b;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid #1e293b}
+  .no-results{text-align:center;padding:40px;color:#475569;font-size:14px;display:none}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌐 네트워크 사이트 관리 <span class="badge-count" id="totalCount">103</span> <span class="badge-del" id="delCount" style="display:none">삭제 0</span></h1>
+  <div class="header-actions">
+    <button class="btn btn-reset" onclick="resetAll()">초기화</button>
+    <button class="btn btn-copy" onclick="copyDeleteList()">📋 삭제 목록 복사</button>
+  </div>
+</header>
+
+<div class="controls">
+  <button class="filter-btn active" data-cat="all" onclick="filterCat(this,'all')">전체</button>
+  <button class="filter-btn" data-cat="biz" onclick="filterCat(this,'biz')">비즈니스/AI</button>
+  <button class="filter-btn" data-cat="mission" onclick="filterCat(this,'mission')">선교</button>
+  <button class="filter-btn" data-cat="cbmc" onclick="filterCat(this,'cbmc')">CBMC/교회</button>
+  <button class="filter-btn" data-cat="bible" onclick="filterCat(this,'bible')">성경/콘텐츠</button>
+  <button class="filter-btn" data-cat="partner" onclick="filterCat(this,'partner')">파트너</button>
+  <button class="filter-btn" data-cat="platform" onclick="filterCat(this,'platform')">플랫폼/허브</button>
+  <button class="filter-btn" data-cat="bridge" onclick="filterCat(this,'bridge')">브릿지</button>
+  <button class="filter-btn" data-cat="variant" onclick="filterCat(this,'variant')">번호/변형</button>
+  <button class="filter-btn del-filter" data-cat="del" onclick="filterCat(this,'del')">🔴 삭제 표시만</button>
+  <input class="search-box" type="text" placeholder="사이트 검색..." oninput="searchSites(this.value)">
+</div>
+
+<div class="stat-bar" id="statBar">
+  <span>비즈니스/AI: <b id="cnt-biz">0</b></span>
+  <span>선교: <b id="cnt-mission">0</b></span>
+  <span>CBMC/교회: <b id="cnt-cbmc">0</b></span>
+  <span>성경/콘텐츠: <b id="cnt-bible">0</b></span>
+  <span>파트너: <b id="cnt-partner">0</b></span>
+  <span>플랫폼/허브: <b id="cnt-platform">0</b></span>
+  <span>브릿지: <b id="cnt-bridge">0</b></span>
+  <span>번호/변형: <b id="cnt-variant">0</b></span>
+</div>
+
+<div class="copy-output" id="copyOutput"></div>
+
+<table>
+  <thead>
+    <tr>
+      <th class="td-num">#</th>
+      <th class="td-check">삭제</th>
+      <th>사이트명 / 설명</th>
+      <th>URL</th>
+      <th>카테고리</th>
+      <th>메모</th>
+      <th>방문</th>
+    </tr>
+  </thead>
+  <tbody id="siteTable"></tbody>
+</table>
+<div class="no-results" id="noResults">검색 결과가 없습니다</div>
+
+<script>
+const SITES = [
+  // 핵심 메인
+  {name:'elimg.com',desc:'GlocalBridge AI 컨설팅 본부',url:'https://elimg.com',cat:'biz'},
+  {name:'elimg.kr',desc:'엘림G선교회 공식 사이트',url:'https://elimg.kr',cat:'mission'},
+  // 비즈니스/AI
+  {name:'GlocalBridge AI (메인)',desc:'글로컬브릿지 AI 컨설팅 메인',url:'https://elimg-com-main.netlify.app',cat:'biz'},
+  {name:'글로컬 취업 매칭',desc:'이주민-기업 취업 매칭 플랫폼',url:'https://glocalbridge-jobs.netlify.app',cat:'biz'},
+  {name:'AI 아카데미',desc:'글로컬 AI 아카데미 60주 과정',url:'https://glocal-ai-academy.netlify.app',cat:'biz'},
+  {name:'인재 매칭',desc:'글로컬 인재 양성 인포그래픽',url:'https://glocal-talent.netlify.app',cat:'biz'},
+  {name:'글로벌 이주',desc:'글로벌 이주민 정보 플랫폼',url:'https://global-mig.netlify.app',cat:'biz'},
+  {name:'김해 생활 정보',desc:'김해 지역 생활 정보',url:'https://gimhae-info.netlify.app',cat:'biz'},
+  {name:'김해라이프 정보',desc:'김해 생활 종합 정보',url:'https://gimhaelife-info.netlify.app',cat:'biz'},
+  {name:'글로컬 중국어',desc:'AI 글로컬 한중 어학원 v2.1',url:'https://glocal-chinese.netlify.app',cat:'biz'},
+  // 선교 사역
+  {name:'글로컬브릿지 네팔',desc:'한국어-네팔어 학습 v10.0',url:'https://glocalbridge-np.netlify.app',cat:'mission'},
+  {name:'글로컬브릿지 베트남',desc:'한국어-베트남어 학습 v10.0',url:'https://glocalbridge-vn.netlify.app',cat:'mission'},
+  {name:'글로컬브릿지 태국',desc:'한국어-태국어 학습 v7.0',url:'https://glocalbridge-thai.netlify.app',cat:'mission'},
+  {name:'글로컬브릿지 스리랑카',desc:'한국어-스리랑카어 v8.0',url:'https://glocalbridge-lk.netlify.app',cat:'mission'},
+  {name:'중국어권 사역',desc:'중국어권 이주민 AI 한국어 교육',url:'https://ai-glocal-chinese-korean.netlify.app',cat:'mission'},
+  {name:'거제 한화오션',desc:'거제 이주민 일자리 매칭',url:'https://geoje.elimg.kr',cat:'mission'},
+  {name:'김해 취업 매칭',desc:'김해 취업매칭 V13 (14,088개 기업)',url:'https://gimhae.elimg.kr',cat:'mission'},
+  {name:'기장 이주민 사역',desc:'기장 이주민 센터',url:'https://elimg-gijang.netlify.app',cat:'mission'},
+  // CBMC / 교회
+  {name:'CBMC 김해 (메인)',desc:'CBMC 김해 한마음지회 공식',url:'https://gimhae-cbmc.netlify.app',cat:'cbmc'},
+  {name:'CBMC 비즈 브릿지',desc:'글로컬 비즈니스 브릿지',url:'https://cbmc-biz-bridge.netlify.app',cat:'cbmc'},
+  {name:'한마음지회 V3',desc:'CBMC 김해 한마음지회 최신',url:'https://cbmc-hanmaeum-v3.netlify.app',cat:'cbmc'},
+  {name:'CBMC 김해 정보',desc:'CBMC 김해 지역 정보',url:'https://cbmc-gimhae.netlify.app',cat:'cbmc'},
+  {name:'한마음 일정',desc:'2026 CBMC 김해한마음지회 일정',url:'https://hanmaum-schedule.netlify.app',cat:'cbmc'},
+  {name:'CBMC 김해 한마음',desc:'CBMC 김해 한마음 기존',url:'https://cbmc-gimhae-hanmaeum.netlify.app',cat:'cbmc'},
+  {name:'CBMC 김해 한마음 V1',desc:'CBMC 운영지침서 (독립 콘텐츠)',url:'https://cbmc-gimhae-hanmaeum1.netlify.app',cat:'cbmc'},
+  {name:'한마음지회 V2',desc:'CBMC 한마음 V2',url:'https://cbmc-hanmaeum-v2.netlify.app',cat:'cbmc'},
+  {name:'한마음 회칙',desc:'한마음지회 회칙·규정',url:'https://bylaw-hanmaum.netlify.app',cat:'cbmc'},
+  {name:'참빛교회',desc:'참빛힐링센터 거제 한화오션',url:'https://elimg-chambit.netlify.app',cat:'cbmc'},
+  {name:'힐링교회',desc:'힐링교회 — 영혼 치유·회복',url:'https://elimg-healing.netlify.app',cat:'cbmc'},
+  // 성경 / 콘텐츠
+  {name:'IMPACT 창세기',desc:'창세기 50장 요셉 드라마',url:'https://elimgimpact-genesis.netlify.app',cat:'bible'},
+  {name:'IMPACT 창세기 V1',desc:'창세기 1장 7막 드라마',url:'https://elimgimpact-genesis01.netlify.app',cat:'bible'},
+  {name:'IMPACT 출애굽기',desc:'출애굽기 40장 다국어 암송',url:'https://elimgimpact-exodus.netlify.app',cat:'bible'},
+  {name:'IMPACT 레위기',desc:'레위기 27장 거룩의 드라마',url:'https://elimgimpact-leviticus.netlify.app',cat:'bible'},
+  {name:'레위기 연구',desc:'레위기 연구 보조',url:'https://impact-leviticus.netlify.app',cat:'bible'},
+  {name:'레위기 스터디',desc:'레위기 스터디 그룹',url:'https://impact-leviticus-study.netlify.app',cat:'bible'},
+  {name:'IMPACT66',desc:'성경 66권 핵심구절 암송',url:'https://elimgimpact66.netlify.app',cat:'bible'},
+  {name:'IMPACT126',desc:'하나님 마음을 품은 126일 여정',url:'https://impact126.netlify.app',cat:'bible'},
+  {name:'IMPACT Bible',desc:'임팩트 바이블 종합',url:'https://impact-bible.netlify.app',cat:'bible'},
+  {name:'글로컬 바이블',desc:'글로컬 성경통독 313일',url:'https://glocalbible.netlify.app',cat:'bible'},
+  {name:'엘림G 성경연구',desc:'엘림G 성경연구 플랫폼',url:'https://elimgbible.netlify.app',cat:'bible'},
+  {name:'광야길',desc:'광야에 길을 내는 사람들 (설교)',url:'https://wilderness-way.netlify.app',cat:'bible'},
+  {name:'한화오션 코리안',desc:'조선소 현장 실무 한국어',url:'https://korean-baby.netlify.app',cat:'bible'},
+  // 파트너 / 기타
+  {name:'하동 사역',desc:'하동 이주민선교 센터',url:'https://hadong-elimg.netlify.app',cat:'partner'},
+  {name:'은혜OK 공인중개사',desc:'양산 물금 부동산',url:'https://grace-ok.netlify.app',cat:'partner'},
+  {name:'명성 글로컬 선교센터',desc:'부산 명성 글로컬 선교센터',url:'https://graceok.netlify.app',cat:'partner'},
+  {name:'인쇄출판 정밀',desc:'김해 인제대 정문 인근 인쇄',url:'https://jungmil.netlify.app',cat:'partner'},
+  {name:'2026 비전',desc:'2026 CBMC 김해한마음 비전 대시보드',url:'https://2026vision.netlify.app',cat:'partner'},
+  {name:'코리아브릿지 네팔',desc:'한국-네팔 연결 브릿지',url:'https://koreabridge-np.netlify.app',cat:'partner'},
+  {name:'그린 미션',desc:'이주민 선교 재활용 수익화',url:'https://green-mission.netlify.app',cat:'partner'},
+  {name:'그린4 미션',desc:'자원순환 사업 ESG',url:'https://green4-mission.netlify.app',cat:'partner'},
+  // 플랫폼 / 허브
+  {name:'엘림G 허브',desc:'HUMAN BRIDGE MINISTRY',url:'https://elimghub.netlify.app',cat:'platform'},
+  {name:'엘림G 플랫폼',desc:'이주민 상생 허브',url:'https://elimgplatform.netlify.app',cat:'platform'},
+  {name:'원스톱 서비스',desc:'이주민 원스톱',url:'https://elimgonestop.netlify.app',cat:'platform'},
+  {name:'엘림G 미션',desc:'선교 플랫폼',url:'https://elimgmission.netlify.app',cat:'platform'},
+  {name:'ELIMGS',desc:'서비스 포털',url:'https://elimgs.netlify.app',cat:'platform'},
+  {name:'엘림G 웹',desc:'웹 버전',url:'https://elimgweb.netlify.app',cat:'platform'},
+  {name:'ELIMGW',desc:'워크스페이스',url:'https://elimgw.netlify.app',cat:'platform'},
+  {name:'ELIMGW01',desc:'워크스페이스 V1',url:'https://elimgw01.netlify.app',cat:'platform'},
+  {name:'ELIMG',desc:'엘림G선교회 기본',url:'https://elimg.netlify.app',cat:'platform'},
+  {name:'ELIMG0',desc:'초기 버전',url:'https://elimg0.netlify.app',cat:'platform'},
+  {name:'ELIMG01',desc:'버전 01',url:'https://elimg01.netlify.app',cat:'platform'},
+  {name:'ELIMG1',desc:'버전 1',url:'https://elimg1.netlify.app',cat:'platform'},
+  {name:'ELIMG50',desc:'버전 50',url:'https://elimg50.netlify.app',cat:'platform'},
+  {name:'ELIMG66',desc:'66권 버전',url:'https://elimg66.netlify.app',cat:'platform'},
+  {name:'ELIMGAA',desc:'AA 버전',url:'https://elimgaa.netlify.app',cat:'platform'},
+  {name:'ELIMGB',desc:'B 버전',url:'https://elimgb.netlify.app',cat:'platform'},
+  {name:'ELIMGF',desc:'F 버전',url:'https://elimgf.netlify.app',cat:'platform'},
+  {name:'ELIMGH',desc:'H 버전',url:'https://elimgh.netlify.app',cat:'platform'},
+  {name:'ELIMG GMMC',desc:'기장군 GMMC 마스터플랜',url:'https://elimggmmc.netlify.app',cat:'platform'},
+  {name:'ELIMG GMMC1',desc:'글로컬 미션 센터 V1',url:'https://elimggmmc1.netlify.app',cat:'platform'},
+  {name:'엘림G 한',desc:'한진준 목사 설교문',url:'https://elimg-han.netlify.app',cat:'platform'},
+  {name:'엘림G 한 V1',desc:'한국어 사역 초기',url:'https://elimg-han01.netlify.app',cat:'platform'},
+  {name:'설교 아카이브',desc:'한진준 목사 설교 아카이브 9개 언어',url:'https://elimg-han-sermon.netlify.app',cat:'platform'},
+  {name:'엘림G 콜',desc:'이주민 정착 지원 허브 17개국어',url:'https://elimg-call.netlify.app',cat:'platform'},
+  // 브릿지 변형
+  {name:'엘림G 브릿지',desc:'엘림G 브릿지 통합 플랫폼',url:'https://elimgbridge.netlify.app',cat:'bridge'},
+  {name:'브릿지 V2',desc:'버전 2',url:'https://elimgbridge2.netlify.app',cat:'bridge'},
+  {name:'브릿지 다크',desc:'다크 테마 (bridge.elimg.kr 연결)',url:'https://elimgbridge-dark.netlify.app',cat:'bridge'},
+  {name:'브릿지 다크 V2',desc:'다크 테마 V2',url:'https://elimgbridge-dark2.netlify.app',cat:'bridge'},
+  {name:'브릿지 라이트',desc:'라이트 테마',url:'https://elimgbridge-light.netlify.app',cat:'bridge'},
+  {name:'브릿지 영문',desc:'ElimG Bridge 영문+한국어',url:'https://elimgbridge-en.netlify.app',cat:'bridge'},
+  {name:'엘림G 브릿지 (구)',desc:'이주민 선교 캠페인',url:'https://elimg-bridge.netlify.app',cat:'bridge'},
+  {name:'브릿지 V1',desc:'V1',url:'https://elimg-bridge1.netlify.app',cat:'bridge'},
+  {name:'글로컬 브릿지',desc:'글로컬 브릿지 포털',url:'https://glocal-bridge.netlify.app',cat:'bridge'},
+  {name:'브릿지 퓨전',desc:'부울경 이주민 융합 플랫폼',url:'https://glocalbridge-fusion.netlify.app',cat:'bridge'},
+  {name:'브릿지 베트남 (구)',desc:'베트남 이전 버전',url:'https://glocalbridg-vn.netlify.app',cat:'bridge'},
+  {name:'브릿지 태국 V1',desc:'태국 초기 버전',url:'https://glocalbridge-thai01.netlify.app',cat:'bridge'},
+  {name:'글로컬AA',desc:'글로컬 AI 아카데미 (= glocal-ai-academy)',url:'https://glocalaa.netlify.app',cat:'bridge'},
+  // 번호 / 변형
+  {name:'ELIMG-P',desc:'글로컬브릿지 기도회 2025',url:'https://elimg-p.netlify.app',cat:'variant'},
+  {name:'ELIMG-P1',desc:'기도회 구버전 V1',url:'https://elimg-p1.netlify.app',cat:'variant'},
+  {name:'ELIMG-P2',desc:'기도회 구버전 V2',url:'https://elimg-p2.netlify.app',cat:'variant'},
+  {name:'ELIMG-P3',desc:'기도회 구버전 V3',url:'https://elimg-p3.netlify.app',cat:'variant'},
+  {name:'AI 한국어',desc:'AI 한국어 (구버전)',url:'https://elimg-ai-korean.netlify.app',cat:'variant'},
+  {name:'AI Korean',desc:'AI 한국어 완전 정복',url:'https://elimg-aikorean.netlify.app',cat:'variant'},
+  {name:'ELIMG SRC',desc:'소스 버전',url:'https://elimg-src.netlify.app',cat:'variant'},
+  {name:'SRC Green',desc:'그린 소스',url:'https://src-green.netlify.app',cat:'variant'},
+  {name:'SRC Strong',desc:'스트롱 소스',url:'https://src-strong.netlify.app',cat:'variant'},
+  {name:'김해 V1',desc:'김해 취업매칭 초기 버전',url:'https://gimhae1.netlify.app',cat:'variant'},
+];
+
+let deleteSet = new Set(JSON.parse(localStorage.getItem('gb_delete_set')||'[]'));
+let currentFilter = 'all';
+let currentSearch = '';
+
+function catLabel(cat){
+  const map={biz:'비즈니스/AI',mission:'선교',cbmc:'CBMC/교회',bible:'성경/콘텐츠',partner:'파트너',platform:'플랫폼/허브',bridge:'브릿지',variant:'번호/변형'};
+  return map[cat]||cat;
+}
+
+function renderTable(){
+  const tbody = document.getElementById('siteTable');
+  tbody.innerHTML='';
+  const counts={biz:0,mission:0,cbmc:0,bible:0,partner:0,platform:0,bridge:0,variant:0};
+  let visibleCount=0;
+  let num=0;
+
+  // group by category for section headers
+  let lastCat='';
+
+  SITES.forEach((s,i)=>{
+    counts[s.cat]=(counts[s.cat]||0)+1;
+    const isDeleted=deleteSet.has(s.url);
+    const matchFilter=currentFilter==='all'||(currentFilter==='del'&&isDeleted)||(currentFilter===s.cat);
+    const matchSearch=!currentSearch||s.name.toLowerCase().includes(currentSearch)||s.url.toLowerCase().includes(currentSearch)||s.desc.toLowerCase().includes(currentSearch);
+    const visible=matchFilter&&matchSearch;
+
+    // section header
+    if(visible && s.cat!==lastCat && currentFilter==='all' && !currentSearch){
+      const hdr=document.createElement('tr');
+      hdr.innerHTML=`<td colspan="7" class="section-header">${catLabel(s.cat)}</td>`;
+      tbody.appendChild(hdr);
+      lastCat=s.cat;
+    }
+
+    num++;
+    const tr=document.createElement('tr');
+    tr.className='site-row'+(isDeleted?' marked':'')+(visible?'':' hidden-row');
+    tr.dataset.url=s.url;
+    tr.dataset.cat=s.cat;
+    tr.innerHTML=`
+      <td class="td-num">${num}</td>
+      <td class="td-check"><input type="checkbox" ${isDeleted?'checked':''} onchange="toggleDelete('${s.url}',this)"></td>
+      <td>
+        <div class="site-name">${s.name}</div>
+        <div class="site-desc">${s.desc}</div>
+        <div class="del-label">🗑 삭제 표시됨</div>
+      </td>
+      <td><span class="site-url">${s.url.replace('https://','')}</span></td>
+      <td><span class="cat-badge cat-${s.cat}">${catLabel(s.cat)}</span></td>
+      <td class="row-note"><input class="note-input" type="text" placeholder="메모..." value="${localStorage.getItem('note_'+s.url)||''}" onchange="saveNote('${s.url}',this.value)"></td>
+      <td><button class="visit-btn" onclick="window.open('${s.url}','_blank')">🔗 방문</button></td>
+    `;
+    tbody.appendChild(tr);
+    if(visible) visibleCount++;
+  });
+
+  // update counts
+  Object.keys(counts).forEach(k=>{
+    const el=document.getElementById('cnt-'+k);
+    if(el) el.textContent=counts[k];
+  });
+  document.getElementById('totalCount').textContent=visibleCount;
+  const dc=deleteSet.size;
+  const dcEl=document.getElementById('delCount');
+  dcEl.textContent='삭제 '+dc;
+  dcEl.style.display=dc>0?'inline':'none';
+
+  const nr=document.getElementById('noResults');
+  nr.style.display=visibleCount===0?'block':'none';
+}
+
+function toggleDelete(url,cb){
+  if(cb.checked) deleteSet.add(url);
+  else deleteSet.delete(url);
+  localStorage.setItem('gb_delete_set',JSON.stringify([...deleteSet]));
+  const row=document.querySelector(`tr[data-url="${url}"]`);
+  if(row) row.classList.toggle('marked',cb.checked);
+  const dc=deleteSet.size;
+  const dcEl=document.getElementById('delCount');
+  dcEl.textContent='삭제 '+dc;
+  dcEl.style.display=dc>0?'inline':'none';
+}
+
+function saveNote(url,val){
+  if(val) localStorage.setItem('note_'+url,val);
+  else localStorage.removeItem('note_'+url);
+}
+
+function filterCat(btn,cat){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter=cat;
+  renderTable();
+}
+
+function searchSites(val){
+  currentSearch=val.toLowerCase();
+  renderTable();
+}
+
+function resetAll(){
+  if(!confirm('모든 삭제 표시와 메모를 초기화할까요?')) return;
+  deleteSet.clear();
+  localStorage.removeItem('gb_delete_set');
+  Object.keys(localStorage).filter(k=>k.startsWith('note_')).forEach(k=>localStorage.removeItem(k));
+  renderTable();
+}
+
+function copyDeleteList(){
+  if(deleteSet.size===0){alert('삭제 표시된 사이트가 없습니다.');return;}
+  const lines=['=== 삭제 예정 사이트 목록 ===',''];
+  SITES.filter(s=>deleteSet.has(s.url)).forEach((s,i)=>{
+    const note=localStorage.getItem('note_'+s.url);
+    lines.push(`${i+1}. ${s.name} (${s.url.replace('https://','')})`+(note?` — ${note}`:''));
+  });
+  lines.push('','총 '+deleteSet.size+'개');
+  const text=lines.join('\n');
+  const out=document.getElementById('copyOutput');
+  out.textContent=text;
+  out.style.display='block';
+  navigator.clipboard.writeText(text).then(()=>alert('클립보드에 복사되었습니다!'));
+}
+
+renderTable();
+</script>
+</body>
+</html>
