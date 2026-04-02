@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
+<meta name="description" content="한화오션 해외근로자를 위한 한국어교육 앱 - 초급 2-18과 한국 사회를 이해해요">
+<meta name="theme-color" content="#1E3A5F">
+<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi7ZWc7ZmU7Jik7IWYIO2VnOq1reyWtOq1kOycoSIsInNob3J0X25hbWUiOiLtlZztmZTsmKTshZgiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzFFM0E1RiIsInRoZW1lX2NvbG9yIjoiIzFFM0E1RiJ9">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#1E3A5F;--ocean:#2E75B6;--orange:#ED7D31;--green:#22c55e;--red:#ef4444;--purple:#8b5cf6;--pink:#ec4899;--light-blue:#D6E4F0;--light-green:#E8F5E9;--light-orange:#FFF3E0;--gray:#f8fafc;--dark:#2D3436}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;background:var(--gray);max-width:520px;margin:0 auto;min-height:100vh;overflow-x:hidden}
+.hide{display:none!important}
+button{cursor:pointer;border:none;font-family:inherit}
+.nav{background:var(--navy);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-title{color:#fff;font-weight:700;font-size:14px}.nav-sub{color:#8899BB;font-size:10px}
+.nav-btn{background:none;color:#fff;font-size:22px;padding:4px 8px}
+.menu{background:#243447;position:sticky;top:48px;z-index:99}
+.menu button{display:flex;align-items:center;gap:10px;width:100%;padding:11px 20px;background:transparent;color:#fff;font-size:13px;text-align:left}
+.menu button.active{background:var(--ocean)}
+.bottom-nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:6px 0;z-index:100}
+.bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
+.bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
+.bottom-nav .icon{font-size:18px}
+.page{padding:16px;padding-bottom:70px}
+h2{color:var(--navy);font-size:19px;margin-bottom:4px}
+.sub{color:#888;font-size:11px;margin-bottom:14px}
+.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
+.card-accent{border-left:4px solid var(--ocean)}
+.card-orange{border-left:4px solid var(--orange)}
+.card-green{border-left:4px solid var(--green)}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;color:#fff}
+.tabs{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:6px 13px;border-radius:20px;background:#e5e7eb;color:#555;font-size:12px;font-weight:600}
+.tab.active{background:var(--ocean);color:#fff}
+.progress{background:#e5e7eb;border-radius:8px;height:7px;width:100%;overflow:hidden}
+.progress-bar{height:100%;border-radius:8px;transition:width .5s}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.vocab-item{border-radius:8px;padding:8px 10px;cursor:pointer;transition:all .2s}
+.vocab-item:hover{transform:scale(1.02)}
+.vocab-item .kor{font-weight:700;color:var(--navy);font-size:15px}
+.vocab-item .eng{color:#888;font-size:11px;margin-top:2px}
+.vocab-item .pron{color:var(--ocean);font-size:10px}
+.tts-btn{background:var(--ocean);color:#fff;border-radius:50%;width:28px;height:28px;font-size:14px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:6px;vertical-align:middle}
+.tts-btn:hover{background:var(--navy)}
+.bubble{border-radius:12px;padding:10px 14px;max-width:85%;margin-bottom:6px}
+.bubble-left{background:#f0f7ff;border-top-left-radius:4px;align-self:flex-start}
+.bubble-right{background:#fff7ed;border-top-right-radius:4px;align-self:flex-end}
+.quiz-opt{padding:13px;border-radius:10px;border:2px solid #e5e7eb;background:#fff;font-size:15px;font-weight:600;text-align:left;width:100%;margin-bottom:7px;transition:all .2s}
+.quiz-opt:hover{border-color:var(--ocean)}
+.quiz-correct{background:#dcfce7;border-color:var(--green);color:#166534}
+.quiz-wrong{background:#fee2e2;border-color:var(--red);color:#991b1b}
+.input{width:100%;padding:10px 12px;border:2px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:8px}
+.input:focus{outline:none;border-color:var(--ocean)}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;width:100%}
+.btn-primary{background:var(--ocean);color:#fff}.btn-navy{background:var(--navy);color:#fff}
+.btn-green{background:var(--green);color:#fff}.btn-orange{background:var(--orange);color:#fff}
+.hangul-cell{background:#fff;border:2px solid #e5e7eb;border-radius:10px;padding:10px;text-align:center;cursor:pointer;transition:all .2s}
+.hangul-cell:hover,.hangul-cell.active{border-color:var(--ocean);background:#f0f7ff}
+.hangul-cell .char{font-size:28px;font-weight:800;color:var(--navy)}
+.hangul-cell .rom{font-size:10px;color:#888}
+.section-icon{font-size:20px;margin-right:6px;vertical-align:middle}
+textarea{width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;min-height:120px;resize:vertical}
+textarea:focus{outline:none;border-color:var(--ocean)}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+// ===== TTS ENGINE =====
+const TTS = {
+  speak(text, lang='ko-KR', rate=0.8) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang; u.rate = rate; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const koVoice = voices.find(v => v.lang.startsWith('ko')) || voices.find(v => v.lang.includes('ko'));
+    if (koVoice) u.voice = koVoice;
+    window.speechSynthesis.speak(u);
+  },
+  init() { if (window.speechSynthesis) window.speechSynthesis.getVoices(); }
+};
+window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
+
+function ttsBtn(text) {
+  if(!text) return '';
+  return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'")}')" title="발음 듣기">🔊</button>`;
+}
+
+// ===== DATA =====
+const VOCAB_PHONE = [
+  {kor:"사회",pron:"sa-hoe",eng:"society"},
+  {kor:"문화",pron:"mun-hwa",eng:"culture"},
+  {kor:"전통",pron:"jeon-tong",eng:"tradition"},
+  {kor:"다문화",pron:"da-mun-hwa",eng:"multicultural"},
+  {kor:"이민",pron:"i-min",eng:"immigration"},
+  {kor:"외국인",pron:"oe-guk-in",eng:"foreigner"},
+  {kor:"인권",pron:"in-gwon",eng:"human rights"},
+  {kor:"평등",pron:"pyeong-deung",eng:"equality"},
+  {kor:"차별",pron:"cha-byeol",eng:"discrimination"},
+  {kor:"존중",pron:"jon-jung",eng:"respect"},
+  {kor:"공동체",pron:"gong-dong-che",eng:"community"},
+  {kor:"봉사",pron:"bong-sa",eng:"volunteer/service"},
+  {kor:"시민",pron:"si-min",eng:"citizen"},
+  {kor:"투표",pron:"tu-pyo",eng:"vote"},
+  {kor:"민주주의",pron:"min-ju-ju-ui",eng:"democracy"},
+  {kor:"복지",pron:"bok-ji",eng:"welfare"},
+  {kor:"세대",pron:"se-dae",eng:"generation"},
+  {kor:"소통",pron:"so-tong",eng:"communication"},
+];
+
+const VOCAB_SHIPYARD = [
+  {q:"",a:"한국 사회는 다양한 문화를 존중해요.",eng:"Korean society respects diverse cultures.",sit:"사회 이슈 설명 / Discussing social issues"},
+  {q:"",a:"이민자들의 인권이 중요해요.",eng:"The human rights of immigrants are important.",sit:"이민 정책 토론 / Discussing immigration policy"},
+  {q:"",a:"한국에서는 투표가 중요한 의무예요.",eng:"In Korea, voting is an important duty.",sit:"민주주의 이야기 / Talking about democracy"},
+  {q:"",a:"우리는 서로 존중하는 사회를 만들어요.",eng:"We create a society that respects each other.",sit:"공동체 의식 / Community awareness"},
+  {q:"",a:"평등한 대우가 중요해요.",eng:"Equal treatment is important.",sit:"차별 반대 / Against discrimination"},
+  {q:"",a:"한국의 전통 문화는 아름다워요.",eng:"Korean traditional culture is beautiful.",sit:"문화 이해 / Understanding culture"},
+  {q:"",a:"공동체 봉사에 참여해요.",eng:"I participate in community service.",sit:"사회 참여 / Social participation"},
+  {q:"",a:"서로 다른 세대가 소통해야 해요.",eng:"Different generations must communicate.",sit:"세대 간 대화 / Intergenerational dialogue"},
+  {q:"",a:"다문화 가정을 존중해요.",eng:"We respect multicultural families.",sit:"다문화 사회 / Multicultural society"},
+  {q:"",a:"한국 사회는 계속 변화하고 있어요.",eng:"Korean society is constantly changing.",sit:"사회 변화 인식 / Awareness of social change"},
+  {q:"",a:"시민의 목소리가 중요해요.",eng:"The voice of citizens is important.",sit:"시민 참여 / Civic participation"},
+  {q:"",a:"모두가 평등한 권리를 가져야 해요.",eng:"Everyone should have equal rights.",sit:"인권 옹호 / Advocating for human rights"},
+  {q:"",a:"한국은 민주주의 국가예요.",eng:"Korea is a democratic country.",sit:"정치 체제 설명 / Explaining political system"},
+  {q:"",a:"사회 복지 정책이 중요해요.",eng:"Social welfare policies are important.",sit:"사회 정책 논의 / Discussing social policy"},
+  {q:"",a:"한국 문화를 이해하는 것이 좋아요.",eng:"It's good to understand Korean culture.",sit:"문화 학습 / Learning about culture"},
+  {q:"",a:"우리 사회는 계속 발전해요.",eng:"Our society continues to develop.",sit:"사회 발전 이야기 / Talking about social progress"},
+];
+
+const VOCAB_ADVANCED = [
+  {q:"",a:"사회",eng:"society"},
+  {q:"",a:"문화",eng:"culture"},
+  {q:"",a:"전통",eng:"tradition"},
+  {q:"",a:"다문화",eng:"multicultural"},
+  {q:"",a:"이민",eng:"immigration"},
+  {q:"",a:"외국인",eng:"foreigner"},
+  {q:"",a:"인권",eng:"human rights"},
+  {q:"",a:"평등",eng:"equality"},
+  {q:"",a:"차별",eng:"discrimination"},
+  {q:"",a:"존중",eng:"respect"},
+  {q:"",a:"공동체",eng:"community"},
+  {q:"",a:"봉사",eng:"volunteer"},
+  {q:"",a:"시민",eng:"citizen"},
+  {q:"",a:"투표",eng:"vote"},
+  {q:"",a:"민주주의",eng:"democracy"},
+  {q:"",a:"복지",eng:"welfare"},
+  {q:"",a:"세대",eng:"generation"},
+  {q:"",a:"소통",eng:"communication"},
+  {q:"",a:"정책",eng:"policy"},
+  {q:"",a:"변화",eng:"change"},
+  {q:"",a:"발전",eng:"development"},
+  {q:"",a:"권리",eng:"rights"},
+  {q:"",a:"의무",eng:"duty"},
+  {q:"",a:"참여",eng:"participation"},
+  {q:"",a:"이해",eng:"understanding"},
+  {q:"",a:"관계",eng:"relationship"},
+  {q:"",a:"가치",eng:"value"},
+  {q:"",a:"믿음",eng:"trust"},
+  {q:"",a:"배려",eng:"consideration"},
+  {q:"",a:"나눔",eng:"sharing"},
+];
+
+const VOCAB_SHIPYARD_NOUNS = [
+  {q:"",a:"이민자",eng:"immigrant"},
+  {q:"",a:"시민",eng:"citizen"},
+  {q:"",a:"공동체",eng:"community"},
+  {q:"",a:"사회",eng:"society"},
+  {q:"",a:"국가",eng:"nation/country"},
+  {q:"",a:"정부",eng:"government"},
+  {q:"",a:"법",eng:"law"},
+  {q:"",a:"정책",eng:"policy"},
+  {q:"",a:"교육",eng:"education"},
+  {q:"",a:"일자리",eng:"job"},
+  {q:"",a:"주택",eng:"housing"},
+  {q:"",a:"의료",eng:"healthcare"},
+  {q:"",a:"복지",eng:"welfare"},
+  {q:"",a:"봉사",eng:"service/volunteer"},
+  {q:"",a:"행사",eng:"event"},
+  {q:"",a:"투표",eng:"voting"},
+  {q:"",a:"선거",eng:"election"},
+  {q:"",a:"조직",eng:"organization"},
+  {q:"",a:"그룹",eng:"group"},
+  {q:"",a:"운동",eng:"movement"},
+  {q:"",a:"변화",eng:"change"},
+  {q:"",a:"발전",eng:"development"},
+  {q:"",a:"문제",eng:"problem"},
+  {q:"",a:"해결",eng:"solution"},
+  {q:"",a:"권리",eng:"rights"},
+  {q:"",a:"의무",eng:"duty"},
+  {q:"",a:"책임",eng:"responsibility"},
+  {q:"",a:"신뢰",eng:"trust"},
+  {q:"",a:"화합",eng:"harmony"},
+  {q:"",a:"연대",eng:"solidarity"},
+];
+
+const GRAMMAR = [
+  {title:"~(으)ㄴ/는 이상",eng:"~ as long as / since",
+   desc:"어떤 상태나 사실이 계속되는 한 같은 결과가 이어진다는 의미입니다.",descEng:"Expresses that a result continues as long as a certain state or fact continues.",
+   rule:"동사/형용사 + (으)ㄴ/는 이상",ruleEng:"Verb/Adjective + (으)ㄴ/는 이상",
+   examples:[
+    {q:"한국 사회인 이상",a:"계속 변화해야 해요.",eng:"As long as it is Korean society, it must continue to change.",note:"이상=한 뒤 결과"},
+    {q:"다문화 사회인 이상",a:"존중이 필요해요.",eng:"As long as it is a multicultural society, respect is needed.",note:"이상에서 필요성 표현"},
+    {q:"이민자인 이상",a:"한국 법을 지켜야 해요.",eng:"As long as one is an immigrant, one must follow Korean law.",note:"의무 표현"},
+    {q:"시민인 이상",a:"투표할 권리가 있어요.",eng:"As long as one is a citizen, one has the right to vote.",note:"권리 표현"},
+    {q:"공동체의 일원인 이상",a:"서로 도와야 해요.",eng:"As long as one is a member of a community, one must help each other.",note:"책임 표현"},
+   ]},
+  {title:"~는 한편",eng:"~ while / on the other hand",
+   desc:"두 가지 일이 동시에 일어나거나, 대비되는 상황을 표현합니다.",descEng:"Expresses two things happening simultaneously or contrasting situations.",
+   rule:"동사 + 는 한편",ruleEng:"Verb + 는 한편",
+   examples:[
+    {q:"한국의 전통을 지키는 한편",a:"새로운 문화도 받아들입니다.",eng:"While preserving Korean tradition, we also embrace new culture.",note:"동시의 대비"},
+    {q:"외국인을 환영하는 한편",a:"한국 법을 지키기를 원해요.",eng:"While welcoming foreigners, we expect them to follow Korean law.",note:"동시 진행"},
+    {q:"경제가 발전하는 한편",a:"사회 문제도 생기기도 해요.",eng:"While the economy develops, social problems can also arise.",note:"동시의 대조"},
+    {q:"젊은 세대가 변화를 원하는 한편",a:"나이 든 세대는 전통을 지키고 싶어요.",eng:"While the young generation wants change, older generation wants to preserve tradition.",note:"세대 간 대비"},
+    {q:"교육이 발전하는 한편",a:"문화 차별도 없어져야 해요.",eng:"While education develops, cultural discrimination should disappear.",note:"동시의 필요성"},
+   ]},
+  {title:"~기에",eng:"~ because / since (formal)",
+   desc:"이유나 원인을 나타내는 높은 수준의 표현입니다.",descEng:"Expresses reason or cause at a more formal level.",
+   rule:"동사/형용사 + 기에",ruleEng:"Verb/Adjective + 기에",
+   examples:[
+    {q:"한국이 민주주의 국가이기에",a:"투표가 중요해요.",eng:"Because Korea is a democratic country, voting is important.",note:"이유 설명"},
+    {q:"다문화 사회이기에",a:"서로 존중해야 해요.",eng:"Because we are a multicultural society, we must respect each other.",note:"필요성 표현"},
+    {q:"평등을 중요하게 생각하기에",a:"차별을 반대합니다.",eng:"Because we value equality, we oppose discrimination.",note:"가치 표현"},
+    {q:"이민자들의 인권이 중요하기에",a:"보호 정책이 필요합니다.",eng:"Because the human rights of immigrants are important, protective policies are needed.",note:"정책 근거"},
+    {q:"사회가 계속 변화하기에",a:"소통이 필요해요.",eng:"Because society is constantly changing, communication is necessary.",note:"현실적 필요성"},
+   ]},
+];
+
+const DIALOGUES = [
+  {title:"다문화 행사 참가",eng:"Participating in a Multicultural Event",lines:[
+    {sp:"민준",role:"한국인",text:"안녕하세요. 오늘 다문화 행사에 참가하셨어요?",eng:"Hello. Did you participate in today's multicultural event?",side:"R"},
+    {sp:"라민",role:"이민자",text:"네, 처음 왔어요. 정말 좋아요!",eng:"Yes, it's my first time. It's really great!",side:"L"},
+    {sp:"민준",text:"저희 한국 문화도 보셨어요? 전통 음식도 있어요.",eng:"Did you see our Korean culture? There's also traditional food.",side:"R"},
+    {sp:"라민",text:"네! 한국 음식이 정말 맛있어요. 한국 사람들이 정말 친절해요.",eng:"Yes! Korean food is delicious. Korean people are very kind.",side:"L"},
+    {sp:"민준",text:"우리는 서로 다른 문화를 존중하는 것이 중요하다고 생각해요.",eng:"We think it's important to respect different cultures.",side:"R"},
+    {sp:"라민",text:"정말 맞아요. 이렇게 함께하는 것이 좋아요!",eng:"Absolutely! It's wonderful to do things like this together!",side:"L"},
+  ]},
+  {title:"한국 생활 이야기",eng:"Talking about Life in Korea",lines:[
+    {sp:"영은",role:"직장 동료",text:"한국 생활은 어떤가요?",eng:"How is your life in Korea?",side:"L"},
+    {sp:"후엔",role:"이민 근로자",text:"처음에는 힘들었어요. 하지만 사람들이 도와줬어요.",eng:"It was difficult at first. But people helped me.",side:"R"},
+    {sp:"영은",text:"한국 사회에서 새로운 친구도 많이 사귀셨어요?",eng:"Have you made many new friends in Korean society?",side:"L"},
+    {sp:"후엔",text:"네. 직장에서도, 공동체 봉사에서도 친구를 만났어요.",eng:"Yes. I met friends at work and in community service.",side:"R"},
+    {sp:"영은",text:"좋아요! 한국 법과 문화를 존중하면서 함께 살아가는 것이 중요해요.",eng:"Great! It's important to respect Korean law and culture while living together.",side:"L"},
+    {sp:"후엔",text:"동의합니다. 시간이 지나면서 더 잘 이해하고 있어요.",eng:"I agree. As time passes, I understand better.",side:"R"},
+  ]},
+];
+
+const QUIZ = [
+  {q:"한국 사회에서 가장 중요한 가치는?",o:["개인주의","존중과 평등","경제 이윤","전쟁"],a:1},
+  {q:"'다문화'의 뜻은?",o:["한 가지 문화","여러 가지 문화","옛날 문화","외국 문화만"],a:1},
+  {q:"투표의 권리는 누가 가져요?",o:["정부만","부자만","모든 시민","나이 든 사람만"],a:2},
+  {q:"이민자들을 대할 때 가장 중요한 것은?",o:["차별","존중","무시","의심"],a:1},
+  {q:"한국은 어떤 정치 체제인가요?",o:["독재","군부","민주주의","왕정"],a:2},
+  {q:"공동체 봉사의 목적은?",o:["돈 벌기","권력 얻기","사회에 기여","자랑하기"],a:2},
+  {q:"문화 차별은 어떻게 해야 해요?",o:["계속 있어야 함","없어져야 함","몰라도 됨","증가해야 함"],a:1},
+  {q:"세대 간 소통이 왜 중요해요?",o:["재미있어서","서로 이해하기 위해","의무이니까","경제 때문"],a:1},
+  {q:"한국 사회가 '이상'인 한 뭐 해야 해요?",o:["안 한다","변화해야 한다","정지한다","퇴보한다"],a:1},
+  {q:"이민 정책에서 강조하는 것은?",o:["배제","차별","존중과 평등","무시"],a:2},
+  {q:"~는 한편의 의미는?",o:["그러면","동시에","그래서","그런데"],a:1},
+  {q:"~(으)ㄴ 이상의 의미는?",o:["이후","이전","~하는 동안","~하는 한"],a:3},
+  {q:"한국이 민주주의 국가라는 것은?",o:["왕이 통치","정부가 독재","국민이 주인","군부 집권"],a:2},
+  {q:"평등이란 무엇인가요?",o:["차별","같은 대우","우월성","불평등"],a:1},
+  {q:"사회 문제를 해결하려면?",o:["개인만 해결","함께 해결","무시","전문가만"],a:1},
+  {q:"한국에서 외국인에게 가장 필요한 것은?",o:["거리두기","존중과 이해","경계","차별"],a:1},
+  {q:"문화 이해의 첫 단계는?",o:["거부","존중","무시","비판"],a:1},
+  {q:"이 과의 주제는?",o:["회사 일","한국 사회 이해","여행","음식"],a:1},
+];
+
+const CULTURE = [
+  {icon:"🌍",t:"다문화 사회 한국",eng:"Multicultural Korea",d:"한국은 점점 더 다문화 사회가 되고 있어요. 이제 한국에는 여러 나라에서 온 사람들이 살고 있습니다. 한국 정부는 이민자들의 인권을 보호하고, 한국 법을 지키도록 합니다.",de:"Korea is becoming increasingly multicultural. Now many people from different countries live in Korea. The Korean government protects the rights of immigrants and ensures they follow Korean law."},
+  {icon:"🏛️",t:"한국의 민주주의",eng:"Korean Democracy",d:"한국은 민주주의 국가예요. 모든 시민은 투표할 권리가 있습니다. 투표를 통해 나라의 지도자를 선택합니다. 한국 헌법은 모든 사람의 기본 인권을 보호합니다.",de:"Korea is a democratic country. All citizens have the right to vote. Through voting, citizens choose the nation's leaders. The Korean Constitution protects everyone's basic human rights."},
+  {icon:"👥",t:"공동체 문화",eng:"Community Culture",d:"한국 사회는 공동체를 중요하게 생각해요. 이웃과 함께 살아가고, 서로 도와줘요. 많은 사람들이 자발적으로 봉사 활동을 합니다. 공동체 의식이 한국 문화의 중요한 부분입니다.",de:"Korean society values community. People live together with neighbors and help each other. Many people voluntarily participate in volunteer service. Community consciousness is an important part of Korean culture."},
+  {icon:"📚",t:"세대 간 존중",eng:"Intergenerational Respect",d:"한국에서는 나이를 존중하는 문화가 있어요. 더 나이 많은 사람을 존경합니다. 동시에 젊은 세대의 의견도 중요해요. 세대 간 소통과 이해가 중요합니다.",de:"Korean culture respects age. Older people are respected. At the same time, the opinions of young people are also important. Intergenerational communication and understanding are crucial."},
+  {icon:"✊",t:"평등과 인권",eng:"Equality and Human Rights",d:"한국 사회는 평등을 추구합니다. 모든 사람은 기본 인권을 가져요. 차별은 있으면 안 됩니다. 외국인, 여성, 장애인 등 모든 사람의 권리를 존중합니다.",de:"Korean society pursues equality. Everyone has basic human rights. Discrimination should not exist. We respect the rights of foreigners, women, people with disabilities, and all others."},
+  {icon:"🤝",t:"사회 통합",eng:"Social Integration",d:"한국은 이민자들의 사회 통합을 장려합니다. 교육, 일자리, 주택 등 여러 지원을 해요. 문화 교실, 한국어 교육, 공동체 행사 등이 있습니다. 모두가 함께 사는 사회를 만드는 것이 목표입니다.",de:"Korea encourages the social integration of immigrants. Support is provided in education, employment, housing, and more. There are cultural classes, Korean language education, and community events. The goal is to create a society where everyone lives together."},
+];
+
+const LOCAL_INFO = {
+  title: "한국의 다문화 사회",
+  eng: "Korea's Multicultural Society",
+  facts: [
+    {label:"외국인 인구",val:"약 200만 명 (한국 전체의 4%)"},
+    {label:"주요 이민 국가",val:"중국, 필리핀, 베트남, 태국, 인도네시아"},
+    {label:"이민자 정책",val:"KIIP 한국어와 한국문화 프로그램 운영"},
+    {label:"다문화 가정",val:"약 100만 가구, 증가 추세"},
+    {label:"한국어 교육",val:"전국 170개 이상 센터에서 운영"},
+    {label:"사회 통합",val:"교육, 일자리, 보건, 복지 지원"},
+    {label:"문화 행사",val:"다문화 축제, 통합 행사 정기 개최"},
+    {label:"법적 지원",val:"차별 금지법, 인권 보호 규정"},
+  ],
+  desc: "한국은 다문화 사회로 빠르게 변화하고 있어요! 약 200만 명의 외국인이 한국에서 살고 있어요. 한국 정부는 이민자들의 사회 통합을 지원해요. KIIP 프로그램처럼 한국어 교육을 제공합니다. 다양한 문화를 존중하는 것이 한국 사회의 과제예요!",
+  descEng: "Korea is rapidly transforming into a multicultural society! About 2 million foreigners live in Korea. The Korean government supports the social integration of immigrants. It provides Korean language education like the KIIP program. Respecting diverse cultures is a challenge for Korean society!"
+};
+
+// TOPIK I 준비 데이터 (2급 18과: 한국 사회)
+const HANGUL_SUBTITLE = "TOPIK I 사회·문화 종합 · Comprehensive Society & Culture";
+
+// ===== KOREAN LITERATURE DATA (고은 · 그 꽃) =====
+const KOREAN_LITERATURE = {
+  title: "그 꽃",
+  eng: "That Flower",
+  desc: "고은 시인의 작품. 인간관계와 만남의 소중함을 표현한 명상적 현대시입니다.",
+  descEng: "A work by poet Ko Un. A meditative modern poem expressing the preciousness of human relationships and encounters.",
+  sentences: [
+    {q:"",a:"내려갈 때 보았네",eng:"I saw it when I was going down"},
+    {q:"",a:"올라갈 때 보지 못한",eng:"What I couldn't see when going up"},
+    {q:"",a:"그 꽃",eng:"That flower"},
+    {q:"",a:"사람은 만남이다",eng:"A person is an encounter"},
+    {q:"",a:"스치는 바람에도",eng:"Even in a passing wind"},
+    {q:"",a:"우리는 서로",eng:"We are to each other"},
+    {q:"",a:"얼마나 큰 인연인가",eng:"What a great destiny"},
+    {q:"",a:"세상에서 가장 무거운 것",eng:"The heaviest thing in the world"},
+    {q:"",a:"사람의 마음",eng:"Is a person's heart"},
+    {q:"",a:"그래서 아름답다",eng:"That's why it's beautiful"},
+  ]
+};
+
+const LITERATURE_QUIZ = [
+  {q:"꽃을 언제 봤어요?",o:["올라갈 때","내려갈 때","밤에","아침에"],a:1},
+  {q:"이 시를 쓴 시인의 이름은?",o:["나태주","고은","박준","김춘수"],a:1},
+  {q:"'사람은 ___이다'에서 빈칸은?",o:["꽃","만남","바람","마음"],a:1},
+  {q:"세상에서 가장 무거운 것은?",o:["돌","꽃","사람의 마음","바람"],a:2},
+  {q:"이 시의 주제는?",o:["꽃의 아름다움","사람과 만남의 소중함","바람의 의미","계절 변화"],a:1},
+  {q:"이 시에서 '인연'의 의미는?",o:["우연","관계","빚","선물"],a:1},
+];
+
+const REVIEW_DATA = {
+  preview: {
+    title: "예습 · Preview",
+    desc: "다음에 배울 내용을 미리 살펴보세요.",
+    descEng: "Preview what you will learn next.",
+    items: [
+      {label:"19과 주제",val:"발표를 해요 · Giving a Presentation",detail:"발표와 토론 표현을 배웁니다."},
+      {label:"핵심 어휘",val:"발표, 준비, 자료, 청중, 질문, 답변, 의견",detail:"presentation, preparation, material, audience, question, answer, opinion"},
+      {label:"핵심 문법",val:"~으면서, ~기도 하고, ~(으)ㄹ 뿐만 아니라",detail:"concurrent actions, multiple actions, addition"},
+      {label:"주제 심화",val:"public speaking, communication skills",detail:"업무 발표 능력"},
+    ]
+  },
+  review: {
+    title: "복습 · Review",
+    desc: "18과에서 배운 내용을 확인하세요.",
+    descEng: "Check what you learned in Lesson 18.",
+    sections: [
+      {title:"핵심 문법 공식",icon:"📐",items:["~(으)ㄴ/는 이상 (as long as / since)","~는 한편 (while / on the other hand)","~기에 (because / since - formal)","상태/이유 표현의 다양성"]},
+      {title:"사회 이해 핵심",icon:"🌍",items:["다문화 사회 한국","민주주의와 투표","인권과 평등","차별 반대","공동체 의식","세대 간 소통"]},
+      {title:"한국 사회 가치",icon:"✊",items:["존중 (respect)","평등 (equality)","배려 (consideration)","나눔 (sharing)","화합 (harmony)","신뢰 (trust)"]},
+      {title:"사회 참여 방법",icon:"🤝",items:["투표하기 (voting)","봉사활동 (volunteer service)","공동체 활동 (community activities)","문화 교류 (cultural exchange)","의견 표현 (expressing opinion)"]},
+    ]
+  },
+  dictation: ["한국 사회는 다문화 사회예요.","사람은 만남이에요.","평등이 중요해요.","모두가 존중받아야 해요.","투표는 시민의 권리예요.","봉사는 사회 참여예요.","세대 간 소통이 필요해요.","차별은 없어져야 해요.","한국은 민주주의 국가예요.","공동체 의식이 중요해요."],
+};
+
+const TOPIK_PRACTICE = {
+  title: "TOPIK I 사회·문화 종합",
+  eng: "TOPIK I Comprehensive Society & Culture",
+  desc: "사회와 문화 관련 TOPIK I 유형을 종합 연습합니다.",
+  descEng: "Comprehensive practice of TOPIK I types related to society and culture.",
+  info: [
+    {label:"시험 구성",val:"듣기 30문항 + 읽기 40문항",eng:"Listening 30Q + Reading 40Q"},
+    {label:"시험 시간",val:"듣기 40분 + 읽기 60분",eng:"Listening 40min + Reading 60min"},
+    {label:"등급 기준",val:"1급: 80점+, 2급: 140점+",eng:"Level 1: 80+, Level 2: 140+"},
+    {label:"총점",val:"200점 만점",eng:"200 points total"},
+  ],
+  reading: [
+    {q:"다음을 읽고 맞는 것을 고르세요.\n\n한국은 사계절이 뚜렷합니다. 봄에는 꽃이 피고 여름에는 덥습니다. 가을에는 단풍이 아름답고 겨울에는 눈이 옵니다. 한국 사람들은 계절마다 다른 음식을 즐깁니다.",o:["한국은 계절이 없다","여름에 눈이 온다","가을에 단풍이 아름답다","겨울에 꽃이 핀다"],a:2,ae:"Autumn leaves are beautiful in fall."},
+    {q:"다음을 읽고 맞는 것을 고르세요.\n\n[다문화 축제 안내]\n- 일시: 10월 15일 (토) 오전 10시~오후 5시\n- 장소: 거제시 시민회관\n- 내용: 각국 음식, 전통 공연, 문화 체험\n- 입장료: 무료",o:["축제는 일요일에 한다","입장료가 있다","거제시에서 한다","오후에만 한다"],a:2,ae:"The festival is held in Geoje City."},
+    {q:"다음을 읽고 맞는 것을 고르세요.\n\n한국에서는 나이가 많은 사람을 존경합니다. 어른에게 높임말을 사용합니다. 인사할 때 고개를 숙입니다. 이것은 한국의 중요한 문화입니다.",o:["나이가 많은 사람에게 반말을 쓴다","고개를 숙이지 않아도 된다","어른에게 높임말을 사용한다","나이는 중요하지 않다"],a:2,ae:"Honorific language is used with elders."},
+    {q:"다음을 읽고 빈칸에 알맞은 것을 고르세요.\n\n한국에서 집에 들어갈 때는 ( )을/를 벗어야 합니다.",o:["모자","신발","안경","시계"],a:1,ae:"You must take off shoes when entering a house in Korea."},
+    {q:"다음을 읽고 맞는 것을 고르세요.\n\n한국의 명절 중에서 추석이 가장 큽니다. 추석에는 가족이 모여서 송편을 만들고 차례를 지냅니다. 고향에 가는 사람이 많아서 길이 매우 복잡합니다.",o:["추석에 떡국을 먹는다","추석에 가족이 모인다","추석은 작은 명절이다","고향에 가는 사람이 적다"],a:1,ae:"Families gather together during Chuseok."},
+  ],
+  listening: [
+    {q:"다음을 듣고 알맞은 대답을 고르세요.\n\n'한국에 온 지 얼마나 됐어요?'",o:["네, 좋아해요.","2년 됐어요.","아니요, 안 갔어요.","네, 맛있어요."],a:1,ae:"'It has been 2 years.' correctly answers how long you've been in Korea."},
+    {q:"다음을 듣고 맞는 것을 고르세요.\n\n'한국 생활이 어때요?'\n'처음에는 힘들었어요. 말이 안 통해서요.'\n'지금은요?'\n'지금은 한국어도 좀 하고 친구도 많아져서 좋아요.'",o:["처음부터 한국 생활이 좋았다","지금도 힘들다","지금은 한국어를 좀 할 수 있다","친구가 없다"],a:2,ae:"Now the person can speak some Korean."},
+    {q:"다음을 듣고 알맞은 대답을 고르세요.\n\n'한국에서 제일 놀란 것이 뭐예요?'",o:["네, 먹었어요.","배달 문화가 정말 빨라서 놀랐어요.","아니요, 안 바빠요.","네, 3시에 가요."],a:1,ae:"'I was surprised by how fast the delivery culture is.' correctly answers."},
+    {q:"다음을 듣고 맞는 것을 고르세요.\n\n'이번 주말에 뭐 해요?'\n'다문화 축제에 가요. 우리나라 음식을 소개해요.'\n'와, 좋겠다! 어디에서 해요?'\n'시민회관에서 해요. 같이 가요!'",o:["축제에서 한국 음식을 소개한다","시민회관에서 축제를 한다","주말에 회사에 간다","축제에 안 간다"],a:1,ae:"The festival is at the civic hall."},
+    {q:"다음을 듣고 알맞은 대답을 고르세요.\n\n'한국 문화에서 제일 좋아하는 것은 뭐예요?'",o:["네, 한국 사람이에요.","한국의 음식 문화가 제일 좋아요.","아니요, 안 비싸요.","내일 가요."],a:1,ae:"'I like Korean food culture the most.' correctly answers about favorite Korean culture."},
+  ],
+};
+
+const READING_PASSAGES = [
+  {title:"한국의 다문화 정책",eng:"Korea's Multicultural Policy",
+   text:"한국 정부는 이민자의 사회 통합을 지원합니다.\nKIIP 프로그램으로 한국어를 교육합니다.\n교육, 일자리, 주택 등 여러 지원을 해요.\n이민자도 한국 법을 지켜야 합니다.\n모두가 함께 사는 사회를 만드는 것이 목표입니다.",
+   textEng:"The Korean government supports the social integration of immigrants.\nIt provides Korean language education through the KIIP program.\nSupport is provided in education, employment, housing, and more.\nImmigrants must also follow Korean law.\nThe goal is to create a society where everyone lives together.",
+   questions:[
+     {q:"KIIP 프로그램은 뭐예요?",a:"한국어 교육",ae:"Korean language education"},
+     {q:"정부는 뭘 지원해요?",a:"교육, 일자리, 주택",ae:"education, employment, housing"},
+     {q:"한국 사회의 목표는?",a:"모두가 함께 사는 사회",ae:"A society where everyone lives together"},
+   ]},
+  {title:"평등의 가치",eng:"The Value of Equality",
+   text:"평등은 한국 사회의 기본 가치예요.\n모든 사람은 같은 권리를 가져야 해요.\n외국인도 한국인도 차별받으면 안 돼요.\n여성, 남성, 장애인 모두 존중받아야 합니다.\n평등한 사회가 민주주의 사회예요.",
+   textEng:"Equality is a fundamental value of Korean society.\nEveryone should have equal rights.\nBoth foreigners and Koreans should not be discriminated against.\nWomen, men, and people with disabilities should all be respected.\nAn equal society is a democratic society.",
+   questions:[
+     {q:"평등의 의미는?",a:"같은 권리와 대우",ae:"Equal rights and treatment"},
+     {q:"누가 차별받으면 안 돼요?",a:"모든 사람",ae:"Everyone"},
+     {q:"평등한 사회는 어떤 사회예요?",a:"민주주의 사회",ae:"Democratic society"},
+   ]},
+];
+
+// ===== APP STATE =====
+let state = {
+  page: 'home',
+  menuOpen: false,
+  level: 2,
+  vocabTab: 0,
+  vocabReveal: {},
+  gramIdx: 0,
+  dlgIdx: 0, dlgLine: -1, dlgShowEng: false,
+  fcIdx: 0, fcFlipped: false, fcKnown: 0,
+  qIdx: 0, qSel: null, qScore: 0, qDone: false,
+  rdIdx: 0, rdShowEng: false, rdAnswers: {},
+  wrName: '', wrCountry: '', wrJob: '', wrExtra: '',
+  hgTab: 0, hgSelected: null,
+  rvTab: 0, rvDictIdx: 0, rvDictInput: '', rvDictResults: {},
+  ftSentIdx: 0, ftShowEng: false, ftAutoPlay: false,
+  fqIdx: 0, fqSel: null, fqScore: 0, fqDone: false,
+};
+
+function setState(updates) {
+  Object.assign(state, updates);
+  render();
+}
+
+// ===== RENDER ENGINE =====
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = renderNav() + renderPage() + renderBottomNav();
+  document.querySelectorAll('[data-click]').forEach(el => {
+    el.onclick = (e) => {
+      const fn = el.dataset.click;
+      if (fn) eval(fn);
+    };
+  });
+}
+
+function renderNav() {
+  const items = [
+    {id:'home',l:'홈',i:'🏠'},{id:'curriculum',l:'커리큘럼',i:'📋'},
+    {id:'hangul',l:'TOPIK 준비',i:'📊'},{id:'vocab',l:'어휘',i:'📖'},
+    {id:'grammar',l:'문법',i:'✏️'},{id:'dialogue',l:'대화',i:'💬'},
+    {id:'reading',l:'읽기',i:'📕'},{id:'writing',l:'쓰기',i:'✍️'},
+    {id:'review',l:'익힘(복습/예습)',i:'📝'},{id:'flashcard',l:'플래시카드',i:'🃏'},{id:'quiz',l:'퀴즈',i:'🎯'},
+    {id:'folktale',l:'한국 문학',i:'📚'},{id:'ftquiz',l:'문학 퀴즈',i:'🧩'},
+    {id:'culture',l:'문화',i:'🏛️'},{id:'geoje',l:'성장 원동력',i:'🚀'},
+  ];
+  let menu = '';
+  if (state.menuOpen) {
+    menu = '<div class="menu">' + items.map(it =>
+      `<button class="${state.page===it.id?'active':''}" onclick="setState({page:'${it.id}',menuOpen:false})">${it.i} ${it.l}</button>`
+    ).join('') + '</div>';
+  }
+  return `<div class="nav">
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="font-size:18px">⚓</span>
+      <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">Hanwha Ocean Korean Education</div></div>
+    </div>
+    <button class="nav-btn" onclick="setState({menuOpen:!state.menuOpen})">${state.menuOpen?'✕':'☰'}</button>
+  </div>${menu}`;
+}
+
+function renderBottomNav() {
+  const items = [
+    {id:'home',i:'🏠',l:'홈'},{id:'vocab',i:'📖',l:'어휘'},
+    {id:'review',i:'📝',l:'익힘'},{id:'folktale',i:'📚',l:'문학'},
+    {id:'quiz',i:'🎯',l:'퀴즈'},{id:'culture',i:'🏛️',l:'문화'},
+  ];
+  return `<div class="bottom-nav">${items.map(it =>
+    `<button class="${state.page===it.id?'active':''}" onclick="setState({page:'${it.id}',menuOpen:false})">
+      <span class="icon">${it.i}</span><span>${it.l}</span></button>`
+  ).join('')}</div>`;
+}
+
+function renderPage() {
+  const pages = {
+    home: renderHome, curriculum: renderCurriculum, hangul: renderHangul,
+    vocab: renderVocab, grammar: renderGrammar, dialogue: renderDialogue,
+    reading: renderReading, writing: renderWriting, review: renderReview,
+    flashcard: renderFlashcard, quiz: renderQuiz, topik: renderTopikPractice,
+    folktale: renderKoreanLiterature, ftquiz: renderLiteratureQuiz,
+    culture: renderCulture, geoje: renderGeoje,
+  };
+  return `<div class="page">${(pages[state.page]||renderHome)()}</div>`;
+}
+
+// ===== PAGES =====
+function renderHome() {
+  return `
+  <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);border-radius:16px;padding:20px;margin-bottom:16px;color:#fff">
+    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 2-18과 · Beginner Level 2 Lesson 18</div>
+    <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
+      <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ 0급 한글 입문 완료</span>
+      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 2급 초급 2 진행 중</span>
+    </div>
+    <div style="font-size:26px;font-weight:800;margin-bottom:2px">한국 사회를 이해해요</div>
+    <div style="font-size:13px;color:#aabbdd">Understanding Korean Society — 다문화 사회 심화 · Advanced Multicultural Society</div>
+    <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+      ${['~(으)ㄴ/는 이상','~는 한편','~기에','사회 이슈'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+    ${[
+      {id:'hangul',i:'📊',l:'TOPIK 준비',c:'#22c55e'},
+      {id:'vocab',i:'📖',l:'어휘',c:'#3b82f6'},
+      {id:'grammar',i:'✏️',l:'문법',c:'#8b5cf6'},
+      {id:'dialogue',i:'💬',l:'대화',c:'#22c55e'},
+      {id:'reading',i:'📕',l:'읽기',c:'#ec4899'},
+      {id:'writing',i:'✍️',l:'쓰기',c:'#f59e0b'},
+      {id:'review',i:'📝',l:'익힘',c:'#14b8a6'},
+      {id:'flashcard',i:'🃏',l:'플래시카드',c:'#f59e0b'},
+      {id:'quiz',i:'🎯',l:'퀴즈',c:'#ef4444'},
+      {id:'topik',i:'📊',l:'TOPIK',c:'#06b6d4'},
+      {id:'folktale',i:'📜',l:'현대시',c:'#a855f7'},
+      {id:'ftquiz',i:'🧩',l:'시퀴즈',c:'#e11d48'},
+      {id:'culture',i:'🏛️',l:'문화',c:'#8b5cf6'},
+    ].map(it=>`<button onclick="setState({page:'${it.id}'})" style="background:#fff;border:2px solid ${it.c}20;border-radius:10px;padding:12px 6px;text-align:center">
+      <div style="font-size:26px;margin-bottom:4px">${it.i}</div>
+      <div style="font-weight:700;font-size:12px;color:#1E3A5F">${it.l}</div>
+    </button>`).join('')}
+  </div>
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🌍 한국의 다문화 사회 보기</button>
+  <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level2_Lesson17.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-17과 면접을준비해요</a><a href="HanwhaOcean_Level2_Lesson19.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-19과 발표를해요 →</a></div>
+  <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
+  <div style="display:flex;gap:8px">
+    <a href="HanwhaOcean_Level2_Lesson17.html" style="display:block;text-decoration:none;flex:1">
+      <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
+        <strong style="color:var(--navy)">2-17과 면접을 준비해요</strong>
+        <div style="font-size:11px;color:#888;margin-top:2px">Preparing for Interview</div>
+      </div>
+    </a><a href="HanwhaOcean_Level2_Lesson19.html" style="display:block;text-decoration:none;flex:1">
+      <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:11px;color:#888">다음 과 · Next →</div>
+        <strong style="color:var(--navy)">2-19과 발표를 해요</strong>
+        <div style="font-size:11px;color:#888;margin-top:2px">Giving Presentations</div>
+      </div>
+    </a>
+  </div>
+  `;
+}
+
+function renderCurriculum() {
+  const levels = [
+    {id:0,n:"0급 입문",e:"Pre-Beginner",c:"#22c55e",ls:10},
+    {id:1,n:"1급 초급1",e:"Beginner 1",c:"#3b82f6",ls:18},
+    {id:2,n:"2급 초급2",e:"Beginner 2",c:"#f59e0b",ls:18},
+    {id:3,n:"3급 중급1",e:"Intermediate 1",c:"#8b5cf6",ls:18},
+    {id:4,n:"4급 중급2",e:"Intermediate 2",c:"#ec4899",ls:18},
+    {id:5,n:"5급 고급",e:"Advanced",c:"#ef4444",ls:18},
+  ];
+  return `<h2>📋 전체 커리큘럼</h2><p class="sub">Full Curriculum · 0급~5급 (100과)</p>
+  ${levels.map(lv=>`<div class="card" style="border-left:4px solid ${lv.c}">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div><span class="badge" style="background:${lv.c}">${lv.id}급</span> <b style="color:#1E3A5F">${lv.n}</b></div>
+      <span style="color:#888;font-size:12px">${lv.ls}과</span>
+    </div>
+    <div style="color:#888;font-size:11px;margin:4px 0">${lv.e}</div></div>`).join('')}`;
+}
+
+function renderHangul() {
+  // Redirect to TOPIK practice page
+  return renderTopikPractice();
+}
+
+function renderVocab() {
+  const tabs = ['사회 어휘 Society','실용 문장 Sentences','심화 어휘 Advanced','사회 명사 Nouns'];
+  const t = state.vocabTab;
+  let content = '';
+  if (t===0) content = VOCAB_PHONE.map((v,i)=>`
+    <div class="card card-accent vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,[${i}]:!state.vocabReveal[${i}]}})">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><div class="kor">${v.kor} ${ttsBtn(v.kor)}</div><div class="pron">[${v.pron}]</div></div>
+      </div>
+      ${state.vocabReveal[i]?'<div style="margin-top:6px;padding:6px 10px;background:#f0f7ff;border-radius:6px;font-size:13px;color:var(--ocean);font-weight:600">'+v.eng+'</div>'
+      :'<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기 · Tap for English</div>'}
+    </div>`).join('');
+  else if (t===1) content = VOCAB_SHIPYARD.map((v,i)=>`
+    <div class="card card-orange vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,['s'+${i}]:!state.vocabReveal['s'+${i}]}})">
+      <div class="kor">${v.a} ${ttsBtn(v.a)}</div>
+      <div style="font-size:11px;color:#888">${v.sit}</div>
+      ${state.vocabReveal['s'+i]?'<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border-radius:6px;font-size:13px;color:var(--orange);font-weight:600">'+v.eng+'</div>'
+      :'<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기</div>'}
+    </div>`).join('');
+  else if (t===2) content = '<div class="grid2">'+VOCAB_ADVANCED.map(v=>'<div class="vocab-item" style="background:#f0fdf4;border-radius:8px;padding:8px 10px;border-left:4px solid #22c55e" onclick="TTS.speak(\''+v.a.replace(/'/g,"\\'")+'\')">'
+      +'<div class="kor" style="font-size:14px">'+v.a+' '+ttsBtn(v.a)+'</div><div class="eng">'+v.eng+'</div>'
+      +'</div>').join('')+'</div>';
+  else content = '<div class="grid2">'+VOCAB_SHIPYARD_NOUNS.map(v=>'<div class="vocab-item" style="background:#fff7ed;border-radius:8px;padding:8px 10px;border-left:4px solid #ED7D31" onclick="TTS.speak(\''+v.a.replace(/'/g,"\\'")+'\')">'
+      +'<div class="kor" style="font-size:14px">'+v.a+' '+ttsBtn(v.a)+'</div><div class="eng">'+v.eng+'</div>'
+      +'</div>').join('')+'</div>';
+
+  return '<h2><span class="section-icon">📖</span>어휘 · Vocabulary</h2><p class="sub">18과 · Lesson 18 · 한국 사회 ('+( VOCAB_PHONE.length+VOCAB_SHIPYARD.length+VOCAB_ADVANCED.length+VOCAB_SHIPYARD_NOUNS.length)+'단어)</p>'
+  +'<div class="tabs">'+tabs.map((tb,i)=>'<button class="tab '+(t===i?'active':'')+'" onclick="setState({vocabTab:'+i+',vocabReveal:{}})">'+tb+'</button>').join('')+'</div>'
+  +content;
+}
+
+function renderGrammar() {
+  const g = GRAMMAR[state.gramIdx];
+  return `<h2><span class="section-icon">✏️</span>문법 · Grammar</h2><p class="sub">18과 · Lesson 18</p>
+  <div style="display:flex;gap:8px;margin-bottom:12px">
+    ${GRAMMAR.map((gr,i)=>`<button class="tab ${i===state.gramIdx?'active':''}" onclick="setState({gramIdx:${i}})">${gr.title}</button>`).join('')}
+  </div>
+  <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean);padding:16px">
+    <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px">${g.title}</div>
+    <div style="font-size:12px;color:#888;margin-bottom:8px">${g.eng}</div>
+    <div style="font-size:13px;color:#333;margin-bottom:12px">${g.desc}</div>
+    <div style="font-size:12px;color:#666">${g.descEng}</div>
+  </div>
+  <div class="card card-accent" style="margin-top:12px">
+    <div style="font-weight:700;color:var(--navy);margin-bottom:8px">규칙 · Rule</div>
+    <div style="font-size:14px;color:var(--navy);margin-bottom:4px;font-family:monospace">${g.rule}</div>
+    <div style="font-size:12px;color:#888">${g.ruleEng}</div>
+  </div>
+  <div style="margin-top:12px">
+    ${g.examples.map((ex,i)=>`<div class="card card-green" style="background:#f0fdf4">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px">
+        <div>
+          <div style="font-weight:700;color:var(--navy)">${ex.q}</div>
+          <div style="color:#666;font-size:12px">${ex.note}</div>
+        </div>
+        ${ttsBtn(ex.q)}
+      </div>
+      <div style="background:rgba(34,197,94,.1);padding:8px;border-radius:6px;margin-bottom:6px">
+        <div style="font-weight:700;color:var(--green)">${ex.a}</div>
+        <div style="color:#666;font-size:12px">${ex.eng}</div>
+      </div>
+    </div>`).join('')}
+  </div>`;
+}
+
+function renderDialogue() {
+  const d = DIALOGUES[state.dlgIdx];
+  return `<h2><span class="section-icon">💬</span>대화 · Dialogue</h2><p class="sub">18과 · Lesson 18</p>
+  <div class="tabs">${DIALOGUES.map((dl,i)=>`<button class="tab ${i===state.dlgIdx?'active':''}" onclick="setState({dlgIdx:${i},dlgLine:-1})">${dl.title}</button>`).join('')}</div>
+  <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean);padding:0;overflow:hidden;margin-bottom:12px">
+    <div style="background:var(--ocean);color:#fff;padding:10px 14px;font-weight:700">${d.eng}</div>
+  </div>
+  ${d.lines.map((line,i)=>`
+    <div style="display:flex;margin-bottom:12px">
+      <div style="flex:1;display:flex;flex-direction:column;${line.side==='R'?'align-items:flex-end':''}">
+        <div style="font-weight:700;font-size:12px;color:var(--navy);margin-bottom:2px;${line.side==='R'?'text-align:right':''}">${line.sp} ${line.role?`(${line.role})`:''}</div>
+        <div class="bubble ${line.side==='L'?'bubble-left':'bubble-right'}" style="word-break:break-word;padding:12px 14px">
+          <div style="font-size:15px;color:var(--navy);font-weight:600;margin-bottom:4px">${line.text} ${ttsBtn(line.text)}</div>
+          ${state.dlgShowEng?`<div style="font-size:12px;color:#888">${line.eng}</div>`:''}
+        </div>
+      </div>
+    </div>
+  `).join('')}
+  <div style="display:flex;gap:8px">
+    <button class="tab ${!state.dlgShowEng?'active':''}" onclick="setState({dlgShowEng:false})" style="flex:1;padding:10px">숨기기</button>
+    <button class="tab ${state.dlgShowEng?'active':''}" onclick="setState({dlgShowEng:true})" style="flex:1;padding:10px">보기</button>
+  </div>`;
+}
+
+function renderReading() {
+  const r = READING_PASSAGES[state.rdIdx];
+  return `<h2><span class="section-icon">📕</span>읽기 · Reading</h2><p class="sub">18과 · Lesson 18</p>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">지문 ${state.rdIdx+1}/${READING_PASSAGES.length}</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.rdIdx+1)/READING_PASSAGES.length*100}%;background:var(--ocean)"></div></div>
+  <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean);margin:14px 0">
+    <div style="font-weight:700;color:var(--navy);margin-bottom:8px">${r.title}</div>
+    <div style="font-size:13px;color:#666;margin-bottom:12px">${r.eng}</div>
+  </div>
+  <div class="card card-accent" style="margin-bottom:12px;line-height:1.8">
+    <div style="font-size:15px;color:var(--navy);white-space:pre-line">${r.text}</div>
+    ${state.rdShowEng?`<div style="margin-top:12px;font-size:12px;color:#666;white-space:pre-line;border-top:1px solid #e5e7eb;padding-top:12px">${r.textEng}</div>`:''}
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:12px">
+    <button class="tab ${!state.rdShowEng?'active':''}" onclick="setState({rdShowEng:false})" style="flex:1">영어 숨기기</button>
+    <button class="tab ${state.rdShowEng?'active':''}" onclick="setState({rdShowEng:true})" style="flex:1">영어 보기</button>
+  </div>
+  ${r.questions.map((q,i)=>`<div class="card card-green" style="background:#f0fdf4">
+    <div style="font-weight:700;color:var(--navy);margin-bottom:6px;font-size:14px">${q.q}</div>
+    <div style="background:rgba(34,197,94,.1);padding:8px 10px;border-radius:6px;margin-bottom:4px">
+      <div style="font-weight:700;color:var(--green)">${q.a}</div>
+      <div style="font-size:11px;color:#666">${q.ae}</div>
+    </div>
+  </div>`).join('')}
+  <button class="btn btn-primary" style="margin-top:12px" onclick="setState({rdIdx:Math.min(${READING_PASSAGES.length-1},state.rdIdx+1)})">${state.rdIdx<READING_PASSAGES.length-1?'다음 지문 →':'완료! ✓'}</button>`;
+}
+
+function renderWriting() {
+  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">18과 · Lesson 18</p>
+  <div class="card card-accent" style="background:#f0f7ff;margin-bottom:14px">
+    <div style="font-weight:700;color:var(--navy);margin-bottom:6px">한국 사회에 대한 생각</div>
+    <div style="font-size:12px;color:#666">한국 사회에 대해 자유롭게 써 보세요. 다문화, 평등, 민주주의 등 배운 내용을 포함해 주세요.</div>
+  </div>
+  <textarea placeholder="한국 사회에 대해 써 보세요.&#10;Write about Korean society.&#10;&#10;예: 한국 사회는 다문화 사회예요. 평등을 중요하게 생각해요. 투표는...&#10;Example: Korean society is multicultural. It values equality. Voting is..."></textarea>
+  <div style="margin-top:20px;font-weight:700;color:var(--navy);margin-bottom:8px">✍️ 자유 쓰기 · Free Writing</div>
+  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 나는 한국 문화를 존중합니다."></textarea>`;
+}
+
+function renderFlashcard() {
+  const all = [...VOCAB_PHONE.map(v=>({f:v.kor,b:v.eng})),...VOCAB_ADVANCED.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
+  const card = all[state.fcIdx % all.length];
+  return `<h2>🃏 플래시카드 · Flashcards</h2>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">${(state.fcIdx%all.length)+1} / ${all.length}</span>
+    <span style="font-size:12px;color:var(--green);font-weight:600">✓ ${state.fcKnown}개 학습</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${((state.fcIdx%all.length)+1)/all.length*100}%;background:var(--orange)"></div></div>
+  <div onclick="setState({fcFlipped:!state.fcFlipped})"
+    style="background:${state.fcFlipped?'var(--navy)':'#fff'};border:2px solid var(--navy);border-radius:16px;padding:36px 20px;margin:18px 0;text-align:center;cursor:pointer;min-height:130px;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:all .3s">
+    <div style="font-size:10px;color:${state.fcFlipped?'#8899BB':'#aaa'};margin-bottom:8px">${state.fcFlipped?'ENGLISH':'한국어'}</div>
+    <div style="font-size:${state.fcFlipped?'20px':'30px'};font-weight:700;color:${state.fcFlipped?'#fff':'var(--navy)'}">${state.fcFlipped?card.b:card.f}</div>
+    ${!state.fcFlipped?'<div style="font-size:11px;color:#ccc;margin-top:10px">탭하여 뒤집기 · Tap to flip</div>':''}
+  </div>
+  <div style="display:flex;gap:8px">
+    <button onclick="TTS.speak('${card.f}')" style="padding:12px;border-radius:10px;background:#f0f7ff;color:var(--ocean);font-size:20px;flex-shrink:0">🔊</button>
+    <button onclick="setState({fcIdx:state.fcIdx+1,fcFlipped:false})" style="flex:1;padding:12px;border-radius:10px;background:#fee2e2;color:var(--red);font-size:14px;font-weight:700">✕ 모르겠어요</button>
+    <button onclick="setState({fcIdx:state.fcIdx+1,fcFlipped:false,fcKnown:state.fcKnown+1})" style="flex:1;padding:12px;border-radius:10px;background:#dcfce7;color:var(--green);font-size:14px;font-weight:700">✓ 알겠어요!</button>
+  </div>`;
+}
+
+function renderQuiz() {
+  if (state.qDone) {
+    const pct = Math.round(state.qScore/QUIZ.length*100);
+    return `<div style="text-align:center;padding:20px 0">
+      <div style="font-size:56px">${pct>=80?'🎉':pct>=50?'👍':'💪'}</div>
+      <h2>퀴즈 결과 · Quiz Result</h2>
+      <div style="font-size:44px;font-weight:800;color:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'};margin:14px 0">${state.qScore}/${QUIZ.length}</div>
+      <div style="font-size:15px;color:#888;margin-bottom:20px">${pct}% 정답 · Correct</div>
+      <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
+      <button onclick="setState({qIdx:0,qSel:null,qScore:0,qDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
+    </div>`;
+  }
+  const q = QUIZ[state.qIdx];
+  return `<h2>🎯 퀴즈 · Quiz</h2>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문제 ${state.qIdx+1}/${QUIZ.length}</span>
+    <span style="font-size:12px;color:var(--ocean);font-weight:600">점수: ${state.qScore}</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.qIdx+1)/QUIZ.length*100}%;background:var(--ocean)"></div></div>
+  <div class="card" style="background:#f0f7ff;text-align:center;margin:14px 0">
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${q.q}</div>
+  </div>
+  ${q.o.map((opt,i)=>{
+    let cls = 'quiz-opt';
+    if(state.qSel!==null){
+      if(i===q.a) cls+=' quiz-correct';
+      else if(i===state.qSel) cls+=' quiz-wrong';
+    }
+    return `<button class="${cls}" onclick="${state.qSel===null?`setState({qSel:${i},qScore:state.qScore+${i===q.a?1:0}})`:''}">${String.fromCharCode(65+i)}. ${opt}</button>`;
+  }).join('')}
+  ${state.qSel!==null?`<button onclick="${state.qIdx<QUIZ.length-1?`setState({qIdx:state.qIdx+1,qSel:null})`:`setState({qDone:true})`}" class="btn btn-primary" style="margin-top:8px">${state.qIdx<QUIZ.length-1?'다음 문제 → Next':'결과 보기 → Result'}</button>`:''}`;
+}
+
+function renderCulture() {
+  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 다문화 사회 · Korean Multicultural Society</p>
+  ${CULTURE.map(c=>`<div class="card" style="display:flex;gap:12px;align-items:flex-start">
+    <div style="font-size:34px;flex-shrink:0">${c.icon}</div>
+    <div>
+      <div style="font-weight:700;font-size:15px;color:var(--navy)">${c.t}</div>
+      <div style="font-size:11px;color:var(--ocean);margin-bottom:4px">${c.eng}</div>
+      <div style="font-size:13px;color:#333;line-height:1.5">${c.d}</div>
+      <div style="font-size:12px;color:#888;margin-top:2px">${c.de}</div>
+    </div>
+  </div>`).join('')}
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">🌍 한국의 다문화 사회 보기</button>`;
+}
+
+function renderGeoje() {
+  return `<h2>🌍 한국의 다문화 사회</h2><p class="sub">${LOCAL_INFO.eng}</p>
+  <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean);margin-bottom:14px">
+    <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:8px">🌍 ${LOCAL_INFO.title}</div>
+    <div style="font-size:13px;color:#333;line-height:1.6;margin-bottom:10px">${LOCAL_INFO.desc}</div>
+    <div style="font-size:12px;color:#666">${LOCAL_INFO.descEng}</div>
+  </div>
+  ${LOCAL_INFO.facts.map((f,i)=>`<div class="card ${i%2===0?'card-accent':'card-orange'}">
+    <div style="font-size:12px;font-weight:700;color:${i%2===0?'var(--ocean)':'var(--orange)'}">${f.label}</div>
+    <div style="font-size:15px;font-weight:700;color:var(--navy);margin:6px 0">${f.val}</div>
+  </div>`).join('')}
+  <a href="HanwhaOcean_Level2_Lesson19.html" style="display:block;text-decoration:none;margin-top:16px">
+    <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
+      ➡️ 다음 과: 2-19 발표를 해요 · Next Lesson
+    </button>
+  </a>`;
+}
+
+// ===== REVIEW (익힘) =====
+function renderReview() {
+  const tabs = ['복습 Review','예습 Preview','받아쓰기 Dictation'];
+  const t = state.rvTab;
+
+  if (t===0) {
+    const rv = REVIEW_DATA.review;
+    return `<h2><span class="section-icon">📝</span>익힘 · 복습</h2><p class="sub">${rv.desc} ${rv.descEng}</p>
+    <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+    ${rv.sections.map(s=>`
+      <div class="card card-accent">
+        <div style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px">${s.icon} ${s.title}</div>
+        ${s.items.map(item=>`<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+          <span style="color:var(--green);font-size:14px">✓</span>
+          <span style="font-size:14px;color:#333">${item}</span>
+          ${!item.includes(' ')&&item.length<15?ttsBtn(item):''}
+        </div>`).join('')}
+      </div>`).join('')}
+    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 내용 전체 듣기</button>`;
+  }
+  if (t===1) {
+    const pv = REVIEW_DATA.preview;
+    return `<h2><span class="section-icon">📝</span>익힘 · 예습</h2><p class="sub">${pv.desc} ${pv.descEng}</p>
+    <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+    <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean)">
+      <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px">📖 다음 수업 미리보기 · Next Lesson Preview</div>
+      <div style="font-size:12px;color:#888;margin-bottom:12px">2-19과를 미리 살펴보세요!</div>
+    </div>
+    ${pv.items.map((item,i)=>`
+      <div class="card ${i%2===0?'card-accent':'card-orange'}">
+        <div style="font-size:12px;font-weight:700;color:var(--ocean)">${item.label}</div>
+        <div style="font-size:16px;font-weight:700;color:var(--navy);margin:4px 0">${item.val}</div>
+        <div style="font-size:12px;color:#888">${item.detail}</div>
+      </div>`).join('')}
+    <div class="card card-green" style="background:var(--light-green)">
+      <div style="font-weight:700;color:var(--green);margin-bottom:6px">💡 예습 팁 · Preview Tips</div>
+      <div style="font-size:13px;color:#333;line-height:1.6">
+        1. 19과의 발표 관련 어휘를 미리 살펴보세요.<br>
+        2. 자신의 의견을 발표하는 표현을 생각해 보세요.<br>
+        3. 간단한 발표 원고를 준비해 봅시다.
+      </div>
+      <div style="font-size:12px;color:#888;margin-top:6px;line-height:1.5">
+        1. Preview vocabulary related to presentations in Lesson 19.<br>
+        2. Think about expressions for sharing your opinions.<br>
+        3. Prepare a simple presentation script.
+      </div>
+    </div>`;
+  }
+  const dict = REVIEW_DATA.dictation;
+  const d = dict[state.rvDictIdx];
+  const result = state.rvDictResults[state.rvDictIdx];
+  return `<h2><span class="section-icon">📝</span>익힘 · 받아쓰기</h2><p class="sub">Dictation Practice · 듣고 따라 쓰세요</p>
+  <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문장 ${state.rvDictIdx+1}/${dict.length}</span>
+    <span style="font-size:12px;color:var(--green);font-weight:600">✓ ${Object.values(state.rvDictResults).filter(r=>r==='correct').length}개 정답</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.rvDictIdx+1)/dict.length*100}%;background:var(--ocean)"></div></div>
+
+  <div class="card" style="text-align:center;margin:16px 0;background:#f0f7ff;border:2px solid var(--ocean)">
+    <div style="font-size:14px;color:#888;margin-bottom:8px">🔊 듣고 한국어로 쓰세요 · Listen and write in Korean</div>
+    <button onclick="TTS.speak('${d}',undefined,0.7)" style="background:var(--ocean);color:#fff;border-radius:50%;width:56px;height:56px;font-size:28px;margin:8px 0">🔊</button>
+    <div style="font-size:11px;color:#aaa;margin-top:4px">버튼을 눌러 들으세요 · Press to listen</div>
+  </div>
+
+  <input class="input" style="font-size:18px;text-align:center;padding:14px" placeholder="여기에 쓰세요 · Write here"
+    value="${state.rvDictInput||''}" oninput="state.rvDictInput=this.value" id="dictInput">
+
+  ${result ? `<div class="card ${result==='correct'?'card-green':'card-orange'}" style="background:${result==='correct'?'var(--light-green)':'#fee2e2'}">
+    <div style="font-size:16px;font-weight:700;color:${result==='correct'?'var(--green)':'var(--red)'}">${result==='correct'?'✓ 정답입니다! Correct!':'✕ 다시 해 보세요.'}</div>
+    <div style="font-size:18px;font-weight:700;color:var(--navy);margin-top:6px">정답: ${d}</div>
+  </div>`:
+  `<button class="btn btn-primary" onclick="
+    var input=document.getElementById('dictInput').value.trim().replace(/[.?!]/g,'');
+    var answer='${d}'.replace(/[.?!]/g,'');
+    var r=input===answer?'correct':'wrong';
+    setState({rvDictResults:{...state.rvDictResults,[state.rvDictIdx]:r}})
+  ">✓ 확인 · Check</button>`}
+
+  ${result?`<button class="btn btn-navy" style="margin-top:8px" onclick="setState({rvDictIdx:Math.min(state.rvDictIdx+1,${dict.length-1}),rvDictInput:'',rvDictResults:state.rvDictResults})">${state.rvDictIdx<dict.length-1?'다음 문장 → Next':'완료! Finished!'}</button>`:''}
+  <button onclick="TTS.speak('${d}',undefined,0.6)" class="btn" style="margin-top:6px;background:#e5e7eb;color:#555">🔊 천천히 듣기 · Listen Slowly</button>`;
+}
+
+// ===== KOREAN_LITERATURE =====
+function renderKoreanLiterature() {
+  const lit = KOREAN_LITERATURE;
+  const s = lit.sentences[state.ftSentIdx];
+  const total = lit.sentences.length;
+  return `<h2><span class="section-icon">📜</span>현대시 · Korean Modern Poetry</h2>
+  <div class="card" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;margin-bottom:14px">
+    <div style="font-size:22px;font-weight:800;margin-bottom:2px">${lit.title}</div>
+    <div style="font-size:13px;opacity:.8">${lit.eng}</div>
+    <div style="font-size:12px;opacity:.7;margin-top:6px">${lit.desc}</div>
+    <div style="font-size:11px;opacity:.6">${lit.descEng}</div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문장 ${state.ftSentIdx+1}/${total}</span>
+    <div style="display:flex;gap:6px">
+      <button class="tab ${state.ftShowEng?'active':''}" onclick="setState({ftShowEng:!state.ftShowEng})">${state.ftShowEng?'영어 숨기기':'영어 보기'}</button>
+    </div>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.ftSentIdx+1)/total*100}%;background:#a855f7"></div></div>
+
+  <div class="card" style="margin:14px 0;padding:20px;text-align:center;background:#faf5ff;border:2px solid #a855f7;min-height:120px;display:flex;flex-direction:column;justify-content:center">
+    <div style="font-size:20px;font-weight:700;color:var(--navy);line-height:1.6;margin-bottom:8px">${s.a}</div>
+    ${state.ftShowEng?`<div style="font-size:14px;color:#888;line-height:1.4">${s.eng}</div>`:''}
+    <button onclick="TTS.speak('${s.a.replace(/'/g,"\\'")}')" style="margin:12px auto 0;background:#a855f7;color:#fff;border-radius:50%;width:48px;height:48px;font-size:22px">🔊</button>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-bottom:12px">
+    <button onclick="setState({ftSentIdx:Math.max(0,state.ftSentIdx-1)})" class="btn" style="background:#e5e7eb;color:#555;flex:1">← 이전</button>
+    <button onclick="setState({ftSentIdx:Math.min(${total-1},state.ftSentIdx+1)})" class="btn" style="background:#a855f7;color:#fff;flex:1">다음 →</button>
+  </div>
+
+  <button onclick="var all=KOREAN_LITERATURE.sentences.map(s=>s.a).join('. ');TTS.speak(all,undefined,0.7)" class="btn btn-navy" style="margin-bottom:8px">🔊 전체 시 읽기 · Read Full Poem</button>
+  <button onclick="setState({page:'ftquiz'})" class="btn btn-orange">🧩 시 이해 퀴즈 풀기 · Take Poetry Quiz</button>
+
+  <div style="margin-top:16px;font-weight:700;color:var(--navy);margin-bottom:8px">📖 전체 시 줄 · All Lines</div>
+  <div style="max-height:300px;overflow-y:auto;border:1px solid #e5e7eb;border-radius:10px;padding:8px">
+    ${lit.sentences.map((sent,i)=>`
+      <div onclick="setState({ftSentIdx:${i}});TTS.speak('${sent.a.replace(/'/g,"\\'")}')"
+        style="padding:8px 10px;border-radius:8px;margin-bottom:4px;cursor:pointer;background:${i===state.ftSentIdx?'#f3e8ff':'transparent'};border-left:${i===state.ftSentIdx?'3px solid #a855f7':'3px solid transparent'}">
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <span style="color:#a855f7;font-weight:700;font-size:12px;min-width:20px">${i+1}</span>
+          <div>
+            <div style="font-size:14px;color:var(--navy);font-weight:${i===state.ftSentIdx?700:400}">${sent.a}</div>
+            ${state.ftShowEng?`<div style="font-size:11px;color:#888">${sent.eng}</div>`:''}
+          </div>
+        </div>
+      </div>
+    `).join('')}
+  </div>`;
+}
+
+// ===== LITERATURE QUIZ =====
+function renderLiteratureQuiz() {
+  if (state.fqDone) {
+    const pct = Math.round(state.fqScore/LITERATURE_QUIZ.length*100);
+    return `<div style="text-align:center;padding:20px 0">
+      <div style="font-size:56px">${pct>=80?'🎉':pct>=50?'📖':'💪'}</div>
+      <h2>시 이해 퀴즈 결과 · Poetry Quiz Result</h2>
+      <div style="font-size:14px;color:#888;margin:6px 0">그 꽃 · That Flower</div>
+      <div style="font-size:44px;font-weight:800;color:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'};margin:14px 0">${state.fqScore}/${LITERATURE_QUIZ.length}</div>
+      <div style="font-size:15px;color:#888;margin-bottom:20px">${pct}% 정답 · Correct</div>
+      <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
+      <button onclick="setState({fqIdx:0,fqSel:null,fqScore:0,fqDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
+      <button onclick="setState({page:'folktale'})" class="btn" style="margin-top:8px;background:#e5e7eb;color:#555">📜 시 다시 읽기 · Read Poem Again</button>
+      <a href="HanwhaOcean_Level2_Lesson19.html" style="display:block;text-decoration:none;margin-top:16px">
+        <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
+          ➡️ 다음 과: 2-19 발표를 해요 · Next Lesson
+        </button>
+      </a>
+    </div>`;
+  }
+  const q = LITERATURE_QUIZ[state.fqIdx];
+  return `<h2><span class="section-icon">🧩</span>시 이해 퀴즈 · Poetry Quiz</h2>
+  <p class="sub">그 꽃 · That Flower</p>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문제 ${state.fqIdx+1}/${LITERATURE_QUIZ.length}</span>
+    <span style="font-size:12px;color:#a855f7;font-weight:600">점수: ${state.fqScore}</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.fqIdx+1)/LITERATURE_QUIZ.length*100}%;background:#a855f7"></div></div>
+
+  <div class="card" style="background:#faf5ff;text-align:center;margin:14px 0;border:2px solid #a855f7">
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${q.q}</div>
+    <button onclick="TTS.speak('${q.q.replace(/'/g,"\\'")}')" class="tts-btn" style="margin-top:8px;background:#a855f7">🔊</button>
+  </div>
+  ${q.o.map((opt,i)=>{
+    let cls='quiz-opt';
+    if(state.fqSel!==null){
+      if(i===q.a) cls+=' quiz-correct';
+      else if(i===state.fqSel) cls+=' quiz-wrong';
+    }
+    return `<button class="${cls}" onclick="${state.fqSel===null?`setState({fqSel:${i},fqScore:state.fqScore+${i===q.a?1:0}})`:''}">${String.fromCharCode(65+i)}. ${opt}</button>`;
+  }).join('')}
+  ${state.fqSel!==null?`<button onclick="${state.fqIdx<LITERATURE_QUIZ.length-1?`setState({fqIdx:state.fqIdx+1,fqSel:null})`:`setState({fqDone:true})`}" class="btn" style="margin-top:8px;background:#a855f7;color:#fff">${state.fqIdx<LITERATURE_QUIZ.length-1?'다음 문제 → Next':'결과 보기 → Result'}</button>`:''}`;
+}
+
+// ===== TOPIK PRACTICE =====
+function speakTopikListening(idx) {
+  var item = TOPIK_PRACTICE.listening[idx];
+  if(!item) return;
+  var text = item.script || item.q;
+  var parts = text.split('\n\n');
+  if(parts.length > 1) {
+    text = parts.slice(1).join(' ');
+  }
+  text = text.replace(/\[.*?\]/g, '').replace(/'/g, '').trim();
+  TTS.speak(text);
+}
+
+function renderTopikPractice() {
+  const t = TOPIK_PRACTICE;
+  if (state.topikTab === undefined) setState({topikTab: 'info'});
+
+  const tabs = [
+    {id:'info', label:'📋 소개', icon:'ℹ️'},
+    {id:'reading', label:'📖 읽기'},
+    {id:'listening', label:'🎧 듣기'}
+  ];
+
+  if (state.topikTab === 'info') {
+    return `<h2><span class="section-icon">🎯</span>${t.title}</h2>
+    <p class="sub">${t.desc}</p>
+    <div style="background:#faf5ff;border:2px solid #8b5cf6;border-radius:10px;padding:14px;margin-bottom:14px">
+      <div style="font-size:13px;color:#666;margin-bottom:8px">${t.descEng}</div>
+    </div>
+    <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">💡 시험 정보 · Test Info</div>
+    ${t.info.map(tip => `<div class="card card-accent"><div style="font-size:12px;font-weight:700;color:var(--ocean)">${tip.label}</div><div style="font-size:14px;font-weight:700;color:var(--navy);margin:4px 0">${tip.val}</div><div style="font-size:11px;color:#888">${tip.eng}</div></div>`).join('')}
+    <div style="margin-top:14px;display:flex;gap:8px">
+      <button onclick="setState({topikTab:'reading'})" class="btn" style="flex:1;background:#3b82f6;color:#fff">📖 읽기 연습</button>
+      <button onclick="setState({topikTab:'listening'})" class="btn" style="flex:1;background:#f59e0b;color:#fff">🎧 듣기 연습</button>
+    </div>`;
+  }
+
+  if (state.topikTab === 'reading') {
+    if (state.topikReadingIdx === undefined) setState({topikReadingIdx: 0});
+    const item = t.reading[state.topikReadingIdx];
+    return `<h2><span class="section-icon">📖</span>TOPIK I 읽기 · Reading Practice</h2>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+      <span style="font-size:12px;color:#888">문제 ${state.topikReadingIdx+1}/${t.reading.length}</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width:${(state.topikReadingIdx+1)/t.reading.length*100}%;background:#3b82f6"></div></div>
+
+    <div class="card" style="background:#eff6ff;border:2px solid #3b82f6;margin:14px 0">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:8px">${item.title}</div>
+      <div style="font-size:15px;line-height:1.7;color:#333;margin-bottom:8px">${item.text}</div>
+      <div style="font-size:13px;color:#666;line-height:1.6">${item.textEng}</div>
+    </div>
+
+    <div class="card" style="background:#faf5ff;border:2px solid #8b5cf6;margin:14px 0">
+      <div style="font-size:16px;font-weight:700;color:var(--navy)">${item.q}</div>
+    </div>
+    ${item.o.map((opt,i) => `<button class="quiz-opt" onclick="alert('${i===item.a?'정답입니다! ✓':'틀렸습니다. 다시 해보세요.'}');setState({topikReadingIdx:Math.min(${t.reading.length-1},state.topikReadingIdx+1)})">${String.fromCharCode(65+i)}. ${opt}</button>`).join('')}
+    `;
+  }
+
+  if (state.topikTab === 'listening') {
+    if (state.topikListeningIdx === undefined) setState({topikListeningIdx: 0});
+    const item = t.listening[state.topikListeningIdx];
+    return `<h2><span class="section-icon">🎧</span>TOPIK I 듣기 · Listening Practice</h2>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+      <span style="font-size:12px;color:#888">문제 ${state.topikListeningIdx+1}/${t.listening.length}</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width:${(state.topikListeningIdx+1)/t.listening.length*100}%;background:#f59e0b"></div></div>
+
+    <div class="card" style="background:#fffbeb;border:2px solid #f59e0b;margin:14px 0;text-align:center">
+      <div style="font-size:14px;color:#92400e;margin-bottom:12px">🎧 음성을 듣고 맞는 것을 고르세요</div>
+      <button onclick="speakTopikListening(${state.topikListeningIdx})" style="background:#f59e0b;color:#fff;border-radius:50%;width:56px;height:56px;font-size:28px;margin:0 auto">🔊</button>
+    </div>
+
+    <div class="card" style="background:#faf5ff;border:2px solid #8b5cf6;margin:14px 0">
+      <div style="font-size:15px;font-weight:700;color:var(--navy)">${item.q}</div>
+    </div>
+    ${item.o.map((opt,i) => `<button class="quiz-opt" onclick="alert('${i===item.a?'정답입니다! ✓':'틀렸습니다. 다시 해보세요.'}');setState({topikListeningIdx:Math.min(${t.listening.length-1},state.topikListeningIdx+1)})">${String.fromCharCode(65+i)}. ${opt}</button>`).join('')}
+    `;
+  }
+}
+
+render();
+</script>
+</body>
+</html>
