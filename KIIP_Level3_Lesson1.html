@@ -158,6 +158,26 @@ h2{color:var(--brown);font-size:18px;margin-bottom:4px;font-weight:800}
 .lang-bar{background:#fef3c7;display:flex;justify-content:center;gap:6px;padding:6px}
 .lang-btn-sm{background:rgba(180,83,9,0.1);border:1px solid #fbbf24;color:#92400e;padding:3px 10px;border-radius:16px;font-size:11px;cursor:pointer}
 .lang-btn-sm.active{background:var(--amber);color:#fff;border-color:var(--amber)}
+
+/* RETURN TOAST */
+.return-toast{
+  position:fixed;bottom:72px;left:50%;transform:translateX(-50%) translateY(20px);
+  width:calc(100% - 32px);max-width:488px;
+  background:#1a202c;color:#fff;border-radius:14px;
+  padding:14px 16px;z-index:999;
+  display:flex;align-items:center;gap:12px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.35);
+  opacity:0;transition:opacity 0.3s,transform 0.3s;pointer-events:none;
+}
+.return-toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.return-toast-icon{font-size:26px;flex-shrink:0}
+.return-toast-body{flex:1;min-width:0}
+.return-toast-title{font-size:13px;font-weight:800;margin-bottom:3px}
+.return-toast-sub{font-size:11px;opacity:0.75;line-height:1.5}
+.return-toast-close{background:rgba(255,255,255,0.15);border:none;color:#fff;border-radius:8px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer;flex-shrink:0}
+.return-toast-close:hover{background:rgba(255,255,255,0.25)}
+.return-toast-bar{position:absolute;bottom:0;left:0;height:3px;background:#f59e0b;border-radius:0 0 14px 14px;animation:toastTimer 8s linear forwards}
+@keyframes toastTimer{from{width:100%}to{width:0%}}
 </style>
 </head>
 <body>
@@ -1387,7 +1407,7 @@ function renderAI() {
         <div class="section-label" style="background:#ea4335">📓 Google NotebookLM 학습</div>
         <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">이 과의 어휘·문법을 NotebookLM에 업로드하여 AI 요약 및 Q&amp;A를 받아보세요<br>
         <span style="color:#ea4335;font-size:11px">🇻🇳 Tải lên từ vựng và ngữ pháp bài này để nhận tóm tắt và Q&amp;A từ AI</span></div>
-        <button onclick="window.open('https://notebooklm.google.com','_blank')"
+        <button onclick="openNotebookLM()"
           style="width:100%;background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:700">
           📓 NotebookLM 열기 →
         </button>
@@ -1416,12 +1436,19 @@ function renderAI() {
 
 function openGemini(prompt) {
   window.open('https://gemini.google.com/app?q=' + encodeURIComponent(prompt), '_blank');
+  showReturnToast('Gemini AI', '🔵');
 }
 
 function openClaudeFeedback() {
   const text = STATE.writingText || '(쓰기 섹션에 글을 먼저 작성해 주세요)';
   const prompt = 'KIIP 3급 외국인 학습자의 글입니다. 문법 오류를 지적하고 수정 방법을 설명해 주세요. 특히 -(으)ㄹ수록과 -아/어서인지 문법 사용을 확인해 주세요. 한국어로 첨삭하고 베트남어(Tiếng Việt)로도 설명해 주세요:\n\n' + text;
   window.open('https://claude.ai/new?q=' + encodeURIComponent(prompt), '_blank');
+  showReturnToast('Claude AI', '🟣');
+}
+
+function openNotebookLM() {
+  window.open('https://notebooklm.google.com', '_blank');
+  showReturnToast('NotebookLM', '📓');
 }
 
 // ===== PRONUNCIATION RECORDER (MediaRecorder + STT) =====
@@ -1658,6 +1685,59 @@ function setLang(lang) {
   localStorage.setItem('kiip_lang', lang);
   render();
 }
+
+// ===== RETURN TOAST =====
+let _toastTimer = null;
+
+function showReturnToast(appName, icon) {
+  // 토스트 DOM이 없으면 생성
+  let toast = document.getElementById('return-toast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'return-toast';
+    toast.className = 'return-toast';
+    document.body.appendChild(toast);
+  }
+
+  const shortcuts = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+    ? '하단 탭 버튼 → KIIP 탭 선택'
+    : /Android/i.test(navigator.userAgent)
+    ? '상단 탭 □ 버튼 → KIIP 탭 선택'
+    : 'Ctrl+Tab 또는 탭 바에서 KIIP 탭 클릭';
+
+  toast.innerHTML = `
+    <div class="return-toast-icon">${icon}</div>
+    <div class="return-toast-body">
+      <div class="return-toast-title">📍 ${appName} 새 탭에서 열렸어요</div>
+      <div class="return-toast-sub">
+        돌아오려면: <strong>${shortcuts}</strong><br>
+        🇻🇳 Để quay lại: chọn tab KIIP trên trình duyệt
+      </div>
+    </div>
+    <button class="return-toast-close" onclick="hideReturnToast()">✕</button>
+    <div class="return-toast-bar"></div>
+  `;
+
+  // 표시
+  requestAnimationFrame(() => {
+    toast.classList.add('show');
+  });
+
+  // 8초 후 자동 숨김
+  clearTimeout(_toastTimer);
+  _toastTimer = setTimeout(() => hideReturnToast(), 8000);
+}
+
+function hideReturnToast() {
+  const toast = document.getElementById('return-toast');
+  if (toast) toast.classList.remove('show');
+  clearTimeout(_toastTimer);
+}
+
+// visibilitychange: 돌아왔을 때 토스트 숨기기
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') hideReturnToast();
+});
 
 // MAIN RENDER
 function render() {
