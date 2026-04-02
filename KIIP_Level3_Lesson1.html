@@ -1194,6 +1194,116 @@ function finishQuiz() {
   setState({quizDone: true});
 }
 
+// ===== AI 빠른 질문 버튼 데이터 — renderAI() 보다 반드시 먼저 선언 =====
+var AI_QUICK_BTNS = [
+  { emoji:'📝', label:'이 단어 설명해줘', q:'KIIP 3급 1과 어휘: 서운하다를 쉽게 설명하고 예문 2개와 베트남어 번역을 알려주세요.' },
+  { emoji:'📐', label:'문법 질문',       q:'KIIP 3급: -(으)ㄹ수록 문법을 쉽게 설명하고 예문 3개를 베트남어 번역과 함께 알려주세요.' },
+  { emoji:'💬', label:'롤플레이',        q:'저는 베트남 출신 KIIP 3급 학습자입니다. 새 직장 동료와 처음 대화하는 상황을 -(으)ㄹ수록 문법으로 롤플레이해 주세요.' },
+  { emoji:'✏️', label:'내 글 첨삭',     q:'KIIP 3급 학습자의 글입니다. 문법을 확인하고 수정해 주세요. 베트남어로도 설명해 주세요: ' },
+  { emoji:'❓', label:'틀린 문제 설명', q:'KIIP 3급 퀴즈에서 틀렸어요. -아/어서인지 문법을 다시 쉽게 설명하고 예문 3개를 베트남어와 함께 알려주세요.' },
+  { emoji:'🎯', label:'TOPIK 연습',     q:'KIIP 3급 수준의 TOPIK II 대인관계 빈칸 채우기 문제 3개를 만들어 주세요. 정답과 해설도 포함해 주세요.' },
+];
+
+// ===== IN-APP AI CHAT =====
+var AICHAT = {
+  history: [],
+  loading: false,
+
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx];
+    if (!b) return;
+    var inp = document.getElementById('ai-chat-input');
+    if (!inp) return;
+    inp.value = b.q;
+    inp.style.borderColor = '#f59e0b';
+    if (idx === 3) { inp.focus(); return; } // 내 글 첨삭: 수동입력
+    this.send();
+  },
+
+  addMsg: function(role, text) {
+    var box = document.getElementById('ai-chat-messages');
+    if (!box) return;
+    // 안내 placeholder 제거
+    var ph = box.querySelector('.ai-placeholder');
+    if (ph) ph.remove();
+    var isUser = role === 'user';
+    var d = document.createElement('div');
+    d.style.cssText = 'display:flex;flex-direction:column;align-items:' + (isUser?'flex-end':'flex-start') + ';gap:2px;margin-bottom:6px';
+    var safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    d.innerHTML = '<div style="font-size:10px;color:#888;margin:0 4px">' + (isUser?'🙋 나':'🤖 AI') + '</div>'
+      + '<div style="max-width:90%;padding:10px 13px;border-radius:' + (isUser?'14px 14px 4px 14px':'14px 14px 14px 4px') + ';'
+      + 'background:' + (isUser?'#f59e0b':'#fff') + ';color:' + (isUser?'#fff':'#1a202c') + ';'
+      + 'font-size:13px;line-height:1.7;border:1px solid ' + (isUser?'#d97706':'#fde68a') + ';word-break:break-word">' + safe + '</div>';
+    box.appendChild(d);
+    box.scrollTop = box.scrollHeight;
+  },
+
+  setLoading: function(on) {
+    var box = document.getElementById('ai-chat-messages');
+    var el  = document.getElementById('ai-loading-dot');
+    var btn = document.getElementById('ai-send-btn');
+    if (on) {
+      if (box && !el) {
+        var ld = document.createElement('div');
+        ld.id = 'ai-loading-dot';
+        ld.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:6px';
+        ld.innerHTML = '<div style="display:flex;gap:4px">'
+          + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div>'
+          + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div>'
+          + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div>'
+          + '</div><span style="font-size:12px;color:#888">AI 응답 중... 🇻🇳 Đang trả lời...</span>';
+        box.appendChild(ld);
+        box.scrollTop = box.scrollHeight;
+      }
+      if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+    } else {
+      if (el) el.remove();
+      if (btn) { btn.textContent = '➤'; btn.disabled = false; }
+    }
+  },
+
+  send: async function() {
+    if (this.loading) return;
+    var inp  = document.getElementById('ai-chat-input');
+    var text = inp ? inp.value.trim() : '';
+    if (!text) return;
+
+    this.history.push({role:'user', content:text});
+    this.addMsg('user', text);
+    if (inp) inp.value = '';
+    this.loading = true;
+    this.setLoading(true);
+
+    var sys = 'You are a Korean language tutor for KIIP Level 3. The student is likely Vietnamese. Answer in Korean with Vietnamese translation. Be concise and friendly. Focus on KIIP content.';
+
+    try {
+      // Pollinations.ai GET API — 무료, 로그인 없음, CORS 허용
+      var msgs = [
+        {role:'system', content: sys},
+        ...this.history.slice(-8)
+      ];
+      var encoded = encodeURIComponent(JSON.stringify(msgs));
+      var url = 'https://text.pollinations.ai/' + encodeURIComponent(text)
+              + '?model=openai&system=' + encodeURIComponent(sys)
+              + '&seed=42';
+      var res  = await fetch(url);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var reply = await res.text();
+      if (!reply || reply.trim() === '') throw new Error('빈 응답');
+      this.history.push({role:'assistant', content:reply});
+      this.setLoading(false);
+      this.addMsg('assistant', reply);
+    } catch(e) {
+      this.setLoading(false);
+      this.addMsg('assistant',
+        '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n'
+        + '해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요\n'
+        + '🇻🇳 Lỗi kết nối AI — Thử lại sau ít phút');
+    }
+    this.loading = false;
+  }
+};
+
 // SECTION 10: AI 실습 (Glocal Academy × AI Agents)
 function renderAI() {
   // AI 탭 진입 시 마이크 권한 자동 감지 (비동기 실행)
@@ -1263,10 +1373,10 @@ function renderAI() {
         </div>
 
         <!-- 채팅 메시지 영역 -->
-        <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px">
-          <div style="text-align:center;font-size:12px;color:#888;padding:16px">
-            💡 위 버튼을 누르거나 아래에 직접 입력하세요<br>
-            <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút phía trên hoặc nhập câu hỏi bên dưới</span>
+        <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+          <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
+            💡 버튼을 누르면 AI가 바로 답해줘요<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
           </div>
         </div>
 
@@ -1547,151 +1657,6 @@ function openNotebookLM() {
   showReturnToast('NotebookLM', '📓');
 }
 
-// ===== AI 빠른 질문 버튼 데이터 (전역 배열 — onclick 따옴표 충돌 방지) =====
-const AI_QUICK_BTNS = [
-  {
-    emoji: '📝',
-    label: '이 단어 설명해줘',
-    vi: 'Giải thích từ này',
-    q: 'KIIP 3급 1과 어휘: "서운하다"를 쉽게 설명하고 예문 2개와 베트남어 번역을 알려주세요.',
-  },
-  {
-    emoji: '📐',
-    label: '문법 질문',
-    vi: 'Hỏi ngữ pháp',
-    q: 'KIIP 3급: -(으)ㄹ수록 문법을 쉽게 설명하고 예문 3개를 베트남어 번역과 함께 알려주세요.',
-  },
-  {
-    emoji: '💬',
-    label: '롤플레이',
-    vi: 'Nhập vai hội thoại',
-    q: '저는 베트남 출신 KIIP 3급 학습자입니다. 새 직장 동료와 처음 대화하는 상황을 -(으)ㄹ수록 문법을 사용하여 롤플레이해 주세요.',
-  },
-  {
-    emoji: '✏️',
-    label: '내 글 첨삭',
-    vi: 'Sửa bài viết',
-    q: 'KIIP 3급 학습자의 글입니다. 문법을 확인하고 수정해 주세요. 베트남어로도 설명해 주세요: (여기에 글을 붙여넣으세요)',
-  },
-  {
-    emoji: '❓',
-    label: '틀린 문제 설명',
-    vi: 'Giải thích câu sai',
-    q: 'KIIP 3급 퀴즈에서 틀렸어요. "-아/어서인지" 문법을 다시 쉽게 설명하고 예문 3개를 베트남어와 함께 알려주세요.',
-  },
-  {
-    emoji: '🎯',
-    label: 'TOPIK 연습',
-    vi: 'Luyện TOPIK',
-    q: 'KIIP 3급 수준의 TOPIK II 대인관계 관련 빈칸 채우기 문제 3개를 만들어 주세요. 정답과 해설도요.',
-  },
-];
-
-// ===== IN-APP AI CHAT (Pollinations.ai — 로그인 불필요, 완전 무료) =====
-const AICHAT = {
-  history: [],   // {role, content, html}
-  loading: false,
-
-  // 빠른 버튼: 입력창에 채우고 포커스 (사용자가 확인 후 Enter 전송)
-  quickSend(idx) {
-    const btn = AI_QUICK_BTNS[idx];
-    if (!btn) return;
-    const inp = document.getElementById('ai-chat-input');
-    if (!inp) return;
-    inp.value = btn.q;
-    inp.style.borderColor = '#f59e0b';
-    inp.focus();
-    // 자동 전송 (내 글 첨삭은 사용자가 직접 수정 후 전송하도록 제외)
-    if (idx !== 3) {
-      setTimeout(() => this.send(), 150);
-    } else {
-      // 내 글 첨삭: 커서를 텍스트 끝에 위치
-      inp.setSelectionRange(inp.value.length, inp.value.length);
-    }
-  },
-
-  addMessage(role, text) {
-    const box = document.getElementById('ai-chat-messages');
-    if (!box) return;
-    // 첫 메시지면 안내 텍스트 제거
-    if (box.querySelector('[data-placeholder]')) box.innerHTML = '';
-
-    const isUser = role === 'user';
-    const bubble = document.createElement('div');
-    bubble.style.cssText = `display:flex;flex-direction:column;align-items:${isUser?'flex-end':'flex-start'};gap:2px`;
-    bubble.innerHTML = `
-      <div style="font-size:10px;color:#888;margin:0 4px">${isUser ? '🙋 나' : '🤖 AI'}</div>
-      <div style="max-width:88%;padding:10px 13px;border-radius:${isUser?'14px 14px 4px 14px':'14px 14px 14px 4px'};
-        background:${isUser?'#f59e0b':'#fff'};color:${isUser?'#fff':'#1a202c'};
-        font-size:13px;line-height:1.65;border:1px solid ${isUser?'#d97706':'#fde68a'};
-        white-space:pre-wrap;word-break:break-word">${text.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</div>
-    `;
-    box.appendChild(bubble);
-    box.scrollTop = box.scrollHeight;
-  },
-
-  addLoading() {
-    const box = document.getElementById('ai-chat-messages');
-    if (!box) return;
-    const el = document.createElement('div');
-    el.id = 'ai-loading';
-    el.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px';
-    el.innerHTML = `
-      <div style="display:flex;gap:4px">
-        ${[0,1,2].map(i=>`<div style="width:8px;height:8px;border-radius:50%;background:#f59e0b;animation:aiDot 1s ${i*0.2}s ease-in-out infinite"></div>`).join('')}
-      </div>
-      <span style="font-size:12px;color:#888">AI 응답 중...</span>
-    `;
-    box.appendChild(el);
-    box.scrollTop = box.scrollHeight;
-  },
-
-  removeLoading() {
-    const el = document.getElementById('ai-loading');
-    if (el) el.remove();
-  },
-
-  async send() {
-    if (this.loading) return;
-    const inp = document.getElementById('ai-chat-input');
-    const btn = document.getElementById('ai-send-btn');
-    const text = inp ? inp.value.trim() : '';
-    if (!text) return;
-
-    // 시스템 컨텍스트 (항상 추가)
-    const systemCtx = 'You are a Korean language tutor for KIIP Level 3 (intermediate). The student is likely Vietnamese. Answer in Korean with Vietnamese translation in parentheses when helpful. Be concise, friendly, and educational. Focus on KIIP exam content.';
-
-    this.history.push({role:'user', content: text});
-    this.addMessage('user', text);
-    if (inp) inp.value = '';
-    this.loading = true;
-    if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
-    this.addLoading();
-
-    try {
-      // Pollinations.ai — 무료, 인증 없음, GPT-4o-mini 사용
-      const messages = [
-        {role:'system', content: systemCtx},
-        ...this.history.slice(-6).map(m => ({role: m.role, content: m.content}))
-      ];
-      const res = await fetch('https://text.pollinations.ai/', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({messages, model:'openai', seed:-1, stream:false}),
-      });
-      if (!res.ok) throw new Error('API ' + res.status);
-      const reply = await res.text();
-      this.removeLoading();
-      this.history.push({role:'assistant', content: reply});
-      this.addMessage('assistant', reply);
-    } catch(e) {
-      this.removeLoading();
-      this.addMessage('assistant', '⚠️ 잠시 오류가 났어요. 다시 시도해 주세요.\n🇻🇳 Lỗi tạm thời — Thử lại nhé.\n\n(오류: ' + e.message + ')');
-    }
-    this.loading = false;
-    if (btn) { btn.textContent = '➤'; btn.disabled = false; }
-  }
-};
 
 // NotebookLM용 1과 내용 복사
 function copyNotebookContent() {
