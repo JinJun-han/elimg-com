@@ -240,6 +240,27 @@ const VOCAB = [
   {kor:'신뢰를 쌓다', pron:'sil-loe-reul ssa-ta', eng:'to build trust', vi:'Xây dựng lòng tin', cat:'관계 변화'},
   {kor:'공통점이 많다', pron:'gong-tong-jeom-i man-ta', eng:'to have a lot in common', vi:'Có nhiều điểm chung', cat:'관계 변화'},
   {kor:'갈등을 해결하다', pron:'gal-deung-eul hae-gyeol-ha-da', eng:'to resolve conflict', vi:'Giải quyết mâu thuẫn', cat:'관계 변화'},
+  // ── 감정·호칭 ──────────────────────────────────────────────────
+  {kor:'서운하다', pron:'seo-un-ha-da', eng:'to feel hurt / disappointed', vi:'Thấy tủi thân, buồn lòng', cat:'감정·호칭'},
+  {kor:'섭섭하다', pron:'seop-seop-ha-da', eng:'to feel let down / sad to part', vi:'Luyến tiếc, bùi ngùi', cat:'감정·호칭'},
+  {kor:'어색하다', pron:'eo-saek-ha-da', eng:'to feel awkward / uncomfortable', vi:'Ngại ngùng, bất tiện', cat:'감정·호칭'},
+  {kor:'반갑다', pron:'ban-gap-da', eng:'to be glad to see (someone)', vi:'Vui mừng khi gặp', cat:'감정·호칭'},
+  {kor:'선배', pron:'seon-bae', eng:'senior (school or workplace)', vi:'Đàn anh/chị, tiền bối', cat:'감정·호칭'},
+  {kor:'후배', pron:'hu-bae', eng:'junior (school or workplace)', vi:'Đàn em, hậu bối', cat:'감정·호칭'},
+  {kor:'동기', pron:'dong-gi', eng:'classmate / colleague of same year', vi:'Đồng môn, đồng nghiệp cùng năm', cat:'감정·호칭'},
+  {kor:'공감하다', pron:'gong-gam-ha-da', eng:'to empathize, to relate', vi:'Đồng cảm, cảm thông', cat:'감정·호칭'},
+  {kor:'오해를 풀다', pron:'o-hae-reul pul-da', eng:'to clear up a misunderstanding', vi:'Giải tỏa hiểu lầm', cat:'감정·호칭'},
+  {kor:'관계를 회복하다', pron:'gwan-gye-reul hoe-bok-ha-da', eng:'to restore / repair a relationship', vi:'Hàn gắn, khôi phục mối quan hệ', cat:'감정·호칭'},
+];
+
+// 관계 관용 표현
+const EXPRESSIONS = [
+  {expr:'손발이 맞다', meaning:'to work well together (lit. hands and feet match)', vi:'Ăn ý với nhau, phối hợp tốt', ex:'우리 팀은 손발이 잘 맞아요.'},
+  {expr:'마음이 맞다', meaning:'to be on the same wavelength', vi:'Hợp tính, đồng quan điểm', ex:'우리는 취미가 같아서 마음이 잘 맞아요.'},
+  {expr:'눈치를 보다', meaning:'to read the room / watch for reactions', vi:'Đọc phòng, quan sát phản ứng', ex:'상황이 어색해서 눈치를 봤어요.'},
+  {expr:'마음을 열다', meaning:'to open one\'s heart / let someone in', vi:'Mở lòng, tin tưởng ai đó', ex:'시간이 지나면서 마음을 열게 됐어요.'},
+  {expr:'밥 한번 먹자', meaning:'Lit. "Let\'s have a meal sometime" — keeping in touch', vi:'Biểu hiện muốn duy trì mối quan hệ', ex:'오랜만이에요! 밥 한번 먹자고요.'},
+  {expr:'정이 들다', meaning:'to grow fond of / become attached to', vi:'Nảy sinh tình cảm, trở nên quyến luyến', ex:'같이 일하다 보니 정이 많이 들었어요.'},
 ];
 
 const GRAM1 = {
@@ -265,6 +286,12 @@ const GRAM1 = {
     {q:'한국어를 _______ (배우다 + -(으)ㄹ수록) 한국 문화가 이해돼요.', ans:'배울수록'},
     {q:'음식은 _______ (신선하다 + -(으)ㄹ수록) 맛있어요.', ans:'신선할수록'},
     {q:'사람은 _______ (많이 만나다 + -(으)ㄹ수록) 더 넓은 인맥이 생겨요.', ans:'많이 만날수록'},
+    {q:'책은 _______ (읽다 + -(으)ㄹ수록) 새로운 세계가 열려요.', ans:'읽을수록'},
+    {q:'시간이 _______ (지나다 + -(으)ㄹ수록) 한국어 실력이 늘어요.', ans:'지날수록'},
+  ],
+  topik: [
+    {q:'다음 중 -(으)ㄹ수록이 올바르게 쓰인 문장을 고르세요.', opts:['①힘들어수록 포기하지 마세요.','②어렵을수록 도전해 보세요.','③알수록 더 어려운 것 같아요.','④어려웠을수록 잘 할 수 있어요.'], ans:2, exp:'③ 알수록 - 알다(ㄹ탈락)→알+수록'},
+    {q:'"___수록 더 좋은 친구가 된다." 빈칸에 알맞은 것은?', opts:['①오래 알면','②오래 알','③오래 알아','④오래 알았'], ans:1, exp:'②오래 알수록 → 알다(ㄹ)+수록'},
   ],
 };
 
@@ -291,7 +318,14 @@ const GRAM2 = {
     {q:'어제 늦게 잤어요. _______ 오늘 피곤해요.', ans:'늦게 자서인지'},
     {q:'친구가 도와줬어요. _______ 일이 빨리 끝났어요.', ans:'도와줘서인지'},
     {q:'오랫동안 한국에 살았어요. _______ 한국 음식이 편해요.', ans:'살아서인지'},
+    {q:'한국에 처음 왔어요. _______ 모든 게 낯설었어요.', ans:'처음 와서인지'},
+    {q:'오늘 운동을 많이 했어요. _______ 몸이 가뿐해요.', ans:'운동을 많이 해서인지'},
   ],
+  note: '⚠️ 비교: -아/어서인지 vs -(으)니까\n' +
+        '• -아/어서인지: 이유 추측 (불확실) → "~해서 그런지 모르겠지만"\n' +
+        '• -(으)니까: 이유 확신 (확실) → "~하기 때문에 분명히"\n' +
+        '예: 피곤해서인지 눈이 무거워요. (추측)\n' +
+        '    피곤하니까 일찍 자야 해요. (확신)',
 };
 
 const DIALOGUES = [
@@ -321,9 +355,25 @@ const DIALOGUES = [
   },
 ];
 
+  {
+    title:'대화 3: 갈등과 화해',
+    situation:'상황: 오해가 생긴 후 화해하는 대화',
+    lines:[
+      {sp:'A', side:'L', text:'요즘 왜 그렇게 차갑게 대해요? 제가 뭔가 잘못한 게 있나요?', eng:'Why are you being so cold lately? Did I do something wrong?'},
+      {sp:'B', side:'R', text:'솔직히 말하면, 지난번에 제 이야기를 다른 사람한테 했다고 들었어요.', eng:'To be honest, I heard that you told someone else what I said last time.'},
+      {sp:'A', side:'L', text:'그건 오해예요! 저는 그런 말 한 적이 없어요. 제가 얼마나 속상한지 알아요?', eng:'That\'s a misunderstanding! I never said that. Do you know how upset I am?'},
+      {sp:'B', side:'R', text:'아... 그랬군요. 확인도 안 하고 제가 너무 성급하게 판단했네요. 미안해요.', eng:'Ah... I see. I judged too hastily without even checking. I\'m sorry.'},
+      {sp:'A', side:'L', text:'괜찮아요. 오해가 생기면 이렇게 솔직하게 얘기하는 게 최선이에요.', eng:'It\'s okay. When misunderstandings arise, talking openly like this is the best approach.'},
+      {sp:'B', side:'R', text:'맞아요. 화해하고 나니까 얼마나 홀가분한지 몰라요. 앞으로는 오해가 생기면 바로 얘기해요.', eng:'You\'re right. Now that we\'ve made up, I feel so relieved. From now on, let\'s talk immediately when misunderstandings arise.'},
+    ]
+  },
+];
+
 const FREE_SPEAKING = [
   {q:'가장 친한 친구를 사귀게 된 계기를 이야기해 보세요.', eng:'Talk about how you came to befriend your closest friend.'},
   {q:'관계가 멀어진 경험이 있어요? 어떻게 됐어요?', eng:'Have you had an experience of growing apart from someone? What happened?'},
+  {q:'한국에서 새로운 사람과 친해지기 어려웠던 경험을 이야기해 보세요.', eng:'Talk about a time when it was hard to get close to someone new in Korea.'},
+  {q:'지금 가장 유지하고 싶은 관계는 누구와의 관계예요? 왜요?', eng:'Who is the person you most want to maintain a relationship with right now? Why?'},
 ];
 
 const LISTENING_SCRIPT = `진행자: 오늘은 대인 관계 전문가 이정수 씨와 이야기를 나눠보겠습니다. 좋은 관계를 유지하는 비결이 뭐예요?
@@ -462,6 +512,32 @@ const QUIZ = [
     opts:['연락이 더 많아지다','연락이 중단되다','연락하고 싶다','연락을 시작하다'],
     ans: 1,
   },
+  // ── 보충 문제 ──────────────────────────────────────────────────
+  {
+    q:'"서운하다"와 비슷한 의미의 단어는?',
+    opts:['반갑다','어색하다','섭섭하다','사교적이다'],
+    ans: 2,
+  },
+  {
+    q:'"마음이 맞다"의 의미로 알맞은 것은?',
+    opts:['신체 컨디션이 좋다','서로 생각과 취향이 잘 맞다','마음이 아프다','관계가 끊겼다'],
+    ans: 1,
+  },
+  {
+    q:'다음 중 -(으)ㄹ수록의 형태가 틀린 것은?',
+    opts:['가다 → 갈수록','먹다 → 먹을수록','자다 → 자을수록','좋다 → 좋을수록'],
+    ans: 2,
+  },
+  {
+    q:'"선배"의 반대말은?',
+    opts:['동기','후배','친구','이웃'],
+    ans: 1,
+  },
+  {
+    q:'"오해를 풀다"와 비슷한 표현은?',
+    opts:['오해를 만들다','오해를 키우다','오해를 해결하다','오해를 숨기다'],
+    ans: 2,
+  },
 ];
 
 // ===== RENDER FUNCTIONS =====
@@ -560,7 +636,7 @@ function renderVocab() {
   return `
     <div class="page">
       <h2>📝 어휘</h2>
-      <p class="sub">대인 관계 어휘 · 20개 단어 · 클릭하면 뒤집혀요</p>
+      <p class="sub">대인 관계 어휘 · 30개 단어 · 클릭하면 뒤집혀요</p>
 
       <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
         <button onclick="toggleAllVocab(true)" style="background:#f59e0b;color:#fff;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700">뜻 모두 보기</button>
@@ -590,6 +666,23 @@ function renderVocab() {
           }).join('')}
         </div>
       `).join('')}
+
+      <div style="margin-top:16px">
+        <div class="vocab-cat">💡 관계 관용 표현 (Idiomatic Expressions)</div>
+        ${EXPRESSIONS.map(e=>`
+          <div class="card card-accent" style="margin-bottom:8px;padding:12px 14px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:15px;font-weight:800;color:#92400e">${e.expr}</span>
+              ${ttsBtn(e.expr)}
+            </div>
+            <div style="font-size:12px;color:#555;margin-top:4px">${e.meaning}</div>
+            <div style="font-size:11px;color:#888;margin-top:2px">🇻🇳 ${e.vi}</div>
+            <div style="background:#fef3c7;border-radius:6px;padding:6px 10px;margin-top:6px;font-size:13px;color:#451a03">
+              ✏️ 예문: ${e.ex} ${ttsBtn(e.ex)}
+            </div>
+          </div>
+        `).join('')}
+      </div>
     </div>
   `;
 }
