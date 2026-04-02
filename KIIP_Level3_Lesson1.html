@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>KIIP 3급 1과 · 대인 관계</title>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
@@ -31,82 +31,85 @@ button{cursor:pointer;border:none;font-family:inherit}
 .hide{display:none!important}
 
 /* NAV */
-.nav{background:var(--dark);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav{background:var(--dark);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;min-height:48px}
 .nav-title{color:#fff;font-weight:700;font-size:14px}
-.nav-sub{color:#d97706;font-size:10px}
-.nav-back{background:none;color:#fff;font-size:13px;padding:4px 0;text-decoration:none}
+.nav-sub{color:#d97706;font-size:12px}
+.nav-back{background:none;color:#fff;font-size:14px;padding:8px 0;text-decoration:none;min-height:44px;display:flex;align-items:center}
 
 /* SECTION TABS */
-.section-tabs{background:#78350f;position:sticky;top:48px;z-index:99;overflow-x:auto;white-space:nowrap;display:flex;padding:4px 8px;gap:4px;-webkit-overflow-scrolling:touch}
+.section-tabs{background:#78350f;position:sticky;top:48px;z-index:99;overflow-x:auto;white-space:nowrap;display:flex;padding:6px 8px;gap:4px;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory}
 .section-tabs::-webkit-scrollbar{height:3px}
 .section-tabs::-webkit-scrollbar-thumb{background:#f59e0b;border-radius:2px}
-.stab{display:inline-flex;align-items:center;gap:5px;padding:7px 12px;border-radius:20px;background:transparent;color:rgba(255,255,255,0.7);font-size:11px;font-weight:600;flex-shrink:0}
+.stab{display:inline-flex;align-items:center;gap:5px;padding:10px 14px;border-radius:20px;background:transparent;color:rgba(255,255,255,0.75);font-size:12px;font-weight:600;flex-shrink:0;min-height:44px;scroll-snap-align:start}
 .stab.active{background:var(--amber);color:#fff}
 
 /* CONTENT */
-.page{padding:16px;padding-bottom:80px}
+.page{padding:16px;padding-bottom:88px}
 h2{color:var(--brown);font-size:18px;margin-bottom:4px;font-weight:800}
-.sub{color:#888;font-size:11px;margin-bottom:14px}
+.sub{color:#888;font-size:12px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #fde68a}
 .card-accent{border-left:4px solid var(--amber)}
 .card-green{border-left:4px solid var(--green)}
 
 /* VOCAB */
 .vocab-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.vocab-card{background:#fff;border-radius:10px;padding:12px;border:2px solid #fde68a;cursor:pointer;transition:all 0.2s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
-.vocab-card:hover{border-color:var(--amber);transform:scale(1.02)}
+.vocab-card{background:#fff;border-radius:10px;padding:14px 12px;border:2px solid #fde68a;cursor:pointer;transition:all 0.2s;text-align:center;min-height:88px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:active{border-color:var(--amber);transform:scale(0.98)}
 .vocab-card.flipped{background:#fffbeb;border-color:var(--amber)}
 .vocab-kor{font-size:15px;font-weight:800;color:var(--brown)}
-.vocab-pron{font-size:10px;color:#b45309;margin-top:2px}
-.vocab-eng{font-size:11px;color:#555;margin-top:4px}
-.vocab-vi{font-size:10px;color:#888;margin-top:2px}
-.vocab-cat{font-size:10px;font-weight:700;color:var(--amber);background:#fffbeb;padding:2px 8px;border-radius:8px;display:inline-block;margin-bottom:8px}
+.vocab-pron{font-size:12px;color:#b45309;margin-top:2px}
+.vocab-eng{font-size:12px;color:#555;margin-top:4px}
+.vocab-vi{font-size:12px;color:#888;margin-top:2px}
+.vocab-cat{font-size:12px;font-weight:700;color:var(--amber);background:#fffbeb;padding:3px 10px;border-radius:8px;display:inline-block;margin-bottom:8px}
 
-/* TTS */
-.tts-btn{background:var(--amber);color:#fff;border-radius:50%;width:26px;height:26px;font-size:12px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:6px;vertical-align:middle}
-.tts-btn:hover{background:var(--brown)}
+/* TTS — 최소 44×44px 터치 영역 */
+.tts-btn{background:var(--amber);color:#fff;border-radius:50%;width:44px;height:44px;font-size:16px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:4px;vertical-align:middle;-webkit-tap-highlight-color:transparent}
+.tts-btn:active{background:var(--brown);transform:scale(0.95)}
 
 /* GRAMMAR */
 .gram-box{background:#fffbeb;border-radius:12px;padding:14px;margin-bottom:12px;border:2px solid #fde68a}
 .gram-title{font-size:16px;font-weight:800;color:var(--brown);margin-bottom:4px}
 .gram-eng{font-size:12px;color:#888;margin-bottom:8px}
-.gram-rule{background:#fef3c7;border-radius:8px;padding:8px 12px;font-size:13px;color:var(--dark);margin-bottom:8px;font-weight:600}
+.gram-rule{background:#fef3c7;border-radius:8px;padding:10px 12px;font-size:13px;color:var(--dark);margin-bottom:8px;font-weight:600}
 .gram-conj{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.conj-chip{background:var(--amber);color:#fff;border-radius:20px;padding:4px 12px;font-size:12px;font-weight:700}
-.example-item{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid #fde68a}
+.conj-chip{background:var(--amber);color:#fff;border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;min-height:36px;display:inline-flex;align-items:center}
+.example-item{display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid #fde68a}
 .example-item:last-child{border-bottom:none}
 .example-kor{font-size:14px;font-weight:600;color:var(--text);flex:1}
-.example-eng{font-size:11px;color:#888;margin-top:2px}
-.practice-item{background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #fde68a}
-.practice-q{font-size:14px;color:var(--text);margin-bottom:8px}
-.practice-input{width:100%;padding:8px 12px;border:2px solid #fde68a;border-radius:8px;font-size:14px;font-family:inherit}
+.example-eng{font-size:12px;color:#888;margin-top:2px}
+.practice-item{background:#fff;border-radius:10px;padding:14px;margin-bottom:8px;border:1px solid #fde68a}
+.practice-q{font-size:14px;color:var(--text);margin-bottom:10px;line-height:1.6}
+/* iOS 16px 미만 → 자동 확대 방지 */
+.practice-input{width:100%;padding:12px;border:2px solid #fde68a;border-radius:8px;font-size:16px;font-family:inherit}
 .practice-input:focus{outline:none;border-color:var(--amber)}
-.answer-reveal{background:var(--amber);color:#fff;border-radius:8px;padding:6px 14px;font-size:12px;font-weight:700;margin-top:6px}
-.answer-box{background:#fffbeb;border-radius:8px;padding:8px 12px;font-size:14px;color:var(--brown);font-weight:700;margin-top:6px}
+/* 정답 확인 버튼 — 최소 44px */
+.answer-reveal{background:var(--amber);color:#fff;border-radius:8px;padding:12px 18px;font-size:13px;font-weight:700;margin-top:8px;min-height:44px;display:inline-flex;align-items:center}
+.answer-box{background:#fffbeb;border-radius:8px;padding:10px 12px;font-size:14px;color:var(--brown);font-weight:700;margin-top:6px}
 
 /* SPEAKING */
-.dialogue-container{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.dialogue-container{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
 .bubble-wrap{display:flex;align-items:flex-end;gap:6px}
 .bubble-wrap.right{flex-direction:row-reverse}
 .bubble{border-radius:12px;padding:10px 14px;max-width:80%}
 .bubble-left{background:#fff7ed;border-top-left-radius:4px;border:1px solid #fde68a}
 .bubble-right{background:#fef3c7;border-top-right-radius:4px;border:1px solid #fbbf24}
-.bubble-speaker{font-size:10px;font-weight:700;color:var(--amber);margin-bottom:3px}
-.bubble-text{font-size:14px;color:var(--text);line-height:1.5}
-.bubble-eng{font-size:10px;color:#888;margin-top:3px;font-style:italic}
-.avatar{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;background:#fde68a;flex-shrink:0}
+.bubble-speaker{font-size:12px;font-weight:700;color:var(--amber);margin-bottom:3px}
+.bubble-text{font-size:14px;color:var(--text);line-height:1.6}
+.bubble-eng{font-size:12px;color:#888;margin-top:3px;font-style:italic}
+.avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;background:#fde68a;flex-shrink:0}
 
 /* LISTENING */
 .listen-box{background:#fff;border-radius:12px;padding:16px;border:2px solid #fde68a;margin-bottom:12px}
-.script-box{background:#fffbeb;border-radius:10px;padding:14px;border-left:4px solid var(--amber);font-size:14px;line-height:1.8;color:var(--text)}
-.mcq-option{padding:12px;border-radius:10px;border:2px solid #fde68a;background:#fff;font-size:14px;font-weight:600;text-align:left;width:100%;margin-bottom:7px;transition:all .2s}
-.mcq-option:hover{border-color:var(--amber)}
+.script-box{background:#fffbeb;border-radius:10px;padding:14px;border-left:4px solid var(--amber);font-size:14px;line-height:1.9;color:var(--text)}
+/* MCQ — 최소 48px 터치 영역 */
+.mcq-option{padding:14px;border-radius:10px;border:2px solid #fde68a;background:#fff;font-size:14px;font-weight:600;text-align:left;width:100%;margin-bottom:8px;transition:background .15s;min-height:48px;-webkit-tap-highlight-color:transparent}
+.mcq-option:active{border-color:var(--amber)}
 .mcq-correct{background:#dcfce7;border-color:var(--green);color:#166534}
 .mcq-wrong{background:#fee2e2;border-color:var(--red);color:#991b1b}
 
 /* PRONUNCIATION */
 .pron-rule{background:#fef3c7;border-radius:10px;padding:12px;margin-bottom:10px;border-left:4px solid var(--amber)}
-.pron-word{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:8px;padding:10px 14px;margin-bottom:6px;border:1px solid #fde68a}
+.pron-word{display:flex;align-items:center;justify-content:space-between;background:#fff;border-radius:8px;padding:12px 14px;margin-bottom:6px;border:1px solid #fde68a;min-height:52px}
 .pron-kor{font-size:16px;font-weight:800;color:var(--brown)}
 .pron-phonetic{font-size:13px;color:var(--orange);margin-left:8px}
 
@@ -115,48 +118,49 @@ h2{color:var(--brown);font-size:18px;margin-bottom:4px;font-weight:800}
 
 /* WRITING */
 .writing-guide{background:#fffbeb;border-radius:10px;padding:12px;margin-bottom:10px;border-left:4px solid var(--amber)}
-.writing-guide li{font-size:13px;color:var(--text);margin-bottom:4px;padding-left:4px}
-.writing-area{width:100%;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:14px;font-family:inherit;min-height:160px;resize:vertical;background:#fff}
+.writing-guide li{font-size:13px;color:var(--text);margin-bottom:6px;padding-left:4px;line-height:1.6}
+.writing-area{width:100%;padding:14px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:160px;resize:vertical;background:#fff}
 .writing-area:focus{outline:none;border-color:var(--amber)}
-.char-counter{text-align:right;font-size:11px;color:#888;margin-top:4px}
-.sample-answer{background:#fffbeb;border-radius:10px;padding:14px;border:1px solid #fde68a;font-size:14px;line-height:1.8;color:var(--text)}
+.char-counter{text-align:right;font-size:12px;color:#888;margin-top:4px}
+.sample-answer{background:#fffbeb;border-radius:10px;padding:14px;border:1px solid #fde68a;font-size:14px;line-height:1.9;color:var(--text)}
 
 /* CULTURE */
 .culture-text{font-size:14px;line-height:1.9;color:var(--text);background:#fff;border-radius:12px;padding:16px;border:1px solid #fde68a;margin-bottom:12px}
-.discussion-q{background:#fef3c7;border-radius:10px;padding:12px 14px;margin-bottom:8px;font-size:14px;color:var(--brown);font-weight:600;border-left:4px solid var(--amber)}
+.discussion-q{background:#fef3c7;border-radius:10px;padding:14px;margin-bottom:8px;font-size:14px;color:var(--brown);font-weight:600;border-left:4px solid var(--amber)}
 
 /* QUIZ */
 .quiz-card{background:#fff;border-radius:12px;padding:16px;border:1px solid #fde68a;margin-bottom:10px}
-.quiz-q{font-size:15px;font-weight:700;color:var(--brown);margin-bottom:10px;line-height:1.5}
-.quiz-num{font-size:11px;color:var(--amber);font-weight:700;margin-bottom:4px}
-.quiz-opt{padding:12px;border-radius:10px;border:2px solid #fde68a;background:#fff;font-size:14px;font-weight:600;text-align:left;width:100%;margin-bottom:7px;transition:all .2s}
-.quiz-opt:hover{border-color:var(--amber)}
+.quiz-q{font-size:15px;font-weight:700;color:var(--brown);margin-bottom:12px;line-height:1.6}
+.quiz-num{font-size:12px;color:var(--amber);font-weight:700;margin-bottom:6px}
+/* 퀴즈 보기 — 최소 48px */
+.quiz-opt{padding:14px;border-radius:10px;border:2px solid #fde68a;background:#fff;font-size:14px;font-weight:600;text-align:left;width:100%;margin-bottom:8px;transition:background .15s;min-height:48px;-webkit-tap-highlight-color:transparent}
+.quiz-opt:active{border-color:var(--amber)}
 .quiz-correct{background:#dcfce7;border-color:var(--green);color:#166534}
 .quiz-wrong{background:#fee2e2;border-color:var(--red);color:#991b1b}
 .quiz-result{text-align:center;padding:20px;background:#fffbeb;border-radius:12px;border:2px solid var(--amber)}
 .score-big{font-size:48px;font-weight:800;color:var(--amber)}
 
-/* BOTTOM NAV */
-.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:#fff;border-top:1px solid #fde68a;display:flex;justify-content:space-between;padding:6px 8px;z-index:100}
-.bnav-btn{background:none;padding:4px 6px;font-size:11px;color:#888;display:flex;flex-direction:column;align-items:center;gap:1px;flex:1}
+/* BOTTOM NAV — 최소 56px 높이, 터치 영역 44px+ */
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:#fff;border-top:2px solid #fde68a;display:flex;justify-content:space-between;padding:6px 4px;padding-bottom:max(6px,env(safe-area-inset-bottom));z-index:100;min-height:56px}
+.bnav-btn{background:none;padding:6px 4px;font-size:12px;color:#888;display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;min-height:44px;justify-content:center;-webkit-tap-highlight-color:transparent}
 .bnav-btn.active{color:var(--amber);font-weight:700}
-.bnav-icon{font-size:16px}
+.bnav-icon{font-size:20px}
 
 /* INTRO */
 .intro-header{background:linear-gradient(135deg,#451a03,#92400e,#b45309);color:#fff;border-radius:12px;padding:20px;margin-bottom:12px;text-align:center}
 .intro-header h3{font-size:20px;font-weight:800;margin-bottom:4px}
-.obj-item{display:flex;align-items:flex-start;gap:8px;padding:8px 0;border-bottom:1px solid #fde68a;font-size:14px;color:var(--text)}
+.obj-item{display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid #fde68a;font-size:14px;color:var(--text)}
 .obj-item:last-child{border-bottom:none}
 .obj-check{color:var(--amber);font-size:16px;flex-shrink:0;margin-top:1px}
-.think-q{background:#fef3c7;border-radius:10px;padding:12px 14px;margin-bottom:8px;font-size:14px;color:var(--brown);border-left:4px solid var(--amber)}
-.think-q .eng{font-size:11px;color:#888;margin-top:4px;font-style:italic}
+.think-q{background:#fef3c7;border-radius:10px;padding:14px;margin-bottom:8px;font-size:14px;color:var(--brown);border-left:4px solid var(--amber);line-height:1.6}
+.think-q .eng{font-size:12px;color:#888;margin-top:4px;font-style:italic}
 
 /* SECTION LABELS */
-.section-label{display:inline-block;background:var(--amber);color:#fff;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;margin-bottom:8px}
+.section-label{display:inline-block;background:var(--amber);color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;margin-bottom:8px}
 
 /* LANG SWITCHER */
-.lang-bar{background:#fef3c7;display:flex;justify-content:center;gap:6px;padding:6px}
-.lang-btn-sm{background:rgba(180,83,9,0.1);border:1px solid #fbbf24;color:#92400e;padding:3px 10px;border-radius:16px;font-size:11px;cursor:pointer}
+.lang-bar{background:#fef3c7;display:flex;justify-content:center;gap:8px;padding:8px}
+.lang-btn-sm{background:rgba(180,83,9,0.1);border:1px solid #fbbf24;color:#92400e;padding:8px 16px;border-radius:20px;font-size:13px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
 .lang-btn-sm.active{background:var(--amber);color:#fff;border-color:var(--amber)}
 
 /* RETURN TOAST */
@@ -1384,7 +1388,7 @@ function renderAI() {
         <div style="display:flex;gap:6px;align-items:flex-end">
           <textarea id="ai-chat-input"
             placeholder="한국어로 질문하세요... 🇻🇳 Nhập câu hỏi..."
-            style="flex:1;padding:10px;border:2px solid #fde68a;border-radius:10px;font-size:13px;font-family:inherit;min-height:44px;max-height:120px;resize:none;outline:none"
+            style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
             onfocus="this.style.borderColor='#f59e0b'"
             onblur="this.style.borderColor='#fde68a'"
             onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
