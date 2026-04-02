@@ -217,6 +217,7 @@ const SECTIONS = [
   {id:7, label:'쓰기', icon:'✏️'},
   {id:8, label:'문화', icon:'🎎'},
   {id:9, label:'퀴즈', icon:'✅'},
+  {id:10, label:'AI실습', icon:'🤖'},
 ];
 
 const VOCAB = [
@@ -276,11 +277,11 @@ const GRAM1 = {
     {base:'친하다', form:'친할수록'},
   ],
   examples: [
-    {kor:'한국어는 공부할수록 재미있어요.', eng:'Korean becomes more interesting the more you study it.'},
-    {kor:'사람은 나이가 들수록 친구가 소중해요.', eng:'The older you get, the more precious friends become.'},
-    {kor:'관계는 함께 하는 시간이 많을수록 더 깊어져요.', eng:'The more time you spend together, the deeper the relationship grows.'},
-    {kor:'요리는 연습할수록 실력이 늘어요.', eng:'The more you practice cooking, the better you get.'},
-    {kor:'갈수록 한국 생활이 편해지고 있어요.', eng:'As time goes on, life in Korea is getting more comfortable.'},
+    {kor:'한국어는 공부할수록 재미있어요.', eng:'Korean becomes more interesting the more you study it.', vi:'Tiếng Hàn càng học càng thú vị.'},
+    {kor:'사람은 나이가 들수록 친구가 소중해요.', eng:'The older you get, the more precious friends become.', vi:'Người ta càng lớn tuổi càng thấy bạn bè quý giá.'},
+    {kor:'관계는 함께 하는 시간이 많을수록 더 깊어져요.', eng:'The more time you spend together, the deeper the relationship grows.', vi:'Mối quan hệ càng dành nhiều thời gian bên nhau càng sâu sắc hơn.'},
+    {kor:'요리는 연습할수록 실력이 늘어요.', eng:'The more you practice cooking, the better you get.', vi:'Nấu ăn càng luyện tập càng giỏi hơn.'},
+    {kor:'갈수록 한국 생활이 편해지고 있어요.', eng:'As time goes on, life in Korea is getting more comfortable.', vi:'Dần dần cuộc sống ở Hàn Quốc ngày càng thoải mái hơn.'},
   ],
   practice: [
     {q:'한국어를 _______ (배우다 + -(으)ㄹ수록) 한국 문화가 이해돼요.', ans:'배울수록'},
@@ -308,11 +309,11 @@ const GRAM2 = {
     {base:'오래 알다', form:'오래 알아서인지'},
   ],
   examples: [
-    {kor:'오늘 날씨가 좋아서인지 기분이 좋아요.', eng:'Perhaps because the weather is nice today, I\'m in a good mood.'},
-    {kor:'오래 알고 지내서인지 이야기가 잘 통해요.', eng:'Perhaps because we\'ve known each other a long time, we communicate well.'},
-    {kor:'처음 만나서인지 좀 어색했어요.', eng:'Perhaps because it was our first meeting, it was a bit awkward.'},
-    {kor:'오늘 바빠서인지 연락이 없네요.', eng:'Perhaps because they\'re busy today, there\'s been no contact.'},
-    {kor:'요즘 피곤해서인지 감기에 자주 걸려요.', eng:'Perhaps because I\'m tired lately, I keep catching colds.'},
+    {kor:'오늘 날씨가 좋아서인지 기분이 좋아요.', eng:'Perhaps because the weather is nice today, I\'m in a good mood.', vi:'Có lẽ vì hôm nay thời tiết đẹp nên tâm trạng tốt.'},
+    {kor:'오래 알고 지내서인지 이야기가 잘 통해요.', eng:'Perhaps because we\'ve known each other a long time, we communicate well.', vi:'Có lẽ vì biết nhau lâu nên nói chuyện rất hợp.'},
+    {kor:'처음 만나서인지 좀 어색했어요.', eng:'Perhaps because it was our first meeting, it was a bit awkward.', vi:'Có lẽ vì mới gặp lần đầu nên hơi ngại ngùng.'},
+    {kor:'오늘 바빠서인지 연락이 없네요.', eng:'Perhaps because they\'re busy today, there\'s been no contact.', vi:'Có lẽ vì hôm nay bận nên không có liên lạc.'},
+    {kor:'요즘 피곤해서인지 감기에 자주 걸려요.', eng:'Perhaps because I\'m tired lately, I keep catching colds.', vi:'Có lẽ vì dạo này mệt mỏi nên hay bị cảm.'},
   ],
   practice: [
     {q:'어제 늦게 잤어요. _______ 오늘 피곤해요.', ans:'늦게 자서인지'},
@@ -333,47 +334,45 @@ const DIALOGUES = [
     title:'대화 1: 새로운 직장 동료와',
     situation:'상황: 새로운 직장 동료와 대화',
     lines:[
-      {sp:'A', side:'L', text:'요즘 우리 팀에 잘 적응하고 있어요?', eng:'Are you adjusting well to our team these days?'},
-      {sp:'B', side:'R', text:'네, 처음에는 좀 어색했는데 지낼수록 편해지는 것 같아요.', eng:'Yes, it was a bit awkward at first, but the more time passes, the more comfortable I feel.'},
-      {sp:'A', side:'L', text:'그렇죠? 저도 처음에 낯설었는데 시간이 지나면서 친해졌어요.', eng:'Right? I also felt unfamiliar at first, but we got close as time went on.'},
-      {sp:'B', side:'R', text:'같이 밥도 먹고 하다 보니까 많이 가까워진 것 같아요.', eng:'As we started eating together and things, I think we\'ve gotten a lot closer.'},
-      {sp:'A', side:'L', text:'혹시 어려운 점은 없어요? 모르는 거 있으면 편하게 물어봐요.', eng:'Are there any difficulties? If there\'s anything you don\'t know, feel free to ask.'},
-      {sp:'B', side:'R', text:'고마워요. 다들 친절해서인지 적응이 빨리 된 것 같아요.', eng:'Thank you. Perhaps because everyone is kind, I think I\'ve adapted quickly.'},
+      {sp:'A', side:'L', text:'요즘 우리 팀에 잘 적응하고 있어요?', eng:'Are you adjusting well to our team these days?', vi:'Dạo này bạn đã quen với đội nhóm chưa?'},
+      {sp:'B', side:'R', text:'네, 처음에는 좀 어색했는데 지낼수록 편해지는 것 같아요.', eng:'Yes, it was a bit awkward at first, but the more time passes, the more comfortable I feel.', vi:'Có ạ, lúc đầu hơi ngại nhưng càng ở lâu càng thoải mái hơn.'},
+      {sp:'A', side:'L', text:'그렇죠? 저도 처음에 낯설었는데 시간이 지나면서 친해졌어요.', eng:'Right? I also felt unfamiliar at first, but we got close as time went on.', vi:'Đúng không? Tôi lúc đầu cũng xa lạ nhưng dần dần thân quen thôi.'},
+      {sp:'B', side:'R', text:'같이 밥도 먹고 하다 보니까 많이 가까워진 것 같아요.', eng:'As we started eating together and things, I think we\'ve gotten a lot closer.', vi:'Ăn cơm cùng nhau rồi thấy gần gũi hẳn ra.'},
+      {sp:'A', side:'L', text:'혹시 어려운 점은 없어요? 모르는 거 있으면 편하게 물어봐요.', eng:'Are there any difficulties? If there\'s anything you don\'t know, feel free to ask.', vi:'Có gì khó khăn không? Nếu có gì không biết cứ hỏi thoải mái nhé.'},
+      {sp:'B', side:'R', text:'고마워요. 다들 친절해서인지 적응이 빨리 된 것 같아요.', eng:'Thank you. Perhaps because everyone is kind, I think I\'ve adapted quickly.', vi:'Cảm ơn. Có lẽ vì mọi người thân thiện nên tôi thích nghi nhanh.'},
     ]
   },
   {
     title:'대화 2: 오래된 친구와',
     situation:'상황: 오래된 친구와 대화',
     lines:[
-      {sp:'A', side:'L', text:'요즘 통 연락이 없더니 무슨 일 있어요?', eng:'You haven\'t been in touch at all lately — is something going on?'},
-      {sp:'B', side:'R', text:'요즘 너무 바빠서인지 시간이 어떻게 지나는지 모르겠어요.', eng:'Perhaps because I\'ve been so busy lately, I don\'t even know where the time goes.'},
-      {sp:'A', side:'L', text:'그래도 가끔은 연락해야죠. 오랫동안 못 보니까 더 보고 싶어요.', eng:'Still, you should contact me sometimes. Not seeing you for a long time makes me miss you more.'},
-      {sp:'B', side:'R', text:'맞아요. 알고 지낸 지 5년이 됐는데 만남이 줄수록 아쉬운 것 같아요.', eng:'You\'re right. It\'s been 5 years since we\'ve known each other, and the fewer times we meet, the more I regret it.'},
-      {sp:'A', side:'L', text:'다음 주에 같이 밥 먹어요. 우리 자주 보기로 해요.', eng:'Let\'s have a meal together next week. Let\'s make a point to see each other often.'},
-      {sp:'B', side:'R', text:'좋아요! 자주 볼수록 우정이 더 깊어지잖아요.', eng:'Great! The more often we meet, the deeper our friendship grows, right?'},
+      {sp:'A', side:'L', text:'요즘 통 연락이 없더니 무슨 일 있어요?', eng:'You haven\'t been in touch at all lately — is something going on?', vi:'Dạo này không thấy liên lạc, có chuyện gì không?'},
+      {sp:'B', side:'R', text:'요즘 너무 바빠서인지 시간이 어떻게 지나는지 모르겠어요.', eng:'Perhaps because I\'ve been so busy lately, I don\'t even know where the time goes.', vi:'Có lẽ vì bận quá nên thời gian trôi mà không hay.'},
+      {sp:'A', side:'L', text:'그래도 가끔은 연락해야죠. 오랫동안 못 보니까 더 보고 싶어요.', eng:'Still, you should contact me sometimes. Not seeing you for a long time makes me miss you more.', vi:'Dù sao cũng nên liên lạc đôi khi. Không gặp lâu lại nhớ hơn.'},
+      {sp:'B', side:'R', text:'맞아요. 알고 지낸 지 5년이 됐는데 만남이 줄수록 아쉬운 것 같아요.', eng:'You\'re right. It\'s been 5 years since we\'ve known each other, and the fewer times we meet, the more I regret it.', vi:'Đúng vậy. Quen nhau 5 năm rồi, càng ít gặp càng tiếc.'},
+      {sp:'A', side:'L', text:'다음 주에 같이 밥 먹어요. 우리 자주 보기로 해요.', eng:'Let\'s have a meal together next week. Let\'s make a point to see each other often.', vi:'Tuần tới ăn cơm cùng nhé. Mình gặp nhau thường xuyên hơn nhé.'},
+      {sp:'B', side:'R', text:'좋아요! 자주 볼수록 우정이 더 깊어지잖아요.', eng:'Great! The more often we meet, the deeper our friendship grows, right?', vi:'Được! Gặp nhau càng nhiều tình bạn càng sâu đậm hơn mà!'},
     ]
   },
-];
-
   {
     title:'대화 3: 갈등과 화해',
     situation:'상황: 오해가 생긴 후 화해하는 대화',
     lines:[
-      {sp:'A', side:'L', text:'요즘 왜 그렇게 차갑게 대해요? 제가 뭔가 잘못한 게 있나요?', eng:'Why are you being so cold lately? Did I do something wrong?'},
-      {sp:'B', side:'R', text:'솔직히 말하면, 지난번에 제 이야기를 다른 사람한테 했다고 들었어요.', eng:'To be honest, I heard that you told someone else what I said last time.'},
-      {sp:'A', side:'L', text:'그건 오해예요! 저는 그런 말 한 적이 없어요. 제가 얼마나 속상한지 알아요?', eng:'That\'s a misunderstanding! I never said that. Do you know how upset I am?'},
-      {sp:'B', side:'R', text:'아... 그랬군요. 확인도 안 하고 제가 너무 성급하게 판단했네요. 미안해요.', eng:'Ah... I see. I judged too hastily without even checking. I\'m sorry.'},
-      {sp:'A', side:'L', text:'괜찮아요. 오해가 생기면 이렇게 솔직하게 얘기하는 게 최선이에요.', eng:'It\'s okay. When misunderstandings arise, talking openly like this is the best approach.'},
-      {sp:'B', side:'R', text:'맞아요. 화해하고 나니까 얼마나 홀가분한지 몰라요. 앞으로는 오해가 생기면 바로 얘기해요.', eng:'You\'re right. Now that we\'ve made up, I feel so relieved. From now on, let\'s talk immediately when misunderstandings arise.'},
+      {sp:'A', side:'L', text:'요즘 왜 그렇게 차갑게 대해요? 제가 뭔가 잘못한 게 있나요?', eng:'Why are you being so cold lately? Did I do something wrong?', vi:'Sao dạo này bạn lạnh lùng vậy? Tôi có làm gì sai không?'},
+      {sp:'B', side:'R', text:'솔직히 말하면, 지난번에 제 이야기를 다른 사람한테 했다고 들었어요.', eng:'To be honest, I heard that you told someone else what I said last time.', vi:'Thật ra, tôi nghe nói bạn kể chuyện của tôi cho người khác nghe.'},
+      {sp:'A', side:'L', text:'그건 오해예요! 저는 그런 말 한 적이 없어요. 제가 얼마나 속상한지 알아요?', eng:'That\'s a misunderstanding! I never said that. Do you know how upset I am?', vi:'Đó là hiểu lầm rồi! Tôi chưa nói vậy bao giờ. Bạn biết tôi buồn thế nào không?'},
+      {sp:'B', side:'R', text:'아... 그랬군요. 확인도 안 하고 제가 너무 성급하게 판단했네요. 미안해요.', eng:'Ah... I see. I judged too hastily without even checking. I\'m sorry.', vi:'À... vậy à. Tôi đã phán đoán vội mà không kiểm tra. Xin lỗi bạn.'},
+      {sp:'A', side:'L', text:'괜찮아요. 오해가 생기면 이렇게 솔직하게 얘기하는 게 최선이에요.', eng:'It\'s okay. When misunderstandings arise, talking openly like this is the best approach.', vi:'Không sao. Khi có hiểu lầm thì nói thẳng như thế này là tốt nhất.'},
+      {sp:'B', side:'R', text:'맞아요. 화해하고 나니까 얼마나 홀가분한지 몰라요. 앞으로는 오해가 생기면 바로 얘기해요.', eng:'You\'re right. Now that we\'ve made up, I feel so relieved. From now on, let\'s talk immediately when misunderstandings arise.', vi:'Đúng vậy. Hòa giải xong thấy nhẹ nhõm hẳn. Từ nay có hiểu lầm nói ngay nhé.'},
     ]
   },
 ];
 
 const FREE_SPEAKING = [
-  {q:'가장 친한 친구를 사귀게 된 계기를 이야기해 보세요.', eng:'Talk about how you came to befriend your closest friend.'},
-  {q:'관계가 멀어진 경험이 있어요? 어떻게 됐어요?', eng:'Have you had an experience of growing apart from someone? What happened?'},
-  {q:'한국에서 새로운 사람과 친해지기 어려웠던 경험을 이야기해 보세요.', eng:'Talk about a time when it was hard to get close to someone new in Korea.'},
-  {q:'지금 가장 유지하고 싶은 관계는 누구와의 관계예요? 왜요?', eng:'Who is the person you most want to maintain a relationship with right now? Why?'},
+  {q:'가장 친한 친구를 사귀게 된 계기를 이야기해 보세요.', eng:'Talk about how you came to befriend your closest friend.', vi:'Hãy kể về duyên cớ bạn kết thân với người bạn thân nhất.'},
+  {q:'관계가 멀어진 경험이 있어요? 어떻게 됐어요?', eng:'Have you had an experience of growing apart from someone? What happened?', vi:'Bạn có trải qua chuyện xa cách với ai không? Chuyện gì đã xảy ra?'},
+  {q:'한국에서 새로운 사람과 친해지기 어려웠던 경험을 이야기해 보세요.', eng:'Talk about a time when it was hard to get close to someone new in Korea.', vi:'Hãy kể về lần bạn gặp khó khăn khi làm quen với người mới ở Hàn Quốc.'},
+  {q:'지금 가장 유지하고 싶은 관계는 누구와의 관계예요? 왜요?', eng:'Who is the person you most want to maintain a relationship with right now? Why?', vi:'Hiện tại bạn muốn duy trì mối quan hệ với ai nhất? Tại sao?'},
 ];
 
 const LISTENING_SCRIPT = `진행자: 오늘은 대인 관계 전문가 이정수 씨와 이야기를 나눠보겠습니다. 좋은 관계를 유지하는 비결이 뭐예요?
@@ -718,7 +717,7 @@ function renderGrammar() {
           <div class="example-item">
             <div style="flex:1">
               <div class="example-kor">${e.kor} ${ttsBtn(e.kor)}</div>
-              <div class="example-eng">${e.eng}</div>
+              <div class="example-eng">${STATE.lang==='vi'&&e.vi ? '🇻🇳 '+e.vi : e.eng}</div>
             </div>
           </div>
         `).join('')}
@@ -776,7 +775,7 @@ function renderSpeaking() {
                 <div style="font-size:10px;font-weight:700;color:#f59e0b;margin-bottom:2px;${l.side==='R'?'text-align:right':''}">${l.sp}</div>
                 <div class="bubble ${l.side==='L'?'bubble-left':'bubble-right'}">
                   <div class="bubble-text">${l.text} ${ttsBtn(l.text)}</div>
-                  <div class="bubble-eng">${l.eng}</div>
+                  <div class="bubble-eng">${STATE.lang==='vi'&&l.vi ? '🇻🇳 '+l.vi : l.eng}</div>
                 </div>
               </div>
             </div>
@@ -800,7 +799,7 @@ function renderSpeaking() {
         ${FREE_SPEAKING.map((q,i)=>`
           <div class="discussion-q">
             <span style="color:#f59e0b;font-weight:800">Q${i+1}. </span>${q.q}
-            <div style="font-size:11px;color:#888;margin-top:4px;font-style:italic">${q.eng}</div>
+            <div style="font-size:11px;color:#888;margin-top:4px;font-style:italic">${STATE.lang==='vi'&&q.vi ? '🇻🇳 '+q.vi : q.eng}</div>
           </div>
         `).join('')}
         <div style="background:#fffbeb;border-radius:8px;padding:10px;margin-top:4px;font-size:12px;color:#92400e">
@@ -1009,8 +1008,11 @@ function renderWriting() {
       <div class="char-counter" id="charCount">${STATE.writingText.length}자 / 목표 150자</div>
 
       <div style="display:flex;gap:8px;margin-top:8px">
-        <button onclick="openAIFeedback()" style="flex:1;background:#1d4ed8;color:#fff;border-radius:10px;padding:12px;font-size:13px;font-weight:700">
-          🤖 AI 첨삭 요청
+        <button onclick="openClaudeFeedback()" style="flex:1;background:linear-gradient(135deg,#7c3aed,#1d4ed8);color:#fff;border-radius:10px;padding:12px;font-size:13px;font-weight:700">
+          🤖 AI 첨삭 (Claude)
+        </button>
+        <button onclick="setState({section:10})" style="flex:1;background:#f59e0b;color:#fff;border-radius:10px;padding:12px;font-size:13px;font-weight:700">
+          🌐 AI 실습 →
         </button>
         <button onclick="setState({sampleShown:!STATE.sampleShown})" style="flex:1;background:#92400e;color:#fff;border-radius:10px;padding:12px;font-size:13px;font-weight:700">
           ${STATE.sampleShown?'예시 숨기기':'예시 답안 보기'}
@@ -1036,11 +1038,6 @@ function updateWriting(val) {
   }
 }
 
-function openAIFeedback() {
-  const text = STATE.writingText || '';
-  const prompt = encodeURIComponent('다음 한국어 글을 문법적으로 첨삭해 주세요. KIIP 3급 수준의 학습자가 쓴 글입니다. 오류를 지적하고 수정 방법을 친절하게 설명해 주세요:\n\n' + text);
-  window.open('https://chat.openai.com/?q=' + prompt, '_blank');
-}
 
 // SECTION 8: 문화와 정보
 function renderCulture() {
@@ -1174,6 +1171,167 @@ function finishQuiz() {
   setState({quizDone: true});
 }
 
+// SECTION 10: AI 실습 (Glocal Academy × AI Agents)
+function renderAI() {
+  const done = {
+    vocab: Object.keys(STATE.vocabFlipped).length > 0,
+    gram: Object.keys(STATE.gramPracticeShown).length > 0,
+    quiz: localStorage.getItem('kiip_done_L3_1')==='1',
+  };
+  const pct = Math.round(Object.values(done).filter(Boolean).length / 3 * 100);
+  return `
+    <div class="page">
+      <h2>🤖 AI 실습</h2>
+      <p class="sub">글로컬 아카데미 × 에이전틱 G스택 한국어 학습</p>
+
+      <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+        <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+        <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 한국어 실습 플랫폼</div>
+        <div style="font-size:11px;opacity:0.85;line-height:1.7">Google Gemini · NotebookLM · Agent Harness 연계<br>
+        <span style="color:#93c5fd">🇻🇳 Nền tảng học tiếng Hàn kết hợp AI Agent của Glocal Academy</span></div>
+      </div>
+
+      <!-- Progress Widget -->
+      <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b">
+        <div class="section-label" style="background:#92400e">⚙️ Agent Harness · 학습 진도</div>
+        <div style="background:#fef3c7;border-radius:8px;padding:10px 12px;margin:8px 0">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <span style="font-size:13px;font-weight:700;color:#92400e">1과 진도율</span>
+            <span style="font-size:18px;font-weight:800;color:#f59e0b">${pct}%</span>
+          </div>
+          <div style="background:#fde68a;border-radius:8px;height:8px;overflow:hidden">
+            <div style="background:#f59e0b;height:100%;width:${pct}%;transition:width 0.5s"></div>
+          </div>
+        </div>
+        ${[
+          {label:'📝 어휘 학습 완료', done:done.vocab, vi:'Học từ vựng xong'},
+          {label:'📐 문법 연습 완료', done:done.gram, vi:'Luyện ngữ pháp xong'},
+          {label:'✅ 퀴즈 통과', done:done.quiz, vi:'Qua bài kiểm tra'},
+        ].map(t=>`
+          <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #fde68a">
+            <span style="font-size:15px">${t.done?'✅':'⬜'}</span>
+            <div>
+              <div style="font-size:13px;color:${t.done?'#166534':'#555'};font-weight:${t.done?'700':'400'}">${t.label}</div>
+              <div style="font-size:10px;color:#059669">🇻🇳 ${t.vi}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- Gemini AI 대화 연습 -->
+      <div class="card card-accent" style="margin-bottom:10px">
+        <div class="section-label">💬 Gemini AI 대화 연습</div>
+        <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">오늘 배운 표현으로 AI와 직접 대화하세요<br>
+        <span style="color:#059669;font-size:11px">🇻🇳 Luyện hội thoại trực tiếp với AI bằng biểu đạt hôm nay</span></div>
+        ${[
+          {label:'👥 대화 1 상황 연습 — 새 직장 동료', vi:'Luyện tình huống đồng nghiệp mới', prompt:'저는 KIIP 3급 학습자입니다. -(으)ㄹ수록 문법을 사용하여 새 직장 동료와 어색한 분위기를 극복하는 한국어 롤플레이를 도와주세요. 저는 외국인 직원 역할이에요.'},
+          {label:'🤝 관용 표현 실전 연습', vi:'Luyện thành ngữ thực tế', prompt:'KIIP 3급입니다. 손발이 맞다, 마음이 맞다, 눈치를 보다, 정이 들다를 사용한 짧은 대화 상황 3개를 만들어 주세요. 베트남어 설명도 함께요.'},
+          {label:'⚖️ 갈등 화해 롤플레이', vi:'Luyện hòa giải xung đột', prompt:'KIIP 3급 학습자입니다. -아/어서인지 문법과 화해 표현을 사용하여 친구와 오해를 풀고 화해하는 한국어 대화를 롤플레이해 주세요.'},
+        ].map(item=>`
+          <button onclick="openGemini('${item.prompt.replace(/'/g,"\\'")}')"
+            style="width:100%;background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;border-radius:8px;padding:10px 14px;font-size:12px;font-weight:700;margin-bottom:6px;text-align:left;line-height:1.5">
+            🔵 ${item.label}<br><span style="opacity:0.8;font-size:10px">🇻🇳 ${item.vi}</span>
+          </button>
+        `).join('')}
+      </div>
+
+      <!-- AI 발음 코치 (STT) -->
+      <div class="card card-green" style="margin-bottom:10px">
+        <div class="section-label" style="background:#059669">🎤 AI 발음 코치 (Web STT)</div>
+        <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">문장을 듣고 따라 말해 보세요<br>
+        <span style="color:#059669;font-size:11px">🇻🇳 Nghe và nhắc lại để luyện phát âm</span></div>
+        ${[
+          '처음에는 어색했는데 지낼수록 편해지는 것 같아요.',
+          '오래 알고 지내서인지 이야기가 잘 통해요.',
+          '손발이 잘 맞는 팀원들과 일하면 더 즐거워요.',
+        ].map((sent,i)=>`
+          <div style="background:#f0fdf4;border-radius:8px;padding:10px;margin-bottom:6px;border:1px solid #86efac">
+            <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:6px">${sent}</div>
+            <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+              ${ttsBtn(sent)}
+              <button onclick="startSTT(${i},'${sent.replace(/'/g,"\\'")}',this)"
+                style="background:#059669;color:#fff;border-radius:16px;padding:4px 12px;font-size:11px;font-weight:700">
+                🎤 따라 말하기
+              </button>
+              <span id="stt-result-${i}" style="font-size:11px;color:#166534;font-weight:700"></span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- Claude AI 쓰기 첨삭 -->
+      <div class="card" style="margin-bottom:10px;border:2px solid #7c3aed">
+        <div class="section-label" style="background:#7c3aed">✏️ Claude AI 쓰기 첨삭</div>
+        <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">쓰기 섹션 글을 Claude AI에게 첨삭 받으세요<br>
+        <span style="color:#7c3aed;font-size:11px">🇻🇳 Nhờ Claude AI sửa bài viết — có giải thích tiếng Việt</span></div>
+        <button onclick="openClaudeFeedback()"
+          style="width:100%;background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:700">
+          🟣 Claude AI 첨삭 받기 (베트남어 설명 포함) →
+        </button>
+      </div>
+
+      <!-- Google NotebookLM -->
+      <div class="card" style="margin-bottom:10px;border:2px solid #ea4335">
+        <div class="section-label" style="background:#ea4335">📓 Google NotebookLM 학습</div>
+        <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">이 과의 어휘·문법을 NotebookLM에 업로드하여 AI 요약 및 Q&amp;A를 받아보세요<br>
+        <span style="color:#ea4335;font-size:11px">🇻🇳 Tải lên từ vựng và ngữ pháp bài này để nhận tóm tắt và Q&amp;A từ AI</span></div>
+        <button onclick="window.open('https://notebooklm.google.com','_blank')"
+          style="width:100%;background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:700">
+          📓 NotebookLM 열기 →
+        </button>
+      </div>
+
+      <!-- Glocal G스택 가이드 -->
+      <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+        <div class="section-label" style="background:#059669">🌐 글로컬 G스택 학습법</div>
+        <div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.8">
+          <strong>글로컬 아카데미 AI 에이전트 기반 4단계 학습법:</strong><br>
+          <span style="color:#555">① 어휘/문법 → Gemini 설명 요청</span><br>
+          <span style="color:#555">② 말하기 → Gemini 롤플레이 실습</span><br>
+          <span style="color:#555">③ 쓰기 → Claude AI 첨삭</span><br>
+          <span style="color:#555">④ 복습 → NotebookLM Q&amp;A 정리</span><br>
+          <br>
+          <span style="color:#059669;font-size:11px">🇻🇳 <strong>Phương pháp 4 bước của Glocal Academy:</strong><br>
+          ① Từ vựng/ngữ pháp → Hỏi Gemini<br>
+          ② Nói → Nhập vai với Gemini<br>
+          ③ Viết → Nhờ Claude sửa bài<br>
+          ④ Ôn tập → Tổng hợp với NotebookLM</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function openGemini(prompt) {
+  window.open('https://gemini.google.com/app?q=' + encodeURIComponent(prompt), '_blank');
+}
+
+function openClaudeFeedback() {
+  const text = STATE.writingText || '(쓰기 섹션에 글을 먼저 작성해 주세요)';
+  const prompt = 'KIIP 3급 외국인 학습자의 글입니다. 문법 오류를 지적하고 수정 방법을 설명해 주세요. 특히 -(으)ㄹ수록과 -아/어서인지 문법 사용을 확인해 주세요. 한국어로 첨삭하고 베트남어(Tiếng Việt)로도 설명해 주세요:\n\n' + text;
+  window.open('https://claude.ai/new?q=' + encodeURIComponent(prompt), '_blank');
+}
+
+function startSTT(idx, targetText, btn) {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const resultEl = document.getElementById('stt-result-' + idx);
+  if (!SR) {
+    if (resultEl) resultEl.textContent = '❌ 이 브라우저는 음성인식 미지원';
+    return;
+  }
+  const rec = new SR();
+  rec.lang = 'ko-KR';
+  rec.onstart = () => { btn.textContent = '🔴 녹음 중...'; btn.style.background = '#ef4444'; };
+  rec.onresult = (e) => {
+    const said = e.results[0][0].transcript.replace(/\s/g,'');
+    const target = targetText.replace(/\s/g,'');
+    if (resultEl) resultEl.textContent = said === target ? '✅ 정확해요!' : `"${e.results[0][0].transcript}" — 다시 시도!`;
+    btn.textContent = '🎤 따라 말하기'; btn.style.background = '#059669';
+  };
+  rec.onerror = () => { btn.textContent = '🎤 따라 말하기'; btn.style.background = '#059669'; };
+  rec.start();
+}
+
 // SECTION RENDERER
 function renderSection() {
   switch(STATE.section) {
@@ -1187,6 +1345,7 @@ function renderSection() {
     case 7: return renderWriting();
     case 8: return renderCulture();
     case 9: return renderQuiz();
+    case 10: return renderAI();
     default: return renderIntro();
   }
 }
