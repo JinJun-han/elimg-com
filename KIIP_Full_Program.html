@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>KIIP 사회통합프로그램 전 과정 · 0급~5급 한국어교육</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
+<meta property="og:title" content="KIIP 사회통합프로그램 · 0급~5급 전 과정">
+<meta property="og:description" content="법무부 사회통합프로그램 0급~5급 완성 · 18개국 언어 · 조선소·유학생 취업 특화 · AI 학습">
+<meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://elimg.com/KIIP_Full_Program.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0a0e1a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KIIP Korean">
+<!-- 18개국 폰트 지원 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Noto+Sans+Myanmar&family=Noto+Sans+Khmer&family=Noto+Sans+Thai&family=Noto+Sans+Devanagari&family=Noto+Sans+Bengali&family=Noto+Sans+Sinhala&family=Noto+Sans+Arabic&family=Noto+Sans+Mongolian&display=swap" rel="stylesheet">
+<script src="/i18n/translations.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
+[dir="rtl"] body{font-family:'Noto Sans Arabic','Noto Sans KR',sans-serif}
+
+/* ─── HEADER ─── */
+.header{background:linear-gradient(160deg,#060b18,#0d1a35,#0a1628);border-bottom:1px solid rgba(255,255,255,0.07);padding:28px 16px 22px;text-align:center;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(59,130,246,0.12),transparent);pointer-events:none}
+.header-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:20px;padding:4px 12px;font-size:10px;font-weight:700;color:#60a5fa;letter-spacing:1px;margin-bottom:12px}
+.header h1{font-size:24px;font-weight:900;color:#fff;letter-spacing:1px;margin-bottom:4px}
+.header-sub{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:16px;line-height:1.5}
+
+/* 18개국 언어 선택 버튼 */
+.lang-globe-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:7px 16px;border-radius:20px;font-size:13px;cursor:pointer;margin-bottom:12px;display:inline-flex;align-items:center;gap:6px}
+.lang-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:1000;align-items:flex-end;justify-content:center}
+.lang-modal.open{display:flex}
+.lang-sheet{background:#0f1629;border-radius:20px 20px 0 0;padding:20px 16px 32px;width:100%;max-width:520px;max-height:70vh;overflow-y:auto}
+.lang-sheet-title{font-size:14px;font-weight:800;color:#fff;margin-bottom:14px;text-align:center}
+.lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media(min-width:400px){.lang-grid{grid-template-columns:repeat(4,1fr)}}
+.lang-option{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 6px;text-align:center;cursor:pointer;transition:all 0.15s}
+.lang-option:hover,.lang-option.active{background:rgba(59,130,246,0.2);border-color:rgba(59,130,246,0.5)}
+.lang-option .flag{font-size:20px;display:block;margin-bottom:3px}
+.lang-option .name{font-size:10px;color:rgba(255,255,255,0.8);line-height:1.2}
+
+/* ─── STATS ─── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:520px;margin:0 auto 20px;padding:0 16px}
+.stat-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 6px;text-align:center}
+.stat-num{font-size:20px;font-weight:900;color:#60a5fa;line-height:1}
+.stat-label{font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px;line-height:1.3}
+
+/* ─── CONTAINER ─── */
+.container{max-width:520px;margin:0 auto;padding:0 16px 40px}
+.section-title{font-size:11px;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:2px;margin:24px 0 12px;text-align:center}
+
+/* ─── KIIP 진도 타임라인 ─── */
+.timeline{position:relative;padding-left:0}
+.timeline::before{content:'';position:absolute;left:27px;top:32px;bottom:32px;width:2px;background:linear-gradient(180deg,#10b981,#3b82f6,#6366f1,#f59e0b,#ef4444,#8b5cf6);z-index:0}
+.level-row{display:flex;align-items:stretch;gap:12px;margin-bottom:12px;position:relative;z-index:1}
+.level-icon{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:2px solid rgba(255,255,255,0.15);margin-top:4px}
+.level-card{flex:1;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);transition:transform 0.15s,box-shadow 0.15s}
+.level-card:hover{transform:translateX(4px);box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+.level-card-inner{display:flex;align-items:center;padding:12px 14px;gap:12px}
+.level-info{flex:1}
+.level-name{font-size:14px;font-weight:800;color:#fff;margin-bottom:2px}
+.level-desc{font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:4px;line-height:1.4}
+.level-meta{display:flex;gap:6px;flex-wrap:wrap}
+.level-badge{font-size:9px;padding:2px 8px;border-radius:10px;font-weight:700;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)}
+.level-action{flex-shrink:0}
+.level-btn{display:inline-block;padding:8px 14px;border-radius:8px;font-size:11px;font-weight:800;text-decoration:none;color:#fff;white-space:nowrap}
+.level-progress-bar{height:2px;background:rgba(255,255,255,0.06)}
+.level-progress-fill{height:100%;border-radius:2px;transition:width 0.5s ease}
+
+/* ─── 특화 트랙 ─── */
+.tracks-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.track-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px;text-decoration:none;display:block;transition:transform 0.15s,box-shadow 0.15s}
+.track-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,0,0,0.35)}
+.track-icon{font-size:24px;margin-bottom:6px}
+.track-name{font-size:13px;font-weight:800;color:#fff;margin-bottom:3px}
+.track-desc{font-size:10px;color:rgba(255,255,255,0.45);line-height:1.4}
+.track-tag{display:inline-block;margin-top:6px;padding:2px 8px;border-radius:10px;font-size:9px;font-weight:700}
+
+/* ─── AI 기능 배너 ─── */
+.ai-banner{background:linear-gradient(135deg,rgba(139,92,246,0.15),rgba(59,130,246,0.15));border:1px solid rgba(139,92,246,0.3);border-radius:16px;padding:16px 18px;display:flex;gap:14px;align-items:center;margin-bottom:10px}
+.ai-banner-icon{font-size:32px;flex-shrink:0}
+.ai-banner-info{flex:1}
+.ai-banner-title{font-size:14px;font-weight:800;color:#c4b5fd;margin-bottom:4px}
+.ai-banner-desc{font-size:11px;color:rgba(255,255,255,0.5);line-height:1.5}
+.ai-features{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.ai-chip{background:rgba(139,92,246,0.2);border:1px solid rgba(139,92,246,0.35);border-radius:20px;padding:3px 10px;font-size:9px;font-weight:700;color:#c4b5fd}
+
+/* ─── 내 학습 현황 ─── */
+.progress-widget{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:16px 18px;margin-bottom:10px}
+.progress-widget-title{font-size:12px;font-weight:800;color:rgba(255,255,255,0.6);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.progress-levels{display:flex;gap:8px;flex-wrap:wrap}
+.progress-level-dot{text-align:center;flex:1;min-width:50px}
+.progress-level-ring{width:44px;height:44px;border-radius:50%;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;border:3px solid rgba(255,255,255,0.1);position:relative}
+.progress-level-label{font-size:8px;color:rgba(255,255,255,0.4);line-height:1.2}
+.progress-continue-btn{display:block;margin-top:12px;background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);border-radius:10px;padding:10px;text-align:center;color:#60a5fa;font-size:12px;font-weight:700;text-decoration:none}
+.progress-continue-btn:hover{background:rgba(59,130,246,0.25)}
+
+/* ─── KIIP 공식 안내 ─── */
+.kiip-info{background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(217,119,6,0.08));border:1px solid rgba(245,158,11,0.2);border-radius:16px;padding:16px 18px}
+
+/* ─── FOOTER ─── */
+.footer{text-align:center;padding:24px 16px;font-size:10px;color:rgba(255,255,255,0.25);border-top:1px solid rgba(255,255,255,0.05)}
+</style>
+</head>
+<body>
+
+<!-- 언어 선택 모달 -->
+<div class="lang-modal" id="langModal" onclick="if(event.target===this)closeLangModal()">
+  <div class="lang-sheet">
+    <div class="lang-sheet-title">🌐 언어 선택 · Select Language</div>
+    <div class="lang-grid" id="langGrid"></div>
+  </div>
+</div>
+
+<div class="header">
+  <div class="header-badge">🏛 법무부 사회통합프로그램 · KIIP Official</div>
+  <h1>KIIP 한국어 전 과정</h1>
+  <div class="header-sub">
+    0급 입문 → 1급 → 2급 → 3급 → 4급 → 5급 한국사회이해<br>
+    <span style="font-size:11px;opacity:0.7;">Ministry of Justice Social Integration Program · Full Curriculum</span>
+  </div>
+  <button class="lang-globe-btn" onclick="openLangModal()" id="currentLangBtn">🌐 한국어</button>
+</div>
+
+<div class="stats-row">
+  <div class="stat-box">
+    <div class="stat-num">6</div>
+    <div class="stat-label">0~5급<br>전 과정</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">465h</div>
+    <div class="stat-label">총 학습<br>시간</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">18</div>
+    <div class="stat-label">지원<br>언어</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">AI</div>
+    <div class="stat-label">스마트<br>학습</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 내 학습 현황 -->
+  <div class="progress-widget" id="progressWidget">
+    <div class="progress-widget-title">📊 <span data-i18n="my_progress">내 학습 현황</span></div>
+    <div class="progress-levels" id="progressLevels"></div>
+    <a href="#" class="progress-continue-btn" id="continueLearningBtn" data-i18n="continue">계속하기</a>
+  </div>
+
+  <!-- KIIP 0~5급 타임라인 -->
+  <div class="section-title">📚 KIIP 사회통합프로그램 전 과정</div>
+  <div class="timeline" id="timelineContainer"></div>
+
+  <!-- 특화 트랙 -->
+  <div class="section-title">🎯 특화 교육 트랙</div>
+  <div class="tracks-grid">
+    <a href="Korean_Education_Hub.html" class="track-card">
+      <div class="track-icon">🚢</div>
+      <div class="track-name">조선소 특화 트랙</div>
+      <div class="track-desc">한화오션·삼성중공업·HD현대 맞춤 브랜드 교육</div>
+      <div class="track-tag" style="background:rgba(0,51,102,0.3);color:#7dd3fc;">3개 그룹사 4개 조선소</div>
+    </a>
+    <a href="KIIP_Student_Track_Index.html" class="track-card">
+      <div class="track-icon">🎓</div>
+      <div class="track-name">유학생 취업 트랙</div>
+      <div class="track-desc">이력서·면접·비자·TOPIK II 취업 한국어</div>
+      <div class="track-tag" style="background:rgba(16,185,129,0.2);color:#6ee7b7;">D-2·D-10 비자</div>
+    </a>
+  </div>
+
+  <!-- AI 학습 기능 -->
+  <div class="ai-banner">
+    <div class="ai-banner-icon">🤖</div>
+    <div class="ai-banner-info">
+      <div class="ai-banner-title" data-i18n="ai_tutor">AI 선생님</div>
+      <div class="ai-banner-desc">AI 발음 체크 · 스마트 퀴즈 · 학습 진도 분석 · AI 챗봇 튜터</div>
+      <div class="ai-features">
+        <span class="ai-chip">🎤 발음 체크</span>
+        <span class="ai-chip">📝 적응형 퀴즈</span>
+        <span class="ai-chip">📊 진도 추적</span>
+        <span class="ai-chip">💬 AI 챗봇</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- KIIP 공식 안내 -->
+  <div class="kiip-info">
+    <div style="font-size:13px;font-weight:800;color:#fbbf24;margin-bottom:8px;">🏛 KIIP 사회통합프로그램이란?</div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.6);line-height:1.8;">
+      대한민국 법무부가 운영하는 이민자 대상 공식 한국어·사회통합 교육 프로그램입니다.<br>
+      0급(입문) → 1급 → 2급 → 3급 → 4급 → 5급(한국사회이해)을 이수하면<br>
+      <strong style="color:#fbbf24;">귀화 신청 시 필기시험 면제</strong> · 체류 점수 부여 등 법적 혜택을 받습니다.<br>
+      <span style="font-size:10px;color:rgba(255,255,255,0.35);">Ministry of Justice · Official program for immigration social integration · Level 5 completion enables naturalization exam exemption</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  © 2026 GlocalBridge · KIIP 사회통합프로그램 연계 · 법무부 인정 교육과정<br>
+  elimg.com · 18개국 언어 지원 · AI 통합 한국어 교육
+</div>
+
+<script>
+// ── 레벨 데이터 ──────────────────────────────────────────────────────
+const LEVELS = [
+  {
+    num: 0, icon: '🌱', color: '#10b981',
+    ko: '0급 · 입문', en: 'Level 0 · Intro',
+    ko_desc: '한글 읽기·쓰기 기초', en_desc: 'Hangul reading & writing basics',
+    hours: 15, lessons: 8,
+    url: 'KIIP_Level0_Index.html',
+    status: 'available', // available | coming_soon | locked
+  },
+  {
+    num: 1, icon: '📘', color: '#3b82f6',
+    ko: '1급 · 초급 1', en: 'Level 1 · Beginner 1',
+    ko_desc: '기본 생활 한국어 20과', en_desc: 'Basic everyday Korean (20 lessons)',
+    hours: 100, lessons: 20,
+    url: 'HanwhaOcean_Level1_Index.html',
+    status: 'available',
+  },
+  {
+    num: 2, icon: '📗', color: '#6366f1',
+    ko: '2급 · 초급 2', en: 'Level 2 · Beginner 2',
+    ko_desc: '일상·직장 한국어 20과', en_desc: 'Daily & workplace Korean (20 lessons)',
+    hours: 100, lessons: 20,
+    url: 'HanwhaOcean_Level2_Index.html',
+    status: 'available',
+  },
+  {
+    num: 3, icon: '📙', color: '#f59e0b',
+    ko: '3급 · 중급 1', en: 'Level 3 · Intermediate 1',
+    ko_desc: '한국 사회 통합 한국어 20과', en_desc: 'Social integration Korean (20 lessons)',
+    hours: 100, lessons: 20,
+    url: 'KIIP_Level3_Index.html',
+    status: 'coming_soon',
+  },
+  {
+    num: 4, icon: '📕', color: '#ef4444',
+    ko: '4급 · 중급 2', en: 'Level 4 · Intermediate 2',
+    ko_desc: '심화 한국어·TOPIK I 대비 20과', en_desc: 'Advanced Korean + TOPIK I prep (20 lessons)',
+    hours: 100, lessons: 20,
+    url: 'KIIP_Level4_Index.html',
+    status: 'coming_soon',
+  },
+  {
+    num: 5, icon: '🏛', color: '#8b5cf6',
+    ko: '5급 · 한국사회이해', en: 'Level 5 · Korean Society',
+    ko_desc: '역사·법률·문화·귀화 시험 10과', en_desc: 'History, law, culture & naturalization (10 lessons)',
+    hours: 50, lessons: 10,
+    url: 'KIIP_Level5_Index.html',
+    status: 'coming_soon',
+  },
+];
+
+// ── 언어 선택 ──────────────────────────────────────────────────────
+let currentLang = localStorage.getItem('kiip_lang') || 'ko';
+
+function openLangModal() {
+  const grid = document.getElementById('langGrid');
+  grid.innerHTML = '';
+  KIIP_I18N.countries.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'lang-option' + (c.code === currentLang ? ' active' : '');
+    div.dataset.lang = c.code;
+    div.innerHTML = `<span class="flag">${c.flag}</span><span class="name">${c.nativeName}</span>`;
+    div.onclick = () => selectLang(c.code);
+    grid.appendChild(div);
+  });
+  document.getElementById('langModal').classList.add('open');
+}
+
+function closeLangModal() {
+  document.getElementById('langModal').classList.remove('open');
+}
+
+function selectLang(lang) {
+  currentLang = lang;
+  KIIP_I18N.applyLang(lang);
+  const langInfo = KIIP_I18N.countries.find(c => c.code === lang);
+  if (langInfo) {
+    document.getElementById('currentLangBtn').textContent = '🌐 ' + langInfo.nativeName;
+  }
+  // RTL 폰트 적용
+  if (lang === 'ur') {
+    document.body.style.fontFamily = "'Noto Sans Arabic', 'Noto Sans KR', sans-serif";
+  } else if (['my'].includes(lang)) {
+    document.body.style.fontFamily = "'Noto Sans Myanmar', 'Noto Sans KR', sans-serif";
+  } else if (['km'].includes(lang)) {
+    document.body.style.fontFamily = "'Noto Sans Khmer', 'Noto Sans KR', sans-serif";
+  } else if (['th'].includes(lang)) {
+    document.body.style.fontFamily = "'Noto Sans Thai', 'Noto Sans KR', sans-serif";
+  } else if (['ne','hi'].includes(lang)) {
+    document.body.style.fontFamily = "'Noto Sans Devanagari', 'Noto Sans KR', sans-serif";
+  } else if (['bn'].includes(lang)) {
+    document.body.style.fontFamily = "'Noto Sans Bengali', 'Noto Sans KR', sans-serif";
+  } else if (['si'].includes(lang)) {
+    document.body.style.fontFamily = "'Noto Sans Sinhala', 'Noto Sans KR', sans-serif";
+  } else {
+    document.body.style.fontFamily = "'Noto Sans KR', -apple-system, sans-serif";
+  }
+  closeLangModal();
+  renderTimeline();
+}
+
+// ── 타임라인 렌더 ──────────────────────────────────────────────────
+function renderTimeline() {
+  const container = document.getElementById('timelineContainer');
+  const t = (key) => KIIP_I18N.t(key, currentLang);
+
+  container.innerHTML = LEVELS.map(lv => {
+    const isAvailable = lv.status === 'available';
+    const isComingSoon = lv.status === 'coming_soon';
+    const pct = getProgress(lv.num);
+
+    const btnStyle = isAvailable
+      ? `background:${lv.color};` : `background:rgba(255,255,255,0.06);`;
+    const btnText = isComingSoon ? '🔜 준비 중' : (pct > 0 ? t('continue') : t('start'));
+    const href = isAvailable ? lv.url : '#';
+
+    const nameLocal = KIIP_I18N.ui[currentLang]
+      ? (currentLang === 'ko' ? lv.ko : (currentLang === 'en' ? lv.en : lv.ko))
+      : lv.ko;
+    const descLocal = currentLang === 'en' ? lv.en_desc : lv.ko_desc;
+
+    return `
+    <div class="level-row">
+      <div class="level-icon" style="background:${lv.color}22;border-color:${lv.color}44;">${lv.icon}</div>
+      <div class="level-card" style="border-color:${lv.color}22;">
+        <div class="level-progress-bar">
+          <div class="level-progress-fill" style="width:${pct}%;background:${lv.color};"></div>
+        </div>
+        <div class="level-card-inner">
+          <div class="level-info">
+            <div class="level-name" style="color:${lv.color};">${nameLocal}</div>
+            <div class="level-desc">${descLocal}</div>
+            <div class="level-meta">
+              <span class="level-badge">⏱ ${lv.hours}시간</span>
+              <span class="level-badge">📖 ${lv.lessons}과</span>
+              ${pct > 0 ? `<span class="level-badge" style="background:${lv.color}22;color:${lv.color};">✓ ${pct}%</span>` : ''}
+            </div>
+          </div>
+          <div class="level-action">
+            <a href="${href}" class="level-btn" style="${btnStyle}opacity:${isComingSoon?'0.5':'1'};">${btnText}</a>
+          </div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── 학습 진도 ──────────────────────────────────────────────────────
+function getProgress(level) {
+  const key = `kiip_level_${level}_pct`;
+  return parseInt(localStorage.getItem(key) || '0');
+}
+
+function renderProgress() {
+  const container = document.getElementById('progressLevels');
+  const colors = ['#10b981','#3b82f6','#6366f1','#f59e0b','#ef4444','#8b5cf6'];
+  const icons = ['🌱','📘','📗','📙','📕','🏛'];
+
+  container.innerHTML = LEVELS.map((lv,i) => {
+    const pct = getProgress(lv.num);
+    const stroke = pct > 0 ? colors[i] : 'rgba(255,255,255,0.1)';
+    return `
+    <div class="progress-level-dot">
+      <div class="progress-level-ring" style="border-color:${stroke};">
+        <span style="font-size:11px;color:${pct>0?colors[i]:'rgba(255,255,255,0.25)'};">${pct>0?pct+'%':icons[i]}</span>
+      </div>
+      <div class="progress-level-label">${lv.num}급</div>
+    </div>`;
+  }).join('');
+
+  // 마지막 학습 위치
+  const last = localStorage.getItem('kiip_last');
+  const btn = document.getElementById('continueLearningBtn');
+  if (last) {
+    btn.href = last;
+    btn.textContent = '▶ 계속 학습하기';
+  } else {
+    btn.href = 'KIIP_Level0_Index.html';
+    btn.textContent = '🌱 0급부터 시작하기';
+  }
+}
+
+// ── 초기화 ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  // 현재 언어 버튼 텍스트
+  const langInfo = KIIP_I18N.countries.find(c => c.code === currentLang);
+  if (langInfo) document.getElementById('currentLangBtn').textContent = '🌐 ' + langInfo.nativeName;
+  KIIP_I18N.applyLang(currentLang);
+  renderTimeline();
+  renderProgress();
+});
+
+// ── PWA ──────────────────────────────────────────────────────
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

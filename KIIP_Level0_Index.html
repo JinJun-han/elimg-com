@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>KIIP 0급 입문 · 한글 기초 읽기·쓰기</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
+<meta property="og:title" content="KIIP 0급 입문 · 한글 기초 읽기·쓰기">
+<meta property="og:description" content="법무부 사회통합프로그램 0급 · 한글 자모부터 문장 읽기까지 · 15시간 8과 완성">
+<meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://elimg.com/KIIP_Level0_Index.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#10b981">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KIIP 0급">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Noto+Sans+Myanmar&family=Noto+Sans+Khmer&family=Noto+Sans+Thai&family=Noto+Sans+Devanagari&family=Noto+Sans+Bengali&family=Noto+Sans+Sinhala&family=Noto+Sans+Arabic&family=Noto+Sans+Mongolian&display=swap" rel="stylesheet">
+<script src="/i18n/translations.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
+[dir="rtl"] body{font-family:'Noto Sans Arabic','Noto Sans KR',sans-serif}
+
+/* ─── HEADER ─── */
+.header{background:linear-gradient(160deg,#052e16,#064e3b,#065f46);border-bottom:1px solid rgba(16,185,129,0.2);padding:28px 16px 22px;text-align:center;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(16,185,129,0.15),transparent);pointer-events:none}
+.back-btn{position:absolute;top:16px;left:16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);padding:6px 12px;border-radius:16px;font-size:11px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.back-btn:hover{background:rgba(255,255,255,0.14)}
+.header-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.35);border-radius:20px;padding:4px 12px;font-size:10px;font-weight:700;color:#6ee7b7;letter-spacing:1px;margin-bottom:12px}
+.header h1{font-size:24px;font-weight:900;color:#fff;letter-spacing:1px;margin-bottom:4px}
+.header-sub{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:14px;line-height:1.5}
+.badge-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.badge{display:inline-flex;align-items:center;gap:4px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);border-radius:20px;padding:4px 12px;font-size:10px;font-weight:700;color:#6ee7b7}
+
+/* 언어 선택 버튼 */
+.lang-globe-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:7px 16px;border-radius:20px;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.lang-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:1000;align-items:flex-end;justify-content:center}
+.lang-modal.open{display:flex}
+.lang-sheet{background:#0f1629;border-radius:20px 20px 0 0;padding:20px 16px 32px;width:100%;max-width:520px;max-height:70vh;overflow-y:auto}
+.lang-sheet-title{font-size:14px;font-weight:800;color:#fff;margin-bottom:14px;text-align:center}
+.lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media(min-width:400px){.lang-grid{grid-template-columns:repeat(4,1fr)}}
+.lang-option{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 6px;text-align:center;cursor:pointer;transition:all 0.15s}
+.lang-option:hover,.lang-option.active{background:rgba(16,185,129,0.2);border-color:rgba(16,185,129,0.5)}
+.lang-option .flag{font-size:20px;display:block;margin-bottom:3px}
+.lang-option .name{font-size:10px;color:rgba(255,255,255,0.8);line-height:1.2}
+
+/* ─── STATS ─── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:520px;margin:0 auto 20px;padding:0 16px}
+.stat-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 6px;text-align:center}
+.stat-num{font-size:20px;font-weight:900;color:#34d399;line-height:1}
+.stat-label{font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px;line-height:1.3}
+
+/* ─── CONTAINER ─── */
+.container{max-width:520px;margin:0 auto;padding:0 16px 40px}
+.section-title{font-size:11px;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:2px;margin:24px 0 12px;text-align:center}
+
+/* ─── PROGRESS ─── */
+.progress-widget{background:rgba(255,255,255,0.04);border:1px solid rgba(16,185,129,0.15);border-radius:16px;padding:16px 18px;margin-bottom:20px}
+.progress-widget-title{font-size:12px;font-weight:800;color:rgba(255,255,255,0.6);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.progress-bar-track{height:8px;background:rgba(255,255,255,0.08);border-radius:8px;overflow:hidden;margin-bottom:6px}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,#10b981,#34d399);border-radius:8px;transition:width 0.5s ease;width:0%}
+.progress-text{font-size:11px;color:rgba(255,255,255,0.45);text-align:right}
+
+/* ─── LESSON CARDS ─── */
+.lesson-card{background:rgba(255,255,255,0.04);border:1px solid rgba(16,185,129,0.12);border-radius:16px;overflow:hidden;margin-bottom:10px;transition:transform 0.15s,box-shadow 0.15s}
+.lesson-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,0.3)}
+.lesson-card-inner{display:flex;align-items:center;padding:14px;gap:14px}
+.lesson-num{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,#10b981,#059669);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#fff;flex-shrink:0}
+.lesson-info{flex:1}
+.lesson-title{font-size:14px;font-weight:800;color:#fff;margin-bottom:2px}
+.lesson-sub{font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:6px;line-height:1.4}
+.lesson-tags{display:flex;gap:5px;flex-wrap:wrap}
+.lesson-tag{font-size:9px;padding:2px 8px;border-radius:10px;font-weight:700;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.2);color:#6ee7b7}
+.lesson-action{flex-shrink:0}
+.lesson-btn{display:inline-block;padding:8px 14px;border-radius:8px;font-size:11px;font-weight:800;text-decoration:none;color:#fff;background:#10b981;white-space:nowrap}
+.lesson-btn.soon{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.4);cursor:not-allowed;opacity:0.6}
+
+/* ─── CERTIFICATE ─── */
+.cert-box{background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(5,150,105,0.1));border:1px solid rgba(16,185,129,0.25);border-radius:16px;padding:18px;text-align:center;margin-top:20px;margin-bottom:10px}
+.cert-title{font-size:15px;font-weight:800;color:#34d399;margin-bottom:6px}
+.cert-desc{font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:14px;line-height:1.5}
+.cert-btn{display:inline-block;background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:10px 24px;border-radius:10px;font-size:13px;font-weight:800;text-decoration:none;cursor:pointer;border:none}
+.cert-btn:hover{opacity:0.9}
+
+/* ─── NEXT LEVEL ─── */
+.next-btn{display:block;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.25);border-radius:14px;padding:16px;text-align:center;text-decoration:none;margin-top:10px;transition:all 0.15s}
+.next-btn:hover{background:rgba(59,130,246,0.18)}
+.next-btn-label{font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:4px}
+.next-btn-title{font-size:14px;font-weight:800;color:#60a5fa}
+
+/* ─── FOOTER ─── */
+.footer{text-align:center;padding:24px 16px;font-size:10px;color:rgba(255,255,255,0.25);border-top:1px solid rgba(255,255,255,0.05)}
+</style>
+</head>
+<body>
+
+<!-- 언어 선택 모달 -->
+<div class="lang-modal" id="langModal" onclick="if(event.target===this)closeLangModal()">
+  <div class="lang-sheet">
+    <div class="lang-sheet-title">🌐 언어 선택 · Select Language</div>
+    <div class="lang-grid" id="langGrid"></div>
+  </div>
+</div>
+
+<div class="header">
+  <a href="KIIP_Full_Program.html" class="back-btn">← 전체 과정</a>
+  <div class="header-badge">🌱 KIIP 0급 입문과정</div>
+  <h1>🌱 KIIP 0급 · 한글 입문</h1>
+  <div class="header-sub">
+    Hangul Introduction · 한글 읽기·쓰기 완성<br>
+    <span style="font-size:11px;opacity:0.7;">Ministry of Justice · Social Integration Program</span>
+  </div>
+  <div class="badge-row">
+    <span class="badge">✅ 무료 공개과정</span>
+    <span class="badge">⏱ 15시간</span>
+    <span class="badge">📖 8과</span>
+  </div>
+  <button class="lang-globe-btn" onclick="openLangModal()" id="currentLangBtn">🌐 한국어</button>
+</div>
+
+<div class="stats-row">
+  <div class="stat-box">
+    <div class="stat-num">8</div>
+    <div class="stat-label">총<br>과</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">15h</div>
+    <div class="stat-label">학습<br>시간</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">18</div>
+    <div class="stat-label">지원<br>언어</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">0~5</div>
+    <div class="stat-label">급<br>연계</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 학습 진도 -->
+  <div class="progress-widget">
+    <div class="progress-widget-title">📊 <span data-i18n="my_progress">내 학습 현황</span></div>
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText">0/8 완료</div>
+  </div>
+
+  <!-- 과 목록 -->
+  <div class="section-title">📖 0급 입문 · 8과 커리큘럼</div>
+
+  <!-- 1과 -->
+  <div class="lesson-card">
+    <div class="lesson-card-inner">
+      <div class="lesson-num">1</div>
+      <div class="lesson-info">
+        <div class="lesson-title">자음과 모음 🌱</div>
+        <div class="lesson-sub">한글의 창제 원리 · 세종대왕과 훈민정음</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">자음 14개</span>
+          <span class="lesson-tag">모음 10개</span>
+          <span class="lesson-tag">훈민정음</span>
+        </div>
+      </div>
+      <div class="lesson-action">
+        <a href="KIIP_Level0_Lesson1.html" class="lesson-btn">시작 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2과 -->
+  <div class="lesson-card">
+    <div class="lesson-card-inner">
+      <div class="lesson-num">2</div>
+      <div class="lesson-info">
+        <div class="lesson-title">음절 조합과 받침</div>
+        <div class="lesson-sub">CV구조 + 기본 받침 7개 · 읽기 연습</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">음절 구조</span>
+          <span class="lesson-tag">받침 7개</span>
+          <span class="lesson-tag">읽기 연습</span>
+        </div>
+      </div>
+      <div class="lesson-action">
+        <a href="KIIP_Level0_Lesson2.html" class="lesson-btn">시작 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3과 -->
+  <div class="lesson-card">
+    <div class="lesson-card-inner">
+      <div class="lesson-num">3</div>
+      <div class="lesson-info">
+        <div class="lesson-title">기초 발음 규칙</div>
+        <div class="lesson-sub">연음·비음화·격음화 · AI 발음 체크</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">연음법칙</span>
+          <span class="lesson-tag">비음화</span>
+          <span class="lesson-tag">AI 발음</span>
+        </div>
+      </div>
+      <div class="lesson-action">
+        <a href="KIIP_Level0_Lesson3.html" class="lesson-btn">시작 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4과 -->
+  <div class="lesson-card">
+    <div class="lesson-card-inner">
+      <div class="lesson-num">4</div>
+      <div class="lesson-info">
+        <div class="lesson-title">숫자와 날짜</div>
+        <div class="lesson-sub">고유어/한자어 숫자 · 달력·시계 읽기</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">고유어 수</span>
+          <span class="lesson-tag">한자어 수</span>
+          <span class="lesson-tag">달력·시계</span>
+        </div>
+      </div>
+      <div class="lesson-action">
+        <a href="KIIP_Level0_Lesson4.html" class="lesson-btn">시작 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5과 -->
+  <div class="lesson-card">
+    <div class="lesson-card-inner">
+      <div class="lesson-num">5</div>
+      <div class="lesson-info">
+        <div class="lesson-title">기초 생활 단어 100</div>
+        <div class="lesson-sub">음식·장소·색깔·신체 · 플래시카드</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">단어 100개</span>
+          <span class="lesson-tag">플래시카드</span>
+          <span class="lesson-tag">그림 단어</span>
+        </div>
+      </div>
+      <div class="lesson-action">
+        <a href="KIIP_Level0_Lesson5.html" class="lesson-btn">시작 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6과 -->
+  <div class="lesson-card">
+    <div class="lesson-card-inner">
+      <div class="lesson-num">6</div>
+      <div class="lesson-info">
+        <div class="lesson-title">인사말과 자기소개</div>
+        <div class="lesson-sub">안녕하세요~감사합니다 · 상황별 인사</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">인사말</span>
+          <span class="lesson-tag">자기소개</span>
+          <span class="lesson-tag">상황별</span>
+        </div>
+      </div>
+      <div class="lesson-action">
+        <a href="KIIP_Level0_Lesson6.html" class="lesson-btn">시작 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7과 -->
+  <div class="lesson-card">
+    <div class="lesson-card-inner">
+      <div class="lesson-num">7</div>
+      <div class="lesson-info">
+        <div class="lesson-title">한글 쓰기 연습</div>
+        <div class="lesson-sub">필순·받아쓰기 10문장 · 자판 연습</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">필순</span>
+          <span class="lesson-tag">받아쓰기</span>
+          <span class="lesson-tag">키보드</span>
+        </div>
+      </div>
+      <div class="lesson-action">
+        <a href="KIIP_Level0_Lesson7.html" class="lesson-btn">시작 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8과 -->
+  <div class="lesson-card">
+    <div class="lesson-card-inner">
+      <div class="lesson-num">8</div>
+      <div class="lesson-info">
+        <div class="lesson-title">0급 종합 복습 &amp; 시험 🎓</div>
+        <div class="lesson-sub">전 과정 정리 · 수료증 발급</div>
+        <div class="lesson-tags">
+          <span class="lesson-tag">종합 복습</span>
+          <span class="lesson-tag">테스트</span>
+          <span class="lesson-tag">수료증</span>
+        </div>
+      </div>
+      <div class="lesson-action">
+        <a href="KIIP_Level0_Lesson8.html" class="lesson-btn">시작 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 수료증 -->
+  <div class="cert-box">
+    <div class="cert-title">🎓 0급 수료증 발급</div>
+    <div class="cert-desc">8과를 모두 완료하면 KIIP 0급 입문 수료증을 발급받을 수 있습니다.<br>
+    <span style="font-size:10px;opacity:0.7;">Certificate issued upon completion of all 8 lessons</span></div>
+    <button class="cert-btn" onclick="issueCert()">수료증 받기</button>
+  </div>
+
+  <!-- 다음 과정 -->
+  <a href="HanwhaOcean_Level1_Index.html" class="next-btn">
+    <div class="next-btn-label">다음 과정</div>
+    <div class="next-btn-title">📘 1급 초급 1 시작하기 →</div>
+  </a>
+
+</div>
+
+<div class="footer">
+  KIIP 사회통합프로그램 0급 입문 · GlocalBridge · © 2026
+</div>
+
+<script>
+// ── 언어 ──────────────────────────────────────────────────────
+let currentLang = localStorage.getItem('kiip_lang') || 'ko';
+
+function openLangModal() {
+  const grid = document.getElementById('langGrid');
+  grid.innerHTML = '';
+  KIIP_I18N.countries.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'lang-option' + (c.code === currentLang ? ' active' : '');
+    div.dataset.lang = c.code;
+    div.innerHTML = `<span class="flag">${c.flag}</span><span class="name">${c.nativeName}</span>`;
+    div.onclick = () => selectLang(c.code);
+    grid.appendChild(div);
+  });
+  document.getElementById('langModal').classList.add('open');
+}
+
+function closeLangModal() {
+  document.getElementById('langModal').classList.remove('open');
+}
+
+function selectLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('kiip_lang', lang);
+  KIIP_I18N.applyLang(lang);
+  const langInfo = KIIP_I18N.countries.find(c => c.code === lang);
+  if (langInfo) {
+    document.getElementById('currentLangBtn').textContent = '🌐 ' + langInfo.nativeName;
+  }
+  if (lang === 'ur') {
+    document.body.style.fontFamily = "'Noto Sans Arabic', 'Noto Sans KR', sans-serif";
+  } else if (lang === 'my') {
+    document.body.style.fontFamily = "'Noto Sans Myanmar', 'Noto Sans KR', sans-serif";
+  } else if (lang === 'km') {
+    document.body.style.fontFamily = "'Noto Sans Khmer', 'Noto Sans KR', sans-serif";
+  } else if (lang === 'th') {
+    document.body.style.fontFamily = "'Noto Sans Thai', 'Noto Sans KR', sans-serif";
+  } else if (['ne','hi'].includes(lang)) {
+    document.body.style.fontFamily = "'Noto Sans Devanagari', 'Noto Sans KR', sans-serif";
+  } else if (lang === 'bn') {
+    document.body.style.fontFamily = "'Noto Sans Bengali', 'Noto Sans KR', sans-serif";
+  } else if (lang === 'si') {
+    document.body.style.fontFamily = "'Noto Sans Sinhala', 'Noto Sans KR', sans-serif";
+  } else {
+    document.body.style.fontFamily = "'Noto Sans KR', -apple-system, sans-serif";
+  }
+  closeLangModal();
+}
+
+// ── 학습 진도 ──────────────────────────────────────────────────────
+function markDone(lessonNum) {
+  localStorage.setItem('kiip_done_L0_' + lessonNum, '1');
+  updateProgress();
+}
+
+function updateProgress() {
+  let done = 0;
+  for (let i = 1; i <= 8; i++) {
+    if (localStorage.getItem('kiip_done_L0_' + i)) done++;
+  }
+  document.getElementById('progressFill').style.width = (done / 8 * 100) + '%';
+  document.getElementById('progressText').textContent = done + '/8 완료';
+}
+
+// ── 수료증 ──────────────────────────────────────────────────────
+function issueCert() {
+  const name = prompt('이름을 입력하세요 (Enter your name):');
+  if (name && name.trim()) {
+    const url = 'HanwhaOcean_Certificate.html?level=0&name=' + encodeURIComponent(name.trim());
+    window.location.href = url;
+  }
+}
+
+// ── 초기화 ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const langInfo = KIIP_I18N.countries.find(c => c.code === currentLang);
+  if (langInfo) document.getElementById('currentLangBtn').textContent = '🌐 ' + langInfo.nativeName;
+  KIIP_I18N.applyLang(currentLang);
+  updateProgress();
+  localStorage.setItem('kiip_last', 'KIIP_Level0_Index.html');
+});
+
+// ── PWA ──────────────────────────────────────────────────────
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

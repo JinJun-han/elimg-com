@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>KIIP 유학생 취업 트랙 · 이력서·면접·비자·TOPIK</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
+<meta property="og:title" content="KIIP 유학생 취업 트랙 · 이력서·면접·비자·TOPIK">
+<meta property="og:description" content="외국인 유학생 한국 취업 준비 · 이력서/면접/비즈니스 한국어 · TOPIK II · 비자 안내">
+<meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://elimg.com/KIIP_Student_Track_Index.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0d9488">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="유학생 취업 트랙">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&family=Noto+Sans+Myanmar&family=Noto+Sans+Khmer&family=Noto+Sans+Thai&family=Noto+Sans+Devanagari&family=Noto+Sans+Bengali&family=Noto+Sans+Sinhala&family=Noto+Sans+Arabic&family=Noto+Sans+Mongolian&display=swap" rel="stylesheet">
+<script src="/i18n/translations.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0e1a;color:#e2e8f0;min-height:100vh}
+[dir="rtl"] body{font-family:'Noto Sans Arabic','Noto Sans KR',sans-serif}
+
+/* ─── HEADER ─── */
+.header{background:linear-gradient(135deg,#042f2e,#0d4a40,#0d9488);border-bottom:1px solid rgba(13,148,136,0.25);padding:28px 16px 22px;text-align:center;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(13,148,136,0.18),transparent);pointer-events:none}
+.back-btn{position:absolute;top:16px;left:16px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.7);padding:6px 12px;border-radius:16px;font-size:11px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:4px}
+.back-btn:hover{background:rgba(255,255,255,0.14)}
+.header-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(13,148,136,0.18);border:1px solid rgba(13,148,136,0.4);border-radius:20px;padding:4px 12px;font-size:10px;font-weight:700;color:#5eead4;letter-spacing:1px;margin-bottom:12px}
+.header h1{font-size:24px;font-weight:900;color:#fff;letter-spacing:1px;margin-bottom:4px}
+.header-sub{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:14px;line-height:1.5}
+.badge-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+.badge{display:inline-flex;align-items:center;gap:4px;background:rgba(13,148,136,0.14);border:1px solid rgba(13,148,136,0.3);border-radius:20px;padding:4px 12px;font-size:10px;font-weight:700;color:#5eead4}
+
+/* 언어 선택 버튼 */
+.lang-globe-btn{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:#fff;padding:7px 16px;border-radius:20px;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.lang-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:1000;align-items:flex-end;justify-content:center}
+.lang-modal.open{display:flex}
+.lang-sheet{background:#0f1629;border-radius:20px 20px 0 0;padding:20px 16px 32px;width:100%;max-width:520px;max-height:70vh;overflow-y:auto}
+.lang-sheet-title{font-size:14px;font-weight:800;color:#fff;margin-bottom:14px;text-align:center}
+.lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+@media(min-width:400px){.lang-grid{grid-template-columns:repeat(4,1fr)}}
+.lang-option{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 6px;text-align:center;cursor:pointer;transition:all 0.15s}
+.lang-option:hover,.lang-option.active{background:rgba(13,148,136,0.2);border-color:rgba(13,148,136,0.5)}
+.lang-option .flag{font-size:20px;display:block;margin-bottom:3px}
+.lang-option .name{font-size:10px;color:rgba(255,255,255,0.8);line-height:1.2}
+
+/* ─── STATS ─── */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:520px;margin:0 auto 20px;padding:0 16px}
+.stat-box{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 6px;text-align:center}
+.stat-num{font-size:18px;font-weight:900;color:#2dd4bf;line-height:1}
+.stat-label{font-size:9px;color:rgba(255,255,255,0.4);margin-top:3px;line-height:1.3}
+
+/* ─── CONTAINER ─── */
+.container{max-width:520px;margin:0 auto;padding:0 16px 40px}
+.section-title{font-size:11px;font-weight:700;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:2px;margin:24px 0 12px;text-align:center}
+
+/* ─── TARGET CALLOUT ─── */
+.target-box{background:rgba(13,148,136,0.08);border:1px solid rgba(13,148,136,0.25);border-radius:16px;padding:16px 18px;margin-bottom:20px}
+.target-box-title{font-size:12px;font-weight:800;color:#2dd4bf;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.target-box-text{font-size:11px;color:rgba(255,255,255,0.55);line-height:1.8}
+
+/* ─── PROGRESS ─── */
+.progress-widget{background:rgba(255,255,255,0.04);border:1px solid rgba(13,148,136,0.15);border-radius:16px;padding:16px 18px;margin-bottom:20px}
+.progress-widget-title{font-size:12px;font-weight:800;color:rgba(255,255,255,0.6);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.progress-bar-track{height:8px;background:rgba(255,255,255,0.08);border-radius:8px;overflow:hidden;margin-bottom:6px}
+.progress-bar-fill{height:100%;background:linear-gradient(90deg,#0d9488,#2dd4bf);border-radius:8px;transition:width 0.5s ease;width:0%}
+.progress-text{font-size:11px;color:rgba(255,255,255,0.45);text-align:right}
+
+/* ─── MODULE CARDS ─── */
+.module-card{background:rgba(255,255,255,0.04);border:1px solid rgba(13,148,136,0.12);border-radius:16px;overflow:hidden;margin-bottom:10px;transition:transform 0.15s,box-shadow 0.15s}
+.module-card:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(0,0,0,0.3)}
+.module-card.locked{opacity:0.6}
+.module-card-inner{display:flex;align-items:center;padding:14px;gap:14px}
+.module-icon{width:44px;height:44px;border-radius:12px;background:rgba(13,148,136,0.15);border:1px solid rgba(13,148,136,0.25);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.module-info{flex:1}
+.module-num{font-size:9px;font-weight:700;color:rgba(13,148,136,0.8);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px}
+.module-title{font-size:14px;font-weight:800;color:#fff;margin-bottom:2px}
+.module-sub{font-size:11px;color:rgba(255,255,255,0.45);margin-bottom:6px;line-height:1.4}
+.module-tags{display:flex;gap:5px;flex-wrap:wrap}
+.module-tag{font-size:9px;padding:2px 8px;border-radius:10px;font-weight:700;background:rgba(13,148,136,0.12);border:1px solid rgba(13,148,136,0.2);color:#5eead4}
+.module-action{flex-shrink:0}
+.module-btn{display:inline-block;padding:8px 14px;border-radius:8px;font-size:11px;font-weight:800;text-decoration:none;color:#fff;background:#0d9488;white-space:nowrap}
+.module-btn.soon{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.35);cursor:not-allowed;pointer-events:none}
+
+/* ─── INFO BOXES ─── */
+.info-box{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:16px 18px;margin-bottom:10px}
+.info-box-title{font-size:13px;font-weight:800;color:#2dd4bf;margin-bottom:10px}
+.topik-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.topik-cell{background:rgba(13,148,136,0.08);border:1px solid rgba(13,148,136,0.15);border-radius:10px;padding:10px;text-align:center}
+.topik-level{font-size:14px;font-weight:900;color:#2dd4bf;margin-bottom:2px}
+.topik-score{font-size:10px;color:rgba(255,255,255,0.45)}
+.topik-label{font-size:9px;color:rgba(255,255,255,0.3);margin-top:2px}
+
+.visa-table{width:100%;border-collapse:collapse;font-size:11px}
+.visa-table th{background:rgba(13,148,136,0.12);color:#5eead4;padding:7px 10px;text-align:left;font-weight:700;font-size:10px;border-bottom:1px solid rgba(13,148,136,0.2)}
+.visa-table td{padding:8px 10px;color:rgba(255,255,255,0.6);border-bottom:1px solid rgba(255,255,255,0.05)}
+.visa-table tr:last-child td{border-bottom:none}
+.visa-code{font-weight:800;color:#2dd4bf}
+
+/* ─── NAV BUTTONS ─── */
+.nav-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+.nav-btn{display:block;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px;text-align:center;text-decoration:none;transition:all 0.15s}
+.nav-btn:hover{background:rgba(255,255,255,0.08)}
+.nav-btn-label{font-size:9px;color:rgba(255,255,255,0.3);margin-bottom:4px}
+.nav-btn-title{font-size:12px;font-weight:800;color:#e2e8f0}
+
+/* ─── FOOTER ─── */
+.footer{text-align:center;padding:24px 16px;font-size:10px;color:rgba(255,255,255,0.25);border-top:1px solid rgba(255,255,255,0.05)}
+</style>
+</head>
+<body>
+
+<!-- 언어 선택 모달 -->
+<div class="lang-modal" id="langModal" onclick="if(event.target===this)closeLangModal()">
+  <div class="lang-sheet">
+    <div class="lang-sheet-title">🌐 언어 선택 · Select Language</div>
+    <div class="lang-grid" id="langGrid"></div>
+  </div>
+</div>
+
+<div class="header">
+  <a href="KIIP_Full_Program.html" class="back-btn">← 전체 과정</a>
+  <div class="header-badge">🎓 유학생 취업 특화 트랙</div>
+  <h1>🎓 유학생 취업 한국어</h1>
+  <div class="header-sub">
+    Korean for International Students · 취업 준비 완성 트랙<br>
+    <span style="font-size:11px;opacity:0.7;">Job Korean for International Students in Korea</span>
+  </div>
+  <div class="badge-row">
+    <span class="badge">D-2 비자</span>
+    <span class="badge">D-10 취업준비</span>
+    <span class="badge">TOPIK II</span>
+    <span class="badge">E-7 비자</span>
+  </div>
+  <button class="lang-globe-btn" onclick="openLangModal()" id="currentLangBtn">🌐 한국어</button>
+</div>
+
+<div class="stats-row">
+  <div class="stat-box">
+    <div class="stat-num">8</div>
+    <div class="stat-label">모듈<br>구성</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">TOPIK</div>
+    <div class="stat-label">II<br>대비</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">비자</div>
+    <div class="stat-label">D-2<br>E-7</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num">면접</div>
+    <div class="stat-label">취업<br>실전</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 대상 안내 -->
+  <div class="target-box">
+    <div class="target-box-title">🎓 이 트랙의 대상</div>
+    <div class="target-box-text">
+      한국 유학 중인 외국인 (D-2 비자)<br>
+      졸업 후 취업 준비 중인 외국인 (D-10 비자)<br>
+      한국 취업을 원하는 해외 거주 외국인
+    </div>
+  </div>
+
+  <!-- 학습 진도 -->
+  <div class="progress-widget">
+    <div class="progress-widget-title">📊 <span data-i18n="my_progress">내 학습 현황</span></div>
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-text" id="progressText">0/8 완료</div>
+  </div>
+
+  <!-- 모듈 목록 -->
+  <div class="section-title">💼 8개 모듈 · 취업 한국어 커리큘럼</div>
+
+  <!-- 모듈 1 -->
+  <div class="module-card">
+    <div class="module-card-inner">
+      <div class="module-icon">🗒️</div>
+      <div class="module-info">
+        <div class="module-num">MODULE 01</div>
+        <div class="module-title">이력서·자기소개서</div>
+        <div class="module-sub">한국식 이력서 작성법 · 자기소개서 문단 구조</div>
+        <div class="module-tags">
+          <span class="module-tag">이력서 양식</span>
+          <span class="module-tag">자기소개서</span>
+          <span class="module-tag">문단 구조</span>
+        </div>
+      </div>
+      <div class="module-action">
+        <a href="KIIP_Student_Job1.html" class="module-btn">시작 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모듈 2 -->
+  <div class="module-card">
+    <div class="module-card-inner">
+      <div class="module-icon">💼</div>
+      <div class="module-info">
+        <div class="module-num">MODULE 02</div>
+        <div class="module-title">취업 면접 한국어</div>
+        <div class="module-sub">빈출 면접 질문 50개 · STAR 답변 공식</div>
+        <div class="module-tags">
+          <span class="module-tag">면접 질문 50</span>
+          <span class="module-tag">STAR 공식</span>
+          <span class="module-tag">모범 답변</span>
+        </div>
+      </div>
+      <div class="module-action">
+        <a href="KIIP_Student_Job2.html" class="module-btn">시작 →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모듈 3 -->
+  <div class="module-card locked">
+    <div class="module-card-inner">
+      <div class="module-icon">🏢</div>
+      <div class="module-info">
+        <div class="module-num">MODULE 03</div>
+        <div class="module-title">직장 의사소통</div>
+        <div class="module-sub">회의·보고·메신저 한국어 · 존댓말 경계</div>
+        <div class="module-tags">
+          <span class="module-tag">회의 한국어</span>
+          <span class="module-tag">보고 언어</span>
+          <span class="module-tag">존댓말</span>
+        </div>
+      </div>
+      <div class="module-action">
+        <span class="module-btn soon">🔜 준비 중</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모듈 4 -->
+  <div class="module-card locked">
+    <div class="module-card-inner">
+      <div class="module-icon">📧</div>
+      <div class="module-info">
+        <div class="module-num">MODULE 04</div>
+        <div class="module-title">비즈니스 이메일·보고서</div>
+        <div class="module-sub">결재 이메일 · 업무 보고서 작성</div>
+        <div class="module-tags">
+          <span class="module-tag">이메일 양식</span>
+          <span class="module-tag">보고서</span>
+          <span class="module-tag">결재 문서</span>
+        </div>
+      </div>
+      <div class="module-action">
+        <span class="module-btn soon">🔜 준비 중</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모듈 5 -->
+  <div class="module-card locked">
+    <div class="module-card-inner">
+      <div class="module-icon">📋</div>
+      <div class="module-info">
+        <div class="module-num">MODULE 05</div>
+        <div class="module-title">비자·노동법 한국어</div>
+        <div class="module-sub">E-7/D-10 비자 · 근로계약서 · 4대보험</div>
+        <div class="module-tags">
+          <span class="module-tag">E-7 비자</span>
+          <span class="module-tag">근로계약</span>
+          <span class="module-tag">4대보험</span>
+        </div>
+      </div>
+      <div class="module-action">
+        <span class="module-btn soon">🔜 준비 중</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모듈 6 -->
+  <div class="module-card locked">
+    <div class="module-card-inner">
+      <div class="module-icon">🔧</div>
+      <div class="module-info">
+        <div class="module-num">MODULE 06</div>
+        <div class="module-title">업종별 전문 한국어</div>
+        <div class="module-sub">IT/제조/서비스 분야별 어휘</div>
+        <div class="module-tags">
+          <span class="module-tag">IT 어휘</span>
+          <span class="module-tag">제조업</span>
+          <span class="module-tag">서비스업</span>
+        </div>
+      </div>
+      <div class="module-action">
+        <span class="module-btn soon">🔜 준비 중</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모듈 7 -->
+  <div class="module-card locked">
+    <div class="module-card-inner">
+      <div class="module-icon">📊</div>
+      <div class="module-info">
+        <div class="module-num">MODULE 07</div>
+        <div class="module-title">TOPIK II 고득점 전략</div>
+        <div class="module-sub">듣기·읽기·쓰기 전략 · 54번 논술 공략</div>
+        <div class="module-tags">
+          <span class="module-tag">TOPIK II</span>
+          <span class="module-tag">논술 54번</span>
+          <span class="module-tag">고득점</span>
+        </div>
+      </div>
+      <div class="module-action">
+        <span class="module-btn soon">🔜 준비 중</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 모듈 8 -->
+  <div class="module-card locked">
+    <div class="module-card-inner">
+      <div class="module-icon">🎤</div>
+      <div class="module-info">
+        <div class="module-num">MODULE 08</div>
+        <div class="module-title">모의 면접 시뮬레이터</div>
+        <div class="module-sub">AI 발음 체크 · 50문항 실전 연습</div>
+        <div class="module-tags">
+          <span class="module-tag">AI 발음</span>
+          <span class="module-tag">50문항</span>
+          <span class="module-tag">실전 모의</span>
+        </div>
+      </div>
+      <div class="module-action">
+        <span class="module-btn soon">🔜 준비 중</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOPIK 등급 안내 -->
+  <div class="section-title">📊 TOPIK 등급 안내</div>
+  <div class="info-box">
+    <div class="info-box-title">TOPIK 등급표</div>
+    <div class="topik-grid">
+      <div class="topik-cell">
+        <div class="topik-level">TOPIK I</div>
+        <div class="topik-score">1급 80점+</div>
+        <div class="topik-label">입문·초급</div>
+      </div>
+      <div class="topik-cell">
+        <div class="topik-level">TOPIK I</div>
+        <div class="topik-score">2급 140점+</div>
+        <div class="topik-label">초급</div>
+      </div>
+      <div class="topik-cell">
+        <div class="topik-level">TOPIK II</div>
+        <div class="topik-score">3급 120점+</div>
+        <div class="topik-label">중급 1</div>
+      </div>
+      <div class="topik-cell">
+        <div class="topik-level">TOPIK II</div>
+        <div class="topik-score">4급 150점+</div>
+        <div class="topik-label">중급 2</div>
+      </div>
+      <div class="topik-cell">
+        <div class="topik-level" style="color:#f59e0b;">TOPIK II</div>
+        <div class="topik-score">5급 190점+</div>
+        <div class="topik-label">고급 1</div>
+      </div>
+      <div class="topik-cell">
+        <div class="topik-level" style="color:#f59e0b;">TOPIK II</div>
+        <div class="topik-score">6급 230점+</div>
+        <div class="topik-label">고급 2</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 취업 비자 안내 -->
+  <div class="section-title">🛂 취업 비자 종류</div>
+  <div class="info-box">
+    <div class="info-box-title">주요 취업 비자 안내</div>
+    <table class="visa-table">
+      <thead>
+        <tr>
+          <th>비자</th>
+          <th>종류</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="visa-code">D-2</td>
+          <td>유학</td>
+          <td>재학 중 아르바이트 가능</td>
+        </tr>
+        <tr>
+          <td class="visa-code">D-10</td>
+          <td>구직 활동</td>
+          <td>최대 2년, 졸업 후 취업 준비</td>
+        </tr>
+        <tr>
+          <td class="visa-code">E-7</td>
+          <td>특정활동</td>
+          <td>전문직 취업, 연장 가능</td>
+        </tr>
+        <tr>
+          <td class="visa-code">E-3</td>
+          <td>연구</td>
+          <td>연구기관·대학 연구직</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 하단 내비게이션 -->
+  <div class="nav-row">
+    <a href="KIIP_Full_Program.html" class="nav-btn">
+      <div class="nav-btn-label">전체 보기</div>
+      <div class="nav-btn-title">📚 KIIP 전 과정</div>
+    </a>
+    <a href="Korean_Education_Hub.html" class="nav-btn">
+      <div class="nav-btn-label">특화 교육</div>
+      <div class="nav-btn-title">🚢 조선소 교육</div>
+    </a>
+  </div>
+
+</div>
+
+<div class="footer">
+  유학생 취업 한국어 트랙 · GlocalBridge · © 2026
+</div>
+
+<script>
+// ── 언어 ──────────────────────────────────────────────────────
+let currentLang = localStorage.getItem('kiip_lang') || 'ko';
+
+function openLangModal() {
+  const grid = document.getElementById('langGrid');
+  grid.innerHTML = '';
+  KIIP_I18N.countries.forEach(c => {
+    const div = document.createElement('div');
+    div.className = 'lang-option' + (c.code === currentLang ? ' active' : '');
+    div.dataset.lang = c.code;
+    div.innerHTML = `<span class="flag">${c.flag}</span><span class="name">${c.nativeName}</span>`;
+    div.onclick = () => selectLang(c.code);
+    grid.appendChild(div);
+  });
+  document.getElementById('langModal').classList.add('open');
+}
+
+function closeLangModal() {
+  document.getElementById('langModal').classList.remove('open');
+}
+
+function selectLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('kiip_lang', lang);
+  KIIP_I18N.applyLang(lang);
+  const langInfo = KIIP_I18N.countries.find(c => c.code === lang);
+  if (langInfo) {
+    document.getElementById('currentLangBtn').textContent = '🌐 ' + langInfo.nativeName;
+  }
+  if (lang === 'ur') {
+    document.body.style.fontFamily = "'Noto Sans Arabic', 'Noto Sans KR', sans-serif";
+  } else if (lang === 'my') {
+    document.body.style.fontFamily = "'Noto Sans Myanmar', 'Noto Sans KR', sans-serif";
+  } else if (lang === 'km') {
+    document.body.style.fontFamily = "'Noto Sans Khmer', 'Noto Sans KR', sans-serif";
+  } else if (lang === 'th') {
+    document.body.style.fontFamily = "'Noto Sans Thai', 'Noto Sans KR', sans-serif";
+  } else if (['ne','hi'].includes(lang)) {
+    document.body.style.fontFamily = "'Noto Sans Devanagari', 'Noto Sans KR', sans-serif";
+  } else if (lang === 'bn') {
+    document.body.style.fontFamily = "'Noto Sans Bengali', 'Noto Sans KR', sans-serif";
+  } else if (lang === 'si') {
+    document.body.style.fontFamily = "'Noto Sans Sinhala', 'Noto Sans KR', sans-serif";
+  } else {
+    document.body.style.fontFamily = "'Noto Sans KR', -apple-system, sans-serif";
+  }
+  closeLangModal();
+}
+
+// ── 학습 진도 ──────────────────────────────────────────────────────
+function updateProgress() {
+  const keys = ['kiip_student_j1','kiip_student_j2','kiip_student_j3','kiip_student_j4',
+                 'kiip_student_j5','kiip_student_j6','kiip_student_j7','kiip_student_j8'];
+  let done = 0;
+  keys.forEach(k => { if (localStorage.getItem(k)) done++; });
+  document.getElementById('progressFill').style.width = (done / 8 * 100) + '%';
+  document.getElementById('progressText').textContent = done + '/8 완료';
+}
+
+function markModuleDone(moduleNum) {
+  localStorage.setItem('kiip_student_j' + moduleNum, '1');
+  updateProgress();
+}
+
+// ── 초기화 ──────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  const langInfo = KIIP_I18N.countries.find(c => c.code === currentLang);
+  if (langInfo) document.getElementById('currentLangBtn').textContent = '🌐 ' + langInfo.nativeName;
+  KIIP_I18N.applyLang(currentLang);
+  updateProgress();
+  localStorage.setItem('kiip_last', 'KIIP_Student_Track_Index.html');
+});
+
+// ── PWA ──────────────────────────────────────────────────────
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
