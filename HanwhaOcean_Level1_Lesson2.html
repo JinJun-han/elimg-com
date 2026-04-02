@@ -18,7 +18,7 @@
     <meta name="twitter:image" content="https://elimg.com/images/og-hanwha-level1.png">
 <meta name="description" content="한화오션 해외근로자를 위한 한국어교육 앱 - 초급/입문 과정">
 <meta name="theme-color" content="#1E3A5F">
-<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoi7ZWc7ZmU7Jik7IWYIO2VnOq1reyWtOq1kOycoSIsInNob3J0X25hbWUiOiLtlZztmZTsmKTshZgiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzFFM0E1RiIsInRoZW1lX2NvbG9yIjoiIzFFM0E1RiJ9">
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--navy:#1E3A5F;--ocean:#2E75B6;--orange:#ED7D31;--green:#22c55e;--red:#ef4444;--purple:#8b5cf6;--pink:#ec4899;--light-blue:#D6E4F0;--light-green:#E8F5E9;--light-orange:#FFF3E0;--gray:#f8fafc;--dark:#2D3436}
@@ -77,6 +77,12 @@ h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 textarea{width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;min-height:120px;resize:vertical}
 textarea:focus{outline:none;border-color:var(--ocean)}
 </style>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1E3A5F">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KIIP Korean">
 </head>
 <body>
 
@@ -1076,6 +1082,13 @@ function renderGeoje() {
 
 // ===== INIT =====
 render();
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  });
+}
 </script>
 </body>
 </html>
