@@ -1235,28 +1235,68 @@ function renderAI() {
         `).join('')}
       </div>
 
-      <!-- AI 발음 코치 (STT) -->
+      <!-- AI 발음 코치 (MediaRecorder + STT) — 100% 무료 브라우저 API -->
       <div class="card card-green" style="margin-bottom:10px">
-        <div class="section-label" style="background:#059669">🎤 AI 발음 코치 (Web STT)</div>
-        <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">문장을 듣고 따라 말해 보세요<br>
-        <span style="color:#059669;font-size:11px">🇻🇳 Nghe và nhắc lại để luyện phát âm</span></div>
+        <div class="section-label" style="background:#059669">🎤 AI 발음 코치 · 녹음 & 재생</div>
+        <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">
+          원어민 듣기 → 내가 녹음 → 다시 들으며 비교<br>
+          <span style="color:#059669;font-size:11px">🇻🇳 Nghe người bản ngữ → Tự ghi âm → Nghe lại so sánh</span>
+        </div>
+        <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#166534">
+          🆓 <strong>완전 무료</strong> — 브라우저 내장 API (MediaRecorder + STT) · 서버 없음 · 영구 무료<br>
+          🇻🇳 Hoàn toàn miễn phí — API tích hợp sẵn trong trình duyệt · Mãi mãi miễn phí
+        </div>
         ${[
-          '처음에는 어색했는데 지낼수록 편해지는 것 같아요.',
-          '오래 알고 지내서인지 이야기가 잘 통해요.',
-          '손발이 잘 맞는 팀원들과 일하면 더 즐거워요.',
-        ].map((sent,i)=>`
-          <div style="background:#f0fdf4;border-radius:8px;padding:10px;margin-bottom:6px;border:1px solid #86efac">
-            <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:6px">${sent}</div>
-            <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
-              ${ttsBtn(sent)}
-              <button onclick="startSTT(${i},'${sent.replace(/'/g,"\\'")}',this)"
-                style="background:#059669;color:#fff;border-radius:16px;padding:4px 12px;font-size:11px;font-weight:700">
-                🎤 따라 말하기
-              </button>
-              <span id="stt-result-${i}" style="font-size:11px;color:#166534;font-weight:700"></span>
+          {sent:'처음에는 어색했는데 지낼수록 편해지는 것 같아요.', vi:'Lúc đầu ngại ngùng nhưng càng ở lâu càng thoải mái.'},
+          {sent:'오래 알고 지내서인지 이야기가 잘 통해요.', vi:'Có lẽ vì biết nhau lâu nên nói chuyện rất hợp.'},
+          {sent:'손발이 잘 맞는 팀원들과 일하면 더 즐거워요.', vi:'Làm việc với đồng đội ăn ý thì vui hơn nhiều.'},
+          {sent:'화해하고 나니까 얼마나 홀가분한지 몰라요.', vi:'Sau khi hòa giải cảm thấy nhẹ nhõm không tả được.'},
+        ].map((item,i)=>`
+          <div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+            <!-- 문장 + 번역 -->
+            <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>
+            <div style="font-size:10px;color:#059669;margin-bottom:8px">🇻🇳 ${item.vi}</div>
+
+            <!-- 정확도 바 -->
+            <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+              <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
             </div>
+
+            <!-- 버튼 행 -->
+            <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+              <!-- ① 원어민 TTS 듣기 -->
+              <button onclick="TTS.speak('${item.sent.replace(/'/g,"\\'")}'); this.textContent='🔊 재생 중...'; setTimeout(()=>this.textContent='🔊 원어민',2000)"
+                style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">
+                🔊 원어민
+              </button>
+
+              <!-- ② 녹음 시작/중지 -->
+              <button id="rec-btn-${i}"
+                onclick="startSTT(${i},'${item.sent.replace(/'/g,"\\'")}',this)"
+                style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">
+                🎤 녹음
+              </button>
+
+              <!-- ③ 내 녹음 재생 (처음엔 비활성) -->
+              <button id="play-btn-${i}" disabled
+                style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0;opacity:0.4">
+                ▶ 내 발음 듣기
+              </button>
+            </div>
+
+            <!-- 결과 메시지 -->
+            <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:16px"></div>
           </div>
         `).join('')}
+
+        <!-- 사용 가이드 -->
+        <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+          <strong>📖 사용법 · Hướng dẫn:</strong><br>
+          1️⃣ <strong>🔊 원어민</strong> — 원어민 발음 먼저 들으세요 · Nghe phát âm chuẩn trước<br>
+          2️⃣ <strong>🎤 녹음</strong> — 버튼 누르고 말하세요 → 다시 누르면 중지 · Nhấn để ghi, nhấn lại để dừng<br>
+          3️⃣ <strong>▶ 내 발음 듣기</strong> — 녹음 후 활성화 · Sau khi ghi xong, nhấn để nghe lại<br>
+          4️⃣ 정확도 바 색 확인: 🟢 80%+ 🟡 50~79% 🔴 50% 미만
+        </div>
       </div>
 
       <!-- Claude AI 쓰기 첨삭 -->
@@ -1312,24 +1352,117 @@ function openClaudeFeedback() {
   window.open('https://claude.ai/new?q=' + encodeURIComponent(prompt), '_blank');
 }
 
-function startSTT(idx, targetText, btn) {
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  const resultEl = document.getElementById('stt-result-' + idx);
-  if (!SR) {
-    if (resultEl) resultEl.textContent = '❌ 이 브라우저는 음성인식 미지원';
-    return;
+// ===== PRONUNCIATION RECORDER (MediaRecorder + STT) =====
+// 100% 브라우저 내장 API — 완전 무료, 서버 불필요
+const RECORDER = {
+  streams: {},      // idx → MediaStream (마이크)
+  recorders: {},    // idx → MediaRecorder
+  chunks: {},       // idx → Blob[]
+  audioURLs: {},    // idx → ObjectURL (재생용)
+  isRecording: {},  // idx → boolean
+
+  async start(idx, targetText, recBtn) {
+    const resultEl = document.getElementById('stt-result-' + idx);
+    const playBtn  = document.getElementById('play-btn-' + idx);
+    const scoreEl  = document.getElementById('score-bar-' + idx);
+
+    // 이미 녹음 중이면 중지
+    if (this.isRecording[idx]) {
+      this.stop(idx, targetText, recBtn);
+      return;
+    }
+
+    // 마이크 권한 요청
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      this.streams[idx] = stream;
+    } catch(e) {
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444">❌ 마이크 권한이 필요해요 · 🇻🇳 Cần quyền micro</span>';
+      return;
+    }
+
+    // MediaRecorder 시작 (녹음 저장용)
+    this.chunks[idx] = [];
+    const mr = new MediaRecorder(this.streams[idx]);
+    this.recorders[idx] = mr;
+    mr.ondataavailable = e => { if (e.data.size > 0) this.chunks[idx].push(e.data); };
+    mr.onstop = () => {
+      // 이전 URL 해제
+      if (this.audioURLs[idx]) URL.revokeObjectURL(this.audioURLs[idx]);
+      const blob = new Blob(this.chunks[idx], {type: 'audio/webm'});
+      this.audioURLs[idx] = URL.createObjectURL(blob);
+      // 재생 버튼 활성화
+      if (playBtn) {
+        playBtn.disabled = false;
+        playBtn.style.opacity = '1';
+        playBtn.onclick = () => {
+          const a = new Audio(this.audioURLs[idx]);
+          a.play();
+        };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+
+    // UI 업데이트
+    recBtn.textContent = '⏹ 중지';
+    recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중... · 🇻🇳 Đang ghi âm...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+
+    // STT 병행 실행 (정확도 체크)
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      const rec = new SR();
+      rec.lang = 'ko-KR';
+      rec.continuous = false;
+      rec.interimResults = false;
+      rec.onresult = (e) => {
+        const said   = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        const target = targetText.replace(/[\s,.?!]/g,'');
+        const conf   = e.results[0][0].confidence;
+
+        // 글자 단위 유사도 계산
+        let match = 0;
+        const minLen = Math.min(said.length, target.length);
+        for (let i = 0; i < minLen; i++) { if (said[i] === target[i]) match++; }
+        const pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        const confPct = Math.round((conf || 0.5) * 100);
+        const finalPct = Math.round((pct * 0.7) + (confPct * 0.3));
+
+        const color = finalPct >= 80 ? '#22c55e' : finalPct >= 50 ? '#f59e0b' : '#ef4444';
+        const msg   = finalPct >= 80 ? '✅ 완벽해요! · Tuyệt vời!' : finalPct >= 50 ? '🔄 조금 더 연습! · Luyện thêm chút!' : '❌ 다시 시도! · Thử lại!';
+
+        if (resultEl) resultEl.innerHTML = `
+          <span style="color:${color};font-weight:800">${msg}</span><br>
+          <span style="font-size:10px;color:#555">인식: "${e.results[0][0].transcript}"</span>
+        `;
+        if (scoreEl) {
+          scoreEl.style.width = finalPct + '%';
+          scoreEl.style.background = color;
+        }
+      };
+      rec.onerror = () => {};
+      rec.start();
+      // STT는 자동 종료, MediaRecorder는 버튼으로 중지
+    }
+  },
+
+  stop(idx, targetText, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') {
+      this.recorders[idx].stop();
+    }
+    if (this.streams[idx]) {
+      this.streams[idx].getTracks().forEach(t => t.stop());
+    }
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음';
+    recBtn.style.background = '#059669';
   }
-  const rec = new SR();
-  rec.lang = 'ko-KR';
-  rec.onstart = () => { btn.textContent = '🔴 녹음 중...'; btn.style.background = '#ef4444'; };
-  rec.onresult = (e) => {
-    const said = e.results[0][0].transcript.replace(/\s/g,'');
-    const target = targetText.replace(/\s/g,'');
-    if (resultEl) resultEl.textContent = said === target ? '✅ 정확해요!' : `"${e.results[0][0].transcript}" — 다시 시도!`;
-    btn.textContent = '🎤 따라 말하기'; btn.style.background = '#059669';
-  };
-  rec.onerror = () => { btn.textContent = '🎤 따라 말하기'; btn.style.background = '#059669'; };
-  rec.start();
+};
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
 }
 
 // SECTION RENDERER
