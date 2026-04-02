@@ -1173,6 +1173,9 @@ function finishQuiz() {
 
 // SECTION 10: AI 실습 (Glocal Academy × AI Agents)
 function renderAI() {
+  // AI 탭 진입 시 마이크 권한 자동 감지 (비동기 실행)
+  setTimeout(() => RECORDER.autoDetect(), 100);
+
   const done = {
     vocab: Object.keys(STATE.vocabFlipped).length > 0,
     gram: Object.keys(STATE.gramPracticeShown).length > 0,
@@ -1247,17 +1250,48 @@ function renderAI() {
         </div>
 
         <!-- 마이크 권한 사전 체크 -->
-        <div id="mic-check-box" style="background:#fef9c3;border:1px solid #fbbf24;border-radius:10px;padding:12px;margin-bottom:10px">
-          <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:6px">🎙️ 먼저 마이크를 허용해 주세요</div>
-          <div style="font-size:11px;color:#555;line-height:1.8;margin-bottom:8px">
-            🇰🇷 브라우저가 마이크 사용 허락을 요청합니다. <strong>"허용"</strong>을 눌러주세요.<br>
-            🇻🇳 Trình duyệt sẽ hỏi quyền micro. Nhấn <strong>"Cho phép / Allow"</strong>.<br>
-            🇺🇸 Browser will ask for microphone access. Click <strong>"Allow"</strong>.
+        <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:14px;margin-bottom:10px">
+          <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px">🎙️ 마이크 허용 필요</div>
+
+          <!-- 상태 자동 감지 영역 -->
+          <div id="mic-perm-state" style="margin-bottom:10px"></div>
+
+          <!-- 차단된 경우 해결 가이드 (초기 hidden) -->
+          <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:8px">🚫 마이크가 차단되어 있어요 — 아래 순서로 해결하세요</div>
+
+            <div style="background:#fff;border-radius:8px;padding:10px;margin-bottom:8px;font-size:12px;line-height:2;color:#1a202c">
+              <strong style="color:#1d4ed8">PC Chrome / Edge:</strong><br>
+              <span style="background:#fef3c7;padding:1px 6px;border-radius:4px">1</span> 주소창 맨 왼쪽 <strong>🔒 자물쇠</strong> 클릭<br>
+              <span style="background:#fef3c7;padding:1px 6px;border-radius:4px">2</span> <strong>마이크</strong> 항목 찾기 → <span style="background:#fee2e2;padding:1px 6px;border-radius:4px;color:#991b1b">차단</span> 클릭<br>
+              <span style="background:#fef3c7;padding:1px 6px;border-radius:4px">3</span> <span style="background:#dcfce7;padding:1px 6px;border-radius:4px;color:#166534"><strong>허용</strong></span> 선택<br>
+              <span style="background:#fef3c7;padding:1px 6px;border-radius:4px">4</span> <strong>F5</strong> 눌러 새로고침 → AI실습 탭 다시 열기
+            </div>
+
+            <div style="background:#fff;border-radius:8px;padding:10px;margin-bottom:8px;font-size:12px;line-height:2;color:#1a202c">
+              <strong style="color:#059669">📱 Android Chrome:</strong><br>
+              <span style="background:#fef3c7;padding:1px 6px;border-radius:4px">1</span> 주소창 오른쪽 <strong>⋮ 메뉴</strong> → <strong>사이트 설정</strong><br>
+              <span style="background:#fef3c7;padding:1px 6px;border-radius:4px">2</span> <strong>마이크</strong> → <strong>허용</strong>으로 변경
+            </div>
+
+            <div style="background:#fff;border-radius:8px;padding:10px;font-size:12px;line-height:2;color:#1a202c">
+              <strong style="color:#7c3aed">🪟 Windows 마이크 설정 (그래도 안 될 때):</strong><br>
+              <span style="background:#fef3c7;padding:1px 6px;border-radius:4px">1</span> Windows <strong>시작</strong> → <strong>설정</strong> → <strong>개인 정보 및 보안</strong><br>
+              <span style="background:#fef3c7;padding:1px 6px;border-radius:4px">2</span> <strong>마이크</strong> → <strong>앱에서 마이크에 액세스하도록 허용</strong> → <strong>켜기</strong>
+            </div>
+
+            <div style="margin-top:8px;font-size:11px;color:#059669;line-height:1.7">
+              🇻🇳 <strong>Cách sửa:</strong> Nhấn 🔒 góc trái → Micro → Chọn <strong>Cho phép</strong> → F5<br>
+              Android: ⋮ → Cài đặt trang → Micro → Cho phép
+            </div>
           </div>
-          <button onclick="RECORDER.checkPermission(this)"
-            style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:700">
-            🎙️ 마이크 허용하기 · Cho phép Micro · Allow Mic
+
+          <!-- 허용 버튼 -->
+          <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+            style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:12px;font-size:14px;font-weight:800">
+            🎙️ 마이크 허용하기 (여기 클릭)
           </button>
+          <div style="text-align:center;font-size:10px;color:#888;margin-top:4px">🇻🇳 Nhấn để cho phép micro &nbsp;·&nbsp; 🇺🇸 Click to allow microphone</div>
           <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>
         </div>
         ${[
@@ -1504,45 +1538,82 @@ const RECORDER = {
     }
   },
 
+  // 페이지 로드 시 자동 권한 상태 감지
+  async autoDetect() {
+    const stateEl = document.getElementById('mic-perm-state');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+
+    // Permissions API로 현재 상태 조회
+    if (navigator.permissions) {
+      try {
+        const result = await navigator.permissions.query({name: 'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 이미 허용됨 — 바로 녹음하세요! · 🇻🇳 Đã cho phép!</div>';
+          if (allowBtn) { allowBtn.style.background = '#166534'; allowBtn.textContent = '✅ 허용됨 — 바로 녹음하세요'; }
+          if (blockedGuide) blockedGuide.style.display = 'none';
+          return;
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 아래 빨간 박스 순서대로 해결하세요</div>';
+          if (blockedGuide) blockedGuide.style.display = 'block';
+          if (allowBtn) { allowBtn.style.background = '#ef4444'; allowBtn.textContent = '⚠️ 차단됨 — 위 단계 완료 후 여기 클릭'; }
+          return;
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아직 허용 안 됨 — 아래 버튼을 눌러 허용해 주세요</div>';
+        }
+        // 상태 변화 감지
+        result.onchange = () => RECORDER.autoDetect();
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+      }
+    } else {
+      stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+    }
+  },
+
   async checkPermission(btn) {
     const statusEl = document.getElementById('mic-status');
     const box = document.getElementById('mic-check-box');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const stateEl = document.getElementById('mic-perm-state');
     btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
 
-    // HTTPS 체크
     if (location.protocol === 'file:') {
-      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 에서는 작동 안 해요 → <a href="https://elimg.com/KIIP_Level3_Lesson1.html" target="_blank" style="color:#1d4ed8">elimg.com에서 열기</a></span>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → <a href="https://elimg.com/KIIP_Level3_Lesson1.html" target="_blank" style="color:#1d4ed8;font-weight:700">elimg.com 에서 열기</a></span>';
       btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false;
       return;
     }
-    // MediaDevices 지원 체크
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 이 브라우저 미지원 — Chrome/Edge 사용해 주세요</span>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 미지원 브라우저 — <strong>Chrome</strong> 또는 <strong>Edge</strong>를 사용해 주세요</span>';
       btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false;
       return;
     }
     try {
       const stream = await navigator.mediaDevices.getUserMedia({audio: true});
-      // 성공 → 스트림 즉시 해제 (테스트 목적)
       stream.getTracks().forEach(t => t.stop());
-      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 마이크 허용됨! 아래에서 연습하세요 · 🇻🇳 Đã cho phép micro!</span>';
-      // 박스를 성공 상태로 변경
+      // 성공
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 바로 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 성공! 🇻🇳 Đã cho phép!</span>';
       if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
-      btn.textContent = '✅ 마이크 허용됨'; btn.style.background = '#166534';
+      if (blockedGuide) blockedGuide.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 바로 녹음하세요!'; btn.style.background = '#166534'; btn.disabled = false;
     } catch(e) {
       const name = e.name || '';
-      let guide = '';
+      btn.disabled = false;
       if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
-        guide = `🔒 주소창 왼쪽 자물쇠 아이콘 클릭 → 마이크 → <strong>허용</strong> → 새로고침<br>
-                 <img src="" onerror="this.remove()" style="display:none">
-                 🇻🇳 Nhấn 🔒 góc trái → Micro → Cho phép → F5`;
-      } else if (name === 'NotFoundError') {
-        guide = '❌ 마이크 없음 — 마이크 장치를 연결 후 다시 시도<br>🇻🇳 Không có micro — Kết nối micro rồi thử lại';
+        // 차단 가이드 표시
+        if (blockedGuide) blockedGuide.style.display = 'block';
+        if (stateEl) stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 빨간 박스 순서대로 해결 후 다시 클릭</div>';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444;font-size:11px">🔒 허용 완료 후 이 버튼을 다시 눌러주세요</span>';
+        btn.textContent = '🔄 허용 완료 후 다시 클릭'; btn.style.background = '#ef4444';
+      } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 마이크 장치 없음 — 마이크를 연결하고 다시 시도</span>';
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
       } else {
-        guide = `오류 (${name}) — Chrome에서 다시 시도해 주세요`;
+        if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444">오류 (${name}) — Chrome/Edge에서 다시 시도</span>`;
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
       }
-      if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;font-size:11px;line-height:1.8">${guide}</span>`;
-      btn.textContent = '🔄 다시 시도'; btn.style.background = '#ef4444'; btn.disabled = false;
     }
   },
 
