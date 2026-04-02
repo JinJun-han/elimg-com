@@ -178,6 +178,9 @@ h2{color:var(--brown);font-size:18px;margin-bottom:4px;font-weight:800}
 .return-toast-close:hover{background:rgba(255,255,255,0.25)}
 .return-toast-bar{position:absolute;bottom:0;left:0;height:3px;background:#f59e0b;border-radius:0 0 14px 14px;animation:toastTimer 8s linear forwards}
 @keyframes toastTimer{from{width:100%}to{width:0%}}
+
+/* AI CHAT LOADING DOTS */
+@keyframes aiDot{0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1}}
 </style>
 </head>
 <body>
@@ -1241,21 +1244,142 @@ function renderAI() {
         `).join('')}
       </div>
 
-      <!-- Gemini AI 대화 연습 -->
-      <div class="card card-accent" style="margin-bottom:10px">
-        <div class="section-label">💬 Gemini AI 대화 연습</div>
-        <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">오늘 배운 표현으로 AI와 직접 대화하세요<br>
-        <span style="color:#059669;font-size:11px">🇻🇳 Luyện hội thoại trực tiếp với AI bằng biểu đạt hôm nay</span></div>
-        ${[
-          {label:'👥 대화 1 상황 연습 — 새 직장 동료', vi:'Luyện tình huống đồng nghiệp mới', prompt:'저는 KIIP 3급 학습자입니다. -(으)ㄹ수록 문법을 사용하여 새 직장 동료와 어색한 분위기를 극복하는 한국어 롤플레이를 도와주세요. 저는 외국인 직원 역할이에요.'},
-          {label:'🤝 관용 표현 실전 연습', vi:'Luyện thành ngữ thực tế', prompt:'KIIP 3급입니다. 손발이 맞다, 마음이 맞다, 눈치를 보다, 정이 들다를 사용한 짧은 대화 상황 3개를 만들어 주세요. 베트남어 설명도 함께요.'},
-          {label:'⚖️ 갈등 화해 롤플레이', vi:'Luyện hòa giải xung đột', prompt:'KIIP 3급 학습자입니다. -아/어서인지 문법과 화해 표현을 사용하여 친구와 오해를 풀고 화해하는 한국어 대화를 롤플레이해 주세요.'},
-        ].map(item=>`
-          <button onclick="openGemini('${item.prompt.replace(/'/g,"\\'")}')"
-            style="width:100%;background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;border-radius:8px;padding:10px 14px;font-size:12px;font-weight:700;margin-bottom:6px;text-align:left;line-height:1.5">
-            🔵 ${item.label}<br><span style="opacity:0.8;font-size:10px">🇻🇳 ${item.vi}</span>
+      <!-- ★ 앱 내 AI 채팅 (로그인 불필요) -->
+      <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+        <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+        <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+          계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
+          <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập, không chuyển tab</span>
+        </div>
+
+        <!-- 빠른 질문 버튼 -->
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+          ${[
+            {emoji:'📝', label:'이 단어 설명해줘', vi:'Giải thích từ này', q:'KIIP 3급 1과 어휘: "서운하다"를 쉽게 설명하고 예문 2개와 베트남어 번역을 알려주세요.'},
+            {emoji:'📐', label:'문법 질문', vi:'Hỏi ngữ pháp', q:'KIIP 3급: -(으)ㄹ수록 문법을 쉽게 설명하고 예문 3개를 베트남어 번역과 함께 알려주세요.'},
+            {emoji:'💬', label:'롤플레이', vi:'Nhập vai hội thoại', q:'저는 베트남 출신 KIIP 3급 학습자입니다. 새 직장 동료와 처음 대화하는 상황을 -(으)ㄹ수록 문법을 사용하여 롤플레이해 주세요.'},
+            {emoji:'✏️', label:'내 글 첨삭', vi:'Sửa bài viết', q:'KIIP 3급 학습자의 글입니다. 문법을 확인하고 수정해 주세요. 베트남어로도 설명해 주세요: '},
+            {emoji:'❓', label:'틀린 문제 설명', vi:'Giải thích câu sai', q:'KIIP 3급 퀴즈에서 틀렸어요. "-아/어서인지" 문법을 다시 쉽게 설명하고 예문 3개를 베트남어와 함께 알려주세요.'},
+            {emoji:'🎯', label:'TOPIK 연습', vi:'Luyện TOPIK', q:'KIIP 3급 수준의 TOPIK II 대인관계 관련 빈칸 채우기 문제 3개를 만들어 주세요. 정답과 해설도요.'},
+          ].map(b=>`
+            <button onclick="AICHAT.setPrompt(${JSON.stringify(b.q)})"
+              style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:5px 11px;font-size:11px;font-weight:700">
+              ${b.emoji} ${b.label}
+            </button>
+          `).join('')}
+        </div>
+
+        <!-- 채팅 메시지 영역 -->
+        <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px">
+          <div style="text-align:center;font-size:12px;color:#888;padding:16px">
+            💡 위 버튼을 누르거나 아래에 직접 입력하세요<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút phía trên hoặc nhập câu hỏi bên dưới</span>
+          </div>
+        </div>
+
+        <!-- 입력창 -->
+        <div style="display:flex;gap:6px;align-items:flex-end">
+          <textarea id="ai-chat-input"
+            placeholder="한국어로 질문하세요... 🇻🇳 Nhập câu hỏi..."
+            style="flex:1;padding:10px;border:2px solid #fde68a;border-radius:10px;font-size:13px;font-family:inherit;min-height:44px;max-height:120px;resize:none;outline:none"
+            onfocus="this.style.borderColor='#f59e0b'"
+            onblur="this.style.borderColor='#fde68a'"
+            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
+          ></textarea>
+          <button onclick="AICHAT.send()"
+            id="ai-send-btn"
+            style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">
+            ➤
           </button>
-        `).join('')}
+        </div>
+        <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+      </div>
+
+      <!-- 외부 서비스 상세 가이드 -->
+      <div class="card card-accent" style="margin-bottom:10px">
+        <div class="section-label">🌐 외부 AI 서비스 상세 가이드</div>
+        <div style="font-size:11px;color:#888;margin:6px 0 8px">계정이 있는 경우 더 강력한 AI를 사용할 수 있어요</div>
+
+        <!-- Gemini 가이드 -->
+        <details style="margin-bottom:8px">
+          <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+            🔵 Gemini AI 사용법 — Google 계정 필요
+          </summary>
+          <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+            <strong style="color:#1d4ed8">① 접속:</strong> gemini.google.com (Google 계정으로 로그인)<br>
+            <strong style="color:#1d4ed8">② 추천 활용:</strong><br>
+            <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+              <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 롤플레이 대화 연습</div>
+              복사해서 붙여넣기:<br>
+              <span style="font-family:monospace;background:#dbeafe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"저는 베트남인 KIIP 3급 학습자예요. 새 직장 동료와 -(으)ㄹ수록 문법을 써서 대화 연습 도와주세요."</span>
+              🇻🇳 Sao chép và dán vào Gemini để luyện hội thoại
+            </div>
+            <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+              <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">📸 사진으로 질문 (Gemini 특화)</div>
+              모르는 한국어 단어 사진 찍어서 업로드 → "이 단어 뜻과 예문 알려줘"<br>
+              <span style="color:#059669">🇻🇳 Chụp ảnh từ tiếng Hàn không biết → Upload → Hỏi nghĩa</span>
+            </div>
+            <div style="background:#fef9c3;border-radius:6px;padding:6px 8px;font-size:11px;color:#92400e">
+              ⚠️ Android 사용자 → Google 계정이 이미 있으면 자동 로그인
+            </div>
+          </div>
+        </details>
+
+        <!-- Claude 가이드 -->
+        <details style="margin-bottom:8px">
+          <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+            🟣 Claude AI 사용법 — 이메일 계정 필요
+          </summary>
+          <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+            <strong style="color:#7c3aed">① 접속:</strong> claude.ai (이메일로 무료 가입)<br>
+            <strong style="color:#7c3aed">② 추천 활용:</strong><br>
+            <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">
+              <div style="font-weight:700;color:#7c3aed;margin-bottom:3px">✏️ 쓰기 첨삭 (Claude 특화 · 최고 품질)</div>
+              쓰기 섹션에서 작성한 글 복사 → Claude에 붙여넣기 후:<br>
+              <span style="font-family:monospace;background:#ede9fe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"KIIP 3급 외국인 학습자 글이에요. 문법 오류 찾아주고 -(으)ㄹ수록, -아/어서인지 사용 확인해 주세요. 베트남어로도 설명해 주세요."</span>
+              🇻🇳 Sao chép bài viết → Dán vào Claude → Nhận sửa lỗi + giải thích tiếng Việt
+            </div>
+            <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">
+              <div style="font-weight:700;color:#7c3aed;margin-bottom:3px">📋 긴 대화·분석 (Claude 강점)</div>
+              "1과 전체 어휘 30개를 베트남어로 정리해서 표로 만들어줘"<br>
+              <span style="color:#059669">🇻🇳 "Tổng hợp 30 từ bài 1 thành bảng tiếng Việt"</span>
+            </div>
+            <div style="background:#fef9c3;border-radius:6px;padding:6px 8px;font-size:11px;color:#92400e">
+              ⚠️ 가입 방법: claude.ai → Continue with email → 이메일 입력 → 인증코드 확인
+            </div>
+          </div>
+        </details>
+
+        <!-- NotebookLM 가이드 -->
+        <details>
+          <summary style="background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+            📓 NotebookLM 사용법 — Google 계정 필요
+          </summary>
+          <div style="background:#fff8f0;border:1px solid #fed7aa;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+            <strong style="color:#ea4335">① 접속:</strong> notebooklm.google.com<br>
+            <strong style="color:#ea4335">② 1과 노트북 만들기:</strong><br>
+            <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #ea4335">
+              <div style="font-weight:700;color:#ea4335;margin-bottom:3px">📤 소스 업로드 방법</div>
+              1. "+ New Notebook" 클릭<br>
+              2. "Add Source" → "Copied text" 선택<br>
+              3. 아래 내용을 복사해서 붙여넣기:<br>
+              <button onclick="copyNotebookContent()" style="background:#ea4335;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0">
+                📋 1과 학습 내용 복사하기
+              </button><span id="copy-ok" style="font-size:11px;color:#059669;margin-left:6px"></span><br>
+              4. AI가 자동으로 요약·분석해 줘요
+            </div>
+            <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #ea4335">
+              <div style="font-weight:700;color:#ea4335;margin-bottom:3px">❓ NotebookLM에서 이렇게 질문하세요</div>
+              "-(으)ㄹ수록 문법을 베트남어로 설명해줘"<br>
+              "1과 어휘 퀴즈 10문제 만들어줘"<br>
+              "이 과의 핵심 내용을 5줄로 요약해줘"<br>
+              <span style="color:#059669">🇻🇳 "Giải thích ngữ pháp -(으)ㄹ수록 bằng tiếng Việt"</span>
+            </div>
+            <div style="background:#fef9c3;border-radius:6px;padding:6px 8px;font-size:11px;color:#92400e">
+              💡 NotebookLM = 내 자료 기반 AI — 교재 PDF나 메모를 올리면 그 내용으로만 답변
+            </div>
+          </div>
+        </details>
       </div>
 
       <!-- AI 발음 코치 (MediaRecorder + STT) — 100% 무료 브라우저 API -->
@@ -1391,27 +1515,6 @@ function renderAI() {
         </details>
       </div>
 
-      <!-- Claude AI 쓰기 첨삭 -->
-      <div class="card" style="margin-bottom:10px;border:2px solid #7c3aed">
-        <div class="section-label" style="background:#7c3aed">✏️ Claude AI 쓰기 첨삭</div>
-        <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">쓰기 섹션 글을 Claude AI에게 첨삭 받으세요<br>
-        <span style="color:#7c3aed;font-size:11px">🇻🇳 Nhờ Claude AI sửa bài viết — có giải thích tiếng Việt</span></div>
-        <button onclick="openClaudeFeedback()"
-          style="width:100%;background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:700">
-          🟣 Claude AI 첨삭 받기 (베트남어 설명 포함) →
-        </button>
-      </div>
-
-      <!-- Google NotebookLM -->
-      <div class="card" style="margin-bottom:10px;border:2px solid #ea4335">
-        <div class="section-label" style="background:#ea4335">📓 Google NotebookLM 학습</div>
-        <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">이 과의 어휘·문법을 NotebookLM에 업로드하여 AI 요약 및 Q&amp;A를 받아보세요<br>
-        <span style="color:#ea4335;font-size:11px">🇻🇳 Tải lên từ vựng và ngữ pháp bài này để nhận tóm tắt và Q&amp;A từ AI</span></div>
-        <button onclick="openNotebookLM()"
-          style="width:100%;background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:700">
-          📓 NotebookLM 열기 →
-        </button>
-      </div>
 
       <!-- Glocal G스택 가이드 -->
       <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
@@ -1449,6 +1552,145 @@ function openClaudeFeedback() {
 function openNotebookLM() {
   window.open('https://notebooklm.google.com', '_blank');
   showReturnToast('NotebookLM', '📓');
+}
+
+// ===== IN-APP AI CHAT (Pollinations.ai — 로그인 불필요, 완전 무료) =====
+const AICHAT = {
+  history: [],   // {role, content, html}
+  loading: false,
+
+  setPrompt(text) {
+    const inp = document.getElementById('ai-chat-input');
+    if (inp) { inp.value = text; inp.focus(); }
+  },
+
+  addMessage(role, text) {
+    const box = document.getElementById('ai-chat-messages');
+    if (!box) return;
+    // 첫 메시지면 안내 텍스트 제거
+    if (box.querySelector('[data-placeholder]')) box.innerHTML = '';
+
+    const isUser = role === 'user';
+    const bubble = document.createElement('div');
+    bubble.style.cssText = `display:flex;flex-direction:column;align-items:${isUser?'flex-end':'flex-start'};gap:2px`;
+    bubble.innerHTML = `
+      <div style="font-size:10px;color:#888;margin:0 4px">${isUser ? '🙋 나' : '🤖 AI'}</div>
+      <div style="max-width:88%;padding:10px 13px;border-radius:${isUser?'14px 14px 4px 14px':'14px 14px 14px 4px'};
+        background:${isUser?'#f59e0b':'#fff'};color:${isUser?'#fff':'#1a202c'};
+        font-size:13px;line-height:1.65;border:1px solid ${isUser?'#d97706':'#fde68a'};
+        white-space:pre-wrap;word-break:break-word">${text.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}</div>
+    `;
+    box.appendChild(bubble);
+    box.scrollTop = box.scrollHeight;
+  },
+
+  addLoading() {
+    const box = document.getElementById('ai-chat-messages');
+    if (!box) return;
+    const el = document.createElement('div');
+    el.id = 'ai-loading';
+    el.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px';
+    el.innerHTML = `
+      <div style="display:flex;gap:4px">
+        ${[0,1,2].map(i=>`<div style="width:8px;height:8px;border-radius:50%;background:#f59e0b;animation:aiDot 1s ${i*0.2}s ease-in-out infinite"></div>`).join('')}
+      </div>
+      <span style="font-size:12px;color:#888">AI 응답 중...</span>
+    `;
+    box.appendChild(el);
+    box.scrollTop = box.scrollHeight;
+  },
+
+  removeLoading() {
+    const el = document.getElementById('ai-loading');
+    if (el) el.remove();
+  },
+
+  async send() {
+    if (this.loading) return;
+    const inp = document.getElementById('ai-chat-input');
+    const btn = document.getElementById('ai-send-btn');
+    const text = inp ? inp.value.trim() : '';
+    if (!text) return;
+
+    // 시스템 컨텍스트 (항상 추가)
+    const systemCtx = 'You are a Korean language tutor for KIIP Level 3 (intermediate). The student is likely Vietnamese. Answer in Korean with Vietnamese translation in parentheses when helpful. Be concise, friendly, and educational. Focus on KIIP exam content.';
+
+    this.history.push({role:'user', content: text});
+    this.addMessage('user', text);
+    if (inp) inp.value = '';
+    this.loading = true;
+    if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+    this.addLoading();
+
+    try {
+      // Pollinations.ai — 무료, 인증 없음, GPT-4o-mini 사용
+      const messages = [
+        {role:'system', content: systemCtx},
+        ...this.history.slice(-6).map(m => ({role: m.role, content: m.content}))
+      ];
+      const res = await fetch('https://text.pollinations.ai/', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({messages, model:'openai', seed:-1, stream:false}),
+      });
+      if (!res.ok) throw new Error('API ' + res.status);
+      const reply = await res.text();
+      this.removeLoading();
+      this.history.push({role:'assistant', content: reply});
+      this.addMessage('assistant', reply);
+    } catch(e) {
+      this.removeLoading();
+      this.addMessage('assistant', '⚠️ 잠시 오류가 났어요. 다시 시도해 주세요.\n🇻🇳 Lỗi tạm thời — Thử lại nhé.\n\n(오류: ' + e.message + ')');
+    }
+    this.loading = false;
+    if (btn) { btn.textContent = '➤'; btn.disabled = false; }
+  }
+};
+
+// NotebookLM용 1과 내용 복사
+function copyNotebookContent() {
+  const content = `KIIP 3급 중급 1 · 1과 대인 관계 학습 자료
+글로컬 아카데미 (elimg.com)
+
+=== 핵심 어휘 ===
+관계 표현: 사귀다, 어울리다, 친해지다, 멀어지다, 다투다, 화해하다, 의지하다, 배려하다
+성격 표현: 사교적이다, 내성적이다, 솔직하다, 배타적이다, 포용력이 있다, 눈치가 빠르다
+관계 변화: 관계가 가까워지다, 연락이 끊기다, 오해가 생기다, 신뢰를 쌓다, 갈등을 해결하다
+감정·호칭: 서운하다, 섭섭하다, 어색하다, 반갑다, 선배, 후배, 동기, 공감하다
+
+=== 관용 표현 ===
+손발이 맞다 = to work well together (Ăn ý với nhau)
+마음이 맞다 = to be on the same wavelength (Hợp tính)
+눈치를 보다 = to read the room (Đọc phòng)
+마음을 열다 = to open one's heart (Mở lòng)
+밥 한번 먹자 = keeping in touch expression
+정이 들다 = to grow fond of (Nảy sinh tình cảm)
+
+=== 핵심 문법 ===
+1. -(으)ㄹ수록: "The more A, the more B"
+   형태: 동사/형용사 어간 + (으)ㄹ수록
+   예: 가다→갈수록, 먹다→먹을수록, 좋다→좋을수록
+   예문: 한국어는 공부할수록 재미있어요.
+   베트남어: Tiếng Hàn càng học càng thú vị.
+
+2. -아/어서인지: "Perhaps because..."
+   형태: 동사/형용사 어간 + 아/어서인지
+   예: 피곤하다→피곤해서인지, 먹다→먹어서인지
+   예문: 오늘 날씨가 좋아서인지 기분이 좋아요.
+   베트남어: Có lẽ vì hôm nay thời tiết đẹp nên tâm trạng tốt.
+
+=== 학습 목표 ===
+- 대인 관계에 대해 이야기할 수 있다
+- 관계 변화와 그 이유를 설명할 수 있다
+- -(으)ㄹ수록, -아/어서인지 문법을 사용할 수 있다`;
+
+  navigator.clipboard.writeText(content).then(() => {
+    const el = document.getElementById('copy-ok');
+    if (el) { el.textContent = '✅ 복사 완료!'; setTimeout(() => el.textContent = '', 3000); }
+  }).catch(() => {
+    const el = document.getElementById('copy-ok');
+    if (el) el.textContent = '❌ 직접 복사하세요';
+  });
 }
 
 // ===== PRONUNCIATION RECORDER (MediaRecorder + STT) =====
