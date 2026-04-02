@@ -1252,18 +1252,11 @@ function renderAI() {
           <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập, không chuyển tab</span>
         </div>
 
-        <!-- 빠른 질문 버튼 -->
+        <!-- 빠른 질문 버튼 — 인덱스로 참조 (따옴표 충돌 방지) -->
         <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-          ${[
-            {emoji:'📝', label:'이 단어 설명해줘', vi:'Giải thích từ này', q:'KIIP 3급 1과 어휘: "서운하다"를 쉽게 설명하고 예문 2개와 베트남어 번역을 알려주세요.'},
-            {emoji:'📐', label:'문법 질문', vi:'Hỏi ngữ pháp', q:'KIIP 3급: -(으)ㄹ수록 문법을 쉽게 설명하고 예문 3개를 베트남어 번역과 함께 알려주세요.'},
-            {emoji:'💬', label:'롤플레이', vi:'Nhập vai hội thoại', q:'저는 베트남 출신 KIIP 3급 학습자입니다. 새 직장 동료와 처음 대화하는 상황을 -(으)ㄹ수록 문법을 사용하여 롤플레이해 주세요.'},
-            {emoji:'✏️', label:'내 글 첨삭', vi:'Sửa bài viết', q:'KIIP 3급 학습자의 글입니다. 문법을 확인하고 수정해 주세요. 베트남어로도 설명해 주세요: '},
-            {emoji:'❓', label:'틀린 문제 설명', vi:'Giải thích câu sai', q:'KIIP 3급 퀴즈에서 틀렸어요. "-아/어서인지" 문법을 다시 쉽게 설명하고 예문 3개를 베트남어와 함께 알려주세요.'},
-            {emoji:'🎯', label:'TOPIK 연습', vi:'Luyện TOPIK', q:'KIIP 3급 수준의 TOPIK II 대인관계 관련 빈칸 채우기 문제 3개를 만들어 주세요. 정답과 해설도요.'},
-          ].map(b=>`
-            <button onclick="AICHAT.setPrompt(${JSON.stringify(b.q)})"
-              style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:5px 11px;font-size:11px;font-weight:700">
+          ${AI_QUICK_BTNS.map((b,i)=>`
+            <button onclick="AICHAT.quickSend(${i})"
+              style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
               ${b.emoji} ${b.label}
             </button>
           `).join('')}
@@ -1554,14 +1547,67 @@ function openNotebookLM() {
   showReturnToast('NotebookLM', '📓');
 }
 
+// ===== AI 빠른 질문 버튼 데이터 (전역 배열 — onclick 따옴표 충돌 방지) =====
+const AI_QUICK_BTNS = [
+  {
+    emoji: '📝',
+    label: '이 단어 설명해줘',
+    vi: 'Giải thích từ này',
+    q: 'KIIP 3급 1과 어휘: "서운하다"를 쉽게 설명하고 예문 2개와 베트남어 번역을 알려주세요.',
+  },
+  {
+    emoji: '📐',
+    label: '문법 질문',
+    vi: 'Hỏi ngữ pháp',
+    q: 'KIIP 3급: -(으)ㄹ수록 문법을 쉽게 설명하고 예문 3개를 베트남어 번역과 함께 알려주세요.',
+  },
+  {
+    emoji: '💬',
+    label: '롤플레이',
+    vi: 'Nhập vai hội thoại',
+    q: '저는 베트남 출신 KIIP 3급 학습자입니다. 새 직장 동료와 처음 대화하는 상황을 -(으)ㄹ수록 문법을 사용하여 롤플레이해 주세요.',
+  },
+  {
+    emoji: '✏️',
+    label: '내 글 첨삭',
+    vi: 'Sửa bài viết',
+    q: 'KIIP 3급 학습자의 글입니다. 문법을 확인하고 수정해 주세요. 베트남어로도 설명해 주세요: (여기에 글을 붙여넣으세요)',
+  },
+  {
+    emoji: '❓',
+    label: '틀린 문제 설명',
+    vi: 'Giải thích câu sai',
+    q: 'KIIP 3급 퀴즈에서 틀렸어요. "-아/어서인지" 문법을 다시 쉽게 설명하고 예문 3개를 베트남어와 함께 알려주세요.',
+  },
+  {
+    emoji: '🎯',
+    label: 'TOPIK 연습',
+    vi: 'Luyện TOPIK',
+    q: 'KIIP 3급 수준의 TOPIK II 대인관계 관련 빈칸 채우기 문제 3개를 만들어 주세요. 정답과 해설도요.',
+  },
+];
+
 // ===== IN-APP AI CHAT (Pollinations.ai — 로그인 불필요, 완전 무료) =====
 const AICHAT = {
   history: [],   // {role, content, html}
   loading: false,
 
-  setPrompt(text) {
+  // 빠른 버튼: 입력창에 채우고 포커스 (사용자가 확인 후 Enter 전송)
+  quickSend(idx) {
+    const btn = AI_QUICK_BTNS[idx];
+    if (!btn) return;
     const inp = document.getElementById('ai-chat-input');
-    if (inp) { inp.value = text; inp.focus(); }
+    if (!inp) return;
+    inp.value = btn.q;
+    inp.style.borderColor = '#f59e0b';
+    inp.focus();
+    // 자동 전송 (내 글 첨삭은 사용자가 직접 수정 후 전송하도록 제외)
+    if (idx !== 3) {
+      setTimeout(() => this.send(), 150);
+    } else {
+      // 내 글 첨삭: 커서를 텍스트 끝에 위치
+      inp.setSelectionRange(inp.value.length, inp.value.length);
+    }
   },
 
   addMessage(role, text) {
