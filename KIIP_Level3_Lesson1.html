@@ -1242,9 +1242,23 @@ function renderAI() {
           원어민 듣기 → 내가 녹음 → 다시 들으며 비교<br>
           <span style="color:#059669;font-size:11px">🇻🇳 Nghe người bản ngữ → Tự ghi âm → Nghe lại so sánh</span>
         </div>
-        <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#166534">
-          🆓 <strong>완전 무료</strong> — 브라우저 내장 API (MediaRecorder + STT) · 서버 없음 · 영구 무료<br>
-          🇻🇳 Hoàn toàn miễn phí — API tích hợp sẵn trong trình duyệt · Mãi mãi miễn phí
+        <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#166534">
+          🆓 <strong>완전 무료</strong> — 브라우저 내장 API · 서버 없음 · 영구 무료
+        </div>
+
+        <!-- 마이크 권한 사전 체크 -->
+        <div id="mic-check-box" style="background:#fef9c3;border:1px solid #fbbf24;border-radius:10px;padding:12px;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:6px">🎙️ 먼저 마이크를 허용해 주세요</div>
+          <div style="font-size:11px;color:#555;line-height:1.8;margin-bottom:8px">
+            🇰🇷 브라우저가 마이크 사용 허락을 요청합니다. <strong>"허용"</strong>을 눌러주세요.<br>
+            🇻🇳 Trình duyệt sẽ hỏi quyền micro. Nhấn <strong>"Cho phép / Allow"</strong>.<br>
+            🇺🇸 Browser will ask for microphone access. Click <strong>"Allow"</strong>.
+          </div>
+          <button onclick="RECORDER.checkPermission(this)"
+            style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:700">
+            🎙️ 마이크 허용하기 · Cho phép Micro · Allow Mic
+          </button>
+          <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>
         </div>
         ${[
           {sent:'처음에는 어색했는데 지낼수록 편해지는 것 같아요.', vi:'Lúc đầu ngại ngùng nhưng càng ở lâu càng thoải mái.'},
@@ -1297,6 +1311,30 @@ function renderAI() {
           3️⃣ <strong>▶ 내 발음 듣기</strong> — 녹음 후 활성화 · Sau khi ghi xong, nhấn để nghe lại<br>
           4️⃣ 정확도 바 색 확인: 🟢 80%+ 🟡 50~79% 🔴 50% 미만
         </div>
+
+        <!-- 브라우저별 마이크 허용 방법 -->
+        <details style="margin-top:8px">
+          <summary style="font-size:12px;font-weight:700;color:#92400e;cursor:pointer;padding:8px;background:#fef3c7;border-radius:8px">
+            🔧 마이크 허용 안 될 때 해결법 · Cách khắc phục · Troubleshooting
+          </summary>
+          <div style="font-size:11px;color:#555;line-height:1.9;padding:10px;background:#fffbeb;border-radius:0 0 8px 8px;border:1px solid #fde68a">
+            <strong style="color:#92400e">🖥️ Chrome / Edge (PC):</strong><br>
+            주소창 왼쪽 🔒 클릭 → 마이크 → <strong>허용</strong> → F5 새로고침<br>
+            <span style="color:#059669">🇻🇳 Nhấn 🔒 góc trái URL → Micro → Cho phép → F5</span><br><br>
+
+            <strong style="color:#92400e">📱 Chrome (Android):</strong><br>
+            주소창 ⋮ → 사이트 설정 → 마이크 → 허용<br>
+            <span style="color:#059669">🇻🇳 Nhấn ⋮ → Cài đặt trang → Micro → Cho phép</span><br><br>
+
+            <strong style="color:#92400e">🍎 Safari (iPhone/iPad):</strong><br>
+            설정 → Safari → 마이크 → elimg.com 허용<br>
+            <span style="color:#059669">🇻🇳 Cài đặt → Safari → Micro → Cho phép elimg.com</span><br><br>
+
+            <strong style="color:#ef4444">⚠️ 중요:</strong> 반드시 <strong>https://elimg.com</strong> 에서 열어야 작동해요<br>
+            파일을 직접 더블클릭해서 열면 보안상 작동 안 합니다<br>
+            <span style="color:#059669">🇻🇳 Phải mở qua https://elimg.com — Không dùng file:// trực tiếp</span>
+          </div>
+        </details>
       </div>
 
       <!-- Claude AI 쓰기 첨삭 -->
@@ -1377,7 +1415,25 @@ const RECORDER = {
       const stream = await navigator.mediaDevices.getUserMedia({audio: true});
       this.streams[idx] = stream;
     } catch(e) {
-      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444">❌ 마이크 권한이 필요해요 · 🇻🇳 Cần quyền micro</span>';
+      const name = e.name || '';
+      let msg = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg = `❌ <strong>마이크가 차단됨</strong> — 브라우저 주소창 왼쪽 🔒 아이콘 → 마이크 → <strong>허용</strong> 후 새로고침<br>
+               <span style="color:#555">🇻🇳 Micro bị chặn — Nhấn 🔒 góc trái URL → Micro → <strong>Cho phép</strong> → Tải lại trang</span>`;
+      } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
+        msg = `❌ <strong>마이크를 찾을 수 없어요</strong> — 마이크가 연결되어 있는지 확인하세요<br>
+               <span style="color:#555">🇻🇳 Không tìm thấy micro — Kiểm tra xem micro có được kết nối không</span>`;
+      } else if (name === 'SecurityError' || location.protocol === 'file:') {
+        msg = `❌ <strong>보안 오류</strong> — 파일로 직접 열면 안 돼요. <a href="https://elimg.com/KIIP_Level3_Lesson1.html" target="_blank" style="color:#1d4ed8">elimg.com</a>에서 열어주세요 (HTTPS 필요)<br>
+               <span style="color:#555">🇻🇳 Lỗi bảo mật — Mở qua <a href="https://elimg.com/KIIP_Level3_Lesson1.html" target="_blank">elimg.com</a> (cần HTTPS)</span>`;
+      } else if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        msg = `❌ <strong>이 브라우저는 녹음 미지원</strong> — Chrome 또는 Edge를 사용해 주세요<br>
+               <span style="color:#555">🇻🇳 Trình duyệt không hỗ trợ — Dùng Chrome hoặc Edge</span>`;
+      } else {
+        msg = `❌ <strong>오류: ${e.name}</strong> — 마이크 허용 버튼을 먼저 눌러주세요<br>
+               <span style="color:#555">🇻🇳 Lỗi: ${e.name} — Nhấn nút cho phép micro trước</span>`;
+      }
+      if (resultEl) resultEl.innerHTML = `<span style="color:#ef4444;font-size:11px;line-height:1.7">${msg}</span>`;
       return;
     }
 
@@ -1445,6 +1501,48 @@ const RECORDER = {
       rec.onerror = () => {};
       rec.start();
       // STT는 자동 종료, MediaRecorder는 버튼으로 중지
+    }
+  },
+
+  async checkPermission(btn) {
+    const statusEl = document.getElementById('mic-status');
+    const box = document.getElementById('mic-check-box');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+
+    // HTTPS 체크
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 에서는 작동 안 해요 → <a href="https://elimg.com/KIIP_Level3_Lesson1.html" target="_blank" style="color:#1d4ed8">elimg.com에서 열기</a></span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false;
+      return;
+    }
+    // MediaDevices 지원 체크
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 이 브라우저 미지원 — Chrome/Edge 사용해 주세요</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false;
+      return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      // 성공 → 스트림 즉시 해제 (테스트 목적)
+      stream.getTracks().forEach(t => t.stop());
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 마이크 허용됨! 아래에서 연습하세요 · 🇻🇳 Đã cho phép micro!</span>';
+      // 박스를 성공 상태로 변경
+      if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
+      btn.textContent = '✅ 마이크 허용됨'; btn.style.background = '#166534';
+    } catch(e) {
+      const name = e.name || '';
+      let guide = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        guide = `🔒 주소창 왼쪽 자물쇠 아이콘 클릭 → 마이크 → <strong>허용</strong> → 새로고침<br>
+                 <img src="" onerror="this.remove()" style="display:none">
+                 🇻🇳 Nhấn 🔒 góc trái → Micro → Cho phép → F5`;
+      } else if (name === 'NotFoundError') {
+        guide = '❌ 마이크 없음 — 마이크 장치를 연결 후 다시 시도<br>🇻🇳 Không có micro — Kết nối micro rồi thử lại';
+      } else {
+        guide = `오류 (${name}) — Chrome에서 다시 시도해 주세요`;
+      }
+      if (statusEl) statusEl.innerHTML = `<span style="color:#ef4444;font-size:11px;line-height:1.8">${guide}</span>`;
+      btn.textContent = '🔄 다시 시도'; btn.style.background = '#ef4444'; btn.disabled = false;
     }
   },
 
