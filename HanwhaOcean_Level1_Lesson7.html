@@ -92,304 +92,306 @@ function ttsBtn(text) {
 }
 
 // ===== DATA =====
-const VOCAB_PRICE = [
-  {kor:"일",pron:"il",eng:"1 (Sino-Korean)"},
-  {kor:"이",pron:"i",eng:"2"},
-  {kor:"삼",pron:"sam",eng:"3"},
-  {kor:"사",pron:"sa",eng:"4"},
-  {kor:"오",pron:"o",eng:"5"},
-  {kor:"육",pron:"yuk",eng:"6"},
-  {kor:"칠",pron:"chil",eng:"7"},
-  {kor:"팔",pron:"pal",eng:"8"},
-  {kor:"구",pron:"gu",eng:"9"},
-  {kor:"십",pron:"sip",eng:"10"},
-  {kor:"백",pron:"baek",eng:"100"},
-  {kor:"천",pron:"cheon",eng:"1,000"},
-  {kor:"만",pron:"man",eng:"10,000"},
-  {kor:"원",pron:"won",eng:"Korean won (₩)"},
-  {kor:"얼마예요?",pron:"eol-ma-ye-yo",eng:"How much is it?"},
-  {kor:"비싸요",pron:"bi-ssa-yo",eng:"It's expensive"},
-  {kor:"싸요",pron:"ssa-yo",eng:"It's cheap"},
-  {kor:"깎아 주세요",pron:"kka-kka ju-se-yo",eng:"Please give me a discount"},
+const VOCAB_WEEKEND = [
+  {kor:"주말",pron:"ju-mal",eng:"weekend"},
+  {kor:"쉬다",pron:"swi-da",eng:"to rest"},
+  {kor:"자다",pron:"ja-da",eng:"to sleep"},
+  {kor:"운동하다",pron:"un-dong-ha-da",eng:"to exercise"},
+  {kor:"산책하다",pron:"san-chaek-ha-da",eng:"to take a walk"},
+  {kor:"쇼핑하다",pron:"syo-ping-ha-da",eng:"to shop"},
+  {kor:"영화 보다",pron:"yeong-hwa bo-da",eng:"to watch a movie"},
+  {kor:"음악 듣다",pron:"eum-ak deut-da",eng:"to listen to music"},
+  {kor:"요리하다",pron:"yo-ri-ha-da",eng:"to cook"},
+  {kor:"청소하다",pron:"cheong-so-ha-da",eng:"to clean"},
+  {kor:"빨래하다",pron:"ppal-lae-ha-da",eng:"to do laundry"},
+  {kor:"전화하다",pron:"jeon-hwa-ha-da",eng:"to make a phone call"},
+  {kor:"여행하다",pron:"yeo-haeng-ha-da",eng:"to travel"},
+  {kor:"사진 찍다",pron:"sa-jin jjik-da",eng:"to take a photo"},
+  {kor:"게임하다",pron:"ge-im-ha-da",eng:"to play games"},
+  {kor:"친구 만나다",pron:"chin-gu man-na-da",eng:"to meet friends"},
+  {kor:"축구하다",pron:"chuk-gu-ha-da",eng:"to play soccer"},
+  {kor:"노래하다",pron:"no-rae-ha-da",eng:"to sing"},
 ];
 
 const VOCAB_SHIPYARD = [
-  {kor:"이거 얼마예요?",eng:"How much is this?",sit:"물건 가격 물어보기"},
-  {kor:"천 원이에요.",eng:"It's 1,000 won.",sit:"가격 알려주기"},
-  {kor:"물 한 병에 천이백 원이에요.",eng:"A bottle of water is 1,200 won.",sit:"편의점 가격"},
-  {kor:"김밥 한 줄에 삼천 원이에요.",eng:"One kimbap roll is 3,000 won.",sit:"식당 가격"},
-  {kor:"커피 한 잔에 이천오백 원이에요.",eng:"One coffee is 2,500 won.",sit:"카페 가격"},
-  {kor:"장갑 한 켤레에 오천 원이에요.",eng:"One pair of gloves is 5,000 won.",sit:"조선소 매점"},
-  {kor:"카드로 결제할 수 있어요?",eng:"Can I pay by card?",sit:"결제 방법"},
-  {kor:"현금으로 할게요.",eng:"I'll pay cash.",sit:"현금 결제"},
-  {kor:"영수증 주세요.",eng:"Please give me a receipt.",sit:"영수증 요청"},
-  {kor:"거스름돈 주세요.",eng:"Please give me change.",sit:"거스름돈 요청"},
-  {kor:"모두 얼마예요?",eng:"How much is it in total?",sit:"총 금액"},
-  {kor:"만 원짜리 있어요?",eng:"Do you have 10,000 won bills?",sit:"지폐 교환"},
-  {kor:"이거 하나 주세요.",eng:"Please give me one of these.",sit:"물건 구매"},
-  {kor:"두 개 주세요.",eng:"Please give me two.",sit:"수량 요청"},
-  {kor:"좀 비싸네요.",eng:"It's a bit expensive.",sit:"가격 의견"},
-  {kor:"할인돼요?",eng:"Is there a discount?",sit:"할인 물어보기"},
+  {kor:"주말에 뭐 해요?",eng:"What do you do on weekends?",sit:"주말 계획 물어보기"},
+  {kor:"저는 쉬어요.",eng:"I rest.",sit:"쉬는 날 표현"},
+  {kor:"보통 운동해요.",eng:"I usually exercise.",sit:"운동 습관"},
+  {kor:"기숙사에서 빨래해요.",eng:"I do laundry at the dormitory.",sit:"기숙사 생활"},
+  {kor:"가족에게 전화해요.",eng:"I call my family.",sit:"가족 연락"},
+  {kor:"친구하고 축구해요.",eng:"I play soccer with friends.",sit:"동료와 활동"},
+  {kor:"고현 시장에 가요.",eng:"I go to GoHyeon Market.",sit:"거제 주말 활동"},
+  {kor:"같이 갈래요?",eng:"Do you want to go together?",sit:"함께 가기 제안"},
+  {kor:"주말에 쉬고 싶어요.",eng:"I want to rest on the weekend.",sit:"희망 표현"},
+  {kor:"영화 보러 갈래요?",eng:"Do you want to go see a movie?",sit:"약속 잡기"},
+  {kor:"거제도 구경하고 싶어요.",eng:"I want to see around Geoje.",sit:"관광 희망"},
+  {kor:"한국어 공부해요.",eng:"I study Korean.",sit:"자기 개발"},
+  {kor:"운동장에서 축구해요.",eng:"We play soccer at the sports field.",sit:"조선소 운동장"},
+  {kor:"다음 주말에 뭐 할 거예요?",eng:"What will you do next weekend?",sit:"미래 계획"},
+  {kor:"휴일이 언제예요?",eng:"When is the day off?",sit:"휴일 확인"},
+  {kor:"연차를 쓸 수 있어요?",eng:"Can I use my annual leave?",sit:"연차 사용"},
 ];
 
-const VOCAB_MONEY = [
-  {kor:"원",eng:"won (₩)"},{kor:"돈",eng:"money"},{kor:"가격",eng:"price"},
-  {kor:"값",eng:"cost/price"},{kor:"현금",eng:"cash"},{kor:"카드",eng:"card"},
-  {kor:"교통카드",eng:"transportation card"},{kor:"지폐",eng:"paper bill"},
-  {kor:"동전",eng:"coin"},{kor:"잔돈",eng:"small change"},{kor:"거스름돈",eng:"change (returned)"},
-  {kor:"영수증",eng:"receipt"},{kor:"계산",eng:"calculation/payment"},{kor:"결제",eng:"payment"},
-  {kor:"할인",eng:"discount"},{kor:"세일",eng:"sale"},{kor:"무료",eng:"free"},
-  {kor:"유료",eng:"paid"},{kor:"천 원",eng:"1,000 won"},{kor:"오천 원",eng:"5,000 won"},
-  {kor:"만 원",eng:"10,000 won"},{kor:"오만 원",eng:"50,000 won"},{kor:"편의점",eng:"convenience store"},
-  {kor:"매점",eng:"shop/canteen"},{kor:"슈퍼마켓",eng:"supermarket"},{kor:"식당",eng:"restaurant"},
-  {kor:"자판기",eng:"vending machine"},{kor:"ATM",eng:"ATM"},{kor:"은행",eng:"bank"},
-  {kor:"송금",eng:"remittance"},{kor:"환전",eng:"currency exchange"},{kor:"급여",eng:"salary"},
-  {kor:"월급",eng:"monthly pay"},{kor:"보너스",eng:"bonus"},{kor:"세금",eng:"tax"},
-  {kor:"저축",eng:"savings"},
+const VOCAB_HOBBY = [
+  {kor:"취미",eng:"hobby"},{kor:"운동",eng:"exercise/sports"},
+  {kor:"축구",eng:"soccer"},{kor:"농구",eng:"basketball"},
+  {kor:"배드민턴",eng:"badminton"},{kor:"수영",eng:"swimming"},
+  {kor:"달리기",eng:"running"},{kor:"헬스",eng:"gym/fitness"},
+  {kor:"등산",eng:"hiking"},{kor:"낚시",eng:"fishing"},
+  {kor:"영화",eng:"movie"},{kor:"노래방",eng:"karaoke"},
+  {kor:"게임",eng:"game"},{kor:"독서",eng:"reading"},
+  {kor:"요리",eng:"cooking"},{kor:"사진",eng:"photography"},
+  {kor:"음악",eng:"music"},{kor:"그림",eng:"drawing/painting"},
+  {kor:"여행",eng:"travel"},{kor:"쇼핑",eng:"shopping"},
+  {kor:"드라마",eng:"drama/TV series"},{kor:"유튜브",eng:"YouTube"},
+  {kor:"산",eng:"mountain"},{kor:"바다",eng:"sea/ocean"},
+  {kor:"공원",eng:"park"},{kor:"카페",eng:"cafe"},
+  {kor:"교회",eng:"church"},{kor:"모스크",eng:"mosque"},
+  {kor:"절",eng:"temple"},{kor:"마트",eng:"mart/supermarket"},
+  {kor:"PC방",eng:"internet cafe"},{kor:"노래방",eng:"karaoke room"},
+  {kor:"찜질방",eng:"Korean spa"},{kor:"볼링장",eng:"bowling alley"},
+  {kor:"수영장",eng:"swimming pool"},{kor:"도서관",eng:"library"},
 ];
 
 const VOCAB_SHIPYARD_NOUNS = [
-  {kor:"안전모",eng:"safety helmet"},{kor:"안전화",eng:"safety shoes"},
-  {kor:"작업복",eng:"work uniform"},{kor:"장갑",eng:"gloves"},
-  {kor:"보안경",eng:"safety goggles"},{kor:"마스크",eng:"mask"},
-  {kor:"귀마개",eng:"ear plugs"},{kor:"안전벨트",eng:"safety belt"},
-  {kor:"음료수",eng:"beverage"},{kor:"간식",eng:"snack"},
-  {kor:"도시락",eng:"lunch box"},{kor:"담배",eng:"cigarette"},
-  {kor:"충전기",eng:"charger"},{kor:"세면도구",eng:"toiletries"},
-  {kor:"세탁",eng:"laundry"},{kor:"이발",eng:"haircut"},
-  {kor:"약",eng:"medicine"},{kor:"반창고",eng:"band-aid"},
-  {kor:"선크림",eng:"sunscreen"},{kor:"우산",eng:"umbrella"},
-  {kor:"배터리",eng:"battery"},{kor:"이어폰",eng:"earphones"},
-  {kor:"USB",eng:"USB drive"},{kor:"노트",eng:"notebook"},
-  {kor:"볼펜",eng:"ballpoint pen"},{kor:"가위",eng:"scissors"},
-  {kor:"테이프",eng:"tape"},{kor:"칫솔",eng:"toothbrush"},
-  {kor:"치약",eng:"toothpaste"},{kor:"수건",eng:"towel"},
+  {kor:"주말",eng:"weekend"},{kor:"평일",eng:"weekday"},
+  {kor:"휴일",eng:"holiday/day off"},{kor:"연차",eng:"annual leave"},
+  {kor:"토요일",eng:"Saturday"},{kor:"일요일",eng:"Sunday"},
+  {kor:"아침",eng:"morning"},{kor:"오후",eng:"afternoon"},
+  {kor:"저녁",eng:"evening"},{kor:"밤",eng:"night"},
+  {kor:"오늘",eng:"today"},{kor:"내일",eng:"tomorrow"},
+  {kor:"어제",eng:"yesterday"},{kor:"다음 주",eng:"next week"},
+  {kor:"지난 주",eng:"last week"},{kor:"보통",eng:"usually"},
+  {kor:"가끔",eng:"sometimes"},{kor:"항상",eng:"always"},
+  {kor:"자주",eng:"often"},{kor:"같이",eng:"together"},
+  {kor:"혼자",eng:"alone"},{kor:"친구",eng:"friend"},
+  {kor:"동료",eng:"colleague"},{kor:"가족",eng:"family"},
+  {kor:"기숙사",eng:"dormitory"},{kor:"운동장",eng:"sports field"},
+  {kor:"시장",eng:"market"},{kor:"해변",eng:"beach"},
+  {kor:"관광지",eng:"tourist spot"},{kor:"편의점",eng:"convenience store"},
 ];
 
 const GRAMMAR = [
-  {title:"한자어 수 (일,이,삼...)",eng:"Sino-Korean Numbers",
-   desc:"가격, 전화번호, 날짜, 분(minute)에는 한자어 숫자를 써요.",descEng:"Use Sino-Korean numbers for prices, phone numbers, dates, and minutes.",
-   rule:"일(1), 이(2), 삼(3), 사(4), 오(5), 육(6), 칠(7), 팔(8), 구(9), 십(10)",ruleEng:"일=1, 이=2, 삼=3 ... 십=10, 백=100, 천=1000, 만=10000",
+  {title:"~아/어요 (Polite present)",eng:"~아/어요 (Polite Ending)",
+   desc:"일상 활동을 말할 때 동사에 '~아/어요'를 붙여요. 모음에 따라 '아요' 또는 '어요'를 써요.",descEng:"Add ~아/어요 to verbs for polite present tense. Use 아요 after ㅏ/ㅗ, and 어요 after others.",
+   rule:"ㅏ/ㅗ → 아요 / 그 외 → 어요 / 하다 → 해요",ruleEng:"ㅏ/ㅗ vowel → 아요 / Other vowels → 어요 / 하다 → 해요",
    examples:[
-    {q:"이거 얼마예요?",a:"삼천 원이에요.",eng:"How much? - 3,000 won.",note:"삼천=3000"},
-    {q:"전화번호가 뭐예요?",a:"공일공-이삼사오-육칠팔구",eng:"What is your phone number?",note:"한자어 수"},
-    {q:"생일이 언제예요?",a:"오월 십오일이에요.",eng:"When is your birthday? - May 15th.",note:"오월=5월"},
-    {q:"지금 몇 분이에요?",a:"삼십 분이에요.",eng:"How many minutes? - 30 minutes.",note:"삼십=30"},
-    {q:"방 번호가 뭐예요?",a:"삼백이호예요.",eng:"What room number? - Room 302.",note:"삼백이=302"},
+    {q:"주말에 뭐 해요?",a:"쉬어요.",eng:"I rest.",note:"쉬다→쉬+어요"},
+    {q:"보통 뭐 해요?",a:"운동해요.",eng:"I exercise.",note:"하다→해요"},
+    {q:"아침에 뭐 해요?",a:"밥을 먹어요.",eng:"I eat rice.",note:"먹다→먹+어요"},
+    {q:"저녁에 뭐 해요?",a:"영화를 봐요.",eng:"I watch movies.",note:"보다→보+아요=봐요"},
+    {q:"일요일에 뭐 해요?",a:"청소해요.",eng:"I clean.",note:"하다→해요"},
    ]},
-  {title:"숫자 + 원 (가격)",eng:"Number + 원 (Price)",
-   desc:"한국 돈의 단위는 '원'이에요. 숫자 뒤에 '원'을 붙여요.",descEng:"Korean currency unit is 원 (won). Add 원 after numbers for prices.",
-   rule:"숫자 + 원 → 천 원, 이천 원, 만 원...",ruleEng:"Number + 원 → 천 원 (₩1,000), 만 원 (₩10,000)...",
+  {title:"~(으)러 가다/오다 (Purpose)",eng:"~(으)러 가다/오다 (Go/Come to do)",
+   desc:"어디에 가는 목적을 말할 때 '~(으)러'를 써요. 동사 뒤에 붙여요.",descEng:"Use ~(으)러 to express the purpose of going/coming. Attach to verb stems.",
+   rule:"받침 O → 으러 가다 / 받침 X → 러 가다",ruleEng:"With final consonant → 으러 가다 / Without → 러 가다",
    examples:[
-    {q:"물 얼마예요?",a:"천이백 원이에요.",eng:"How much is water? - 1,200 won.",note:"천이백=1200"},
-    {q:"김밥 얼마예요?",a:"삼천오백 원이에요.",eng:"How much is kimbap? - 3,500 won.",note:"삼천오백=3500"},
-    {q:"커피 얼마예요?",a:"이천 원이에요.",eng:"How much is coffee? - 2,000 won.",note:"이천=2000"},
-    {q:"이 장갑 얼마예요?",a:"오천 원이에요.",eng:"How much are these gloves? - 5,000 won.",note:"오천=5000"},
-    {q:"모두 얼마예요?",a:"만이천 원이에요.",eng:"How much total? - 12,000 won.",note:"만이천=12000"},
+    {q:"어디 가요?",a:"영화 보러 가요.",eng:"I'm going to see a movie.",note:"보→러"},
+    {q:"시장에 왜 가요?",a:"쇼핑하러 가요.",eng:"I'm going shopping.",note:"하→러"},
+    {q:"공원에 왜 가요?",a:"운동하러 가요.",eng:"I'm going to exercise.",note:"하→러"},
+    {q:"카페에 왜 가요?",a:"커피 마시러 가요.",eng:"I'm going to drink coffee.",note:"마시→러"},
+    {q:"바다에 왜 가요?",a:"사진 찍으러 가요.",eng:"I'm going to take photos.",note:"찍→으러"},
    ]},
-  {title:"~주세요 (Please give me)",eng:"~주세요 (Request expression)",
-   desc:"물건을 살 때 '~주세요'를 써요. 정중한 요청 표현이에요.",descEng:"Use ~주세요 when buying things. It's a polite request expression.",
-   rule:"물건 + 주세요 / 숫자 + 개 + 주세요",ruleEng:"Item + 주세요 / Number + 개 (counter) + 주세요",
+  {title:"~고 싶다 (Want to)",eng:"~고 싶다 (Want to do)",
+   desc:"하고 싶은 것을 말할 때 동사에 '~고 싶어요'를 붙여요.",descEng:"Add ~고 싶어요 to verb stems to express what you want to do.",
+   rule:"동사 어간 + 고 싶어요",ruleEng:"Verb stem + 고 싶어요",
    examples:[
-    {q:"",a:"이거 주세요.",eng:"Please give me this.",note:"이거+주세요"},
-    {q:"",a:"물 한 병 주세요.",eng:"One bottle of water, please.",note:"한 병+주세요"},
-    {q:"",a:"김밥 두 줄 주세요.",eng:"Two kimbap rolls, please.",note:"두 줄+주세요"},
-    {q:"",a:"커피 세 잔 주세요.",eng:"Three coffees, please.",note:"세 잔+주세요"},
-    {q:"",a:"영수증 주세요.",eng:"Receipt, please.",note:"영수증+주세요"},
+    {q:"주말에 뭐 하고 싶어요?",a:"쉬고 싶어요.",eng:"I want to rest.",note:"쉬+고 싶어요"},
+    {q:"어디 가고 싶어요?",a:"바다에 가고 싶어요.",eng:"I want to go to the sea.",note:"가+고 싶어요"},
+    {q:"뭐 먹고 싶어요?",a:"삼겹살 먹고 싶어요.",eng:"I want to eat pork belly.",note:"먹+고 싶어요"},
+    {q:"뭐 하고 싶어요?",a:"여행하고 싶어요.",eng:"I want to travel.",note:"하+고 싶어요"},
+    {q:"뭐 배우고 싶어요?",a:"한국어 배우고 싶어요.",eng:"I want to learn Korean.",note:"배우+고 싶어요"},
    ]},
 ];
 
 const DIALOGUES = [
-  {title:"편의점에서 물건 사기",eng:"Buying at a Convenience Store",lines:[
-    {sp:"라민",role:"용접공",text:"안녕하세요. 이거 얼마예요?",eng:"Hello. How much is this?",side:"R"},
-    {sp:"점원",role:"편의점 직원",text:"그거요? 천오백 원이에요.",eng:"That? It's 1,500 won.",side:"L"},
-    {sp:"라민",text:"그리고 물 한 병 주세요.",eng:"And one bottle of water, please.",side:"R"},
-    {sp:"점원",text:"물은 천이백 원이에요. 모두 이천칠백 원이에요.",eng:"Water is 1,200 won. Total is 2,700 won.",side:"L"},
-    {sp:"라민",text:"카드로 결제할 수 있어요?",eng:"Can I pay by card?",side:"R"},
-    {sp:"점원",text:"네, 여기에 카드를 대 주세요.",eng:"Yes, please tap your card here.",side:"L"},
+  {title:"동료와 주말 계획",eng:"Weekend Plans with a Colleague",lines:[
+    {sp:"라민",role:"용접공",text:"후엔 씨, 주말에 뭐 해요?",eng:"Huen, what do you do on weekends?",side:"R"},
+    {sp:"후엔",role:"배관공",text:"보통 기숙사에서 쉬어요. 빨래도 하고 청소도 해요.",eng:"I usually rest at the dorm. I do laundry and clean too.",side:"L"},
+    {sp:"라민",text:"저는 친구하고 축구해요. 같이 할래요?",eng:"I play soccer with friends. Want to join?",side:"R"},
+    {sp:"후엔",text:"좋아요! 어디서 해요?",eng:"Great! Where do you play?",side:"L"},
+    {sp:"라민",text:"운동장에서 해요. 토요일 오후 2시에 와요.",eng:"At the sports field. Come Saturday at 2 PM.",side:"R"},
+    {sp:"후엔",text:"네, 알겠어요! 토요일에 봐요!",eng:"Okay, got it! See you Saturday!",side:"L"},
   ]},
-  {title:"구내매점에서 점심 주문",eng:"Ordering Lunch at the Canteen",lines:[
-    {sp:"후엔",role:"배관공",text:"아주머니, 김밥하고 라면 주세요.",eng:"Ma'am, kimbap and ramen please.",side:"R"},
-    {sp:"아주머니",role:"매점 주인",text:"김밥 삼천 원, 라면 사천 원이에요.",eng:"Kimbap 3,000 won, ramen 4,000 won.",side:"L"},
-    {sp:"후엔",text:"모두 얼마예요?",eng:"How much total?",side:"R"},
-    {sp:"아주머니",text:"칠천 원이에요.",eng:"It's 7,000 won.",side:"L"},
-    {sp:"후엔",text:"만 원이요. 거스름돈 주세요.",eng:"Here's 10,000 won. Change please.",side:"R"},
-    {sp:"아주머니",text:"삼천 원 거슬러 드릴게요. 맛있게 드세요!",eng:"Here's 3,000 won change. Enjoy your meal!",side:"L"},
+  {title:"거제도 관광 계획",eng:"Geoje Sightseeing Plan",lines:[
+    {sp:"안젤라",role:"전기공",text:"이번 주말에 뭐 하고 싶어요?",eng:"What do you want to do this weekend?",side:"R"},
+    {sp:"탄",role:"도장공",text:"거제도 구경하고 싶어요. 바다 보러 갈래요?",eng:"I want to sightsee Geoje. Want to go see the ocean?",side:"L"},
+    {sp:"안젤라",text:"좋아요! 바람의 언덕에 가고 싶어요.",eng:"Sure! I want to go to the Hill of Wind.",side:"R"},
+    {sp:"탄",text:"거기 사진 찍으러 가는 사람이 많아요.",eng:"Many people go there to take photos.",side:"L"},
+    {sp:"안젤라",text:"맞아요. 사진도 찍고 카페에서 커피도 마셔요.",eng:"Right. Let's take photos and drink coffee at a cafe.",side:"R"},
+    {sp:"탄",text:"일요일 아침에 출발해요. 같이 가요!",eng:"Let's leave Sunday morning. Let's go together!",side:"L"},
   ]},
 ];
 
 const QUIZ = [
-  {q:"'3,000원'을 한국어로 어떻게 말해요?",o:["삼천 원","삼백 원","삼만 원","세천 원"],a:0},
-  {q:"'얼마예요?'의 뜻은?",o:["How much?","What is it?","Where is it?","What time?"],a:0},
-  {q:"'천 원'은 얼마예요?",o:["₩1,000","₩100","₩10,000","₩10"],a:0},
-  {q:"편의점에서 물건을 살 때 뭐라고 해요?",o:["이거 주세요","이거 있어요","이거 가요","이거 해요"],a:0},
-  {q:"'비싸요'의 반대말은?",o:["싸요","크요","작아요","많아요"],a:0},
-  {q:"한자어 숫자 '오'는?",o:["5","4","6","50"],a:0},
-  {q:"'만 원'은 얼마예요?",o:["₩10,000","₩1,000","₩100,000","₩100"],a:0},
-  {q:"영수증을 요청할 때 뭐라고 해요?",o:["영수증 주세요","영수증 있어요","영수증 가요","영수증 해요"],a:0},
-  {q:"'이천오백 원'은 얼마예요?",o:["₩2,500","₩2,050","₩250","₩25,000"],a:0},
-  {q:"'현금'의 뜻은?",o:["cash","card","check","coin"],a:0},
-  {q:"'깎아 주세요'의 뜻은?",o:["Please give me a discount","Please give me more","Please hurry","Please wait"],a:0},
-  {q:"'거스름돈'의 뜻은?",o:["change (returned)","tip","bill","receipt"],a:0},
-  {q:"한자어 숫자로 '7'은?",o:["칠","일곱","일","팔"],a:0},
-  {q:"'카드로 결제할 수 있어요?'의 뜻은?",o:["Can I pay by card?","Do you have a card?","Is it a card?","Give me a card"],a:0},
-  {q:"'무료'의 뜻은?",o:["free","expensive","cheap","paid"],a:0},
+  {q:"'주말'의 뜻은?",o:["weekend","weekday","holiday","vacation"],a:0},
+  {q:"'운동하다'의 뜻은?",o:["to exercise","to eat","to sleep","to work"],a:0},
+  {q:"'쉬다'의 뜻은?",o:["to rest","to run","to cook","to study"],a:0},
+  {q:"'영화 보러 가요'의 뜻은?",o:["I'm going to see a movie","I saw a movie","I have a movie","I like movies"],a:0},
+  {q:"'~고 싶어요'의 뜻은?",o:["want to","have to","can","should"],a:0},
+  {q:"'주말에 뭐 해요?'의 뜻은?",o:["What do you do on weekends?","What is today?","Where are you going?","Who are you?"],a:0},
+  {q:"'쉬다'의 '~아/어요' 형태는?",o:["쉬어요","쉬아요","쉬요","쉬해요"],a:0},
+  {q:"'보다'의 '~아/어요' 형태는?",o:["봐요","보아요","보어요","보해요"],a:0},
+  {q:"'사진 찍으러 가요'에서 '으러'를 쓴 이유는?",o:["찍다에 받침이 있어서","찍다에 받침이 없어서","과거형이라서","명사라서"],a:0},
+  {q:"'같이 갈래요?'의 뜻은?",o:["Do you want to go together?","Where are you going?","When do you go?","Can I go?"],a:0},
+  {q:"'기숙사'의 뜻은?",o:["dormitory","office","cafeteria","hospital"],a:0},
+  {q:"'취미'의 뜻은?",o:["hobby","work","food","place"],a:0},
+  {q:"'연차'의 뜻은?",o:["annual leave","overtime","salary","weekend"],a:0},
+  {q:"'가끔 운동해요'의 뜻은?",o:["I sometimes exercise","I always exercise","I never exercise","I want to exercise"],a:0},
+  {q:"'바다에 가고 싶어요'의 뜻은?",o:["I want to go to the sea","I went to the sea","I live by the sea","The sea is big"],a:0},
 
   // 한국의 성장 원동력 퀴즈
-  {q:"한국 경제 성장을 뭐라고 불러요?",o:["한강의 기적","나일강의 기적","아마존의 기적","템즈강의 기적"],a:0},
-  {q:"'새마을 운동'은 뭐예요?",o:["농촌 근대화 운동","도시 개발","스포츠 대회","음악 축제"],a:0},
-  {q:"한국은 1950년대에 어땠어요?",o:["세계 최빈국","세계 부자 나라","중간 경제","최강국"],a:0},
+  {q:"한국 조선 산업은 세계 몇 위예요?",o:["1위","2위","3위","5위"],a:0},
+  {q:"LNG선 시장에서 한국의 점유율은?",o:["70% 이상","30%","50%","10%"],a:0},
+  {q:"한화오션은 어디에 있어요?",o:["거제","서울","부산","인천"],a:0},
 ];
 
 const CULTURE = [
-  {icon:"💴",t:"한국의 화폐",eng:"Korean Currency",d:"한국 돈의 단위는 '원(₩)'이에요. 동전은 10원, 50원, 100원, 500원이 있고, 지폐는 1,000원, 5,000원, 10,000원, 50,000원이 있어요.",de:"Korean currency unit is 'won (₩)'. Coins: 10, 50, 100, 500 won. Bills: 1,000, 5,000, 10,000, 50,000 won."},
-  {icon:"💳",t:"카드 결제 문화",eng:"Card Payment Culture",d:"한국은 카드 사용이 매우 일반적이에요. 편의점, 식당, 버스에서도 카드를 사용할 수 있어요. 교통카드도 매점에서 충전할 수 있어요.",de:"Card use is very common in Korea. You can use cards at stores, restaurants, and buses. Transportation cards can be recharged at shops."},
-  {icon:"🏪",t:"편의점 문화",eng:"Convenience Store Culture",d:"한국 편의점은 24시간 운영해요. 도시락, 삼각김밥, 음료수 등 다양한 물건을 살 수 있어요. 기숙사 근처에도 있어서 편리해요.",de:"Korean convenience stores operate 24 hours. You can buy lunch boxes, triangle kimbap, drinks and more. There's one near the dormitory too."},
-  {icon:"💰",t:"급여와 송금",eng:"Salary & Remittance",d:"급여일은 보통 매월 10일이나 25일이에요. 해외 송금은 은행이나 모바일 앱으로 할 수 있어요. 수수료를 비교해 보세요!",de:"Payday is usually the 10th or 25th of each month. You can send money abroad via bank or mobile app. Compare fees!"},
-  {icon:"🧮",t:"한자어 수와 고유어 수",eng:"When to Use Which Numbers",d:"가격·전화번호·날짜·분은 한자어(일,이,삼), 시간·나이·개수는 고유어(하나,둘,셋)를 써요. 꼭 구별해서 사용하세요!",de:"Prices/phone/dates/minutes use Sino-Korean (일,이,삼). Hours/age/counting use native (하나,둘,셋). Make sure to distinguish!"},
-  {icon:"🤑",t:"흥정 문화",eng:"Bargaining Culture",d:"대형 마트나 편의점에서는 흥정을 안 해요. 하지만 시장에서는 '깎아 주세요'라고 말할 수 있어요! 거제 시장에서 시도해 보세요.",de:"No bargaining at marts or convenience stores. But at traditional markets, you can say '깎아 주세요'! Try it at Geoje market."},
+  {icon:"⚽",t:"외국인 근로자 주말 생활",eng:"Foreign Workers' Weekend Life",d:"주말에는 기숙사에서 쉬거나 동료들과 운동을 해요. 축구, 배드민턴, 농구가 인기 있어요. 조선소 근처 운동장을 이용할 수 있어요.",de:"On weekends, workers rest at the dorm or exercise with colleagues. Soccer, badminton, and basketball are popular. You can use the sports field near the shipyard."},
+  {icon:"📞",t:"가족과 연락",eng:"Staying in Touch with Family",d:"주말에 고향 가족에게 전화하는 것이 중요해요. 카카오톡, 왓츠앱, 메신저 등을 사용해요. 와이파이는 기숙사에서 무료로 사용할 수 있어요.",de:"Calling family back home on weekends is important. Use KakaoTalk, WhatsApp, Messenger etc. Wi-Fi is free at the dormitory."},
+  {icon:"🏝️",t:"거제도 관광 명소",eng:"Geoje Tourist Attractions",d:"거제도에는 바람의 언덕, 외도 보타니아, 해금강, 학동몽돌해변 등 아름다운 곳이 많아요. 주말에 시간이 있으면 꼭 구경해 보세요!",de:"Geoje has beautiful places like Hill of Wind, Oedo Botania, Haegeumgang, and Hakdong Beach. If you have time on weekends, definitely visit!"},
+  {icon:"🛒",t:"주말 쇼핑",eng:"Weekend Shopping",d:"고현 시장, 대형 마트(이마트, 홈플러스)에서 주말에 필요한 물건을 사요. 외국인 식료품 가게도 있어서 고향 음식 재료를 살 수 있어요.",de:"Buy things at GoHyeon Market or large marts (E-Mart, Homeplus). There are foreign grocery stores too where you can buy ingredients from your home country."},
+  {icon:"⛪",t:"종교 활동",eng:"Religious Activities",d:"거제에는 교회, 성당, 절이 있어요. 이슬람 근로자들을 위한 기도실도 있어요. 주말에 종교 활동을 하며 마음의 평안을 찾을 수 있어요.",de:"Geoje has churches, Catholic churches, and temples. There are prayer rooms for Muslim workers too. You can find peace through religious activities on weekends."},
+  {icon:"📚",t:"한국어 공부와 자기 개발",eng:"Korean Study & Self-Development",d:"주말에 한국어를 더 공부해 보세요! 드라마, 유튜브, 노래로 재미있게 배울 수 있어요. KIIP(사회통합프로그램)에도 참여할 수 있어요.",de:"Study more Korean on weekends! You can learn through dramas, YouTube, and songs. You can also join KIIP (Social Integration Program)."},
 ];
 
 const LOCAL_INFO = {
-  title: "한국의 성장 원동력: 경제 성장",
-  eng: "Korea's Growth Engine: Economic Growth",
+  title: "한국의 성장 원동력: 조선 산업",
+  eng: "Korea's Growth Engine: Shipbuilding",
   facts: [
-    {label:"한강의 기적 Miracle on the Han",val:"1960~90년대 고속 경제 성장"},
-    {label:"GDP 성장 GDP Growth",val:"세계 최빈국 → 세계 10대 경제 대국"},
-    {label:"수출 대국 Export Power",val:"반도체·자동차·선박 수출 세계 상위"},
-    {label:"새마을 운동 Saemaul Movement",val:"농촌 근대화, 근면·자조·협동"},
-    {label:"중화학 공업 Heavy Industry",val:"포항제철·현대중공업·삼성"},
-    {label:"외환위기 극복 IMF Crisis Recovery",val:"1997년 위기 → 2년 만에 회복"},
-    {label:"K-경제 K-Economy",val:"글로벌 공급망 핵심 국가"},
+    {label:"조선 산업 세계 1위 World #1",val:"한국, 세계 선박 수주량 1위"},
+    {label:"한화오션 Hanwha Ocean",val:"거제 본사, LNG선·해군함 세계 선도"},
+    {label:"HD현대중공업 HD Hyundai",val:"울산 본사, 세계 최대 조선소"},
+    {label:"삼성중공업 Samsung Heavy",val:"거제 본사, 드릴십·FLNG 전문"},
+    {label:"LNG선 LNG Carrier",val:"한국이 세계 시장 70% 이상 점유"},
+    {label:"스마트 조선소 Smart Shipyard",val:"AI·로봇 도입, 디지털 전환"},
+    {label:"조선 근로자 Shipyard Workers",val:"2만+ 외국인 근로자 활약 중"},
   ],
-  desc: "한국은 1950년대 세계 최빈국이었지만, 60년 만에 세계 10대 경제 대국이 되었어요. '한강의 기적'이라 불리는 이 놀라운 성장의 비결은 교육열, 근면한 국민성, 그리고 수출 중심 전략이에요. 새마을 운동으로 농촌이 발전하고, 중화학 공업으로 산업이 성장했어요. 1997년 외환위기도 국민의 금 모으기 운동으로 극복했어요!",
-  descEng: "Korea was one of the poorest nations in the 1950s, but became a top 10 global economy in just 60 years. The secret of this 'Miracle on the Han River' was passion for education, diligent national character, and export-focused strategy. The Saemaul Movement developed rural areas, and heavy industry drove growth. Even the 1997 financial crisis was overcome through the national gold-collecting campaign!"
+  desc: "한국은 조선 산업 세계 1위예요! 한화오션, HD현대중공업, 삼성중공업이 세계 3대 조선사예요. 특히 LNG선(액화천연가스 운반선) 시장의 70% 이상을 한국이 만들어요. 여러분이 일하는 한화오션은 거제도에 있고, 세계에서 가장 큰 배를 만들어요. 2만 명 이상의 외국인 근로자가 함께 일하고 있어요!",
+  descEng: "Korea is #1 in world shipbuilding! Hanwha Ocean, HD Hyundai Heavy Industries, and Samsung Heavy Industries are the world's top 3 shipbuilders. Korea builds over 70% of the world's LNG carriers. Hanwha Ocean, where you work, is in Geoje and builds some of the world's largest ships. Over 20,000 foreign workers are working together!"
 };
 
-// HANGUL DATA (Level 0 — 5과: 쌍자음 마스터)
+// HANGUL DATA (Level 0 — 7과: 겹받침)
 const HANGUL_CONSONANTS = [
-  {char:"ㄲ",rom:"kk",name:"쌍기역"},{char:"ㄸ",rom:"tt",name:"쌍디귿"},{char:"ㅃ",rom:"pp",name:"쌍비읍"},
-  {char:"ㅆ",rom:"ss",name:"쌍시옷"},{char:"ㅉ",rom:"jj",name:"쌍지읒"},
-  {char:"까",rom:"kka",name:"ㄲ+ㅏ"},{char:"따",rom:"tta",name:"ㄸ+ㅏ"},{char:"빠",rom:"ppa",name:"ㅃ+ㅏ"},
-  {char:"싸",rom:"ssa",name:"ㅆ+ㅏ"},{char:"짜",rom:"jja",name:"ㅉ+ㅏ"},
-  {char:"끄",rom:"kkeu",name:"ㄲ+ㅡ"},{char:"뜨",rom:"tteu",name:"ㄸ+ㅡ"},{char:"쁘",rom:"ppeu",name:"ㅃ+ㅡ"},
-  {char:"쓰",rom:"sseu",name:"ㅆ+ㅡ"},
+  {char:"ㄳ",rom:"k",name:"ㄱ+ㅅ → 넋"},{char:"ㄵ",rom:"n",name:"ㄴ+ㅈ → 앉"},
+  {char:"ㄶ",rom:"n",name:"ㄴ+ㅎ → 않"},{char:"ㄺ",rom:"l/k",name:"ㄹ+ㄱ → 읽"},
+  {char:"ㄻ",rom:"m",name:"ㄹ+ㅁ → 삶"},{char:"ㄼ",rom:"l/p",name:"ㄹ+ㅂ → 밟"},
+  {char:"ㄽ",rom:"l",name:"ㄹ+ㅅ → 곬"},{char:"ㄾ",rom:"l",name:"ㄹ+ㅌ → 핥"},
+  {char:"ㄿ",rom:"l",name:"ㄹ+ㅍ → 읊"},{char:"ㅀ",rom:"l",name:"ㄹ+ㅎ → 잃"},
+  {char:"ㅄ",rom:"p",name:"ㅂ+ㅅ → 없"},
 ];
 const HANGUL_VOWELS = [
-  {char:"까다",rom:"kka-da",name:"difficult/picky"},{char:"빨리",rom:"ppal-li",name:"quickly"},
-  {char:"싸다",rom:"ssa-da",name:"cheap/to wrap"},{char:"쓰다",rom:"sseu-da",name:"to write/bitter"},
-  {char:"뜨다",rom:"tteu-da",name:"to float/open eyes"},{char:"짜다",rom:"jja-da",name:"salty/to squeeze"},
-  {char:"아빠",rom:"a-ppa",name:"dad"},{char:"오빠",rom:"o-ppa",name:"older brother"},
-  {char:"토끼",rom:"to-kki",name:"rabbit"},{char:"나무꾼",rom:"na-mu-kkun",name:"woodcutter"},
-  {char:"찌개",rom:"jji-gae",name:"stew"},{char:"떡볶이",rom:"tteok-bbok-ki",name:"tteokbokki"},
+  {char:"읽다",rom:"ik-da",name:"to read"},{char:"없다",rom:"eop-da",name:"to not exist"},
+  {char:"삶",rom:"sam",name:"life"},{char:"닭",rom:"dak",name:"chicken"},
+  {char:"앉다",rom:"an-da",name:"to sit"},{char:"많다",rom:"man-ta",name:"many"},
+  {char:"싫다",rom:"sil-ta",name:"to dislike"},{char:"잃다",rom:"il-ta",name:"to lose"},
+  {char:"넓다",rom:"neol-da",name:"wide"},{char:"짧다",rom:"jjal-da",name:"short"},
+  {char:"밟다",rom:"bap-da",name:"to step on"},{char:"여덟",rom:"yeo-deol",name:"eight"},
 ];
 const HANGUL_PRACTICE = [
-  {char:"ㄱ vs ㄲ",rom:"g vs kk",name:"가 → 까"},{char:"ㄷ vs ㄸ",rom:"d vs tt",name:"다 → 따"},
-  {char:"ㅂ vs ㅃ",rom:"b vs pp",name:"바 → 빠"},{char:"ㅅ vs ㅆ",rom:"s vs ss",name:"사 → 싸"},
-  {char:"ㅈ vs ㅉ",rom:"j vs jj",name:"자 → 짜"},
-  {char:"달 vs 딸",rom:"dal vs ttal",name:"moon vs daughter"},
-  {char:"불 vs 뿔",rom:"bul vs ppul",name:"fire vs horn"},
-  {char:"살 vs 쌀",rom:"sal vs ssal",name:"flesh vs rice"},
-  {char:"자다 vs 짜다",rom:"ja-da vs jja-da",name:"sleep vs salty"},
-  {char:"가다 vs 까다",rom:"ga-da vs kka-da",name:"go vs picky"},
+  {char:"닭고기",rom:"dak-go-gi",name:"chicken meat"},{char:"읽기",rom:"il-gi",name:"reading"},
+  {char:"없어요",rom:"eop-seo-yo",name:"don't have"},{char:"앉으세요",rom:"an-jeu-se-yo",name:"please sit"},
+  {char:"많아요",rom:"ma-na-yo",name:"there are many"},{char:"싫어요",rom:"si-reo-yo",name:"I dislike"},
+  {char:"삶다",rom:"sam-da",name:"to boil"},{char:"넓은",rom:"neol-beun",name:"wide (adj)"},
+  {char:"잃어버리다",rom:"i-reo-beo-ri-da",name:"to lose"},{char:"짧은",rom:"jjal-beun",name:"short (adj)"},
 ];
 const SAFETY_WORDS = [
-  {kor:"끼임주의",eng:"Pinch Point",rom:"kki-im-ju-ui"},{kor:"빠짐주의",eng:"Fall Hazard",rom:"ppa-jim-ju-ui"},
-  {kor:"쓰러짐",eng:"Collapse Risk",rom:"sseu-reo-jim"},{kor:"끊어짐",eng:"Break/Snap Risk",rom:"kkeu-neo-jim"},
+  {kor:"읽으세요",eng:"Please Read",rom:"il-geu-se-yo"},{kor:"밟지 마세요",eng:"Don't Step On",rom:"bap-ji ma-se-yo"},
+  {kor:"없음",eng:"None/Empty",rom:"eop-seum"},{kor:"넓은 곳",eng:"Wide Area",rom:"neol-beun got"},
   {kor:"위험",eng:"Danger",rom:"wi-heom"},{kor:"주의",eng:"Caution",rom:"ju-ui"},
   {kor:"금지",eng:"Prohibited",rom:"geum-ji"},{kor:"착용",eng:"Wear/Put on",rom:"chag-yong"},
   {kor:"대피",eng:"Evacuate",rom:"dae-pi"},{kor:"출입금지",eng:"No Entry",rom:"chul-ip-geum-ji"},
   {kor:"비상구",eng:"Emergency Exit",rom:"bi-sang-gu"},{kor:"보호구 착용",eng:"Wear PPE",rom:"bo-ho-gu chag-yong"},
 ];
-const HANGUL_TABS = ['쌍자음 Double','쌍자음 단어 Words','비교 연습 Compare','안전 단어 Safety'];
-const HANGUL_SUBTITLE = "Learn Hangul · 쌍자음 마스터";
+const HANGUL_TABS = ['겹받침 Double Final','겹받침 단어 Words','연습 Practice','안전 단어 Safety'];
+const HANGUL_SUBTITLE = "Learn Hangul · 겹받침";
 
 // ===== READING PASSAGES =====
 const READING_PASSAGES = [
-  {title:"라민의 편의점 쇼핑",eng:"Ramin's Convenience Store Shopping",
-   text:"라민 씨는 퇴근 후에 편의점에 갔어요.\n물 한 병을 골랐어요. 천이백 원이에요.\n삼각김밥도 하나 골랐어요. 천오백 원이에요.\n모두 이천칠백 원이에요.\n라민 씨는 카드로 결제했어요.\n한국에서는 카드가 편리해요.\n영수증을 받고 기숙사로 돌아갔어요.\n라민 씨는 한국어로 가격을 말할 수 있어요!",
-   textEng:"Ramin went to the convenience store after work.\nHe picked a bottle of water. It's 1,200 won.\nHe also picked a triangle kimbap. It's 1,500 won.\nThe total is 2,700 won.\nRamin paid by card.\nCards are convenient in Korea.\nHe got the receipt and went back to the dorm.\nRamin can say prices in Korean!",
+  {title:"라민의 주말",eng:"Ramin's Weekend",
+   text:"라민 씨는 주말에 바빠요.\n토요일 아침에 빨래를 해요.\n오후에는 친구들과 축구를 해요.\n운동장에서 두 시간 동안 축구를 해요.\n축구 후에 같이 저녁을 먹어요.\n일요일에는 기숙사에서 쉬어요.\n가족에게 전화도 해요.\n라민 씨는 주말이 좋아요!",
+   textEng:"Ramin is busy on weekends.\nOn Saturday morning, he does laundry.\nIn the afternoon, he plays soccer with friends.\nThey play soccer at the sports field for two hours.\nAfter soccer, they eat dinner together.\nOn Sunday, he rests at the dormitory.\nHe also calls his family.\nRamin likes weekends!",
    questions:[
-     {q:"물은 얼마예요?",a:"천이백 원",ae:"1,200 won"},
-     {q:"모두 얼마예요?",a:"이천칠백 원",ae:"2,700 won"},
-     {q:"라민 씨는 어떻게 결제했어요?",a:"카드로",ae:"By card"},
+     {q:"토요일 오후에 뭐 해요?",a:"축구를 해요",ae:"He plays soccer"},
+     {q:"일요일에 뭐 해요?",a:"쉬어요, 전화해요",ae:"Rests, calls family"},
+     {q:"라민 씨는 주말이 어때요?",a:"좋아요",ae:"He likes it"},
    ]},
-  {title:"거제 시장 구경",eng:"Visiting Geoje Market",
-   text:"주말에 후엔 씨와 안젤라 씨가 거제 시장에 갔어요.\n시장에는 과일, 생선, 옷 등이 있어요.\n사과 한 봉지에 오천 원이에요.\n안젤라 씨가 물었어요. '깎아 주세요!'\n아저씨가 사천 원에 주셨어요.\n후엔 씨는 회를 먹었어요. 만 원이에요.\n시장은 재미있고 물건이 싸요.\n다음 주말에도 시장에 갈 거예요!",
-   textEng:"On the weekend, Huen and Angela went to Geoje Market.\nThe market has fruits, fish, clothes and more.\nA bag of apples is 5,000 won.\nAngela asked, 'Please give me a discount!'\nThe seller gave it for 4,000 won.\nHuen ate sashimi. It's 10,000 won.\nThe market is fun and things are cheap.\nThey'll go to the market next weekend too!",
+  {title:"안젤라의 거제도 여행",eng:"Angela's Geoje Trip",
+   text:"안젤라 씨는 일요일에 거제도를 구경했어요.\n바람의 언덕에 갔어요.\n바다가 정말 아름다웠어요.\n사진을 많이 찍었어요.\n카페에서 커피를 마셨어요.\n고현 시장에서 떡볶이도 먹었어요.\n다음 주말에는 외도 보타니아에 가고 싶어요.\n거제도는 정말 좋아요!",
+   textEng:"Angela went sightseeing in Geoje on Sunday.\nShe went to the Hill of Wind.\nThe sea was really beautiful.\nShe took many photos.\nShe drank coffee at a cafe.\nShe also ate tteokbokki at GoHyeon Market.\nNext weekend, she wants to go to Oedo Botania.\nGeoje is really nice!",
    questions:[
-     {q:"사과 한 봉지는 원래 얼마예요?",a:"오천 원",ae:"5,000 won"},
-     {q:"안젤라 씨는 뭐라고 했어요?",a:"깎아 주세요",ae:"Please give me a discount"},
-     {q:"회는 얼마예요?",a:"만 원",ae:"10,000 won"},
+     {q:"안젤라 씨는 어디에 갔어요?",a:"바람의 언덕",ae:"Hill of Wind"},
+     {q:"카페에서 뭐 했어요?",a:"커피를 마셨어요",ae:"Drank coffee"},
+     {q:"다음에 어디에 가고 싶어요?",a:"외도 보타니아",ae:"Oedo Botania"},
    ]},
 ];
 
 // ===== FOLKTALE DATA (40 sentences) =====
 const FOLKTALE = {
-  title: "금도끼 은도끼",
-  eng: "The Gold Axe and the Silver Axe",
-  desc: "정직한 나무꾼이 보상을 받는 이야기입니다.",
-  descEng: "The story of an honest woodcutter who is rewarded.",
+  title: "토끼와 거북이",
+  eng: "The Tortoise and the Hare",
+  desc: "느리지만 꾸준히 노력하면 이길 수 있다는 이야기입니다.",
+  descEng: "A story about how slow and steady wins the race.",
   sentences: [
-    {kor:"옛날에 정직한 나무꾼이 살았어요.",eng:"Once upon a time, there lived an honest woodcutter."},
-    {kor:"나무꾼은 매일 산에 가서 나무를 했어요.",eng:"The woodcutter went to the mountain every day to chop wood."},
-    {kor:"어느 날, 나무를 하다가 도끼를 연못에 빠뜨렸어요.",eng:"One day, while chopping wood, he dropped his axe in a pond."},
-    {kor:"나무꾼은 너무 슬펐어요.",eng:"The woodcutter was very sad."},
-    {kor:"도끼가 없으면 일을 할 수 없어요.",eng:"Without an axe, he cannot work."},
-    {kor:"그때 연못에서 산신령이 나타났어요.",eng:"Then a mountain spirit appeared from the pond."},
-    {kor:"산신령은 금도끼를 들고 있었어요.",eng:"The spirit was holding a gold axe."},
-    {kor:"'이 금도끼가 네 도끼냐?'",eng:"'Is this gold axe yours?'"},
-    {kor:"나무꾼은 고개를 저었어요. '아니요, 제 것이 아니에요.'",eng:"The woodcutter shook his head. 'No, it's not mine.'"},
-    {kor:"산신령은 다시 은도끼를 들고 나왔어요.",eng:"The spirit came out again with a silver axe."},
-    {kor:"'이 은도끼가 네 도끼냐?'",eng:"'Is this silver axe yours?'"},
-    {kor:"나무꾼은 또 고개를 저었어요. '아니요, 그것도 제 것이 아니에요.'",eng:"The woodcutter shook his head again. 'No, that's not mine either.'"},
-    {kor:"산신령은 마지막으로 낡은 쇠도끼를 들고 나왔어요.",eng:"Finally, the spirit came out with an old iron axe."},
-    {kor:"'이 쇠도끼가 네 도끼냐?'",eng:"'Is this iron axe yours?'"},
-    {kor:"나무꾼은 기뻐하며 말했어요. '네! 그것이 제 도끼예요!'",eng:"The woodcutter happily said, 'Yes! That is my axe!'"},
-    {kor:"산신령은 나무꾼의 정직함에 감동했어요.",eng:"The spirit was moved by the woodcutter's honesty."},
-    {kor:"'너는 정직하구나.'",eng:"'You are honest.'"},
-    {kor:"산신령은 금도끼, 은도끼, 쇠도끼를 모두 주었어요.",eng:"The spirit gave him all three axes — gold, silver, and iron."},
-    {kor:"나무꾼은 감사하다고 인사했어요.",eng:"The woodcutter thanked the spirit."},
-    {kor:"나무꾼은 부자가 되었어요.",eng:"The woodcutter became rich."},
-    {kor:"이 소식을 들은 욕심 많은 나무꾼이 있었어요.",eng:"A greedy woodcutter heard this news."},
-    {kor:"욕심쟁이는 일부러 도끼를 연못에 빠뜨렸어요.",eng:"The greedy one deliberately dropped his axe in the pond."},
-    {kor:"산신령이 나타나서 금도끼를 보여줬어요.",eng:"The spirit appeared and showed the gold axe."},
-    {kor:"'이 금도끼가 네 도끼냐?'",eng:"'Is this gold axe yours?'"},
-    {kor:"욕심쟁이는 '네! 그것이 제 도끼예요!'라고 거짓말했어요.",eng:"The greedy one lied, 'Yes! That is my axe!'"},
-    {kor:"산신령은 화가 났어요.",eng:"The spirit became angry."},
-    {kor:"'거짓말을 하는구나!'",eng:"'You are lying!'"},
-    {kor:"산신령은 금도끼도 은도끼도 주지 않았어요.",eng:"The spirit gave neither the gold nor the silver axe."},
-    {kor:"욕심쟁이의 쇠도끼도 돌려주지 않았어요.",eng:"He didn't return the greedy one's iron axe either."},
-    {kor:"욕심쟁이는 도끼를 모두 잃었어요.",eng:"The greedy woodcutter lost all his axes."},
-    {kor:"욕심쟁이는 울면서 집으로 돌아갔어요.",eng:"The greedy one went home crying."},
-    {kor:"정직한 나무꾼은 행복하게 살았어요.",eng:"The honest woodcutter lived happily."},
-    {kor:"욕심쟁이는 후회했어요.",eng:"The greedy one regretted his actions."},
-    {kor:"정직이 가장 중요하다는 것을 깨달았어요.",eng:"He realized that honesty is the most important thing."},
-    {kor:"마을 사람들도 이 이야기를 듣고 정직하게 살기로 했어요.",eng:"The villagers also heard this story and decided to live honestly."},
-    {kor:"금도끼 은도끼 이야기는 한국에서 아주 유명해요.",eng:"The Gold Axe Silver Axe story is very famous in Korea."},
-    {kor:"이 이야기의 교훈은 '정직하면 복을 받는다'예요.",eng:"The moral is 'Honesty brings blessings.'"},
-    {kor:"거짓말을 하면 가진 것도 잃어요.",eng:"If you lie, you lose even what you have."},
-    {kor:"여러분도 정직하게 살아요!",eng:"Let's all live honestly!"},
-    {kor:"정직은 가장 좋은 보물이에요.",eng:"Honesty is the best treasure."},
+    {kor:"옛날에 빠른 토끼가 살았어요.",eng:"Once upon a time, there lived a fast rabbit."},
+    {kor:"토끼는 달리기를 아주 잘했어요.",eng:"The rabbit was very good at running."},
+    {kor:"토끼는 항상 자랑했어요. '나는 가장 빨라!'",eng:"The rabbit always bragged. 'I'm the fastest!'"},
+    {kor:"느린 거북이도 살았어요.",eng:"A slow tortoise also lived there."},
+    {kor:"거북이는 느리지만 열심히 걸었어요.",eng:"The tortoise was slow but walked hard."},
+    {kor:"어느 날 토끼가 거북이에게 말했어요.",eng:"One day, the rabbit said to the tortoise."},
+    {kor:"'우리 달리기 시합할래?'",eng:"'Want to have a running race?'"},
+    {kor:"거북이가 말했어요. '좋아요, 해요!'",eng:"The tortoise said, 'Okay, let's do it!'"},
+    {kor:"다음 날 시합이 시작되었어요.",eng:"The race started the next day."},
+    {kor:"토끼는 빠르게 달렸어요.",eng:"The rabbit ran fast."},
+    {kor:"거북이는 천천히 걸었어요.",eng:"The tortoise walked slowly."},
+    {kor:"토끼는 뒤를 돌아봤어요.",eng:"The rabbit looked back."},
+    {kor:"거북이가 아주 멀리 있었어요.",eng:"The tortoise was very far behind."},
+    {kor:"토끼는 웃었어요. '거북이는 너무 느려!'",eng:"The rabbit laughed. 'The tortoise is too slow!'"},
+    {kor:"토끼는 나무 아래에서 낮잠을 잤어요.",eng:"The rabbit took a nap under a tree."},
+    {kor:"토끼는 깊이 잠들었어요.",eng:"The rabbit fell into a deep sleep."},
+    {kor:"그 사이에 거북이는 계속 걸었어요.",eng:"Meanwhile, the tortoise kept walking."},
+    {kor:"거북이는 쉬지 않고 걸었어요.",eng:"The tortoise walked without resting."},
+    {kor:"한 걸음, 한 걸음 꾸준히 걸었어요.",eng:"Step by step, steadily walking."},
+    {kor:"거북이는 자는 토끼를 지나갔어요.",eng:"The tortoise passed the sleeping rabbit."},
+    {kor:"거북이는 계속 앞으로 갔어요.",eng:"The tortoise kept going forward."},
+    {kor:"결승선이 보였어요!",eng:"The finish line was in sight!"},
+    {kor:"거북이는 기뻤어요.",eng:"The tortoise was happy."},
+    {kor:"거북이가 결승선에 도착했어요!",eng:"The tortoise arrived at the finish line!"},
+    {kor:"그때 토끼가 잠에서 깼어요.",eng:"Then the rabbit woke up."},
+    {kor:"토끼는 깜짝 놀랐어요!",eng:"The rabbit was shocked!"},
+    {kor:"거북이가 이미 결승선에 있었어요!",eng:"The tortoise was already at the finish line!"},
+    {kor:"토끼는 빨리 달렸지만 너무 늦었어요.",eng:"The rabbit ran fast but it was too late."},
+    {kor:"거북이가 이겼어요!",eng:"The tortoise won!"},
+    {kor:"모든 동물들이 거북이에게 박수를 쳤어요.",eng:"All the animals clapped for the tortoise."},
+    {kor:"토끼는 부끄러웠어요.",eng:"The rabbit was embarrassed."},
+    {kor:"토끼가 말했어요. '미안해, 내가 자만했어.'",eng:"The rabbit said, 'Sorry, I was arrogant.'"},
+    {kor:"거북이가 말했어요. '괜찮아요. 다음에 또 해요!'",eng:"The tortoise said, 'It's okay. Let's do it again!'"},
+    {kor:"토끼와 거북이는 친구가 되었어요.",eng:"The rabbit and tortoise became friends."},
+    {kor:"이 이야기의 교훈은 '꾸준히 노력하면 이긴다'예요.",eng:"The moral is 'Steady effort leads to victory.'"},
+    {kor:"빠른 것보다 꾸준한 것이 중요해요.",eng:"Being steady is more important than being fast."},
+    {kor:"포기하지 마세요!",eng:"Don't give up!"},
+    {kor:"천천히 해도 괜찮아요.",eng:"It's okay to go slowly."},
+    {kor:"여러분도 한국어를 꾸준히 공부하세요!",eng:"Study Korean steadily, everyone!"},
+    {kor:"토끼와 거북이처럼 우리도 노력해요!",eng:"Like the tortoise and hare, let's keep trying!"},
   ]
 };
 
 const FOLKTALE_QUIZ = [
-  {q:"나무꾼은 어떤 사람이에요?",o:["정직한 사람","욕심 많은 사람","게으른 사람","무서운 사람"],a:0},
-  {q:"도끼를 어디에 빠뜨렸어요?",o:["연못","강","바다","우물"],a:0},
-  {q:"연못에서 누가 나타났어요?",o:["산신령","용왕","호랑이","토끼"],a:0},
-  {q:"산신령이 처음에 보여준 도끼는?",o:["금도끼","은도끼","쇠도끼","나무도끼"],a:0},
-  {q:"나무꾼은 금도끼가 자기 것이라고 했어요?",o:["아니요","네","모르겠어요","대답 안 했어요"],a:0},
-  {q:"나무꾼의 진짜 도끼는?",o:["쇠도끼","금도끼","은도끼","동도끼"],a:0},
-  {q:"산신령은 왜 세 도끼를 모두 주었어요?",o:["정직해서","부자여서","울어서","부탁해서"],a:0},
-  {q:"욕심쟁이는 도끼를 어떻게 빠뜨렸어요?",o:["일부러","실수로","바람에","넘어져서"],a:0},
-  {q:"욕심쟁이는 금도끼를 보고 뭐라고 했어요?",o:["제 거예요 (거짓말)","제 것이 아니에요","모르겠어요","감사합니다"],a:0},
-  {q:"산신령은 욕심쟁이에게 어떻게 했어요?",o:["도끼를 안 주었어요","금도끼를 주었어요","칭찬했어요","웃었어요"],a:0},
-  {q:"욕심쟁이는 결국 어떻게 됐어요?",o:["도끼를 모두 잃었어요","부자가 됐어요","금도끼를 받았어요","산에 갔어요"],a:0},
-  {q:"이 이야기의 교훈은?",o:["정직하면 복을 받는다","돈이 최고다","산에 가지 마라","연못을 조심하라"],a:0},
-  {q:"'금도끼 은도끼' 이야기는 한국에서 어때요?",o:["아주 유명해요","모르는 사람이 많아요","외국 이야기예요","새 이야기예요"],a:0},
-  {q:"정직한 나무꾼은 마지막에 어떻게 살았어요?",o:["행복하게","슬프게","가난하게","외롭게"],a:0},
-  {q:"정직은 가장 좋은 ___이에요.",o:["보물","도끼","연못","나무"],a:0},
+  {q:"토끼는 어떤 동물이에요?",o:["빠른 동물","느린 동물","큰 동물","작은 동물"],a:0},
+  {q:"거북이는 어떤 동물이에요?",o:["느린 동물","빠른 동물","무서운 동물","작은 동물"],a:0},
+  {q:"토끼가 거북이에게 뭐라고 했어요?",o:["달리기 시합할래?","같이 먹을래?","집에 갈래?","산에 갈래?"],a:0},
+  {q:"시합에서 토끼는 뭘 했어요?",o:["낮잠을 잤어요","계속 달렸어요","포기했어요","울었어요"],a:0},
+  {q:"거북이는 어떻게 했어요?",o:["쉬지 않고 걸었어요","같이 잤어요","포기했어요","울었어요"],a:0},
+  {q:"누가 이겼어요?",o:["거북이","토끼","둘 다","아무도 안"],a:0},
+  {q:"토끼는 왜 졌어요?",o:["낮잠을 자서","느려서","길을 잃어서","다쳐서"],a:0},
+  {q:"토끼는 나무 아래에서 뭐 했어요?",o:["잠을 잤어요","밥을 먹었어요","운동했어요","공부했어요"],a:0},
+  {q:"거북이가 결승선에 도착했을 때 토끼는?",o:["아직 자고 있었어요","먼저 도착했어요","응원했어요","집에 갔어요"],a:0},
+  {q:"토끼는 마지막에 뭐라고 했어요?",o:["미안해, 내가 자만했어","내가 이겼어","다시 안 해","거북이가 나빠"],a:0},
+  {q:"거북이와 토끼는 어떻게 됐어요?",o:["친구가 되었어요","싸웠어요","헤어졌어요","모르는 사이"],a:0},
+  {q:"이 이야기의 교훈은?",o:["꾸준히 노력하면 이긴다","빠른 게 최고","쉬는 게 좋다","혼자 하는 게 좋다"],a:0},
+  {q:"'포기하지 마세요!'의 뜻은?",o:["Don't give up","Give up","Hurry up","Slow down"],a:0},
+  {q:"거북이처럼 한국어를 어떻게 공부해야 해요?",o:["꾸준히","빨리","가끔","나중에"],a:0},
+  {q:"빠른 것보다 ___ 것이 중요해요.",o:["꾸준한","느린","큰","작은"],a:0},
 ];
 
 const REVIEW_DATA = {
@@ -398,24 +400,24 @@ const REVIEW_DATA = {
     desc: "다음에 배울 내용을 미리 살펴보세요.",
     descEng: "Preview what you will learn next.",
     items: [
-      {label:"6과 주제",val:"뭐 먹을래요? · What do you want to eat?",detail:"음식 이름과 주문 표현을 배웁니다."},
-      {label:"핵심 어휘",val:"밥, 국, 반찬, 김치, 불고기, 비빔밥",detail:"rice, soup, side dish, kimchi, bulgogi, bibimbap"},
-      {label:"핵심 문법",val:"~을/를 먹어요, ~이/가 좋아요, ~주세요",detail:"eating expression, preference, request"},
-      {label:"조선소 어휘",val:"구내식당, 메뉴, 주문, 식권, 배식",detail:"cafeteria, menu, order, meal ticket, serving"},
+      {label:"8과 주제",val:"날씨가 어때요? · How's the weather?",detail:"날씨와 계절 표현을 배웁니다."},
+      {label:"핵심 어휘",val:"덥다, 춥다, 비, 눈, 바람, 봄/여름/가을/겨울",detail:"hot, cold, rain, snow, wind, spring/summer/fall/winter"},
+      {label:"핵심 문법",val:"~(으)ㄴ/는, ~겠~, ~때",detail:"adjective endings, future guess, when"},
+      {label:"조선소 어휘",val:"야외작업, 안전, 우비, 장마, 폭염",detail:"outdoor work, safety, raincoat, monsoon, heat wave"},
     ]
   },
   review: {
     title: "복습 · Review",
-    desc: "5과에서 배운 내용을 확인하세요.",
-    descEng: "Check what you learned in Lesson 5.",
+    desc: "7과에서 배운 내용을 확인하세요.",
+    descEng: "Check what you learned in Lesson 7.",
     sections: [
-      {title:"한자어 숫자",icon:"🔢",items:["일(1) 이(2) 삼(3) 사(4) 오(5)","육(6) 칠(7) 팔(8) 구(9) 십(10)","백(100) 천(1000) 만(10000)","이천오백=2,500 / 삼만=30,000"]},
-      {title:"가격 말하기",icon:"💰",items:["천 원 (₩1,000)","오천 원 (₩5,000)","만 원 (₩10,000)","이만오천 원 (₩25,000)"]},
-      {title:"쇼핑 필수 표현",icon:"🛒",items:["이거 얼마예요? (How much?)","이거 주세요. (This please.)","카드로 결제할 수 있어요? (Can I pay by card?)","영수증 주세요. (Receipt please.)","깎아 주세요. (Discount please.)"]},
-      {title:"단위명사(수량)",icon:"📦",items:["한 병 (one bottle)","두 줄 (two rolls)","세 잔 (three cups)","네 개 (four pieces)"]},
+      {title:"주말 활동 어휘",icon:"🏃",items:["쉬다 / 자다 / 운동하다","쇼핑하다 / 영화 보다 / 요리하다","청소하다 / 빨래하다 / 전화하다","축구하다 / 산책하다 / 노래하다"]},
+      {title:"~아/어요 (현재형)",icon:"🗣️",items:["쉬다 → 쉬어요","운동하다 → 운동해요","보다 → 봐요","먹다 → 먹어요"]},
+      {title:"~(으)러 가다 / ~고 싶다",icon:"📝",items:["영화 보러 가요 (go to see a movie)","쇼핑하러 가요 (go shopping)","쉬고 싶어요 (want to rest)","여행하고 싶어요 (want to travel)"]},
+      {title:"거제 주말 활동",icon:"🏝️",items:["바람의 언덕 (Hill of Wind)","외도 보타니아 (Oedo Botania)","고현 시장 (GoHyeon Market)","운동장에서 축구 (Soccer at sports field)"]},
     ]
   },
-  dictation: ["이거 얼마예요?","삼천 원이에요.","물 한 병 주세요.","카드로 결제할 수 있어요?","모두 얼마예요?","만 원이에요.","영수증 주세요.","좀 비싸네요.","깎아 주세요.","거스름돈 주세요."],
+  dictation: ["주말에 뭐 해요?","보통 쉬어요.","친구하고 축구해요.","영화 보러 가요.","바다에 가고 싶어요.","같이 갈래요?","기숙사에서 빨래해요.","가족에게 전화해요.","거제도 구경하고 싶어요.","주말이 좋아요!"],
 };
 
 // ===== APP STATE =====
@@ -519,15 +521,15 @@ function renderPage() {
 function renderHome() {
   return `
   <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);border-radius:16px;padding:20px;margin-bottom:16px;color:#fff">
-    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 5과 · Beginner Lesson 5</div>
+    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 7과 · Beginner Lesson 7</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ 0급 한글 입문 완료</span>
       <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
     </div
-    <div style="font-size:26px;font-weight:800;margin-bottom:2px">얼마예요?</div>
-    <div style="font-size:13px;color:#aabbdd">How much is it? — 숫자와 가격 · Numbers & Prices</div>
+    <div style="font-size:26px;font-weight:800;margin-bottom:2px">주말에 뭐 해요?</div>
+    <div style="font-size:13px;color:#aabbdd">What do you do on weekends? — 주말 활동과 취미 · Weekend Activities & Hobbies</div>
     <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
-      ${['한자어 수','가격 표현','주세요','결제·송금'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
+      ${['~아/어요','~(으)러 가다','~고 싶다','주말 활동'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
     </div>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
@@ -549,9 +551,9 @@ function renderHome() {
       <div style="font-weight:700;font-size:12px;color:#1E3A5F">${it.l}</div>
     </button>`).join('')}
   </div>
-  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">💰 한국의 경제 성장 보기</button>
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🚢 한국의 조선 산업 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="한화오션_초급4과_몇시예요.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 4과 몇 시예요?</a><a href="한화오션_초급6과_뭐먹을래요.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">6과 뭐 먹을래요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson6.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 6과 뭐 먹을래요?</a><a href="HanwhaOcean_Level1_Lesson8.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">8과 날씨가 어때요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -570,7 +572,7 @@ function renderCurriculum() {
       <span style="color:#888;font-size:12px">${lv.ls}과</span>
     </div>
     <div style="color:#888;font-size:11px;margin:4px 0">${lv.e}</div>
-    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'27.7%':'0%'):'0%'};background:${lv.c}"></div></div>
+    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'38.8%':'0%'):'0%'};background:${lv.c}"></div></div>
   </div>`).join('')}`;
 }
 
@@ -580,8 +582,8 @@ function renderHangul() {
   const hTab = Math.min(state.hgTab, 3);
   const data = datasets[hTab];
   const isSafety = hTab === 3;
-  const progressPct = 25;
-  const progressLabel = "5/20";
+  const progressPct = 35;
+  const progressLabel = "7/20";
 
   return `<h2>🔤 0급 입문 · ${HANGUL_SUBTITLE}</h2><p class="sub">${HANGUL_SUBTITLE}</p>
   <div style="margin-bottom:12px;background:#e5e7eb;border-radius:8px;overflow:hidden;position:relative;height:22px">
@@ -615,10 +617,10 @@ function renderHangul() {
 }
 
 function renderVocab() {
-  const tabs = ['숫자·가격 Numbers','조선소 Shipyard','돈·결제 Money','도구·장비 Tools&Equip'];
+  const tabs = ['주말 활동 Weekend','조선소 Shipyard','취미·장소 Hobby','도구·장비 Tools&Equip'];
   const t = state.vocabTab;
   let content = '';
-  if (t===0) content = VOCAB_PRICE.map((v,i)=>`
+  if (t===0) content = VOCAB_WEEKEND.map((v,i)=>`
     <div class="card card-accent vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,[${i}]:!state.vocabReveal[${i}]}})">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div><div class="kor">${v.kor} ${ttsBtn(v.kor)}</div><div class="pron">[${v.pron}]</div></div>
@@ -633,7 +635,7 @@ function renderVocab() {
       ${state.vocabReveal['s'+i]?`<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border-radius:6px;font-size:13px;color:var(--orange);font-weight:600">${v.eng}</div>`
       :`<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기</div>`}
     </div>`).join('');
-  else if (t===2) content = `<div class="grid2">${VOCAB_MONEY.map(v=>`
+  else if (t===2) content = `<div class="grid2">${VOCAB_HOBBY.map(v=>`
     <div class="vocab-item" style="background:#f0f7ff;border-radius:8px;padding:8px 10px" onclick="TTS.speak('${v.kor}')">
       <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
     </div>`).join('')}</div>`;
@@ -642,14 +644,14 @@ function renderVocab() {
       <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
     </div>`).join('')}</div>`;
 
-  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">5과 핵심 어휘 (${VOCAB_PRICE.length+VOCAB_SHIPYARD.length+VOCAB_MONEY.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
+  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">7과 핵심 어휘 (${VOCAB_WEEKEND.length+VOCAB_SHIPYARD.length+VOCAB_HOBBY.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
   <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({vocabTab:${i},vocabReveal:{}})">${tb}</button>`).join('')}</div>
   ${content}`;
 }
 
 function renderGrammar() {
   const g = GRAMMAR[state.gramIdx];
-  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">5과 핵심 문법 ${GRAMMAR.length}개</p>
+  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">7과 핵심 문법 ${GRAMMAR.length}개</p>
   <div class="tabs">${GRAMMAR.map((gr,i)=>`<button class="tab ${state.gramIdx===i?'active':''}" onclick="setState({gramIdx:${i}})">${gr.title}</button>`).join('')}</div>
   <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
     <div style="font-size:18px;font-weight:800;color:var(--navy)">${g.title}</div>
@@ -719,24 +721,24 @@ function renderReading() {
 
 function renderWriting() {
   const preview = state.wrName ? `안녕하세요? 저는 ${state.wrName}이에요/예요.
-오늘 ${state.wrCountry?state.wrCountry:'___'}에서 쇼핑했어요.
-${state.wrJob?state.wrJob+' 원이에요.':''}
+주말에 보통 ${state.wrCountry?state.wrCountry:'___'}을/를 해요.
+${state.wrJob?state.wrJob+'에 가고 싶어요.':''}
 ${state.wrExtra?state.wrExtra:''}
-한국어로 쇼핑할 수 있어요!` : '';
+주말이 좋아요!` : '';
 
-  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">나의 쇼핑 이야기 · My Shopping Story</p>
+  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">나의 주말 이야기 · My Weekend Story</p>
   <div class="card" style="background:#fff7ed;border:2px solid var(--orange)">
-    <b style="color:var(--orange)">📋 나의 쇼핑 경험을 써 보세요 · Write about your shopping experience</b>
+    <b style="color:var(--orange)">📋 주말에 무엇을 하는지 써 보세요 · Write about your weekend activities</b>
   </div>
   <div style="margin-top:12px">
     <label style="font-size:13px;font-weight:700;color:var(--navy)">이름 Name</label>
     <input class="input" placeholder="예: 라민 / Ramin" value="${state.wrName}" oninput="state.wrName=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">어디서 쇼핑? Where?</label>
-    <input class="input" placeholder="예: 편의점 / convenience store" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">얼마? How much?</label>
-    <input class="input" placeholder="예: 삼천 / 3,000" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">무엇을 샀어요? What did you buy?</label>
-    <input class="input" placeholder="예: 물하고 김밥을 샀어요." value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">주말에 뭐 해요? What do you do?</label>
+    <input class="input" placeholder="예: 축구, 쇼핑 / soccer, shopping" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">어디에 가고 싶어요? Where?</label>
+    <input class="input" placeholder="예: 바다, 바람의 언덕 / sea, Hill of Wind" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">더 쓰고 싶은 말 More to say</label>
+    <input class="input" placeholder="예: 친구하고 같이 가고 싶어요." value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
   </div>
   ${preview?`
   <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📄 미리보기 · Preview</div>
@@ -744,14 +746,14 @@ ${state.wrExtra?state.wrExtra:''}
     ${preview.split('\n').filter(l=>l.trim()).map(l=>`<div style="font-size:16px;color:var(--navy);font-weight:600;margin-bottom:4px">${l}</div>`).join('')}
   </div>
   <button class="btn btn-primary" style="margin-top:10px" onclick="TTS.speak(\`${preview.replace(/\n/g,' ').replace(/이에요\/예요/g,'이에요')}\`,undefined,0.8)">🔊 발표 연습 듣기 · Listen to Presentation</button>
-  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 나의 쇼핑 이야기가 만들어집니다.<br>Fill in the fields above to generate your shopping story.</div>'}
+  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 나의 주말 이야기가 만들어집니다.<br>Fill in the fields above to generate your weekend story.</div>'}
 
   <div style="margin-top:20px;font-weight:700;color:var(--navy);margin-bottom:8px">✍️ 자유 쓰기 · Free Writing</div>
-  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 편의점에서 물을 샀어요.&#10;천이백 원이에요." id="freeWrite"></textarea>`;
+  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 주말에 친구하고 축구해요.&#10;바다에 가고 싶어요." id="freeWrite"></textarea>`;
 }
 
 function renderFlashcard() {
-  const all = [...VOCAB_PRICE.map(v=>({f:v.kor,b:v.eng})),...VOCAB_MONEY.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
+  const all = [...VOCAB_WEEKEND.map(v=>({f:v.kor,b:v.eng})),...VOCAB_HOBBY.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
   const card = all[state.fcIdx % all.length];
   return `<h2>🃏 플래시카드 · Flashcards</h2>
   <div style="display:flex;justify-content:space-between;margin-bottom:8px">
@@ -806,7 +808,7 @@ function renderQuiz() {
 }
 
 function renderCulture() {
-  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 돈과 쇼핑 문화 · Korean Money & Shopping Culture</p>
+  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 여가 문화 · Korean Leisure Culture</p>
   ${CULTURE.map(c=>`<div class="card" style="display:flex;gap:12px;align-items:flex-start">
     <div style="font-size:34px;flex-shrink:0">${c.icon}</div>
     <div>
@@ -816,7 +818,7 @@ function renderCulture() {
       <div style="font-size:12px;color:#888;margin-top:2px">${c.de}</div>
     </div>
   </div>`).join('')}
-  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">💰 거제 물가 자세히 보기</button>`;
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">🚢 한국의 조선 산업 보기</button>`;
 }
 
 // ===== REVIEW (익힘) =====
@@ -837,7 +839,7 @@ function renderReview() {
           ${!item.includes(' ')&&item.length<15?ttsBtn(item):''}
         </div>`).join('')}
       </div>`).join('')}
-    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 쇼핑 표현 전체 듣기</button>`;
+    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 주말 표현 전체 듣기</button>`;
   }
   if (t===1) { // 예습
     const pv = REVIEW_DATA.preview;
@@ -845,7 +847,7 @@ function renderReview() {
     <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
     <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean)">
       <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px">📖 다음 수업 미리보기 · Next Lesson Preview</div>
-      <div style="font-size:12px;color:#888;margin-bottom:12px">5과를 미리 살펴보세요!</div>
+      <div style="font-size:12px;color:#888;margin-bottom:12px">7과를 미리 살펴보세요!</div>
     </div>
     ${pv.items.map((item,i)=>`
       <div class="card ${i%2===0?'card-accent':'card-orange'}">
@@ -856,14 +858,14 @@ function renderReview() {
     <div class="card card-green" style="background:var(--light-green)">
       <div style="font-weight:700;color:var(--green);margin-bottom:6px">💡 예습 팁 · Preview Tips</div>
       <div style="font-size:13px;color:#333;line-height:1.6">
-        1. 구내식당 메뉴판에서 음식 이름을 읽어 보세요.<br>
-        2. 좋아하는 음식을 한국어로 말해 보세요.<br>
-        3. '~주세요'를 사용해서 주문 연습을 해 보세요.
+        1. 날씨 관련 어휘를 미리 읽어 보세요.<br>
+        2. 오늘 날씨를 한국어로 말해 보세요.<br>
+        3. 계절 이름(봄, 여름, 가을, 겨울)을 외워 보세요.
       </div>
       <div style="font-size:12px;color:#888;margin-top:6px;line-height:1.5">
-        1. Read the food names on the cafeteria menu.<br>
-        2. Try saying your favorite food in Korean.<br>
-        3. Practice ordering with '~주세요'.
+        1. Read weather vocabulary in advance.<br>
+        2. Try saying today's weather in Korean.<br>
+        3. Memorize the season names (봄, 여름, 가을, 겨울).
       </div>
     </div>`;
   }
@@ -1008,15 +1010,15 @@ function renderGeoje() {
     <div style="font-size:14px;color:var(--navy);font-weight:600">${f.val}</div>
   </div>`).join('')}
   <div class="card" style="background:var(--light-orange);border:2px solid var(--orange)">
-    <b style="color:var(--orange)">🚀 한국의 성장 원동력: 경제 성장 Korea's Growth Engine: Economic Growth</b>
+    <b style="color:var(--orange)">🚀 한국의 성장 원동력: 조선 산업 Korea's Growth Engine: Shipbuilding</b>
     <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
       ${[
-        {item:'한강의 기적',price:'60년 성장',emoji:'🌉',eng:'Han River Miracle'},
-        {item:'수출 대국',price:'세계 상위',emoji:'📦',eng:'Export Power'},
-        {item:'새마을 운동',price:'농촌 근대화',emoji:'🏘️',eng:'Saemaul Movement'},
-        {item:'중화학 공업',price:'산업 기반',emoji:'🏭',eng:'Heavy Industry'},
-        {item:'IMF 극복',price:'2년 만에',emoji:'💪',eng:'Crisis Recovery'},
-        {item:'K-경제',price:'글로벌 핵심',emoji:'🌍',eng:'K-Economy'},
+        {item:'세계 1위',price:'선박 수주량',emoji:'🏆',eng:'World #1 Orders'},
+        {item:'한화오션',price:'거제 본사',emoji:'🚢',eng:'Hanwha Ocean'},
+        {item:'LNG선',price:'70%+ 점유',emoji:'⛽',eng:'LNG Carriers'},
+        {item:'HD현대중공업',price:'울산 본사',emoji:'⚓',eng:'HD Hyundai'},
+        {item:'스마트 조선소',price:'AI·로봇',emoji:'🤖',eng:'Smart Shipyard'},
+        {item:'외국인 근로자',price:'2만+ 명',emoji:'🌍',eng:'Global Workers'},
       ].map(p=>`
         <div style="background:#fff;border-radius:10px;padding:10px;text-align:center">
           <div style="font-size:20px">${p.emoji}</div>

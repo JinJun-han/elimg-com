@@ -92,322 +92,309 @@ function ttsBtn(text) {
 }
 
 // ===== DATA =====
-const VOCAB_OBJECTS = [
-  {kor:"이것",pron:"i-geot",eng:"this (thing)"},
-  {kor:"그것",pron:"geu-geot",eng:"that (thing, near listener)"},
-  {kor:"저것",pron:"jeo-geot",eng:"that (thing, far away)"},
-  {kor:"뭐예요?",pron:"mwo-ye-yo",eng:"What is it?"},
-  {kor:"이것은 뭐예요?",pron:"i-geo-seun mwo-ye-yo",eng:"What is this?"},
-  {kor:"책",pron:"chaek",eng:"book"},
-  {kor:"가방",pron:"ga-bang",eng:"bag"},
-  {kor:"핸드폰",pron:"haen-deu-pon",eng:"cell phone"},
-  {kor:"열쇠",pron:"yeol-soe",eng:"key"},
-  {kor:"시계",pron:"si-gye",eng:"watch/clock"},
-  {kor:"지갑",pron:"ji-gap",eng:"wallet"},
-  {kor:"우산",pron:"u-san",eng:"umbrella"},
-  {kor:"물",pron:"mul",eng:"water"},
-  {kor:"컴퓨터",pron:"keom-pyu-teo",eng:"computer"},
-  {kor:"의자",pron:"ui-ja",eng:"chair"},
-  {kor:"책상",pron:"chaek-sang",eng:"desk"},
-  {kor:"볼펜",pron:"bol-pen",eng:"ballpoint pen"},
-  {kor:"연필",pron:"yeon-pil",eng:"pencil"},
+const VOCAB_WEATHER = [
+  {kor:"날씨",pron:"nal-ssi",eng:"weather"},
+  {kor:"덥다",pron:"deop-da",eng:"to be hot"},
+  {kor:"춥다",pron:"chup-da",eng:"to be cold"},
+  {kor:"따뜻하다",pron:"tta-tteu-ta-da",eng:"to be warm"},
+  {kor:"시원하다",pron:"si-won-ha-da",eng:"to be cool/refreshing"},
+  {kor:"비",pron:"bi",eng:"rain"},
+  {kor:"눈",pron:"nun",eng:"snow"},
+  {kor:"바람",pron:"ba-ram",eng:"wind"},
+  {kor:"구름",pron:"gu-reum",eng:"cloud"},
+  {kor:"맑다",pron:"mak-da",eng:"to be clear/sunny"},
+  {kor:"흐리다",pron:"heu-ri-da",eng:"to be cloudy"},
+  {kor:"비가 오다",pron:"bi-ga o-da",eng:"to rain"},
+  {kor:"눈이 오다",pron:"nu-ni o-da",eng:"to snow"},
+  {kor:"바람이 불다",pron:"ba-ra-mi bul-da",eng:"wind blows"},
+  {kor:"봄",pron:"bom",eng:"spring"},
+  {kor:"여름",pron:"yeo-reum",eng:"summer"},
+  {kor:"가을",pron:"ga-eul",eng:"autumn/fall"},
+  {kor:"겨울",pron:"gyeo-ul",eng:"winter"},
 ];
 
 const VOCAB_SHIPYARD = [
-  {kor:"이것은 용접기예요.",eng:"This is a welding machine.",sit:"도구를 가리키며 / Pointing at a tool"},
-  {kor:"그것은 그라인더예요.",eng:"That is a grinder.",sit:"동료에게 설명할 때 / Explaining to colleague"},
-  {kor:"저것은 크레인이에요.",eng:"That over there is a crane.",sit:"먼 곳을 가리키며 / Pointing far away"},
-  {kor:"이것은 안전모예요.",eng:"This is a safety helmet.",sit:"안전 장비 확인 / Checking safety gear"},
-  {kor:"그것 좀 주세요.",eng:"Please give me that.",sit:"물건을 요청할 때 / Requesting an item"},
-  {kor:"이것은 제 거예요.",eng:"This is mine.",sit:"소유물 표현 / Expressing ownership"},
-  {kor:"저것은 뭐예요?",eng:"What is that over there?",sit:"모르는 물건을 물을 때 / Asking about unknown item"},
-  {kor:"이것은 드릴이에요.",eng:"This is a drill.",sit:"공구를 알려줄 때 / Identifying a tool"},
-  {kor:"이 도면 좀 보세요.",eng:"Please look at this drawing.",sit:"도면 확인 시 / Checking blueprints"},
-  {kor:"그 파이프 가져오세요.",eng:"Bring that pipe.",sit:"자재 요청 시 / Requesting materials"},
-  {kor:"이것은 비상구예요.",eng:"This is the emergency exit.",sit:"안전 안내 시 / Safety guidance"},
-  {kor:"저 건물은 기숙사예요.",eng:"That building is the dormitory.",sit:"시설 안내 시 / Facility guide"},
-  {kor:"이것은 출입증이에요.",eng:"This is an ID badge.",sit:"출입 관리 시 / Access control"},
-  {kor:"그것은 소화기예요.",eng:"That is a fire extinguisher.",sit:"안전 장비 설명 / Safety equipment"},
-  {kor:"이 작업복 입으세요.",eng:"Please wear these work clothes.",sit:"작업 준비 시 / Preparing for work"},
-  {kor:"저것은 자재창고예요.",eng:"That over there is the material warehouse.",sit:"시설 안내 시 / Facility guide"},
+  {kor:"오늘 날씨가 어때요?",eng:"How's the weather today?",sit:"날씨 물어보기"},
+  {kor:"오늘 많이 더워요.",eng:"It's very hot today.",sit:"더운 날"},
+  {kor:"오늘 많이 추워요.",eng:"It's very cold today.",sit:"추운 날"},
+  {kor:"비가 와요.",eng:"It's raining.",sit:"비 오는 날"},
+  {kor:"바람이 많이 불어요.",eng:"It's very windy.",sit:"바람 부는 날"},
+  {kor:"오늘 날씨가 좋아요.",eng:"The weather is nice today.",sit:"좋은 날씨"},
+  {kor:"밖에 나가도 돼요?",eng:"Can I go outside?",sit:"야외 작업 확인"},
+  {kor:"비가 오면 야외 작업을 안 해요.",eng:"We don't work outside when it rains.",sit:"우천 시 작업"},
+  {kor:"우비 입으세요.",eng:"Please wear a raincoat.",sit:"우천 준비"},
+  {kor:"안전모 쓰세요.",eng:"Please wear a safety helmet.",sit:"안전 장비"},
+  {kor:"폭염 주의보예요.",eng:"There's a heat wave warning.",sit:"폭염 안전"},
+  {kor:"물을 많이 마시세요.",eng:"Please drink a lot of water.",sit:"폭염 대비"},
+  {kor:"태풍이 올 수 있어요.",eng:"A typhoon may come.",sit:"태풍 주의"},
+  {kor:"내일 날씨가 어떨까요?",eng:"What will the weather be like tomorrow?",sit:"내일 날씨"},
+  {kor:"일기예보를 봤어요?",eng:"Did you see the weather forecast?",sit:"일기예보"},
+  {kor:"장마철에는 비가 많이 와요.",eng:"It rains a lot during monsoon season.",sit:"장마"},
 ];
 
-const VOCAB_DEMO = [
-  {kor:"이",eng:"this"},
-  {kor:"그",eng:"that"},
-  {kor:"저",eng:"that (over there)"},
-  {kor:"이것",eng:"this thing"},
-  {kor:"그것",eng:"that thing"},
-  {kor:"저것",eng:"that thing (far)"},
-  {kor:"여기",eng:"here"},
-  {kor:"거기",eng:"there"},
-  {kor:"저기",eng:"over there"},
-  {kor:"뭐",eng:"what"},
-  {kor:"어디",eng:"where"},
-  {kor:"누구",eng:"who"},
-  {kor:"책",eng:"book"},
-  {kor:"가방",eng:"bag"},
-  {kor:"핸드폰",eng:"cell phone"},
-  {kor:"시계",eng:"watch/clock"},
-  {kor:"열쇠",eng:"key"},
-  {kor:"지갑",eng:"wallet"},
-  {kor:"우산",eng:"umbrella"},
-  {kor:"물",eng:"water"},
-  {kor:"컵",eng:"cup"},
-  {kor:"공책",eng:"notebook"},
-  {kor:"사전",eng:"dictionary"},
-  {kor:"신문",eng:"newspaper"},
-  {kor:"안경",eng:"glasses"},
-  {kor:"모자",eng:"hat/cap"},
-  {kor:"신발",eng:"shoes"},
-  {kor:"물건",eng:"thing/item"},
-  {kor:"도구",eng:"tool"},
-  {kor:"기계",eng:"machine"},
-  {kor:"사진",eng:"photo"},
-  {kor:"휴지",eng:"tissue"},
-  {kor:"수건",eng:"towel"},
-  {kor:"거울",eng:"mirror"},
-  {kor:"칫솔",eng:"toothbrush"},
-  {kor:"비누",eng:"soap"},
+const VOCAB_SEASON = [
+  {kor:"날씨",eng:"weather"},{kor:"기온",eng:"temperature"},
+  {kor:"온도",eng:"temperature"},{kor:"습도",eng:"humidity"},
+  {kor:"영하",eng:"below zero"},{kor:"영상",eng:"above zero"},
+  {kor:"도",eng:"degree"},{kor:"일기예보",eng:"weather forecast"},
+  {kor:"맑음",eng:"clear/sunny"},{kor:"흐림",eng:"cloudy"},
+  {kor:"비",eng:"rain"},{kor:"눈",eng:"snow"},
+  {kor:"안개",eng:"fog"},{kor:"천둥",eng:"thunder"},
+  {kor:"번개",eng:"lightning"},{kor:"태풍",eng:"typhoon"},
+  {kor:"장마",eng:"monsoon/rainy season"},{kor:"폭염",eng:"heat wave"},
+  {kor:"한파",eng:"cold wave"},{kor:"미세먼지",eng:"fine dust"},
+  {kor:"봄",eng:"spring"},{kor:"여름",eng:"summer"},
+  {kor:"가을",eng:"autumn"},{kor:"겨울",eng:"winter"},
+  {kor:"우산",eng:"umbrella"},{kor:"우비",eng:"raincoat"},
+  {kor:"장갑",eng:"gloves"},{kor:"목도리",eng:"scarf"},
+  {kor:"선글라스",eng:"sunglasses"},{kor:"선크림",eng:"sunscreen"},
+  {kor:"에어컨",eng:"air conditioner"},{kor:"히터",eng:"heater"},
+  {kor:"야외",eng:"outdoor"},{kor:"실내",eng:"indoor"},
+  {kor:"작업 중지",eng:"work stoppage"},{kor:"안전",eng:"safety"},
 ];
 
 const VOCAB_SHIPYARD_NOUNS = [
-  {kor:"용접기",eng:"welding machine"},
-  {kor:"그라인더",eng:"grinder"},
-  {kor:"크레인",eng:"crane"},
-  {kor:"드릴",eng:"drill"},
-  {kor:"파이프",eng:"pipe"},
-  {kor:"렌치",eng:"wrench"},
-  {kor:"망치",eng:"hammer"},
-  {kor:"톱",eng:"saw"},
-  {kor:"줄자",eng:"measuring tape"},
-  {kor:"산소통",eng:"oxygen tank"},
-  {kor:"가스통",eng:"gas tank"},
-  {kor:"전선",eng:"electric wire"},
-  {kor:"나사",eng:"screw/bolt"},
-  {kor:"너트",eng:"nut"},
-  {kor:"볼트",eng:"bolt"},
-  {kor:"사다리",eng:"ladder"},
-  {kor:"발판",eng:"scaffold/platform"},
-  {kor:"호스",eng:"hose"},
-  {kor:"절단기",eng:"cutter"},
-  {kor:"측정기",eng:"measuring device"},
-  {kor:"도면",eng:"blueprint"},
-  {kor:"공구함",eng:"toolbox"},
-  {kor:"안전띠",eng:"safety harness"},
-  {kor:"용접봉",eng:"welding rod"},
-  {kor:"마스크",eng:"mask"},
-  {kor:"장갑",eng:"gloves"},
-  {kor:"보안경",eng:"safety goggles"},
-  {kor:"안전화",eng:"safety shoes"},
-  {kor:"안전모",eng:"safety helmet"},
-  {kor:"작업복",eng:"work clothes"},
+  {kor:"봄",eng:"spring"},{kor:"여름",eng:"summer"},
+  {kor:"가을",eng:"autumn"},{kor:"겨울",eng:"winter"},
+  {kor:"3월",eng:"March"},{kor:"4월",eng:"April"},
+  {kor:"5월",eng:"May"},{kor:"6월",eng:"June"},
+  {kor:"7월",eng:"July"},{kor:"8월",eng:"August"},
+  {kor:"9월",eng:"September"},{kor:"10월",eng:"October"},
+  {kor:"11월",eng:"November"},{kor:"12월",eng:"December"},
+  {kor:"1월",eng:"January"},{kor:"2월",eng:"February"},
+  {kor:"해",eng:"sun"},{kor:"달",eng:"moon"},
+  {kor:"하늘",eng:"sky"},{kor:"무지개",eng:"rainbow"},
+  {kor:"우산",eng:"umbrella"},{kor:"우비",eng:"raincoat"},
+  {kor:"장갑",eng:"gloves"},{kor:"모자",eng:"hat"},
+  {kor:"코트",eng:"coat"},{kor:"반팔",eng:"short sleeves"},
+  {kor:"긴팔",eng:"long sleeves"},{kor:"패딩",eng:"padded jacket"},
+  {kor:"선풍기",eng:"fan"},{kor:"난방",eng:"heating"},
 ];
 
 const GRAMMAR = [
-  {title:"이것/그것/저것 + 은/는",eng:"This/That + Topic marker",
-   desc:"사물을 가리키며 주제를 말할 때 사용해요.",descEng:"Used when pointing at objects and stating the topic.",
-   rule:"이것 + 은 → 이것은 / 그것 + 은 → 그것은 / 저것 + 은 → 저것은",ruleEng:"이것은 = this is / 그것은 = that is / 저것은 = that (far) is",
+  {title:"형용사 + ~(으)ㄴ/는 (Descriptive)",eng:"Adjective Endings ~(으)ㄴ/는",
+   desc:"날씨를 설명할 때 형용사에 '~(으)ㄴ'을 붙여요. 현재 상태를 말해요.",descEng:"Add ~(으)ㄴ to adjectives to describe weather. Expresses current state.",
+   rule:"받침 O → 은 / 받침 X → ㄴ / 동사는 → 는",ruleEng:"With final consonant → 은 / Without → ㄴ / For verbs → 는",
    examples:[
-    {q:"이것은 뭐예요?",a:"이것은 책이에요.",eng:"What is this? - This is a book.",note:"이것+은 → 이것은"},
-    {q:"그것은 뭐예요?",a:"그것은 핸드폰이에요.",eng:"What is that? - That is a phone.",note:"그것+은 → 그것은"},
-    {q:"저것은 뭐예요?",a:"저것은 크레인이에요.",eng:"What is that? - That is a crane.",note:"저것+은 → 저것은"},
-    {q:"이것은 가방이에요?",a:"네, 이것은 가방이에요.",eng:"Is this a bag? - Yes, this is a bag.",note:"이것+은 확인"},
-    {q:"저것은 안전모예요?",a:"아니요, 저것은 모자예요.",eng:"Is that a helmet? - No, that is a hat.",note:"아니요 + 저것은"},
+    {q:"오늘 날씨가 어때요?",a:"더운 날이에요.",eng:"It's a hot day.",note:"덥다→더운"},
+    {q:"겨울 날씨는?",a:"추운 날씨예요.",eng:"It's cold weather.",note:"춥다→추운"},
+    {q:"봄은 어때요?",a:"따뜻한 계절이에요.",eng:"It's a warm season.",note:"따뜻하다→따뜻한"},
+    {q:"가을은 어때요?",a:"시원한 바람이 불어요.",eng:"Cool wind blows.",note:"시원하다→시원한"},
+    {q:"하늘이 어때요?",a:"맑은 하늘이에요.",eng:"It's a clear sky.",note:"맑다→맑은"},
    ]},
-  {title:"명사 + 이에요/예요 (사물)",eng:"N + 이에요/예요 (for Objects)",
-   desc:"사물의 이름을 말할 때 사용해요.",descEng:"Used when naming objects.",
-   rule:"받침 O → 이에요 / 받침 X → 예요",ruleEng:"Final consonant → 이에요 / No final consonant → 예요",
+  {title:"~겠~ (추측/미래)",eng:"~겠~ (Guess/Future)",
+   desc:"날씨를 추측하거나 미래를 말할 때 '~겠~'을 써요.",descEng:"Use ~겠~ to guess or predict weather.",
+   rule:"동사/형용사 어간 + 겠어요",ruleEng:"Verb/Adjective stem + 겠어요",
    examples:[
-    {q:"이것은 뭐예요?",a:"책이에요.",eng:"What is this? - It's a book.",note:"책(받침O) → 이에요"},
-    {q:"그것은 뭐예요?",a:"가방이에요.",eng:"What is that? - It's a bag.",note:"가방(받침O) → 이에요"},
-    {q:"이것은 뭐예요?",a:"시계예요.",eng:"What is this? - It's a watch.",note:"시계(받침X) → 예요"},
-    {q:"저것은 뭐예요?",a:"의자예요.",eng:"What is that? - It's a chair.",note:"의자(받침X) → 예요"},
-    {q:"이것은 뭐예요?",a:"용접기예요.",eng:"What is this? - It's a welding machine.",note:"용접기(받침X) → 예요"},
+    {q:"내일 날씨는?",a:"비가 오겠어요.",eng:"It will probably rain.",note:"오다→오겠어요"},
+    {q:"오후에 날씨는?",a:"더워지겠어요.",eng:"It will get hot.",note:"더워지다→겠어요"},
+    {q:"주말 날씨는?",a:"좋겠어요.",eng:"It will be nice.",note:"좋다→좋겠어요"},
+    {q:"내일 추울까요?",a:"네, 춥겠어요.",eng:"Yes, it will be cold.",note:"춥다→춥겠어요"},
+    {q:"태풍이 올까요?",a:"올 수도 있겠어요.",eng:"It might come.",note:"추측"},
    ]},
-  {title:"이/그/저 + 명사",eng:"이/그/저 + Noun (Demonstrative adjectives)",
-   desc:"명사 앞에 '이/그/저'를 붙여 가리킬 때 사용해요.",descEng:"Place 이/그/저 before nouns to point at specific things.",
-   rule:"이 + 명사 (가까이) / 그 + 명사 (듣는 사람 가까이) / 저 + 명사 (멀리)",ruleEng:"이 = near speaker / 그 = near listener / 저 = far from both",
+  {title:"~(으)면 (If/When)",eng:"~(으)면 (Conditional)",
+   desc:"조건을 말할 때 '~(으)면'을 써요. '만약 ~하면'의 뜻이에요.",descEng:"Use ~(으)면 to express conditions. Means 'if/when something happens.'",
+   rule:"받침 O → 으면 / 받침 X → 면",ruleEng:"With final consonant → 으면 / Without → 면",
    examples:[
-    {q:"",a:"이 책은 한국어 책이에요.",eng:"This book is a Korean book.",note:"이 + 책 (가까이)"},
-    {q:"",a:"그 가방은 제 가방이에요.",eng:"That bag is my bag.",note:"그 + 가방 (듣는 사람 가까이)"},
-    {q:"",a:"저 건물은 기숙사예요.",eng:"That building over there is the dormitory.",note:"저 + 건물 (멀리)"},
-    {q:"",a:"이 도구는 그라인더예요.",eng:"This tool is a grinder.",note:"이 + 도구 (가까이)"},
-    {q:"",a:"그 사람은 관리자예요.",eng:"That person is a supervisor.",note:"그 + 사람"},
+    {q:"비가 오면?",a:"우산을 가져가세요.",eng:"If it rains, take an umbrella.",note:"오+면"},
+    {q:"날씨가 더우면?",a:"물을 많이 마시세요.",eng:"If it's hot, drink lots of water.",note:"덥+으면"},
+    {q:"눈이 오면?",a:"길이 미끄러워요.",eng:"If it snows, the road is slippery.",note:"오+면"},
+    {q:"바람이 불면?",a:"모자가 날아가요.",eng:"If the wind blows, hats fly away.",note:"불+면"},
+    {q:"날씨가 좋으면?",a:"밖에서 일해요.",eng:"If the weather is nice, we work outside.",note:"좋+으면"},
    ]},
 ];
 
 const DIALOGUES = [
-  {title:"도구 확인하기",eng:"Checking Tools",lines:[
-    {sp:"라민",role:"용접공",text:"민수 씨, 이것은 뭐예요?",eng:"Minsu, what is this?",side:"R"},
-    {sp:"민수",role:"관리자",text:"그것은 그라인더예요.",eng:"That is a grinder.",side:"L"},
-    {sp:"라민",text:"아, 그라인더예요. 저것은요?",eng:"Ah, a grinder. What about that over there?",side:"R"},
-    {sp:"민수",text:"저것은 용접기예요.",eng:"That is a welding machine.",side:"L"},
-    {sp:"라민",text:"감사합니다. 이 도구는 어디에 있어요?",eng:"Thank you. Where is this tool?",side:"R"},
-    {sp:"민수",text:"그 도구는 저기 공구함에 있어요.",eng:"That tool is in the toolbox over there.",side:"L"},
+  {title:"아침 출근길 날씨 대화",eng:"Morning Weather Chat on the Way to Work",lines:[
+    {sp:"라민",role:"용접공",text:"오늘 날씨가 어때요?",eng:"How's the weather today?",side:"R"},
+    {sp:"후엔",role:"배관공",text:"오늘 많이 더워요. 삼십오 도래요.",eng:"It's very hot today. They say 35 degrees.",side:"L"},
+    {sp:"라민",text:"정말요? 물을 많이 마셔야겠어요.",eng:"Really? I should drink lots of water.",side:"R"},
+    {sp:"후엔",text:"맞아요. 폭염 주의보래요. 조심하세요.",eng:"Right. There's a heat wave warning. Be careful.",side:"L"},
+    {sp:"라민",text:"오후에 비가 올 수도 있대요.",eng:"They say it might rain in the afternoon.",side:"R"},
+    {sp:"후엔",text:"그럼 우비를 가져가세요!",eng:"Then bring a raincoat!",side:"L"},
   ]},
-  {title:"물건 찾기",eng:"Finding Things",lines:[
-    {sp:"후엔",role:"배관공",text:"안젤라 씨, 이것은 안젤라 씨 거예요?",eng:"Angela, is this yours?",side:"L"},
-    {sp:"안젤라",role:"통역사",text:"아, 네! 그것은 제 핸드폰이에요. 감사합니다!",eng:"Oh yes! That is my phone. Thank you!",side:"R"},
-    {sp:"후엔",text:"그리고 이것은 뭐예요?",eng:"And what is this?",side:"L"},
-    {sp:"안젤라",text:"그것은 출입증이에요. 후엔 씨 출입증이에요.",eng:"That is an ID badge. It's your ID badge, Huynh.",side:"R"},
-    {sp:"후엔",text:"아, 맞아요! 제 출입증이에요. 고맙습니다.",eng:"Oh, right! It's my ID badge. Thank you.",side:"L"},
-    {sp:"안젤라",text:"천만에요. 출입증은 항상 가지고 다니세요.",eng:"You're welcome. Always carry your ID badge.",side:"R"},
+  {title:"거제의 계절 이야기",eng:"Talking About Seasons in Geoje",lines:[
+    {sp:"안젤라",role:"전기공",text:"한국에는 봄, 여름, 가을, 겨울이 있어요.",eng:"Korea has spring, summer, autumn, and winter.",side:"R"},
+    {sp:"탄",role:"도장공",text:"저는 여름이 제일 힘들어요. 너무 더워요.",eng:"Summer is hardest for me. It's too hot.",side:"L"},
+    {sp:"안젤라",text:"저도요. 그리고 장마철에 비가 많이 와요.",eng:"Me too. And it rains a lot during monsoon.",side:"R"},
+    {sp:"탄",text:"겨울도 추워요. 고향은 안 추운데...",eng:"Winter is cold too. Back home it's not cold...",side:"L"},
+    {sp:"안젤라",text:"가을이 제일 좋아요. 시원하고 하늘이 맑아요.",eng:"Autumn is the best. Cool and clear sky.",side:"R"},
+    {sp:"탄",text:"맞아요! 가을에 거제도 구경하면 정말 예뻐요.",eng:"Right! Geoje is really beautiful in autumn.",side:"L"},
   ]},
 ];
 
 const QUIZ = [
-  {q:"\"What is this?\" in Korean:",o:["이것은 뭐예요?","그것은 뭐예요?","저것은 뭐예요?","여기가 어디예요?"],a:0},
-  {q:"'이것은 책___.' Fill:",o:["예요","이에요","은","는"],a:1},
-  {q:"Point to something far away:",o:["이것","그것","저것","여기"],a:2},
-  {q:"'시계___.' (It's a watch) Fill:",o:["이에요","예요","은","는"],a:1},
-  {q:"\"welding machine\" in Korean:",o:["그라인더","드릴","용접기","크레인"],a:2},
-  {q:"'___ 가방은 제 거예요.' Fill:",o:["이","은","를","에"],a:0},
-  {q:"'그것은 ___이에요.' (grinder) Fill:",o:["드릴","용접기","크레인","그라인더"],a:3},
-  {q:"'저것은 ___예요.' (crane) Fill:",o:["크레인","파이프","렌치","망치"],a:0},
-  {q:"\"blueprint\" in Korean:",o:["공구함","작업복","도면","발판"],a:2},
-  {q:"'이것은 뭐예요?' '___이에요.' (book):",o:["가방","시계","핸드폰","책"],a:3},
-  {q:"Near the listener, use:",o:["이","그","저","뭐"],a:1},
-  {q:"'___ 건물은 기숙사예요.' (far away):",o:["이","그","저","뭐"],a:2},
-  {q:"\"toolbox\" in Korean:",o:["도면","공구함","안전띠","사다리"],a:1},
-  {q:"'가방___.' (It's a bag) Fill:",o:["예요","이에요","은","는"],a:1},
-  {q:"'이것은 제 ___이에요.' (ID badge):",o:["안전모","핸드폰","출입증","시계"],a:2},
+  {q:"'날씨'의 뜻은?",o:["weather","season","temperature","wind"],a:0},
+  {q:"'덥다'의 뜻은?",o:["to be hot","to be cold","to be warm","to be cool"],a:0},
+  {q:"'비가 오다'의 뜻은?",o:["to rain","to snow","to be windy","to be sunny"],a:0},
+  {q:"한국의 봄은 몇 월이에요?",o:["3~5월","6~8월","9~11월","12~2월"],a:0},
+  {q:"'눈이 오다'의 뜻은?",o:["to snow","to rain","to be cloudy","to be foggy"],a:0},
+  {q:"여름 날씨는 보통 어때요?",o:["더워요","추워요","시원해요","춥겠어요"],a:0},
+  {q:"'우비'의 뜻은?",o:["raincoat","umbrella","boots","hat"],a:0},
+  {q:"'폭염'의 뜻은?",o:["heat wave","cold wave","typhoon","rain"],a:0},
+  {q:"'비가 오면 우산을 가져가세요'에서 '~면'은?",o:["if/when","but","and","because"],a:0},
+  {q:"'춥겠어요'의 뜻은?",o:["It will be cold","It was cold","It is cold","I like cold"],a:0},
+  {q:"'장마'의 뜻은?",o:["monsoon/rainy season","winter","typhoon","snow"],a:0},
+  {q:"'맑다'의 뜻은?",o:["clear/sunny","cloudy","rainy","windy"],a:0},
+  {q:"'미세먼지'의 뜻은?",o:["fine dust","rain","fog","snow"],a:0},
+  {q:"'바람이 불다'의 뜻은?",o:["wind blows","rain falls","snow falls","sun shines"],a:0},
+  {q:"야외 작업 중 비가 오면 어떻게 해요?",o:["작업을 중지해요","계속 일해요","집에 가요","잠을 자요"],a:0},
 
   // 한국의 성장 원동력 퀴즈
-  {q:"한국의 고속철도 이름은?",o:["KTX","TGV","신칸센","ICE"],a:0},
-  {q:"인천공항은 세계 최고 공항 몇 년 연속 1위?",o:["12년","5년","3년","1년"],a:0},
-  {q:"거가대교는 어디와 어디를 연결해요?",o:["거제와 부산","서울과 부산","인천과 서울","울산과 부산"],a:0},
+  {q:"삼성전자가 세계 1위인 분야는?",o:["메모리 반도체","자동차","비행기","음식"],a:0},
+  {q:"현대·기아 자동차는 세계 몇 위예요?",o:["Top 3","Top 10","Top 20","Top 50"],a:0},
+  {q:"한국의 전기차 브랜드가 아닌 것은?",o:["토요타","현대 아이오닉","기아 EV6","제네시스"],a:0},
 ];
 
 const CULTURE = [
-  {icon:"👆",t:"가리키기 예절",eng:"Pointing Etiquette",d:"한국에서는 손가락으로 사람을 가리키지 않습니다. 물건을 가리킬 때는 괜찮지만, 사람을 가리킬 때는 손바닥 전체를 사용하는 것이 예의입니다.",de:"Don't point at people with your finger in Korea. It's fine for objects, but for people, use your whole palm."},
-  {icon:"🎁",t:"물건 주고받기",eng:"Giving & Receiving Things",d:"윗사람에게 물건을 줄 때나 받을 때는 두 손을 사용합니다. 한 손으로 주고받는 것은 예의에 어긋납니다. 조선소에서 도구를 전달할 때도 두 손을 사용하면 좋습니다.",de:"Use both hands when giving/receiving items to/from seniors. One hand is impolite. Use both hands when passing tools at the shipyard."},
-  {icon:"🏷️",t:"소유물 표시",eng:"Marking Belongings",d:"조선소에서는 개인 도구와 장비에 이름을 적어 놓습니다. '이것은 제 거예요'라고 말할 수 있어야 합니다. 특히 안전 장비는 개인 것을 사용해야 합니다.",de:"At the shipyard, write your name on personal tools. You should be able to say 'This is mine.' Use your own safety equipment."},
-  {icon:"🔧",t:"도구 관리 문화",eng:"Tool Management Culture",d:"한국 조선소에서는 도구를 정리정돈하는 것을 매우 중요하게 생각합니다. 작업 후에는 반드시 도구를 제자리에 놓아야 합니다. '5S 활동'이 일반적입니다.",de:"Korean shipyards emphasize tool organization. Always return tools after use. '5S activities' (Sort, Set, Shine, Standardize, Sustain) are common."},
-  {icon:"📋",t:"도면 읽기 문화",eng:"Blueprint Reading Culture",d:"조선소에서 도면을 읽는 것은 매우 중요합니다. '이 도면 좀 보세요'라는 표현을 자주 사용합니다. 도면에 표시된 숫자와 기호를 이해해야 합니다.",de:"Reading blueprints is crucial at the shipyard. 'Please look at this drawing' is commonly used. Understanding numbers and symbols on blueprints is essential."},
-  {icon:"🏗️",t:"작업장 구역 이름",eng:"Work Area Names",d:"조선소는 여러 구역으로 나뉘어 있습니다. 도크, 탑재장, 도장실, 자재창고 등 각 구역의 이름을 알아야 합니다. '저것은 도크예요', '이것은 탑재장이에요'처럼 사용합니다.",de:"The shipyard is divided into zones: dock, erection site, painting room, warehouse, etc. Know each area name and use them like 'That is the dock.'"},
+  {icon:"🌸",t:"한국의 사계절",eng:"Korea's Four Seasons",d:"한국은 봄(3~5월), 여름(6~8월), 가을(9~11월), 겨울(12~2월) 네 계절이 뚜렷해요. 각 계절마다 날씨와 풍경이 아주 달라요.",de:"Korea has four distinct seasons: spring (Mar-May), summer (Jun-Aug), autumn (Sep-Nov), winter (Dec-Feb). Weather and scenery change dramatically each season."},
+  {icon:"🌧️",t:"장마와 태풍",eng:"Monsoon & Typhoon Season",d:"6~7월에 장마가 있어요. 비가 매일 많이 와요. 8~9월에는 태풍이 올 수 있어요. 조선소에서는 태풍 때 작업을 중지하고 안전한 곳으로 대피해요.",de:"Monsoon is in June-July with heavy daily rain. Typhoons may come in Aug-Sep. The shipyard stops work during typhoons and evacuates to safe areas."},
+  {icon:"☀️",t:"폭염과 야외 작업",eng:"Heat Waves & Outdoor Work",d:"여름에 35도 이상이면 폭염 주의보예요. 조선소에서는 야외 작업 시간을 조정하고, 쉬는 시간을 늘려요. 물을 자주 마시고, 그늘에서 쉬세요!",de:"Above 35°C triggers a heat wave warning. The shipyard adjusts outdoor work hours and increases break time. Drink water often and rest in shade!"},
+  {icon:"❄️",t:"겨울과 한파",eng:"Winter & Cold Waves",d:"거제도 겨울은 서울보다 따뜻하지만 바다 바람이 차가워요. 열대 지방에서 온 근로자는 특히 추울 수 있어요. 패딩, 장갑, 목도리를 준비하세요!",de:"Geoje winters are warmer than Seoul but the sea wind is cold. Workers from tropical countries may feel especially cold. Prepare padded jackets, gloves, and scarves!"},
+  {icon:"😷",t:"미세먼지",eng:"Fine Dust (PM2.5)",d:"봄에 미세먼지가 심할 수 있어요. 마스크(KF94)를 꼭 쓰세요. 미세먼지 앱으로 오늘 공기 상태를 확인할 수 있어요. '나쁨' 이상이면 야외 활동을 줄이세요.",de:"Fine dust can be severe in spring. Wear KF94 masks. Check air quality with a fine dust app. If it's 'bad' or worse, reduce outdoor activities."},
+  {icon:"🌊",t:"거제도의 날씨 특성",eng:"Geoje's Weather Features",d:"거제도는 바닷가라서 바람이 자주 불어요. 여름에 습하고 더워요. 겨울에는 눈이 적지만 바람이 매서워요. 가을이 가장 쾌적하고 아름다워요!",de:"Geoje is coastal so it's often windy. Summers are humid and hot. Winters have little snow but harsh winds. Autumn is the most pleasant and beautiful!"},
 ];
 
 const LOCAL_INFO = {
-  title: "한국의 성장 원동력: 인프라 강국",
-  eng: "Korea's Growth Engine: Infrastructure",
+  title: "한국의 성장 원동력: 반도체 & 자동차",
+  eng: "Korea's Growth Engine: Semiconductor & Automobile",
   facts: [
-    {label:"KTX 고속철도 KTX",val:"서울↔부산 2시간 15분, 시속 305km"},
-    {label:"인천공항 Incheon Airport",val:"세계 최고 공항 12년 연속 1위"},
-    {label:"고속도로 Expressway",val:"전국 4,800km+, 빠른 물류 네트워크"},
-    {label:"5G 통신 5G Network",val:"세계 최초 상용화 (2019)"},
-    {label:"거가대교 Geoga Bridge",val:"거제↔부산 연결, 8.2km 해저터널"},
-    {label:"스마트시티 Smart City",val:"세종시·송도, 미래형 도시 모델"},
-    {label:"건설 수출 Construction Export",val:"중동·동남아 건설 프로젝트 선도"},
+    {label:"삼성전자 Samsung Electronics",val:"메모리 반도체 세계 1위"},
+    {label:"SK하이닉스 SK Hynix",val:"DRAM·NAND 세계 2위"},
+    {label:"현대자동차 Hyundai Motor",val:"글로벌 판매 Top 3"},
+    {label:"기아 KIA",val:"디자인 혁신, 글로벌 인기"},
+    {label:"전기차 EV",val:"현대 아이오닉·기아 EV6, 세계 주목"},
+    {label:"배터리 Battery",val:"LG·삼성SDI·SK온, 세계 시장 선도"},
+    {label:"수출 효자 Export Champions",val:"반도체+자동차 = 수출 40%+"},
   ],
-  desc: "한국의 인프라는 세계 최고 수준이에요! KTX로 서울에서 부산까지 2시간 15분이면 가요. 인천공항은 12년 연속 세계 최고 공항으로 선정됐어요. 거가대교는 거제에서 부산까지 바다 밑 터널로 연결해요. 한국의 건설 회사들은 중동과 동남아시아에서도 큰 프로젝트를 하고 있어요!",
-  descEng: "Korea's infrastructure is world-class! KTX takes just 2h15m from Seoul to Busan. Incheon Airport was named world's best for 12 consecutive years. The Geoga Bridge connects Geoje to Busan via undersea tunnel. Korean construction companies lead major projects in the Middle East and Southeast Asia!"
+  desc: "한국의 반도체와 자동차 산업은 세계 최고 수준이에요! 삼성전자는 메모리 반도체 세계 1위, SK하이닉스도 세계 2위예요. 현대·기아 자동차는 글로벌 Top 3에요. 전기차(EV)와 배터리 분야에서도 세계를 이끌고 있어요. 반도체와 자동차가 한국 수출의 40% 이상을 차지해요!",
+  descEng: "Korea's semiconductor and automobile industries are world-class! Samsung Electronics is #1 in memory semiconductors, SK Hynix is #2. Hyundai-Kia is a global top 3 automaker. Korea also leads in electric vehicles (EVs) and batteries. Semiconductors and automobiles account for over 40% of Korea's exports!"
 };
 
-
-
-// HANGUL DATA (Level 0 — 2과: 기본 자음과 모음)
+// HANGUL DATA (Level 0 — 8과: 발음 규칙)
 const HANGUL_CONSONANTS = [
-  {char:"ㄱ",rom:"g/k",name:"기역"},{char:"ㄴ",rom:"n",name:"니은"},{char:"ㄷ",rom:"d/t",name:"디귿"},
-  {char:"ㄹ",rom:"r/l",name:"리을"},{char:"ㅁ",rom:"m",name:"미음"},{char:"ㅂ",rom:"b/p",name:"비읍"},
-  {char:"ㅅ",rom:"s",name:"시옷"},{char:"ㅇ",rom:"ng/silent",name:"이응"},{char:"ㅈ",rom:"j",name:"지읒"},
-  {char:"ㅊ",rom:"ch",name:"치읓"},{char:"ㅋ",rom:"k",name:"키읔"},{char:"ㅌ",rom:"t",name:"티읕"},
-  {char:"ㅍ",rom:"p",name:"피읖"},{char:"ㅎ",rom:"h",name:"히읗"},
+  {char:"음악 →",rom:"eu-mak",name:"[으막] 연음X"},{char:"음악을 →",rom:"eu-ma-geul",name:"[으마글] 연음O"},
+  {char:"한국어 →",rom:"han-gu-geo",name:"[한구거] 연음"},{char:"같이 →",rom:"ga-chi",name:"[가치] 구개음화"},
+  {char:"국물 →",rom:"gung-mul",name:"[궁물] 비음화"},{char:"합니다 →",rom:"ham-ni-da",name:"[함니다] 비음화"},
+  {char:"학교 →",rom:"hak-gyo",name:"[학꾜] 경음화"},{char:"입구 →",rom:"ip-gu",name:"[입꾸] 경음화"},
+  {char:"숙제 →",rom:"suk-je",name:"[숙쩨] 경음화"},{char:"먹다 →",rom:"meok-da",name:"[먹따] 경음화"},
+  {char:"놓다 →",rom:"not-da",name:"[노타] ㅎ탈락"},{char:"좋아 →",rom:"jo-a",name:"[조아] ㅎ탈락"},
 ];
 const HANGUL_VOWELS = [
-  {char:"ㅏ",rom:"a"},{char:"ㅓ",rom:"eo"},{char:"ㅗ",rom:"o"},{char:"ㅜ",rom:"u"},
-  {char:"ㅡ",rom:"eu"},{char:"ㅣ",rom:"i"},{char:"ㅐ",rom:"ae"},{char:"ㅔ",rom:"e"},
-  {char:"ㅑ",rom:"ya"},{char:"ㅕ",rom:"yeo"},{char:"ㅛ",rom:"yo"},{char:"ㅠ",rom:"yu"},
+  {char:"연음",rom:"yeon-eum",name:"Linking: 받침→다음 모음"},{char:"경음화",rom:"gyeong-eum-hwa",name:"Tensing: ㄱ+ㄱ→ㄱㄲ"},
+  {char:"비음화",rom:"bi-eum-hwa",name:"Nasalization: ㄱ→ㅇ before ㄴ"},{char:"구개음화",rom:"gu-gae-eum-hwa",name:"Palatalization: ㄷ+이→지"},
+  {char:"ㅎ탈락",rom:"h-tal-lak",name:"H-drop: ㅎ+모음→사라짐"},
+  {char:"있어요 →",rom:"[이써요]",name:"연음+경음"},{char:"없어요 →",rom:"[업써요]",name:"연음+경음"},
+  {char:"읽어요 →",rom:"[일거요]",name:"연음"},{char:"앉아요 →",rom:"[안자요]",name:"연음"},
+  {char:"닫히다 →",rom:"[다치다]",name:"구개음화"},{char:"맞히다 →",rom:"[마치다]",name:"구개음화"},
+  {char:"놓여요 →",rom:"[노여요]",name:"ㅎ탈락"},
 ];
 const HANGUL_PRACTICE = [
-  {char:"아",rom:"a",name:"ㅇ+ㅏ"},{char:"이",rom:"i",name:"ㅇ+ㅣ"},
-  {char:"우",rom:"u",name:"ㅇ+ㅜ"},{char:"오",rom:"o",name:"ㅇ+ㅗ"},
-  {char:"어",rom:"eo",name:"ㅇ+ㅓ"},{char:"으",rom:"eu",name:"ㅇ+ㅡ"},
-  {char:"야",rom:"ya",name:"ㅇ+ㅑ"},{char:"여",rom:"yeo",name:"ㅇ+ㅕ"},
-  {char:"요",rom:"yo",name:"ㅇ+ㅛ"},{char:"유",rom:"yu",name:"ㅇ+ㅠ"},
+  {char:"감사합니다",rom:"gam-sa-ham-ni-da",name:"[감사함니다] 비음화"},{char:"먹었어요",rom:"meo-geo-sseo-yo",name:"[머거써요] 연음"},
+  {char:"작년",rom:"jak-nyeon",name:"[장년] 비음화"},{char:"십만",rom:"sim-man",name:"[심만] 비음화"},
+  {char:"축하",rom:"chu-ka",name:"[추카] ㅎ영향"},{char:"못해요",rom:"mo-tae-yo",name:"[모태요] ㅎ영향"},
+  {char:"좋겠다",rom:"jot-get-da",name:"[조겓따] 경음화"},{char:"있다",rom:"it-da",name:"[읻따] 경음화"},
+  {char:"집에",rom:"ji-be",name:"[지베] 연음"},{char:"옷을",rom:"o-seul",name:"[오슬] 연음"},
 ];
 const SAFETY_WORDS = [
-  {kor:"위험",eng:"Danger",rom:"wi-heom"},{kor:"주의",eng:"Caution",rom:"ju-ui"},
-  {kor:"금지",eng:"Prohibited",rom:"geum-ji"},{kor:"착용",eng:"Wear/Put on",rom:"chag-yong"},
-  {kor:"대피",eng:"Evacuate",rom:"dae-pi"},{kor:"출입금지",eng:"No Entry",rom:"chul-ip-geum-ji"},
-  {kor:"흡연금지",eng:"No Smoking",rom:"heub-yeon-geum-ji"},{kor:"안전모 착용",eng:"Wear Helmet",rom:"an-jeon-mo chag-yong"},
-  {kor:"비상구",eng:"Emergency Exit",rom:"bi-sang-gu"},{kor:"소화기",eng:"Fire Extinguisher",rom:"so-hwa-gi"},
-  {kor:"응급처치",eng:"First Aid",rom:"eung-geup-cheo-chi"},{kor:"보호구 착용",eng:"Wear PPE",rom:"bo-ho-gu chag-yong"},
+  {kor:"위험 [위험]",eng:"Danger",rom:"wi-heom"},{kor:"주의 [주의]",eng:"Caution",rom:"ju-ui"},
+  {kor:"접근금지 [접근금지]",eng:"Keep Away",rom:"jeop-geun-geum-ji"},
+  {kor:"작업중 [자겁쭝]",eng:"Work In Progress",rom:"ja-geop-jjung"},
+  {kor:"금지 [금지]",eng:"Prohibited",rom:"geum-ji"},{kor:"착용 [차굥]",eng:"Wear",rom:"cha-gyong"},
+  {kor:"대피 [대피]",eng:"Evacuate",rom:"dae-pi"},{kor:"출입금지 [추립끔지]",eng:"No Entry",rom:"chu-rip-kkeum-ji"},
+  {kor:"비상구 [비상구]",eng:"Emergency Exit",rom:"bi-sang-gu"},{kor:"안전모 착용 [안전모차굥]",eng:"Wear Helmet",rom:"an-jeon-mo-cha-gyong"},
+  {kor:"응급처치 [응급처치]",eng:"First Aid",rom:"eung-geup-cheo-chi"},{kor:"보호구 착용 [보호구차굥]",eng:"Wear PPE",rom:"bo-ho-gu-cha-gyong"},
 ];
-const HANGUL_TABS = ['자음 Consonants','모음 Vowels','연습 Practice','안전 단어 Safety'];
-const HANGUL_SUBTITLE = "Learn Hangul · 기본 자음과 모음";
+const HANGUL_TABS = ['발음 규칙 Rules','규칙 예시 Examples','연습 Practice','안전 단어 Safety'];
+const HANGUL_SUBTITLE = "Learn Hangul · 발음 규칙";
 
-
+// ===== READING PASSAGES =====
+const READING_PASSAGES = [
+  {title:"거제의 여름 날씨",eng:"Summer Weather in Geoje",
+   text:"여름에 거제도는 아주 더워요.\n기온이 삼십오 도까지 올라가요.\n습도도 높아서 땀이 많이 나요.\n조선소에서 야외 작업이 힘들어요.\n쉬는 시간에 물을 많이 마셔요.\n그늘에서 쉬기도 해요.\n장마철에는 비가 매일 와요.\n우비하고 장화를 준비하세요!",
+   textEng:"In summer, Geoje is very hot.\nTemperatures go up to 35 degrees.\nHumidity is high so you sweat a lot.\nOutdoor work at the shipyard is hard.\nDuring breaks, we drink lots of water.\nWe also rest in the shade.\nDuring monsoon, it rains every day.\nPrepare raincoats and rain boots!",
+   questions:[
+     {q:"여름에 거제도 기온은?",a:"삼십오 도까지",ae:"Up to 35 degrees"},
+     {q:"장마철에는 어때요?",a:"비가 매일 와요",ae:"It rains every day"},
+     {q:"야외 작업이 왜 힘들어요?",a:"덥고 습해서",ae:"Because it's hot and humid"},
+   ]},
+  {title:"후엔의 겨울 경험",eng:"Huen's Winter Experience",
+   text:"후엔 씨는 베트남에서 왔어요.\n베트남은 겨울에도 따뜻해요.\n한국 겨울은 처음이에요.\n십이월에 기온이 영하로 내려갔어요.\n바람이 너무 차가웠어요.\n패딩하고 장갑을 샀어요.\n동료가 목도리를 선물해 줬어요.\n한국 겨울은 춥지만 눈이 예뻐요!",
+   textEng:"Huen came from Vietnam.\nVietnam is warm even in winter.\nThis is his first Korean winter.\nIn December, temperatures dropped below zero.\nThe wind was very cold.\nHe bought a padded jacket and gloves.\nA colleague gave him a scarf as a gift.\nKorean winter is cold but snow is beautiful!",
+   questions:[
+     {q:"후엔 씨는 어디에서 왔어요?",a:"베트남",ae:"Vietnam"},
+     {q:"십이월 기온은 어땠어요?",a:"영하로 내려갔어요",ae:"Dropped below zero"},
+     {q:"동료가 뭘 선물해 줬어요?",a:"목도리",ae:"A scarf"},
+   ]},
+];
 
 // ===== FOLKTALE DATA (40 sentences) =====
 const FOLKTALE = {
-  title: "흥부와 놀부 (2)",
-  eng: "Heungbu and Nolbu — Expanded Edition",
-  desc: "착한 동생 흥부와 욕심 많은 형 놀부의 이야기입니다. 확장판 40문장!",
-  descEng: "The tale of kind Heungbu and greedy Nolbu. Expanded 40 sentences!",
+  title: "해님 달님",
+  eng: "The Sun and the Moon",
+  desc: "호랑이에게 쫓기던 남매가 해와 달이 된 이야기입니다.",
+  descEng: "The story of siblings who became the sun and moon while fleeing a tiger.",
   sentences: [
-    {kor:"옛날 옛적에 어느 마을에 형제가 살았어요.",eng:"Once upon a time, two brothers lived in a village."},
-    {kor:"형의 이름은 놀부이고, 동생의 이름은 흥부예요.",eng:"The older brother's name was Nolbu, and the younger brother's name was Heungbu."},
-    {kor:"놀부는 욕심이 많고 마음이 나쁜 사람이었어요.",eng:"Nolbu was a greedy and mean-hearted person."},
-    {kor:"흥부는 마음이 착하고 부지런한 사람이었어요.",eng:"Heungbu was a kind-hearted and hardworking person."},
-    {kor:"두 형제의 아버지는 부자였어요.",eng:"The two brothers' father was a wealthy man."},
-    {kor:"아버지가 돌아가신 후, 놀부는 재산을 혼자 차지했어요.",eng:"After their father passed away, Nolbu took all the wealth for himself."},
-    {kor:"놀부는 흥부의 가족을 집에서 내쫓았어요.",eng:"Nolbu kicked Heungbu's family out of the house."},
-    {kor:"흥부는 슬펐지만 화를 내지 않았어요.",eng:"Heungbu was sad but did not get angry."},
-    {kor:"흥부는 가족과 함께 산 아래 작은 집에서 살았어요.",eng:"Heungbu lived with his family in a small house at the foot of a mountain."},
-    {kor:"흥부의 가족은 매우 가난해서 밥을 못 먹는 날도 많았어요.",eng:"Heungbu's family was so poor that there were many days they couldn't eat."},
-    {kor:"어느 따뜻한 봄날이었어요.",eng:"It was a warm spring day."},
-    {kor:"제비 한 마리가 흥부의 집 처마 밑에 둥지를 만들었어요.",eng:"A swallow built a nest under the eaves of Heungbu's house."},
-    {kor:"어느 날, 큰 뱀이 제비의 둥지를 향해 올라갔어요.",eng:"One day, a big snake climbed up toward the swallow's nest."},
-    {kor:"흥부는 뱀을 발견하고 막대기로 쫓아냈어요.",eng:"Heungbu spotted the snake and chased it away with a stick."},
-    {kor:"그런데 제비 한 마리가 둥지에서 떨어졌어요.",eng:"But one swallow had fallen from the nest."},
-    {kor:"제비의 다리가 부러져 있었어요.",eng:"The swallow's leg was broken."},
-    {kor:"흥부는 정성스럽게 제비의 다리를 치료해 주었어요.",eng:"Heungbu carefully treated the swallow's broken leg."},
-    {kor:"여름이 지나고 가을이 왔어요.",eng:"Summer passed and autumn came."},
-    {kor:"제비는 건강하게 나아서 따뜻한 남쪽 나라로 떠났어요.",eng:"The swallow recovered and flew to a warm southern country."},
-    {kor:"다음 해 봄, 그 제비가 다시 돌아왔어요!",eng:"The following spring, that swallow came back!"},
-    {kor:"제비는 입에 박씨 하나를 물고 왔어요.",eng:"The swallow carried a gourd seed in its beak."},
-    {kor:"흥부는 고마운 마음으로 박씨를 마당에 심었어요.",eng:"With gratitude, Heungbu planted the gourd seed in the yard."},
-    {kor:"박 넝쿨이 자라서 큰 박이 세 개 열렸어요.",eng:"The vine grew and three big gourds appeared."},
-    {kor:"흥부가 첫 번째 박을 톱으로 잘랐어요.",eng:"Heungbu cut the first gourd with a saw."},
-    {kor:"박 안에서 금은보화가 쏟아져 나왔어요!",eng:"Gold and jewels poured out of the gourd!"},
-    {kor:"두 번째 박에서는 좋은 집과 땅이 나왔어요.",eng:"From the second gourd, a fine house and land appeared."},
-    {kor:"세 번째 박에서는 하인들이 나와서 도와주었어요.",eng:"From the third gourd, servants came out to help."},
-    {kor:"흥부의 가족은 하루아침에 부자가 되었어요!",eng:"Heungbu's family became wealthy overnight!"},
-    {kor:"이 소식을 들은 놀부는 배가 아팠어요.",eng:"Nolbu was consumed with jealousy when he heard the news."},
-    {kor:"놀부도 제비를 잡아서 일부러 다리를 부러뜨리고 치료해 주었어요.",eng:"Nolbu caught a swallow, deliberately broke its leg, and treated it."},
-    {kor:"다음 해 봄, 그 제비도 놀부에게 박씨를 가져왔어요.",eng:"The next spring, that swallow also brought a gourd seed to Nolbu."},
-    {kor:"놀부는 크게 웃으며 박씨를 심었어요.",eng:"Nolbu planted the seed with a big grin."},
-    {kor:"박이 크게 자라서 놀부가 신나게 박을 잘랐어요.",eng:"The gourd grew big, and Nolbu excitedly cut it open."},
-    {kor:"그런데 박 안에서 무서운 도깨비들이 나왔어요!",eng:"But scary goblins came out of the gourd!"},
-    {kor:"도깨비들이 놀부의 집과 재산을 모두 부수고 가져갔어요.",eng:"The goblins destroyed Nolbu's house and took all his wealth."},
-    {kor:"놀부는 하루아침에 거지가 되어 흥부를 찾아갔어요.",eng:"Nolbu became a beggar overnight and went to find Heungbu."},
-    {kor:"놀부는 울면서 흥부에게 용서를 빌었어요.",eng:"Nolbu begged Heungbu for forgiveness in tears."},
-    {kor:"착한 흥부는 형을 용서하고 함께 살자고 했어요.",eng:"Kind Heungbu forgave his brother and invited him to live together."},
-    {kor:"놀부는 자신의 잘못을 깊이 뉘우쳤어요.",eng:"Nolbu deeply repented for his wrongs."},
-    {kor:"그 후로 두 형제는 서로 도우며 행복하게 살았어요.",eng:"From then on, the two brothers helped each other and lived happily."},
-  ],
+    {kor:"옛날에 가난한 어머니가 살았어요.",eng:"Once upon a time, a poor mother lived."},
+    {kor:"어머니에게는 오빠와 여동생이 있었어요.",eng:"The mother had a son and a daughter."},
+    {kor:"어느 날 어머니가 시장에서 떡을 팔고 돌아왔어요.",eng:"One day, the mother sold rice cakes at the market and came back."},
+    {kor:"산길에서 호랑이를 만났어요.",eng:"She met a tiger on the mountain path."},
+    {kor:"호랑이가 말했어요. '떡 하나 주면 안 잡아먹지!'",eng:"The tiger said, 'Give me a rice cake and I won't eat you!'"},
+    {kor:"어머니는 떡을 하나 줬어요.",eng:"The mother gave one rice cake."},
+    {kor:"호랑이가 또 나타났어요. '떡 하나 더 줘!'",eng:"The tiger appeared again. 'Give me one more!'"},
+    {kor:"떡을 다 줬는데 호랑이가 또 나타났어요.",eng:"She gave all the rice cakes but the tiger appeared again."},
+    {kor:"이번에는 어머니를 잡아먹었어요.",eng:"This time, it ate the mother."},
+    {kor:"호랑이는 어머니 옷을 입고 집으로 갔어요.",eng:"The tiger wore the mother's clothes and went to the house."},
+    {kor:"'얘들아, 엄마 왔다!'",eng:"'Children, mommy's home!'"},
+    {kor:"오빠가 말했어요. '엄마 목소리가 이상해요.'",eng:"The brother said, 'Mom's voice sounds strange.'"},
+    {kor:"여동생이 말했어요. '엄마 손을 보여 주세요.'",eng:"The sister said, 'Show us your hands.'"},
+    {kor:"호랑이의 털이 보였어요!",eng:"They saw the tiger's fur!"},
+    {kor:"오빠와 여동생은 뒷문으로 도망갔어요.",eng:"The brother and sister ran out the back door."},
+    {kor:"높은 나무 위로 올라갔어요.",eng:"They climbed up a tall tree."},
+    {kor:"호랑이가 쫓아왔어요.",eng:"The tiger chased after them."},
+    {kor:"호랑이도 나무를 올라가려고 했어요.",eng:"The tiger tried to climb the tree too."},
+    {kor:"오빠와 여동생이 하늘에 빌었어요.",eng:"The brother and sister prayed to the sky."},
+    {kor:"'하느님, 우리를 살려 주세요!'",eng:"'God, please save us!'"},
+    {kor:"하늘에서 동아줄이 내려왔어요.",eng:"A rope came down from the sky."},
+    {kor:"오빠와 여동생이 동아줄을 잡고 올라갔어요.",eng:"The siblings grabbed the rope and climbed up."},
+    {kor:"호랑이도 빌었어요. '나도 줄을 내려 줘!'",eng:"The tiger also prayed. 'Give me a rope too!'"},
+    {kor:"썩은 줄이 내려왔어요.",eng:"A rotten rope came down."},
+    {kor:"호랑이가 올라가다가 줄이 끊어졌어요!",eng:"The tiger was climbing but the rope broke!"},
+    {kor:"호랑이는 떨어져서 죽었어요.",eng:"The tiger fell and died."},
+    {kor:"오빠와 여동생은 하늘나라에 갔어요.",eng:"The brother and sister went to heaven."},
+    {kor:"오빠는 해가 되었어요.",eng:"The brother became the sun."},
+    {kor:"여동생은 달이 되었어요.",eng:"The sister became the moon."},
+    {kor:"처음에 여동생이 해가 되었어요.",eng:"At first, the sister became the sun."},
+    {kor:"하지만 밤이 무서웠어요.",eng:"But she was afraid of the night."},
+    {kor:"그래서 오빠가 해가 되고 여동생이 달이 되었어요.",eng:"So the brother became the sun and the sister became the moon."},
+    {kor:"해님은 낮에 세상을 밝혀요.",eng:"The sun brightens the world during the day."},
+    {kor:"달님은 밤에 세상을 밝혀요.",eng:"The moon brightens the world at night."},
+    {kor:"오빠와 여동생은 영원히 하늘에서 살았어요.",eng:"The siblings lived in the sky forever."},
+    {kor:"사람들은 해와 달을 보며 감사했어요.",eng:"People looked at the sun and moon with gratitude."},
+    {kor:"이 이야기는 한국에서 아주 유명해요.",eng:"This story is very famous in Korea."},
+    {kor:"용기를 가지면 위험에서 벗어날 수 있어요.",eng:"With courage, you can escape from danger."},
+    {kor:"서로 도우면 어려움을 이길 수 있어요.",eng:"If we help each other, we can overcome difficulties."},
+    {kor:"해님 달님 이야기를 기억하세요!",eng:"Remember the Sun and Moon story!"},
+  ]
 };
 
 const FOLKTALE_QUIZ = [
-  {q:"흥부와 놀부 중 형은 누구예요?",o:["흥부","놀부","제비","도깨비"],a:1},
-  {q:"흥부는 어떤 사람이에요?",o:["욕심이 많아요","마음이 나빠요","마음이 착해요","부자예요"],a:2},
-  {q:"놀부는 흥부에게 뭘 줬어요?",o:["돈을 줬어요","집을 줬어요","아무것도 안 줬어요","음식을 줬어요"],a:2},
-  {q:"흥부가 구해 준 동물은 뭐예요?",o:["강아지","고양이","제비","토끼"],a:2},
-  {q:"뱀을 어떻게 쫓아냈어요?",o:["돌로","막대기로","손으로","물로"],a:1},
-  {q:"제비의 어디가 부러졌어요?",o:["날개","다리","부리","꼬리"],a:1},
-  {q:"제비가 가져온 것은 뭐예요?",o:["금","박씨","쌀","돈"],a:1},
-  {q:"흥부의 박은 몇 개 열렸어요?",o:["한 개","두 개","세 개","네 개"],a:2},
-  {q:"첫 번째 박에서 뭐가 나왔어요?",o:["집","도깨비","금은보화","하인"],a:2},
-  {q:"두 번째 박에서 뭐가 나왔어요?",o:["금은보화","좋은 집과 땅","도깨비","음식"],a:1},
-  {q:"놀부는 제비 다리를 어떻게 했어요?",o:["치료해 줬어요","일부러 부러뜨렸어요","A와 B 모두","아무것도 안 했어요"],a:2},
-  {q:"놀부의 박 안에서 뭐가 나왔어요?",o:["금은보화","꽃","도깨비","새"],a:2},
-  {q:"놀부는 도깨비 때문에 어떻게 됐어요?",o:["부자가 됐어요","거지가 됐어요","왕이 됐어요","도망갔어요"],a:1},
-  {q:"흥부는 놀부를 어떻게 했어요?",o:["쫓아냈어요","용서했어요","싸웠어요","무시했어요"],a:1},
-  {q:"이야기의 교훈(lesson)은 뭐예요?",o:["돈이 제일 중요해요","착하게 살면 복을 받아요","욕심이 좋아요","형이 항상 맞아요"],a:1},
+  {q:"어머니는 시장에서 뭘 팔았어요?",o:["떡","생선","옷","과일"],a:0},
+  {q:"산길에서 누구를 만났어요?",o:["호랑이","토끼","곰","여우"],a:0},
+  {q:"호랑이는 뭘 달라고 했어요?",o:["떡","돈","옷","물"],a:0},
+  {q:"호랑이는 어머니 옷을 입고 어디로 갔어요?",o:["집","시장","산","강"],a:0},
+  {q:"아이들은 호랑이를 어떻게 알았어요?",o:["털을 보고","목소리를 듣고","냄새를 맡고","발자국을 보고"],a:0},
+  {q:"아이들은 어디로 도망갔어요?",o:["나무 위","집 안","산","강"],a:0},
+  {q:"하늘에서 뭐가 내려왔어요?",o:["동아줄","사다리","구름","비"],a:0},
+  {q:"호랑이에게 내려온 줄은?",o:["썩은 줄","튼튼한 줄","금 줄","은 줄"],a:0},
+  {q:"호랑이는 어떻게 됐어요?",o:["떨어져서 죽었어요","하늘에 갔어요","도망갔어요","잠들었어요"],a:0},
+  {q:"오빠는 뭐가 되었어요?",o:["해","달","별","구름"],a:0},
+  {q:"여동생은 뭐가 되었어요?",o:["달","해","별","바람"],a:0},
+  {q:"처음에 해가 된 사람은?",o:["여동생","오빠","어머니","호랑이"],a:0},
+  {q:"여동생이 왜 달이 되었어요?",o:["밤이 무서워서","낮이 싫어서","달이 예뻐서","오빠가 부탁해서"],a:0},
+  {q:"이 이야기의 교훈은?",o:["용기를 가지면 위험에서 벗어날 수 있다","호랑이를 믿어라","혼자 다녀라","떡을 만들지 마라"],a:0},
+  {q:"해님 달님 이야기는 한국에서 어때요?",o:["아주 유명해요","모르는 사람이 많아요","새 이야기예요","외국 이야기예요"],a:0},
 ];
-
-
 
 const REVIEW_DATA = {
   preview: {
@@ -415,44 +402,25 @@ const REVIEW_DATA = {
     desc: "다음에 배울 내용을 미리 살펴보세요.",
     descEng: "Preview what you will learn next.",
     items: [
-      {label:"3과 주제",val:"여기가 어디예요? · Where is this place?",detail:"장소를 묻고 답하는 표현을 배웁니다."},
-      {label:"핵심 어휘",val:"어디, 여기, 거기, 저기, 위, 아래, 앞, 뒤",detail:"where, here, there, over there, up, down, front, back"},
-      {label:"핵심 문법",val:"여기/거기/저기 + 이에요/예요, 명사 + 에",detail:"Location expressions, Location particle"},
-      {label:"조선소 어휘",val:"사무실, 식당, 화장실, 의무실, 교육장",detail:"office, cafeteria, restroom, infirmary, training room"},
+      {label:"9과 주제",val:"어디가 아파요? · Where does it hurt?",detail:"병원·약국·건강 표현을 배웁니다."},
+      {label:"핵심 어휘",val:"머리, 배, 목, 열, 감기, 병원",detail:"head, stomach, throat, fever, cold, hospital"},
+      {label:"핵심 문법",val:"~아/어서, ~(으)ㄹ 때, ~지 마세요",detail:"because, when, don't"},
+      {label:"조선소 어휘",val:"응급실, 의무실, 산업재해, 보험",detail:"ER, infirmary, industrial accident, insurance"},
     ]
   },
   review: {
     title: "복습 · Review",
-    desc: "2과에서 배운 내용을 확인하세요.",
-    descEng: "Check what you learned in Lesson 2.",
+    desc: "8과에서 배운 내용을 확인하세요.",
+    descEng: "Check what you learned in Lesson 8.",
     sections: [
-      {title:"핵심 지시대명사",icon:"👆",items:["이것 (this)","그것 (that, near listener)","저것 (that, far away)","이것은 뭐예요? (What is this?)"]},
-      {title:"핵심 문법 공식",icon:"📐",items:["이것/그것/저것 + 은 → 이것은, 그것은, 저것은","받침O + 이에요 → 책이에요, 가방이에요","받침X + 예요 → 시계예요, 의자예요","이/그/저 + 명사 → 이 책, 그 가방, 저 건물"]},
-      {title:"사물 묻고 답하기 패턴",icon:"🎤",items:["이것은 뭐예요? → ___이에요/예요.","그것은 ___이에요/예요.","저것은 ___이에요/예요.","이것은 제 거예요. (This is mine.)","이 도구는 ___이에요/예요."]},
-      {title:"조선소 필수 도구",icon:"🔧",items:["용접기 welding machine","그라인더 grinder","크레인 crane","드릴 drill","렌치 wrench","망치 hammer","도면 blueprint"]},
+      {title:"날씨 어휘",icon:"🌤️",items:["덥다/춥다/따뜻하다/시원하다","비/눈/바람/구름","맑다/흐리다/비가 오다","봄/여름/가을/겨울"]},
+      {title:"형용사 ~(으)ㄴ",icon:"📝",items:["덥다 → 더운 (hot)","춥다 → 추운 (cold)","맑다 → 맑은 (clear)","따뜻하다 → 따뜻한 (warm)"]},
+      {title:"~겠~ / ~(으)면",icon:"🗣️",items:["비가 오겠어요 (It will rain)","춥겠어요 (It will be cold)","비가 오면 (If it rains)","더우면 물을 마시세요 (If hot, drink water)"]},
+      {title:"조선소 안전",icon:"⚠️",items:["폭염 주의보 (heat wave warning)","야외 작업 중지 (outdoor work stop)","우비 입으세요 (wear raincoat)","물 많이 마시세요 (drink lots of water)"]},
     ]
   },
-  dictation: ["이것은 뭐예요?","이것은 책이에요.","그것은 핸드폰이에요.","저것은 크레인이에요.","이 가방은 제 거예요.","이것은 안전모예요.","그것은 그라인더예요.","저것은 자재창고예요.","이 도구는 드릴이에요.","이것은 출입증이에요."],
+  dictation: ["오늘 날씨가 어때요?","오늘 많이 더워요.","비가 와요.","우산 가져가세요.","겨울에 눈이 와요.","바람이 많이 불어요.","날씨가 좋으면 밖에서 일해요.","물을 많이 마시세요.","장마철에 비가 많이 와요.","가을 날씨가 좋아요."],
 };
-
-const READING_PASSAGES = [
-  {title:"조선소 안전 장비",eng:"Shipyard Safety Equipment",
-   text:"이것은 안전모예요.\n그것은 안전화예요.\n저것은 안전벨트예요.\n이것은 보안경이에요.\n그것은 방진마스크예요.\n안전 장비는 매우 중요해요.\n항상 안전 장비를 착용하세요.",
-   textEng:"This is a safety helmet.\nThat is safety shoes.\nThat over there is a safety belt.\nThis is safety goggles.\nThat is a dust mask.\nSafety equipment is very important.\nAlways wear your safety equipment.",
-   questions:[
-     {q:"안전모는 무엇을 보호해요?",a:"머리 (head)",ae:"Head"},
-     {q:"안전 장비는 왜 중요해요?",a:"안전을 위해서 (for safety)",ae:"For safety"},
-     {q:"안전화는 무엇이에요?",a:"안전한 신발 (safety shoes)",ae:"Safety shoes"},
-   ]},
-  {title:"후엔의 공구함",eng:"Huynh's Toolbox",
-   text:"이것은 후엔 씨의 공구함이에요.\n공구함 안에 여러 도구가 있어요.\n이것은 렌치예요.\n그것은 망치예요.\n저것은 줄자예요.\n이 드릴은 새 드릴이에요.\n후엔 씨는 도구를 잘 정리해요.\n도구 관리가 중요해요.",
-   textEng:"This is Huynh's toolbox.\nThere are many tools in the toolbox.\nThis is a wrench.\nThat is a hammer.\nThat over there is a measuring tape.\nThis drill is a new drill.\nHuynh organizes tools well.\nTool management is important.",
-   questions:[
-     {q:"공구함은 누구 거예요?",a:"후엔 씨",ae:"Huynh's"},
-     {q:"새 도구는 뭐예요?",a:"드릴",ae:"Drill"},
-     {q:"후엔 씨는 도구를 어떻게 해요?",a:"잘 정리해요",ae:"Organizes well"},
-   ]},
-];
 
 // ===== APP STATE =====
 let state = {
@@ -555,15 +523,15 @@ function renderPage() {
 function renderHome() {
   return `
   <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);border-radius:16px;padding:20px;margin-bottom:16px;color:#fff">
-    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 2과 · Beginner Lesson 2</div>
+    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 8과 · Beginner Lesson 8</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ 0급 한글 입문 완료</span>
       <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
     </div
-    <div style="font-size:26px;font-weight:800;margin-bottom:2px">이것은 뭐예요?</div>
-    <div style="font-size:13px;color:#aabbdd">What is this? — 사물과 지시대명사 · Objects & Demonstratives</div>
+    <div style="font-size:26px;font-weight:800;margin-bottom:2px">날씨가 어때요?</div>
+    <div style="font-size:13px;color:#aabbdd">How's the weather? — 날씨와 계절 · Weather & Seasons</div>
     <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
-      ${['지시대명사','사물 이름','조선소 도구','이/그/저'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
+      ${['~(으)ㄴ/는','~겠~','~(으)면','사계절'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
     </div>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
@@ -585,9 +553,9 @@ function renderHome() {
       <div style="font-weight:700;font-size:12px;color:#1E3A5F">${it.l}</div>
     </button>`).join('')}
   </div>
-  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🏗️ 한국의 인프라 보기</button>
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🌤️ 거제 계절별 날씨 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="한화오션_한국어교육_v2.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 1과 안녕하세요?</a><a href="한화오션_초급3과_여기가어디예요.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">3과 여기가 어디예요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson7.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 7과 주말에 뭐 해요?</a><a href="HanwhaOcean_Level1_Lesson9.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">9과 어디가 아파요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -606,7 +574,7 @@ function renderCurriculum() {
       <span style="color:#888;font-size:12px">${lv.ls}과</span>
     </div>
     <div style="color:#888;font-size:11px;margin:4px 0">${lv.e}</div>
-    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'5.5%':'0%'):'0%'};background:${lv.c}"></div></div>
+    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'44.4%':'0%'):'0%'};background:${lv.c}"></div></div>
   </div>`).join('')}`;
 }
 
@@ -616,14 +584,21 @@ function renderHangul() {
   const hTab = Math.min(state.hgTab, 3);
   const data = datasets[hTab];
   const isSafety = hTab === 3;
-  const progressPct = 10;
-  const progressLabel = "2/20";
+  const progressPct = 40;
+  const progressLabel = "8/20";
+
+  // Pronunciation comparison pairs for tab 0 and 1
+  const isPronTab = (hTab === 0 || hTab === 1);
 
   return `<h2>🔤 0급 입문 · ${HANGUL_SUBTITLE}</h2><p class="sub">${HANGUL_SUBTITLE}</p>
   <div style="margin-bottom:12px;background:#e5e7eb;border-radius:8px;overflow:hidden;position:relative;height:22px">
     <div style="width:${progressPct}%;height:100%;background:linear-gradient(90deg,#3b82f6,#06b6d4);border-radius:8px;transition:width 0.5s"></div>
-    <div style="position:absolute;top:0;left:0;right:0;text-align:center;font-size:11px;font-weight:700;line-height:22px;color:${progressPct>50?'#fff':'#555'}">한글 마스터 ${progressLabel} (${progressPct}%)</div>
+    <div style="position:absolute;top:0;left:0;right:0;text-align:center;font-size:11px;font-weight:700;line-height:22px;color:#fff">한글 마스터 ${progressLabel} (${progressPct}%)</div>
   </div>
+  ${isPronTab?`<div class="card" style="background:#fef3c7;border:2px solid #f59e0b;margin-bottom:12px">
+    <b style="color:#92400e">🎧 발음 비교 듣기 · Pronunciation Comparison</b>
+    <p style="font-size:12px;color:#92400e;margin:4px 0 0">글자를 클릭하면 → 표기 발음과 실제 발음을 비교해서 들을 수 있어요!</p>
+  </div>`:''}
   <div class="tabs">${tabs.map((t,i)=>`<button class="tab ${hTab===i?'active':''}" onclick="setState({hgTab:${i},hgSelected:null})">${t}</button>`).join('')}</div>
   ${isSafety ? `<div class="grid2">${data.map((w,i)=>`
     <div class="card ${i===state.hgSelected?'card-orange':'card-accent'}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${w.kor}')">
@@ -631,25 +606,29 @@ function renderHangul() {
       <div style="font-size:11px;color:var(--ocean)">[${w.rom}]</div>
       <div style="font-size:13px;color:#555;margin-top:4px">${w.eng}</div>
     </div>`).join('')}</div>` :
-  `<div class="${data.length>10?'grid3':'grid2'}" style="margin-bottom:12px">${data.map((h,i)=>`
-    <div class="hangul-cell ${i===state.hgSelected?'active':''}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${h.name||h.char}')">
-      <div class="char">${h.char}</div>
-      <div class="rom">${h.rom}</div>
-      ${h.name?`<div style="font-size:9px;color:#aaa">${h.name}</div>`:''}
+  `<div class="grid2" style="margin-bottom:12px">${data.map((h,i)=>`
+    <div class="hangul-cell ${i===state.hgSelected?'active':''}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${h.name||h.char}')" style="padding:12px">
+      <div class="char" style="font-size:${isPronTab?'18px':'28px'}">${h.char}</div>
+      <div class="rom" style="font-size:11px;color:var(--ocean);font-weight:700">[${h.rom}]</div>
+      ${h.name?`<div style="font-size:10px;color:#666;margin-top:2px">${h.name}</div>`:''}
     </div>`).join('')}</div>`}
   ${state.hgSelected !== null && !isSafety ? `<div class="card card-accent" style="text-align:center">
-    <div style="font-size:56px;font-weight:800;color:var(--navy)">${data[state.hgSelected].char}</div>
+    <div style="font-size:${isPronTab?'28px':'56px'};font-weight:800;color:var(--navy)">${data[state.hgSelected].char}</div>
     <div style="font-size:18px;color:var(--ocean);margin:8px 0">[${data[state.hgSelected].rom}]</div>
-    ${data[state.hgSelected].name?`<div style="font-size:14px;color:#555">${data[state.hgSelected].name}</div>`:''}
-    <button class="btn btn-primary" style="margin-top:12px;width:auto;padding:8px 24px" onclick="TTS.speak('${data[state.hgSelected].name||data[state.hgSelected].char}')">🔊 발음 듣기 Listen</button>
+    ${data[state.hgSelected].name?`<div style="font-size:14px;color:#555;margin-bottom:8px">${data[state.hgSelected].name}</div>`:''}
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-primary" style="width:auto;padding:8px 20px" onclick="TTS.speak('${data[state.hgSelected].char.split(' →')[0].split(' /')[0].trim()}')">🔊 표기 발음</button>
+      ${isPronTab && data[state.hgSelected].char.includes('→')?`<button class="btn" style="width:auto;padding:8px 20px;background:#f59e0b;color:#fff" onclick="TTS.speak('${data[state.hgSelected].name?data[state.hgSelected].name.split(']')[0].replace('[','').trim():data[state.hgSelected].char}')">🎧 실제 발음</button>`:''}
+      <button class="btn" style="width:auto;padding:8px 20px;background:#10b981;color:#fff" onclick="TTS.speak('${data[state.hgSelected].char.split(' →')[0].split(' /')[0].trim()}',undefined,0.6)">🐢 느리게</button>
+    </div>
   </div>`:''}`;
 }
 
 function renderVocab() {
-  const tabs = ['사물 Objects','조선소 Shipyard','지시대명사 Demonstratives','도구·장비 Tools&Equip'];
+  const tabs = ['날씨 Weather','조선소 Shipyard','계절·장비 Season','도구·장비 Tools&Equip'];
   const t = state.vocabTab;
   let content = '';
-  if (t===0) content = VOCAB_OBJECTS.map((v,i)=>`
+  if (t===0) content = VOCAB_WEATHER.map((v,i)=>`
     <div class="card card-accent vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,[${i}]:!state.vocabReveal[${i}]}})">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div><div class="kor">${v.kor} ${ttsBtn(v.kor)}</div><div class="pron">[${v.pron}]</div></div>
@@ -664,7 +643,7 @@ function renderVocab() {
       ${state.vocabReveal['s'+i]?`<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border-radius:6px;font-size:13px;color:var(--orange);font-weight:600">${v.eng}</div>`
       :`<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기</div>`}
     </div>`).join('');
-  else if (t===2) content = `<div class="grid2">${VOCAB_DEMO.map(v=>`
+  else if (t===2) content = `<div class="grid2">${VOCAB_SEASON.map(v=>`
     <div class="vocab-item" style="background:#f0f7ff;border-radius:8px;padding:8px 10px" onclick="TTS.speak('${v.kor}')">
       <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
     </div>`).join('')}</div>`;
@@ -673,14 +652,14 @@ function renderVocab() {
       <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
     </div>`).join('')}</div>`;
 
-  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">2과 핵심 어휘 (${VOCAB_OBJECTS.length+VOCAB_SHIPYARD.length+VOCAB_DEMO.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
+  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">8과 핵심 어휘 (${VOCAB_WEATHER.length+VOCAB_SHIPYARD.length+VOCAB_SEASON.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
   <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({vocabTab:${i},vocabReveal:{}})">${tb}</button>`).join('')}</div>
   ${content}`;
 }
 
 function renderGrammar() {
   const g = GRAMMAR[state.gramIdx];
-  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">2과 핵심 문법 ${GRAMMAR.length}개</p>
+  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">8과 핵심 문법 ${GRAMMAR.length}개</p>
   <div class="tabs">${GRAMMAR.map((gr,i)=>`<button class="tab ${state.gramIdx===i?'active':''}" onclick="setState({gramIdx:${i}})">${gr.title}</button>`).join('')}</div>
   <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
     <div style="font-size:18px;font-weight:800;color:var(--navy)">${g.title}</div>
@@ -749,27 +728,25 @@ function renderReading() {
 }
 
 function renderWriting() {
-  const preview = state.wrName ? `안녕하세요?
-저는 ${state.wrName}이에요/예요.
-${state.wrCountry?state.wrCountry+'에서 왔어요.':''}
-${state.wrJob?'저는 '+state.wrJob+'이에요/예요.':''}
+  const preview = state.wrName ? `안녕하세요? 저는 ${state.wrName}이에요/예요.
+오늘 날씨는 ${state.wrCountry?state.wrCountry:'___'}어요/이에요.
+${state.wrJob?'저는 '+state.wrJob+' 좋아해요.':''}
 ${state.wrExtra?state.wrExtra:''}
-한화오션 거제 조선소에서 일해요.
-만나서 반갑습니다.` : '';
+한국의 사계절은 아름다워요!` : '';
 
-  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">사물 소개 글쓰기 · Object Description Writing</p>
+  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">나의 날씨 이야기 · My Weather Story</p>
   <div class="card" style="background:#fff7ed;border:2px solid var(--orange)">
-    <b style="color:var(--orange)">📋 물건을 소개하는 글을 써 보세요 · Write about objects around you</b>
+    <b style="color:var(--orange)">📋 좋아하는 계절과 날씨에 대해 써 보세요 · Write about your favorite season and weather</b>
   </div>
   <div style="margin-top:12px">
     <label style="font-size:13px;font-weight:700;color:var(--navy)">이름 Name</label>
     <input class="input" placeholder="예: 라민 / Ramin" value="${state.wrName}" oninput="state.wrName=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">국적/나라 Country</label>
-    <input class="input" placeholder="예: 이집트 / Egypt" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">직업 Job</label>
-    <input class="input" placeholder="예: 용접공 / welder" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">추가 한마디 Extra note</label>
-    <input class="input" placeholder="예: 잘 부탁드립니다." value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">오늘 날씨 Today's Weather</label>
+    <input class="input" placeholder="예: 더워요, 비가 와요 / hot, rainy" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">좋아하는 계절 Favorite Season</label>
+    <input class="input" placeholder="예: 가을 / autumn" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">더 쓰고 싶은 말 More to say</label>
+    <input class="input" placeholder="예: 고향 날씨는 항상 더워요." value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
   </div>
   ${preview?`
   <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📄 미리보기 · Preview</div>
@@ -777,14 +754,14 @@ ${state.wrExtra?state.wrExtra:''}
     ${preview.split('\n').filter(l=>l.trim()).map(l=>`<div style="font-size:16px;color:var(--navy);font-weight:600;margin-bottom:4px">${l}</div>`).join('')}
   </div>
   <button class="btn btn-primary" style="margin-top:10px" onclick="TTS.speak(\`${preview.replace(/\n/g,' ').replace(/이에요\/예요/g,'이에요')}\`,undefined,0.8)">🔊 발표 연습 듣기 · Listen to Presentation</button>
-  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 자기소개서가 만들어집니다.<br>Fill in the fields above to generate your introduction.</div>'}
+  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 나의 날씨 이야기가 만들어집니다.<br>Fill in the fields above to generate your weather story.</div>'}
 
   <div style="margin-top:20px;font-weight:700;color:var(--navy);margin-bottom:8px">✍️ 자유 쓰기 · Free Writing</div>
-  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 안녕하세요? 저는 ___이에요.&#10;___에서 왔어요. 저는 ___이에요." id="freeWrite"></textarea>`;
+  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 오늘 날씨가 더워요.&#10;여름에 비가 많이 와요." id="freeWrite"></textarea>`;
 }
 
 function renderFlashcard() {
-  const all = [...VOCAB_OBJECTS.map(v=>({f:v.kor,b:v.eng})),...VOCAB_DEMO.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
+  const all = [...VOCAB_WEATHER.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SEASON.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
   const card = all[state.fcIdx % all.length];
   return `<h2>🃏 플래시카드 · Flashcards</h2>
   <div style="display:flex;justify-content:space-between;margin-bottom:8px">
@@ -839,7 +816,7 @@ function renderQuiz() {
 }
 
 function renderCulture() {
-  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 사물 문화 · Korean Object & Tool Culture</p>
+  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 날씨와 계절 · Korean Weather & Seasons</p>
   ${CULTURE.map(c=>`<div class="card" style="display:flex;gap:12px;align-items:flex-start">
     <div style="font-size:34px;flex-shrink:0">${c.icon}</div>
     <div>
@@ -849,7 +826,7 @@ function renderCulture() {
       <div style="font-size:12px;color:#888;margin-top:2px">${c.de}</div>
     </div>
   </div>`).join('')}
-  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">🏗️ 한국의 인프라 보기</button>`;
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">🌤️ 거제 날씨 자세히 보기</button>`;
 }
 
 // ===== REVIEW (익힘) =====
@@ -870,7 +847,7 @@ function renderReview() {
           ${!item.includes(' ')&&item.length<15?ttsBtn(item):''}
         </div>`).join('')}
       </div>`).join('')}
-    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 인사 전체 듣기</button>`;
+    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 날씨 표현 전체 듣기</button>`;
   }
   if (t===1) { // 예습
     const pv = REVIEW_DATA.preview;
@@ -878,7 +855,7 @@ function renderReview() {
     <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
     <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean)">
       <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px">📖 다음 수업 미리보기 · Next Lesson Preview</div>
-      <div style="font-size:12px;color:#888;margin-bottom:12px">2과를 미리 살펴보세요!</div>
+      <div style="font-size:12px;color:#888;margin-bottom:12px">8과를 미리 살펴보세요!</div>
     </div>
     ${pv.items.map((item,i)=>`
       <div class="card ${i%2===0?'card-accent':'card-orange'}">
@@ -889,14 +866,14 @@ function renderReview() {
     <div class="card card-green" style="background:var(--light-green)">
       <div style="font-weight:700;color:var(--green);margin-bottom:6px">💡 예습 팁 · Preview Tips</div>
       <div style="font-size:13px;color:#333;line-height:1.6">
-        1. 위의 새 어휘를 3번씩 소리 내어 읽어 보세요.<br>
-        2. '이것', '그것', '저것'을 주변 물건을 가리키며 말해 보세요.<br>
-        3. 조선소에서 사용하는 공구 이름을 미리 알아보세요.
+        1. 건강·병원 관련 어휘를 미리 읽어 보세요.<br>
+        2. 아픈 곳을 한국어로 말하는 연습을 해 보세요.<br>
+        3. 조선소 의무실 위치를 확인해 보세요.
       </div>
       <div style="font-size:12px;color:#888;margin-top:6px;line-height:1.5">
-        1. Read the new vocabulary aloud 3 times.<br>
-        2. Point at objects around you and say '이것', '그것', '저것'.<br>
-        3. Learn the tool names used at the shipyard in advance.
+        1. Read health and hospital vocabulary in advance.<br>
+        2. Practice saying body parts in Korean.<br>
+        3. Check where the shipyard infirmary is located.
       </div>
     </div>`;
   }
@@ -1041,15 +1018,15 @@ function renderGeoje() {
     <div style="font-size:14px;color:var(--navy);font-weight:600">${f.val}</div>
   </div>`).join('')}
   <div class="card" style="background:var(--light-orange);border:2px solid var(--orange)">
-    <b style="color:var(--orange)">🚀 한국의 성장 원동력: 인프라 강국 Korea's Growth Engine: Infrastructure</b>
+    <b style="color:var(--orange)">🚀 한국의 성장 원동력: 반도체 & 자동차 Korea's Growth Engine: Semiconductor & Automobile</b>
     <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
       ${[
-        {item:'KTX',price:'시속 305km',emoji:'🚄',eng:'High-speed Rail'},
-        {item:'인천공항',price:'세계 1위',emoji:'✈️',eng:'Incheon Airport'},
-        {item:'고속도로',price:'4,800km+',emoji:'🛣️',eng:'Expressway'},
-        {item:'거가대교',price:'8.2km 해저',emoji:'🌉',eng:'Geoga Bridge'},
-        {item:'스마트시티',price:'미래형 도시',emoji:'🏙️',eng:'Smart City'},
-        {item:'건설 수출',price:'글로벌 선도',emoji:'🏗️',eng:'Construction'},
+        {item:'삼성 반도체',price:'세계 1위',emoji:'💾',eng:'Samsung Semiconductor'},
+        {item:'SK하이닉스',price:'세계 2위',emoji:'🔬',eng:'SK Hynix'},
+        {item:'현대자동차',price:'글로벌 Top3',emoji:'🚗',eng:'Hyundai Motor'},
+        {item:'기아',price:'디자인 혁신',emoji:'🚙',eng:'KIA'},
+        {item:'전기차',price:'세계 주목',emoji:'⚡',eng:'EV Leader'},
+        {item:'배터리',price:'시장 선도',emoji:'🔋',eng:'Battery'},
       ].map(p=>`
         <div style="background:#fff;border-radius:10px;padding:10px;text-align:center">
           <div style="font-size:20px">${p.emoji}</div>

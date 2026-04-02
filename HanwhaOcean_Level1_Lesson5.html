@@ -92,305 +92,304 @@ function ttsBtn(text) {
 }
 
 // ===== DATA =====
-const VOCAB_HEALTH = [
-  {kor:"머리",pron:"meo-ri",eng:"head"},
-  {kor:"배",pron:"bae",eng:"stomach"},
-  {kor:"목",pron:"mok",eng:"throat/neck"},
-  {kor:"허리",pron:"heo-ri",eng:"back/waist"},
-  {kor:"다리",pron:"da-ri",eng:"leg"},
-  {kor:"팔",pron:"pal",eng:"arm"},
-  {kor:"손",pron:"son",eng:"hand"},
-  {kor:"발",pron:"bal",eng:"foot"},
-  {kor:"이/치아",pron:"i/chi-a",eng:"tooth"},
-  {kor:"눈",pron:"nun",eng:"eye"},
-  {kor:"귀",pron:"gwi",eng:"ear"},
-  {kor:"아프다",pron:"a-peu-da",eng:"to hurt/be sick"},
-  {kor:"열이 나다",pron:"yeo-ri na-da",eng:"to have a fever"},
-  {kor:"감기",pron:"gam-gi",eng:"cold (illness)"},
-  {kor:"기침",pron:"gi-chim",eng:"cough"},
-  {kor:"약",pron:"yak",eng:"medicine"},
-  {kor:"병원",pron:"byeong-won",eng:"hospital"},
-  {kor:"약국",pron:"yak-guk",eng:"pharmacy"},
+const VOCAB_PRICE = [
+  {kor:"일",pron:"il",eng:"1 (Sino-Korean)"},
+  {kor:"이",pron:"i",eng:"2"},
+  {kor:"삼",pron:"sam",eng:"3"},
+  {kor:"사",pron:"sa",eng:"4"},
+  {kor:"오",pron:"o",eng:"5"},
+  {kor:"육",pron:"yuk",eng:"6"},
+  {kor:"칠",pron:"chil",eng:"7"},
+  {kor:"팔",pron:"pal",eng:"8"},
+  {kor:"구",pron:"gu",eng:"9"},
+  {kor:"십",pron:"sip",eng:"10"},
+  {kor:"백",pron:"baek",eng:"100"},
+  {kor:"천",pron:"cheon",eng:"1,000"},
+  {kor:"만",pron:"man",eng:"10,000"},
+  {kor:"원",pron:"won",eng:"Korean won (₩)"},
+  {kor:"얼마예요?",pron:"eol-ma-ye-yo",eng:"How much is it?"},
+  {kor:"비싸요",pron:"bi-ssa-yo",eng:"It's expensive"},
+  {kor:"싸요",pron:"ssa-yo",eng:"It's cheap"},
+  {kor:"깎아 주세요",pron:"kka-kka ju-se-yo",eng:"Please give me a discount"},
 ];
 
 const VOCAB_SHIPYARD = [
-  {kor:"어디가 아파요?",eng:"Where does it hurt?",sit:"증상 물어보기"},
-  {kor:"머리가 아파요.",eng:"I have a headache.",sit:"두통 표현"},
-  {kor:"배가 아파요.",eng:"I have a stomachache.",sit:"복통 표현"},
-  {kor:"열이 나요.",eng:"I have a fever.",sit:"발열 표현"},
-  {kor:"감기에 걸렸어요.",eng:"I caught a cold.",sit:"감기 표현"},
-  {kor:"기침이 나요.",eng:"I have a cough.",sit:"기침 표현"},
-  {kor:"다쳤어요.",eng:"I got hurt/injured.",sit:"부상 표현"},
-  {kor:"손을 다쳤어요.",eng:"I hurt my hand.",sit:"손 부상"},
-  {kor:"의무실이 어디예요?",eng:"Where is the infirmary?",sit:"의무실 위치"},
-  {kor:"병원에 가야 해요.",eng:"I need to go to the hospital.",sit:"병원 필요"},
-  {kor:"약 좀 주세요.",eng:"Please give me some medicine.",sit:"약 요청"},
-  {kor:"쉬어도 돼요?",eng:"Can I rest?",sit:"휴식 요청"},
-  {kor:"오늘 일을 못 하겠어요.",eng:"I can't work today.",sit:"근무 불가"},
-  {kor:"산업재해 보험이 있어요?",eng:"Is there industrial accident insurance?",sit:"보험 확인"},
-  {kor:"응급실에 가 주세요.",eng:"Please go to the ER.",sit:"응급 상황"},
-  {kor:"119에 전화하세요.",eng:"Call 119 (emergency).",sit:"응급 전화"},
+  {kor:"이거 얼마예요?",eng:"How much is this?",sit:"물건 가격 물어보기"},
+  {kor:"천 원이에요.",eng:"It's 1,000 won.",sit:"가격 알려주기"},
+  {kor:"물 한 병에 천이백 원이에요.",eng:"A bottle of water is 1,200 won.",sit:"편의점 가격"},
+  {kor:"김밥 한 줄에 삼천 원이에요.",eng:"One kimbap roll is 3,000 won.",sit:"식당 가격"},
+  {kor:"커피 한 잔에 이천오백 원이에요.",eng:"One coffee is 2,500 won.",sit:"카페 가격"},
+  {kor:"장갑 한 켤레에 오천 원이에요.",eng:"One pair of gloves is 5,000 won.",sit:"조선소 매점"},
+  {kor:"카드로 결제할 수 있어요?",eng:"Can I pay by card?",sit:"결제 방법"},
+  {kor:"현금으로 할게요.",eng:"I'll pay cash.",sit:"현금 결제"},
+  {kor:"영수증 주세요.",eng:"Please give me a receipt.",sit:"영수증 요청"},
+  {kor:"거스름돈 주세요.",eng:"Please give me change.",sit:"거스름돈 요청"},
+  {kor:"모두 얼마예요?",eng:"How much is it in total?",sit:"총 금액"},
+  {kor:"만 원짜리 있어요?",eng:"Do you have 10,000 won bills?",sit:"지폐 교환"},
+  {kor:"이거 하나 주세요.",eng:"Please give me one of these.",sit:"물건 구매"},
+  {kor:"두 개 주세요.",eng:"Please give me two.",sit:"수량 요청"},
+  {kor:"좀 비싸네요.",eng:"It's a bit expensive.",sit:"가격 의견"},
+  {kor:"할인돼요?",eng:"Is there a discount?",sit:"할인 물어보기"},
 ];
 
-const VOCAB_MEDICAL = [
-  {kor:"병원",eng:"hospital"},{kor:"약국",eng:"pharmacy"},
-  {kor:"의사",eng:"doctor"},{kor:"간호사",eng:"nurse"},
-  {kor:"환자",eng:"patient"},{kor:"진료",eng:"medical treatment"},
-  {kor:"처방전",eng:"prescription"},{kor:"약",eng:"medicine"},
-  {kor:"주사",eng:"injection/shot"},{kor:"수술",eng:"surgery"},
-  {kor:"입원",eng:"hospitalization"},{kor:"퇴원",eng:"discharge"},
-  {kor:"건강보험",eng:"health insurance"},{kor:"보험증",eng:"insurance card"},
-  {kor:"응급실",eng:"emergency room"},{kor:"의무실",eng:"infirmary"},
-  {kor:"구급차",eng:"ambulance"},{kor:"119",eng:"emergency number"},
-  {kor:"감기약",eng:"cold medicine"},{kor:"진통제",eng:"painkiller"},
-  {kor:"소화제",eng:"digestive medicine"},{kor:"밴드",eng:"band-aid"},
-  {kor:"붕대",eng:"bandage"},{kor:"소독약",eng:"antiseptic"},
-  {kor:"체온계",eng:"thermometer"},{kor:"혈압",eng:"blood pressure"},
-  {kor:"알레르기",eng:"allergy"},{kor:"당뇨",eng:"diabetes"},
-  {kor:"골절",eng:"fracture"},{kor:"화상",eng:"burn"},
-  {kor:"산업재해",eng:"industrial accident"},{kor:"안전사고",eng:"safety accident"},
-  {kor:"건강검진",eng:"health checkup"},{kor:"진단서",eng:"medical certificate"},
-  {kor:"통증",eng:"pain"},{kor:"증상",eng:"symptom"},
+const VOCAB_MONEY = [
+  {kor:"원",eng:"won (₩)"},{kor:"돈",eng:"money"},{kor:"가격",eng:"price"},
+  {kor:"값",eng:"cost/price"},{kor:"현금",eng:"cash"},{kor:"카드",eng:"card"},
+  {kor:"교통카드",eng:"transportation card"},{kor:"지폐",eng:"paper bill"},
+  {kor:"동전",eng:"coin"},{kor:"잔돈",eng:"small change"},{kor:"거스름돈",eng:"change (returned)"},
+  {kor:"영수증",eng:"receipt"},{kor:"계산",eng:"calculation/payment"},{kor:"결제",eng:"payment"},
+  {kor:"할인",eng:"discount"},{kor:"세일",eng:"sale"},{kor:"무료",eng:"free"},
+  {kor:"유료",eng:"paid"},{kor:"천 원",eng:"1,000 won"},{kor:"오천 원",eng:"5,000 won"},
+  {kor:"만 원",eng:"10,000 won"},{kor:"오만 원",eng:"50,000 won"},{kor:"편의점",eng:"convenience store"},
+  {kor:"매점",eng:"shop/canteen"},{kor:"슈퍼마켓",eng:"supermarket"},{kor:"식당",eng:"restaurant"},
+  {kor:"자판기",eng:"vending machine"},{kor:"ATM",eng:"ATM"},{kor:"은행",eng:"bank"},
+  {kor:"송금",eng:"remittance"},{kor:"환전",eng:"currency exchange"},{kor:"급여",eng:"salary"},
+  {kor:"월급",eng:"monthly pay"},{kor:"보너스",eng:"bonus"},{kor:"세금",eng:"tax"},
+  {kor:"저축",eng:"savings"},
 ];
 
 const VOCAB_SHIPYARD_NOUNS = [
-  {kor:"머리",eng:"head"},{kor:"얼굴",eng:"face"},
-  {kor:"눈",eng:"eye"},{kor:"코",eng:"nose"},
-  {kor:"입",eng:"mouth"},{kor:"귀",eng:"ear"},
-  {kor:"목",eng:"neck/throat"},{kor:"어깨",eng:"shoulder"},
-  {kor:"팔",eng:"arm"},{kor:"손",eng:"hand"},
-  {kor:"손가락",eng:"finger"},{kor:"가슴",eng:"chest"},
-  {kor:"배",eng:"stomach"},{kor:"허리",eng:"back/waist"},
-  {kor:"엉덩이",eng:"hip"},{kor:"다리",eng:"leg"},
-  {kor:"무릎",eng:"knee"},{kor:"발",eng:"foot"},
-  {kor:"발가락",eng:"toe"},{kor:"등",eng:"back"},
-  {kor:"피",eng:"blood"},{kor:"뼈",eng:"bone"},
-  {kor:"근육",eng:"muscle"},{kor:"피부",eng:"skin"},
-  {kor:"심장",eng:"heart"},{kor:"폐",eng:"lung"},
-  {kor:"위",eng:"stomach(organ)"},{kor:"간",eng:"liver"},
-  {kor:"치아",eng:"tooth"},{kor:"잇몸",eng:"gum"},
+  {kor:"안전모",eng:"safety helmet"},{kor:"안전화",eng:"safety shoes"},
+  {kor:"작업복",eng:"work uniform"},{kor:"장갑",eng:"gloves"},
+  {kor:"보안경",eng:"safety goggles"},{kor:"마스크",eng:"mask"},
+  {kor:"귀마개",eng:"ear plugs"},{kor:"안전벨트",eng:"safety belt"},
+  {kor:"음료수",eng:"beverage"},{kor:"간식",eng:"snack"},
+  {kor:"도시락",eng:"lunch box"},{kor:"담배",eng:"cigarette"},
+  {kor:"충전기",eng:"charger"},{kor:"세면도구",eng:"toiletries"},
+  {kor:"세탁",eng:"laundry"},{kor:"이발",eng:"haircut"},
+  {kor:"약",eng:"medicine"},{kor:"반창고",eng:"band-aid"},
+  {kor:"선크림",eng:"sunscreen"},{kor:"우산",eng:"umbrella"},
+  {kor:"배터리",eng:"battery"},{kor:"이어폰",eng:"earphones"},
+  {kor:"USB",eng:"USB drive"},{kor:"노트",eng:"notebook"},
+  {kor:"볼펜",eng:"ballpoint pen"},{kor:"가위",eng:"scissors"},
+  {kor:"테이프",eng:"tape"},{kor:"칫솔",eng:"toothbrush"},
+  {kor:"치약",eng:"toothpaste"},{kor:"수건",eng:"towel"},
 ];
 
 const GRAMMAR = [
-  {title:"~아/어서 (Because/So)",eng:"~아/어서 (Reason/Cause)",
-   desc:"이유를 말할 때 '~아/어서'를 써요. 앞 문장이 이유, 뒷 문장이 결과예요.",descEng:"Use ~아/어서 to give reasons. First clause is the cause, second is the result.",
-   rule:"ㅏ/ㅗ → 아서 / 그 외 → 어서 / 하다 → 해서",ruleEng:"ㅏ/ㅗ vowel → 아서 / Other → 어서 / 하다 → 해서",
+  {title:"한자어 수 (일,이,삼...)",eng:"Sino-Korean Numbers",
+   desc:"가격, 전화번호, 날짜, 분(minute)에는 한자어 숫자를 써요.",descEng:"Use Sino-Korean numbers for prices, phone numbers, dates, and minutes.",
+   rule:"일(1), 이(2), 삼(3), 사(4), 오(5), 육(6), 칠(7), 팔(8), 구(9), 십(10)",ruleEng:"일=1, 이=2, 삼=3 ... 십=10, 백=100, 천=1000, 만=10000",
    examples:[
-    {q:"왜 병원에 가요?",a:"머리가 아파서 병원에 가요.",eng:"I go to the hospital because I have a headache.",note:"아프다→아파서"},
-    {q:"왜 못 일해요?",a:"열이 나서 못 일해요.",eng:"I can't work because I have a fever.",note:"나다→나서"},
-    {q:"왜 약을 먹어요?",a:"배가 아파서 약을 먹어요.",eng:"I take medicine because my stomach hurts.",note:"아프다→아파서"},
-    {q:"왜 쉬어요?",a:"감기에 걸려서 쉬어요.",eng:"I rest because I caught a cold.",note:"걸리다→걸려서"},
-    {q:"왜 손을 못 써요?",a:"다쳐서 못 써요.",eng:"I can't use it because I got hurt.",note:"다치다→다쳐서"},
+    {q:"이거 얼마예요?",a:"삼천 원이에요.",eng:"How much? - 3,000 won.",note:"삼천=3000"},
+    {q:"전화번호가 뭐예요?",a:"공일공-이삼사오-육칠팔구",eng:"What is your phone number?",note:"한자어 수"},
+    {q:"생일이 언제예요?",a:"오월 십오일이에요.",eng:"When is your birthday? - May 15th.",note:"오월=5월"},
+    {q:"지금 몇 분이에요?",a:"삼십 분이에요.",eng:"How many minutes? - 30 minutes.",note:"삼십=30"},
+    {q:"방 번호가 뭐예요?",a:"삼백이호예요.",eng:"What room number? - Room 302.",note:"삼백이=302"},
    ]},
-  {title:"~(으)ㄹ 때 (When)",eng:"~(으)ㄹ 때 (When/At the time)",
-   desc:"어떤 상황이 될 때를 말할 때 '~(으)ㄹ 때'를 써요.",descEng:"Use ~(으)ㄹ 때 to describe when something happens.",
-   rule:"받침 O → 을 때 / 받침 X → ㄹ 때",ruleEng:"With final consonant → 을 때 / Without → ㄹ 때",
+  {title:"숫자 + 원 (가격)",eng:"Number + 원 (Price)",
+   desc:"한국 돈의 단위는 '원'이에요. 숫자 뒤에 '원'을 붙여요.",descEng:"Korean currency unit is 원 (won). Add 원 after numbers for prices.",
+   rule:"숫자 + 원 → 천 원, 이천 원, 만 원...",ruleEng:"Number + 원 → 천 원 (₩1,000), 만 원 (₩10,000)...",
    examples:[
-    {q:"언제 약을 먹어요?",a:"아플 때 약을 먹어요.",eng:"I take medicine when I'm sick.",note:"아프+ㄹ 때"},
-    {q:"언제 병원에 가요?",a:"열이 날 때 가요.",eng:"I go when I have a fever.",note:"나+ㄹ 때"},
-    {q:"언제 119에 전화해요?",a:"다칠 때 전화해요.",eng:"I call when I get hurt.",note:"다치+ㄹ 때"},
-    {q:"언제 쉬어요?",a:"머리가 아플 때 쉬어요.",eng:"I rest when I have a headache.",note:"아프+ㄹ 때"},
-    {q:"언제 의무실에 가요?",a:"몸이 안 좋을 때 가요.",eng:"I go when I feel unwell.",note:"좋+을 때"},
+    {q:"물 얼마예요?",a:"천이백 원이에요.",eng:"How much is water? - 1,200 won.",note:"천이백=1200"},
+    {q:"김밥 얼마예요?",a:"삼천오백 원이에요.",eng:"How much is kimbap? - 3,500 won.",note:"삼천오백=3500"},
+    {q:"커피 얼마예요?",a:"이천 원이에요.",eng:"How much is coffee? - 2,000 won.",note:"이천=2000"},
+    {q:"이 장갑 얼마예요?",a:"오천 원이에요.",eng:"How much are these gloves? - 5,000 won.",note:"오천=5000"},
+    {q:"모두 얼마예요?",a:"만이천 원이에요.",eng:"How much total? - 12,000 won.",note:"만이천=12000"},
    ]},
-  {title:"~지 마세요 (Don't)",eng:"~지 마세요 (Please don't)",
-   desc:"하지 말아야 할 것을 정중하게 말할 때 '~지 마세요'를 써요.",descEng:"Use ~지 마세요 to politely tell someone not to do something.",
-   rule:"동사 어간 + 지 마세요",ruleEng:"Verb stem + 지 마세요",
+  {title:"~주세요 (Please give me)",eng:"~주세요 (Request expression)",
+   desc:"물건을 살 때 '~주세요'를 써요. 정중한 요청 표현이에요.",descEng:"Use ~주세요 when buying things. It's a polite request expression.",
+   rule:"물건 + 주세요 / 숫자 + 개 + 주세요",ruleEng:"Item + 주세요 / Number + 개 (counter) + 주세요",
    examples:[
-    {q:"",a:"아프면 무리하지 마세요.",eng:"Don't overdo it if you're sick.",note:"무리하+지 마세요"},
-    {q:"",a:"약을 빼먹지 마세요.",eng:"Don't skip your medicine.",note:"빼먹+지 마세요"},
-    {q:"",a:"아픈데 일하지 마세요.",eng:"Don't work when you're sick.",note:"일하+지 마세요"},
-    {q:"",a:"찬 음식을 먹지 마세요.",eng:"Don't eat cold food.",note:"먹+지 마세요"},
-    {q:"",a:"걱정하지 마세요.",eng:"Don't worry.",note:"걱정하+지 마세요"},
+    {q:"",a:"이거 주세요.",eng:"Please give me this.",note:"이거+주세요"},
+    {q:"",a:"물 한 병 주세요.",eng:"One bottle of water, please.",note:"한 병+주세요"},
+    {q:"",a:"김밥 두 줄 주세요.",eng:"Two kimbap rolls, please.",note:"두 줄+주세요"},
+    {q:"",a:"커피 세 잔 주세요.",eng:"Three coffees, please.",note:"세 잔+주세요"},
+    {q:"",a:"영수증 주세요.",eng:"Receipt, please.",note:"영수증+주세요"},
    ]},
 ];
 
 const DIALOGUES = [
-  {title:"의무실에서",eng:"At the Infirmary",lines:[
-    {sp:"라민",role:"용접공",text:"선생님, 머리가 아파요.",eng:"Doctor, I have a headache.",side:"R"},
-    {sp:"의사",role:"의무실 의사",text:"언제부터 아팠어요?",eng:"Since when did it hurt?",side:"L"},
-    {sp:"라민",text:"오늘 아침부터요. 열도 좀 나요.",eng:"Since this morning. I also have a slight fever.",side:"R"},
-    {sp:"의사",text:"감기인 것 같아요. 약을 드릴게요.",eng:"It seems like a cold. I'll give you medicine.",side:"L"},
-    {sp:"라민",text:"오늘 일을 해도 돼요?",eng:"Can I work today?",side:"R"},
-    {sp:"의사",text:"오늘은 쉬세요. 무리하지 마세요.",eng:"Rest today. Don't overdo it.",side:"L"},
+  {title:"편의점에서 물건 사기",eng:"Buying at a Convenience Store",lines:[
+    {sp:"라민",role:"용접공",text:"안녕하세요. 이거 얼마예요?",eng:"Hello. How much is this?",side:"R"},
+    {sp:"점원",role:"편의점 직원",text:"그거요? 천오백 원이에요.",eng:"That? It's 1,500 won.",side:"L"},
+    {sp:"라민",text:"그리고 물 한 병 주세요.",eng:"And one bottle of water, please.",side:"R"},
+    {sp:"점원",text:"물은 천이백 원이에요. 모두 이천칠백 원이에요.",eng:"Water is 1,200 won. Total is 2,700 won.",side:"L"},
+    {sp:"라민",text:"카드로 결제할 수 있어요?",eng:"Can I pay by card?",side:"R"},
+    {sp:"점원",text:"네, 여기에 카드를 대 주세요.",eng:"Yes, please tap your card here.",side:"L"},
   ]},
-  {title:"동료가 다쳤을 때",eng:"When a Colleague Gets Hurt",lines:[
-    {sp:"후엔",role:"배관공",text:"안젤라 씨! 괜찮아요?!",eng:"Angela! Are you okay?!",side:"R"},
-    {sp:"안젤라",role:"전기공",text:"손을 다쳤어요... 피가 나요.",eng:"I hurt my hand... It's bleeding.",side:"L"},
-    {sp:"후엔",text:"빨리 의무실에 가요! 제가 도와줄게요.",eng:"Let's go to the infirmary quickly! I'll help you.",side:"R"},
-    {sp:"안젤라",text:"고마워요... 많이 아파요.",eng:"Thank you... It hurts a lot.",side:"L"},
-    {sp:"후엔",text:"걱정하지 마세요. 반장님한테 보고할게요.",eng:"Don't worry. I'll report to the team leader.",side:"R"},
-    {sp:"안젤라",text:"산업재해 보험 되죠?",eng:"Industrial accident insurance covers this, right?",side:"L"},
+  {title:"구내매점에서 점심 주문",eng:"Ordering Lunch at the Canteen",lines:[
+    {sp:"후엔",role:"배관공",text:"아주머니, 김밥하고 라면 주세요.",eng:"Ma'am, kimbap and ramen please.",side:"R"},
+    {sp:"아주머니",role:"매점 주인",text:"김밥 삼천 원, 라면 사천 원이에요.",eng:"Kimbap 3,000 won, ramen 4,000 won.",side:"L"},
+    {sp:"후엔",text:"모두 얼마예요?",eng:"How much total?",side:"R"},
+    {sp:"아주머니",text:"칠천 원이에요.",eng:"It's 7,000 won.",side:"L"},
+    {sp:"후엔",text:"만 원이요. 거스름돈 주세요.",eng:"Here's 10,000 won. Change please.",side:"R"},
+    {sp:"아주머니",text:"삼천 원 거슬러 드릴게요. 맛있게 드세요!",eng:"Here's 3,000 won change. Enjoy your meal!",side:"L"},
   ]},
 ];
 
 const QUIZ = [
-  {q:"'아프다'의 뜻은?",o:["to hurt/be sick","to be happy","to be tired","to be hungry"],a:0},
-  {q:"'머리가 아파요'의 뜻은?",o:["I have a headache","I have a stomachache","I'm dizzy","I'm tired"],a:0},
-  {q:"'감기'의 뜻은?",o:["cold (illness)","headache","fever","cough"],a:0},
-  {q:"'열이 나요'의 뜻은?",o:["I have a fever","I'm cold","I'm hot","I'm hungry"],a:0},
-  {q:"아프면 어디에 가요?",o:["병원","식당","마트","학교"],a:0},
-  {q:"'약국'에서 뭘 사요?",o:["약","음식","옷","책"],a:0},
-  {q:"'~아/어서'는 무슨 뜻이에요?",o:["because/so","but","and","if"],a:0},
-  {q:"'아플 때'는 무슨 뜻이에요?",o:["when sick","because sick","if sick","very sick"],a:0},
-  {q:"'무리하지 마세요'의 뜻은?",o:["Don't overdo it","Please work hard","Don't rest","Please hurry"],a:0},
-  {q:"'의무실'의 뜻은?",o:["infirmary","cafeteria","dormitory","office"],a:0},
-  {q:"'119'는 무슨 번호예요?",o:["응급 전화","경찰","소방서 전용","병원 예약"],a:0},
-  {q:"'다쳤어요'의 뜻은?",o:["I got hurt","I'm hungry","I'm tired","I'm scared"],a:0},
-  {q:"'산업재해'의 뜻은?",o:["industrial accident","holiday","overtime","salary"],a:0},
-  {q:"'처방전'의 뜻은?",o:["prescription","receipt","menu","ticket"],a:0},
-  {q:"'걱정하지 마세요'의 뜻은?",o:["Don't worry","Don't eat","Don't go","Don't sleep"],a:0},
+  {q:"'3,000원'을 한국어로 어떻게 말해요?",o:["삼천 원","삼백 원","삼만 원","세천 원"],a:0},
+  {q:"'얼마예요?'의 뜻은?",o:["How much?","What is it?","Where is it?","What time?"],a:0},
+  {q:"'천 원'은 얼마예요?",o:["₩1,000","₩100","₩10,000","₩10"],a:0},
+  {q:"편의점에서 물건을 살 때 뭐라고 해요?",o:["이거 주세요","이거 있어요","이거 가요","이거 해요"],a:0},
+  {q:"'비싸요'의 반대말은?",o:["싸요","크요","작아요","많아요"],a:0},
+  {q:"한자어 숫자 '오'는?",o:["5","4","6","50"],a:0},
+  {q:"'만 원'은 얼마예요?",o:["₩10,000","₩1,000","₩100,000","₩100"],a:0},
+  {q:"영수증을 요청할 때 뭐라고 해요?",o:["영수증 주세요","영수증 있어요","영수증 가요","영수증 해요"],a:0},
+  {q:"'이천오백 원'은 얼마예요?",o:["₩2,500","₩2,050","₩250","₩25,000"],a:0},
+  {q:"'현금'의 뜻은?",o:["cash","card","check","coin"],a:0},
+  {q:"'깎아 주세요'의 뜻은?",o:["Please give me a discount","Please give me more","Please hurry","Please wait"],a:0},
+  {q:"'거스름돈'의 뜻은?",o:["change (returned)","tip","bill","receipt"],a:0},
+  {q:"한자어 숫자로 '7'은?",o:["칠","일곱","일","팔"],a:0},
+  {q:"'카드로 결제할 수 있어요?'의 뜻은?",o:["Can I pay by card?","Do you have a card?","Is it a card?","Give me a card"],a:0},
+  {q:"'무료'의 뜻은?",o:["free","expensive","cheap","paid"],a:0},
 
   // 한국의 성장 원동력 퀴즈
-  {q:"한국의 성장 원동력이 아닌 것은?",o:["석유 산업","조선 산업","반도체","K-Culture"],a:0},
-  {q:"'한강의 기적'은 언제 시작됐어요?",o:["1960년대","1800년대","2000년대","1500년대"],a:0},
-  {q:"한화오션은 어떤 산업이에요?",o:["조선 산업","반도체 산업","자동차 산업","식품 산업"],a:0},
+  {q:"한국 경제 성장을 뭐라고 불러요?",o:["한강의 기적","나일강의 기적","아마존의 기적","템즈강의 기적"],a:0},
+  {q:"'새마을 운동'은 뭐예요?",o:["농촌 근대화 운동","도시 개발","스포츠 대회","음악 축제"],a:0},
+  {q:"한국은 1950년대에 어땠어요?",o:["세계 최빈국","세계 부자 나라","중간 경제","최강국"],a:0},
 ];
 
 const CULTURE = [
-  {icon:"🏥",t:"한국의 병원 시스템",eng:"Korean Hospital System",d:"한국에는 의원(작은 병원), 병원(중간), 대학병원(큰 병원)이 있어요. 감기나 간단한 증상은 가까운 의원에 가세요. 외국인도 건강보험으로 진료를 받을 수 있어요.",de:"Korea has clinics (small), hospitals (medium), and university hospitals (large). For colds or simple symptoms, visit a nearby clinic. Foreign workers can also receive treatment with health insurance."},
-  {icon:"💊",t:"약국 이용법",eng:"How to Use a Pharmacy",d:"병원에서 처방전을 받으면 약국에서 약을 사요. 감기약, 진통제 같은 일반 의약품은 처방전 없이 살 수 있어요. 약사에게 증상을 말하면 약을 추천해 줘요.",de:"Get a prescription at the hospital, then buy medicine at the pharmacy. OTC medicines like cold medicine and painkillers don't need prescriptions. Tell the pharmacist your symptoms for recommendations."},
-  {icon:"🏭",t:"조선소 의무실",eng:"Shipyard Infirmary",d:"한화오션 조선소에는 의무실이 있어요. 근무 중에 다치거나 아프면 의무실에 가세요. 응급 상황에는 119를 부르세요. 산업재해 보험으로 치료비를 받을 수 있어요.",de:"Hanwha Ocean shipyard has an infirmary. If you get hurt or sick during work, go there. Call 119 for emergencies. Industrial accident insurance covers treatment costs."},
-  {icon:"📋",t:"건강보험과 산업재해",eng:"Health & Industrial Insurance",d:"외국인 근로자도 건강보험에 가입해야 해요. 직장 건강보험은 회사가 절반을 내요. 일하다가 다치면 산업재해(산재) 보험으로 치료비 전액을 받을 수 있어요.",de:"Foreign workers must also enroll in health insurance. For workplace insurance, the company pays half. If injured at work, industrial accident insurance covers full treatment costs."},
-  {icon:"🚑",t:"응급 상황 대처법",eng:"Emergency Response",d:"응급 상황에는 119에 전화하세요. '어디가 아파요?', '어디에 있어요?'를 말하면 돼요. 한국어가 어려우면 영어로 말하거나 통역 서비스(1345)를 이용하세요.",de:"Call 119 for emergencies. Say where it hurts and where you are. If Korean is difficult, speak English or use the interpretation service (1345)."},
-  {icon:"🧘",t:"건강 관리",eng:"Health Management",d:"정기적으로 건강검진을 받으세요. 충분히 자고, 잘 먹고, 운동하세요. 스트레스가 있으면 동료나 상담사에게 이야기하세요. 몸과 마음 건강이 모두 중요해요!",de:"Get regular health checkups. Sleep well, eat well, and exercise. If stressed, talk to colleagues or a counselor. Both physical and mental health are important!"},
+  {icon:"💴",t:"한국의 화폐",eng:"Korean Currency",d:"한국 돈의 단위는 '원(₩)'이에요. 동전은 10원, 50원, 100원, 500원이 있고, 지폐는 1,000원, 5,000원, 10,000원, 50,000원이 있어요.",de:"Korean currency unit is 'won (₩)'. Coins: 10, 50, 100, 500 won. Bills: 1,000, 5,000, 10,000, 50,000 won."},
+  {icon:"💳",t:"카드 결제 문화",eng:"Card Payment Culture",d:"한국은 카드 사용이 매우 일반적이에요. 편의점, 식당, 버스에서도 카드를 사용할 수 있어요. 교통카드도 매점에서 충전할 수 있어요.",de:"Card use is very common in Korea. You can use cards at stores, restaurants, and buses. Transportation cards can be recharged at shops."},
+  {icon:"🏪",t:"편의점 문화",eng:"Convenience Store Culture",d:"한국 편의점은 24시간 운영해요. 도시락, 삼각김밥, 음료수 등 다양한 물건을 살 수 있어요. 기숙사 근처에도 있어서 편리해요.",de:"Korean convenience stores operate 24 hours. You can buy lunch boxes, triangle kimbap, drinks and more. There's one near the dormitory too."},
+  {icon:"💰",t:"급여와 송금",eng:"Salary & Remittance",d:"급여일은 보통 매월 10일이나 25일이에요. 해외 송금은 은행이나 모바일 앱으로 할 수 있어요. 수수료를 비교해 보세요!",de:"Payday is usually the 10th or 25th of each month. You can send money abroad via bank or mobile app. Compare fees!"},
+  {icon:"🧮",t:"한자어 수와 고유어 수",eng:"When to Use Which Numbers",d:"가격·전화번호·날짜·분은 한자어(일,이,삼), 시간·나이·개수는 고유어(하나,둘,셋)를 써요. 꼭 구별해서 사용하세요!",de:"Prices/phone/dates/minutes use Sino-Korean (일,이,삼). Hours/age/counting use native (하나,둘,셋). Make sure to distinguish!"},
+  {icon:"🤑",t:"흥정 문화",eng:"Bargaining Culture",d:"대형 마트나 편의점에서는 흥정을 안 해요. 하지만 시장에서는 '깎아 주세요'라고 말할 수 있어요! 거제 시장에서 시도해 보세요.",de:"No bargaining at marts or convenience stores. But at traditional markets, you can say '깎아 주세요'! Try it at Geoje market."},
 ];
 
 const LOCAL_INFO = {
-  title: "한국의 성장 원동력",
-  eng: "Korea's Growth Engine",
+  title: "한국의 성장 원동력: 경제 성장",
+  eng: "Korea's Growth Engine: Economic Growth",
   facts: [
     {label:"한강의 기적 Miracle on the Han",val:"1960~90년대 고속 경제 성장"},
-    {label:"조선 산업 Shipbuilding",val:"세계 1위, 거제·울산·부산"},
-    {label:"반도체 Semiconductor",val:"삼성·SK하이닉스, 세계 시장 선도"},
-    {label:"자동차 Automobile",val:"현대·기아, 글로벌 Top 3"},
-    {label:"K-Culture",val:"K-POP, 드라마, 영화, 음식"},
-    {label:"교육열 Education Passion",val:"세계 최고 수준의 교육열"},
-    {label:"IT 강국 IT Powerhouse",val:"5G·AI·스마트폰 기술 선도"},
+    {label:"GDP 성장 GDP Growth",val:"세계 최빈국 → 세계 10대 경제 대국"},
+    {label:"수출 대국 Export Power",val:"반도체·자동차·선박 수출 세계 상위"},
+    {label:"새마을 운동 Saemaul Movement",val:"농촌 근대화, 근면·자조·협동"},
+    {label:"중화학 공업 Heavy Industry",val:"포항제철·현대중공업·삼성"},
+    {label:"외환위기 극복 IMF Crisis Recovery",val:"1997년 위기 → 2년 만에 회복"},
+    {label:"K-경제 K-Economy",val:"글로벌 공급망 핵심 국가"},
   ],
-  desc: "한국은 1950년대 전쟁 후 세계 최빈국이었지만, '한강의 기적'으로 불리는 놀라운 경제 성장을 이루었어요. 조선, 반도체, 자동차, IT 산업이 성장의 핵심이에요. 여러분이 일하는 한화오션도 세계 1위 조선 산업의 중심이에요! 한국의 교육열과 근면한 국민성, 그리고 K-Culture의 글로벌 영향력이 한국을 오늘날의 선진국으로 만들었어요.",
-  descEng: "Korea was one of the poorest nations after the 1950s war, but achieved the 'Miracle on the Han River.' Shipbuilding, semiconductors, automobiles, and IT are the core growth engines. Hanwha Ocean, where you work, is at the heart of the world's #1 shipbuilding industry! Korea's passion for education, diligent people, and K-Culture's global influence made Korea the advanced nation it is today."
+  desc: "한국은 1950년대 세계 최빈국이었지만, 60년 만에 세계 10대 경제 대국이 되었어요. '한강의 기적'이라 불리는 이 놀라운 성장의 비결은 교육열, 근면한 국민성, 그리고 수출 중심 전략이에요. 새마을 운동으로 농촌이 발전하고, 중화학 공업으로 산업이 성장했어요. 1997년 외환위기도 국민의 금 모으기 운동으로 극복했어요!",
+  descEng: "Korea was one of the poorest nations in the 1950s, but became a top 10 global economy in just 60 years. The secret of this 'Miracle on the Han River' was passion for education, diligent national character, and export-focused strategy. The Saemaul Movement developed rural areas, and heavy industry drove growth. Even the 1997 financial crisis was overcome through the national gold-collecting campaign!"
 };
 
-// HANGUL DATA (Level 0 — 9과: 숫자 마스터)
+// HANGUL DATA (Level 0 — 5과: 쌍자음 마스터)
 const HANGUL_CONSONANTS = [
-  {char:"일",rom:"il",name:"1 (한자어)"},{char:"이",rom:"i",name:"2"},{char:"삼",rom:"sam",name:"3"},
-  {char:"사",rom:"sa",name:"4"},{char:"오",rom:"o",name:"5"},{char:"육",rom:"yuk",name:"6"},
-  {char:"칠",rom:"chil",name:"7"},{char:"팔",rom:"pal",name:"8"},{char:"구",rom:"gu",name:"9"},
-  {char:"십",rom:"sip",name:"10"},{char:"백",rom:"baek",name:"100"},{char:"천",rom:"cheon",name:"1,000"},
-  {char:"만",rom:"man",name:"10,000"},{char:"억",rom:"eok",name:"100,000,000"},
+  {char:"ㄲ",rom:"kk",name:"쌍기역"},{char:"ㄸ",rom:"tt",name:"쌍디귿"},{char:"ㅃ",rom:"pp",name:"쌍비읍"},
+  {char:"ㅆ",rom:"ss",name:"쌍시옷"},{char:"ㅉ",rom:"jj",name:"쌍지읒"},
+  {char:"까",rom:"kka",name:"ㄲ+ㅏ"},{char:"따",rom:"tta",name:"ㄸ+ㅏ"},{char:"빠",rom:"ppa",name:"ㅃ+ㅏ"},
+  {char:"싸",rom:"ssa",name:"ㅆ+ㅏ"},{char:"짜",rom:"jja",name:"ㅉ+ㅏ"},
+  {char:"끄",rom:"kkeu",name:"ㄲ+ㅡ"},{char:"뜨",rom:"tteu",name:"ㄸ+ㅡ"},{char:"쁘",rom:"ppeu",name:"ㅃ+ㅡ"},
+  {char:"쓰",rom:"sseu",name:"ㅆ+ㅡ"},
 ];
 const HANGUL_VOWELS = [
-  {char:"하나",rom:"ha-na",name:"1 (고유어)"},{char:"둘",rom:"dul",name:"2"},
-  {char:"셋",rom:"set",name:"3"},{char:"넷",rom:"net",name:"4"},
-  {char:"다섯",rom:"da-seot",name:"5"},{char:"여섯",rom:"yeo-seot",name:"6"},
-  {char:"일곱",rom:"il-gop",name:"7"},{char:"여덟",rom:"yeo-deol",name:"8"},
-  {char:"아홉",rom:"a-hop",name:"9"},{char:"열",rom:"yeol",name:"10"},
-  {char:"스물",rom:"seu-mul",name:"20"},{char:"서른",rom:"seo-reun",name:"30"},
+  {char:"까다",rom:"kka-da",name:"difficult/picky"},{char:"빨리",rom:"ppal-li",name:"quickly"},
+  {char:"싸다",rom:"ssa-da",name:"cheap/to wrap"},{char:"쓰다",rom:"sseu-da",name:"to write/bitter"},
+  {char:"뜨다",rom:"tteu-da",name:"to float/open eyes"},{char:"짜다",rom:"jja-da",name:"salty/to squeeze"},
+  {char:"아빠",rom:"a-ppa",name:"dad"},{char:"오빠",rom:"o-ppa",name:"older brother"},
+  {char:"토끼",rom:"to-kki",name:"rabbit"},{char:"나무꾼",rom:"na-mu-kkun",name:"woodcutter"},
+  {char:"찌개",rom:"jji-gae",name:"stew"},{char:"떡볶이",rom:"tteok-bbok-ki",name:"tteokbokki"},
 ];
 const HANGUL_PRACTICE = [
-  {char:"한 개",rom:"han gae",name:"1 thing (고유어+개)"},{char:"두 명",rom:"du myeong",name:"2 people"},
-  {char:"세 시",rom:"se si",name:"3 o'clock"},{char:"네 번",rom:"ne beon",name:"4 times"},
-  {char:"이십오",rom:"i-sip-o",name:"25 (한자어)"},{char:"삼십칠",rom:"sam-sip-chil",name:"37"},
-  {char:"만 원",rom:"man won",name:"10,000 won"},{char:"오천 원",rom:"o-cheon won",name:"5,000 won"},
-  {char:"전화번호",rom:"jeon-hwa-beon-ho",name:"phone number"},{char:"호실",rom:"ho-sil",name:"room number"},
+  {char:"ㄱ vs ㄲ",rom:"g vs kk",name:"가 → 까"},{char:"ㄷ vs ㄸ",rom:"d vs tt",name:"다 → 따"},
+  {char:"ㅂ vs ㅃ",rom:"b vs pp",name:"바 → 빠"},{char:"ㅅ vs ㅆ",rom:"s vs ss",name:"사 → 싸"},
+  {char:"ㅈ vs ㅉ",rom:"j vs jj",name:"자 → 짜"},
+  {char:"달 vs 딸",rom:"dal vs ttal",name:"moon vs daughter"},
+  {char:"불 vs 뿔",rom:"bul vs ppul",name:"fire vs horn"},
+  {char:"살 vs 쌀",rom:"sal vs ssal",name:"flesh vs rice"},
+  {char:"자다 vs 짜다",rom:"ja-da vs jja-da",name:"sleep vs salty"},
+  {char:"가다 vs 까다",rom:"ga-da vs kka-da",name:"go vs picky"},
 ];
 const SAFETY_WORDS = [
-  {kor:"제1구역",eng:"Zone 1",rom:"je-il-gu-yeok"},{kor:"제2출구",eng:"Exit 2",rom:"je-i-chul-gu"},
-  {kor:"3층",eng:"3rd Floor",rom:"sam-cheung"},{kor:"119 소방",eng:"119 Fire Dept",rom:"il-il-gu so-bang"},
-  {kor:"112 경찰",eng:"112 Police",rom:"il-il-i gyeong-chal"},{kor:"5번 게이트",eng:"Gate 5",rom:"o-beon ge-i-teu"},
+  {kor:"끼임주의",eng:"Pinch Point",rom:"kki-im-ju-ui"},{kor:"빠짐주의",eng:"Fall Hazard",rom:"ppa-jim-ju-ui"},
+  {kor:"쓰러짐",eng:"Collapse Risk",rom:"sseu-reo-jim"},{kor:"끊어짐",eng:"Break/Snap Risk",rom:"kkeu-neo-jim"},
   {kor:"위험",eng:"Danger",rom:"wi-heom"},{kor:"주의",eng:"Caution",rom:"ju-ui"},
   {kor:"금지",eng:"Prohibited",rom:"geum-ji"},{kor:"착용",eng:"Wear/Put on",rom:"chag-yong"},
+  {kor:"대피",eng:"Evacuate",rom:"dae-pi"},{kor:"출입금지",eng:"No Entry",rom:"chul-ip-geum-ji"},
   {kor:"비상구",eng:"Emergency Exit",rom:"bi-sang-gu"},{kor:"보호구 착용",eng:"Wear PPE",rom:"bo-ho-gu chag-yong"},
 ];
-const HANGUL_TABS = ['한자어 수사 Sino','고유어 수사 Native','연습 Practice','안전 단어 Safety'];
-const HANGUL_SUBTITLE = "Learn Hangul · 숫자 읽기";
+const HANGUL_TABS = ['쌍자음 Double','쌍자음 단어 Words','비교 연습 Compare','안전 단어 Safety'];
+const HANGUL_SUBTITLE = "Learn Hangul · 쌍자음 마스터";
 
 // ===== READING PASSAGES =====
 const READING_PASSAGES = [
-  {title:"라민의 감기",eng:"Ramin's Cold",
-   text:"라민 씨는 어제부터 머리가 아팠어요.\n오늘 아침에 열도 났어요.\n기침도 하고 목도 아파요.\n의무실에 갔어요.\n의사 선생님이 말했어요. '감기예요.'\n감기약을 받았어요.\n'오늘은 쉬세요.'\n라민 씨는 기숙사에서 푹 쉬었어요.",
-   textEng:"Ramin had a headache since yesterday.\nThis morning he also had a fever.\nHe's coughing and his throat hurts too.\nHe went to the infirmary.\nThe doctor said, 'It's a cold.'\nHe got cold medicine.\n'Please rest today.'\nRamin rested well at the dormitory.",
+  {title:"라민의 편의점 쇼핑",eng:"Ramin's Convenience Store Shopping",
+   text:"라민 씨는 퇴근 후에 편의점에 갔어요.\n물 한 병을 골랐어요. 천이백 원이에요.\n삼각김밥도 하나 골랐어요. 천오백 원이에요.\n모두 이천칠백 원이에요.\n라민 씨는 카드로 결제했어요.\n한국에서는 카드가 편리해요.\n영수증을 받고 기숙사로 돌아갔어요.\n라민 씨는 한국어로 가격을 말할 수 있어요!",
+   textEng:"Ramin went to the convenience store after work.\nHe picked a bottle of water. It's 1,200 won.\nHe also picked a triangle kimbap. It's 1,500 won.\nThe total is 2,700 won.\nRamin paid by card.\nCards are convenient in Korea.\nHe got the receipt and went back to the dorm.\nRamin can say prices in Korean!",
    questions:[
-     {q:"라민 씨는 어디가 아파요?",a:"머리, 목",ae:"Head, throat"},
-     {q:"의사 선생님이 뭐라고 했어요?",a:"감기예요",ae:"It's a cold"},
-     {q:"라민 씨는 어디서 쉬었어요?",a:"기숙사",ae:"At the dormitory"},
+     {q:"물은 얼마예요?",a:"천이백 원",ae:"1,200 won"},
+     {q:"모두 얼마예요?",a:"이천칠백 원",ae:"2,700 won"},
+     {q:"라민 씨는 어떻게 결제했어요?",a:"카드로",ae:"By card"},
    ]},
-  {title:"안젤라의 산업재해",eng:"Angela's Workplace Injury",
-   text:"안젤라 씨는 작업 중에 손을 다쳤어요.\n피가 많이 났어요.\n동료 후엔 씨가 의무실에 데려갔어요.\n의사가 소독하고 붕대를 감아 줬어요.\n다행히 뼈는 괜찮았어요.\n반장님이 산업재해 보고서를 썼어요.\n산재 보험으로 치료비를 받을 수 있어요.\n안전이 가장 중요해요!",
-   textEng:"Angela hurt her hand during work.\nShe bled a lot.\nColleague Huen took her to the infirmary.\nThe doctor disinfected and bandaged it.\nFortunately, the bone was fine.\nThe team leader wrote an accident report.\nIndustrial insurance covers the treatment.\nSafety is the most important!",
+  {title:"거제 시장 구경",eng:"Visiting Geoje Market",
+   text:"주말에 후엔 씨와 안젤라 씨가 거제 시장에 갔어요.\n시장에는 과일, 생선, 옷 등이 있어요.\n사과 한 봉지에 오천 원이에요.\n안젤라 씨가 물었어요. '깎아 주세요!'\n아저씨가 사천 원에 주셨어요.\n후엔 씨는 회를 먹었어요. 만 원이에요.\n시장은 재미있고 물건이 싸요.\n다음 주말에도 시장에 갈 거예요!",
+   textEng:"On the weekend, Huen and Angela went to Geoje Market.\nThe market has fruits, fish, clothes and more.\nA bag of apples is 5,000 won.\nAngela asked, 'Please give me a discount!'\nThe seller gave it for 4,000 won.\nHuen ate sashimi. It's 10,000 won.\nThe market is fun and things are cheap.\nThey'll go to the market next weekend too!",
    questions:[
-     {q:"안젤라 씨는 어디를 다쳤어요?",a:"손",ae:"Hand"},
-     {q:"누가 의무실에 데려갔어요?",a:"후엔 씨",ae:"Huen"},
-     {q:"치료비는 어떻게 돼요?",a:"산재 보험으로",ae:"Industrial insurance covers it"},
+     {q:"사과 한 봉지는 원래 얼마예요?",a:"오천 원",ae:"5,000 won"},
+     {q:"안젤라 씨는 뭐라고 했어요?",a:"깎아 주세요",ae:"Please give me a discount"},
+     {q:"회는 얼마예요?",a:"만 원",ae:"10,000 won"},
    ]},
 ];
 
 // ===== FOLKTALE DATA (40 sentences) =====
 const FOLKTALE = {
-  title: "은혜 갚은 까치",
-  eng: "The Grateful Magpie",
-  desc: "도움을 받은 까치가 은혜를 갚는 이야기입니다.",
-  descEng: "The story of a magpie that repays a favor.",
+  title: "금도끼 은도끼",
+  eng: "The Gold Axe and the Silver Axe",
+  desc: "정직한 나무꾼이 보상을 받는 이야기입니다.",
+  descEng: "The story of an honest woodcutter who is rewarded.",
   sentences: [
-    {kor:"옛날에 마음이 착한 젊은이가 살았어요.",eng:"Once upon a time, a kind young man lived."},
-    {kor:"어느 날 길을 가다가 뱀이 까치를 잡으려는 것을 봤어요.",eng:"One day on the road, he saw a snake trying to catch a magpie."},
-    {kor:"젊은이는 뱀을 쫓아 까치를 구해 줬어요.",eng:"The young man chased the snake away and saved the magpie."},
-    {kor:"까치는 고맙다는 듯이 울며 날아갔어요.",eng:"The magpie flew away, crying as if to say thank you."},
-    {kor:"젊은이는 계속 길을 갔어요.",eng:"The young man continued on his way."},
-    {kor:"날이 어두워졌어요.",eng:"It got dark."},
-    {kor:"산속에서 길을 잃었어요.",eng:"He got lost in the mountains."},
-    {kor:"멀리서 불빛이 보였어요.",eng:"He saw a light in the distance."},
-    {kor:"그곳은 외딴집이었어요.",eng:"It was a remote house."},
-    {kor:"할머니가 문을 열어 줬어요.",eng:"An old woman opened the door."},
-    {kor:"'여기서 하룻밤 쉬고 가세요.'",eng:"'Rest here for the night.'"},
-    {kor:"젊은이는 감사하며 들어갔어요.",eng:"The young man went in gratefully."},
-    {kor:"할머니가 맛있는 저녁을 차려 줬어요.",eng:"The old woman prepared a delicious dinner."},
-    {kor:"젊은이는 피곤해서 금방 잠이 들었어요.",eng:"The young man was tired and fell asleep quickly."},
-    {kor:"한밤중에 이상한 소리가 들렸어요.",eng:"In the middle of the night, he heard strange sounds."},
-    {kor:"'까악! 까악!'",eng:"'Caw! Caw!'"},
-    {kor:"까치가 창문을 두드리고 있었어요!",eng:"A magpie was tapping on the window!"},
-    {kor:"까치가 계속 울었어요. '위험해요! 빨리 나오세요!'",eng:"The magpie kept crying. 'Danger! Come out quickly!'"},
-    {kor:"젊은이는 놀라서 밖으로 나갔어요.",eng:"The young man was startled and went outside."},
-    {kor:"밖으로 나오자 할머니가 변했어요!",eng:"Once outside, the old woman transformed!"},
-    {kor:"할머니는 사실 귀신이었어요!",eng:"The old woman was actually a ghost!"},
-    {kor:"집도 사라지고 무덤만 있었어요.",eng:"The house disappeared and only a grave remained."},
-    {kor:"까치가 아니었으면 큰일 날 뻔했어요.",eng:"If not for the magpie, he would have been in big trouble."},
-    {kor:"젊은이는 까치에게 감사했어요.",eng:"The young man thanked the magpie."},
-    {kor:"'네가 나를 구해 줬구나!'",eng:"'You saved me!'"},
-    {kor:"까치는 낮에 자기를 구해 준 은혜를 갚은 거예요.",eng:"The magpie repaid the favor of being saved during the day."},
-    {kor:"젊은이는 안전하게 집으로 돌아갔어요.",eng:"The young man returned home safely."},
-    {kor:"그 후로 젊은이는 동물을 더 사랑했어요.",eng:"After that, the young man loved animals even more."},
-    {kor:"사람들에게도 친절하게 대했어요.",eng:"He also treated people kindly."},
-    {kor:"마을 사람들이 그를 존경했어요.",eng:"The villagers respected him."},
-    {kor:"'좋은 일을 하면 좋은 일이 돌아와요.'",eng:"'Good deeds come back to you.'"},
-    {kor:"이것이 '은혜 갚은 까치' 이야기의 교훈이에요.",eng:"This is the moral of 'The Grateful Magpie.'"},
-    {kor:"작은 도움이라도 다른 사람에게 베풀어요.",eng:"Give even small help to others."},
-    {kor:"언젠가 그 도움이 나에게 돌아올 거예요.",eng:"Someday that help will come back to you."},
-    {kor:"동물도 소중한 생명이에요.",eng:"Animals are precious lives too."},
-    {kor:"자연을 사랑하고 보호해요.",eng:"Love and protect nature."},
-    {kor:"서로 돕고 사는 세상이 아름다워요.",eng:"A world where we help each other is beautiful."},
-    {kor:"여러분도 오늘 누군가를 도와 보세요!",eng:"Try helping someone today!"},
-    {kor:"작은 친절이 큰 기적을 만들어요.",eng:"Small kindness creates big miracles."},
-    {kor:"은혜 갚은 까치 이야기를 기억하세요!",eng:"Remember the Grateful Magpie story!"},
+    {kor:"옛날에 정직한 나무꾼이 살았어요.",eng:"Once upon a time, there lived an honest woodcutter."},
+    {kor:"나무꾼은 매일 산에 가서 나무를 했어요.",eng:"The woodcutter went to the mountain every day to chop wood."},
+    {kor:"어느 날, 나무를 하다가 도끼를 연못에 빠뜨렸어요.",eng:"One day, while chopping wood, he dropped his axe in a pond."},
+    {kor:"나무꾼은 너무 슬펐어요.",eng:"The woodcutter was very sad."},
+    {kor:"도끼가 없으면 일을 할 수 없어요.",eng:"Without an axe, he cannot work."},
+    {kor:"그때 연못에서 산신령이 나타났어요.",eng:"Then a mountain spirit appeared from the pond."},
+    {kor:"산신령은 금도끼를 들고 있었어요.",eng:"The spirit was holding a gold axe."},
+    {kor:"'이 금도끼가 네 도끼냐?'",eng:"'Is this gold axe yours?'"},
+    {kor:"나무꾼은 고개를 저었어요. '아니요, 제 것이 아니에요.'",eng:"The woodcutter shook his head. 'No, it's not mine.'"},
+    {kor:"산신령은 다시 은도끼를 들고 나왔어요.",eng:"The spirit came out again with a silver axe."},
+    {kor:"'이 은도끼가 네 도끼냐?'",eng:"'Is this silver axe yours?'"},
+    {kor:"나무꾼은 또 고개를 저었어요. '아니요, 그것도 제 것이 아니에요.'",eng:"The woodcutter shook his head again. 'No, that's not mine either.'"},
+    {kor:"산신령은 마지막으로 낡은 쇠도끼를 들고 나왔어요.",eng:"Finally, the spirit came out with an old iron axe."},
+    {kor:"'이 쇠도끼가 네 도끼냐?'",eng:"'Is this iron axe yours?'"},
+    {kor:"나무꾼은 기뻐하며 말했어요. '네! 그것이 제 도끼예요!'",eng:"The woodcutter happily said, 'Yes! That is my axe!'"},
+    {kor:"산신령은 나무꾼의 정직함에 감동했어요.",eng:"The spirit was moved by the woodcutter's honesty."},
+    {kor:"'너는 정직하구나.'",eng:"'You are honest.'"},
+    {kor:"산신령은 금도끼, 은도끼, 쇠도끼를 모두 주었어요.",eng:"The spirit gave him all three axes — gold, silver, and iron."},
+    {kor:"나무꾼은 감사하다고 인사했어요.",eng:"The woodcutter thanked the spirit."},
+    {kor:"나무꾼은 부자가 되었어요.",eng:"The woodcutter became rich."},
+    {kor:"이 소식을 들은 욕심 많은 나무꾼이 있었어요.",eng:"A greedy woodcutter heard this news."},
+    {kor:"욕심쟁이는 일부러 도끼를 연못에 빠뜨렸어요.",eng:"The greedy one deliberately dropped his axe in the pond."},
+    {kor:"산신령이 나타나서 금도끼를 보여줬어요.",eng:"The spirit appeared and showed the gold axe."},
+    {kor:"'이 금도끼가 네 도끼냐?'",eng:"'Is this gold axe yours?'"},
+    {kor:"욕심쟁이는 '네! 그것이 제 도끼예요!'라고 거짓말했어요.",eng:"The greedy one lied, 'Yes! That is my axe!'"},
+    {kor:"산신령은 화가 났어요.",eng:"The spirit became angry."},
+    {kor:"'거짓말을 하는구나!'",eng:"'You are lying!'"},
+    {kor:"산신령은 금도끼도 은도끼도 주지 않았어요.",eng:"The spirit gave neither the gold nor the silver axe."},
+    {kor:"욕심쟁이의 쇠도끼도 돌려주지 않았어요.",eng:"He didn't return the greedy one's iron axe either."},
+    {kor:"욕심쟁이는 도끼를 모두 잃었어요.",eng:"The greedy woodcutter lost all his axes."},
+    {kor:"욕심쟁이는 울면서 집으로 돌아갔어요.",eng:"The greedy one went home crying."},
+    {kor:"정직한 나무꾼은 행복하게 살았어요.",eng:"The honest woodcutter lived happily."},
+    {kor:"욕심쟁이는 후회했어요.",eng:"The greedy one regretted his actions."},
+    {kor:"정직이 가장 중요하다는 것을 깨달았어요.",eng:"He realized that honesty is the most important thing."},
+    {kor:"마을 사람들도 이 이야기를 듣고 정직하게 살기로 했어요.",eng:"The villagers also heard this story and decided to live honestly."},
+    {kor:"금도끼 은도끼 이야기는 한국에서 아주 유명해요.",eng:"The Gold Axe Silver Axe story is very famous in Korea."},
+    {kor:"이 이야기의 교훈은 '정직하면 복을 받는다'예요.",eng:"The moral is 'Honesty brings blessings.'"},
+    {kor:"거짓말을 하면 가진 것도 잃어요.",eng:"If you lie, you lose even what you have."},
+    {kor:"여러분도 정직하게 살아요!",eng:"Let's all live honestly!"},
+    {kor:"정직은 가장 좋은 보물이에요.",eng:"Honesty is the best treasure."},
   ]
 };
 
 const FOLKTALE_QUIZ = [
-  {q:"젊은이는 어떤 사람이에요?",o:["마음이 착한 사람","욕심 많은 사람","게으른 사람","무서운 사람"],a:0},
-  {q:"뱀이 뭘 하려고 했어요?",o:["까치를 잡으려고","젊은이를 잡으려고","쥐를 잡으려고","개구리를 잡으려고"],a:0},
-  {q:"젊은이는 까치를 어떻게 했어요?",o:["구해 줬어요","잡았어요","무시했어요","도망갔어요"],a:0},
-  {q:"밤에 젊은이는 어디서 잤어요?",o:["외딴집","동굴","나무 밑","길가"],a:0},
-  {q:"한밤중에 누가 창문을 두드렸어요?",o:["까치","뱀","고양이","호랑이"],a:0},
-  {q:"할머니는 사실 뭐였어요?",o:["귀신","사람","동물","신"],a:0},
-  {q:"까치가 왜 젊은이를 구했어요?",o:["낮에 구해 준 은혜를 갚으려고","놀려고","배가 고파서","심심해서"],a:0},
-  {q:"집이 사라진 후에 뭐가 있었어요?",o:["무덤","강","산","다른 집"],a:0},
-  {q:"젊은이는 그 후에 어떻게 변했어요?",o:["동물을 더 사랑했어요","집에만 있었어요","화가 났어요","슬펐어요"],a:0},
-  {q:"이 이야기의 교훈은?",o:["좋은 일을 하면 좋은 일이 돌아온다","혼자 살아라","밤에 나가지 마라","동물을 무서워해라"],a:0},
-  {q:"'은혜'의 뜻은?",o:["favor/grace","money","food","danger"],a:0},
-  {q:"젊은이는 마을에서 어떻게 됐어요?",o:["존경받았어요","미움받았어요","떠났어요","혼자 살았어요"],a:0},
-  {q:"작은 친절이 뭘 만들어요?",o:["큰 기적","큰 문제","큰 돈","큰 집"],a:0},
-  {q:"'까악 까악'은 무슨 소리예요?",o:["까치 울음소리","바람 소리","물 소리","천둥 소리"],a:0},
-  {q:"서로 돕고 사는 세상은 어때요?",o:["아름다워요","무서워요","지루해요","어두워요"],a:0},
+  {q:"나무꾼은 어떤 사람이에요?",o:["정직한 사람","욕심 많은 사람","게으른 사람","무서운 사람"],a:0},
+  {q:"도끼를 어디에 빠뜨렸어요?",o:["연못","강","바다","우물"],a:0},
+  {q:"연못에서 누가 나타났어요?",o:["산신령","용왕","호랑이","토끼"],a:0},
+  {q:"산신령이 처음에 보여준 도끼는?",o:["금도끼","은도끼","쇠도끼","나무도끼"],a:0},
+  {q:"나무꾼은 금도끼가 자기 것이라고 했어요?",o:["아니요","네","모르겠어요","대답 안 했어요"],a:0},
+  {q:"나무꾼의 진짜 도끼는?",o:["쇠도끼","금도끼","은도끼","동도끼"],a:0},
+  {q:"산신령은 왜 세 도끼를 모두 주었어요?",o:["정직해서","부자여서","울어서","부탁해서"],a:0},
+  {q:"욕심쟁이는 도끼를 어떻게 빠뜨렸어요?",o:["일부러","실수로","바람에","넘어져서"],a:0},
+  {q:"욕심쟁이는 금도끼를 보고 뭐라고 했어요?",o:["제 거예요 (거짓말)","제 것이 아니에요","모르겠어요","감사합니다"],a:0},
+  {q:"산신령은 욕심쟁이에게 어떻게 했어요?",o:["도끼를 안 주었어요","금도끼를 주었어요","칭찬했어요","웃었어요"],a:0},
+  {q:"욕심쟁이는 결국 어떻게 됐어요?",o:["도끼를 모두 잃었어요","부자가 됐어요","금도끼를 받았어요","산에 갔어요"],a:0},
+  {q:"이 이야기의 교훈은?",o:["정직하면 복을 받는다","돈이 최고다","산에 가지 마라","연못을 조심하라"],a:0},
+  {q:"'금도끼 은도끼' 이야기는 한국에서 어때요?",o:["아주 유명해요","모르는 사람이 많아요","외국 이야기예요","새 이야기예요"],a:0},
+  {q:"정직한 나무꾼은 마지막에 어떻게 살았어요?",o:["행복하게","슬프게","가난하게","외롭게"],a:0},
+  {q:"정직은 가장 좋은 ___이에요.",o:["보물","도끼","연못","나무"],a:0},
 ];
 
 const REVIEW_DATA = {
@@ -399,24 +398,24 @@ const REVIEW_DATA = {
     desc: "다음에 배울 내용을 미리 살펴보세요.",
     descEng: "Preview what you will learn next.",
     items: [
-      {label:"10과 주제",val:"전화번호가 뭐예요? · What is your phone number?",detail:"전화·연락처·숫자 표현을 배웁니다."},
-      {label:"핵심 어휘",val:"전화, 번호, 문자, 카카오톡, 이메일",detail:"phone, number, text, KakaoTalk, email"},
-      {label:"핵심 문법",val:"~(으)ㄹ 수 있다, ~(으)세요, ~는데",detail:"can/able to, please do, but/and"},
-      {label:"조선소 어휘",val:"연락처, 비상연락망, 내선번호, 통역",detail:"contact, emergency contact, extension, interpreter"},
+      {label:"6과 주제",val:"뭐 먹을래요? · What do you want to eat?",detail:"음식 이름과 주문 표현을 배웁니다."},
+      {label:"핵심 어휘",val:"밥, 국, 반찬, 김치, 불고기, 비빔밥",detail:"rice, soup, side dish, kimchi, bulgogi, bibimbap"},
+      {label:"핵심 문법",val:"~을/를 먹어요, ~이/가 좋아요, ~주세요",detail:"eating expression, preference, request"},
+      {label:"조선소 어휘",val:"구내식당, 메뉴, 주문, 식권, 배식",detail:"cafeteria, menu, order, meal ticket, serving"},
     ]
   },
   review: {
     title: "복습 · Review",
-    desc: "9과에서 배운 내용을 확인하세요.",
-    descEng: "Check what you learned in Lesson 9.",
+    desc: "5과에서 배운 내용을 확인하세요.",
+    descEng: "Check what you learned in Lesson 5.",
     sections: [
-      {title:"건강 어휘",icon:"🏥",items:["머리/배/목/허리가 아파요","열이 나요 / 감기에 걸렸어요","다쳤어요 / 피가 나요","병원 / 약국 / 의무실"]},
-      {title:"~아/어서 (이유)",icon:"📝",items:["머리가 아파서 병원에 가요","열이 나서 못 일해요","감기에 걸려서 쉬어요","다쳐서 못 써요"]},
-      {title:"~(으)ㄹ 때 / ~지 마세요",icon:"🗣️",items:["아플 때 약을 먹어요","열이 날 때 병원에 가요","무리하지 마세요","걱정하지 마세요"]},
-      {title:"응급 상황",icon:"🚑",items:["119에 전화하세요 (emergency)","의무실이 어디예요? (infirmary?)","산업재해 보험 (accident insurance)","안전이 가장 중요해요! (safety first!)"]},
+      {title:"한자어 숫자",icon:"🔢",items:["일(1) 이(2) 삼(3) 사(4) 오(5)","육(6) 칠(7) 팔(8) 구(9) 십(10)","백(100) 천(1000) 만(10000)","이천오백=2,500 / 삼만=30,000"]},
+      {title:"가격 말하기",icon:"💰",items:["천 원 (₩1,000)","오천 원 (₩5,000)","만 원 (₩10,000)","이만오천 원 (₩25,000)"]},
+      {title:"쇼핑 필수 표현",icon:"🛒",items:["이거 얼마예요? (How much?)","이거 주세요. (This please.)","카드로 결제할 수 있어요? (Can I pay by card?)","영수증 주세요. (Receipt please.)","깎아 주세요. (Discount please.)"]},
+      {title:"단위명사(수량)",icon:"📦",items:["한 병 (one bottle)","두 줄 (two rolls)","세 잔 (three cups)","네 개 (four pieces)"]},
     ]
   },
-  dictation: ["어디가 아파요?","머리가 아파요.","병원에 가야 해요.","감기에 걸렸어요.","약 좀 주세요.","열이 나요.","오늘 좀 쉬고 싶어요.","다쳤어요.","의무실이 어디예요?","걱정하지 마세요."],
+  dictation: ["이거 얼마예요?","삼천 원이에요.","물 한 병 주세요.","카드로 결제할 수 있어요?","모두 얼마예요?","만 원이에요.","영수증 주세요.","좀 비싸네요.","깎아 주세요.","거스름돈 주세요."],
 };
 
 // ===== APP STATE =====
@@ -520,15 +519,15 @@ function renderPage() {
 function renderHome() {
   return `
   <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);border-radius:16px;padding:20px;margin-bottom:16px;color:#fff">
-    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 9과 · Beginner Lesson 9</div>
+    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 5과 · Beginner Lesson 5</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ 0급 한글 입문 완료</span>
       <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
     </div
-    <div style="font-size:26px;font-weight:800;margin-bottom:2px">어디가 아파요?</div>
-    <div style="font-size:13px;color:#aabbdd">Where does it hurt? — 건강과 병원 · Health & Hospital</div>
+    <div style="font-size:26px;font-weight:800;margin-bottom:2px">얼마예요?</div>
+    <div style="font-size:13px;color:#aabbdd">How much is it? — 숫자와 가격 · Numbers & Prices</div>
     <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
-      ${['~아/어서','~(으)ㄹ 때','~지 마세요','신체 부위'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
+      ${['한자어 수','가격 표현','주세요','결제·송금'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
     </div>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
@@ -550,9 +549,9 @@ function renderHome() {
       <div style="font-weight:700;font-size:12px;color:#1E3A5F">${it.l}</div>
     </button>`).join('')}
   </div>
-  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🚀 한국의 성장 원동력 보기</button>
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">💰 한국의 경제 성장 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="한화오션_초급8과_날씨가어때요.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 8과 날씨가 어때요?</a><a href="한화오션_초급10과_전화번호가뭐예요.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">10과 전화번호가 뭐예요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson4.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 4과 몇 시예요?</a><a href="HanwhaOcean_Level1_Lesson6.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">6과 뭐 먹을래요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -571,7 +570,7 @@ function renderCurriculum() {
       <span style="color:#888;font-size:12px">${lv.ls}과</span>
     </div>
     <div style="color:#888;font-size:11px;margin:4px 0">${lv.e}</div>
-    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'50%':'0%'):'0%'};background:${lv.c}"></div></div>
+    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'27.7%':'0%'):'0%'};background:${lv.c}"></div></div>
   </div>`).join('')}`;
 }
 
@@ -581,14 +580,18 @@ function renderHangul() {
   const hTab = Math.min(state.hgTab, 3);
   const data = datasets[hTab];
   const isSafety = hTab === 3;
-  const progressPct = 45;
-  const progressLabel = "9/20";
+  const progressPct = 25;
+  const progressLabel = "5/20";
 
   return `<h2>🔤 0급 입문 · ${HANGUL_SUBTITLE}</h2><p class="sub">${HANGUL_SUBTITLE}</p>
   <div style="margin-bottom:12px;background:#e5e7eb;border-radius:8px;overflow:hidden;position:relative;height:22px">
     <div style="width:${progressPct}%;height:100%;background:linear-gradient(90deg,#3b82f6,#06b6d4);border-radius:8px;transition:width 0.5s"></div>
     <div style="position:absolute;top:0;left:0;right:0;text-align:center;font-size:11px;font-weight:700;line-height:22px;color:${progressPct>50?'#fff':'#555'}">한글 마스터 ${progressLabel} (${progressPct}%)</div>
   </div>
+  ${(hTab === 0 || hTab === 1)?`<div class="card" style="background:#fef3c7;border:2px solid #f59e0b;margin-bottom:12px">
+    <b style="color:#92400e">🎧 발음 비교 듣기 · Pronunciation Comparison</b>
+    <p style="font-size:12px;color:#92400e;margin:4px 0 0">글자를 클릭하면 발음을 비교해서 들을 수 있어요!</p>
+  </div>`:''}
   <div class="tabs">${tabs.map((t,i)=>`<button class="tab ${hTab===i?'active':''}" onclick="setState({hgTab:${i},hgSelected:null})">${t}</button>`).join('')}</div>
   ${isSafety ? `<div class="grid2">${data.map((w,i)=>`
     <div class="card ${i===state.hgSelected?'card-orange':'card-accent'}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${w.kor}')">
@@ -607,14 +610,15 @@ function renderHangul() {
     <div style="font-size:18px;color:var(--ocean);margin:8px 0">[${data[state.hgSelected].rom}]</div>
     ${data[state.hgSelected].name?`<div style="font-size:14px;color:#555">${data[state.hgSelected].name}</div>`:''}
     <button class="btn btn-primary" style="margin-top:12px;width:auto;padding:8px 24px" onclick="TTS.speak('${data[state.hgSelected].name||data[state.hgSelected].char}')">🔊 발음 듣기 Listen</button>
+    <button class="btn" style="width:auto;padding:8px 20px;background:#10b981;color:#fff;margin-left:4px" onclick="TTS.speak('${data[state.hgSelected].char}',undefined,0.6)">🐢 느리게</button>
   </div>`:''}`;
 }
 
 function renderVocab() {
-  const tabs = ['건강 Health','조선소 Shipyard','의료·보험 Medical','도구·장비 Tools&Equip'];
+  const tabs = ['숫자·가격 Numbers','조선소 Shipyard','돈·결제 Money','도구·장비 Tools&Equip'];
   const t = state.vocabTab;
   let content = '';
-  if (t===0) content = VOCAB_HEALTH.map((v,i)=>`
+  if (t===0) content = VOCAB_PRICE.map((v,i)=>`
     <div class="card card-accent vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,[${i}]:!state.vocabReveal[${i}]}})">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div><div class="kor">${v.kor} ${ttsBtn(v.kor)}</div><div class="pron">[${v.pron}]</div></div>
@@ -629,7 +633,7 @@ function renderVocab() {
       ${state.vocabReveal['s'+i]?`<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border-radius:6px;font-size:13px;color:var(--orange);font-weight:600">${v.eng}</div>`
       :`<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기</div>`}
     </div>`).join('');
-  else if (t===2) content = `<div class="grid2">${VOCAB_MEDICAL.map(v=>`
+  else if (t===2) content = `<div class="grid2">${VOCAB_MONEY.map(v=>`
     <div class="vocab-item" style="background:#f0f7ff;border-radius:8px;padding:8px 10px" onclick="TTS.speak('${v.kor}')">
       <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
     </div>`).join('')}</div>`;
@@ -638,14 +642,14 @@ function renderVocab() {
       <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
     </div>`).join('')}</div>`;
 
-  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">9과 핵심 어휘 (${VOCAB_HEALTH.length+VOCAB_SHIPYARD.length+VOCAB_MEDICAL.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
+  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">5과 핵심 어휘 (${VOCAB_PRICE.length+VOCAB_SHIPYARD.length+VOCAB_MONEY.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
   <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({vocabTab:${i},vocabReveal:{}})">${tb}</button>`).join('')}</div>
   ${content}`;
 }
 
 function renderGrammar() {
   const g = GRAMMAR[state.gramIdx];
-  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">9과 핵심 문법 ${GRAMMAR.length}개</p>
+  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">5과 핵심 문법 ${GRAMMAR.length}개</p>
   <div class="tabs">${GRAMMAR.map((gr,i)=>`<button class="tab ${state.gramIdx===i?'active':''}" onclick="setState({gramIdx:${i}})">${gr.title}</button>`).join('')}</div>
   <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
     <div style="font-size:18px;font-weight:800;color:var(--navy)">${g.title}</div>
@@ -715,24 +719,24 @@ function renderReading() {
 
 function renderWriting() {
   const preview = state.wrName ? `안녕하세요? 저는 ${state.wrName}이에요/예요.
-${state.wrCountry?state.wrCountry+'가/이 아파요.':''}
-${state.wrJob?state.wrJob+'에 갔어요.':''}
+오늘 ${state.wrCountry?state.wrCountry:'___'}에서 쇼핑했어요.
+${state.wrJob?state.wrJob+' 원이에요.':''}
 ${state.wrExtra?state.wrExtra:''}
-건강이 가장 중요해요!` : '';
+한국어로 쇼핑할 수 있어요!` : '';
 
-  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">나의 건강 이야기 · My Health Story</p>
+  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">나의 쇼핑 이야기 · My Shopping Story</p>
   <div class="card" style="background:#fff7ed;border:2px solid var(--orange)">
-    <b style="color:var(--orange)">📋 아팠던 경험을 써 보세요 · Write about a time you were sick</b>
+    <b style="color:var(--orange)">📋 나의 쇼핑 경험을 써 보세요 · Write about your shopping experience</b>
   </div>
   <div style="margin-top:12px">
     <label style="font-size:13px;font-weight:700;color:var(--navy)">이름 Name</label>
     <input class="input" placeholder="예: 라민 / Ramin" value="${state.wrName}" oninput="state.wrName=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">어디가 아팠어요? Where hurt?</label>
-    <input class="input" placeholder="예: 머리, 배 / head, stomach" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">어디에 갔어요? Where went?</label>
-    <input class="input" placeholder="예: 병원, 의무실 / hospital, infirmary" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">더 쓰고 싶은 말 More to say</label>
-    <input class="input" placeholder="예: 약을 먹고 나았어요." value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">어디서 쇼핑? Where?</label>
+    <input class="input" placeholder="예: 편의점 / convenience store" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">얼마? How much?</label>
+    <input class="input" placeholder="예: 삼천 / 3,000" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">무엇을 샀어요? What did you buy?</label>
+    <input class="input" placeholder="예: 물하고 김밥을 샀어요." value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
   </div>
   ${preview?`
   <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📄 미리보기 · Preview</div>
@@ -740,14 +744,14 @@ ${state.wrExtra?state.wrExtra:''}
     ${preview.split('\n').filter(l=>l.trim()).map(l=>`<div style="font-size:16px;color:var(--navy);font-weight:600;margin-bottom:4px">${l}</div>`).join('')}
   </div>
   <button class="btn btn-primary" style="margin-top:10px" onclick="TTS.speak(\`${preview.replace(/\n/g,' ').replace(/이에요\/예요/g,'이에요')}\`,undefined,0.8)">🔊 발표 연습 듣기 · Listen to Presentation</button>
-  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 나의 건강 이야기가 만들어집니다.<br>Fill in the fields above to generate your health story.</div>'}
+  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 나의 쇼핑 이야기가 만들어집니다.<br>Fill in the fields above to generate your shopping story.</div>'}
 
   <div style="margin-top:20px;font-weight:700;color:var(--navy);margin-bottom:8px">✍️ 자유 쓰기 · Free Writing</div>
-  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 어제 머리가 아파서 병원에 갔어요.&#10;감기약을 먹었어요." id="freeWrite"></textarea>`;
+  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 편의점에서 물을 샀어요.&#10;천이백 원이에요." id="freeWrite"></textarea>`;
 }
 
 function renderFlashcard() {
-  const all = [...VOCAB_HEALTH.map(v=>({f:v.kor,b:v.eng})),...VOCAB_MEDICAL.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
+  const all = [...VOCAB_PRICE.map(v=>({f:v.kor,b:v.eng})),...VOCAB_MONEY.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
   const card = all[state.fcIdx % all.length];
   return `<h2>🃏 플래시카드 · Flashcards</h2>
   <div style="display:flex;justify-content:space-between;margin-bottom:8px">
@@ -802,7 +806,7 @@ function renderQuiz() {
 }
 
 function renderCulture() {
-  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 건강·의료 문화 · Korean Health & Medical Culture</p>
+  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 돈과 쇼핑 문화 · Korean Money & Shopping Culture</p>
   ${CULTURE.map(c=>`<div class="card" style="display:flex;gap:12px;align-items:flex-start">
     <div style="font-size:34px;flex-shrink:0">${c.icon}</div>
     <div>
@@ -812,7 +816,7 @@ function renderCulture() {
       <div style="font-size:12px;color:#888;margin-top:2px">${c.de}</div>
     </div>
   </div>`).join('')}
-  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">🚀 한국의 성장 원동력 자세히 보기</button>`;
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">💰 거제 물가 자세히 보기</button>`;
 }
 
 // ===== REVIEW (익힘) =====
@@ -833,7 +837,7 @@ function renderReview() {
           ${!item.includes(' ')&&item.length<15?ttsBtn(item):''}
         </div>`).join('')}
       </div>`).join('')}
-    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 건강 표현 전체 듣기</button>`;
+    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 쇼핑 표현 전체 듣기</button>`;
   }
   if (t===1) { // 예습
     const pv = REVIEW_DATA.preview;
@@ -841,7 +845,7 @@ function renderReview() {
     <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
     <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean)">
       <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px">📖 다음 수업 미리보기 · Next Lesson Preview</div>
-      <div style="font-size:12px;color:#888;margin-bottom:12px">9과를 미리 살펴보세요!</div>
+      <div style="font-size:12px;color:#888;margin-bottom:12px">5과를 미리 살펴보세요!</div>
     </div>
     ${pv.items.map((item,i)=>`
       <div class="card ${i%2===0?'card-accent':'card-orange'}">
@@ -852,14 +856,14 @@ function renderReview() {
     <div class="card card-green" style="background:var(--light-green)">
       <div style="font-weight:700;color:var(--green);margin-bottom:6px">💡 예습 팁 · Preview Tips</div>
       <div style="font-size:13px;color:#333;line-height:1.6">
-        1. 전화·연락처 관련 어휘를 미리 읽어 보세요.<br>
-        2. 자기 전화번호를 한국어로 말하는 연습을 해 보세요.<br>
-        3. 카카오톡 사용법을 익혀 보세요.
+        1. 구내식당 메뉴판에서 음식 이름을 읽어 보세요.<br>
+        2. 좋아하는 음식을 한국어로 말해 보세요.<br>
+        3. '~주세요'를 사용해서 주문 연습을 해 보세요.
       </div>
       <div style="font-size:12px;color:#888;margin-top:6px;line-height:1.5">
-        1. Read phone and contact vocabulary in advance.<br>
-        2. Practice saying your phone number in Korean.<br>
-        3. Learn how to use KakaoTalk.
+        1. Read the food names on the cafeteria menu.<br>
+        2. Try saying your favorite food in Korean.<br>
+        3. Practice ordering with '~주세요'.
       </div>
     </div>`;
   }
@@ -1004,15 +1008,15 @@ function renderGeoje() {
     <div style="font-size:14px;color:var(--navy);font-weight:600">${f.val}</div>
   </div>`).join('')}
   <div class="card" style="background:var(--light-orange);border:2px solid var(--orange)">
-    <b style="color:var(--orange)">🚀 한국의 성장 원동력 Korea's Growth Engine</b>
+    <b style="color:var(--orange)">🚀 한국의 성장 원동력: 경제 성장 Korea's Growth Engine: Economic Growth</b>
     <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
       ${[
-        {item:'조선 산업',price:'세계 1위',emoji:'🚢',eng:'Shipbuilding'},
-        {item:'반도체',price:'글로벌 선도',emoji:'💾',eng:'Semiconductor'},
-        {item:'자동차',price:'Top 3',emoji:'🚗',eng:'Automobile'},
-        {item:'K-Culture',price:'세계적 영향',emoji:'🎵',eng:'K-POP, Drama'},
-        {item:'IT 강국',price:'5G·AI 선도',emoji:'📱',eng:'IT Powerhouse'},
-        {item:'교육열',price:'세계 최고',emoji:'📚',eng:'Education'},
+        {item:'한강의 기적',price:'60년 성장',emoji:'🌉',eng:'Han River Miracle'},
+        {item:'수출 대국',price:'세계 상위',emoji:'📦',eng:'Export Power'},
+        {item:'새마을 운동',price:'농촌 근대화',emoji:'🏘️',eng:'Saemaul Movement'},
+        {item:'중화학 공업',price:'산업 기반',emoji:'🏭',eng:'Heavy Industry'},
+        {item:'IMF 극복',price:'2년 만에',emoji:'💪',eng:'Crisis Recovery'},
+        {item:'K-경제',price:'글로벌 핵심',emoji:'🌍',eng:'K-Economy'},
       ].map(p=>`
         <div style="background:#fff;border-radius:10px;padding:10px;text-align:center">
           <div style="font-size:20px">${p.emoji}</div>

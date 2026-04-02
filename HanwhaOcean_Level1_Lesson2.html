@@ -92,239 +92,239 @@ function ttsBtn(text) {
 }
 
 // ===== DATA =====
-const VOCAB_PLACES = [
-  {kor:"여기",pron:"yeo-gi",eng:"here"},
-  {kor:"거기",pron:"geo-gi",eng:"there"},
-  {kor:"저기",pron:"jeo-gi",eng:"over there"},
-  {kor:"어디",pron:"eo-di",eng:"where"},
-  {kor:"위",pron:"wi",eng:"above/up"},
-  {kor:"아래",pron:"a-rae",eng:"below/down"},
-  {kor:"앞",pron:"ap",eng:"front"},
-  {kor:"뒤",pron:"dwi",eng:"back/behind"},
-  {kor:"옆",pron:"yeop",eng:"beside/next to"},
-  {kor:"안",pron:"an",eng:"inside"},
-  {kor:"밖",pron:"bak",eng:"outside"},
-  {kor:"사이",pron:"sa-i",eng:"between"},
-  {kor:"화장실",pron:"hwa-jang-sil",eng:"restroom"},
-  {kor:"식당",pron:"sik-dang",eng:"restaurant/cafeteria"},
-  {kor:"병원",pron:"byeong-won",eng:"hospital"},
-  {kor:"은행",pron:"eun-haeng",eng:"bank"},
-  {kor:"학교",pron:"hak-gyo",eng:"school"},
-  {kor:"편의점",pron:"pyeon-ui-jeom",eng:"convenience store"},
+const VOCAB_OBJECTS = [
+  {kor:"이것",pron:"i-geot",eng:"this (thing)"},
+  {kor:"그것",pron:"geu-geot",eng:"that (thing, near listener)"},
+  {kor:"저것",pron:"jeo-geot",eng:"that (thing, far away)"},
+  {kor:"뭐예요?",pron:"mwo-ye-yo",eng:"What is it?"},
+  {kor:"이것은 뭐예요?",pron:"i-geo-seun mwo-ye-yo",eng:"What is this?"},
+  {kor:"책",pron:"chaek",eng:"book"},
+  {kor:"가방",pron:"ga-bang",eng:"bag"},
+  {kor:"핸드폰",pron:"haen-deu-pon",eng:"cell phone"},
+  {kor:"열쇠",pron:"yeol-soe",eng:"key"},
+  {kor:"시계",pron:"si-gye",eng:"watch/clock"},
+  {kor:"지갑",pron:"ji-gap",eng:"wallet"},
+  {kor:"우산",pron:"u-san",eng:"umbrella"},
+  {kor:"물",pron:"mul",eng:"water"},
+  {kor:"컴퓨터",pron:"keom-pyu-teo",eng:"computer"},
+  {kor:"의자",pron:"ui-ja",eng:"chair"},
+  {kor:"책상",pron:"chaek-sang",eng:"desk"},
+  {kor:"볼펜",pron:"bol-pen",eng:"ballpoint pen"},
+  {kor:"연필",pron:"yeon-pil",eng:"pencil"},
 ];
 
 const VOCAB_SHIPYARD = [
-  {kor:"화장실이 어디예요?",eng:"Where is the restroom?",sit:"시설을 찾을 때 / Finding facilities"},
-  {kor:"구내식당은 저기예요.",eng:"The cafeteria is over there.",sit:"안내할 때 / Giving directions"},
-  {kor:"의무실은 2층에 있어요.",eng:"The infirmary is on the 2nd floor.",sit:"위치 안내 / Location info"},
-  {kor:"여기가 도크예요.",eng:"This is the dock.",sit:"현장 안내 / Site tour"},
-  {kor:"교육장은 어디에 있어요?",eng:"Where is the training room?",sit:"교육 시 / During training"},
-  {kor:"탈의실은 이 건물 안에 있어요.",eng:"The locker room is inside this building.",sit:"시설 안내 / Facility guide"},
-  {kor:"비상구는 저기 왼쪽이에요.",eng:"The emergency exit is over there on the left.",sit:"안전 안내 / Safety guide"},
-  {kor:"흡연실은 밖에 있어요.",eng:"The smoking area is outside.",sit:"규칙 안내 / Rules info"},
-  {kor:"주차장은 건물 뒤에 있어요.",eng:"The parking lot is behind the building.",sit:"위치 안내 / Directions"},
-  {kor:"사무실은 3층에 있어요.",eng:"The office is on the 3rd floor.",sit:"방문 시 / When visiting"},
-  {kor:"여기서 가까워요.",eng:"It's close from here.",sit:"거리 설명 / Distance"},
-  {kor:"거기서 오른쪽으로 가세요.",eng:"Go right from there.",sit:"길 안내 / Directions"},
-  {kor:"출입구 앞에서 만나요.",eng:"Let's meet at the entrance.",sit:"약속 시 / Making plans"},
-  {kor:"안전 교육장은 1층이에요.",eng:"Safety training room is on the 1st floor.",sit:"교육 안내 / Training info"},
-  {kor:"기숙사는 조선소 밖에 있어요.",eng:"The dormitory is outside the shipyard.",sit:"생활 안내 / Living info"},
-  {kor:"여기서 멀어요?",eng:"Is it far from here?",sit:"거리 질문 / Asking distance"},
+  {kor:"이것은 용접기예요.",eng:"This is a welding machine.",sit:"도구를 가리키며 / Pointing at a tool"},
+  {kor:"그것은 그라인더예요.",eng:"That is a grinder.",sit:"동료에게 설명할 때 / Explaining to colleague"},
+  {kor:"저것은 크레인이에요.",eng:"That over there is a crane.",sit:"먼 곳을 가리키며 / Pointing far away"},
+  {kor:"이것은 안전모예요.",eng:"This is a safety helmet.",sit:"안전 장비 확인 / Checking safety gear"},
+  {kor:"그것 좀 주세요.",eng:"Please give me that.",sit:"물건을 요청할 때 / Requesting an item"},
+  {kor:"이것은 제 거예요.",eng:"This is mine.",sit:"소유물 표현 / Expressing ownership"},
+  {kor:"저것은 뭐예요?",eng:"What is that over there?",sit:"모르는 물건을 물을 때 / Asking about unknown item"},
+  {kor:"이것은 드릴이에요.",eng:"This is a drill.",sit:"공구를 알려줄 때 / Identifying a tool"},
+  {kor:"이 도면 좀 보세요.",eng:"Please look at this drawing.",sit:"도면 확인 시 / Checking blueprints"},
+  {kor:"그 파이프 가져오세요.",eng:"Bring that pipe.",sit:"자재 요청 시 / Requesting materials"},
+  {kor:"이것은 비상구예요.",eng:"This is the emergency exit.",sit:"안전 안내 시 / Safety guidance"},
+  {kor:"저 건물은 기숙사예요.",eng:"That building is the dormitory.",sit:"시설 안내 시 / Facility guide"},
+  {kor:"이것은 출입증이에요.",eng:"This is an ID badge.",sit:"출입 관리 시 / Access control"},
+  {kor:"그것은 소화기예요.",eng:"That is a fire extinguisher.",sit:"안전 장비 설명 / Safety equipment"},
+  {kor:"이 작업복 입으세요.",eng:"Please wear these work clothes.",sit:"작업 준비 시 / Preparing for work"},
+  {kor:"저것은 자재창고예요.",eng:"That over there is the material warehouse.",sit:"시설 안내 시 / Facility guide"},
 ];
 
-const VOCAB_LOCATION = [
+const VOCAB_DEMO = [
+  {kor:"이",eng:"this"},
+  {kor:"그",eng:"that"},
+  {kor:"저",eng:"that (over there)"},
+  {kor:"이것",eng:"this thing"},
+  {kor:"그것",eng:"that thing"},
+  {kor:"저것",eng:"that thing (far)"},
   {kor:"여기",eng:"here"},
   {kor:"거기",eng:"there"},
   {kor:"저기",eng:"over there"},
+  {kor:"뭐",eng:"what"},
   {kor:"어디",eng:"where"},
-  {kor:"왼쪽",eng:"left"},
-  {kor:"오른쪽",eng:"right"},
-  {kor:"위",eng:"up/above"},
-  {kor:"아래",eng:"down/below"},
-  {kor:"앞",eng:"front"},
-  {kor:"뒤",eng:"back"},
-  {kor:"옆",eng:"beside"},
-  {kor:"안",eng:"inside"},
-  {kor:"밖",eng:"outside"},
-  {kor:"사이",eng:"between"},
-  {kor:"근처",eng:"nearby"},
-  {kor:"1층",eng:"1st floor"},
-  {kor:"2층",eng:"2nd floor"},
-  {kor:"3층",eng:"3rd floor"},
-  {kor:"건물",eng:"building"},
-  {kor:"계단",eng:"stairs"},
-  {kor:"엘리베이터",eng:"elevator"},
-  {kor:"입구",eng:"entrance"},
-  {kor:"출구",eng:"exit"},
-  {kor:"길",eng:"road/way"},
-  {kor:"교차로",eng:"intersection"},
-  {kor:"신호등",eng:"traffic light"},
-  {kor:"버스 정류장",eng:"bus stop"},
-  {kor:"지하철역",eng:"subway station"},
-  {kor:"마트",eng:"mart/supermarket"},
-  {kor:"약국",eng:"pharmacy"},
-  {kor:"우체국",eng:"post office"},
-  {kor:"경찰서",eng:"police station"},
-  {kor:"소방서",eng:"fire station"},
-  {kor:"공원",eng:"park"},
-  {kor:"도서관",eng:"library"},
-  {kor:"시장",eng:"market"},
+  {kor:"누구",eng:"who"},
+  {kor:"책",eng:"book"},
+  {kor:"가방",eng:"bag"},
+  {kor:"핸드폰",eng:"cell phone"},
+  {kor:"시계",eng:"watch/clock"},
+  {kor:"열쇠",eng:"key"},
+  {kor:"지갑",eng:"wallet"},
+  {kor:"우산",eng:"umbrella"},
+  {kor:"물",eng:"water"},
+  {kor:"컵",eng:"cup"},
+  {kor:"공책",eng:"notebook"},
+  {kor:"사전",eng:"dictionary"},
+  {kor:"신문",eng:"newspaper"},
+  {kor:"안경",eng:"glasses"},
+  {kor:"모자",eng:"hat/cap"},
+  {kor:"신발",eng:"shoes"},
+  {kor:"물건",eng:"thing/item"},
+  {kor:"도구",eng:"tool"},
+  {kor:"기계",eng:"machine"},
+  {kor:"사진",eng:"photo"},
+  {kor:"휴지",eng:"tissue"},
+  {kor:"수건",eng:"towel"},
+  {kor:"거울",eng:"mirror"},
+  {kor:"칫솔",eng:"toothbrush"},
+  {kor:"비누",eng:"soap"},
 ];
 
 const VOCAB_SHIPYARD_NOUNS = [
-  {kor:"도크",eng:"dock"},
-  {kor:"탑재장",eng:"erection site"},
-  {kor:"도장실",eng:"painting room"},
-  {kor:"자재창고",eng:"material warehouse"},
-  {kor:"사무실",eng:"office"},
-  {kor:"교육장",eng:"training room"},
-  {kor:"의무실",eng:"infirmary"},
-  {kor:"구내식당",eng:"cafeteria"},
-  {kor:"기숙사",eng:"dormitory"},
-  {kor:"휴게실",eng:"break room"},
-  {kor:"탈의실",eng:"locker room"},
-  {kor:"흡연실",eng:"smoking area"},
-  {kor:"주차장",eng:"parking lot"},
-  {kor:"출입구",eng:"entrance/exit"},
-  {kor:"비상구",eng:"emergency exit"},
-  {kor:"경비실",eng:"guard post"},
-  {kor:"작업장",eng:"workshop"},
-  {kor:"용접실",eng:"welding room"},
-  {kor:"배관실",eng:"piping room"},
-  {kor:"전기실",eng:"electrical room"},
-  {kor:"도장 작업장",eng:"painting workshop"},
-  {kor:"자재 적치장",eng:"material storage"},
-  {kor:"조립장",eng:"assembly area"},
-  {kor:"시험실",eng:"testing room"},
-  {kor:"세척장",eng:"cleaning area"},
-  {kor:"폐기물 처리장",eng:"waste disposal"},
-  {kor:"안전 관리실",eng:"safety office"},
-  {kor:"통역실",eng:"interpreter's room"},
-  {kor:"회의실",eng:"meeting room"},
-  {kor:"컨테이너 사무실",eng:"container office"},
+  {kor:"용접기",eng:"welding machine"},
+  {kor:"그라인더",eng:"grinder"},
+  {kor:"크레인",eng:"crane"},
+  {kor:"드릴",eng:"drill"},
+  {kor:"파이프",eng:"pipe"},
+  {kor:"렌치",eng:"wrench"},
+  {kor:"망치",eng:"hammer"},
+  {kor:"톱",eng:"saw"},
+  {kor:"줄자",eng:"measuring tape"},
+  {kor:"산소통",eng:"oxygen tank"},
+  {kor:"가스통",eng:"gas tank"},
+  {kor:"전선",eng:"electric wire"},
+  {kor:"나사",eng:"screw/bolt"},
+  {kor:"너트",eng:"nut"},
+  {kor:"볼트",eng:"bolt"},
+  {kor:"사다리",eng:"ladder"},
+  {kor:"발판",eng:"scaffold/platform"},
+  {kor:"호스",eng:"hose"},
+  {kor:"절단기",eng:"cutter"},
+  {kor:"측정기",eng:"measuring device"},
+  {kor:"도면",eng:"blueprint"},
+  {kor:"공구함",eng:"toolbox"},
+  {kor:"안전띠",eng:"safety harness"},
+  {kor:"용접봉",eng:"welding rod"},
+  {kor:"마스크",eng:"mask"},
+  {kor:"장갑",eng:"gloves"},
+  {kor:"보안경",eng:"safety goggles"},
+  {kor:"안전화",eng:"safety shoes"},
+  {kor:"안전모",eng:"safety helmet"},
+  {kor:"작업복",eng:"work clothes"},
 ];
 
 const GRAMMAR = [
-  {title:"여기/거기/저기 + 이에요/예요",eng:"Here/There + is/are",
-   desc:"장소를 가리키며 말할 때 사용해요.",descEng:"Used when pointing at and naming places.",
-   rule:"여기 = 말하는 사람 가까이 / 거기 = 듣는 사람 가까이 / 저기 = 둘 다 멀리",ruleEng:"여기 = near speaker / 거기 = near listener / 저기 = far from both",
+  {title:"이것/그것/저것 + 은/는",eng:"This/That + Topic marker",
+   desc:"사물을 가리키며 주제를 말할 때 사용해요.",descEng:"Used when pointing at objects and stating the topic.",
+   rule:"이것 + 은 → 이것은 / 그것 + 은 → 그것은 / 저것 + 은 → 저것은",ruleEng:"이것은 = this is / 그것은 = that is / 저것은 = that (far) is",
    examples:[
-    {q:"여기가 어디예요?",a:"여기는 도크예요.",eng:"Where is here? - This is the dock.",note:"여기+는"},
-    {q:"거기가 뭐예요?",a:"거기는 구내식당이에요.",eng:"What is there? - That's the cafeteria.",note:"거기+는"},
-    {q:"저기는 뭐예요?",a:"저기는 자재창고예요.",eng:"What's over there? - That's the warehouse.",note:"저기+는"},
-    {q:"",a:"여기가 교육장이에요.",eng:"Here is the training room.",note:"여기+가"},
-    {q:"",a:"저기가 비상구예요.",eng:"Over there is the emergency exit.",note:"저기+가"},
+    {q:"이것은 뭐예요?",a:"이것은 책이에요.",eng:"What is this? - This is a book.",note:"이것+은 → 이것은"},
+    {q:"그것은 뭐예요?",a:"그것은 핸드폰이에요.",eng:"What is that? - That is a phone.",note:"그것+은 → 그것은"},
+    {q:"저것은 뭐예요?",a:"저것은 크레인이에요.",eng:"What is that? - That is a crane.",note:"저것+은 → 저것은"},
+    {q:"이것은 가방이에요?",a:"네, 이것은 가방이에요.",eng:"Is this a bag? - Yes, this is a bag.",note:"이것+은 확인"},
+    {q:"저것은 안전모예요?",a:"아니요, 저것은 모자예요.",eng:"Is that a helmet? - No, that is a hat.",note:"아니요 + 저것은"},
    ]},
-  {title:"명사 + 은/는 어디예요?",eng:"N + Where is...?",
-   desc:"장소의 위치를 물을 때 사용해요.",descEng:"Used when asking where a place is.",
-   rule:"받침 O + 은 어디예요? / 받침 X + 는 어디예요?",ruleEng:"Final consonant → 은 / No final consonant → 는",
+  {title:"명사 + 이에요/예요 (사물)",eng:"N + 이에요/예요 (for Objects)",
+   desc:"사물의 이름을 말할 때 사용해요.",descEng:"Used when naming objects.",
+   rule:"받침 O → 이에요 / 받침 X → 예요",ruleEng:"Final consonant → 이에요 / No final consonant → 예요",
    examples:[
-    {q:"",a:"화장실은 어디예요?",eng:"Where is the restroom?",note:"화장실(받침O)→은"},
-    {q:"",a:"의무실은 어디예요?",eng:"Where is the infirmary?",note:"의무실(받침O)→은"},
-    {q:"",a:"구내식당은 어디예요?",eng:"Where is the cafeteria?",note:"구내식당(받침O)→은"},
-    {q:"",a:"교육장은 어디예요?",eng:"Where is the training room?",note:"교육장(받침O)→은"},
-    {q:"",a:"기숙사는 어디예요?",eng:"Where is the dormitory?",note:"기숙사(받침X)→는"},
+    {q:"이것은 뭐예요?",a:"책이에요.",eng:"What is this? - It's a book.",note:"책(받침O) → 이에요"},
+    {q:"그것은 뭐예요?",a:"가방이에요.",eng:"What is that? - It's a bag.",note:"가방(받침O) → 이에요"},
+    {q:"이것은 뭐예요?",a:"시계예요.",eng:"What is this? - It's a watch.",note:"시계(받침X) → 예요"},
+    {q:"저것은 뭐예요?",a:"의자예요.",eng:"What is that? - It's a chair.",note:"의자(받침X) → 예요"},
+    {q:"이것은 뭐예요?",a:"용접기예요.",eng:"What is this? - It's a welding machine.",note:"용접기(받침X) → 예요"},
    ]},
-  {title:"명사 + 에 있어요/없어요",eng:"N + 에 (Location particle)",
-   desc:"사물이나 사람의 위치를 말할 때 '에'를 사용해요.",descEng:"Use 에 to indicate where something/someone is located.",
-   rule:"장소 + 에 + 있어요 (있다) / 없어요 (없다)",ruleEng:"Place + 에 + 있어요 (exists) / 없어요 (doesn't exist)",
+  {title:"이/그/저 + 명사",eng:"이/그/저 + Noun (Demonstrative adjectives)",
+   desc:"명사 앞에 '이/그/저'를 붙여 가리킬 때 사용해요.",descEng:"Place 이/그/저 before nouns to point at specific things.",
+   rule:"이 + 명사 (가까이) / 그 + 명사 (듣는 사람 가까이) / 저 + 명사 (멀리)",ruleEng:"이 = near speaker / 그 = near listener / 저 = far from both",
    examples:[
-    {q:"화장실이 어디에 있어요?",a:"1층에 있어요.",eng:"Where is the restroom? - On the 1st floor.",note:"1층+에"},
-    {q:"의무실이 어디에 있어요?",a:"2층에 있어요.",eng:"Where is the infirmary? - On the 2nd floor.",note:"2층+에"},
-    {q:"편의점이 있어요?",a:"네, 기숙사 앞에 있어요.",eng:"Is there a store? - Yes, in front of the dorm.",note:"앞+에"},
-    {q:"여기에 ATM이 있어요?",a:"아니요, 여기에 없어요.",eng:"Is there an ATM here? - No, there isn't.",note:"여기+에 없어요"},
-    {q:"소화기가 어디에 있어요?",a:"비상구 옆에 있어요.",eng:"Where is the extinguisher? - Next to the exit.",note:"옆+에"},
+    {q:"",a:"이 책은 한국어 책이에요.",eng:"This book is a Korean book.",note:"이 + 책 (가까이)"},
+    {q:"",a:"그 가방은 제 가방이에요.",eng:"That bag is my bag.",note:"그 + 가방 (듣는 사람 가까이)"},
+    {q:"",a:"저 건물은 기숙사예요.",eng:"That building over there is the dormitory.",note:"저 + 건물 (멀리)"},
+    {q:"",a:"이 도구는 그라인더예요.",eng:"This tool is a grinder.",note:"이 + 도구 (가까이)"},
+    {q:"",a:"그 사람은 관리자예요.",eng:"That person is a supervisor.",note:"그 + 사람"},
    ]},
 ];
 
 const DIALOGUES = [
-  {title:"조선소 시설 안내",eng:"Shipyard Facility Tour",lines:[
-    {sp:"민수",role:"관리자",text:"라민 씨, 여기가 조선소 교육장이에요.",eng:"Ramin, this is the shipyard training room.",side:"L"},
-    {sp:"라민",role:"용접공",text:"네. 화장실은 어디에 있어요?",eng:"Yes. Where is the restroom?",side:"R"},
-    {sp:"민수",text:"화장실은 저기 왼쪽에 있어요.",eng:"The restroom is over there on the left.",side:"L"},
-    {sp:"라민",text:"구내식당은요?",eng:"What about the cafeteria?",side:"R"},
-    {sp:"민수",text:"구내식당은 이 건물 2층에 있어요.",eng:"The cafeteria is on the 2nd floor of this building.",side:"L"},
-    {sp:"라민",text:"감사합니다. 의무실은 어디예요?",eng:"Thank you. Where is the infirmary?",side:"R"},
-    {sp:"민수",text:"의무실은 저기 건물 1층에 있어요. 비상구 옆이에요.",eng:"The infirmary is on the 1st floor there. Next to the exit.",side:"L"},
+  {title:"도구 확인하기",eng:"Checking Tools",lines:[
+    {sp:"라민",role:"용접공",text:"민수 씨, 이것은 뭐예요?",eng:"Minsu, what is this?",side:"R"},
+    {sp:"민수",role:"관리자",text:"그것은 그라인더예요.",eng:"That is a grinder.",side:"L"},
+    {sp:"라민",text:"아, 그라인더예요. 저것은요?",eng:"Ah, a grinder. What about that over there?",side:"R"},
+    {sp:"민수",text:"저것은 용접기예요.",eng:"That is a welding machine.",side:"L"},
+    {sp:"라민",text:"감사합니다. 이 도구는 어디에 있어요?",eng:"Thank you. Where is this tool?",side:"R"},
+    {sp:"민수",text:"그 도구는 저기 공구함에 있어요.",eng:"That tool is in the toolbox over there.",side:"L"},
   ]},
-  {title:"길 물어보기",eng:"Asking for Directions",lines:[
-    {sp:"후엔",role:"배관공",text:"안젤라 씨, 기숙사가 어디에 있어요?",eng:"Angela, where is the dormitory?",side:"L"},
-    {sp:"안젤라",role:"통역사",text:"기숙사는 조선소 밖에 있어요. 여기서 가까워요.",eng:"The dorm is outside the shipyard. It's close from here.",side:"R"},
-    {sp:"후엔",text:"편의점도 근처에 있어요?",eng:"Is there a convenience store nearby too?",side:"L"},
-    {sp:"안젤라",text:"네, 기숙사 앞에 편의점이 있어요.",eng:"Yes, there's a store in front of the dorm.",side:"R"},
-    {sp:"후엔",text:"은행은요? 은행도 있어요?",eng:"What about a bank? Is there one?",side:"L"},
-    {sp:"안젤라",text:"은행은 여기에 없어요. 버스 타고 거제 시내에 가야 해요.",eng:"There's no bank here. You need to take a bus to Geoje city.",side:"R"},
+  {title:"물건 찾기",eng:"Finding Things",lines:[
+    {sp:"후엔",role:"배관공",text:"안젤라 씨, 이것은 안젤라 씨 거예요?",eng:"Angela, is this yours?",side:"L"},
+    {sp:"안젤라",role:"통역사",text:"아, 네! 그것은 제 핸드폰이에요. 감사합니다!",eng:"Oh yes! That is my phone. Thank you!",side:"R"},
+    {sp:"후엔",text:"그리고 이것은 뭐예요?",eng:"And what is this?",side:"L"},
+    {sp:"안젤라",text:"그것은 출입증이에요. 후엔 씨 출입증이에요.",eng:"That is an ID badge. It's your ID badge, Huynh.",side:"R"},
+    {sp:"후엔",text:"아, 맞아요! 제 출입증이에요. 고맙습니다.",eng:"Oh, right! It's my ID badge. Thank you.",side:"L"},
+    {sp:"안젤라",text:"천만에요. 출입증은 항상 가지고 다니세요.",eng:"You're welcome. Always carry your ID badge.",side:"R"},
   ]},
 ];
 
 const QUIZ = [
-  {q:"\"Where is the restroom?\" in Korean:",o:["화장실은 뭐예요?","화장실은 어디예요?","화장실에 가요","화장실이 좋아요"],a:1},
-  {q:"'여기___ 교육장이에요.' Fill:",o:["은","는","가","에"],a:2},
-  {q:"\"over there\" in Korean:",o:["여기","거기","저기","어디"],a:2},
-  {q:"'구내식당은 2층___ 있어요.' Fill:",o:["에","은","가","을"],a:0},
-  {q:"\"infirmary\" in Korean:",o:["교육장","의무실","사무실","휴게실"],a:1},
-  {q:"'기숙사___ 어디예요?' Fill:",o:["은","는","이","가"],a:1},
-  {q:"Near the speaker, use:",o:["여기","거기","저기","어디"],a:0},
-  {q:"'편의점이 기숙사 ___에 있어요.' Fill:",o:["위","아래","앞","사이"],a:2},
-  {q:"\"emergency exit\" in Korean:",o:["출입구","비상구","입구","출구"],a:1},
-  {q:"'여기___ ATM이 없어요.' Fill:",o:["에","은","가","를"],a:0},
-  {q:"\"break room\" in Korean:",o:["탈의실","흡연실","휴게실","회의실"],a:2},
-  {q:"'사무실은 3___에 있어요.' (floor):",o:["번","개","층","시"],a:2},
-  {q:"\"left\" in Korean:",o:["오른쪽","왼쪽","위","아래"],a:1},
-  {q:"'비상구는 저기 ___이에요.' (beside):",o:["앞","뒤","옆","안"],a:2},
-  {q:"\"parking lot\" in Korean:",o:["흡연실","주차장","경비실","세척장"],a:1},
+  {q:"\"What is this?\" in Korean:",o:["이것은 뭐예요?","그것은 뭐예요?","저것은 뭐예요?","여기가 어디예요?"],a:0},
+  {q:"'이것은 책___.' Fill:",o:["예요","이에요","은","는"],a:1},
+  {q:"Point to something far away:",o:["이것","그것","저것","여기"],a:2},
+  {q:"'시계___.' (It's a watch) Fill:",o:["이에요","예요","은","는"],a:1},
+  {q:"\"welding machine\" in Korean:",o:["그라인더","드릴","용접기","크레인"],a:2},
+  {q:"'___ 가방은 제 거예요.' Fill:",o:["이","은","를","에"],a:0},
+  {q:"'그것은 ___이에요.' (grinder) Fill:",o:["드릴","용접기","크레인","그라인더"],a:3},
+  {q:"'저것은 ___예요.' (crane) Fill:",o:["크레인","파이프","렌치","망치"],a:0},
+  {q:"\"blueprint\" in Korean:",o:["공구함","작업복","도면","발판"],a:2},
+  {q:"'이것은 뭐예요?' '___이에요.' (book):",o:["가방","시계","핸드폰","책"],a:3},
+  {q:"Near the listener, use:",o:["이","그","저","뭐"],a:1},
+  {q:"'___ 건물은 기숙사예요.' (far away):",o:["이","그","저","뭐"],a:2},
+  {q:"\"toolbox\" in Korean:",o:["도면","공구함","안전띠","사다리"],a:1},
+  {q:"'가방___.' (It's a bag) Fill:",o:["예요","이에요","은","는"],a:1},
+  {q:"'이것은 제 ___이에요.' (ID badge):",o:["안전모","핸드폰","출입증","시계"],a:2},
 
   // 한국의 성장 원동력 퀴즈
-  {q:"이순신 장군의 첫 승리는 어디에서?",o:["거제 옥포","부산","서울","인천"],a:0},
-  {q:"거북선은 어떤 배예요?",o:["세계 최초 철갑선","어선","상선","유람선"],a:0},
-  {q:"한국의 조선 산업은 세계 몇 위?",o:["1위","2위","3위","5위"],a:0},
+  {q:"한국의 고속철도 이름은?",o:["KTX","TGV","신칸센","ICE"],a:0},
+  {q:"인천공항은 세계 최고 공항 몇 년 연속 1위?",o:["12년","5년","3년","1년"],a:0},
+  {q:"거가대교는 어디와 어디를 연결해요?",o:["거제와 부산","서울과 부산","인천과 서울","울산과 부산"],a:0},
 ];
 
 const CULTURE = [
-  {icon:"🏢",t:"층수 세기",eng:"Counting Floors",d:"한국에서는 1층이 ground floor입니다. '2층'은 second floor입니다. 조선소 건물도 같은 방식으로 층수를 셉니다.",de:"In Korea, 1층 (1st floor) is the ground floor. The shipyard uses the same numbering system."},
-  {icon:"🚻",t:"화장실 문화",eng:"Restroom Culture",d:"한국의 화장실은 대부분 깨끗합니다. 조선소에서는 작업장 근처에 이동식 화장실이 있습니다. '화장실이 어디예요?'는 가장 유용한 표현입니다.",de:"Korean restrooms are mostly clean. Shipyards have portable restrooms near work areas. 'Where is the restroom?' is the most useful phrase."},
-  {icon:"🗺️",t:"방향 표현",eng:"Giving Directions",d:"한국에서는 '왼쪽', '오른쪽'보다 건물이나 상점 이름으로 길을 알려줍니다. 조선소에서는 구역 번호를 사용합니다.",de:"Koreans often give directions using building/shop names rather than left/right. Shipyards use zone numbers."},
-  {icon:"🚪",t:"비상구 위치",eng:"Emergency Exit Location",d:"한국 법률로 모든 건물에 비상구 표시가 있어야 합니다. 조선소에서는 초록색 비상구 표시를 항상 확인하세요. 안전 교육에서 비상구 위치를 꼭 외워야 합니다.",de:"Korean law requires emergency exit signs in all buildings. Always check for green exit signs at the shipyard."},
-  {icon:"🍽️",t:"구내식당 이용",eng:"Using the Cafeteria",d:"조선소 구내식당은 보통 정해진 시간에 운영합니다. 점심시간은 보통 11:30~13:00입니다. 식판을 사용하고, 줄을 서서 기다립니다.",de:"Shipyard cafeterias operate at set times. Lunch is usually 11:30-13:00. Use a tray and wait in line."},
-  {icon:"🏥",t:"의무실 이용",eng:"Using the Infirmary",d:"조선소 의무실에서는 간단한 치료를 받을 수 있습니다. 아프면 반장님께 말씀하고 의무실에 가세요. 심한 경우 근처 병원으로 이송됩니다.",de:"The shipyard infirmary provides basic treatment. If sick, tell your foreman and go to the infirmary. Severe cases are transferred to nearby hospitals."},
+  {icon:"👆",t:"가리키기 예절",eng:"Pointing Etiquette",d:"한국에서는 손가락으로 사람을 가리키지 않습니다. 물건을 가리킬 때는 괜찮지만, 사람을 가리킬 때는 손바닥 전체를 사용하는 것이 예의입니다.",de:"Don't point at people with your finger in Korea. It's fine for objects, but for people, use your whole palm."},
+  {icon:"🎁",t:"물건 주고받기",eng:"Giving & Receiving Things",d:"윗사람에게 물건을 줄 때나 받을 때는 두 손을 사용합니다. 한 손으로 주고받는 것은 예의에 어긋납니다. 조선소에서 도구를 전달할 때도 두 손을 사용하면 좋습니다.",de:"Use both hands when giving/receiving items to/from seniors. One hand is impolite. Use both hands when passing tools at the shipyard."},
+  {icon:"🏷️",t:"소유물 표시",eng:"Marking Belongings",d:"조선소에서는 개인 도구와 장비에 이름을 적어 놓습니다. '이것은 제 거예요'라고 말할 수 있어야 합니다. 특히 안전 장비는 개인 것을 사용해야 합니다.",de:"At the shipyard, write your name on personal tools. You should be able to say 'This is mine.' Use your own safety equipment."},
+  {icon:"🔧",t:"도구 관리 문화",eng:"Tool Management Culture",d:"한국 조선소에서는 도구를 정리정돈하는 것을 매우 중요하게 생각합니다. 작업 후에는 반드시 도구를 제자리에 놓아야 합니다. '5S 활동'이 일반적입니다.",de:"Korean shipyards emphasize tool organization. Always return tools after use. '5S activities' (Sort, Set, Shine, Standardize, Sustain) are common."},
+  {icon:"📋",t:"도면 읽기 문화",eng:"Blueprint Reading Culture",d:"조선소에서 도면을 읽는 것은 매우 중요합니다. '이 도면 좀 보세요'라는 표현을 자주 사용합니다. 도면에 표시된 숫자와 기호를 이해해야 합니다.",de:"Reading blueprints is crucial at the shipyard. 'Please look at this drawing' is commonly used. Understanding numbers and symbols on blueprints is essential."},
+  {icon:"🏗️",t:"작업장 구역 이름",eng:"Work Area Names",d:"조선소는 여러 구역으로 나뉘어 있습니다. 도크, 탑재장, 도장실, 자재창고 등 각 구역의 이름을 알아야 합니다. '저것은 도크예요', '이것은 탑재장이에요'처럼 사용합니다.",de:"The shipyard is divided into zones: dock, erection site, painting room, warehouse, etc. Know each area name and use them like 'That is the dock.'"},
 ];
 
 const LOCAL_INFO = {
-  title: "한국의 성장 원동력: 해양 강국",
-  eng: "Korea's Growth Engine: Maritime Power",
+  title: "한국의 성장 원동력: 인프라 강국",
+  eng: "Korea's Growth Engine: Infrastructure",
   facts: [
-    {label:"이순신 장군 Admiral Yi",val:"세계 4대 해전 영웅, 거제 옥포 첫 승리"},
-    {label:"거북선 Turtle Ship",val:"세계 최초 철갑선, 조선 해군의 자부심"},
-    {label:"한산도대첩 Battle of Hansan",val:"학익진 전술, 일본 해군 대파"},
-    {label:"조선 산업 Shipbuilding",val:"이순신 정신 → 세계 1위 조선 강국"},
-    {label:"해운 Shipping",val:"HMM(현대상선), 글로벌 해운 Top 10"},
-    {label:"수산업 Fishery",val:"원양어업 세계 5위, 양식 기술 선도"},
-    {label:"해양 영토 Maritime Territory",val:"EEZ 세계 22위, 풍부한 해양 자원"},
+    {label:"KTX 고속철도 KTX",val:"서울↔부산 2시간 15분, 시속 305km"},
+    {label:"인천공항 Incheon Airport",val:"세계 최고 공항 12년 연속 1위"},
+    {label:"고속도로 Expressway",val:"전국 4,800km+, 빠른 물류 네트워크"},
+    {label:"5G 통신 5G Network",val:"세계 최초 상용화 (2019)"},
+    {label:"거가대교 Geoga Bridge",val:"거제↔부산 연결, 8.2km 해저터널"},
+    {label:"스마트시티 Smart City",val:"세종시·송도, 미래형 도시 모델"},
+    {label:"건설 수출 Construction Export",val:"중동·동남아 건설 프로젝트 선도"},
   ],
-  desc: "한국은 해양 강국이에요! 이순신 장군은 거제도 옥포에서 첫 승리를 거뒀어요. 그 정신이 오늘날 세계 1위 조선 산업으로 이어졌어요. 여러분이 일하는 한화오션도 이순신 장군의 해양 정신을 이어받은 거예요! 한국은 해운, 수산업, 해양 기술에서도 세계적인 강국이에요.",
-  descEng: "Korea is a maritime powerhouse! Admiral Yi won his first victory at Okpo in Geoje. That spirit lives on in today's world #1 shipbuilding industry. Hanwha Ocean, where you work, inherits Admiral Yi's maritime spirit! Korea is also a global leader in shipping, fisheries, and marine technology."
+  desc: "한국의 인프라는 세계 최고 수준이에요! KTX로 서울에서 부산까지 2시간 15분이면 가요. 인천공항은 12년 연속 세계 최고 공항으로 선정됐어요. 거가대교는 거제에서 부산까지 바다 밑 터널로 연결해요. 한국의 건설 회사들은 중동과 동남아시아에서도 큰 프로젝트를 하고 있어요!",
+  descEng: "Korea's infrastructure is world-class! KTX takes just 2h15m from Seoul to Busan. Incheon Airport was named world's best for 12 consecutive years. The Geoga Bridge connects Geoje to Busan via undersea tunnel. Korean construction companies lead major projects in the Middle East and Southeast Asia!"
 };
 
-// HANGUL DATA (Level 0 — 3과: 음절 조합 기초)
+
+
+// HANGUL DATA (Level 0 — 2과: 기본 자음과 모음)
 const HANGUL_CONSONANTS = [
-  {char:"가",rom:"ga",name:"ㄱ+ㅏ"},{char:"나",rom:"na",name:"ㄴ+ㅏ"},{char:"다",rom:"da",name:"ㄷ+ㅏ"},
-  {char:"라",rom:"ra",name:"ㄹ+ㅏ"},{char:"마",rom:"ma",name:"ㅁ+ㅏ"},{char:"바",rom:"ba",name:"ㅂ+ㅏ"},
-  {char:"사",rom:"sa",name:"ㅅ+ㅏ"},{char:"아",rom:"a",name:"ㅇ+ㅏ"},{char:"자",rom:"ja",name:"ㅈ+ㅏ"},
-  {char:"차",rom:"cha",name:"ㅊ+ㅏ"},{char:"카",rom:"ka",name:"ㅋ+ㅏ"},{char:"타",rom:"ta",name:"ㅌ+ㅏ"},
-  {char:"파",rom:"pa",name:"ㅍ+ㅏ"},{char:"하",rom:"ha",name:"ㅎ+ㅏ"},
+  {char:"ㄱ",rom:"g/k",name:"기역"},{char:"ㄴ",rom:"n",name:"니은"},{char:"ㄷ",rom:"d/t",name:"디귿"},
+  {char:"ㄹ",rom:"r/l",name:"리을"},{char:"ㅁ",rom:"m",name:"미음"},{char:"ㅂ",rom:"b/p",name:"비읍"},
+  {char:"ㅅ",rom:"s",name:"시옷"},{char:"ㅇ",rom:"ng/silent",name:"이응"},{char:"ㅈ",rom:"j",name:"지읒"},
+  {char:"ㅊ",rom:"ch",name:"치읓"},{char:"ㅋ",rom:"k",name:"키읔"},{char:"ㅌ",rom:"t",name:"티읕"},
+  {char:"ㅍ",rom:"p",name:"피읖"},{char:"ㅎ",rom:"h",name:"히읗"},
 ];
 const HANGUL_VOWELS = [
-  {char:"고",rom:"go",name:"ㄱ+ㅗ"},{char:"노",rom:"no",name:"ㄴ+ㅗ"},{char:"도",rom:"do",name:"ㄷ+ㅗ"},
-  {char:"로",rom:"ro",name:"ㄹ+ㅗ"},{char:"모",rom:"mo",name:"ㅁ+ㅗ"},{char:"보",rom:"bo",name:"ㅂ+ㅗ"},
-  {char:"구",rom:"gu",name:"ㄱ+ㅜ"},{char:"누",rom:"nu",name:"ㄴ+ㅜ"},{char:"두",rom:"du",name:"ㄷ+ㅜ"},
-  {char:"루",rom:"ru",name:"ㄹ+ㅜ"},{char:"무",rom:"mu",name:"ㅁ+ㅜ"},{char:"부",rom:"bu",name:"ㅂ+ㅜ"},
+  {char:"ㅏ",rom:"a"},{char:"ㅓ",rom:"eo"},{char:"ㅗ",rom:"o"},{char:"ㅜ",rom:"u"},
+  {char:"ㅡ",rom:"eu"},{char:"ㅣ",rom:"i"},{char:"ㅐ",rom:"ae"},{char:"ㅔ",rom:"e"},
+  {char:"ㅑ",rom:"ya"},{char:"ㅕ",rom:"yeo"},{char:"ㅛ",rom:"yo"},{char:"ㅠ",rom:"yu"},
 ];
 const HANGUL_PRACTICE = [
-  {char:"거",rom:"geo",name:"ㄱ+ㅓ"},{char:"너",rom:"neo",name:"ㄴ+ㅓ"},
-  {char:"기",rom:"gi",name:"ㄱ+ㅣ"},{char:"니",rom:"ni",name:"ㄴ+ㅣ"},
-  {char:"서",rom:"seo",name:"ㅅ+ㅓ"},{char:"여",rom:"yeo",name:"ㅇ+ㅕ"},
-  {char:"저",rom:"jeo",name:"ㅈ+ㅓ"},{char:"허",rom:"heo",name:"ㅎ+ㅓ"},
-  {char:"수",rom:"su",name:"ㅅ+ㅜ"},{char:"주",rom:"ju",name:"ㅈ+ㅜ"},
+  {char:"아",rom:"a",name:"ㅇ+ㅏ"},{char:"이",rom:"i",name:"ㅇ+ㅣ"},
+  {char:"우",rom:"u",name:"ㅇ+ㅜ"},{char:"오",rom:"o",name:"ㅇ+ㅗ"},
+  {char:"어",rom:"eo",name:"ㅇ+ㅓ"},{char:"으",rom:"eu",name:"ㅇ+ㅡ"},
+  {char:"야",rom:"ya",name:"ㅇ+ㅑ"},{char:"여",rom:"yeo",name:"ㅇ+ㅕ"},
+  {char:"요",rom:"yo",name:"ㅇ+ㅛ"},{char:"유",rom:"yu",name:"ㅇ+ㅠ"},
 ];
 const SAFETY_WORDS = [
   {kor:"위험",eng:"Danger",rom:"wi-heom"},{kor:"주의",eng:"Caution",rom:"ju-ui"},
@@ -334,80 +334,80 @@ const SAFETY_WORDS = [
   {kor:"비상구",eng:"Emergency Exit",rom:"bi-sang-gu"},{kor:"소화기",eng:"Fire Extinguisher",rom:"so-hwa-gi"},
   {kor:"응급처치",eng:"First Aid",rom:"eung-geup-cheo-chi"},{kor:"보호구 착용",eng:"Wear PPE",rom:"bo-ho-gu chag-yong"},
 ];
-const HANGUL_TABS = ['자음+ㅏ Syllables','자음+ㅗ/ㅜ Syllables','연습 Practice','안전 단어 Safety'];
-const HANGUL_SUBTITLE = "Learn Hangul · 음절 조합 기초";
-
-
+const HANGUL_TABS = ['자음 Consonants','모음 Vowels','연습 Practice','안전 단어 Safety'];
+const HANGUL_SUBTITLE = "Learn Hangul · 기본 자음과 모음";
 
 
 
 // ===== FOLKTALE DATA (40 sentences) =====
 const FOLKTALE = {
-  title: "콩쥐팥쥐",
-  eng: "Kongjwi and Patjwi — Korean Cinderella",
-  desc: "착한 콩쥐와 못된 팥쥐의 이야기입니다. 한국판 신데렐라!",
-  descEng: "The story of kind Kongjwi and mean Patjwi. The Korean Cinderella!",
+  title: "흥부와 놀부 (2)",
+  eng: "Heungbu and Nolbu — Expanded Edition",
+  desc: "착한 동생 흥부와 욕심 많은 형 놀부의 이야기입니다. 확장판 40문장!",
+  descEng: "The tale of kind Heungbu and greedy Nolbu. Expanded 40 sentences!",
   sentences: [
-    {kor:"옛날에 콩쥐라는 착한 소녀가 살았어요.",eng:"Once upon a time, there lived a kind girl named Kongjwi."},
-    {kor:"콩쥐의 어머니는 콩쥐가 어릴 때 돌아가셨어요.",eng:"Kongjwi's mother passed away when she was young."},
-    {kor:"아버지는 새어머니와 결혼했어요.",eng:"Her father married a stepmother."},
-    {kor:"새어머니에게는 팥쥐라는 딸이 있었어요.",eng:"The stepmother had a daughter named Patjwi."},
-    {kor:"새어머니와 팥쥐는 콩쥐를 미워했어요.",eng:"The stepmother and Patjwi hated Kongjwi."},
-    {kor:"콩쥐는 매일 힘든 일을 해야 했어요.",eng:"Kongjwi had to do hard work every day."},
-    {kor:"팥쥐는 놀기만 했어요.",eng:"Patjwi only played around."},
-    {kor:"어느 날 새어머니가 콩쥐에게 말했어요.",eng:"One day, the stepmother told Kongjwi:"},
-    {kor:"\"이 큰 항아리에 물을 가득 채워라.\"",eng:"\"Fill this big jar with water.\""},
-    {kor:"그런데 항아리에 구멍이 있었어요.",eng:"But the jar had a hole in it."},
-    {kor:"콩쥐는 물을 넣어도 계속 빠졌어요.",eng:"No matter how much water Kongjwi poured, it kept leaking."},
-    {kor:"콩쥐는 슬퍼서 울었어요.",eng:"Kongjwi cried sadly."},
-    {kor:"그때 두꺼비 한 마리가 나타났어요.",eng:"Just then, a toad appeared."},
-    {kor:"두꺼비가 항아리의 구멍을 막아 주었어요.",eng:"The toad blocked the hole in the jar."},
-    {kor:"콩쥐는 물을 가득 채울 수 있었어요.",eng:"Kongjwi was able to fill the jar with water."},
-    {kor:"또 새어머니가 말했어요. \"논에 가서 김을 매라.\"",eng:"The stepmother said again: \"Go weed the rice paddy.\""},
-    {kor:"논이 너무 넓어서 혼자 할 수 없었어요.",eng:"The paddy was too large to do alone."},
-    {kor:"이번에는 소 한 마리가 나타나서 도와주었어요.",eng:"This time, a cow appeared and helped."},
-    {kor:"새어머니는 더 힘든 일을 시켰어요.",eng:"The stepmother gave even harder tasks."},
-    {kor:"\"이 깨진 독에 쌀을 가득 채워라.\"",eng:"\"Fill this cracked pot with rice.\""},
-    {kor:"참새들이 날아와서 쌀을 독에 넣어 주었어요.",eng:"Sparrows flew in and put rice into the pot."},
-    {kor:"하늘이 착한 콩쥐를 도와준 거예요.",eng:"Heaven was helping kind Kongjwi."},
-    {kor:"어느 날 마을에 큰 잔치가 열렸어요.",eng:"One day, a grand feast was held in the village."},
-    {kor:"새어머니는 콩쥐에게 가지 못하게 했어요.",eng:"The stepmother wouldn't let Kongjwi go."},
-    {kor:"팥쥐만 예쁜 옷을 입고 잔치에 갔어요.",eng:"Only Patjwi went to the feast in pretty clothes."},
-    {kor:"콩쥐가 울고 있을 때 선녀가 나타났어요.",eng:"When Kongjwi was crying, a fairy appeared."},
-    {kor:"선녀가 콩쥐에게 아름다운 옷과 꽃신을 주었어요.",eng:"The fairy gave Kongjwi beautiful clothes and flower shoes."},
-    {kor:"콩쥐는 잔치에 갔어요.",eng:"Kongjwi went to the feast."},
-    {kor:"잔치에서 원님이 콩쥐를 보고 반했어요.",eng:"At the feast, the magistrate saw Kongjwi and fell in love."},
-    {kor:"콩쥐는 서둘러 집에 돌아왔어요.",eng:"Kongjwi hurried back home."},
-    {kor:"그런데 꽃신 한 짝을 잃어버렸어요.",eng:"But she lost one of her flower shoes."},
-    {kor:"원님은 꽃신의 주인을 찾기 시작했어요.",eng:"The magistrate began searching for the shoe's owner."},
-    {kor:"마을의 모든 여자가 신어 봤지만 맞지 않았어요.",eng:"Every woman in the village tried it on, but it didn't fit."},
-    {kor:"마침내 콩쥐가 신어 보니 딱 맞았어요!",eng:"Finally, Kongjwi tried it on and it fit perfectly!"},
-    {kor:"원님은 콩쥐와 결혼하고 싶다고 했어요.",eng:"The magistrate said he wanted to marry Kongjwi."},
-    {kor:"콩쥐는 원님과 결혼해서 행복하게 살았어요.",eng:"Kongjwi married the magistrate and lived happily."},
-    {kor:"팥쥐는 착한 사람이 되려고 노력했어요.",eng:"Patjwi tried to become a good person."},
-    {kor:"새어머니도 자신의 잘못을 뉘우쳤어요.",eng:"The stepmother also repented for her wrongs."},
-    {kor:"착하게 살면 하늘이 도와줍니다.",eng:"If you live kindly, heaven will help you."},
-    {kor:"이것이 콩쥐와 팥쥐의 이야기예요.",eng:"This is the story of Kongjwi and Patjwi."},
+    {kor:"옛날 옛적에 어느 마을에 형제가 살았어요.",eng:"Once upon a time, two brothers lived in a village."},
+    {kor:"형의 이름은 놀부이고, 동생의 이름은 흥부예요.",eng:"The older brother's name was Nolbu, and the younger brother's name was Heungbu."},
+    {kor:"놀부는 욕심이 많고 마음이 나쁜 사람이었어요.",eng:"Nolbu was a greedy and mean-hearted person."},
+    {kor:"흥부는 마음이 착하고 부지런한 사람이었어요.",eng:"Heungbu was a kind-hearted and hardworking person."},
+    {kor:"두 형제의 아버지는 부자였어요.",eng:"The two brothers' father was a wealthy man."},
+    {kor:"아버지가 돌아가신 후, 놀부는 재산을 혼자 차지했어요.",eng:"After their father passed away, Nolbu took all the wealth for himself."},
+    {kor:"놀부는 흥부의 가족을 집에서 내쫓았어요.",eng:"Nolbu kicked Heungbu's family out of the house."},
+    {kor:"흥부는 슬펐지만 화를 내지 않았어요.",eng:"Heungbu was sad but did not get angry."},
+    {kor:"흥부는 가족과 함께 산 아래 작은 집에서 살았어요.",eng:"Heungbu lived with his family in a small house at the foot of a mountain."},
+    {kor:"흥부의 가족은 매우 가난해서 밥을 못 먹는 날도 많았어요.",eng:"Heungbu's family was so poor that there were many days they couldn't eat."},
+    {kor:"어느 따뜻한 봄날이었어요.",eng:"It was a warm spring day."},
+    {kor:"제비 한 마리가 흥부의 집 처마 밑에 둥지를 만들었어요.",eng:"A swallow built a nest under the eaves of Heungbu's house."},
+    {kor:"어느 날, 큰 뱀이 제비의 둥지를 향해 올라갔어요.",eng:"One day, a big snake climbed up toward the swallow's nest."},
+    {kor:"흥부는 뱀을 발견하고 막대기로 쫓아냈어요.",eng:"Heungbu spotted the snake and chased it away with a stick."},
+    {kor:"그런데 제비 한 마리가 둥지에서 떨어졌어요.",eng:"But one swallow had fallen from the nest."},
+    {kor:"제비의 다리가 부러져 있었어요.",eng:"The swallow's leg was broken."},
+    {kor:"흥부는 정성스럽게 제비의 다리를 치료해 주었어요.",eng:"Heungbu carefully treated the swallow's broken leg."},
+    {kor:"여름이 지나고 가을이 왔어요.",eng:"Summer passed and autumn came."},
+    {kor:"제비는 건강하게 나아서 따뜻한 남쪽 나라로 떠났어요.",eng:"The swallow recovered and flew to a warm southern country."},
+    {kor:"다음 해 봄, 그 제비가 다시 돌아왔어요!",eng:"The following spring, that swallow came back!"},
+    {kor:"제비는 입에 박씨 하나를 물고 왔어요.",eng:"The swallow carried a gourd seed in its beak."},
+    {kor:"흥부는 고마운 마음으로 박씨를 마당에 심었어요.",eng:"With gratitude, Heungbu planted the gourd seed in the yard."},
+    {kor:"박 넝쿨이 자라서 큰 박이 세 개 열렸어요.",eng:"The vine grew and three big gourds appeared."},
+    {kor:"흥부가 첫 번째 박을 톱으로 잘랐어요.",eng:"Heungbu cut the first gourd with a saw."},
+    {kor:"박 안에서 금은보화가 쏟아져 나왔어요!",eng:"Gold and jewels poured out of the gourd!"},
+    {kor:"두 번째 박에서는 좋은 집과 땅이 나왔어요.",eng:"From the second gourd, a fine house and land appeared."},
+    {kor:"세 번째 박에서는 하인들이 나와서 도와주었어요.",eng:"From the third gourd, servants came out to help."},
+    {kor:"흥부의 가족은 하루아침에 부자가 되었어요!",eng:"Heungbu's family became wealthy overnight!"},
+    {kor:"이 소식을 들은 놀부는 배가 아팠어요.",eng:"Nolbu was consumed with jealousy when he heard the news."},
+    {kor:"놀부도 제비를 잡아서 일부러 다리를 부러뜨리고 치료해 주었어요.",eng:"Nolbu caught a swallow, deliberately broke its leg, and treated it."},
+    {kor:"다음 해 봄, 그 제비도 놀부에게 박씨를 가져왔어요.",eng:"The next spring, that swallow also brought a gourd seed to Nolbu."},
+    {kor:"놀부는 크게 웃으며 박씨를 심었어요.",eng:"Nolbu planted the seed with a big grin."},
+    {kor:"박이 크게 자라서 놀부가 신나게 박을 잘랐어요.",eng:"The gourd grew big, and Nolbu excitedly cut it open."},
+    {kor:"그런데 박 안에서 무서운 도깨비들이 나왔어요!",eng:"But scary goblins came out of the gourd!"},
+    {kor:"도깨비들이 놀부의 집과 재산을 모두 부수고 가져갔어요.",eng:"The goblins destroyed Nolbu's house and took all his wealth."},
+    {kor:"놀부는 하루아침에 거지가 되어 흥부를 찾아갔어요.",eng:"Nolbu became a beggar overnight and went to find Heungbu."},
+    {kor:"놀부는 울면서 흥부에게 용서를 빌었어요.",eng:"Nolbu begged Heungbu for forgiveness in tears."},
+    {kor:"착한 흥부는 형을 용서하고 함께 살자고 했어요.",eng:"Kind Heungbu forgave his brother and invited him to live together."},
+    {kor:"놀부는 자신의 잘못을 깊이 뉘우쳤어요.",eng:"Nolbu deeply repented for his wrongs."},
+    {kor:"그 후로 두 형제는 서로 도우며 행복하게 살았어요.",eng:"From then on, the two brothers helped each other and lived happily."},
   ],
 };
 
 const FOLKTALE_QUIZ = [
-  {q:"콩쥐는 어떤 사람이에요?",o:["못된 사람","착한 사람","부자","게으른 사람"],a:1},
-  {q:"콩쥐의 어머니는 어떻게 됐어요?",o:["떠났어요","돌아가셨어요","결혼했어요","일했어요"],a:1},
-  {q:"팥쥐는 누구예요?",o:["콩쥐의 친구","콩쥐의 언니","새어머니의 딸","이웃집 아이"],a:2},
-  {q:"항아리의 문제가 뭐였어요?",o:["너무 컸어요","구멍이 있었어요","무거웠어요","없었어요"],a:1},
-  {q:"항아리를 도와준 동물은?",o:["소","참새","두꺼비","고양이"],a:2},
-  {q:"논의 김매기를 도와준 동물은?",o:["두꺼비","소","참새","개"],a:1},
-  {q:"쌀을 도와준 동물은?",o:["소","두꺼비","참새","제비"],a:2},
-  {q:"콩쥐에게 옷을 준 사람은?",o:["새어머니","팥쥐","선녀","아버지"],a:2},
-  {q:"콩쥐가 잃어버린 것은?",o:["반지","꽃신","목걸이","옷"],a:1},
-  {q:"꽃신의 주인을 찾은 사람은?",o:["아버지","팥쥐","원님","선녀"],a:2},
-  {q:"꽃신이 맞는 사람은 누구예요?",o:["팥쥐","새어머니","콩쥐","선녀"],a:2},
-  {q:"콩쥐는 누구와 결혼했어요?",o:["왕자","원님","선비","장군"],a:1},
-  {q:"이 이야기는 어느 나라 이야기와 비슷해요?",o:["백설공주","신데렐라","잠자는 숲속의 공주","인어공주"],a:1},
-  {q:"팥쥐는 나중에 어떻게 됐어요?",o:["도망갔어요","착한 사람이 되려고 했어요","벌을 받았어요","떠났어요"],a:1},
-  {q:"이야기의 교훈은 뭐예요?",o:["돈이 중요해요","착하게 살면 하늘이 도와줘요","공부가 중요해요","빨리 가야 해요"],a:1},
+  {q:"흥부와 놀부 중 형은 누구예요?",o:["흥부","놀부","제비","도깨비"],a:1},
+  {q:"흥부는 어떤 사람이에요?",o:["욕심이 많아요","마음이 나빠요","마음이 착해요","부자예요"],a:2},
+  {q:"놀부는 흥부에게 뭘 줬어요?",o:["돈을 줬어요","집을 줬어요","아무것도 안 줬어요","음식을 줬어요"],a:2},
+  {q:"흥부가 구해 준 동물은 뭐예요?",o:["강아지","고양이","제비","토끼"],a:2},
+  {q:"뱀을 어떻게 쫓아냈어요?",o:["돌로","막대기로","손으로","물로"],a:1},
+  {q:"제비의 어디가 부러졌어요?",o:["날개","다리","부리","꼬리"],a:1},
+  {q:"제비가 가져온 것은 뭐예요?",o:["금","박씨","쌀","돈"],a:1},
+  {q:"흥부의 박은 몇 개 열렸어요?",o:["한 개","두 개","세 개","네 개"],a:2},
+  {q:"첫 번째 박에서 뭐가 나왔어요?",o:["집","도깨비","금은보화","하인"],a:2},
+  {q:"두 번째 박에서 뭐가 나왔어요?",o:["금은보화","좋은 집과 땅","도깨비","음식"],a:1},
+  {q:"놀부는 제비 다리를 어떻게 했어요?",o:["치료해 줬어요","일부러 부러뜨렸어요","A와 B 모두","아무것도 안 했어요"],a:2},
+  {q:"놀부의 박 안에서 뭐가 나왔어요?",o:["금은보화","꽃","도깨비","새"],a:2},
+  {q:"놀부는 도깨비 때문에 어떻게 됐어요?",o:["부자가 됐어요","거지가 됐어요","왕이 됐어요","도망갔어요"],a:1},
+  {q:"흥부는 놀부를 어떻게 했어요?",o:["쫓아냈어요","용서했어요","싸웠어요","무시했어요"],a:1},
+  {q:"이야기의 교훈(lesson)은 뭐예요?",o:["돈이 제일 중요해요","착하게 살면 복을 받아요","욕심이 좋아요","형이 항상 맞아요"],a:1},
 ];
+
+
 
 const REVIEW_DATA = {
   preview: {
@@ -415,42 +415,42 @@ const REVIEW_DATA = {
     desc: "다음에 배울 내용을 미리 살펴보세요.",
     descEng: "Preview what you will learn next.",
     items: [
-      {label:"4과 주제",val:"가족이 몇 명이에요? · How many family members?",detail:"가족 구성원을 소개하는 표현을 배웁니다."},
-      {label:"핵심 어휘",val:"아버지, 어머니, 형, 누나, 동생, 아들, 딸",detail:"father, mother, brother, sister, son, daughter"},
-      {label:"핵심 문법",val:"몇 + 명/개, 명사 + 이/가 있어요",detail:"How many, There is/are"},
-      {label:"조선소 어휘",val:"팀원, 동료, 반장, 조장, 관리자",detail:"team member, colleague, foreman, team leader, supervisor"},
+      {label:"3과 주제",val:"여기가 어디예요? · Where is this place?",detail:"장소를 묻고 답하는 표현을 배웁니다."},
+      {label:"핵심 어휘",val:"어디, 여기, 거기, 저기, 위, 아래, 앞, 뒤",detail:"where, here, there, over there, up, down, front, back"},
+      {label:"핵심 문법",val:"여기/거기/저기 + 이에요/예요, 명사 + 에",detail:"Location expressions, Location particle"},
+      {label:"조선소 어휘",val:"사무실, 식당, 화장실, 의무실, 교육장",detail:"office, cafeteria, restroom, infirmary, training room"},
     ]
   },
   review: {
     title: "복습 · Review",
-    desc: "3과에서 배운 내용을 확인하세요.",
-    descEng: "Check what you learned in Lesson 3.",
+    desc: "2과에서 배운 내용을 확인하세요.",
+    descEng: "Check what you learned in Lesson 2.",
     sections: [
-      {title:"핵심 장소 표현",icon:"📍",items:["여기 (here)","거기 (there)","저기 (over there)","어디 (where)","화장실은 어디예요?"]},
-      {title:"핵심 문법 공식",icon:"📐",items:["여기/거기/저기 + 이에요/예요","명사 + 은/는 어디예요?","장소 + 에 있어요/없어요","위/아래/앞/뒤/옆/안/밖"]},
-      {title:"장소 묻고 답하기 패턴",icon:"🎤",items:["___은/는 어디예요?","___에 있어요.","여기서 가까워요/멀어요.","___층에 있어요.","___옆/앞/뒤에 있어요."]},
-      {title:"조선소 필수 시설",icon:"🏗️",items:["도크 dock","구내식당 cafeteria","의무실 infirmary","교육장 training room","비상구 emergency exit","기숙사 dormitory","휴게실 break room"]},
+      {title:"핵심 지시대명사",icon:"👆",items:["이것 (this)","그것 (that, near listener)","저것 (that, far away)","이것은 뭐예요? (What is this?)"]},
+      {title:"핵심 문법 공식",icon:"📐",items:["이것/그것/저것 + 은 → 이것은, 그것은, 저것은","받침O + 이에요 → 책이에요, 가방이에요","받침X + 예요 → 시계예요, 의자예요","이/그/저 + 명사 → 이 책, 그 가방, 저 건물"]},
+      {title:"사물 묻고 답하기 패턴",icon:"🎤",items:["이것은 뭐예요? → ___이에요/예요.","그것은 ___이에요/예요.","저것은 ___이에요/예요.","이것은 제 거예요. (This is mine.)","이 도구는 ___이에요/예요."]},
+      {title:"조선소 필수 도구",icon:"🔧",items:["용접기 welding machine","그라인더 grinder","크레인 crane","드릴 drill","렌치 wrench","망치 hammer","도면 blueprint"]},
     ]
   },
-  dictation: ["화장실은 어디예요?","구내식당은 2층에 있어요.","여기가 교육장이에요.","의무실은 1층에 있어요.","기숙사는 조선소 밖에 있어요.","편의점이 앞에 있어요.","비상구는 저기예요.","여기서 가까워요.","사무실은 3층에 있어요.","화장실은 왼쪽에 있어요."],
+  dictation: ["이것은 뭐예요?","이것은 책이에요.","그것은 핸드폰이에요.","저것은 크레인이에요.","이 가방은 제 거예요.","이것은 안전모예요.","그것은 그라인더예요.","저것은 자재창고예요.","이 도구는 드릴이에요.","이것은 출입증이에요."],
 };
 
 const READING_PASSAGES = [
-  {title:"조선소 시설 안내",eng:"Shipyard Facility Guide",
-   text:"한화오션 조선소에는 여러 시설이 있어요.\n구내식당은 2층에 있어요.\n화장실은 1층에 있어요.\n의무실은 1층 비상구 옆에 있어요.\n교육장은 3층에 있어요.\n휴게실은 각 작업장에 있어요.\n비상구 위치를 꼭 확인하세요.",
-   textEng:"Hanwha Ocean shipyard has many facilities.\nThe cafeteria is on the 2nd floor.\nThe restroom is on the 1st floor.\nThe infirmary is on the 1st floor, next to the exit.\nThe training room is on the 3rd floor.\nBreak rooms are in each workshop.\nAlways check emergency exit locations.",
+  {title:"조선소 안전 장비",eng:"Shipyard Safety Equipment",
+   text:"이것은 안전모예요.\n그것은 안전화예요.\n저것은 안전벨트예요.\n이것은 보안경이에요.\n그것은 방진마스크예요.\n안전 장비는 매우 중요해요.\n항상 안전 장비를 착용하세요.",
+   textEng:"This is a safety helmet.\nThat is safety shoes.\nThat over there is a safety belt.\nThis is safety goggles.\nThat is a dust mask.\nSafety equipment is very important.\nAlways wear your safety equipment.",
    questions:[
-     {q:"구내식당은 몇 층에 있어요?",a:"2층",ae:"2nd floor"},
-     {q:"의무실은 어디에 있어요?",a:"1층 비상구 옆",ae:"1st floor, next to the exit"},
-     {q:"교육장은 몇 층에 있어요?",a:"3층",ae:"3rd floor"},
+     {q:"안전모는 무엇을 보호해요?",a:"머리 (head)",ae:"Head"},
+     {q:"안전 장비는 왜 중요해요?",a:"안전을 위해서 (for safety)",ae:"For safety"},
+     {q:"안전화는 무엇이에요?",a:"안전한 신발 (safety shoes)",ae:"Safety shoes"},
    ]},
-  {title:"라민의 출근길",eng:"Ramin's Way to Work",
-   text:"라민 씨는 기숙사에서 출발해요.\n기숙사는 조선소 밖에 있어요.\n기숙사 앞에 편의점이 있어요.\n라민 씨는 편의점에서 물을 사요.\n버스를 타고 조선소에 가요.\n출입구에서 출입증을 보여줘요.\n작업장은 도크 근처에 있어요.\n라민 씨는 매일 같은 길로 가요.",
-   textEng:"Ramin leaves from the dormitory.\nThe dorm is outside the shipyard.\nThere is a convenience store in front of the dorm.\nRamin buys water at the store.\nHe takes a bus to the shipyard.\nHe shows his ID badge at the entrance.\nThe workshop is near the dock.\nRamin takes the same route every day.",
+  {title:"후엔의 공구함",eng:"Huynh's Toolbox",
+   text:"이것은 후엔 씨의 공구함이에요.\n공구함 안에 여러 도구가 있어요.\n이것은 렌치예요.\n그것은 망치예요.\n저것은 줄자예요.\n이 드릴은 새 드릴이에요.\n후엔 씨는 도구를 잘 정리해요.\n도구 관리가 중요해요.",
+   textEng:"This is Huynh's toolbox.\nThere are many tools in the toolbox.\nThis is a wrench.\nThat is a hammer.\nThat over there is a measuring tape.\nThis drill is a new drill.\nHuynh organizes tools well.\nTool management is important.",
    questions:[
-     {q:"기숙사는 어디에 있어요?",a:"조선소 밖",ae:"Outside the shipyard"},
-     {q:"편의점은 어디에 있어요?",a:"기숙사 앞",ae:"In front of the dormitory"},
-     {q:"작업장은 어디 근처에 있어요?",a:"도크 근처",ae:"Near the dock"},
+     {q:"공구함은 누구 거예요?",a:"후엔 씨",ae:"Huynh's"},
+     {q:"새 도구는 뭐예요?",a:"드릴",ae:"Drill"},
+     {q:"후엔 씨는 도구를 어떻게 해요?",a:"잘 정리해요",ae:"Organizes well"},
    ]},
 ];
 
@@ -510,7 +510,7 @@ function renderNav() {
     {id:'reading',l:'읽기',i:'📕'},{id:'writing',l:'쓰기',i:'✍️'},
     {id:'review',l:'익힘(복습/예습)',i:'📝'},{id:'flashcard',l:'플래시카드',i:'🃏'},{id:'quiz',l:'퀴즈',i:'🎯'},
     {id:'folktale',l:'전래동화',i:'📚'},{id:'ftquiz',l:'동화 퀴즈',i:'🧩'},
-    {id:'culture',l:'문화',i:'🏛️'},{id:'geoje',l:'이순신 장군',i:'⚔️'},
+    {id:'culture',l:'문화',i:'🏛️'},{id:'geoje',l:'성장 원동력',i:'🚀'},
   ];
   let menu = '';
   if (state.menuOpen) {
@@ -555,15 +555,15 @@ function renderPage() {
 function renderHome() {
   return `
   <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);border-radius:16px;padding:20px;margin-bottom:16px;color:#fff">
-    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 3과 · Beginner Lesson 3</div>
+    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 2과 · Beginner Lesson 2</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ 0급 한글 입문 완료</span>
       <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
     </div
-    <div style="font-size:26px;font-weight:800;margin-bottom:2px">여기가 어디예요?</div>
-    <div style="font-size:13px;color:#aabbdd">Where is this? — 장소와 위치 · Places & Location</div>
+    <div style="font-size:26px;font-weight:800;margin-bottom:2px">이것은 뭐예요?</div>
+    <div style="font-size:13px;color:#aabbdd">What is this? — 사물과 지시대명사 · Objects & Demonstratives</div>
     <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
-      ${['장소 이름','위치 표현','조선소 시설','에 있어요'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
+      ${['지시대명사','사물 이름','조선소 도구','이/그/저'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
     </div>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
@@ -585,9 +585,9 @@ function renderHome() {
       <div style="font-weight:700;font-size:12px;color:#1E3A5F">${it.l}</div>
     </button>`).join('')}
   </div>
-  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">⚓ 이순신 장군 소개 보기</button>
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🏗️ 한국의 인프라 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="한화오션_초급2과_이것은뭐예요.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2과 이것은 뭐예요?</a><a href="한화오션_초급4과_몇시예요.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">4과 몇 시예요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson1.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 1과 안녕하세요?</a><a href="HanwhaOcean_Level1_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">3과 여기가 어디예요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -616,8 +616,8 @@ function renderHangul() {
   const hTab = Math.min(state.hgTab, 3);
   const data = datasets[hTab];
   const isSafety = hTab === 3;
-  const progressPct = 15;
-  const progressLabel = "3/20";
+  const progressPct = 10;
+  const progressLabel = "2/20";
 
   return `<h2>🔤 0급 입문 · ${HANGUL_SUBTITLE}</h2><p class="sub">${HANGUL_SUBTITLE}</p>
   <div style="margin-bottom:12px;background:#e5e7eb;border-radius:8px;overflow:hidden;position:relative;height:22px">
@@ -646,10 +646,10 @@ function renderHangul() {
 }
 
 function renderVocab() {
-  const tabs = ['장소 Places','조선소 Shipyard','위치 Location','시설 Facilities'];
+  const tabs = ['사물 Objects','조선소 Shipyard','지시대명사 Demonstratives','도구·장비 Tools&Equip'];
   const t = state.vocabTab;
   let content = '';
-  if (t===0) content = VOCAB_PLACES.map((v,i)=>`
+  if (t===0) content = VOCAB_OBJECTS.map((v,i)=>`
     <div class="card card-accent vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,[${i}]:!state.vocabReveal[${i}]}})">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div><div class="kor">${v.kor} ${ttsBtn(v.kor)}</div><div class="pron">[${v.pron}]</div></div>
@@ -664,7 +664,7 @@ function renderVocab() {
       ${state.vocabReveal['s'+i]?`<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border-radius:6px;font-size:13px;color:var(--orange);font-weight:600">${v.eng}</div>`
       :`<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기</div>`}
     </div>`).join('');
-  else if (t===2) content = `<div class="grid2">${VOCAB_LOCATION.map(v=>`
+  else if (t===2) content = `<div class="grid2">${VOCAB_DEMO.map(v=>`
     <div class="vocab-item" style="background:#f0f7ff;border-radius:8px;padding:8px 10px" onclick="TTS.speak('${v.kor}')">
       <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
     </div>`).join('')}</div>`;
@@ -673,14 +673,14 @@ function renderVocab() {
       <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
     </div>`).join('')}</div>`;
 
-  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">3과 핵심 어휘 (${VOCAB_PLACES.length+VOCAB_SHIPYARD.length+VOCAB_LOCATION.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
+  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">2과 핵심 어휘 (${VOCAB_OBJECTS.length+VOCAB_SHIPYARD.length+VOCAB_DEMO.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
   <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({vocabTab:${i},vocabReveal:{}})">${tb}</button>`).join('')}</div>
   ${content}`;
 }
 
 function renderGrammar() {
   const g = GRAMMAR[state.gramIdx];
-  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">3과 핵심 문법 ${GRAMMAR.length}개</p>
+  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">2과 핵심 문법 ${GRAMMAR.length}개</p>
   <div class="tabs">${GRAMMAR.map((gr,i)=>`<button class="tab ${state.gramIdx===i?'active':''}" onclick="setState({gramIdx:${i}})">${gr.title}</button>`).join('')}</div>
   <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
     <div style="font-size:18px;font-weight:800;color:var(--navy)">${g.title}</div>
@@ -749,25 +749,27 @@ function renderReading() {
 }
 
 function renderWriting() {
-  const preview = state.wrName ? `안녕하세요? 저는 ${state.wrName}이에요/예요.
-나의 꿈은 ${state.wrCountry?state.wrCountry:'___'}이에요/예요.
-${state.wrJob?'왜냐하면 '+state.wrJob:''}
-${state.wrExtra?'한국에서 '+state.wrExtra:''}
-꿈을 위해 열심히 할 거예요!` : '';
+  const preview = state.wrName ? `안녕하세요?
+저는 ${state.wrName}이에요/예요.
+${state.wrCountry?state.wrCountry+'에서 왔어요.':''}
+${state.wrJob?'저는 '+state.wrJob+'이에요/예요.':''}
+${state.wrExtra?state.wrExtra:''}
+한화오션 거제 조선소에서 일해요.
+만나서 반갑습니다.` : '';
 
-  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">나의 꿈 이야기 · Writing About My Dream</p>
+  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">사물 소개 글쓰기 · Object Description Writing</p>
   <div class="card" style="background:#fff7ed;border:2px solid var(--orange)">
-    <b style="color:var(--orange)">📋 나의 꿈을 이야기해 보세요 · Tell us about your dream</b>
+    <b style="color:var(--orange)">📋 물건을 소개하는 글을 써 보세요 · Write about objects around you</b>
   </div>
   <div style="margin-top:12px">
     <label style="font-size:13px;font-weight:700;color:var(--navy)">이름 Name</label>
     <input class="input" placeholder="예: 라민 / Ramin" value="${state.wrName}" oninput="state.wrName=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">나의 꿈 My Dream</label>
-    <input class="input" placeholder="예: 한국어 선생님 / Korean teacher" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">꿈의 이유 Why</label>
-    <input class="input" placeholder="예: 사람들을 돕고 싶어요 / I want to help people" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">한국에서의 목표 Goal in Korea</label>
-    <input class="input" placeholder="예: 한국어를 잘하고 싶어요." value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">국적/나라 Country</label>
+    <input class="input" placeholder="예: 이집트 / Egypt" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">직업 Job</label>
+    <input class="input" placeholder="예: 용접공 / welder" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">추가 한마디 Extra note</label>
+    <input class="input" placeholder="예: 잘 부탁드립니다." value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
   </div>
   ${preview?`
   <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📄 미리보기 · Preview</div>
@@ -775,14 +777,14 @@ ${state.wrExtra?'한국에서 '+state.wrExtra:''}
     ${preview.split('\n').filter(l=>l.trim()).map(l=>`<div style="font-size:16px;color:var(--navy);font-weight:600;margin-bottom:4px">${l}</div>`).join('')}
   </div>
   <button class="btn btn-primary" style="margin-top:10px" onclick="TTS.speak(\`${preview.replace(/\n/g,' ').replace(/이에요\/예요/g,'이에요')}\`,undefined,0.8)">🔊 발표 연습 듣기 · Listen to Presentation</button>
-  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 나의 꿈 이야기가 만들어집니다.<br>Fill in the fields above to generate your dream story.</div>'}
+  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 자기소개서가 만들어집니다.<br>Fill in the fields above to generate your introduction.</div>'}
 
   <div style="margin-top:20px;font-weight:700;color:var(--navy);margin-bottom:8px">✍️ 자유 쓰기 · Free Writing</div>
   <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 안녕하세요? 저는 ___이에요.&#10;___에서 왔어요. 저는 ___이에요." id="freeWrite"></textarea>`;
 }
 
 function renderFlashcard() {
-  const all = [...VOCAB_PLACES.map(v=>({f:v.kor,b:v.eng})),...VOCAB_LOCATION.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
+  const all = [...VOCAB_OBJECTS.map(v=>({f:v.kor,b:v.eng})),...VOCAB_DEMO.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
   const card = all[state.fcIdx % all.length];
   return `<h2>🃏 플래시카드 · Flashcards</h2>
   <div style="display:flex;justify-content:space-between;margin-bottom:8px">
@@ -837,7 +839,7 @@ function renderQuiz() {
 }
 
 function renderCulture() {
-  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 장소 문화 · Korean Place & Direction Culture</p>
+  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 사물 문화 · Korean Object & Tool Culture</p>
   ${CULTURE.map(c=>`<div class="card" style="display:flex;gap:12px;align-items:flex-start">
     <div style="font-size:34px;flex-shrink:0">${c.icon}</div>
     <div>
@@ -847,7 +849,7 @@ function renderCulture() {
       <div style="font-size:12px;color:#888;margin-top:2px">${c.de}</div>
     </div>
   </div>`).join('')}
-  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">⚓ 이순신 장군 자세히 보기</button>`;
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">🏗️ 한국의 인프라 보기</button>`;
 }
 
 // ===== REVIEW (익힘) =====
@@ -1039,15 +1041,15 @@ function renderGeoje() {
     <div style="font-size:14px;color:var(--navy);font-weight:600">${f.val}</div>
   </div>`).join('')}
   <div class="card" style="background:var(--light-orange);border:2px solid var(--orange)">
-    <b style="color:var(--orange)">🚀 한국의 성장 원동력: 해양 강국 Korea's Growth Engine: Maritime Power</b>
+    <b style="color:var(--orange)">🚀 한국의 성장 원동력: 인프라 강국 Korea's Growth Engine: Infrastructure</b>
     <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
       ${[
-        {item:'이순신 장군',price:'해전 영웅',emoji:'⚔️',eng:'Admiral Yi Sun-sin'},
-        {item:'거북선',price:'세계 최초',emoji:'🐢',eng:'Turtle Ship'},
-        {item:'조선 산업',price:'세계 1위',emoji:'🚢',eng:'Shipbuilding #1'},
-        {item:'해운',price:'글로벌 Top10',emoji:'🚢',eng:'HMM Shipping'},
-        {item:'수산업',price:'세계 5위',emoji:'🐟',eng:'Fishery'},
-        {item:'해양 기술',price:'미래 성장',emoji:'🌊',eng:'Marine Tech'},
+        {item:'KTX',price:'시속 305km',emoji:'🚄',eng:'High-speed Rail'},
+        {item:'인천공항',price:'세계 1위',emoji:'✈️',eng:'Incheon Airport'},
+        {item:'고속도로',price:'4,800km+',emoji:'🛣️',eng:'Expressway'},
+        {item:'거가대교',price:'8.2km 해저',emoji:'🌉',eng:'Geoga Bridge'},
+        {item:'스마트시티',price:'미래형 도시',emoji:'🏙️',eng:'Smart City'},
+        {item:'건설 수출',price:'글로벌 선도',emoji:'🏗️',eng:'Construction'},
       ].map(p=>`
         <div style="background:#fff;border-radius:10px;padding:10px;text-align:center">
           <div style="font-size:20px">${p.emoji}</div>

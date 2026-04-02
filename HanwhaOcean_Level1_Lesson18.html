@@ -92,308 +92,328 @@ function ttsBtn(text) {
 }
 
 // ===== DATA =====
-const VOCAB_WEATHER = [
-  {kor:"날씨",pron:"nal-ssi",eng:"weather"},
-  {kor:"덥다",pron:"deop-da",eng:"to be hot"},
-  {kor:"춥다",pron:"chup-da",eng:"to be cold"},
-  {kor:"따뜻하다",pron:"tta-tteu-ta-da",eng:"to be warm"},
-  {kor:"시원하다",pron:"si-won-ha-da",eng:"to be cool/refreshing"},
-  {kor:"비",pron:"bi",eng:"rain"},
-  {kor:"눈",pron:"nun",eng:"snow"},
-  {kor:"바람",pron:"ba-ram",eng:"wind"},
-  {kor:"구름",pron:"gu-reum",eng:"cloud"},
-  {kor:"맑다",pron:"mak-da",eng:"to be clear/sunny"},
-  {kor:"흐리다",pron:"heu-ri-da",eng:"to be cloudy"},
-  {kor:"비가 오다",pron:"bi-ga o-da",eng:"to rain"},
-  {kor:"눈이 오다",pron:"nu-ni o-da",eng:"to snow"},
-  {kor:"바람이 불다",pron:"ba-ra-mi bul-da",eng:"wind blows"},
-  {kor:"봄",pron:"bom",eng:"spring"},
-  {kor:"여름",pron:"yeo-reum",eng:"summer"},
-  {kor:"가을",pron:"ga-eul",eng:"autumn/fall"},
-  {kor:"겨울",pron:"gyeo-ul",eng:"winter"},
+const VOCAB_DOCUMENT = [
+  {kor:"서류",pron:"seo-ryu",eng:"documents"},
+  {kor:"신청서",pron:"sin-chung-seo",eng:"application form"},
+  {kor:"비자",pron:"bi-ja",eng:"visa"},
+  {kor:"체류자격",pron:"che-ryu-ja-gyeok",eng:"residency status"},
+  {kor:"외국인등록증",pron:"oe-guk-in deung-nok-jeung",eng:"alien registration card"},
+  {kor:"여권",pron:"yeo-gwon",eng:"passport"},
+  {kor:"등록",pron:"deung-nok",eng:"registration"},
+  {kor:"허가",pron:"heo-ga",eng:"permission/permit"},
+  {kor:"연장",pron:"yeon-jang",eng:"extension"},
+  {kor:"갱신",pron:"gaeng-sin",eng:"renewal"},
+  {kor:"증명서",pron:"jeung-myeong-seo",eng:"certificate"},
+  {kor:"서명",pron:"seo-myeong",eng:"signature"},
+  {kor:"도장",pron:"do-jang",eng:"stamp/seal"},
+  {kor:"사본",pron:"sa-bon",eng:"copy"},
+  {kor:"원본",pron:"won-bon",eng:"original"},
+  {kor:"제출",pron:"je-chul",eng:"submission"},
+  {kor:"발급",pron:"bal-geup",eng:"issuance"},
+  {kor:"수수료",pron:"su-su-ryo",eng:"fee"},
 ];
 
 const VOCAB_SHIPYARD = [
-  {kor:"오늘 날씨가 어때요?",eng:"How's the weather today?",sit:"날씨 물어보기"},
-  {kor:"오늘 많이 더워요.",eng:"It's very hot today.",sit:"더운 날"},
-  {kor:"오늘 많이 추워요.",eng:"It's very cold today.",sit:"추운 날"},
-  {kor:"비가 와요.",eng:"It's raining.",sit:"비 오는 날"},
-  {kor:"바람이 많이 불어요.",eng:"It's very windy.",sit:"바람 부는 날"},
-  {kor:"오늘 날씨가 좋아요.",eng:"The weather is nice today.",sit:"좋은 날씨"},
-  {kor:"밖에 나가도 돼요?",eng:"Can I go outside?",sit:"야외 작업 확인"},
-  {kor:"비가 오면 야외 작업을 안 해요.",eng:"We don't work outside when it rains.",sit:"우천 시 작업"},
-  {kor:"우비 입으세요.",eng:"Please wear a raincoat.",sit:"우천 준비"},
-  {kor:"안전모 쓰세요.",eng:"Please wear a safety helmet.",sit:"안전 장비"},
-  {kor:"폭염 주의보예요.",eng:"There's a heat wave warning.",sit:"폭염 안전"},
-  {kor:"물을 많이 마시세요.",eng:"Please drink a lot of water.",sit:"폭염 대비"},
-  {kor:"태풍이 올 수 있어요.",eng:"A typhoon may come.",sit:"태풍 주의"},
-  {kor:"내일 날씨가 어떨까요?",eng:"What will the weather be like tomorrow?",sit:"내일 날씨"},
-  {kor:"일기예보를 봤어요?",eng:"Did you see the weather forecast?",sit:"일기예보"},
-  {kor:"장마철에는 비가 많이 와요.",eng:"It rains a lot during monsoon season.",sit:"장마"},
+  {kor:"서류가 필요해요?",eng:"Do you need documents?",sit:"서류 질문"},
+  {kor:"고용허가서가 필요해요.",eng:"I need an employment permit.",sit:"고용 문제"},
+  {kor:"비자를 연장해야 해요.",eng:"I need to extend my visa.",sit:"비자 연장"},
+  {kor:"외국인등록증을 신청했어요.",eng:"I applied for an alien registration card.",sit:"등록증 신청"},
+  {kor:"근로계약서를 다시 확인해요.",eng:"Let me check the labor contract again.",sit:"계약서"},
+  {kor:"서명을 할 수 있어요?",eng:"Can you sign?",sit:"서명"},
+  {kor:"도장을 찍어 주세요.",eng:"Please stamp it.",sit:"도장"},
+  {kor:"서류 사본이 필요해요.",eng:"I need a copy of the documents.",sit:"사본"},
+  {kor:"원본을 제출해야 해요.",eng:"I need to submit the original.",sit:"제출"},
+  {kor:"정부24에서 신청해요.",eng:"I'll apply through Government24.",sit:"정부24"},
+  {kor:"출입국관리사무소에 가야 해요.",eng:"I need to go to immigration office.",sit:"출입국"},
+  {kor:"서류 수수료가 얼마예요?",eng:"How much is the document fee?",sit:"수수료"},
+  {kor:"재계약서를 준비했어요.",eng:"I prepared the renewal contract.",sit:"재계약"},
+  {kor:"갱신 기한이 언제예요?",eng:"When's the renewal deadline?",sit:"갱신"},
+  {kor:"증명서를 발급받았어요.",eng:"I got the certificate issued.",sit:"증명서"},
+  {kor:"디지털 서명을 할 수 있어요.",eng:"I can make a digital signature.",sit:"전자서명"},
 ];
 
-const VOCAB_SEASON = [
-  {kor:"날씨",eng:"weather"},{kor:"기온",eng:"temperature"},
-  {kor:"온도",eng:"temperature"},{kor:"습도",eng:"humidity"},
-  {kor:"영하",eng:"below zero"},{kor:"영상",eng:"above zero"},
-  {kor:"도",eng:"degree"},{kor:"일기예보",eng:"weather forecast"},
-  {kor:"맑음",eng:"clear/sunny"},{kor:"흐림",eng:"cloudy"},
-  {kor:"비",eng:"rain"},{kor:"눈",eng:"snow"},
-  {kor:"안개",eng:"fog"},{kor:"천둥",eng:"thunder"},
-  {kor:"번개",eng:"lightning"},{kor:"태풍",eng:"typhoon"},
-  {kor:"장마",eng:"monsoon/rainy season"},{kor:"폭염",eng:"heat wave"},
-  {kor:"한파",eng:"cold wave"},{kor:"미세먼지",eng:"fine dust"},
-  {kor:"봄",eng:"spring"},{kor:"여름",eng:"summer"},
-  {kor:"가을",eng:"autumn"},{kor:"겨울",eng:"winter"},
-  {kor:"우산",eng:"umbrella"},{kor:"우비",eng:"raincoat"},
-  {kor:"장갑",eng:"gloves"},{kor:"목도리",eng:"scarf"},
-  {kor:"선글라스",eng:"sunglasses"},{kor:"선크림",eng:"sunscreen"},
-  {kor:"에어컨",eng:"air conditioner"},{kor:"히터",eng:"heater"},
-  {kor:"야외",eng:"outdoor"},{kor:"실내",eng:"indoor"},
-  {kor:"작업 중지",eng:"work stoppage"},{kor:"안전",eng:"safety"},
+const VOCAB_DOCUMENT_ITEMS = [
+  {kor:"출입국관리사무소",eng:"Immigration office"},{kor:"등본",eng:"family register copy"},
+  {kor:"인감",eng:"official seal"},{kor:"공증",eng:"notarization"},
+  {kor:"전자서명",eng:"digital signature"},{kor:"공인인증서",eng:"authorized certificate"},
+  {kor:"신분증",eng:"ID card"},{kor:"주민등록번호",eng:"resident registration number"},
+  {kor:"주소",eng:"address"},{kor:"전화번호",eng:"phone number"},
+  {kor:"직장명",eng:"company name"},{kor:"직책",eng:"position"},
+  {kor:"생년월일",eng:"date of birth"},{kor:"국적",eng:"nationality"},
+  {kor:"성명",eng:"full name"},{kor:"체류기간",eng:"period of stay"},
+  {kor:"재직증명서",eng:"employment certificate"},{kor:"급여명세서",eng:"salary statement"},
+  {kor:"계약기간",eng:"contract period"},{kor:"급여",eng:"salary"},
+  {kor:"근무지",eng:"workplace"},{kor:"직무",eng:"job duties"},
+  {kor:"결재",eng:"approval"},{kor:"검인",eng:"verification mark"},
+  {kor:"서명 날짜",eng:"signature date"},{kor:"인수 도장",eng:"received stamp"},
+  {kor:"양식",eng:"form/format"},{kor:"기한",eng:"deadline"},
+  {kor:"갱신",eng:"renewal"},{kor:"연장 신청",eng:"extension request"},
+  {kor:"발급일자",eng:"issuance date"},{kor:"만료일",eng:"expiration date"},
+  {kor:"구비 서류",eng:"required documents"},{kor:"첨부",eng:"attachment"},
+  {kor:"이의 제기",eng:"objection/appeal"},{kor:"취소",eng:"cancellation"},
 ];
 
 const VOCAB_SHIPYARD_NOUNS = [
-  {kor:"봄",eng:"spring"},{kor:"여름",eng:"summer"},
-  {kor:"가을",eng:"autumn"},{kor:"겨울",eng:"winter"},
-  {kor:"3월",eng:"March"},{kor:"4월",eng:"April"},
-  {kor:"5월",eng:"May"},{kor:"6월",eng:"June"},
-  {kor:"7월",eng:"July"},{kor:"8월",eng:"August"},
-  {kor:"9월",eng:"September"},{kor:"10월",eng:"October"},
-  {kor:"11월",eng:"November"},{kor:"12월",eng:"December"},
-  {kor:"1월",eng:"January"},{kor:"2월",eng:"February"},
-  {kor:"해",eng:"sun"},{kor:"달",eng:"moon"},
-  {kor:"하늘",eng:"sky"},{kor:"무지개",eng:"rainbow"},
-  {kor:"우산",eng:"umbrella"},{kor:"우비",eng:"raincoat"},
-  {kor:"장갑",eng:"gloves"},{kor:"모자",eng:"hat"},
-  {kor:"코트",eng:"coat"},{kor:"반팔",eng:"short sleeves"},
-  {kor:"긴팔",eng:"long sleeves"},{kor:"패딩",eng:"padded jacket"},
-  {kor:"선풍기",eng:"fan"},{kor:"난방",eng:"heating"},
+  {kor:"정부24",eng:"Government24 (e-government)"},{kor:"전자정부",eng:"e-government"},
+  {kor:"디지털 정부",eng:"digital government"},{kor:"마이데이터",eng:"My Data service"},
+  {kor:"전자서명",eng:"digital signature"},{kor:"공인인증",eng:"authorized certification"},
+  {kor:"정부 포탈",eng:"government portal"},{kor:"온라인 신청",eng:"online application"},
+  {kor:"모바일 신청",eng:"mobile application"},{kor:"원서접수",eng:"application submission"},
+  {kor:"처리 기간",eng:"processing period"},{kor:"조회",eng:"inquiry"},
+  {kor:"다운로드",eng:"download"},{kor:"인쇄",eng:"print"},
+  {kor:"PDF 변환",eng:"PDF conversion"},{kor:"메일 수신",eng:"email receipt"},
+  {kor:"알림 서비스",eng:"notification service"},{kor:"진행 현황",eng:"progress status"},
+  {kor:"거부 사유",eng:"reason for rejection"},{kor:"재신청",eng:"reapplication"},
+  {kor:"업로드",eng:"upload"},{kor:"파일 형식",eng:"file format"},
+  {kor:"용량 제한",eng:"size limit"},{kor:"보안",eng:"security"},
+  {kor:"개인정보 보호",eng:"personal info protection"},{kor:"데이터 암호화",eng:"data encryption"},
+  {kor:"한화오션 인사팀",eng:"HO HR Department"},{kor:"행정팀",eng:"Administration team"},
+  {kor:"서류 보관",eng:"document storage"},{kor:"아카이빙",eng:"archiving"},
 ];
 
 const GRAMMAR = [
-  {title:"형용사 + ~(으)ㄴ/는 (Descriptive)",eng:"Adjective Endings ~(으)ㄴ/는",
-   desc:"날씨를 설명할 때 형용사에 '~(으)ㄴ'을 붙여요. 현재 상태를 말해요.",descEng:"Add ~(으)ㄴ to adjectives to describe weather. Expresses current state.",
-   rule:"받침 O → 은 / 받침 X → ㄴ / 동사는 → 는",ruleEng:"With final consonant → 은 / Without → ㄴ / For verbs → 는",
+  {title:"~아/어야 하다 (Must / Have to)",eng:"~아/어야 하다 (Must / Have to)",
+   desc:"의무나 필요한 행동을 말할 때 '~아/어야 하다'를 써요.",descEng:"Use ~아/어야 하다 to express necessity or obligation.",
+   rule:"동사 + 아/어야 하다/해요",ruleEng:"Verb + 아/어야 하다/해요",
    examples:[
-    {q:"오늘 날씨가 어때요?",a:"더운 날이에요.",eng:"It's a hot day.",note:"덥다→더운"},
-    {q:"겨울 날씨는?",a:"추운 날씨예요.",eng:"It's cold weather.",note:"춥다→추운"},
-    {q:"봄은 어때요?",a:"따뜻한 계절이에요.",eng:"It's a warm season.",note:"따뜻하다→따뜻한"},
-    {q:"가을은 어때요?",a:"시원한 바람이 불어요.",eng:"Cool wind blows.",note:"시원하다→시원한"},
-    {q:"하늘이 어때요?",a:"맑은 하늘이에요.",eng:"It's a clear sky.",note:"맑다→맑은"},
+    {q:"비자를 어떻게 해야 해요?",a:"비자를 연장해야 해요.",eng:"I need to extend my visa.",note:"연장하다+아야 하다"},
+    {q:"서류를 어디에 제출해야 해요?",a:"출입국관리사무소에 제출해야 해요.",eng:"I must submit it to immigration office.",note:"제출하다+아야 하다"},
+    {q:"도장을 어떻게 해야 해요?",a:"도장을 찍어야 해요.",eng:"I need to put a stamp.",note:"찍다+어야 하다"},
+    {q:"증명서를 받으려면?",a:"신청서를 작성해야 해요.",eng:"I need to fill out an application form.",note:"작성하다+아야 하다"},
+    {q:"원본이 필요해요?",a:"네, 원본을 제출해야 해요.",eng:"Yes, I must submit the original.",note:"제출하다+아야 하다"},
    ]},
-  {title:"~겠~ (추측/미래)",eng:"~겠~ (Guess/Future)",
-   desc:"날씨를 추측하거나 미래를 말할 때 '~겠~'을 써요.",descEng:"Use ~겠~ to guess or predict weather.",
-   rule:"동사/형용사 어간 + 겠어요",ruleEng:"Verb/Adjective stem + 겠어요",
+  {title:"~(으)ㄹ 수 있다/없다 (Can / Can't)",eng:"~(으)ㄹ 수 있다/없다 (Can / Can't)",
+   desc:"가능한지 불가능한지를 말할 때 '~(으)ㄹ 수 있다/없다'를 써요.",descEng:"Use ~(으)ㄹ 수 있다/없다 to express possibility/impossibility.",
+   rule:"동사 + (으)ㄹ 수 있다/없다",ruleEng:"Verb + (으)ㄹ 수 있다/없다",
    examples:[
-    {q:"내일 날씨는?",a:"비가 오겠어요.",eng:"It will probably rain.",note:"오다→오겠어요"},
-    {q:"오후에 날씨는?",a:"더워지겠어요.",eng:"It will get hot.",note:"더워지다→겠어요"},
-    {q:"주말 날씨는?",a:"좋겠어요.",eng:"It will be nice.",note:"좋다→좋겠어요"},
-    {q:"내일 추울까요?",a:"네, 춥겠어요.",eng:"Yes, it will be cold.",note:"춥다→춥겠어요"},
-    {q:"태풍이 올까요?",a:"올 수도 있겠어요.",eng:"It might come.",note:"추측"},
+    {q:"온라인으로 신청할 수 있어요?",a:"네, 정부24에서 할 수 있어요.",eng:"Yes, I can apply through Government24.",note:"하다+ㄹ 수 있다"},
+    {q:"서명 없이 제출할 수 있어요?",a:"아니요, 서명 없이 할 수 없어요.",eng:"No, I can't submit without a signature.",note:"하다+ㄹ 수 없다"},
+    {q:"비자를 온라인으로 연장할 수 있어요?",a:"아니요, 꼭 가서 연장해야 해요.",eng:"No, I must go there to extend it.",note:"연장하다+ㄹ 수 없다"},
+    {q:"디지털 서명을 사용할 수 있어요?",a:"네, 전자서명을 사용할 수 있어요.",eng:"Yes, I can use digital signature.",note:"사용하다+ㄹ 수 있다"},
+    {q:"영문 서류를 받을 수 있어요?",a:"네, 영문 증명서를 받을 수 있어요.",eng:"Yes, I can get an English certificate.",note:"받다+ㄹ 수 있다"},
    ]},
-  {title:"~(으)면 (If/When)",eng:"~(으)면 (Conditional)",
-   desc:"조건을 말할 때 '~(으)면'을 써요. '만약 ~하면'의 뜻이에요.",descEng:"Use ~(으)면 to express conditions. Means 'if/when something happens.'",
-   rule:"받침 O → 으면 / 받침 X → 면",ruleEng:"With final consonant → 으면 / Without → 면",
+  {title:"~에 대해서 (About / Regarding)",eng:"~에 대해서 (About / Regarding)",
+   desc:"어떤 것이 무엇에 대한 것인지 말할 때 '~에 대해서'를 써요.",descEng:"Use ~에 대해서 to specify what something is about/regarding.",
+   rule:"명사 + 에 대해서",ruleEng:"Noun + 에 대해서",
    examples:[
-    {q:"비가 오면?",a:"우산을 가져가세요.",eng:"If it rains, take an umbrella.",note:"오+면"},
-    {q:"날씨가 더우면?",a:"물을 많이 마시세요.",eng:"If it's hot, drink lots of water.",note:"덥+으면"},
-    {q:"눈이 오면?",a:"길이 미끄러워요.",eng:"If it snows, the road is slippery.",note:"오+면"},
-    {q:"바람이 불면?",a:"모자가 날아가요.",eng:"If the wind blows, hats fly away.",note:"불+면"},
-    {q:"날씨가 좋으면?",a:"밖에서 일해요.",eng:"If the weather is nice, we work outside.",note:"좋+으면"},
+    {q:"질문이 있어요.",a:"비자 연장에 대해서 물어보고 싶어요.",eng:"I want to ask about visa extension.",note:"비자 연장+에 대해서"},
+    {q:"서류가 뭐예요?",a:"체류자격 갱신에 대한 서류예요.",eng:"It's a document about residency status renewal.",note:"갱신+에 대한"},
+    {q:"정부24가 뭐예요?",a:"온라인 신청에 대한 사이트예요.",eng:"It's a website about online application.",note:"신청+에 대한"},
+    {q:"회의 주제가 뭐예요?",a:"근로계약서 갱신에 대해서 이야기해요.",eng:"We talk about labor contract renewal.",note:"갱신+에 대해서"},
+    {q:"공지가 있어요.",a:"외국인등록증 신청에 대한 공지예요.",eng:"It's a notice about alien registration card application.",note:"신청+에 대한"},
    ]},
 ];
 
 const DIALOGUES = [
-  {title:"아침 출근길 날씨 대화",eng:"Morning Weather Chat on the Way to Work",lines:[
-    {sp:"라민",role:"용접공",text:"오늘 날씨가 어때요?",eng:"How's the weather today?",side:"R"},
-    {sp:"후엔",role:"배관공",text:"오늘 많이 더워요. 삼십오 도래요.",eng:"It's very hot today. They say 35 degrees.",side:"L"},
-    {sp:"라민",text:"정말요? 물을 많이 마셔야겠어요.",eng:"Really? I should drink lots of water.",side:"R"},
-    {sp:"후엔",text:"맞아요. 폭염 주의보래요. 조심하세요.",eng:"Right. There's a heat wave warning. Be careful.",side:"L"},
-    {sp:"라민",text:"오후에 비가 올 수도 있대요.",eng:"They say it might rain in the afternoon.",side:"R"},
-    {sp:"후엔",text:"그럼 우비를 가져가세요!",eng:"Then bring a raincoat!",side:"L"},
+  {title:"비자 연장하기",eng:"Extending a Visa",lines:[
+    {sp:"라민",role:"용접공",text:"쑤안 씨, 비자를 연장해야 해요?",eng:"Xuan, do you need to extend your visa?",side:"R"},
+    {sp:"쑤안",role:"배관공",text:"네, 비자 기한이 2개월 남았어요.",eng:"Yes, my visa expires in 2 months.",side:"L"},
+    {sp:"라민",text:"어디에서 해야 해요?",eng:"Where do I need to do it?",side:"R"},
+    {sp:"쑤안",text:"출입국관리사무소에 가야 해요. 거제도에 있어요.",eng:"I need to go to the immigration office. It's in Geoje.",side:"L"},
+    {sp:"라민",text:"어떤 서류가 필요해요?",eng:"What documents are needed?",side:"R"},
+    {sp:"쑤안",text:"여권, 신청서, 증명서가 필요해요. 한화오션 인사팀에서 도와줄 수 있어요.",eng:"I need passport, application form, and certificate. The HR department can help.",side:"L"},
   ]},
-  {title:"거제의 계절 이야기",eng:"Talking About Seasons in Geoje",lines:[
-    {sp:"안젤라",role:"전기공",text:"한국에는 봄, 여름, 가을, 겨울이 있어요.",eng:"Korea has spring, summer, autumn, and winter.",side:"R"},
-    {sp:"탄",role:"도장공",text:"저는 여름이 제일 힘들어요. 너무 더워요.",eng:"Summer is hardest for me. It's too hot.",side:"L"},
-    {sp:"안젤라",text:"저도요. 그리고 장마철에 비가 많이 와요.",eng:"Me too. And it rains a lot during monsoon.",side:"R"},
-    {sp:"탄",text:"겨울도 추워요. 고향은 안 추운데...",eng:"Winter is cold too. Back home it's not cold...",side:"L"},
-    {sp:"안젤라",text:"가을이 제일 좋아요. 시원하고 하늘이 맑아요.",eng:"Autumn is the best. Cool and clear sky.",side:"R"},
-    {sp:"탄",text:"맞아요! 가을에 거제도 구경하면 정말 예뻐요.",eng:"Right! Geoje is really beautiful in autumn.",side:"L"},
+  {title:"근로계약서 갱신",eng:"Renewing Labor Contract",lines:[
+    {sp:"안젤라",role:"전기공",text:"준 씨, 근로계약서를 갱신해야 해요?",eng:"Jun, do you need to renew your labor contract?",side:"L"},
+    {sp:"준",role:"도장공",text:"네, 올해 재계약이에요.",eng:"Yes, my contract needs renewal this year.",side:"R"},
+    {sp:"안젤라",text:"계약서를 어디에 제출해야 해요?",eng:"Where should I submit the contract?",side:"L"},
+    {sp:"준",text:"한화오션 인사팀에 제출해요. 서명과 도장이 필요해요.",eng:"I submit it to HO HR department. I need signature and stamp.",side:"R"},
+    {sp:"안젤라",text:"온라인으로 할 수 있어요?",eng:"Can I do it online?",side:"L"},
+    {sp:"준",text:"아니요, 꼭 가서 서명해야 해요. 하지만 정부24에서 재직증명서를 받을 수 있어요.",eng:"No, I must sign in person. But I can get employment certificate on Government24.",side:"R"},
   ]},
 ];
 
 const QUIZ = [
-  {q:"'날씨'의 뜻은?",o:["weather","season","temperature","wind"],a:0},
-  {q:"'덥다'의 뜻은?",o:["to be hot","to be cold","to be warm","to be cool"],a:0},
-  {q:"'비가 오다'의 뜻은?",o:["to rain","to snow","to be windy","to be sunny"],a:0},
-  {q:"한국의 봄은 몇 월이에요?",o:["3~5월","6~8월","9~11월","12~2월"],a:0},
-  {q:"'눈이 오다'의 뜻은?",o:["to snow","to rain","to be cloudy","to be foggy"],a:0},
-  {q:"여름 날씨는 보통 어때요?",o:["더워요","추워요","시원해요","춥겠어요"],a:0},
-  {q:"'우비'의 뜻은?",o:["raincoat","umbrella","boots","hat"],a:0},
-  {q:"'폭염'의 뜻은?",o:["heat wave","cold wave","typhoon","rain"],a:0},
-  {q:"'비가 오면 우산을 가져가세요'에서 '~면'은?",o:["if/when","but","and","because"],a:0},
-  {q:"'춥겠어요'의 뜻은?",o:["It will be cold","It was cold","It is cold","I like cold"],a:0},
-  {q:"'장마'의 뜻은?",o:["monsoon/rainy season","winter","typhoon","snow"],a:0},
-  {q:"'맑다'의 뜻은?",o:["clear/sunny","cloudy","rainy","windy"],a:0},
-  {q:"'미세먼지'의 뜻은?",o:["fine dust","rain","fog","snow"],a:0},
-  {q:"'바람이 불다'의 뜻은?",o:["wind blows","rain falls","snow falls","sun shines"],a:0},
-  {q:"야외 작업 중 비가 오면 어떻게 해요?",o:["작업을 중지해요","계속 일해요","집에 가요","잠을 자요"],a:0},
-
-  // 한국의 성장 원동력 퀴즈
-  {q:"삼성전자가 세계 1위인 분야는?",o:["메모리 반도체","자동차","비행기","음식"],a:0},
-  {q:"현대·기아 자동차는 세계 몇 위예요?",o:["Top 3","Top 10","Top 20","Top 50"],a:0},
-  {q:"한국의 전기차 브랜드가 아닌 것은?",o:["토요타","현대 아이오닉","기아 EV6","제네시스"],a:0},
+  {q:"'서류'의 뜻은?",o:["documents","passport","visa","seal"],a:0},
+  {q:"'~아/어야 하다'는 언제 써요?",o:["의무를 말할 때","과거를 말할 때","미래를 말할 때","이름을 말할 때"],a:0},
+  {q:"'비자'의 뜻은?",o:["visa","passport","certificate","permit"],a:0},
+  {q:"'신청서'의 뜻은?",o:["application form","passport","contract","certificate"],a:0},
+  {q:"'~(으)ㄹ 수 있다'는 언제 써요?",o:["가능을 말할 때","의무를 말할 때","이유를 말할 때","명령할 때"],a:0},
+  {q:"'외국인등록증'의 뜻은?",o:["alien registration card","passport","ID card","visa"],a:0},
+  {q:"'도장'의 뜻은?",o:["stamp/seal","signature","permit","certificate"],a:0},
+  {q:"'~에 대해서'는 언제 써요?",o:["어떤 것에 대한 것","과거를 말할 때","미래를 말할 때","명령할 때"],a:0},
+  {q:"'연장'의 뜻은?",o:["extension","renewal","registration","permission"],a:0},
+  {q:"'제출'의 뜻은?",o:["submission","issuance","signature","copy"],a:0},
+  {q:"'증명서'의 뜻은?",o:["certificate","permit","contract","form"],a:0},
+  {q:"'원본'의 뜻은?",o:["original","copy","draft","sample"],a:0},
+  {q:"'갱신'의 뜻은?",o:["renewal","extension","registration","permission"],a:0},
+  {q:"'발급'의 뜻은?",o:["issuance","submission","approval","payment"],a:0},
+  {q:"'사본'의 뜻은?",o:["copy","original","draft","form"],a:0},
+  // 디지털 정부 퀴즈
+  {q:"정부24가 뭐예요?",o:["온라인 신청 사이트","병원","조선소","가게"],a:0},
+  {q:"한국의 디지털 정부는?",o:["세계 1위 UN e-Gov 지수","2위","3위","10위"],a:0},
+  {q:"전자서명의 장점은?",o:["서류를 인쇄하지 않아도 돼요","비용이 없어요","시간이 없어요","친구가 할 수 있어요"],a:0},
 ];
 
 const CULTURE = [
-  {icon:"🌸",t:"한국의 사계절",eng:"Korea's Four Seasons",d:"한국은 봄(3~5월), 여름(6~8월), 가을(9~11월), 겨울(12~2월) 네 계절이 뚜렷해요. 각 계절마다 날씨와 풍경이 아주 달라요.",de:"Korea has four distinct seasons: spring (Mar-May), summer (Jun-Aug), autumn (Sep-Nov), winter (Dec-Feb). Weather and scenery change dramatically each season."},
-  {icon:"🌧️",t:"장마와 태풍",eng:"Monsoon & Typhoon Season",d:"6~7월에 장마가 있어요. 비가 매일 많이 와요. 8~9월에는 태풍이 올 수 있어요. 조선소에서는 태풍 때 작업을 중지하고 안전한 곳으로 대피해요.",de:"Monsoon is in June-July with heavy daily rain. Typhoons may come in Aug-Sep. The shipyard stops work during typhoons and evacuates to safe areas."},
-  {icon:"☀️",t:"폭염과 야외 작업",eng:"Heat Waves & Outdoor Work",d:"여름에 35도 이상이면 폭염 주의보예요. 조선소에서는 야외 작업 시간을 조정하고, 쉬는 시간을 늘려요. 물을 자주 마시고, 그늘에서 쉬세요!",de:"Above 35°C triggers a heat wave warning. The shipyard adjusts outdoor work hours and increases break time. Drink water often and rest in shade!"},
-  {icon:"❄️",t:"겨울과 한파",eng:"Winter & Cold Waves",d:"거제도 겨울은 서울보다 따뜻하지만 바다 바람이 차가워요. 열대 지방에서 온 근로자는 특히 추울 수 있어요. 패딩, 장갑, 목도리를 준비하세요!",de:"Geoje winters are warmer than Seoul but the sea wind is cold. Workers from tropical countries may feel especially cold. Prepare padded jackets, gloves, and scarves!"},
-  {icon:"😷",t:"미세먼지",eng:"Fine Dust (PM2.5)",d:"봄에 미세먼지가 심할 수 있어요. 마스크(KF94)를 꼭 쓰세요. 미세먼지 앱으로 오늘 공기 상태를 확인할 수 있어요. '나쁨' 이상이면 야외 활동을 줄이세요.",de:"Fine dust can be severe in spring. Wear KF94 masks. Check air quality with a fine dust app. If it's 'bad' or worse, reduce outdoor activities."},
-  {icon:"🌊",t:"거제도의 날씨 특성",eng:"Geoje's Weather Features",d:"거제도는 바닷가라서 바람이 자주 불어요. 여름에 습하고 더워요. 겨울에는 눈이 적지만 바람이 매서워요. 가을이 가장 쾌적하고 아름다워요!",de:"Geoje is coastal so it's often windy. Summers are humid and hot. Winters have little snow but harsh winds. Autumn is the most pleasant and beautiful!"},
+  {icon:"🏛️",t:"한국의 디지털 정부",eng:"Korea's Digital Government",d:"한국은 UN 전자정부 지수에서 세계 1위예요. 정부24, 공인인증서, 전자서명 등을 많이 써요. 온라인으로 많은 서류를 신청하고 받을 수 있어요.",de:"Korea ranks #1 in UN e-Government Index. It uses Government24, authorized certificates, and digital signatures widely. Many documents can be applied for and received online."},
+  {icon:"📱",t:"정부24 플랫폼",eng:"Government24 Platform",d:"정부24는 중앙 정부와 지자체의 모든 온라인 서비스를 제공해요. 비자, 등록, 허가, 증명서 등을 신청할 수 있어요. 24시간 언제든지 온라인으로 할 수 있어요.",de:"Government24 provides all online services from central and local governments. You can apply for visa, registration, permits, certificates, etc. Available 24/7 online."},
+  {icon:"🔐",t:"디지털 신원증",eng:"Digital ID",d:"한국은 디지털 신원증을 개발했어요. 스마트폰으로 신분증 기능을 할 수 있어요. 앞으로 더 많은 서비스에 사용될 거예요.",de:"Korea developed a digital ID. You can use smartphone as ID. It will be used for more services in the future."},
+  {icon:"📊",t:"마이데이터 서비스",eng:"My Data Service",d:"마이데이터는 개인의 정보를 중앙에서 관리하는 서비스예요. 은행, 보험, 신용정보 등을 한 곳에서 볼 수 있어요.",de:"My Data is a service that manages personal information centrally. You can view bank, insurance, credit info in one place."},
+  {icon:"✍️",t:"전자서명·공인인증",eng:"Digital Signature & Authorized Certificate",d:"한국의 공인인증서는 법적 효력이 있어요. 전자서명으로 법적 계약을 할 수 있어요. 은행, 보험, 법적 서류에 사용돼요.",de:"Korea's authorized certificate has legal validity. You can make legally binding contracts with digital signature. Used for banking, insurance, legal documents."},
+  {icon:"🏢",t:"한화오션 인사팀 문서 지원",eng:"Hanwha Ocean HR Document Support",d:"한화오션 인사팀은 외국인 근로자의 비자, 등록, 갱신 등을 도와줘요. 서류 작성, 신청, 제출 등 전 과정을 지원해요.",de:"Hanwha Ocean HR supports foreign workers with visa, registration, renewal. Assists with document preparation, application, submission."},
 ];
 
 const LOCAL_INFO = {
-  title: "한국의 성장 원동력: 반도체 & 자동차",
-  eng: "Korea's Growth Engine: Semiconductor & Automobile",
+  title: "한국의 성장 원동력: 디지털 정부",
+  eng: "Korea's Growth Engine: Digital Government",
   facts: [
-    {label:"삼성전자 Samsung Electronics",val:"메모리 반도체 세계 1위"},
-    {label:"SK하이닉스 SK Hynix",val:"DRAM·NAND 세계 2위"},
-    {label:"현대자동차 Hyundai Motor",val:"글로벌 판매 Top 3"},
-    {label:"기아 KIA",val:"디자인 혁신, 글로벌 인기"},
-    {label:"전기차 EV",val:"현대 아이오닉·기아 EV6, 세계 주목"},
-    {label:"배터리 Battery",val:"LG·삼성SDI·SK온, 세계 시장 선도"},
-    {label:"수출 효자 Export Champions",val:"반도체+자동차 = 수출 40%+"},
+    {label:"UN e-Gov 지수 e-Gov Index",val:"세계 1위 #1 Worldwide"},
+    {label:"정부24 Platform",val:"중앙·지자체 모든 온라인 서비스"},
+    {label:"마이데이터 My Data",val:"개인정보 중앙관리, 한 곳에서 조회"},
+    {label:"디지털 신원증 Digital ID",val:"스마트폰으로 신분증 기능"},
+    {label:"전자서명 Digital Signature",val:"법적 효력 있는 전자서명"},
+    {label:"공인인증 Authorized Cert",val:"은행·보험·법률 서류 사용"},
+    {label:"한화오션 지원 HO Support",val:"비자·등록·갱신 전 과정 도움"},
   ],
-  desc: "한국의 반도체와 자동차 산업은 세계 최고 수준이에요! 삼성전자는 메모리 반도체 세계 1위, SK하이닉스도 세계 2위예요. 현대·기아 자동차는 글로벌 Top 3에요. 전기차(EV)와 배터리 분야에서도 세계를 이끌고 있어요. 반도체와 자동차가 한국 수출의 40% 이상을 차지해요!",
-  descEng: "Korea's semiconductor and automobile industries are world-class! Samsung Electronics is #1 in memory semiconductors, SK Hynix is #2. Hyundai-Kia is a global top 3 automaker. Korea also leads in electric vehicles (EVs) and batteries. Semiconductors and automobiles account for over 40% of Korea's exports!"
+  desc: "한국은 디지털 정부에서 세계 1위예요! UN 전자정부 지수에서 가장 높은 점수를 받았어요. 정부24를 통해 집에서도 많은 서류를 신청하고 받을 수 있어요. 마이데이터로 개인정보를 한 곳에서 관리해요. 디지털 신원증, 전자서명, 공인인증서 등 스마트 기술을 많이 써요. 한화오션도 외국인 근로자의 비자, 등록, 갱신을 도와주는 체계가 있어요!",
+  descEng: "Korea is #1 in digital government worldwide! It received the highest score in UN e-Government Index. You can apply for and receive many documents from home through Government24. My Data manages personal information in one place. Korea uses smart technology like digital ID, digital signature, and authorized certificates. Hanwha Ocean also has a system to support foreign workers with visa, registration, and renewal!"
 };
 
-// HANGUL DATA (Level 0 — 8과: 발음 규칙)
+// HANGUL DATA (Level 0 — 18과: 한글 응용 - 공문서 읽기)
 const HANGUL_CONSONANTS = [
-  {char:"음악 →",rom:"eu-mak",name:"[으막] 연음X"},{char:"음악을 →",rom:"eu-ma-geul",name:"[으마글] 연음O"},
-  {char:"한국어 →",rom:"han-gu-geo",name:"[한구거] 연음"},{char:"같이 →",rom:"ga-chi",name:"[가치] 구개음화"},
-  {char:"국물 →",rom:"gung-mul",name:"[궁물] 비음화"},{char:"합니다 →",rom:"ham-ni-da",name:"[함니다] 비음화"},
-  {char:"학교 →",rom:"hak-gyo",name:"[학꾜] 경음화"},{char:"입구 →",rom:"ip-gu",name:"[입꾸] 경음화"},
-  {char:"숙제 →",rom:"suk-je",name:"[숙쩨] 경음화"},{char:"먹다 →",rom:"meok-da",name:"[먹따] 경음화"},
-  {char:"놓다 →",rom:"not-da",name:"[노타] ㅎ탈락"},{char:"좋아 →",rom:"jo-a",name:"[조아] ㅎ탈락"},
+  {char:"신청서",rom:"sin-chung-seo",name:"Application Form"},
+  {char:"성명",rom:"seong-myeong",name:"Full Name"},
+  {char:"국적",rom:"guk-jok",name:"Nationality"},
+  {char:"생년월일",rom:"saeng-nyeon-wol-il",name:"Date of Birth"},
+  {char:"체류자격",rom:"che-ryu-ja-gyeok",name:"Residency Status"},
+  {char:"여권번호",rom:"yeo-gwon-beon-ho",name:"Passport Number"},
+  {char:"서명",rom:"seo-myeong",name:"Signature"},
+  {char:"도장",rom:"do-jang",name:"Stamp/Seal"},
+  {char:"기한",rom:"gi-han",name:"Deadline"},
+  {char:"서명 날짜",rom:"seo-myeong nal-jja",name:"Signature Date"},
+  {char:"발급일자",rom:"bal-geup-il-ja",name:"Issue Date"},
+  {char:"만료일",rom:"man-ryo-il",name:"Expiration Date"},
 ];
 const HANGUL_VOWELS = [
-  {char:"연음",rom:"yeon-eum",name:"Linking: 받침→다음 모음"},{char:"경음화",rom:"gyeong-eum-hwa",name:"Tensing: ㄱ+ㄱ→ㄱㄲ"},
-  {char:"비음화",rom:"bi-eum-hwa",name:"Nasalization: ㄱ→ㅇ before ㄴ"},{char:"구개음화",rom:"gu-gae-eum-hwa",name:"Palatalization: ㄷ+이→지"},
-  {char:"ㅎ탈락",rom:"h-tal-lak",name:"H-drop: ㅎ+모음→사라짐"},
-  {char:"있어요 →",rom:"[이써요]",name:"연음+경음"},{char:"없어요 →",rom:"[업써요]",name:"연음+경음"},
-  {char:"읽어요 →",rom:"[일거요]",name:"연음"},{char:"앉아요 →",rom:"[안자요]",name:"연음"},
-  {char:"닫히다 →",rom:"[다치다]",name:"구개음화"},{char:"맞히다 →",rom:"[마치다]",name:"구개음화"},
-  {char:"놓여요 →",rom:"[노여요]",name:"ㅎ탈락"},
+  {char:"주소",rom:"ju-so",name:"Address"},
+  {char:"전화번호",rom:"jeon-hwa-beon-ho",name:"Phone Number"},
+  {char:"직장명",rom:"jik-jang-myeong",name:"Company Name"},
+  {char:"직책",rom:"jik-chaek",name:"Position/Title"},
+  {char:"직무",rom:"jik-mu",name:"Job Duties"},
+  {char:"근무지",rom:"geun-mu-ji",name:"Workplace"},
+  {char:"급여",rom:"geup-yeo",name:"Salary"},
+  {char:"계약기간",rom:"gye-yak-gi-gan",name:"Contract Period"},
+  {char:"재직증명서",rom:"jae-jik-jeung-myeong-seo",name:"Employment Certificate"},
+  {char:"급여명세서",rom:"geup-yeo-myeong-se-seo",name:"Salary Statement"},
+  {char:"갱신",rom:"gaeng-sin",name:"Renewal"},
+  {char:"연장",rom:"yeon-jang",name:"Extension"},
 ];
 const HANGUL_PRACTICE = [
-  {char:"감사합니다",rom:"gam-sa-ham-ni-da",name:"[감사함니다] 비음화"},{char:"먹었어요",rom:"meo-geo-sseo-yo",name:"[머거써요] 연음"},
-  {char:"작년",rom:"jak-nyeon",name:"[장년] 비음화"},{char:"십만",rom:"sim-man",name:"[심만] 비음화"},
-  {char:"축하",rom:"chu-ka",name:"[추카] ㅎ영향"},{char:"못해요",rom:"mo-tae-yo",name:"[모태요] ㅎ영향"},
-  {char:"좋겠다",rom:"jot-get-da",name:"[조겓따] 경음화"},{char:"있다",rom:"it-da",name:"[읻따] 경음화"},
-  {char:"집에",rom:"ji-be",name:"[지베] 연음"},{char:"옷을",rom:"o-seul",name:"[오슬] 연음"},
+  {char:"신청서 예시 (샘플)",rom:"",name:"— 신청서 작성 예시 —"},
+  {char:"【신청인 정보】",rom:"",name:"신청인 정보"},
+  {char:"성명: 라민 (Ramin Azizi)",rom:"",name:"신청인 이름"},
+  {char:"국적: 아프가니스탄",rom:"",name:"국가"},
+  {char:"생년월일: 1990년 5월 15일",rom:"",name:"생년월일"},
+  {char:"여권번호: AB1234567",rom:"",name:"여권"},
+  {char:"【현 체류정보】",rom:"",name:"체류 정보"},
+  {char:"체류자격: E-1 (전문직)",rom:"",name:"자격"},
+  {char:"체류기간: 2024.05.15. ~ 2025.05.14.",rom:"",name:"기간"},
+  {char:"【신청 내용】 ☑ 비자 연장",rom:"",name:"신청 항목"},
 ];
 const SAFETY_WORDS = [
-  {kor:"위험 [위험]",eng:"Danger",rom:"wi-heom"},{kor:"주의 [주의]",eng:"Caution",rom:"ju-ui"},
-  {kor:"접근금지 [접근금지]",eng:"Keep Away",rom:"jeop-geun-geum-ji"},
-  {kor:"작업중 [자겁쭝]",eng:"Work In Progress",rom:"ja-geop-jjung"},
-  {kor:"금지 [금지]",eng:"Prohibited",rom:"geum-ji"},{kor:"착용 [차굥]",eng:"Wear",rom:"cha-gyong"},
-  {kor:"대피 [대피]",eng:"Evacuate",rom:"dae-pi"},{kor:"출입금지 [추립끔지]",eng:"No Entry",rom:"chu-rip-kkeum-ji"},
-  {kor:"비상구 [비상구]",eng:"Emergency Exit",rom:"bi-sang-gu"},{kor:"안전모 착용 [안전모차굥]",eng:"Wear Helmet",rom:"an-jeon-mo-cha-gyong"},
-  {kor:"응급처치 [응급처치]",eng:"First Aid",rom:"eung-geup-cheo-chi"},{kor:"보호구 착용 [보호구차굥]",eng:"Wear PPE",rom:"bo-ho-gu-cha-gyong"},
+  {kor:"위조금지",eng:"No forgery",rom:"wi-jo-geum-ji"},
+  {kor:"개인정보 보호",eng:"Personal info protection",rom:"gae-in-jeong-bo bo-ho"},
+  {kor:"서류 보관",eng:"Document storage",rom:"seo-ryu bo-gwan"},
+  {kor:"이중 제출 금지",eng:"No duplicate submission",rom:"i-jung je-chul geum-ji"},
+  {kor:"허위 기재 금지",eng:"No false information",rom:"heo-wi gi-jae geum-ji"},
+  {kor:"보안",eng:"Security",rom:"bo-an"},
+  {kor:"암호화",eng:"Encryption",rom:"am-ho-hwa"},
+  {kor:"인증",eng:"Verification",rom:"in-jeung"},
+  {kor:"전자서명",eng:"Digital signature",rom:"jeon-ja-seo-myeong"},
+  {kor:"공인인증서",eng:"Authorized certificate",rom:"gong-in-in-jeung-seo"},
+  {kor:"만료 주의",eng:"Expiration notice",rom:"man-ryo ju-ui"},
+  {kor:"갱신 기한",eng:"Renewal deadline",rom:"gaeng-sin gi-han"},
 ];
-const HANGUL_TABS = ['발음 규칙 Rules','규칙 예시 Examples','연습 Practice','안전 단어 Safety'];
-const HANGUL_SUBTITLE = "Learn Hangul · 발음 규칙";
+const HANGUL_TABS = ['공문서 표현 Terms','서류 양식 Forms','예시 서류 Sample','안전·보안 Safety'];
+const HANGUL_SUBTITLE = "한글 응용 · 공문서 읽기 연습";
 
 // ===== READING PASSAGES =====
 const READING_PASSAGES = [
-  {title:"거제의 여름 날씨",eng:"Summer Weather in Geoje",
-   text:"여름에 거제도는 아주 더워요.\n기온이 삼십오 도까지 올라가요.\n습도도 높아서 땀이 많이 나요.\n조선소에서 야외 작업이 힘들어요.\n쉬는 시간에 물을 많이 마셔요.\n그늘에서 쉬기도 해요.\n장마철에는 비가 매일 와요.\n우비하고 장화를 준비하세요!",
-   textEng:"In summer, Geoje is very hot.\nTemperatures go up to 35 degrees.\nHumidity is high so you sweat a lot.\nOutdoor work at the shipyard is hard.\nDuring breaks, we drink lots of water.\nWe also rest in the shade.\nDuring monsoon, it rains every day.\nPrepare raincoats and rain boots!",
+  {title:"출입국관리사무소에서 서류받기",eng:"Getting Documents at Immigration Office",
+   text:"라민 씨는 비자 연장을 해야 해요.\n출입국관리사무소에 가야 해요.\n거제도 출입국관리사무소의 주소는 거제시 중앙대로 100번길이에요.\n라민 씨는 여권, 신청서, 갱신료를 가져갔어요.\n직원이 서류를 확인했어요.\n'서명 날짜가 있어요?'\n'네, 여기 있어요.'\n'도장도 있어요?'\n'네, 도장을 찍었어요.'\n직원이 라민 씨의 서류를 제출했어요.\n비자 연장이 3주 후에 완료될 거예요.",
+   textEng:"Ramin needs to extend his visa.\nHe needs to go to the immigration office.\nThe Geoje Immigration Office is located at Geoje-si Jung-ang-dae-ro 100 gil.\nRamin brought his passport, application form, and renewal fee.\nThe staff member checked the documents.\n'Do you have a signature date?'\n'Yes, it's here.'\n'Do you have a stamp too?'\n'Yes, I stamped it.'\nThe staff member submitted Ramin's documents.\nThe visa extension will be completed in 3 weeks.",
    questions:[
-     {q:"여름에 거제도 기온은?",a:"삼십오 도까지",ae:"Up to 35 degrees"},
-     {q:"장마철에는 어때요?",a:"비가 매일 와요",ae:"It rains every day"},
-     {q:"야외 작업이 왜 힘들어요?",a:"덥고 습해서",ae:"Because it's hot and humid"},
+     {q:"라민 씨가 해야 할 일은?",a:"비자 연장",ae:"Visa extension"},
+     {q:"어디에 가야 해요?",a:"출입국관리사무소",ae:"Immigration office"},
+     {q:"비자 연장은 언제 완료돼요?",a:"3주 후",ae:"In 3 weeks"},
    ]},
-  {title:"후엔의 겨울 경험",eng:"Huen's Winter Experience",
-   text:"후엔 씨는 베트남에서 왔어요.\n베트남은 겨울에도 따뜻해요.\n한국 겨울은 처음이에요.\n십이월에 기온이 영하로 내려갔어요.\n바람이 너무 차가웠어요.\n패딩하고 장갑을 샀어요.\n동료가 목도리를 선물해 줬어요.\n한국 겨울은 춥지만 눈이 예뻐요!",
-   textEng:"Huen came from Vietnam.\nVietnam is warm even in winter.\nThis is his first Korean winter.\nIn December, temperatures dropped below zero.\nThe wind was very cold.\nHe bought a padded jacket and gloves.\nA colleague gave him a scarf as a gift.\nKorean winter is cold but snow is beautiful!",
+  {title:"한국의 디지털 정부 이야기",eng:"Korea's Digital Government Story",
+   text:"한국은 디지털 정부에서 세계 1위예요.\nUN 전자정부 지수에서 가장 높은 점수를 받았어요.\n정부24는 중앙 정부와 지자체의 모든 온라인 서비스를 제공해요.\n집에서 비자 신청, 증명서 발급, 등록 갱신을 할 수 있어요.\n전자서명은 법적 효력이 있어요.\n계약서, 은행 업무, 보험에 사용할 수 있어요.\n마이데이터는 개인 정보를 한 곳에서 관리해요.\n은행, 보험, 신용정보를 한 곳에서 볼 수 있어요.\n한국의 디지털 정부는 계속 발전하고 있어요.",
+   textEng:"Korea is #1 in digital government worldwide.\nIt received the highest score in UN e-Government Index.\nGovernment24 provides all online services from central and local governments.\nYou can apply for visa, get certificates, and renew registration from home.\nDigital signature has legal validity.\nIt can be used for contracts, banking, insurance.\nMy Data manages personal information in one place.\nYou can view bank, insurance, credit info in one place.\nKorea's digital government continues to develop.",
    questions:[
-     {q:"후엔 씨는 어디에서 왔어요?",a:"베트남",ae:"Vietnam"},
-     {q:"십이월 기온은 어땠어요?",a:"영하로 내려갔어요",ae:"Dropped below zero"},
-     {q:"동료가 뭘 선물해 줬어요?",a:"목도리",ae:"A scarf"},
+     {q:"한국은 UN 지수에서 몇 위예요?",a:"1위",ae:"1st place"},
+     {q:"정부24가 뭐예요?",a:"온라인 서비스",ae:"Online services"},
+     {q:"전자서명의 장점은?",a:"법적 효력이 있어요",ae:"Has legal validity"},
    ]},
 ];
 
 // ===== FOLKTALE DATA (40 sentences) =====
 const FOLKTALE = {
-  title: "해님 달님",
-  eng: "The Sun and the Moon",
-  desc: "호랑이에게 쫓기던 남매가 해와 달이 된 이야기입니다.",
-  descEng: "The story of siblings who became the sun and moon while fleeing a tiger.",
+  title: "심청전",
+  eng: "Simcheong (The Dutiful Daughter)",
+  desc: "효녀 심청의 이야기입니다.",
+  descEng: "The story of Simcheong, a filial daughter of Korea.",
   sentences: [
-    {kor:"옛날에 가난한 어머니가 살았어요.",eng:"Once upon a time, a poor mother lived."},
-    {kor:"어머니에게는 오빠와 여동생이 있었어요.",eng:"The mother had a son and a daughter."},
-    {kor:"어느 날 어머니가 시장에서 떡을 팔고 돌아왔어요.",eng:"One day, the mother sold rice cakes at the market and came back."},
-    {kor:"산길에서 호랑이를 만났어요.",eng:"She met a tiger on the mountain path."},
-    {kor:"호랑이가 말했어요. '떡 하나 주면 안 잡아먹지!'",eng:"The tiger said, 'Give me a rice cake and I won't eat you!'"},
-    {kor:"어머니는 떡을 하나 줬어요.",eng:"The mother gave one rice cake."},
-    {kor:"호랑이가 또 나타났어요. '떡 하나 더 줘!'",eng:"The tiger appeared again. 'Give me one more!'"},
-    {kor:"떡을 다 줬는데 호랑이가 또 나타났어요.",eng:"She gave all the rice cakes but the tiger appeared again."},
-    {kor:"이번에는 어머니를 잡아먹었어요.",eng:"This time, it ate the mother."},
-    {kor:"호랑이는 어머니 옷을 입고 집으로 갔어요.",eng:"The tiger wore the mother's clothes and went to the house."},
-    {kor:"'얘들아, 엄마 왔다!'",eng:"'Children, mommy's home!'"},
-    {kor:"오빠가 말했어요. '엄마 목소리가 이상해요.'",eng:"The brother said, 'Mom's voice sounds strange.'"},
-    {kor:"여동생이 말했어요. '엄마 손을 보여 주세요.'",eng:"The sister said, 'Show us your hands.'"},
-    {kor:"호랑이의 털이 보였어요!",eng:"They saw the tiger's fur!"},
-    {kor:"오빠와 여동생은 뒷문으로 도망갔어요.",eng:"The brother and sister ran out the back door."},
-    {kor:"높은 나무 위로 올라갔어요.",eng:"They climbed up a tall tree."},
-    {kor:"호랑이가 쫓아왔어요.",eng:"The tiger chased after them."},
-    {kor:"호랑이도 나무를 올라가려고 했어요.",eng:"The tiger tried to climb the tree too."},
-    {kor:"오빠와 여동생이 하늘에 빌었어요.",eng:"The brother and sister prayed to the sky."},
-    {kor:"'하느님, 우리를 살려 주세요!'",eng:"'God, please save us!'"},
-    {kor:"하늘에서 동아줄이 내려왔어요.",eng:"A rope came down from the sky."},
-    {kor:"오빠와 여동생이 동아줄을 잡고 올라갔어요.",eng:"The siblings grabbed the rope and climbed up."},
-    {kor:"호랑이도 빌었어요. '나도 줄을 내려 줘!'",eng:"The tiger also prayed. 'Give me a rope too!'"},
-    {kor:"썩은 줄이 내려왔어요.",eng:"A rotten rope came down."},
-    {kor:"호랑이가 올라가다가 줄이 끊어졌어요!",eng:"The tiger was climbing but the rope broke!"},
-    {kor:"호랑이는 떨어져서 죽었어요.",eng:"The tiger fell and died."},
-    {kor:"오빠와 여동생은 하늘나라에 갔어요.",eng:"The brother and sister went to heaven."},
-    {kor:"오빠는 해가 되었어요.",eng:"The brother became the sun."},
-    {kor:"여동생은 달이 되었어요.",eng:"The sister became the moon."},
-    {kor:"처음에 여동생이 해가 되었어요.",eng:"At first, the sister became the sun."},
-    {kor:"하지만 밤이 무서웠어요.",eng:"But she was afraid of the night."},
-    {kor:"그래서 오빠가 해가 되고 여동생이 달이 되었어요.",eng:"So the brother became the sun and the sister became the moon."},
-    {kor:"해님은 낮에 세상을 밝혀요.",eng:"The sun brightens the world during the day."},
-    {kor:"달님은 밤에 세상을 밝혀요.",eng:"The moon brightens the world at night."},
-    {kor:"오빠와 여동생은 영원히 하늘에서 살았어요.",eng:"The siblings lived in the sky forever."},
-    {kor:"사람들은 해와 달을 보며 감사했어요.",eng:"People looked at the sun and moon with gratitude."},
-    {kor:"이 이야기는 한국에서 아주 유명해요.",eng:"This story is very famous in Korea."},
-    {kor:"용기를 가지면 위험에서 벗어날 수 있어요.",eng:"With courage, you can escape from danger."},
-    {kor:"서로 도우면 어려움을 이길 수 있어요.",eng:"If we help each other, we can overcome difficulties."},
-    {kor:"해님 달님 이야기를 기억하세요!",eng:"Remember the Sun and Moon story!"},
+    {kor:"옛날에 심청이라는 효녀가 살았어요.",eng:"Once upon a time, a filial daughter named Simcheong lived."},
+    {kor:"심청의 엄마가 일찍 돌아가셨어요.",eng:"Simcheong's mother passed away early."},
+    {kor:"아버지 심봉사는 눈이 멀었어요.",eng:"Her father Shimbongsa was blind."},
+    {kor:"심청은 아버지를 위해 열심히 일했어요.",eng:"Simcheong worked hard for her father."},
+    {kor:"심청의 아버지가 병에 걸렸어요.",eng:"Simcheong's father became ill."},
+    {kor:"의사가 말했어요. '약을 주면 낫지만, 약이 비싸요.'",eng:"The doctor said 'Medicine will cure him, but it's expensive.'"},
+    {kor:"약값을 구하기 위해 심청은 공양미 300석을 구했어요.",eng:"To get medicine money, Simcheong gathered 300 sacks of rice."},
+    {kor:"그 대신 심청은 배에 타게 되었어요.",eng:"In exchange, Simcheong had to board a ship."},
+    {kor:"배가 바다에 나갔어요.",eng:"The ship sailed into the sea."},
+    {kor:"심청은 용왕의 저택에 가게 되었어요.",eng:"Simcheong ended up at the Dragon King's palace."},
+    {kor:"용왕은 심청의 효심에 감동했어요.",eng:"The Dragon King was moved by her filial piety."},
+    {kor:"용왕은 심청을 꽃으로 만들었어요.",eng:"The Dragon King turned her into a flower."},
+    {kor:"그 꽃은 강 위에 떠내려왔어요.",eng:"The flower drifted down the river."},
+    {kor:"황제의 배에 꽃이 붙었어요.",eng:"The flower stuck to the emperor's boat."},
+    {kor:"황제는 꽃이 신비롭다고 생각했어요.",eng:"The emperor thought the flower was mysterious."},
+    {kor:"황제가 꽃을 왕비로 만들었어요.",eng:"The emperor made the flower his queen."},
+    {kor:"꽃이 다시 사람 모양이 되었어요.",eng:"The flower became a person again."},
+    {kor:"심청은 왕비가 되었어요.",eng:"Simcheong became the queen."},
+    {kor:"심봉사는 상인들과 만났어요.",eng:"Simcheong's father met with merchants."},
+    {kor:"상인들이 그를 도와주었어요.",eng:"The merchants helped him."},
+    {kor:"심봉사가 궁궐에 들어갔어요.",eng:"Simcheong's father entered the palace."},
+    {kor:"심청이가 아버지를 알아봤어요.",eng:"Simcheong recognized her father."},
+    {kor:"심청이가 아버지의 눈을 씻어줬어요.",eng:"Simcheong washed her father's eyes."},
+    {kor:"아버지의 눈이 떠졌어요!",eng:"Her father's eyes opened!"},
+    {kor:"심봉사가 다시 볼 수 있게 되었어요.",eng:"Simcheong's father could see again."},
+    {kor:"아버지와 딸이 다시 만났어요.",eng:"The father and daughter reunited."},
+    {kor:"그들은 함께 살게 되었어요.",eng:"They lived together."},
+    {kor:"심청은 왕비로서 좋은 일을 많이 했어요.",eng:"As queen, Simcheong did many good deeds."},
+    {kor:"심봉사는 영광을 누렸어요.",eng:"Her father received honor."},
+    {kor:"그들의 이야기는 전해졌어요.",eng:"Their story was passed down."},
+    {kor:"효도는 가장 소중한 마음이에요.",eng:"Filial piety is the most precious virtue."},
+    {kor:"심청의 효심은 모든 사람에게 감동을 줬어요.",eng:"Simcheong's filial piety moved everyone."},
+    {kor:"부모를 섬기는 것은 가장 중요한 일이에요.",eng:"Serving parents is the most important duty."},
+    {kor:"한국에서 효(孝)는 매우 중요한 가치예요.",eng:"In Korea, filial piety is a very important value."},
+    {kor:"이 이야기는 한국 문화를 보여줘요.",eng:"This story shows Korean culture."},
+    {kor:"심청전은 수백 년 동안 사랑받았어요.",eng:"Simcheong has been loved for hundreds of years."},
+    {kor:"많은 사람들이 이 이야기를 알고 있어요.",eng:"Many people know this story."},
+    {kor:"조선소에서도 이런 정신이 중요해요.",eng:"This spirit is important at the shipyard too."},
+    {kor:"서로 도와주고 존경하는 마음이 필요해요.",eng:"We need respect and helpfulness."},
+    {kor:"효녀 심청의 이야기는 영원히 전해질 거예요.",eng:"The story of dutiful daughter Simcheong will be passed down forever."},
   ]
 };
 
 const FOLKTALE_QUIZ = [
-  {q:"어머니는 시장에서 뭘 팔았어요?",o:["떡","생선","옷","과일"],a:0},
-  {q:"산길에서 누구를 만났어요?",o:["호랑이","토끼","곰","여우"],a:0},
-  {q:"호랑이는 뭘 달라고 했어요?",o:["떡","돈","옷","물"],a:0},
-  {q:"호랑이는 어머니 옷을 입고 어디로 갔어요?",o:["집","시장","산","강"],a:0},
-  {q:"아이들은 호랑이를 어떻게 알았어요?",o:["털을 보고","목소리를 듣고","냄새를 맡고","발자국을 보고"],a:0},
-  {q:"아이들은 어디로 도망갔어요?",o:["나무 위","집 안","산","강"],a:0},
-  {q:"하늘에서 뭐가 내려왔어요?",o:["동아줄","사다리","구름","비"],a:0},
-  {q:"호랑이에게 내려온 줄은?",o:["썩은 줄","튼튼한 줄","금 줄","은 줄"],a:0},
-  {q:"호랑이는 어떻게 됐어요?",o:["떨어져서 죽었어요","하늘에 갔어요","도망갔어요","잠들었어요"],a:0},
-  {q:"오빠는 뭐가 되었어요?",o:["해","달","별","구름"],a:0},
-  {q:"여동생은 뭐가 되었어요?",o:["달","해","별","바람"],a:0},
-  {q:"처음에 해가 된 사람은?",o:["여동생","오빠","어머니","호랑이"],a:0},
-  {q:"여동생이 왜 달이 되었어요?",o:["밤이 무서워서","낮이 싫어서","달이 예뻐서","오빠가 부탁해서"],a:0},
-  {q:"이 이야기의 교훈은?",o:["용기를 가지면 위험에서 벗어날 수 있다","호랑이를 믿어라","혼자 다녀라","떡을 만들지 마라"],a:0},
-  {q:"해님 달님 이야기는 한국에서 어때요?",o:["아주 유명해요","모르는 사람이 많아요","새 이야기예요","외국 이야기예요"],a:0},
+  {q:"심청의 아버지는 뭐가 불편했어요?",o:["눈이 멀었어요","다리가 불편했어요","귀가 안 들렸어요","말을 못 해요"],a:0},
+  {q:"심청이가 아버지를 위해 구한 것은?",o:["약값","집","옷","음식"],a:0},
+  {q:"심청이가 배에 탄 이유는?",o:["약값을 벌기 위해","여행 가려고","상인이 되려고","친구를 만나려고"],a:0},
+  {q:"용왕은 심청을 어떻게 만들었어요?",o:["꽃으로","새로","물고기로","구름으로"],a:0},
+  {q:"꽃은 어디로 떠내려갔어요?",o:["강 위로","바다로","산으로","숲으로"],a:0},
+  {q:"황제는 꽃을 어떻게 했어요?",o:["왕비로 만들었어요","장난감으로 했어요","그림으로 그렸어요","정원에 심었어요"],a:0},
+  {q:"심청이의 아버지의 눈이 다시 열린 이유는?",o:["심청이의 효심 때문에","약을 먹었어요","의사가 치료했어요","시간이 지나서"],a:0},
+  {q:"아버지와 딸은 어디서 만났어요?",o:["궁궐에서","강 근처에서","배 위에서","숲에서"],a:0},
+  {q:"이 이야기의 주제는?",o:["효심","용감함","지혜","아름다움"],a:0},
+  {q:"심청전은 몇 년 동안 사랑받았어요?",o:["수백 년","50년","100년","10년"],a:0},
+  {q:"용왕은 심청을 어떻게 생각했어요?",o:["효심에 감동했어요","속았다고 생각했어요","무섭다고 생각했어요","예쁘다고만 생각했어요"],a:0},
+  {q:"심청이가 왕비가 된 후에 한 일은?",o:["좋은 일을 많이 했어요","놀기만 했어요","책만 읽었어요","여행을 다녔어요"],a:0},
+  {q:"심봉사는 최종적으로 뭘 했어요?",o:["영광을 누렸어요","집에서 살았어요","상인이 되었어요","여행을 다녔어요"],a:0},
+  {q:"한국 문화에서 '효'는?",o:["가장 중요한 가치","특별하지 않은 가치","옛날 가치","부자만의 가치"],a:0},
+  {q:"이 이야기가 보여주는 메시지는?",o:["부모님을 섬기는 것이 중요","돈이 가장 중요","유명해지는 것이 중요","힘이 세야 한다"],a:0},
 ];
 
 const REVIEW_DATA = {
@@ -402,24 +422,24 @@ const REVIEW_DATA = {
     desc: "다음에 배울 내용을 미리 살펴보세요.",
     descEng: "Preview what you will learn next.",
     items: [
-      {label:"9과 주제",val:"어디가 아파요? · Where does it hurt?",detail:"병원·약국·건강 표현을 배웁니다."},
-      {label:"핵심 어휘",val:"머리, 배, 목, 열, 감기, 병원",detail:"head, stomach, throat, fever, cold, hospital"},
-      {label:"핵심 문법",val:"~아/어서, ~(으)ㄹ 때, ~지 마세요",detail:"because, when, don't"},
-      {label:"조선소 어휘",val:"응급실, 의무실, 산업재해, 보험",detail:"ER, infirmary, industrial accident, insurance"},
+      {label:"19과 주제",val:"한국 생활이 어때요? · Korean Life Evaluation",detail:"한국에서의 생활을 표현합니다."},
+      {label:"핵심 어휘",val:"느낌, 경험, 의견, 평가",detail:"feelings, experiences, opinions, evaluations"},
+      {label:"핵심 문법",val:"~ㄴ/은데, ~니까, ~거든요",detail:"but/and, because, since"},
+      {label:"조선소 어휘",val:"적응, 만족, 도움, 감사",detail:"adaptation, satisfaction, help, gratitude"},
     ]
   },
   review: {
     title: "복습 · Review",
-    desc: "8과에서 배운 내용을 확인하세요.",
-    descEng: "Check what you learned in Lesson 8.",
+    desc: "18과에서 배운 내용을 확인하세요.",
+    descEng: "Check what you learned in Lesson 18.",
     sections: [
-      {title:"날씨 어휘",icon:"🌤️",items:["덥다/춥다/따뜻하다/시원하다","비/눈/바람/구름","맑다/흐리다/비가 오다","봄/여름/가을/겨울"]},
-      {title:"형용사 ~(으)ㄴ",icon:"📝",items:["덥다 → 더운 (hot)","춥다 → 추운 (cold)","맑다 → 맑은 (clear)","따뜻하다 → 따뜻한 (warm)"]},
-      {title:"~겠~ / ~(으)면",icon:"🗣️",items:["비가 오겠어요 (It will rain)","춥겠어요 (It will be cold)","비가 오면 (If it rains)","더우면 물을 마시세요 (If hot, drink water)"]},
-      {title:"조선소 안전",icon:"⚠️",items:["폭염 주의보 (heat wave warning)","야외 작업 중지 (outdoor work stop)","우비 입으세요 (wear raincoat)","물 많이 마시세요 (drink lots of water)"]},
+      {title:"서류 어휘",icon:"📄",items:["신청서/비자/체류자격","외국인등록증/여권","증명서/서명/도장","사본/원본/제출"]},
+      {title:"~아/어야 하다",icon:"📋",items:["비자를 연장해야 해요","서류를 제출해야 해요","도장을 찍어야 해요","원본을 가져가야 해요"]},
+      {title:"~(으)ㄹ 수 있다/없다",icon:"✅",items:["온라인으로 신청할 수 있어요","서명 없이 할 수 없어요","정부24에서 할 수 있어요","영문 서류를 받을 수 있어요"]},
+      {title:"디지털 정부",icon:"🏛️",items:["정부24/전자정부","마이데이터/디지털 신원증","전자서명/공인인증서","한화오션 인사팀 지원"]},
     ]
   },
-  dictation: ["오늘 날씨가 어때요?","오늘 많이 더워요.","비가 와요.","우산 가져가세요.","겨울에 눈이 와요.","바람이 많이 불어요.","날씨가 좋으면 밖에서 일해요.","물을 많이 마시세요.","장마철에 비가 많이 와요.","가을 날씨가 좋아요."],
+  dictation: ["서류가 필요해요?","비자를 연장해야 해요.","신청서를 작성할 수 있어요?","도장을 찍어 주세요.","원본을 제출해야 해요.","정부24에서 신청해요.","증명서를 발급받았어요.","한화오션 인사팀이 도와줄 수 있어요.","한국의 디지털 정부는 세계 1위예요.","서로 도와주는 마음이 중요해요."],
 };
 
 // ===== APP STATE =====
@@ -523,15 +543,15 @@ function renderPage() {
 function renderHome() {
   return `
   <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);border-radius:16px;padding:20px;margin-bottom:16px;color:#fff">
-    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 8과 · Beginner Lesson 8</div>
+    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 18과 · Beginner Lesson 18</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ 0급 한글 입문 완료</span>
       <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
     </div
-    <div style="font-size:26px;font-weight:800;margin-bottom:2px">날씨가 어때요?</div>
-    <div style="font-size:13px;color:#aabbdd">How's the weather? — 날씨와 계절 · Weather & Seasons</div>
+    <div style="font-size:26px;font-weight:800;margin-bottom:2px">서류가 필요해요?</div>
+    <div style="font-size:13px;color:#aabbdd">I need documents — 서류와 공문서 · Documents & Official Papers</div>
     <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
-      ${['~(으)ㄴ/는','~겠~','~(으)면','사계절'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
+      ${['~아/어야 하다','~(으)ㄹ 수 있다/없다','~에 대해서','서류 표현'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
     </div>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
@@ -553,9 +573,9 @@ function renderHome() {
       <div style="font-weight:700;font-size:12px;color:#1E3A5F">${it.l}</div>
     </button>`).join('')}
   </div>
-  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🌤️ 거제 계절별 날씨 보기</button>
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🏛️ 디지털 정부 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="한화오션_초급7과_주말에뭐해요.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 7과 주말에 뭐 해요?</a><a href="한화오션_초급9과_어디가아파요.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">9과 어디가 아파요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson17.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 17과 취미가 뭐예요?</a><a href="HanwhaOcean_Level1_Lesson19.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">19과 한국 생활이 어때요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -574,7 +594,7 @@ function renderCurriculum() {
       <span style="color:#888;font-size:12px">${lv.ls}과</span>
     </div>
     <div style="color:#888;font-size:11px;margin:4px 0">${lv.e}</div>
-    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'44.4%':'0%'):'0%'};background:${lv.c}"></div></div>
+    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'90%':'0%'):'0%'};background:${lv.c}"></div></div>
   </div>`).join('')}`;
 }
 
@@ -584,21 +604,14 @@ function renderHangul() {
   const hTab = Math.min(state.hgTab, 3);
   const data = datasets[hTab];
   const isSafety = hTab === 3;
-  const progressPct = 40;
-  const progressLabel = "8/20";
+  const progressPct = 90;
+  const progressLabel = "18/20";
 
-  // Pronunciation comparison pairs for tab 0 and 1
-  const isPronTab = (hTab === 0 || hTab === 1);
-
-  return `<h2>🔤 0급 입문 · ${HANGUL_SUBTITLE}</h2><p class="sub">${HANGUL_SUBTITLE}</p>
+  return `<h2>🔤 0급 한글 응용 · ${HANGUL_SUBTITLE}</h2><p class="sub">${HANGUL_SUBTITLE}</p>
   <div style="margin-bottom:12px;background:#e5e7eb;border-radius:8px;overflow:hidden;position:relative;height:22px">
     <div style="width:${progressPct}%;height:100%;background:linear-gradient(90deg,#3b82f6,#06b6d4);border-radius:8px;transition:width 0.5s"></div>
-    <div style="position:absolute;top:0;left:0;right:0;text-align:center;font-size:11px;font-weight:700;line-height:22px;color:#fff">한글 마스터 ${progressLabel} (${progressPct}%)</div>
+    <div style="position:absolute;top:0;left:0;right:0;text-align:center;font-size:11px;font-weight:700;line-height:22px;color:${progressPct>50?'#fff':'#555'}">한글 마스터 ${progressLabel} (${progressPct}%)</div>
   </div>
-  ${isPronTab?`<div class="card" style="background:#fef3c7;border:2px solid #f59e0b;margin-bottom:12px">
-    <b style="color:#92400e">🎧 발음 비교 듣기 · Pronunciation Comparison</b>
-    <p style="font-size:12px;color:#92400e;margin:4px 0 0">글자를 클릭하면 → 표기 발음과 실제 발음을 비교해서 들을 수 있어요!</p>
-  </div>`:''}
   <div class="tabs">${tabs.map((t,i)=>`<button class="tab ${hTab===i?'active':''}" onclick="setState({hgTab:${i},hgSelected:null})">${t}</button>`).join('')}</div>
   ${isSafety ? `<div class="grid2">${data.map((w,i)=>`
     <div class="card ${i===state.hgSelected?'card-orange':'card-accent'}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${w.kor}')">
@@ -607,28 +620,24 @@ function renderHangul() {
       <div style="font-size:13px;color:#555;margin-top:4px">${w.eng}</div>
     </div>`).join('')}</div>` :
   `<div class="grid2" style="margin-bottom:12px">${data.map((h,i)=>`
-    <div class="hangul-cell ${i===state.hgSelected?'active':''}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${h.name||h.char}')" style="padding:12px">
-      <div class="char" style="font-size:${isPronTab?'18px':'28px'}">${h.char}</div>
-      <div class="rom" style="font-size:11px;color:var(--ocean);font-weight:700">[${h.rom}]</div>
-      ${h.name?`<div style="font-size:10px;color:#666;margin-top:2px">${h.name}</div>`:''}
+    <div class="hangul-cell ${i===state.hgSelected?'active':''}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${h.char}')" style="padding:10px">
+      <div class="char" style="font-size:16px">${h.char}</div>
+      <div class="rom" style="font-size:10px">${h.rom}</div>
+      ${h.name?`<div style="font-size:9px;color:#aaa">${h.name}</div>`:''}
     </div>`).join('')}</div>`}
   ${state.hgSelected !== null && !isSafety ? `<div class="card card-accent" style="text-align:center">
-    <div style="font-size:${isPronTab?'28px':'56px'};font-weight:800;color:var(--navy)">${data[state.hgSelected].char}</div>
-    <div style="font-size:18px;color:var(--ocean);margin:8px 0">[${data[state.hgSelected].rom}]</div>
-    ${data[state.hgSelected].name?`<div style="font-size:14px;color:#555;margin-bottom:8px">${data[state.hgSelected].name}</div>`:''}
-    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-      <button class="btn btn-primary" style="width:auto;padding:8px 20px" onclick="TTS.speak('${data[state.hgSelected].char.split(' →')[0].split(' /')[0].trim()}')">🔊 표기 발음</button>
-      ${isPronTab && data[state.hgSelected].char.includes('→')?`<button class="btn" style="width:auto;padding:8px 20px;background:#f59e0b;color:#fff" onclick="TTS.speak('${data[state.hgSelected].name?data[state.hgSelected].name.split(']')[0].replace('[','').trim():data[state.hgSelected].char}')">🎧 실제 발음</button>`:''}
-      <button class="btn" style="width:auto;padding:8px 20px;background:#10b981;color:#fff" onclick="TTS.speak('${data[state.hgSelected].char.split(' →')[0].split(' /')[0].trim()}',undefined,0.6)">🐢 느리게</button>
-    </div>
+    <div style="font-size:28px;font-weight:800;color:var(--navy)">${data[state.hgSelected].char}</div>
+    <div style="font-size:16px;color:var(--ocean);margin:8px 0">[${data[state.hgSelected].rom}]</div>
+    ${data[state.hgSelected].name?`<div style="font-size:14px;color:#555">${data[state.hgSelected].name}</div>`:''}
+    <button class="btn btn-primary" style="margin-top:12px;width:auto;padding:8px 24px" onclick="TTS.speak('${data[state.hgSelected].char}')">🔊 발음 듣기 Listen</button>
   </div>`:''}`;
 }
 
 function renderVocab() {
-  const tabs = ['날씨 Weather','조선소 Shipyard','계절·장비 Season','도구·장비 Tools&Equip'];
+  const tabs = ['서류 Documents','조선소 Shipyard','공문서 Official Papers','도구·장비 Tools&Equip'];
   const t = state.vocabTab;
   let content = '';
-  if (t===0) content = VOCAB_WEATHER.map((v,i)=>`
+  if (t===0) content = VOCAB_DOCUMENT.map((v,i)=>`
     <div class="card card-accent vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,[${i}]:!state.vocabReveal[${i}]}})">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div><div class="kor">${v.kor} ${ttsBtn(v.kor)}</div><div class="pron">[${v.pron}]</div></div>
@@ -643,7 +652,7 @@ function renderVocab() {
       ${state.vocabReveal['s'+i]?`<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border-radius:6px;font-size:13px;color:var(--orange);font-weight:600">${v.eng}</div>`
       :`<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기</div>`}
     </div>`).join('');
-  else if (t===2) content = `<div class="grid2">${VOCAB_SEASON.map(v=>`
+  else if (t===2) content = `<div class="grid2">${VOCAB_DOCUMENT_ITEMS.map(v=>`
     <div class="vocab-item" style="background:#f0f7ff;border-radius:8px;padding:8px 10px" onclick="TTS.speak('${v.kor}')">
       <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
     </div>`).join('')}</div>`;
@@ -652,14 +661,14 @@ function renderVocab() {
       <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
     </div>`).join('')}</div>`;
 
-  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">8과 핵심 어휘 (${VOCAB_WEATHER.length+VOCAB_SHIPYARD.length+VOCAB_SEASON.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
+  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">18과 핵심 어휘 (${VOCAB_DOCUMENT.length+VOCAB_SHIPYARD.length+VOCAB_DOCUMENT_ITEMS.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
   <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({vocabTab:${i},vocabReveal:{}})">${tb}</button>`).join('')}</div>
   ${content}`;
 }
 
 function renderGrammar() {
   const g = GRAMMAR[state.gramIdx];
-  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">8과 핵심 문법 ${GRAMMAR.length}개</p>
+  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">18과 핵심 문법 ${GRAMMAR.length}개</p>
   <div class="tabs">${GRAMMAR.map((gr,i)=>`<button class="tab ${state.gramIdx===i?'active':''}" onclick="setState({gramIdx:${i}})">${gr.title}</button>`).join('')}</div>
   <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
     <div style="font-size:18px;font-weight:800;color:var(--navy)">${g.title}</div>
@@ -729,24 +738,24 @@ function renderReading() {
 
 function renderWriting() {
   const preview = state.wrName ? `안녕하세요? 저는 ${state.wrName}이에요/예요.
-오늘 날씨는 ${state.wrCountry?state.wrCountry:'___'}어요/이에요.
-${state.wrJob?'저는 '+state.wrJob+' 좋아해요.':''}
+${state.wrCountry?'저는 '+state.wrCountry+' 서류가 필요해요.':''}
+${state.wrJob?state.wrJob+' 해야 해요.':''}
 ${state.wrExtra?state.wrExtra:''}
-한국의 사계절은 아름다워요!` : '';
+도와주세요!` : '';
 
-  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">나의 날씨 이야기 · My Weather Story</p>
+  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">필요한 서류 소개 · Describe Needed Documents</p>
   <div class="card" style="background:#fff7ed;border:2px solid var(--orange)">
-    <b style="color:var(--orange)">📋 좋아하는 계절과 날씨에 대해 써 보세요 · Write about your favorite season and weather</b>
+    <b style="color:var(--orange)">📋 필요한 서류를 설명해 보세요 · Describe documents you need</b>
   </div>
   <div style="margin-top:12px">
     <label style="font-size:13px;font-weight:700;color:var(--navy)">이름 Name</label>
     <input class="input" placeholder="예: 라민 / Ramin" value="${state.wrName}" oninput="state.wrName=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">오늘 날씨 Today's Weather</label>
-    <input class="input" placeholder="예: 더워요, 비가 와요 / hot, rainy" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">좋아하는 계절 Favorite Season</label>
-    <input class="input" placeholder="예: 가을 / autumn" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">어떤 서류가 필요해요? What documents do you need?</label>
+    <input class="input" placeholder="예: 비자 연장 / 외국인등록증 / 고용허가서" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">뭘 해야 해요? What do you need to do?</label>
+    <input class="input" placeholder="예: 신청서를 작성 / 도장을 찍 / 원본을 제출" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
     <label style="font-size:13px;font-weight:700;color:var(--navy)">더 쓰고 싶은 말 More to say</label>
-    <input class="input" placeholder="예: 고향 날씨는 항상 더워요." value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
+    <input class="input" placeholder="예: 출입국관리사무소에 가야 해요!" value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
   </div>
   ${preview?`
   <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📄 미리보기 · Preview</div>
@@ -754,14 +763,14 @@ ${state.wrExtra?state.wrExtra:''}
     ${preview.split('\n').filter(l=>l.trim()).map(l=>`<div style="font-size:16px;color:var(--navy);font-weight:600;margin-bottom:4px">${l}</div>`).join('')}
   </div>
   <button class="btn btn-primary" style="margin-top:10px" onclick="TTS.speak(\`${preview.replace(/\n/g,' ').replace(/이에요\/예요/g,'이에요')}\`,undefined,0.8)">🔊 발표 연습 듣기 · Listen to Presentation</button>
-  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 나의 날씨 이야기가 만들어집니다.<br>Fill in the fields above to generate your weather story.</div>'}
+  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 필요한 서류 설명이 만들어집니다.<br>Fill in the fields above to generate your document description.</div>'}
 
   <div style="margin-top:20px;font-weight:700;color:var(--navy);margin-bottom:8px">✍️ 자유 쓰기 · Free Writing</div>
-  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 오늘 날씨가 더워요.&#10;여름에 비가 많이 와요." id="freeWrite"></textarea>`;
+  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 저는 비자 연장이 필요해요.&#10;출입국관리사무소에 가야 해요."></textarea>`;
 }
 
 function renderFlashcard() {
-  const all = [...VOCAB_WEATHER.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SEASON.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
+  const all = [...VOCAB_DOCUMENT.map(v=>({f:v.kor,b:v.eng})),...VOCAB_DOCUMENT_ITEMS.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
   const card = all[state.fcIdx % all.length];
   return `<h2>🃏 플래시카드 · Flashcards</h2>
   <div style="display:flex;justify-content:space-between;margin-bottom:8px">
@@ -816,7 +825,7 @@ function renderQuiz() {
 }
 
 function renderCulture() {
-  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 날씨와 계절 · Korean Weather & Seasons</p>
+  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 디지털 정부 문화 · Korean Digital Government Culture</p>
   ${CULTURE.map(c=>`<div class="card" style="display:flex;gap:12px;align-items:flex-start">
     <div style="font-size:34px;flex-shrink:0">${c.icon}</div>
     <div>
@@ -826,7 +835,7 @@ function renderCulture() {
       <div style="font-size:12px;color:#888;margin-top:2px">${c.de}</div>
     </div>
   </div>`).join('')}
-  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">🌤️ 거제 날씨 자세히 보기</button>`;
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">🏛️ 디지털 정부 보기</button>`;
 }
 
 // ===== REVIEW (익힘) =====
@@ -847,7 +856,7 @@ function renderReview() {
           ${!item.includes(' ')&&item.length<15?ttsBtn(item):''}
         </div>`).join('')}
       </div>`).join('')}
-    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 날씨 표현 전체 듣기</button>`;
+    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 서류 표현 전체 듣기</button>`;
   }
   if (t===1) { // 예습
     const pv = REVIEW_DATA.preview;
@@ -855,7 +864,7 @@ function renderReview() {
     <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
     <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean)">
       <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px">📖 다음 수업 미리보기 · Next Lesson Preview</div>
-      <div style="font-size:12px;color:#888;margin-bottom:12px">8과를 미리 살펴보세요!</div>
+      <div style="font-size:12px;color:#888;margin-bottom:12px">18과를 미리 살펴보세요!</div>
     </div>
     ${pv.items.map((item,i)=>`
       <div class="card ${i%2===0?'card-accent':'card-orange'}">
@@ -866,14 +875,14 @@ function renderReview() {
     <div class="card card-green" style="background:var(--light-green)">
       <div style="font-weight:700;color:var(--green);margin-bottom:6px">💡 예습 팁 · Preview Tips</div>
       <div style="font-size:13px;color:#333;line-height:1.6">
-        1. 건강·병원 관련 어휘를 미리 읽어 보세요.<br>
-        2. 아픈 곳을 한국어로 말하는 연습을 해 보세요.<br>
-        3. 조선소 의무실 위치를 확인해 보세요.
+        1. 서류·공문서 관련 어휘를 미리 읽어 보세요.<br>
+        2. 필요한 서류를 한국어로 말하는 연습을 해 보세요.<br>
+        3. 정부24와 디지털 정부에 대해 알아보세요.
       </div>
       <div style="font-size:12px;color:#888;margin-top:6px;line-height:1.5">
-        1. Read health and hospital vocabulary in advance.<br>
-        2. Practice saying body parts in Korean.<br>
-        3. Check where the shipyard infirmary is located.
+        1. Read document/official paper vocabulary in advance.<br>
+        2. Practice expressing needed documents in Korean.<br>
+        3. Learn about Government24 and Korea's digital government.
       </div>
     </div>`;
   }
@@ -1018,15 +1027,15 @@ function renderGeoje() {
     <div style="font-size:14px;color:var(--navy);font-weight:600">${f.val}</div>
   </div>`).join('')}
   <div class="card" style="background:var(--light-orange);border:2px solid var(--orange)">
-    <b style="color:var(--orange)">🚀 한국의 성장 원동력: 반도체 & 자동차 Korea's Growth Engine: Semiconductor & Automobile</b>
+    <b style="color:var(--orange)">🚀 한국의 성장 원동력: 디지털 정부 Digital Government</b>
     <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
       ${[
-        {item:'삼성 반도체',price:'세계 1위',emoji:'💾',eng:'Samsung Semiconductor'},
-        {item:'SK하이닉스',price:'세계 2위',emoji:'🔬',eng:'SK Hynix'},
-        {item:'현대자동차',price:'글로벌 Top3',emoji:'🚗',eng:'Hyundai Motor'},
-        {item:'기아',price:'디자인 혁신',emoji:'🚙',eng:'KIA'},
-        {item:'전기차',price:'세계 주목',emoji:'⚡',eng:'EV Leader'},
-        {item:'배터리',price:'시장 선도',emoji:'🔋',eng:'Battery'},
+        {item:'UN e-Gov 지수',price:'세계 1위',emoji:'🏛️',eng:'#1 Worldwide'},
+        {item:'정부24',price:'온라인 신청',emoji:'📱',eng:'Online Services'},
+        {item:'마이데이터',price:'개인정보 관리',emoji:'📊',eng:'My Data'},
+        {item:'디지털 신원증',price:'스마트폰 신분증',emoji:'🔐',eng:'Digital ID'},
+        {item:'전자서명',price:'법적 효력',emoji:'✍️',eng:'E-Signature'},
+        {item:'한화오션 지원',price:'서류 도움',emoji:'📋',eng:'HO HR Support'},
       ].map(p=>`
         <div style="background:#fff;border-radius:10px;padding:10px;text-align:center">
           <div style="font-size:20px">${p.emoji}</div>

@@ -92,358 +92,310 @@ function ttsBtn(text) {
 }
 
 // ===== DATA =====
-const VOCAB_LIFE = [
-  {kor:"생활",pron:"saeng-hwal",eng:"life/living"},
-  {kor:"적응",pron:"jeok-eung",eng:"adaptation/adjustment"},
-  {kor:"문화 차이",pron:"mun-hwa cha-i",eng:"cultural difference"},
-  {kor:"향수병",pron:"hyang-su-byeong",eng:"homesickness"},
-  {kor:"날씨",pron:"nal-ssi",eng:"weather"},
-  {kor:"음식",pron:"eum-sik",eng:"food"},
-  {kor:"교통",pron:"gyo-tong",eng:"transportation"},
-  {kor:"친구",pron:"chin-gu",eng:"friend"},
-  {kor:"동료",pron:"dong-ryo",eng:"colleague"},
-  {kor:"고향",pron:"go-hyang",eng:"hometown"},
-  {kor:"명절",pron:"myeong-jeol",eng:"holiday/festival"},
-  {kor:"추석",pron:"chu-seok",eng:"Chuseok (harvest festival)"},
-  {kor:"설날",pron:"seol-nal",eng:"Lunar New Year"},
-  {kor:"다문화",pron:"da-mun-hwa",eng:"multicultural"},
-  {kor:"외국인",pron:"oe-guk-in",eng:"foreigner"},
-  {kor:"한국인",pron:"han-guk-in",eng:"Korean person"},
-  {kor:"이해하다",pron:"i-hae-ha-da",eng:"to understand"},
-  {kor:"존중하다",pron:"jon-jung-ha-da",eng:"to respect"},
+const VOCAB_GREETINGS = [
+  {kor:"안녕하세요?",pron:"an-nyeong-ha-se-yo",eng:"Hello? / How are you?"},
+  {kor:"안녕히 가세요.",pron:"an-nyeong-hi ga-se-yo",eng:"Goodbye (to someone leaving)"},
+  {kor:"안녕히 계세요.",pron:"an-nyeong-hi gye-se-yo",eng:"Goodbye (to someone staying)"},
+  {kor:"감사합니다.",pron:"gam-sa-ham-ni-da",eng:"Thank you."},
+  {kor:"고맙습니다.",pron:"go-map-seum-ni-da",eng:"Thank you. (casual formal)"},
+  {kor:"죄송합니다.",pron:"joe-song-ham-ni-da",eng:"I'm sorry. (formal)"},
+  {kor:"미안합니다.",pron:"mi-an-ham-ni-da",eng:"I'm sorry."},
+  {kor:"네.",pron:"ne",eng:"Yes."},
+  {kor:"아니요.",pron:"a-ni-yo",eng:"No."},
+  {kor:"만나서 반갑습니다.",pron:"man-na-seo ban-gap-seum-ni-da",eng:"Nice to meet you."},
+  {kor:"처음 뵙겠습니다.",pron:"cheo-eum boep-get-seum-ni-da",eng:"How do you do? (very formal)"},
+  {kor:"잘 지내세요?",pron:"jal ji-nae-se-yo",eng:"How have you been?"},
+  {kor:"다음에 만나요.",pron:"da-eum-e man-na-yo",eng:"See you next time."},
+  {kor:"또 봐요.",pron:"tto bwa-yo",eng:"See you again."},
+  {kor:"실례합니다.",pron:"sil-lye-ham-ni-da",eng:"Excuse me."},
+  {kor:"잠시만요.",pron:"jam-si-man-yo",eng:"Just a moment."},
+  {kor:"여보세요?",pron:"yeo-bo-se-yo",eng:"Hello? (phone)"},
+  {kor:"괜찮습니다.",pron:"gwaen-chan-seum-ni-da",eng:"It's okay. / I'm fine."},
 ];
 
 const VOCAB_SHIPYARD = [
-  {kor:"한국 생활 어때요?",eng:"How's life in Korea?",sit:"인사"},
-  {kor:"처음에는 힘들었어요.",eng:"It was hard at first.",sit:"적응"},
-  {kor:"지금은 괜찮아요.",eng:"Now it's okay.",sit:"현재"},
-  {kor:"매운 음식을 잘 먹는 것 같아요.",eng:"I seem to eat spicy food well.",sit:"음식"},
-  {kor:"한국 문화가 다르더라고요.",eng:"Korean culture is quite different, you know.",sit:"문화"},
-  {kor:"고향이 그리워요.",eng:"I miss my hometown.",sit:"향수병"},
-  {kor:"한국 친구들이 좋아요.",eng:"I like Korean friends.",sit:"친구"},
-  {kor:"동료들이 도와줘요.",eng:"Colleagues help me.",sit:"동료"},
-  {kor:"버스 타는 것이 쉬워요.",eng:"It's easy to take the bus.",sit:"교통"},
-  {kor:"편의점이 많아요.",eng:"There are many convenience stores.",sit:"편의"},
-  {kor:"배달 앱이 좋더라고요.",eng:"Delivery apps are great, you know.",sit:"배달"},
-  {kor:"카드로 다 결제해요.",eng:"I pay for everything with a card.",sit:"결제"},
-  {kor:"명절 때 향수병이 심해요.",eng:"Homesickness gets worse during holidays.",sit:"명절"},
-  {kor:"추석에 고향 생각이 나요.",eng:"I think of home during Chuseok.",sit:"명절"},
-  {kor:"한국의 다문화를 존중해요.",eng:"I respect Korea's multiculturalism.",sit:"다문화"},
-  {kor:"외국인과 한국인이 함께 살아요.",eng:"Foreigners and Koreans live together.",sit:"공존"},
+  {kor:"수고하세요.",eng:"Keep up the good work.",sit:"일하는 동료에게 / To working colleague"},
+  {kor:"수고하셨습니다.",eng:"Good job today. / Well done.",sit:"퇴근할 때 / When leaving work"},
+  {kor:"수고 많으셨습니다.",eng:"You've worked really hard.",sit:"힘든 작업 후 / After hard work"},
+  {kor:"조심하세요.",eng:"Be careful. / Stay safe.",sit:"위험한 작업 전 / Before dangerous work"},
+  {kor:"안전 제일!",eng:"Safety first!",sit:"안전 구호 / Safety slogan"},
+  {kor:"잘 부탁드립니다.",eng:"Please take care of me.",sit:"첫 출근 인사 / First day greeting"},
+  {kor:"먼저 가겠습니다.",eng:"I'll leave first.",sit:"먼저 퇴근할 때 / Leaving before others"},
+  {kor:"화이팅!",eng:"Go for it! / Fighting!",sit:"격려할 때 / Encouraging"},
+  {kor:"다녀오겠습니다.",eng:"I'll be back.",sit:"외출할 때 / When going out"},
+  {kor:"다녀왔습니다.",eng:"I'm back.",sit:"돌아왔을 때 / When returning"},
+  {kor:"알겠습니다.",eng:"I understand. / Got it.",sit:"지시를 받았을 때 / Acknowledging instructions"},
+  {kor:"네, 확인했습니다.",eng:"Yes, I've confirmed.",sit:"확인 요청에 / Confirming"},
+  {kor:"도와주세요.",eng:"Please help me.",sit:"도움이 필요할 때 / When needing help"},
+  {kor:"잠깐만요, 위험해요!",eng:"Wait, it's dangerous!",sit:"긴급 상황 / Emergency"},
+  {kor:"작업 시작합니다.",eng:"Starting work now.",sit:"작업 시작 시 / Starting task"},
+  {kor:"작업 완료했습니다.",eng:"Work is completed.",sit:"작업 완료 시 / Task done"},
 ];
 
-const VOCAB_DAILY = [
-  {kor:"편의점",eng:"convenience store"},{kor:"대중교통",eng:"public transportation"},
-  {kor:"배달앱",eng:"delivery app"},{kor:"카드결제",eng:"card payment"},
-  {kor:"의료보험",eng:"health insurance"},{kor:"주택",eng:"housing"},
-  {kor:"전세",eng:"jeonse (lump sum rental)"},{kor:"월세",eng:"monthly rent"},
-  {kor:"아파트",eng:"apartment"},{kor:"자취",eng:"living alone"},
-  {kor:"기숙사",eng:"dormitory"},{kor:"음식점",eng:"restaurant"},
-  {kor:"마트",eng:"supermarket"},{kor:"버스",eng:"bus"},
-  {kor:"지하철",eng:"subway"},{kor:"택시",eng:"taxi"},
-  {kor:"자동차",eng:"car"},{kor:"신발",eng:"shoes"},
-  {kor:"옷",eng:"clothes"},{kor:"가방",eng:"bag"},
-  {kor:"책",eng:"book"},{kor:"핸드폰",eng:"mobile phone"},
-  {kor:"컴퓨터",eng:"computer"},{kor:"영어",eng:"English"},
-  {kor:"중국어",eng:"Chinese"},{kor:"베트남어",eng:"Vietnamese"},
-  {kor:"인도네시아어",eng:"Indonesian"},{kor:"일본어",eng:"Japanese"},
-  {kor:"태국어",eng:"Thai"},{kor:"필리핀어",eng:"Filipino"},
-  {kor:"스페인어",eng:"Spanish"},{kor:"프랑스어",eng:"French"},
-  {kor:"포르투갈어",eng:"Portuguese"},{kor:"한국어",eng:"Korean"},
-  {kor:"회사",eng:"company"},{kor:"조선소",eng:"shipyard"},
+const VOCAB_INTRO = [
+  {kor:"이름",eng:"name"},{kor:"직업",eng:"job/occupation"},{kor:"국적",eng:"nationality"},
+  {kor:"나라",eng:"country"},{kor:"사람",eng:"person/people"},{kor:"어느",eng:"which"},
+  {kor:"저",eng:"I/me (humble)"},{kor:"씨",eng:"-ssi (title)"},{kor:"선생님",eng:"teacher/Mr./Ms."},
+  {kor:"용접공",eng:"welder"},{kor:"배관공",eng:"pipe fitter"},{kor:"도장공",eng:"painter"},
+  {kor:"전기공",eng:"electrician"},{kor:"조립공",eng:"assembler"},{kor:"기술자",eng:"technician"},
+  {kor:"관리자",eng:"supervisor"},{kor:"반장",eng:"foreman"},{kor:"조장",eng:"team leader"},
+  {kor:"팀원",eng:"team member"},{kor:"통역사",eng:"interpreter"},{kor:"안전 관리자",eng:"safety manager"},
+  {kor:"한국",eng:"Korea"},{kor:"미국",eng:"USA"},{kor:"베트남",eng:"Vietnam"},
+  {kor:"필리핀",eng:"Philippines"},{kor:"중국",eng:"China"},{kor:"인도네시아",eng:"Indonesia"},
+  {kor:"방글라데시",eng:"Bangladesh"},{kor:"인도",eng:"India"},{kor:"태국",eng:"Thailand"},
+  {kor:"미얀마",eng:"Myanmar"},{kor:"네팔",eng:"Nepal"},{kor:"파키스탄",eng:"Pakistan"},
+  {kor:"우즈베키스탄",eng:"Uzbekistan"},{kor:"캄보디아",eng:"Cambodia"},{kor:"스리랑카",eng:"Sri Lanka"},
 ];
 
 const VOCAB_SHIPYARD_NOUNS = [
-  {kor:"다문화가족",eng:"multicultural family"},{kor:"외국인근로자",eng:"foreign worker"},
-  {kor:"고용허가제",eng:"employment permit system"},{kor:"사회통합프로그램",eng:"social integration program"},
-  {kor:"KIIP",eng:"KIIP (Korea Immigration & Integration Program)"},{kor:"다문화센터",eng:"multicultural center"},
-  {kor:"한국문화",eng:"Korean culture"},{kor:"전통문화",eng:"traditional culture"},
-  {kor:"명절 문화",eng:"holiday culture"},{kor:"음식 문화",eng:"food culture"},
-  {kor:"추석",eng:"Chuseok"},{kor:"설날",eng:"Lunar New Year"},
-  {kor:"가족",eng:"family"},{kor:"친척",eng:"relatives"},
-  {kor:"고향 음식",eng:"hometown food"},{kor:"고향 말",eng:"hometown dialect"},
-  {kor:"적응",eng:"adaptation"},{kor:"이해",eng:"understanding"},
-  {kor:"존중",eng:"respect"},{kor:"포용",eng:"inclusion"},
-  {kor:"글로벌 인재",eng:"global talent"},{kor:"국제화",eng:"internationalization"},
-  {kor:"외국인 지원",eng:"foreign worker support"},{kor:"한국어 교육",eng:"Korean language education"},
-  {kor:"문화 교육",eng:"cultural education"},{kor:"사회적응 교육",eng:"social adaptation training"},
-  {kor:"고용 서비스",eng:"employment service"},{kor:"상담",eng:"counseling"},
+  {kor:"조선소",eng:"shipyard"},{kor:"선박",eng:"ship/vessel"},{kor:"도크",eng:"dock"},
+  {kor:"블록",eng:"block"},{kor:"탑재장",eng:"erection site"},{kor:"도장실",eng:"painting room"},
+  {kor:"자재창고",eng:"material warehouse"},{kor:"용접기",eng:"welding machine"},{kor:"그라인더",eng:"grinder"},
+  {kor:"크레인",eng:"crane"},{kor:"파이프",eng:"pipe"},{kor:"드릴",eng:"drill"},
+  {kor:"안전모",eng:"safety helmet"},{kor:"안전화",eng:"safety shoes"},{kor:"작업복",eng:"work clothes"},
+  {kor:"안전벨트",eng:"safety belt"},{kor:"보안경",eng:"safety goggles"},{kor:"방진마스크",eng:"dust mask"},
+  {kor:"귀마개",eng:"ear plugs"},{kor:"안전장갑",eng:"safety gloves"},{kor:"출입증",eng:"ID badge"},
+  {kor:"구내식당",eng:"cafeteria"},{kor:"기숙사",eng:"dormitory"},{kor:"의무실",eng:"infirmary"},
+  {kor:"휴게실",eng:"break room"},{kor:"탈의실",eng:"locker room"},{kor:"작업장",eng:"workshop"},
+  {kor:"사무실",eng:"office"},{kor:"교육장",eng:"training room"},{kor:"비상구",eng:"emergency exit"},
 ];
 
 const GRAMMAR = [
-  {title:"~(으)ㄴ/는 것 같다 (Seems like/I think)",eng:"~(으)ㄴ/는 것 같다 (Seems like)",
-   desc:"추측이나 인상을 말할 때 '~(으)ㄴ/는 것 같다'를 써요.",descEng:"Use ~(으)ㄴ/는 것 같다 to express conjecture or impression.",
-   rule:"동사/형용사 + (으)ㄴ/는 것 같다",ruleEng:"Verb/Adjective + (으)ㄴ/는 것 같다",
+  {title:"명사 + 이에요/예요",eng:"N + 이에요/예요 (am/is/are)",
+   desc:"사람, 사물 이름을 말할 때 사용해요.",descEng:"Used when stating names of people or things.",
+   rule:"받침 O → 이에요 / 받침 X → 예요",ruleEng:"Final consonant → 이에요 / No final consonant → 예요",
    examples:[
-    {q:"한국 음식이 어때요?",a:"매운 것 같아요.",eng:"It seems spicy.",note:"맵다+ㄴ 것 같다"},
-    {q:"한국이 어때요?",a:"사람들이 친절한 것 같아요.",eng:"People seem kind.",note:"친절하다+ㄴ 것 같다"},
-    {q:"한국 생활이 어때요?",a:"처음에는 힘들었지만 지금은 좋은 것 같아요.",eng:"It seems good now.",note:"좋다+ㄴ 것 같다"},
-    {q:"날씨가 어때요?",a:"비가 올 것 같아요.",eng:"It seems like it will rain.",note:"오다+ㄹ 것 같다"},
-    {q:"라민 씨는 어때요?",a:"한국에 적응한 것 같아요.",eng:"He seems adapted to Korea.",note:"적응하다+ㄴ 것 같다"},
+     {q:"이름이 뭐예요?",a:"후엔이에요.",eng:"What's your name? - I'm Huynh.",note:"받침O→이에요"},
+     {q:"직업이 뭐예요?",a:"용접공이에요.",eng:"What's your job? - I'm a welder.",note:"받침O→이에요"},
+     {q:"안젤라예요?",a:"네, 안젤라예요.",eng:"Are you Angela? - Yes, I'm Angela.",note:"받침X→예요"},
+     {q:"라민이에요?",a:"아니요, 잠시드예요.",eng:"Are you Ramin? - No, I'm Jamshid.",note:"받침X→예요"},
+     {q:"한국 사람이에요?",a:"아니요, 베트남 사람이에요.",eng:"Are you Korean? - No, Vietnamese.",note:"받침O→이에요"},
    ]},
-  {title:"~거든요 (Because/You see)",eng:"~거든요 (Because, you see)",
-   desc:"이유를 설명할 때 '~거든요'를 써요.",descEng:"Use ~거든요 to give a reason in a casual way.",
-   rule:"동사/형용사 + (으)거든요",ruleEng:"Verb/Adjective + (으)거든요",
+  {title:"명사 + 은/는",eng:"N + 은/는 (Topic marker)",
+   desc:"문장의 주제(topic)를 나타낼 때 사용해요.",descEng:"Marks the topic of the sentence.",
+   rule:"받침 O → 은 / 받침 X → 는",ruleEng:"Final consonant → 은 / No final consonant → 는",
    examples:[
-    {q:"한국 음식 맛있어요?",a:"네, 맛있거든요.",eng:"Yes, it's delicious, you see.",note:"맛있다+거든요"},
-    {q:"왜 매운 음식을 먹어요?",a:"한국에 있으니까 익숙해지거든요.",eng:"Because I get used to it here.",note:"익숙해지다+거든요"},
-    {q:"한국 친구가 많아요?",a:"조선소에 많거든요.",eng:"There are many at the shipyard.",note:"많다+거든요"},
-    {q:"대중교통이 좋아요?",a:"빠르거든요.",eng:"It's fast, you see.",note:"빠르다+거든요"},
-    {q:"고향이 그리워요?",a:"가족이 있거든요.",eng:"Because my family is there.",note:"있다+거든요"},
+     {q:"",a:"저는 라민이에요.",eng:"I am Ramin.",note:"저→는 (받침X)"},
+     {q:"",a:"이름은 제이슨이에요.",eng:"My name is Jason.",note:"이름→은 (받침O)"},
+     {q:"",a:"직업은 용접공이에요.",eng:"My job is welder.",note:"직업→은 (받침O)"},
+     {q:"",a:"저는 베트남 사람이에요.",eng:"I am Vietnamese.",note:"저→는 (받침X)"},
+     {q:"",a:"국적은 필리핀이에요.",eng:"My nationality is Filipino.",note:"국적→은 (받침O)"},
    ]},
-  {title:"~잖아요 (As you know/Isn't it)",eng:"~잖아요 (As you know)",
-   desc:"상대방도 아는 것을 말할 때 '~잖아요'를 써요.",descEng:"Use ~잖아요 when referring to something the listener already knows.",
-   rule:"동사/형용사 + (으)잖아요",ruleEng:"Verb/Adjective + (으)잖아요",
+  {title:"명사 + 이/가",eng:"N + 이/가 (Subject marker)",
+   desc:"문장의 주어를 나타낼 때 사용해요.",descEng:"Marks the subject of the sentence.",
+   rule:"받침 O → 이 / 받침 X → 가",ruleEng:"Final consonant → 이 / No final consonant → 가",
    examples:[
-    {q:"한국 물가가 비싸요?",a:"한국은 비싼 잖아요.",eng:"Korea is expensive, as you know.",note:"비싸다+ㄴ 잖아요"},
-    {q:"한국의 교통이 좋아요?",a:"대중교통이 발달했잖아요.",eng:"Public transportation is well developed, as you know.",note:"발달하다+ㄴ 잖아요"},
-    {q:"문화가 다르다고 했잖아요.",a:"네, 한국 문화가 독특하잖아요.",eng:"Yes, Korean culture is unique, isn't it.",note:"독특하다+ㄴ 잖아요"},
-    {q:"배달 앱이 좋다고 했어요.",a:"편하잖아요!",eng:"It's convenient, isn't it!",note:"편하다+ㄴ 잖아요"},
-    {q:"조선소에 외국인 근로자가 많아요.",a:"한화오션이 국제 기업이잖아요.",eng:"Because Hanwha Ocean is an international company.",note:"국제 기업이다+ㄴ 잖아요"},
+     {q:"이름이 뭐예요?",a:"(이름이 물을 때)",eng:"What is (your) name?",note:"이름→이 (받침O)"},
+     {q:"직업이 뭐예요?",a:"(직업을 물을 때)",eng:"What is (your) job?",note:"직업→이 (받침O)"},
+     {q:"누가 관리자예요?",a:"박민수 씨가 관리자예요.",eng:"Who is the supervisor?",note:"씨→가 (받침X)"},
    ]},
 ];
 
 const DIALOGUES = [
-  {title:"한국 생활 이야기",eng:"Talking About Life in Korea",lines:[
-    {sp:"쑤안",role:"배관공",text:"라민 씨, 한국 생활 어때요?",eng:"Ramin, how's life in Korea?",side:"L"},
-    {sp:"라민",role:"용접공",text:"처음에는 힘들었어요. 문화가 많이 다르더라고요.",eng:"It was hard at first. The culture is very different, you know.",side:"R"},
-    {sp:"쑤안",text:"그래도 지금은 괜찮아요?",eng:"But are you okay now?",side:"L"},
-    {sp:"라민",text:"네, 지금은 좋은 것 같아요. 한국 음식도 맛있거든요.",eng:"Yes, it seems good now. Korean food is delicious, you see.",side:"R"},
-    {sp:"쑤안",text:"매운 음식도 먹어요?",eng:"Do you eat spicy food too?",side:"L"},
-    {sp:"라민",text:"네! 매운 음식을 잘 먹는 것 같아요. 동료들이 도와줘요.",eng:"Yes! I seem to eat spicy food well. My colleagues help me.",side:"R"},
-    {sp:"쑤안",text:"그건 좋네요. 고향이 그리워요?",eng:"That's nice. Do you miss your hometown?",side:"L"},
-    {sp:"라민",text:"가끔이요. 명절 때 특히 그리워요. 가족이 있거든요.",eng:"Sometimes. Especially during holidays. Because my family is there.",side:"R"},
+  {title:"조선소 첫 출근",eng:"First Day at the Shipyard",lines:[
+    {sp:"민수",role:"관리자",text:"안녕하세요? 저는 박민수예요. 관리자예요.",eng:"Hello? I'm Park Minsu. I'm a supervisor.",side:"L"},
+    {sp:"라민",role:"용접공",text:"안녕하세요? 저는 라민이에요. 용접공이에요.",eng:"Hello? I'm Ramin. I'm a welder.",side:"R"},
+    {sp:"민수",text:"어느 나라 사람이에요?",eng:"Which country are you from?",side:"L"},
+    {sp:"라민",text:"이집트 사람이에요.",eng:"I'm from Egypt.",side:"R"},
+    {sp:"민수",text:"만나서 반갑습니다. 잘 부탁드립니다.",eng:"Nice to meet you. Please take care.",side:"L"},
+    {sp:"라민",text:"네, 저도 잘 부탁드립니다.",eng:"Yes, pleased to meet you too.",side:"R"},
   ]},
-  {title:"문화 차이 이야기",eng:"Talking About Cultural Differences",lines:[
-    {sp:"안젤라",role:"전기공",text:"한국과 나라의 문화가 다르지요?",eng:"Korean culture is different from our country's, right?",side:"L"},
-    {sp:"준",role:"도장공",text:"네, 그래요. 근데 한국 문화를 존중하려고 노력해요.",eng:"Yes, it is. But I try to respect Korean culture.",side:"R"},
-    {sp:"안젤라",text:"한국의 다문화를 어떻게 생각해요?",eng:"What do you think about Korea's multiculturalism?",side:"L"},
-    {sp:"준",text:"좋은 것 같아요. 외국인과 한국인이 함께 일하잖아요.",eng:"I think it's good. Foreigners and Koreans work together, isn't it.",side:"R"},
-    {sp:"안젤라",text:"정말로요? 처음에 어려웠잖아요.",eng:"Really? It was difficult at first, wasn't it.",side:"L"},
-    {sp:"준",text:"맞아요. 하지만 좋은 동료들이 있거든요. 시간이 지나니까 괜찮아요.",eng:"That's right. But I have good colleagues. After some time, it's okay.",side:"R"},
+  {title:"동료와 인사",eng:"Greeting Colleagues",lines:[
+    {sp:"후엔",role:"배관공",text:"안녕하세요? 저는 후엔이에요. 베트남에서 왔어요.",eng:"Hello? I'm Huynh. I came from Vietnam.",side:"L"},
+    {sp:"안젤라",role:"통역사",text:"안녕하세요? 저는 안젤라예요. 필리핀 사람이에요.",eng:"Hello? I'm Angela. I'm Filipino.",side:"R"},
+    {sp:"후엔",text:"직업이 뭐예요?",eng:"What is your job?",side:"L"},
+    {sp:"안젤라",text:"통역사예요. 후엔 씨는 직업이 뭐예요?",eng:"I'm an interpreter. What's your job, Huynh?",side:"R"},
+    {sp:"후엔",text:"저는 배관공이에요. 만나서 반가워요!",eng:"I'm a pipe fitter. Nice to meet you!",side:"L"},
+    {sp:"안젤라",text:"저도 반가워요! 수고하세요.",eng:"Nice to meet you too! Keep up the good work.",side:"R"},
   ]},
 ];
 
 const QUIZ = [
-  {q:"'생활'의 뜻은?",o:["life/living","food","place","work"],a:0},
-  {q:"'~(으)ㄴ/는 것 같다'는 언제 써요?",o:["추측이나 인상을 말할 때","명령할 때","과거를 말할 때","약속할 때"],a:0},
-  {q:"'문화 차이'의 뜻은?",o:["cultural difference","cultural exchange","cultural study","cultural product"],a:0},
-  {q:"'향수병'의 뜻은?",o:["homesickness","illness","medicine","doctor"],a:0},
-  {q:"'~거든요'는 언제 써요?",o:["이유를 설명할 때","미래를 말할 때","명령할 때","지시할 때"],a:0},
-  {q:"'적응'의 뜻은?",o:["adaptation","learning","teaching","listening"],a:0},
-  {q:"'~잖아요'는 언제 써요?",o:["상대방도 아는 것을 말할 때","모르는 것을 물을 때","가르칠 때","명령할 때"],a:0},
-  {q:"'고향'의 뜻은?",o:["hometown","school","hospital","market"],a:0},
-  {q:"'명절'의 뜻은?",o:["holiday/festival","business","disease","tool"],a:0},
-  {q:"'다문화'의 뜻은?",o:["multicultural","monoculture","ancient culture","future culture"],a:0},
-  {q:"'추석'은?",o:["Korean harvest festival","Christmas","New Year","birthday"],a:0},
-  {q:"'설날'은?",o:["Lunar New Year","summer day","autumn day","winter day"],a:0},
-  {q:"'외국인'의 뜻은?",o:["foreigner","Korean person","person","worker"],a:0},
-  {q:"'이해하다'의 뜻은?",o:["to understand","to teach","to learn","to write"],a:0},
-  {q:"'존중하다'의 뜻은?",o:["to respect","to accept","to refuse","to ignore"],a:0},
-  // 글로벌 인재 & 다문화 퀴즈
-  {q:"한국의 KIIP 프로그램은 뭐예요?",o:["사회통합프로그램","한국어 학원","관광 프로그램","여행 프로그램"],a:0},
-  {q:"한국이 외국인 근로자를 지원하는 이유는?",o:["글로벌 인재 양성 & 다문화 포용","관광객 유치","농업 발전","해외 진출"],a:0},
-  {q:"한화오션의 다문화 지원 정책은?",o:["언어 교육, 문화 프로그램, 상담 지원","무료 여행","고급 급료","빠른 승진"],a:0},
+  {q:"\"Hello\" in Korean:",o:["감사합니다","안녕하세요","죄송합니다","만나서 반갑습니다"],a:1},
+  {q:"\"Thank you\" in Korean:",o:["안녕하세요","죄송합니다","감사합니다","네"],a:2},
+  {q:"\"welder\" in Korean:",o:["배관공","전기공","도장공","용접공"],a:3},
+  {q:"'저는 라민___.' Fill:",o:["예요","이에요","은","는"],a:1},
+  {q:"'직업___ 용접공이에요.' Fill:",o:["는","은","이","가"],a:1},
+  {q:"What to say when leaving work:",o:["안녕하세요","수고하셨습니다","처음 뵙겠습니다","조심하세요"],a:1},
+  {q:"'이름___ 뭐예요?' Fill:",o:["은","는","이","을"],a:2},
+  {q:"\"shipyard\" in Korean:",o:["안전모","조선소","작업복","출입증"],a:1},
+  {q:"First day greeting to supervisor:",o:["수고하셨습니다","먼저 가겠습니다","잘 부탁드립니다","화이팅"],a:2},
+  {q:"'저는 베트남 사람___.' Fill:",o:["예요","이에요","은","는"],a:1},
+  {q:"\"safety helmet\" in Korean:",o:["안전화","보안경","안전모","안전벨트"],a:2},
+  {q:"'국적___ 필리핀이에요.' Fill:",o:["는","은","이","가"],a:1},
+  {q:"\"Be careful\" in Korean:",o:["화이팅","수고하세요","조심하세요","알겠습니다"],a:2},
+  {q:"'박민수 씨___ 관리자예요.' Fill:",o:["은","는","이","가"],a:3},
+  {q:"\"dormitory\" in Korean:",o:["구내식당","의무실","기숙사","휴게실"],a:2},
 ];
 
 const CULTURE = [
-  {icon:"🌍",t:"한국의 다문화 사회",eng:"Korea's Multicultural Society",d:"한국은 빠르게 다문화 사회로 변하고 있어요. 외국인 근로자가 200만 명 이상이에요. 다문화가족도 증가하고 있어요. 한국인과 외국인이 함께 일하고 살아요.",de:"Korea is rapidly becoming a multicultural society. There are over 2 million foreign workers. Multicultural families are also increasing. Koreans and foreigners work and live together."},
-  {icon:"👷",t:"외국인 근로자 지원",eng:"Foreign Worker Support",d:"한국은 '고용허가제'로 외국인 근로자를 지원해요. 건강보험, 산재보험에 가입할 수 있어요. 한국어 교육도 무료로 제공해요. 상담 서비스도 있어요.",de:"Korea supports foreign workers through the 'employment permit system.' They can join health and industrial accident insurance. Free Korean language education is provided. Counseling services are available."},
-  {icon:"📚",t:"KIIP 사회통합프로그램",eng:"KIIP Social Integration Program",d:"KIIP는 외국인이 한국에서 정착하도록 돕는 프로그램이에요. 한국어와 한국문화를 배워요. 취업 지원, 법률 상담도 받을 수 있어요. 전국에 100개 이상의 센터가 있어요.",de:"KIIP is a program to help foreigners settle in Korea. They learn Korean language and culture. They receive job support and legal counseling. There are over 100 centers nationwide."},
-  {icon:"🤝",t:"다문화센터 & 지역사회",eng:"Multicultural Centers & Community",d:"전국의 다문화센터에서 외국인을 지원해요. 한국어 교육, 문화 체험, 취업 정보를 제공해요. 아이들을 위한 교육도 있어요. 외국인 네트워크도 만들어요.",de:"Multicultural centers nationwide support foreigners. They provide Korean language education, cultural experiences, and job information. Education for children is also available. Foreigner networks are created."},
-  {icon:"🎓",t:"글로벌 인재 양성",eng:"Global Talent Development",d:"한국 기업들은 글로벌 인재를 찾아요. 외국인 근로자들의 한국어와 기술 능력을 개발하려고 해요. 직업 훈련, 언어 교육, 문화 이해 교육을 제공해요.",de:"Korean companies seek global talent. They try to develop foreign workers' Korean language and technical skills. Vocational training, language education, and cultural understanding education are provided."},
-  {icon:"🏢",t:"한화오션 다문화 지원",eng:"Hanwha Ocean Multicultural Support",d:"한화오션은 외국인 근로자를 위해 다문화 프로그램을 운영해요. 한국어 교육, 문화 이해 프로그램, 상담 서비스를 제공해요. 명절 행사도 함께 해요. 글로벌 인재 양성에 힘써요.",de:"Hanwha Ocean operates multicultural programs for foreign workers. It provides Korean language education, cultural understanding programs, and counseling services. They celebrate holidays together. They work to develop global talent."},
+  {icon:"🙇",t:"인사 (고개 숙이기)",eng:"Bowing",d:"한국에서는 고개를 숙여서 인사합니다. 약 15-45도로 숙이는데, 윗사람에게는 더 깊이 인사합니다.",de:"Koreans bow when greeting. About 15-45 degrees; bow deeper to seniors."},
+  {icon:"🗣️",t:"존댓말과 반말",eng:"Formal & Informal Language",d:"윗사람(나이가 많거나 직급이 높은 사람)에게는 항상 존댓말(-요, -습니다)을 사용합니다. 조선소에서 관리자, 선배에게는 반드시 존댓말을 써야 합니다.",de:"Always use formal language (-yo, -seubnida) to seniors. At the shipyard, always use formal speech to supervisors."},
+  {icon:"🤝",t:"악수 예절",eng:"Handshake Etiquette",d:"악수할 때 왼손으로 오른팔을 받치는 것이 예의입니다. 특히 윗사람과 악수할 때 두 손을 사용하면 더 공손합니다.",de:"Support your right arm with your left hand. Using both hands shows extra respect to seniors."},
+  {icon:"⛑️",t:"조선소 인사 문화",eng:"Shipyard Greeting Culture",d:"조선소에서는 안전모를 쓴 채로 인사합니다. '수고하세요'는 가장 자주 쓰는 인사입니다. 위험한 작업 전에는 '조심하세요'라고 말합니다.",de:"Greet while wearing your helmet. '수고하세요' is the most common greeting. Say '조심하세요' before dangerous work."},
+  {icon:"📛",t:"호칭 (이름 + 씨)",eng:"How to Address People",d:"상대방의 이름 뒤에 '씨'를 붙입니다. 예: 라민 씨, 안젤라 씨. 직급으로 부를 때는 '반장님', '과장님'처럼 '님'을 붙입니다.",de:"Add '씨' after names. e.g., Ramin-ssi. For titles, add '님': 반장님 (Foreman), 과장님 (Manager)."},
+  {icon:"🕐",t:"시간 엄수",eng:"Punctuality",d:"한국에서는 시간을 지키는 것이 매우 중요합니다. 특히 조선소에서는 출근 시간(보통 오전 7:30-8:00)을 반드시 지켜야 합니다.",de:"Punctuality is crucial in Korea. At the shipyard, arrival time (usually 7:30-8:00 AM) must be strictly observed."},
 ];
 
-const LOCAL_INFO = {
-  title: "한국의 성장 원동력: 글로벌 인재 & 다문화",
-  eng: "Korea's Growth Engine: Global Talent & Multiculturalism",
+const GEOJE_INFO = {
+  title: "거제 한화오션 소개",
+  eng: "About Hanwha Ocean Geoje Shipyard",
   facts: [
-    {label:"다문화사회 Multicultural",val:"외국인 근로자 200만+ 명"},
-    {label:"외국인근로자 Foreign Workers",val:"고용허가제로 지원"},
-    {label:"KIIP프로그램 KIIP",val:"한국어·문화·취업 지원"},
-    {label:"다문화센터 Centers",val:"전국 100+ 센터 운영"},
-    {label:"글로벌인재 Talent",val:"기술·언어·문화 개발"},
-    {label:"한화오션 다문화 HO",val:"교육·상담·문화 프로그램"},
-    {label:"사회포용 Inclusion",val:"함께 일하고 함께 살아요"},
+    {label:"위치 Location",val:"경상남도 거제시 / Geoje City, Gyeongsangnam-do"},
+    {label:"설립 Founded",val:"1973년 (구 대우조선해양) / 1973 (formerly DSME)"},
+    {label:"규모 Scale",val:"세계 최대 조선소 중 하나 / One of the world's largest shipyards"},
+    {label:"주요 선종 Main Ships",val:"LNG운반선, 컨테이너선, FPSO, 해양플랜트"},
+    {label:"직원 수 Employees",val:"약 30,000명 (협력업체 포함)"},
+    {label:"면적 Area",val:"약 490만㎡ (여의도의 약 1.7배)"},
   ],
-  desc: "한국은 글로벌 인재가 필요한 성장 국가예요! 외국인 근로자가 200만 명 이상이에요. 고용허가제로 근로자를 지원하고, KIIP 사회통합프로그램으로 한국 정착을 도와요. 다문화센터에서 한국어 교육, 취업 지원, 문화 체험을 제공해요. 한화오션도 외국인 근로자를 위해 한국어 교육, 문화 이해 프로그램, 상담 서비스를 운영해요. 함께 일하고 함께 살아가는 다문화 사회 한국!",
-  descEng: "Korea is a growth nation that needs global talent! There are over 2 million foreign workers. The employment permit system supports workers, and the KIIP social integration program helps settle in Korea. Multicultural centers provide Korean language education, job support, and cultural experiences. Hanwha Ocean also operates Korean language education, cultural understanding programs, and counseling services for foreign workers. Korea is a multicultural society where we work and live together!"
+  desc: "한화오션 거제 조선소는 대한민국 경상남도 거제시에 위치한 세계적인 조선소입니다. 1973년에 설립되어 50년 이상의 역사를 가지고 있으며, LNG운반선 건조 분야에서 세계 1위의 기술력을 보유하고 있습니다. 전 세계에서 온 해외근로자들이 함께 일하며, 안전을 최우선으로 하는 작업 문화를 가지고 있습니다.",
+  descEng: "Hanwha Ocean Geoje Shipyard is a world-class shipyard located in Geoje City, South Korea. Founded in 1973 with over 50 years of history, it holds the world's #1 technology in LNG carrier construction. Workers from all over the world work together here, with a safety-first work culture."
 };
 
-// HANGUL DATA (Level 0 — 19과: 한글 응용 - 이메일·민원 작성)
+// HANGUL DATA (Level 0 — 1과: 한글의 역사와 원리)
 const HANGUL_CONSONANTS = [
-  {char:"보내는 사람",rom:"bo-nae-neun sa-ram",name:"Sender"},
-  {char:"받는 사람",rom:"bat-neun sa-ram",name:"Recipient"},
-  {char:"제목",rom:"je-mok",name:"Subject"},
-  {char:"안녕하십니까",rom:"an-nyeong-ha-sim-ni-kka",name:"Hello (formal)"},
-  {char:"저는",rom:"jeo-neun",name:"I (subject)"},
-  {char:"요청합니다",rom:"yo-cheong-ham-ni-da",name:"I request"},
-  {char:"감사합니다",rom:"gam-sa-ham-ni-da",name:"Thank you"},
-  {char:"처리 부탁합니다",rom:"cheo-ri bu-tak-ham-ni-da",name:"Please process"},
-  {char:"회신 부탁합니다",rom:"hoe-sin bu-tak-ham-ni-da",name:"Please reply"},
-  {char:"첨부파일",rom:"cheom-bu-pa-il",name:"Attachment"},
-  {char:"확인 부탁드립니다",rom:"hwa-gin bu-tak-deu-rim-ni-da",name:"Please confirm"},
-  {char:"문의합니다",rom:"mun-ui-ham-ni-da",name:"I inquire"},
+  {char:"ㄱ",rom:"g/k",name:"기역 · 어금닛소리"},{char:"ㄴ",rom:"n",name:"니은 · 혓소리"},
+  {char:"ㄷ",rom:"d/t",name:"디귿 · 혓소리"},{char:"ㄹ",rom:"r/l",name:"리을 · 혓소리"},
+  {char:"ㅁ",rom:"m",name:"미음 · 입술소리"},{char:"ㅂ",rom:"b/p",name:"비읍 · 입술소리"},
+  {char:"ㅅ",rom:"s",name:"시옷 · 잇소리"},{char:"ㅇ",rom:"ng/silent",name:"이응 · 목구멍소리"},
+  {char:"ㅈ",rom:"j",name:"지읒 · 잇소리"},{char:"ㅊ",rom:"ch",name:"치읓 · 잇소리"},
+  {char:"ㅋ",rom:"k",name:"키읔 · 어금닛소리"},{char:"ㅌ",rom:"t",name:"티읕 · 혓소리"},
+  {char:"ㅍ",rom:"p",name:"피읖 · 입술소리"},{char:"ㅎ",rom:"h",name:"히읗 · 목구멍소리"},
 ];
 const HANGUL_VOWELS = [
-  {char:"이메일 양식 Email Format",rom:"i-me-il yang-sik",name:"Email structure"},
-  {char:"제목: 한국어 수료증 신청",rom:"je-mok:",name:"Subject line"},
-  {char:"본문 Body",rom:"bon-mun",name:"Main text"},
-  {char:"내용 Content",rom:"nae-yong",name:"Content"},
-  {char:"서명 Signature",rom:"seo-myeong",name:"Signature"},
-  {char:"날짜 Date",rom:"nal-jja-e",name:"Date"},
-  {char:"직책 Title",rom:"jik-chaek",name:"Job title"},
-  {char:"연락처 Contact",rom:"yeon-rak-cheo",name:"Contact info"},
-  {char:"이메일 주소 Email address",rom:"i-me-il ju-so",name:"Email"},
-  {char:"전화번호 Phone",rom:"jeon-hwa beon-ho",name:"Phone number"},
-  {char:"주소 Address",rom:"ju-so",name:"Address"},
-  {char:"부서 Department",rom:"bu-seo",name:"Department"},
+  {char:"ㅏ",rom:"a",name:"하늘(·)+사람(ㅣ)→ㅏ"},{char:"ㅓ",rom:"eo",name:"사람(ㅣ)+하늘(·)→ㅓ"},
+  {char:"ㅗ",rom:"o",name:"하늘(·)+땅(ㅡ)→ㅗ"},{char:"ㅜ",rom:"u",name:"땅(ㅡ)+하늘(·)→ㅜ"},
+  {char:"ㅡ",rom:"eu",name:"땅 · flat earth"},{char:"ㅣ",rom:"i",name:"사람 · standing person"},
+  {char:"·",rom:"(dot)",name:"하늘 · heaven/sky"},
+  {char:"ㅐ",rom:"ae",name:"ㅏ+ㅣ"},{char:"ㅔ",rom:"e",name:"ㅓ+ㅣ"},
+  {char:"ㅑ",rom:"ya",name:"ㅏ+· (이중)"},{char:"ㅕ",rom:"yeo",name:"ㅓ+· (이중)"},
+  {char:"ㅛ",rom:"yo",name:"ㅗ+· (이중)"},{char:"ㅠ",rom:"yu",name:"ㅜ+· (이중)"},
 ];
 const HANGUL_PRACTICE = [
-  {char:"이메일 예시 Sample Email",rom:"",name:"— 예제 —"},
-  {char:"보내는 사람: 라민 (라민@이메일.com)",rom:"",name:"From"},
-  {char:"받는 사람: 담당자 (hanwha@ocean.com)",rom:"",name:"To"},
-  {char:"제목: 한국어 수료증 신청",rom:"",name:"Subject"},
-  {char:"안녕하십니까?",rom:"",name:"Greeting"},
-  {char:"저는 라민이에요. 한화오션에서 일하고 있어요.",rom:"",name:"Introduction"},
-  {char:"한국어 코스를 수료했으니 수료증을 신청합니다.",rom:"",name:"Request"},
-  {char:"처리 부탁드립니다.",rom:"",name:"Closing"},
-  {char:"감사합니다.",rom:"",name:"Thank you"},
-  {char:"라민",rom:"",name:"Signature"},
-  {char:"라민@이메일.com / 010-0000-0000",rom:"",name:"Contact"},
+  {char:"세종대왕",rom:"Se-jong-dae-wang",name:"King Sejong the Great"},
+  {char:"1443년",rom:"1443-nyeon",name:"Year of Hangul creation"},
+  {char:"훈민정음",rom:"Hun-min-jeong-eum",name:"Correct Sounds for Instructing the People"},
+  {char:"28자",rom:"28-ja",name:"Original 28 letters"},
+  {char:"24자",rom:"24-ja",name:"현재 사용 24자 (자음14+모음10)"},
+  {char:"한글날",rom:"Han-geul-nal",name:"Hangul Day: October 9"},
+  {char:"유네스코",rom:"Yu-ne-seu-ko",name:"UNESCO World Heritage"},
+  {char:"천(·) 지(ㅡ) 인(ㅣ)",rom:"cheon-ji-in",name:"Heaven·Earth·Human = vowel principle"},
+  {char:"발음기관",rom:"bal-eum-gi-gwan",name:"Speech organs = consonant principle"},
+  {char:"가장 과학적 문자",rom:"ga-jang gwa-hak-jeok mun-ja",name:"Most scientific writing system"},
 ];
 const SAFETY_WORDS = [
-  {kor:"도움이 필요해요",eng:"I need help",rom:"do-um-i pil-yo-hae-yo"},
-  {kor:"질문이 있어요",eng:"I have a question",rom:"jil-mun-i i-sseo-yo"},
-  {kor:"신청하고 싶어요",eng:"I want to apply",rom:"sin-cheong-ha-go sip-eo-yo"},
-  {kor:"확인해 주세요",eng:"Please confirm",rom:"hwa-gin-hae ju-se-yo"},
-  {kor:"어떻게 해야 해요?",eng:"What should I do?",rom:"eo-ddeo-ke hae-ya hae-yo"},
-  {kor:"알았어요",eng:"I understand",rom:"al-wa-sseo-yo"},
-  {kor:"감사합니다",eng:"Thank you",rom:"gam-sa-ham-ni-da"},
-  {kor:"미안합니다",eng:"I'm sorry",rom:"mi-an-ham-ni-da"},
-  {kor:"다시 한 번 말씀해 주세요",eng:"Please say it again",rom:"da-si han beon mal-sseum-hae ju-se-yo"},
-  {kor:"천천히 말씀해 주세요",eng:"Please speak slowly",rom:"cheon-cheon-hi mal-sseum-hae ju-se-yo"},
-  {kor:"한국어로 어떻게 말해요?",eng:"How do you say it in Korean?",rom:"han-guk-eo-ro eo-ddeo-ke mal-hae-yo"},
-  {kor:"무엇을 도와드릴까요?",eng:"How can I help you?",rom:"mu-eo-seul do-wa-deu-ril-kka-yo"},
+  {kor:"위험",eng:"Danger",rom:"wi-heom"},{kor:"주의",eng:"Caution",rom:"ju-ui"},
+  {kor:"금지",eng:"Prohibited",rom:"geum-ji"},{kor:"착용",eng:"Wear/Put on",rom:"chag-yong"},
+  {kor:"대피",eng:"Evacuate",rom:"dae-pi"},{kor:"출입금지",eng:"No Entry",rom:"chul-ip-geum-ji"},
+  {kor:"흡연금지",eng:"No Smoking",rom:"heub-yeon-geum-ji"},{kor:"안전모 착용",eng:"Wear Helmet",rom:"an-jeon-mo chag-yong"},
+  {kor:"비상구",eng:"Emergency Exit",rom:"bi-sang-gu"},{kor:"소화기",eng:"Fire Extinguisher",rom:"so-hwa-gi"},
+  {kor:"응급처치",eng:"First Aid",rom:"eung-geup-cheo-chi"},{kor:"보호구 착용",eng:"Wear PPE",rom:"bo-ho-gu chag-yong"},
 ];
-const HANGUL_TABS = ['이메일 표현 Email','이메일 양식 Format','예시 이메일 Sample','안전·소통 Safety'];
-const HANGUL_SUBTITLE = "한글 응용 · 이메일·민원 작성";
+const HANGUL_TABS = ['자음의 원리 Consonants','모음의 원리 Vowels','한글 역사 History','안전 단어 Safety'];
+const HANGUL_SUBTITLE = "Learn Hangul · 한글의 역사와 창제 원리";
 
-// ===== READING PASSAGES =====
-const READING_PASSAGES = [
-  {title:"한국 생활 적응기",eng:"Adapting to Life in Korea",
-   text:"라민 씨는 한국에 온 지 1년이 됐어요.\n처음에는 문화가 많이 달라서 힘들었어요.\n한국 음식도 매워서 먹기 어려웠어요.\n하지만 지금은 많이 적응했어요.\n친구들이 도와줘서 한국어도 잘 할 수 있게 됐어요.\n한국의 대중교통도 편해요.\n편의점과 배달 앱이 정말 좋아요.\n조선소의 동료들도 좋은 사람들이예요.\n때때로 고향이 그리워요.\n하지만 한국 생활이 좋은 것 같아요.",
-   textEng:"Ramin has been in Korea for 1 year now.\nAt first, the culture was very different and it was hard.\nKorean food was also spicy and difficult to eat.\nBut now she has adapted a lot.\nHer friends helped her so she can speak Korean well.\nKorea's public transportation is convenient.\nConvenience stores and delivery apps are really great.\nHer colleagues at the shipyard are good people.\nShe sometimes misses her hometown.\nBut life in Korea seems good.",
-   questions:[
-     {q:"라민 씨는 한국에 몇 년 있었어요?",a:"1년",ae:"1 year"},
-     {q:"처음에 뭐가 힘들었어요?",a:"문화 차이, 음식",ae:"Cultural difference, food"},
-     {q:"지금 한국 생활이 어떤가요?",a:"좋은 것 같아요",ae:"Seems good"},
-   ]},
-  {title:"한국의 다문화 지원",eng:"Korea's Multicultural Support",
-   text:"한국은 다문화 사회가 되고 있어요.\n외국인 근로자가 200만 명 이상이에요.\n한국 정부는 KIIP 사회통합프로그램을 제공해요.\n프로그램에서는 한국어와 한국문화를 배워요.\n취업 지원도 받을 수 있어요.\n전국에 100개 이상의 다문화센터가 있어요.\n한화오션도 외국인 근로자를 위해 교육을 제공해요.\n한국어 교육, 문화 이해 교육, 상담 서비스가 있어요.\n한국인과 외국인이 함께 일하고 함께 살아요.\n이것이 한국의 성장 원동력이에요.",
-   textEng:"Korea is becoming a multicultural society.\nThere are over 2 million foreign workers.\nThe Korean government provides the KIIP social integration program.\nIn the program, they learn Korean language and culture.\nThey can also receive job support.\nThere are over 100 multicultural centers nationwide.\nHanwha Ocean also provides education for foreign workers.\nThere is Korean language education, cultural understanding education, and counseling services.\nKoreans and foreigners work and live together.\nThis is Korea's engine for growth.",
-   questions:[
-     {q:"KIIP는 뭐예요?",a:"사회통합프로그램",ae:"Social integration program"},
-     {q:"외국인 근로자가 몇 명이에요?",a:"200만 명 이상",ae:"Over 2 million"},
-     {q:"한화오션이 외국인을 위해 뭘 제공해요?",a:"한국어 교육, 문화 이해 교육, 상담",ae:"Korean language, cultural education, counseling"},
-   ]},
-];
-
-// ===== FOLKTALE DATA (춘향전 - 40 sentences) =====
+// ===== FOLKTALE DATA (30 sentences) =====
 const FOLKTALE = {
-  title: "춘향전",
-  eng: "Chunhyangjeon (The Story of Chunhyang)",
-  desc: "조선시대 명기 춘향과 양반 이도령의 비극적인 사랑 이야기입니다.",
-  descEng: "A tragic love story between Chunhyang, a famous courtesan, and Yi Do-ryung, a yangban (aristocrat) from the Joseon Dynasty.",
+  title: "흥부와 놀부",
+  eng: "Heungbu and Nolbu",
+  desc: "착한 동생 흥부와 욕심 많은 형 놀부의 이야기입니다.",
+  descEng: "A story of kind younger brother Heungbu and greedy older brother Nolbu.",
   sentences: [
-    {kor:"옛날 전라도 남원에 춘향이라는 예쁜 여자가 살았어요.",eng:"Once upon a time, a beautiful woman named Chunhyang lived in Namwon, Jeolla Province."},
-    {kor:"춘향의 어머니는 명기였어요.",eng:"Chunhyang's mother was a famous courtesan."},
-    {kor:"춘향은 어머니를 따라 명기가 되었어요.",eng:"Chunhyang became a courtesan like her mother."},
-    {kor:"어느 날, 양반 집의 아들 이도령이 남원에 왔어요.",eng:"One day, Yi Do-ryung, son of a yangban family, came to Namwon."},
-    {kor:"이도령은 춘향을 봤을 때 반했어요.",eng:"Yi Do-ryung fell in love when he saw Chunhyang."},
-    {kor:"춘향도 이도령을 좋아하게 됐어요.",eng:"Chunhyang also came to like Yi Do-ryung."},
-    {kor:"둘은 몰래 만나서 사랑하게 됐어요.",eng:"They met secretly and fell in love."},
-    {kor:"하지만 이도령의 아버지는 승진해서 한양으로 가야 했어요.",eng:"But Yi Do-ryung's father was promoted and had to move to Hanyang (Seoul)."},
-    {kor:"이도령은 춘향에게 자신을 기다려달라고 했어요.",eng:"Yi Do-ryung asked Chunhyang to wait for him."},
-    {kor:"이도령이 떠난 후 새로운 감사가 남원에 왔어요.",eng:"After Yi Do-ryung left, a new governor came to Namwon."},
-    {kor:"감사는 춘향의 아름다움에 반했어요.",eng:"The governor was fascinated by Chunhyang's beauty."},
-    {kor:"감사는 춘향에게 자신의 첩이 되라고 강요했어요.",eng:"The governor forced Chunhyang to become his concubine."},
-    {kor:"춘향은 이도령을 사랑하니까 거절했어요.",eng:"Chunhyang refused because she loved Yi Do-ryung."},
-    {kor:"감사는 화를 내고 춘향을 감옥에 가두었어요.",eng:"The governor was angry and imprisoned Chunhyang."},
-    {kor:"감옥에서 춘향은 고문을 받았어요.",eng:"In prison, Chunhyang was tortured."},
-    {kor:"하지만 춘향은 이도령에 대한 사랑을 잃지 않았어요.",eng:"But Chunhyang never lost her love for Yi Do-ryung."},
-    {kor:"한편, 이도령은 과거시험에 합격했어요.",eng:"Meanwhile, Yi Do-ryung passed the civil service exam."},
-    {kor:"이도령은 암행어사가 되었어요.",eng:"Yi Do-ryung became a secret royal inspector."},
-    {kor:"비밀리에 남원으로 내려온 이도령은 춘향이 감옥에 있다는 것을 알았어요.",eng:"Yi Do-ryung, who came to Namwon secretly, learned that Chunhyang was in prison."},
-    {kor:"이도령은 감사를 잡아서 한양으로 올라갔어요.",eng:"Yi Do-ryung captured the governor and took him to Hanyang."},
-    {kor:"춘향은 감옥에서 풀려났어요.",eng:"Chunhyang was released from prison."},
-    {kor:"이도령과 춘향은 서로를 다시 만났어요.",eng:"Yi Do-ryung and Chunhyang saw each other again."},
-    {kor:"둘은 결혼했어요.",eng:"They got married."},
-    {kor:"이들은 함께 한양으로 가서 행복하게 살았어요.",eng:"They went to Hanyang together and lived happily."},
-    {kor:"이 이야기는 충청도와 전라도의 여러 판본이 있어요.",eng:"This story has several versions from different regions."},
-    {kor:"춘향전은 한국의 가장 유명한 고전 문학이에요.",eng:"Chunhyangjeon is Korea's most famous classic literature."},
-    {kor:"한국의 전통 공연 판소리로도 알려져 있어요.",eng:"It is also known as a traditional Korean performance called pansori."},
-    {kor:"춘향의 정절(貞節)을 중요하게 생각해요.",eng:"The story emphasizes Chunhyang's chastity and fidelity."},
-    {kor:"이도령의 진심을 보여주는 이야기예요.",eng:"It is a story that shows Yi Do-ryung's sincerity."},
-    {kor:"어려움 속에서도 사랑을 지키는 것의 중요성을 가르쳐요.",eng:"It teaches the importance of keeping love even in hardship."},
-    {kor:"한국인은 춘향이의 순절을 칭찬해요.",eng:"Koreans praise Chunhyang's loyalty."},
-    {kor:"춘향과 이도령의 사랑은 영원해요.",eng:"The love between Chunhyang and Yi Do-ryung is eternal."},
-    {kor:"남원에는 춘향 묘(墓)와 춘향전시관이 있어요.",eng:"In Namwon, there is Chunhyang's tomb and a Chunhyang museum."},
-    {kor:"매년 춘향제가 열려요.",eng:"The Chunhyang Festival is held every year."},
-    {kor:"춘향의 이야기는 영화, 뮤지컬, 드라마로 만들어졌어요.",eng:"The story of Chunhyang has been made into movies, musicals, and dramas."},
-    {kor:"한국의 전통 가치를 보여주는 중요한 문화 유산이에요.",eng:"It is an important cultural heritage showing Korea's traditional values."},
-    {kor:"춘향처럼 어려움 속에서도 믿음을 지켜야 해요.",eng:"Like Chunhyang, we should keep faith even in hardship."},
-    {kor:"사랑하는 사람을 위해 헌신하는 것은 아름다워요.",eng:"Dedication for the one you love is beautiful."},
-    {kor:"조선소에서도 서로 믿고 도와주면 좋아요.",eng:"It's good to trust and help each other at the shipyard."},
-    {kor:"함께하는 시간이 가장 소중해요.",eng:"Time spent together is most precious."},
-    {kor:"춘향전은 시대를 초월한 사랑의 이야기예요.",eng:"Chunhyangjeon is a timeless love story."},
-  ]
+    {kor:"옛날 옛적에 흥부와 놀부 형제가 살았어요.",eng:"Once upon a time, there lived two brothers, Heungbu and Nolbu."},
+    {kor:"놀부는 형이고 흥부는 동생이에요.",eng:"Nolbu was the older brother and Heungbu was the younger brother."},
+    {kor:"놀부는 욕심이 많고 마음이 나빴어요.",eng:"Nolbu was greedy and mean-hearted."},
+    {kor:"흥부는 마음이 착하고 부지런했어요.",eng:"Heungbu was kind-hearted and hardworking."},
+    {kor:"아버지가 돌아가신 후, 놀부는 재산을 혼자 가졌어요.",eng:"After their father passed away, Nolbu took all the inheritance."},
+    {kor:"놀부는 흥부를 집에서 내쫓았어요.",eng:"Nolbu kicked Heungbu out of the house."},
+    {kor:"흥부는 가족과 함께 작은 집에서 살았어요.",eng:"Heungbu lived in a small house with his family."},
+    {kor:"흥부의 가족은 매우 가난했어요.",eng:"Heungbu's family was very poor."},
+    {kor:"어느 봄날, 제비 한 마리가 흥부의 집에 왔어요.",eng:"One spring day, a swallow came to Heungbu's house."},
+    {kor:"그런데 큰 뱀이 제비를 공격했어요.",eng:"But a big snake attacked the swallow."},
+    {kor:"흥부는 뱀을 쫓아내고 제비를 구해 주었어요.",eng:"Heungbu chased away the snake and saved the swallow."},
+    {kor:"제비의 다리가 부러져 있었어요.",eng:"The swallow's leg was broken."},
+    {kor:"흥부는 제비의 다리를 정성껏 치료해 주었어요.",eng:"Heungbu carefully treated the swallow's leg."},
+    {kor:"가을이 되자 제비는 따뜻한 남쪽 나라로 떠났어요.",eng:"When autumn came, the swallow flew to a warm southern country."},
+    {kor:"다음 해 봄, 제비가 다시 돌아왔어요.",eng:"The next spring, the swallow came back again."},
+    {kor:"제비는 입에 박씨 하나를 물고 왔어요.",eng:"The swallow brought a gourd seed in its beak."},
+    {kor:"흥부는 박씨를 마당에 심었어요.",eng:"Heungbu planted the gourd seed in the yard."},
+    {kor:"박이 아주 크게 자랐어요.",eng:"The gourd grew very big."},
+    {kor:"흥부가 박을 톱으로 잘랐어요.",eng:"Heungbu cut the gourd with a saw."},
+    {kor:"박 안에서 금은보화가 쏟아져 나왔어요!",eng:"Gold and jewels poured out of the gourd!"},
+    {kor:"흥부의 가족은 부자가 되었어요.",eng:"Heungbu's family became rich."},
+    {kor:"이 소식을 들은 놀부는 욕심이 났어요.",eng:"Nolbu heard the news and became greedy."},
+    {kor:"놀부도 제비의 다리를 일부러 부러뜨렸어요.",eng:"Nolbu deliberately broke a swallow's leg."},
+    {kor:"놀부는 제비의 다리를 치료해 주었어요.",eng:"Nolbu treated the swallow's leg."},
+    {kor:"다음 해 봄, 제비가 놀부에게도 박씨를 가져왔어요.",eng:"The next spring, the swallow also brought a gourd seed to Nolbu."},
+    {kor:"놀부는 기뻐하며 박씨를 심었어요.",eng:"Nolbu happily planted the gourd seed."},
+    {kor:"박이 크게 자라서 놀부가 박을 잘랐어요.",eng:"The gourd grew big, and Nolbu cut it open."},
+    {kor:"그런데 박 안에서 도깨비들이 나왔어요!",eng:"But goblins came out of the gourd!"},
+    {kor:"도깨비들이 놀부의 재산을 모두 가져갔어요.",eng:"The goblins took away all of Nolbu's wealth."},
+    {kor:"놀부는 잘못을 뉘우쳤고, 흥부는 형을 용서했어요.",eng:"Nolbu repented, and Heungbu forgave his brother."},
+  ],
 };
 
 const FOLKTALE_QUIZ = [
-  {q:"춘향이는 뭐였어요?",o:["명기","양반","왕비","농민"],a:0},
-  {q:"이도령은 누구의 아들이에요?",o:["양반","상인","농민","의사"],a:0},
-  {q:"이도령이 한양으로 가야 한 이유는?",o:["아버지의 승진","사업","결혼","공부"],a:0},
-  {q:"남원의 감사는 뭘 강요했어요?",o:["첩이 되는 것","음악을 배우는 것","춤을 배우는 것","돈을 주는 것"],a:0},
-  {q:"춘향은 왜 거절했어요?",o:["이도령을 사랑했어요","두려웠어요","아팠어요","돈이 없었어요"],a:0},
-  {q:"감옥에서 춘향은 뭐를 받았어요?",o:["고문","선물","음식","책"],a:0},
-  {q:"이도령은 뭐가 되었어요?",o:["암행어사","의사","상인","선생님"],a:0},
-  {q:"이도령은 어떻게 감사를 잡았어요?",o:["비밀리에 남원으로 내려와","전쟁을 일으켜","돈을 줘서","편지를 보내서"],a:0},
-  {q:"춘향과 이도령은 어디로 갔어요?",o:["한양","부산","제주","대구"],a:0},
-  {q:"춘향전은 뭐로 유명해요?",o:["고전 문학, 판소리","영화","음악","여행지"],a:0},
-  {q:"남원에는 뭐가 있어요?",o:["춘향 묘, 춘향전시관","병원","학교","상점"],a:0},
-  {q:"춘향제는 언제 열려요?",o:["매년","5년마다","10년마다","한 번만"],a:0},
-  {q:"이 이야기의 교훈은?",o:["어려움 속에서도 믿음을 지켜야 해요","돈이 최고","혼자가 좋아요","열심히 일해야 해요"],a:0},
-  {q:"춘향이의 어머니는 뭐였어요?",o:["명기","양반","왕비","농민"],a:0},
-  {q:"춘향전이 만들어진 것은?",o:["영화, 뮤지컬, 드라마","책","그림","음악"],a:0},
+  {q:"흥부와 놀부 중 형은 누구예요?",o:["흥부","놀부","제비","도깨비"],a:1},
+  {q:"흥부는 어떤 사람이에요?",o:["욕심이 많아요","마음이 나빠요","마음이 착해요","부자예요"],a:2},
+  {q:"놀부는 흥부를 어떻게 했어요?",o:["도와줬어요","집에서 내쫓았어요","선물을 줬어요","같이 살았어요"],a:1},
+  {q:"흥부가 구해 준 동물은 뭐예요?",o:["강아지","고양이","제비","토끼"],a:2},
+  {q:"제비의 어디가 부러졌어요?",o:["날개","다리","부리","꼬리"],a:1},
+  {q:"제비가 가져온 것은 뭐예요?",o:["금","박씨","쌀","돈"],a:1},
+  {q:"흥부의 박 안에서 뭐가 나왔어요?",o:["뱀","도깨비","금은보화","물"],a:2},
+  {q:"놀부는 제비 다리를 어떻게 했어요?",o:["치료해 줬어요","일부러 부러뜨렸어요","A와 B 모두","아무것도 안 했어요"],a:2},
+  {q:"놀부의 박 안에서 뭐가 나왔어요?",o:["금은보화","꽃","도깨비","새"],a:2},
+  {q:"이야기의 교훈(lesson)은 뭐예요?",o:["돈이 제일 중요해요","착하게 살면 복을 받아요","욕심이 좋아요","형이 항상 맞아요"],a:1},
 ];
 
+// ===== REVIEW (익힘) DATA =====
 const REVIEW_DATA = {
-  preview: {
+  preview: { // 예습
     title: "예습 · Preview",
     desc: "다음에 배울 내용을 미리 살펴보세요.",
     descEng: "Preview what you will learn next.",
     items: [
-      {label:"20과 주제",val:"꿈이 뭐예요? · What's Your Dream?",detail:"미래의 꿈과 목표를 이야기합니다."},
-      {label:"핵심 어휘",val:"꿈, 목표, 계획, 성공",detail:"dream, goal, plan, success"},
-      {label:"핵심 문법",val:"~고 싶어요, ~하려고, ~기 위해",detail:"want to, intend to, in order to"},
-      {label:"조선소 어휘",val:"경력 개발, 승진, 기술 전수",detail:"career development, promotion, skill transfer"},
+      {label:"2과 주제",val:"이것은 뭐예요? · What is this?",detail:"사물의 이름을 묻고 답하는 표현을 배웁니다."},
+      {label:"핵심 어휘",val:"이것, 그것, 저것, 여기, 거기, 뭐",detail:"this, that, here, there, what"},
+      {label:"핵심 문법",val:"이/그/저 + 명사, 명사 + 이/가",detail:"Demonstratives + Noun, Subject marker"},
+      {label:"조선소 어휘",val:"용접기, 그라인더, 크레인, 드릴, 파이프",detail:"welder, grinder, crane, drill, pipe"},
     ]
   },
-  review: {
+  review: { // 복습
     title: "복습 · Review",
-    desc: "19과에서 배운 내용을 확인하세요.",
-    descEng: "Check what you learned in Lesson 19.",
+    desc: "1과에서 배운 내용을 확인하세요.",
+    descEng: "Check what you learned in Lesson 1.",
     sections: [
-      {title:"한국 생활 어휘",icon:"🌍",items:["생활, 적응, 문화 차이, 향수병","날씨, 음식, 교통, 친구, 동료","고향, 명절, 추석, 설날","다문화, 외국인, 이해하다, 존중하다"]},
-      {title:"~(으)ㄴ/는 것 같다",icon:"💭",items:["힘든 것 같아요","좋은 것 같아요","다른 것 같아요","친절한 것 같아요"]},
-      {title:"~거든요, ~잖아요",icon:"📝",items:["도와줬거든요","많거든요","발달했잖아요","국제 기업이잖아요"]},
-      {title:"글로벌 인재 & 다문화",icon:"🚀",items:["외국인 근로자 200만 명","KIIP 사회통합프로그램","다문화센터 100+ 개","한화오션 다문화 지원","함께 일하고 함께 살아요","한국의 성장 원동력"]},
+      {title:"핵심 인사 표현",icon:"👋",items:["안녕하세요?","감사합니다.","죄송합니다.","만나서 반갑습니다.","수고하세요.","조심하세요.","잘 부탁드립니다."]},
+      {title:"핵심 문법 공식",icon:"📐",items:["받침O + 이에요 → 제이슨이에요","받침X + 예요 → 안젤라예요","받침O + 은 → 이름은, 직업은","받침X + 는 → 저는","받침O + 이 → 이름이, 직업이","받침X + 가 → 씨가"]},
+      {title:"자기소개 패턴",icon:"🎤",items:["안녕하세요? 저는 ___이에요/예요.","___에서 왔어요.","저는 ___이에요/예요. (직업)","한화오션 조선소에서 일해요.","만나서 반갑습니다."]},
+      {title:"조선소 필수 단어",icon:"⚓",items:["조선소 shipyard","안전모 helmet","출입증 ID badge","용접공 welder","관리자 supervisor","기숙사 dormitory","구내식당 cafeteria"]},
     ]
   },
-  dictation: ["한국 생활 어때요?","처음에는 힘들었어요.","지금은 괜찮아요.","매운 음식을 잘 먹는 것 같아요.","문화가 다르거든요.","고향이 그리워요.","명절 때 특히 그래요.","한국을 존중해요.","외국인과 한국인이 함께 일해요.","한국은 성장하는 나라예요."],
+  dictation: [ // 받아쓰기
+    "안녕하세요?","감사합니다.","저는 용접공이에요.","만나서 반갑습니다.",
+    "이름이 뭐예요?","어느 나라 사람이에요?","수고하셨습니다.","조심하세요.",
+    "직업은 배관공이에요.","잘 부탁드립니다."
+  ],
 };
+
+const READING_PASSAGES = [
+  {title:"제이슨의 자기소개",eng:"Jason's Self-Introduction",
+   text:"안녕하세요?\n저는 제이슨 맥케이예요.\n미국 뉴욕에서 왔어요.\n저는 전기공이에요.\n한화오션 거제 조선소에서 일해요.\n만나서 반갑습니다.",
+   textEng:"Hello?\nI am Jason McKay.\nI came from New York, USA.\nI am an electrician.\nI work at Hanwha Ocean Geoje Shipyard.\nNice to meet you.",
+   questions:[
+     {q:"제이슨 씨는 어느 나라에서 왔어요?",a:"미국 (뉴욕)",ae:"USA (New York)"},
+     {q:"제이슨 씨의 직업은 뭐예요?",a:"전기공",ae:"Electrician"},
+     {q:"제이슨 씨는 어디에서 일해요?",a:"한화오션 거제 조선소",ae:"Hanwha Ocean Geoje Shipyard"},
+   ]},
+  {title:"라민의 하루",eng:"Ramin's Day",
+   text:"저는 라민이에요.\n이집트 사람이에요.\n저는 용접공이에요.\n아침 7시 30분에 조선소에 가요.\n관리자 박민수 씨에게 인사해요.\n\"안녕하세요? 수고하세요.\"\n저는 한화오션에서 일해요.\n동료들은 좋은 사람이에요.",
+   textEng:"I am Ramin.\nI am Egyptian.\nI am a welder.\nI go to the shipyard at 7:30 AM.\nI greet supervisor Park Minsu.\n\"Hello? Keep up the good work.\"\nI work at Hanwha Ocean.\nMy colleagues are good people.",
+   questions:[
+     {q:"라민 씨의 국적은 어디예요?",a:"이집트",ae:"Egypt"},
+     {q:"라민 씨는 몇 시에 조선소에 가요?",a:"아침 7시 30분",ae:"7:30 AM"},
+     {q:"라민 씨의 관리자 이름은 뭐예요?",a:"박민수",ae:"Park Minsu"},
+   ]},
+];
 
 // ===== APP STATE =====
 let state = {
@@ -501,7 +453,7 @@ function renderNav() {
     {id:'reading',l:'읽기',i:'📕'},{id:'writing',l:'쓰기',i:'✍️'},
     {id:'review',l:'익힘(복습/예습)',i:'📝'},{id:'flashcard',l:'플래시카드',i:'🃏'},{id:'quiz',l:'퀴즈',i:'🎯'},
     {id:'folktale',l:'전래동화',i:'📚'},{id:'ftquiz',l:'동화 퀴즈',i:'🧩'},
-    {id:'culture',l:'문화',i:'🏛️'},{id:'geoje',l:'성장 원동력',i:'🚀'},
+    {id:'culture',l:'문화',i:'🏛️'},{id:'geoje',l:'거제 한화오션',i:'⚓'},
   ];
   let menu = '';
   if (state.menuOpen) {
@@ -546,15 +498,15 @@ function renderPage() {
 function renderHome() {
   return `
   <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);border-radius:16px;padding:20px;margin-bottom:16px;color:#fff">
-    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 19과 · Beginner Lesson 19</div>
+    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 1과 · Beginner Lesson 1</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ 0급 한글 입문 완료</span>
       <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
     </div
-    <div style="font-size:26px;font-weight:800;margin-bottom:2px">한국 생활이 어때요?</div>
-    <div style="font-size:13px;color:#aabbdd">How's life in Korea? — 한국 생활과 적응 · Life in Korea & Adaptation</div>
+    <div style="font-size:26px;font-weight:800;margin-bottom:2px">안녕하세요?</div>
+    <div style="font-size:13px;color:#aabbdd">Hello? — 인사와 소개 · Greetings & Introduction</div>
     <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
-      ${['~(으)ㄴ/는 것 같다','~거든요','~잖아요','생활 표현'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
+      ${['한국어 인사','이름 말하기','직업·국적','조선소 인사'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
     </div>
   </div>
   <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
@@ -576,9 +528,9 @@ function renderHome() {
       <div style="font-weight:700;font-size:12px;color:#1E3A5F">${it.l}</div>
     </button>`).join('')}
   </div>
-  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🌍 글로벌 인재 & 다문화 보기</button>
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">⚓ 거제 한화오션 소개 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="한화오션_초급18과_공문서읽기.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 18과 공문서 읽기</a><a href="한화오션_초급20과_꿈이뭐예요.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">20과 꿈이 뭐예요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson2.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2과 이것은 뭐예요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -597,7 +549,7 @@ function renderCurriculum() {
       <span style="color:#888;font-size:12px">${lv.ls}과</span>
     </div>
     <div style="color:#888;font-size:11px;margin:4px 0">${lv.e}</div>
-    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'95%':'0%'):'0%'};background:${lv.c}"></div></div>
+    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'5.5%':'0%'):'0%'};background:${lv.c}"></div></div>
   </div>`).join('')}`;
 }
 
@@ -607,10 +559,10 @@ function renderHangul() {
   const hTab = Math.min(state.hgTab, 3);
   const data = datasets[hTab];
   const isSafety = hTab === 3;
-  const progressPct = 95;
-  const progressLabel = "19/20";
+  const progressPct = 5;
+  const progressLabel = "1/20";
 
-  return `<h2>🔤 0급 한글 응용 · ${HANGUL_SUBTITLE}</h2><p class="sub">${HANGUL_SUBTITLE}</p>
+  return `<h2>🔤 0급 입문 · ${HANGUL_SUBTITLE}</h2><p class="sub">${HANGUL_SUBTITLE}</p>
   <div style="margin-bottom:12px;background:#e5e7eb;border-radius:8px;overflow:hidden;position:relative;height:22px">
     <div style="width:${progressPct}%;height:100%;background:linear-gradient(90deg,#3b82f6,#06b6d4);border-radius:8px;transition:width 0.5s"></div>
     <div style="position:absolute;top:0;left:0;right:0;text-align:center;font-size:11px;font-weight:700;line-height:22px;color:${progressPct>50?'#fff':'#555'}">한글 마스터 ${progressLabel} (${progressPct}%)</div>
@@ -622,25 +574,25 @@ function renderHangul() {
       <div style="font-size:11px;color:var(--ocean)">[${w.rom}]</div>
       <div style="font-size:13px;color:#555;margin-top:4px">${w.eng}</div>
     </div>`).join('')}</div>` :
-  `<div class="grid2" style="margin-bottom:12px">${data.map((h,i)=>`
-    <div class="hangul-cell ${i===state.hgSelected?'active':''}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${h.char}')" style="padding:10px">
-      <div class="char" style="font-size:16px">${h.char}</div>
-      <div class="rom" style="font-size:10px">${h.rom}</div>
+  `<div class="${data.length>10?'grid3':'grid2'}" style="margin-bottom:12px">${data.map((h,i)=>`
+    <div class="hangul-cell ${i===state.hgSelected?'active':''}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${h.name||h.char}')">
+      <div class="char">${h.char}</div>
+      <div class="rom">${h.rom}</div>
       ${h.name?`<div style="font-size:9px;color:#aaa">${h.name}</div>`:''}
     </div>`).join('')}</div>`}
   ${state.hgSelected !== null && !isSafety ? `<div class="card card-accent" style="text-align:center">
-    <div style="font-size:28px;font-weight:800;color:var(--navy)">${data[state.hgSelected].char}</div>
-    <div style="font-size:16px;color:var(--ocean);margin:8px 0">[${data[state.hgSelected].rom}]</div>
+    <div style="font-size:56px;font-weight:800;color:var(--navy)">${data[state.hgSelected].char}</div>
+    <div style="font-size:18px;color:var(--ocean);margin:8px 0">[${data[state.hgSelected].rom}]</div>
     ${data[state.hgSelected].name?`<div style="font-size:14px;color:#555">${data[state.hgSelected].name}</div>`:''}
-    <button class="btn btn-primary" style="margin-top:12px;width:auto;padding:8px 24px" onclick="TTS.speak('${data[state.hgSelected].char}')">🔊 발음 듣기 Listen</button>
+    <button class="btn btn-primary" style="margin-top:12px;width:auto;padding:8px 24px" onclick="TTS.speak('${data[state.hgSelected].name||data[state.hgSelected].char}')">🔊 발음 듣기 Listen</button>
   </div>`:''}`;
 }
 
 function renderVocab() {
-  const tabs = ['한국 생활 Life in Korea','조선소 Shipyard','일상 어휘 Daily Vocabulary','도구·장비 Tools&Equip'];
+  const tabs = ['인사 Greetings','조선소 Shipyard','소개 Introduction','장소·장비 Places&Equip'];
   const t = state.vocabTab;
   let content = '';
-  if (t===0) content = VOCAB_LIFE.map((v,i)=>`
+  if (t===0) content = VOCAB_GREETINGS.map((v,i)=>`
     <div class="card card-accent vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,[${i}]:!state.vocabReveal[${i}]}})">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div><div class="kor">${v.kor} ${ttsBtn(v.kor)}</div><div class="pron">[${v.pron}]</div></div>
@@ -655,7 +607,7 @@ function renderVocab() {
       ${state.vocabReveal['s'+i]?`<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border-radius:6px;font-size:13px;color:var(--orange);font-weight:600">${v.eng}</div>`
       :`<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기</div>`}
     </div>`).join('');
-  else if (t===2) content = `<div class="grid2">${VOCAB_DAILY.map(v=>`
+  else if (t===2) content = `<div class="grid2">${VOCAB_INTRO.map(v=>`
     <div class="vocab-item" style="background:#f0f7ff;border-radius:8px;padding:8px 10px" onclick="TTS.speak('${v.kor}')">
       <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
     </div>`).join('')}</div>`;
@@ -664,14 +616,14 @@ function renderVocab() {
       <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
     </div>`).join('')}</div>`;
 
-  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">19과 핵심 어휘 (${VOCAB_LIFE.length+VOCAB_SHIPYARD.length+VOCAB_DAILY.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
+  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">1과 핵심 어휘 (${VOCAB_GREETINGS.length+VOCAB_SHIPYARD.length+VOCAB_INTRO.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
   <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({vocabTab:${i},vocabReveal:{}})">${tb}</button>`).join('')}</div>
   ${content}`;
 }
 
 function renderGrammar() {
   const g = GRAMMAR[state.gramIdx];
-  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">19과 핵심 문법 ${GRAMMAR.length}개</p>
+  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">1과 핵심 문법 ${GRAMMAR.length}개</p>
   <div class="tabs">${GRAMMAR.map((gr,i)=>`<button class="tab ${state.gramIdx===i?'active':''}" onclick="setState({gramIdx:${i}})">${gr.title}</button>`).join('')}</div>
   <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
     <div style="font-size:18px;font-weight:800;color:var(--navy)">${g.title}</div>
@@ -740,25 +692,27 @@ function renderReading() {
 }
 
 function renderWriting() {
-  const preview = state.wrName ? `안녕하세요? 저는 ${state.wrName}이에요/예요.
-${state.wrCountry?'한국 생활은 '+state.wrCountry+'어요.':''}
-${state.wrJob?state.wrJob+' 것 같아요.':''}
+  const preview = state.wrName ? `안녕하세요?
+저는 ${state.wrName}이에요/예요.
+${state.wrCountry?state.wrCountry+'에서 왔어요.':''}
+${state.wrJob?'저는 '+state.wrJob+'이에요/예요.':''}
 ${state.wrExtra?state.wrExtra:''}
-함께해요!` : '';
+한화오션 거제 조선소에서 일해요.
+만나서 반갑습니다.` : '';
 
-  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">나의 한국 생활 · Describe My Life in Korea</p>
+  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">자기소개서 작성 및 발표 · Self-Introduction Writing & Presentation</p>
   <div class="card" style="background:#fff7ed;border:2px solid var(--orange)">
-    <b style="color:var(--orange)">📋 한국 생활을 소개해 보세요 · Describe your life in Korea</b>
+    <b style="color:var(--orange)">📋 자기소개서를 써 보세요 · Write your self-introduction</b>
   </div>
   <div style="margin-top:12px">
     <label style="font-size:13px;font-weight:700;color:var(--navy)">이름 Name</label>
     <input class="input" placeholder="예: 라민 / Ramin" value="${state.wrName}" oninput="state.wrName=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">한국 생활이 어때요? How's life in Korea?</label>
-    <input class="input" placeholder="예: 좋아요 / 힘들어요 / 재미있어요" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">뭐가 좋거나 힘들어요? What's good or hard?</label>
-    <input class="input" placeholder="예: 음식이 맛있어 / 친구가 생겨 / 문화가 달라" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
-    <label style="font-size:13px;font-weight:700;color:var(--navy)">더 쓰고 싶은 말 More to say</label>
-    <input class="input" placeholder="예: 한국인을 이해하려고 노력해요!" value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">국적/나라 Country</label>
+    <input class="input" placeholder="예: 이집트 / Egypt" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">직업 Job</label>
+    <input class="input" placeholder="예: 용접공 / welder" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">추가 한마디 Extra note</label>
+    <input class="input" placeholder="예: 잘 부탁드립니다." value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
   </div>
   ${preview?`
   <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📄 미리보기 · Preview</div>
@@ -766,14 +720,14 @@ ${state.wrExtra?state.wrExtra:''}
     ${preview.split('\n').filter(l=>l.trim()).map(l=>`<div style="font-size:16px;color:var(--navy);font-weight:600;margin-bottom:4px">${l}</div>`).join('')}
   </div>
   <button class="btn btn-primary" style="margin-top:10px" onclick="TTS.speak(\`${preview.replace(/\n/g,' ').replace(/이에요\/예요/g,'이에요')}\`,undefined,0.8)">🔊 발표 연습 듣기 · Listen to Presentation</button>
-  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 나의 한국 생활 소개가 만들어집니다.<br>Fill in the fields above to generate your life description.</div>'}
+  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 자기소개서가 만들어집니다.<br>Fill in the fields above to generate your introduction.</div>'}
 
   <div style="margin-top:20px;font-weight:700;color:var(--navy);margin-bottom:8px">✍️ 자유 쓰기 · Free Writing</div>
-  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 한국 생활이 좋은 것 같아요.&#10;처음에는 힘들었지만 지금은 적응했어요.&#10;한국인을 존중해요."></textarea>`;
+  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 안녕하세요? 저는 ___이에요.&#10;___에서 왔어요. 저는 ___이에요." id="freeWrite"></textarea>`;
 }
 
 function renderFlashcard() {
-  const all = [...VOCAB_LIFE.map(v=>({f:v.kor,b:v.eng})),...VOCAB_DAILY.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
+  const all = [...VOCAB_GREETINGS.map(v=>({f:v.kor,b:v.eng})),...VOCAB_INTRO.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
   const card = all[state.fcIdx % all.length];
   return `<h2>🃏 플래시카드 · Flashcards</h2>
   <div style="display:flex;justify-content:space-between;margin-bottom:8px">
@@ -828,7 +782,7 @@ function renderQuiz() {
 }
 
 function renderCulture() {
-  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 다문화 문화 · Korean Multicultural Culture</p>
+  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 인사 문화 · Korean Greeting Culture</p>
   ${CULTURE.map(c=>`<div class="card" style="display:flex;gap:12px;align-items:flex-start">
     <div style="font-size:34px;flex-shrink:0">${c.icon}</div>
     <div>
@@ -838,7 +792,7 @@ function renderCulture() {
       <div style="font-size:12px;color:#888;margin-top:2px">${c.de}</div>
     </div>
   </div>`).join('')}
-  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">🌍 글로벌 인재 & 다문화 보기</button>`;
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">⚓ 거제 한화오션 자세히 보기</button>`;
 }
 
 // ===== REVIEW (익힘) =====
@@ -859,7 +813,7 @@ function renderReview() {
           ${!item.includes(' ')&&item.length<15?ttsBtn(item):''}
         </div>`).join('')}
       </div>`).join('')}
-    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 생활 표현 전체 듣기</button>`;
+    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 인사 전체 듣기</button>`;
   }
   if (t===1) { // 예습
     const pv = REVIEW_DATA.preview;
@@ -867,7 +821,7 @@ function renderReview() {
     <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
     <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean)">
       <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px">📖 다음 수업 미리보기 · Next Lesson Preview</div>
-      <div style="font-size:12px;color:#888;margin-bottom:12px">19과를 미리 살펴보세요!</div>
+      <div style="font-size:12px;color:#888;margin-bottom:12px">2과를 미리 살펴보세요!</div>
     </div>
     ${pv.items.map((item,i)=>`
       <div class="card ${i%2===0?'card-accent':'card-orange'}">
@@ -878,14 +832,14 @@ function renderReview() {
     <div class="card card-green" style="background:var(--light-green)">
       <div style="font-weight:700;color:var(--green);margin-bottom:6px">💡 예습 팁 · Preview Tips</div>
       <div style="font-size:13px;color:#333;line-height:1.6">
-        1. 한국 생활 관련 어휘를 미리 읽어 보세요.<br>
-        2. 한국 생활의 어려움과 장점을 생각해 보세요.<br>
-        3. 한국의 다문화 사회를 알아보세요.
+        1. 위의 새 어휘를 3번씩 소리 내어 읽어 보세요.<br>
+        2. '이것', '그것', '저것'을 주변 물건을 가리키며 말해 보세요.<br>
+        3. 조선소에서 사용하는 공구 이름을 미리 알아보세요.
       </div>
       <div style="font-size:12px;color:#888;margin-top:6px;line-height:1.5">
-        1. Read life-related vocabulary in advance.<br>
-        2. Think about challenges and advantages of life in Korea.<br>
-        3. Learn about Korea's multicultural society.
+        1. Read the new vocabulary aloud 3 times.<br>
+        2. Point at objects around you and say '이것', '그것', '저것'.<br>
+        3. Learn the tool names used at the shipyard in advance.
       </div>
     </div>`;
   }
@@ -1017,7 +971,7 @@ function renderFtQuiz() {
 }
 
 function renderGeoje() {
-  const g = LOCAL_INFO;
+  const g = GEOJE_INFO;
   return `<h2>⚓ ${g.title}</h2><p class="sub">${g.eng}</p>
   <div class="card" style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);color:#fff;border:none">
     <div style="font-size:18px;font-weight:800;margin-bottom:10px">HANWHA OCEAN 한화오션</div>
@@ -1030,22 +984,10 @@ function renderGeoje() {
     <div style="font-size:14px;color:var(--navy);font-weight:600">${f.val}</div>
   </div>`).join('')}
   <div class="card" style="background:var(--light-orange);border:2px solid var(--orange)">
-    <b style="color:var(--orange)">🚀 한국의 성장 원동력: 글로벌 인재 & 다문화 Global Talent & Multicultural</b>
-    <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
-      ${[
-        {item:'다문화사회',price:'외국인 200만+',emoji:'🌍',eng:'Multicultural'},
-        {item:'외국인근로자',price:'고용허가제',emoji:'👷',eng:'Foreign Workers'},
-        {item:'KIIP프로그램',price:'한국어·문화·취업',emoji:'📚',eng:'KIIP Program'},
-        {item:'다문화센터',price:'100+ 센터',emoji:'🤝',eng:'Multicultural Centers'},
-        {item:'글로벌인재',price:'기술·언어·문화',emoji:'🎓',eng:'Global Talent'},
-        {item:'한화오션 다문화',price:'교육·상담·문화',emoji:'🏢',eng:'HO Multicultural'},
-      ].map(p=>`
-        <div style="background:#fff;border-radius:10px;padding:10px;text-align:center">
-          <div style="font-size:20px">${p.emoji}</div>
-          <div style="font-size:13px;font-weight:700;color:var(--navy)">${p.item}</div>
-          <div style="font-size:14px;font-weight:800;color:var(--orange)">${p.price}</div>
-          <div style="font-size:10px;color:#aaa">${p.eng}</div>
-        </div>
+    <b style="color:var(--orange)">⚓ 주요 선종 Main Ship Types</b>
+    <div class="grid2" style="margin-top:8px">
+      ${['LNG운반선\nLNG Carrier','컨테이너선\nContainer Ship','FPSO\n부유식 생산설비','해양플랜트\nOffshore Platform','탱커\nTanker','잠수함\nSubmarine'].map(s=>`
+        <div style="background:#fff;border-radius:8px;padding:8px;text-align:center;font-size:12px;font-weight:600;color:var(--navy)">${s.replace('\n','<br><span style="font-size:10px;color:#888">')}</span></div>
       `).join('')}
     </div>
   </div>`;
