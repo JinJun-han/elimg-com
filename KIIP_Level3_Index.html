@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>KIIP 3급 중급 1 · 한국어와 한국문화</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
+<meta property="og:title" content="KIIP 3급 중급 1 · 한국어와 한국문화">
+<meta property="og:description" content="법무부 사회통합프로그램 3급 중급 1 · 국립국어원 공식 교재 기반 · 16단원 완성">
+<meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://elimg.com/KIIP_Level3_Index.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KIIP 3급 중급 1 · 한국어와 한국문화">
+<meta name="twitter:description" content="법무부 사회통합프로그램 3급 중급 1 · 국립국어원 공식 교재 기반 · 16단원 완성">
+<meta name="twitter:image" content="https://elimg.com/images/og-hanwha-level1.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#f59e0b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KIIP Korean">
+<script src="/i18n/translations.js"></script>
+<script>
+const TRANSLATIONS = {
+  ko: {
+    progress_label: '전체 진도 · Overall Progress',
+    lessons_complete: '16단원 완성',
+    cert_title: '수료증 발급',
+    cert_desc: '전 과정 16단원 완료 후 수료증을 발급받으세요',
+    cert_name_placeholder: '이름을 입력하세요',
+    cert_button: '수료증 발급 →',
+    prev_level: '이전 과정: 2급 초급 2',
+    next_level: '다음 과정: 4급 중급 2 →',
+    hub_link: '← KIIP 전체 프로그램',
+  },
+  en: {
+    progress_label: 'Overall Progress',
+    lessons_complete: '16 Complete Units',
+    cert_title: 'Certificate',
+    cert_desc: 'Issue your certificate after completing all 16 units',
+    cert_name_placeholder: 'Enter your name',
+    cert_button: 'Get Certificate →',
+    prev_level: 'Previous: Level 2 Beginner 2',
+    next_level: 'Next: Level 4 Intermediate 2 →',
+    hub_link: '← KIIP Full Program',
+  },
+  vi: {
+    progress_label: 'Tien do tong the',
+    lessons_complete: 'Hoan thanh 16 don vi',
+    cert_title: 'Cap chung chi',
+    cert_desc: 'Nhan chung chi sau khi hoan thanh toan bo 16 bai',
+    cert_name_placeholder: 'Nhap ten cua ban',
+    cert_button: 'Nhan chung chi →',
+    prev_level: 'Khoa truoc: Cap 2 So cap 2',
+    next_level: 'Khoa tiep: Cap 4 Trung cap 2 →',
+    hub_link: '← Chuong trinh KIIP day du',
+  }
+};
+let currentLang = localStorage.getItem('kiip_lang') || 'ko';
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('kiip_lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+      if (el.tagName === 'INPUT') {
+        el.placeholder = TRANSLATIONS[lang][key];
+      } else {
+        el.textContent = TRANSLATIONS[lang][key];
+      }
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.style.opacity = btn.dataset.lang === lang ? '1' : '0.4';
+  });
+}
+document.addEventListener('DOMContentLoaded', () => setLang(currentLang));
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;background:#fdf6e3;color:#1a202c;min-height:100vh}
+.hub-link{display:block;text-align:center;padding:8px;font-size:12px;color:#92400e;background:#fef3c7;text-decoration:none;border-bottom:1px solid #fde68a}
+.hub-link:hover{background:#fde68a}
+.header{background:linear-gradient(135deg,#451a03,#92400e,#b45309);color:#fff;padding:24px 16px;text-align:center}
+.header h1{font-size:22px;margin-bottom:4px}
+.header p{font-size:13px;opacity:0.85}
+.badges{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.badge{padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;color:#fff}
+.badge-amber{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.badge-brown{background:linear-gradient(135deg,#92400e,#78350f)}
+.badge-orange{background:linear-gradient(135deg,#ea580c,#c2410c)}
+.container{max-width:480px;margin:0 auto;padding:16px}
+.section-title{font-size:16px;font-weight:800;color:#92400e;margin:16px 0 8px;display:flex;align-items:center;gap:8px}
+.lesson-card{display:flex;align-items:center;background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-decoration:none;color:inherit;transition:transform 0.15s,box-shadow 0.15s;border-left:4px solid #f59e0b}
+.lesson-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.12)}
+.lesson-num{font-size:13px;font-weight:800;color:#fff;background:#f59e0b;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lesson-info{margin-left:12px;flex:1}
+.lesson-title{font-size:14px;font-weight:700;color:#1a202c}
+.lesson-sub{font-size:11px;color:#888;margin-top:2px}
+.lesson-theme{font-size:10px;color:#b45309;font-weight:600;margin-top:2px}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin:16px 0}
+.stat{background:#fff;border-radius:12px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.stat-num{font-size:20px;font-weight:800;color:#92400e}
+.stat-label{font-size:10px;color:#888;margin-top:2px}
+.next-btn{border-radius:16px;padding:16px;text-align:center;margin-top:12px;cursor:pointer;text-decoration:none;display:block;font-weight:700;font-size:14px}
+.btn-amber{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
+.btn-brown{background:linear-gradient(135deg,#92400e,#78350f);color:#fff}
+.footer{text-align:center;padding:20px;font-size:11px;color:#aaa}
+.cert-section{background:linear-gradient(135deg,#451a03,#78350f);padding:28px 20px;margin:28px 0;border-radius:16px;text-align:center;color:#fff}
+</style>
+</head>
+<body>
+
+<a href="KIIP_Full_Program.html" class="hub-link" data-i18n="hub_link">← KIIP 전체 프로그램</a>
+
+<div class="header">
+  <h1>📙 KIIP 3급 · 중급 1</h1>
+  <p>한국어와 한국문화 · Korean Language &amp; Culture Intermediate 1</p>
+  <div style="margin-top:12px;display:flex;justify-content:center;gap:8px;">
+    <button class="lang-btn" data-lang="ko" onclick="setLang('ko')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇰🇷 KO</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇺🇸 EN</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLang('vi')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇻🇳 VI</button>
+  </div>
+  <div class="badges">
+    <span class="badge badge-brown">📚 국립국어원 공식 교재</span>
+    <span class="badge badge-amber">⏱ 100시간</span>
+    <span class="badge badge-amber">📖 16단원</span>
+    <span class="badge badge-orange">🏛 법무부 KIIP</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats">
+    <div class="stat"><div class="stat-num">16</div><div class="stat-label">단원</div></div>
+    <div class="stat"><div class="stat-num">100</div><div class="stat-label">시간</div></div>
+    <div class="stat"><div class="stat-num">32</div><div class="stat-label">핵심문법</div></div>
+    <div class="stat"><div class="stat-num">16</div><div class="stat-label">문화정보</div></div>
+  </div>
+
+  <div class="section-title">📙 3급 중급 1 · 한국어와 한국문화</div>
+
+  <a href="KIIP_Level3_Lesson1.html" class="lesson-card">
+    <div class="lesson-num">1</div>
+    <div class="lesson-info">
+      <div class="lesson-title">대인 관계 · Interpersonal Relationships</div>
+      <div class="lesson-sub">어휘: 관계 표현 / 문법: -(으)ㄹ수록, -아/어서인지</div>
+      <div class="lesson-theme">👥 사람과 사람 사이</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson2.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">2</div>
+    <div class="lesson-info">
+      <div class="lesson-title">건강한 생활 · Healthy Life</div>
+      <div class="lesson-sub">어휘: 건강 관리 / 문법: -는 바람에, -(으)ㄹ 걸 그랬다</div>
+      <div class="lesson-theme">🏥 건강과 의료</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson3.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">3</div>
+    <div class="lesson-info">
+      <div class="lesson-title">소비와 경제 · Consumption &amp; Economy</div>
+      <div class="lesson-sub">어휘: 소비 패턴 / 문법: -에 비해, -(으)ㄹ 텐데</div>
+      <div class="lesson-theme">💰 소비와 절약</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson4.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">4</div>
+    <div class="lesson-info">
+      <div class="lesson-title">직업과 일 · Occupation &amp; Work</div>
+      <div class="lesson-sub">어휘: 직업 세계 / 문법: -(으)ㄴ/는 탓에, -도록 하다</div>
+      <div class="lesson-theme">💼 직장 생활</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson5.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">5</div>
+    <div class="lesson-info">
+      <div class="lesson-title">공공 서비스 · Public Services</div>
+      <div class="lesson-sub">어휘: 공공 기관 / 문법: -(으)면 되다, -아/어 드리다</div>
+      <div class="lesson-theme">🏛 행정 서비스</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson6.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">6</div>
+    <div class="lesson-info">
+      <div class="lesson-title">미디어 · Media</div>
+      <div class="lesson-sub">어휘: 미디어 종류 / 문법: -는다고 하다 (간접화법), -대</div>
+      <div class="lesson-theme">📱 인터넷과 미디어</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson7.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">7</div>
+    <div class="lesson-info">
+      <div class="lesson-title">여가와 취미 · Leisure &amp; Hobbies</div>
+      <div class="lesson-sub">어휘: 취미 활동 / 문법: -(으)ㄹ 만하다, -기 위해서</div>
+      <div class="lesson-theme">🎨 여가 활동</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson8.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">8</div>
+    <div class="lesson-info">
+      <div class="lesson-title">사고와 안전 · Accidents &amp; Safety</div>
+      <div class="lesson-sub">어휘: 안전사고 / 문법: -(으)ㄹ 뻔하다, -고 나서</div>
+      <div class="lesson-theme">⚠️ 안전 생활</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson9.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">9</div>
+    <div class="lesson-info">
+      <div class="lesson-title">여행 · Travel</div>
+      <div class="lesson-sub">어휘: 여행 준비 / 문법: -(으)ㄴ/는 김에, -아/어야겠다</div>
+      <div class="lesson-theme">✈️ 국내외 여행</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson10.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">10</div>
+    <div class="lesson-info">
+      <div class="lesson-title">환경과 자연 · Environment &amp; Nature</div>
+      <div class="lesson-sub">어휘: 환경 문제 / 문법: -게 되다, -아/어지다</div>
+      <div class="lesson-theme">🌿 환경 보호</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson11.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">11</div>
+    <div class="lesson-info">
+      <div class="lesson-title">교육 · Education</div>
+      <div class="lesson-sub">어휘: 교육 제도 / 문법: -(으)ㄴ/는지, -든지</div>
+      <div class="lesson-theme">🎓 한국 교육</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson12.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">12</div>
+    <div class="lesson-info">
+      <div class="lesson-title">공동체 생활 · Community Life</div>
+      <div class="lesson-sub">어휘: 지역 사회 / 문법: -(으)ㄹ 테니까, -겠-</div>
+      <div class="lesson-theme">🏘️ 이웃과 공동체</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson13.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">13</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 역사 · Korean History</div>
+      <div class="lesson-sub">어휘: 역사 용어 / 문법: -(으)ㄴ 채로, -고서</div>
+      <div class="lesson-theme">🏯 한국 역사</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson14.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">14</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 지역 · Regions of Korea</div>
+      <div class="lesson-sub">어휘: 지역 특징 / 문법: -다 보면, -(으)ㄴ/는 반면에</div>
+      <div class="lesson-theme">🗺️ 지역 문화</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson15.html" class="lesson-card" style="opacity:0.7">
+    <div class="lesson-num">15</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국 사회 · Korean Society</div>
+      <div class="lesson-sub">어휘: 사회 변화 / 문법: -아/어 오다, -(으)로 인해</div>
+      <div class="lesson-theme">🏙️ 현대 한국 사회</div>
+    </div>
+  </a>
+
+  <a href="KIIP_Level3_Lesson16.html" class="lesson-card" style="border-left-color:#f59e0b;background:#fffbeb;opacity:0.7">
+    <div class="lesson-num" style="background:#f59e0b">16</div>
+    <div class="lesson-info">
+      <div class="lesson-title">🎓 공공시설 이용 · Public Facilities · 종합 복습</div>
+      <div class="lesson-sub">어휘: 시설 이용 / 문법: 전 과정 종합 복습 &amp; 시험</div>
+      <div class="lesson-theme">🏗️ 생활 속 공공시설</div>
+    </div>
+  </a>
+
+  <div style="display:flex;gap:8px;margin-top:20px;">
+    <a href="HanwhaOcean_Level2_Index.html" class="next-btn btn-brown" style="flex:1;font-size:13px;">
+      ← <span data-i18n="prev_level">이전 과정: 2급 초급 2</span>
+    </a>
+    <a href="KIIP_Level4_Index.html" class="next-btn btn-amber" style="flex:1;font-size:13px;">
+      <span data-i18n="next_level">다음 과정: 4급 중급 2 →</span>
+    </a>
+  </div>
+
+  <div class="cert-section">
+    <div style="font-size:32px;margin-bottom:8px;">🏆</div>
+    <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;" data-i18n="cert_title">수료증 발급</h3>
+    <p style="font-size:13px;opacity:0.8;margin-bottom:16px;" data-i18n="cert_desc">전 과정 16단원 완료 후 수료증을 발급받으세요</p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+      <input id="certName" type="text" data-i18n="cert_name_placeholder" placeholder="이름을 입력하세요" style="padding:10px 16px;border-radius:8px;border:none;font-size:14px;min-width:200px;">
+      <button onclick="issueCert(3)" style="background:#f59e0b;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;" data-i18n="cert_button">수료증 발급 →</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    법무부 사회통합프로그램 (KIIP) 3급 중급 1<br>
+    국립국어원 기획 · 이미혜 외 집필 · 하우출판사<br>
+    © 2026 GlocalBridge Korean Education
+  </div>
+</div>
+
+<script>
+function issueCert(level) {
+  const name = document.getElementById('certName').value.trim() || '학습자';
+  window.open('/HanwhaOcean_Certificate.html?level=' + level + '&name=' + encodeURIComponent(name), '_blank');
+}
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
