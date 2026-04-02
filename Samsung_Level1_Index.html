@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>삼성중공업 한국어 교육 · 1급 초급 1 목차</title>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="삼성중공업 한국어교육 · GlocalBridge">
+    <meta property="og:title" content="삼성중공업 한국어 교육 · 1급 초급 1 목차">
+    <meta property="og:description" content="삼성중공업 해외근로자 한국어교육 · 초급 1급 · 생활 한국어 20과 커리큘럼">
+    <meta property="og:image" content="https://elimg.com/images/og-samsung-level1.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://elimg.com/Samsung_Level1_Index.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="삼성중공업 한국어 교육 · 1급 초급 1 목차">
+    <meta name="twitter:description" content="삼성중공업 해외근로자 한국어교육 · 초급 1급 · 생활 한국어 20과 커리큘럼">
+    <meta name="twitter:image" content="https://elimg.com/images/og-samsung-level1.png">
+<script>
+const TRANSLATIONS = {
+  ko: {
+    progress_label: '전체 진도 · Overall Progress',
+    lessons_complete: '20과 완성 · 20 Complete Lessons',
+    cert_title: '수료증 발급',
+    cert_desc: '전 과정 20과 완료 후 수료증을 발급받으세요',
+    cert_name_placeholder: '이름을 입력하세요',
+    cert_button: '수료증 발급 →',
+    social_integration: '사회통합',
+    business: '비즈니스',
+    culture_society: '문화·사회',
+    interview_presentation: '면접·발표',
+  },
+  en: {
+    progress_label: 'Overall Progress',
+    lessons_complete: '20 Complete Lessons',
+    cert_title: 'Certificate',
+    cert_desc: 'Issue your certificate after completing all 20 lessons',
+    cert_name_placeholder: 'Enter your name',
+    cert_button: 'Get Certificate →',
+    social_integration: 'Social Integration',
+    business: 'Business',
+    culture_society: 'Culture & Society',
+    interview_presentation: 'Interview & Presentation',
+  },
+  vi: {
+    progress_label: 'Tien do tong the',
+    lessons_complete: 'Hoan thanh 20 bai hoc',
+    cert_title: 'Cap chung chi',
+    cert_desc: 'Nhan chung chi sau khi hoan thanh toan bo 20 bai',
+    cert_name_placeholder: 'Nhap ten cua ban',
+    cert_button: 'Nhan chung chi →',
+    social_integration: 'Hoi nhap xa hoi',
+    business: 'Kinh doanh',
+    culture_society: 'Van hoa & Xa hoi',
+    interview_presentation: 'Phong van & Thuyet trinh',
+  }
+};
+let currentLang = localStorage.getItem('kiip_lang') || 'ko';
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('kiip_lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+      if (el.tagName === 'INPUT') {
+        el.placeholder = TRANSLATIONS[lang][key];
+      } else {
+        el.textContent = TRANSLATIONS[lang][key];
+      }
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.style.opacity = btn.dataset.lang === lang ? '1' : '0.4';
+  });
+}
+document.addEventListener('DOMContentLoaded', () => setLang(currentLang));
+</script>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1428A0">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KIIP Korean">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f4f8;color:#1a202c;min-height:100vh}
+.header{background:linear-gradient(135deg,#0d1e7a,#1428A0);color:#fff;padding:24px 16px;text-align:center}
+.header h1{font-size:22px;margin-bottom:4px}
+.header p{font-size:13px;opacity:0.85}
+.badges{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.badge{padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;color:#fff}
+.badge-green{background:linear-gradient(135deg,#10b981,#059669)}
+.badge-blue{background:linear-gradient(135deg,#3b82f6,#1d4ed8)}
+.badge-gold{background:linear-gradient(135deg,#f59e0b,#d97706)}
+.container{max-width:480px;margin:0 auto;padding:16px}
+.section-title{font-size:16px;font-weight:800;color:#1428A0;margin:16px 0 8px;display:flex;align-items:center;gap:8px}
+.lesson-card{display:flex;align-items:center;background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-decoration:none;color:inherit;transition:transform 0.15s,box-shadow 0.15s;border-left:4px solid #1428A0}
+.lesson-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.12)}
+.lesson-num{font-size:13px;font-weight:800;color:#fff;background:#1428A0;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lesson-info{margin-left:12px;flex:1}
+.lesson-title{font-size:14px;font-weight:700;color:#1a202c}
+.lesson-sub{font-size:11px;color:#888;margin-top:2px}
+.lesson-theme{font-size:10px;color:#1428A0;font-weight:600;margin-top:2px}
+.progress-bar{background:#e5e7eb;border-radius:8px;overflow:hidden;height:6px;margin-top:4px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#3b82f6,#06b6d4);border-radius:8px}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:16px 0}
+.stat{background:#fff;border-radius:12px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.stat-num{font-size:24px;font-weight:800;color:#1428A0}
+.stat-label{font-size:10px;color:#888;margin-top:2px}
+.next-level{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:16px;padding:16px;text-align:center;margin-top:16px;cursor:pointer;text-decoration:none;display:block}
+.next-level h3{font-size:16px;margin-bottom:4px}
+.next-level p{font-size:12px;opacity:0.9}
+.footer{text-align:center;padding:20px;font-size:11px;color:#aaa}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>🚢 삼성중공업 한국어 교육</h1>
+  <p>Samsung Heavy Industries Korean Education</p>
+  <div style="margin-top:12px;display:flex;justify-content:center;gap:8px;">
+    <button class="lang-btn" data-lang="ko" onclick="setLang('ko')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇰🇷 한국어</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇺🇸 English</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLang('vi')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇻🇳 Tieng Viet</button>
+  </div>
+  <div class="badges">
+    <span class="badge badge-green">✅ 0급 한글 입문 완료</span>
+    <span class="badge badge-blue">🎓 1급 초급 1 완료!</span>
+    <span class="badge badge-gold">📘 2급 초급 2 시작</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats">
+    <div class="stat"><div class="stat-num">20</div><div class="stat-label">전체 과</div></div>
+    <div class="stat"><div class="stat-num">2,000+</div><div class="stat-label">어휘</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label">완료</div></div>
+  </div>
+
+  <div class="section-title">📘 1급 초급 1 · Beginner Level 1</div>
+
+  <a href="HanwhaOcean_Level1_Lesson1.html" class="lesson-card">
+    <div class="lesson-num">1</div>
+    <div class="lesson-info">
+      <div class="lesson-title">안녕하세요? · Hello</div>
+      <div class="lesson-sub">0급 한글: 한글의 역사와 원리</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson2.html" class="lesson-card">
+    <div class="lesson-num">2</div>
+    <div class="lesson-info">
+      <div class="lesson-title">이것은 뭐예요? · What is this?</div>
+      <div class="lesson-sub">0급 한글: 기본 자음과 모음</div>
+      <div class="lesson-theme">🏗️ 인프라 & 건설</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson3.html" class="lesson-card">
+    <div class="lesson-num">3</div>
+    <div class="lesson-info">
+      <div class="lesson-title">여기가 어디예요? · Where is this?</div>
+      <div class="lesson-sub">0급 한글: 음절 조합 기초</div>
+      <div class="lesson-theme">⚓ 해양 강국 & 이순신</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson4.html" class="lesson-card">
+    <div class="lesson-num">4</div>
+    <div class="lesson-info">
+      <div class="lesson-title">지금 몇 시예요? · What time is it?</div>
+      <div class="lesson-sub">0급 한글: 받침(종성) 입문</div>
+      <div class="lesson-theme">⚡ 근면·빨리빨리</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson5.html" class="lesson-card">
+    <div class="lesson-num">5</div>
+    <div class="lesson-info">
+      <div class="lesson-title">날씨가 어때요? · How's the weather?</div>
+      <div class="lesson-sub">0급 한글: 쌍자음 마스터 (+발음비교)</div>
+      <div class="lesson-theme">💰 경제 성장 & 한강의 기적</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson6.html" class="lesson-card">
+    <div class="lesson-num">6</div>
+    <div class="lesson-info">
+      <div class="lesson-title">뭐 먹을까요? · What shall we eat?</div>
+      <div class="lesson-sub">0급 한글: 복합모음 마스터</div>
+      <div class="lesson-theme">🎵 K-Culture & 한류</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson7.html" class="lesson-card">
+    <div class="lesson-num">7</div>
+    <div class="lesson-info">
+      <div class="lesson-title">가족이 몇 명이에요? · How many in your family?</div>
+      <div class="lesson-sub">0급 한글: 겹받침 (+발음비교)</div>
+      <div class="lesson-theme">🚢 조선 산업 & 제조업</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson8.html" class="lesson-card">
+    <div class="lesson-num">8</div>
+    <div class="lesson-info">
+      <div class="lesson-title">주말에 뭐 했어요? · What did you do?</div>
+      <div class="lesson-sub">0급 한글: 발음 규칙 (+발음비교 3버튼)</div>
+      <div class="lesson-theme">💾 반도체 & 자동차</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson9.html" class="lesson-card">
+    <div class="lesson-num">9</div>
+    <div class="lesson-info">
+      <div class="lesson-title">전화번호가 뭐예요? · What's your number?</div>
+      <div class="lesson-sub">0급 한글: 숫자 읽기</div>
+      <div class="lesson-theme">🌍 종합 소개</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson10.html" class="lesson-card">
+    <div class="lesson-num">10</div>
+    <div class="lesson-info">
+      <div class="lesson-title">어디에서 왔어요? · Where are you from?</div>
+      <div class="lesson-sub">0급 한글: 조사와 어미</div>
+      <div class="lesson-theme">📡 IT 강국</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson11.html" class="lesson-card">
+    <div class="lesson-num">11</div>
+    <div class="lesson-info">
+      <div class="lesson-title">무슨 일을 해요? · What do you do?</div>
+      <div class="lesson-sub">0급 한글: 조선소 한글 읽기</div>
+      <div class="lesson-theme">🎓 교육열 & 인재 양성</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson12.html" class="lesson-card">
+    <div class="lesson-num">12</div>
+    <div class="lesson-info">
+      <div class="lesson-title">얼마예요? · How much?</div>
+      <div class="lesson-sub">0급 한글: 문장 읽기 연습</div>
+      <div class="lesson-theme">🏛️ 역사 & 민주화</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson13.html" class="lesson-card">
+    <div class="lesson-num">13</div>
+    <div class="lesson-info">
+      <div class="lesson-title">어떻게 가요? · How do I get there?</div>
+      <div class="lesson-sub">0급 한글: 받아쓰기 연습 (+발음비교)</div>
+      <div class="lesson-theme">🚚 물류·교통 강국</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson14.html" class="lesson-card">
+    <div class="lesson-num">14</div>
+    <div class="lesson-info">
+      <div class="lesson-title">쇼핑하러 갈까요? · Shall we go shopping?</div>
+      <div class="lesson-sub">0급 한글: 종합 복습 & 마스터</div>
+      <div class="lesson-theme">🏷️ K-브랜드 글로벌화</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson15.html" class="lesson-card">
+    <div class="lesson-num">15</div>
+    <div class="lesson-info">
+      <div class="lesson-title">약속이 있어요 · I have an appointment</div>
+      <div class="lesson-sub">0급 한글 응용: ✉️ 편지 쓰기</div>
+      <div class="lesson-theme">🤝 기업 문화 & 글로벌 경쟁력</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson16.html" class="lesson-card">
+    <div class="lesson-num">16</div>
+    <div class="lesson-info">
+      <div class="lesson-title">어디에 살아요? · Where do you live?</div>
+      <div class="lesson-sub">0급 한글 응용: 📋 일지·보고서</div>
+      <div class="lesson-theme">🏘️ 주거 복지 & 스마트시티</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson17.html" class="lesson-card">
+    <div class="lesson-num">17</div>
+    <div class="lesson-info">
+      <div class="lesson-title">취미가 뭐예요? · What's your hobby?</div>
+      <div class="lesson-sub">0급 한글 응용: 💬 카톡·이모티콘·번역앱</div>
+      <div class="lesson-theme">🏥 의료 강국</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson18.html" class="lesson-card">
+    <div class="lesson-num">18</div>
+    <div class="lesson-info">
+      <div class="lesson-title">서류가 필요해요 · I need documents</div>
+      <div class="lesson-sub">0급 한글 응용: 📄 공문서 읽기</div>
+      <div class="lesson-theme">📋 디지털 정부 & 전자행정</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson19.html" class="lesson-card">
+    <div class="lesson-num">19</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국 생활이 어때요? · How's life in Korea?</div>
+      <div class="lesson-sub">0급 한글 응용: 📧 이메일·민원 작성</div>
+      <div class="lesson-theme">🌍 글로벌 인재 & 다문화</div>
+    </div>
+  </a>
+  <a href="HanwhaOcean_Level1_Lesson20.html" class="lesson-card" style="border-left-color:#f59e0b;background:#fffbeb">
+    <div class="lesson-num" style="background:#f59e0b">20</div>
+    <div class="lesson-info">
+      <div class="lesson-title">🎓 꿈이 뭐예요? · What's your dream?</div>
+      <div class="lesson-sub">0급 한글 응용: 🎓 한글 마스터 졸업 시험</div>
+      <div class="lesson-theme">🚀 대한민국의 미래 & 혁신</div>
+    </div>
+  </a>
+
+  <a href="Samsung_Level2_Index.html" class="next-level">
+    <h3>📘 2급 초급 2 시작하기 →</h3>
+    <p>심화 문법 · TOPIK I 대비 · 글로벌 비즈니스</p>
+  </a>
+
+  <div style="background:linear-gradient(135deg,#0d1e7a,#1428A0);padding:28px 20px;margin:28px 0;border-radius:16px;text-align:center;color:#fff;">
+    <div style="font-size:32px;margin-bottom:8px;">🏆</div>
+    <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;" data-i18n="cert_title">수료증 발급</h3>
+    <p style="font-size:13px;opacity:0.8;margin-bottom:16px;" data-i18n="cert_desc">전 과정 20과 완료 후 수료증을 발급받으세요</p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+      <input id="certName" type="text" data-i18n="cert_name_placeholder" placeholder="이름을 입력하세요" style="padding:10px 16px;border-radius:8px;border:none;font-size:14px;min-width:200px;">
+      <button onclick="issueCert(1)" style="background:#f59e0b;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;" data-i18n="cert_button">수료증 발급 →</button>
+    </div>
+  </div>
+  <script>
+  function issueCert(level){
+    const name=document.getElementById('certName').value.trim()||'학습자';
+    window.open('Samsung_Certificate.html?level='+level+'&name='+encodeURIComponent(name),'_blank');
+  }
+  </script>
+
+  <div class="footer">
+    삼성중공업 외국인 근로자 한국어 교육 프로그램<br>
+    KIIP 사회통합프로그램 기반 · 법무부 인정 교육과정<br>
+    © 2026 Samsung Heavy Industries Korean Education
+  </div>
+</div>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>

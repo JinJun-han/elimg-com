@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1200px; height: 630px; overflow: hidden; font-family: -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; }
+
+  .card {
+    width: 1200px;
+    height: 630px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+
+  /* ── Level 1 ── */
+  .lv1 { background: linear-gradient(135deg, #0f2942 0%, #1E3A5F 45%, #0a4a3a 100%); }
+  /* ── Level 2 ── */
+  .lv2 { background: linear-gradient(135deg, #0c2340 0%, #1E3A5F 45%, #1a0a4a 100%); }
+
+  /* 웨이브 SVG 배경 */
+  .wave-bg {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 100%;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+
+  /* 빛나는 원형 글로우 */
+  .glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+  }
+  .glow-1 { width: 500px; height: 500px; top: -150px; right: -100px; background: radial-gradient(circle, #0284C7 0%, transparent 70%); opacity: 0.35; }
+  .glow-2 { width: 350px; height: 350px; bottom: -100px; left: 50px; background: radial-gradient(circle, #059669 0%, transparent 70%); opacity: 0.25; }
+  .lv2 .glow-1 { background: radial-gradient(circle, #7c3aed 0%, transparent 70%); opacity: 0.3; }
+  .lv2 .glow-2 { background: radial-gradient(circle, #0284C7 0%, transparent 70%); }
+
+  /* 상단 로고 바 */
+  .top-bar {
+    position: relative;
+    z-index: 10;
+    padding: 40px 60px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .brand-icon {
+    font-size: 36px;
+    filter: drop-shadow(0 0 12px rgba(2,132,199,0.8));
+  }
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .brand-ko {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+  .brand-en {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .badge-kiip {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 8px 20px;
+    color: rgba(255,255,255,0.7);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    backdrop-filter: blur(10px);
+  }
+
+  /* 메인 콘텐츠 */
+  .main {
+    position: relative;
+    z-index: 10;
+    padding: 0 60px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .level-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(2,132,199,0.2);
+    border: 1px solid rgba(2,132,199,0.5);
+    border-radius: 8px;
+    padding: 8px 18px;
+    margin-bottom: 24px;
+    width: fit-content;
+  }
+  .lv2 .level-badge {
+    background: rgba(124,58,237,0.2);
+    border-color: rgba(124,58,237,0.5);
+  }
+  .level-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #0284C7;
+    box-shadow: 0 0 8px #0284C7;
+  }
+  .lv2 .level-dot { background: #7c3aed; box-shadow: 0 0 8px #7c3aed; }
+  .level-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: #60a5fa;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .lv2 .level-label { color: #a78bfa; }
+
+  .main-title-ko {
+    font-size: 72px;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    margin-bottom: 8px;
+  }
+  .main-title-en {
+    font-size: 26px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+  }
+
+  .desc-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .desc-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 30px;
+    padding: 10px 20px;
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+  .desc-chip-icon { font-size: 18px; }
+  .desc-chip-text { font-size: 14px; color: rgba(255,255,255,0.75); font-weight: 600; }
+
+  /* 하단 바 */
+  .bottom-bar {
+    position: relative;
+    z-index: 10;
+    padding: 24px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    background: rgba(0,0,0,0.2);
+  }
+  .url-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.5px;
+  }
+  .hanwha-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hanwha-logo-box {
+    background: linear-gradient(135deg, #0284C7, #0f172a);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.5px;
+  }
+  .lesson-count {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 600;
+  }
+
+  /* 우측 장식 숫자 */
+  .deco-number {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 240px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.03);
+    letter-spacing: -10px;
+    pointer-events: none;
+    z-index: 1;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== LEVEL 1 카드 ===== -->
+<div class="card lv1" id="lv1">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="deco-number">1</div>
+
+  <div class="top-bar">
+    <div class="brand">
+      <span class="brand-icon">🌊</span>
+      <div class="brand-text">
+        <span class="brand-ko">한화오션 한국어교육</span>
+        <span class="brand-en">Hanwha Ocean · Korean Education</span>
+      </div>
+    </div>
+    <div class="badge-kiip">KIIP · 법무부 사회통합프로그램</div>
+  </div>
+
+  <div class="main">
+    <div class="level-badge">
+      <div class="level-dot"></div>
+      <span class="level-label">Level 1 · 초급 1급</span>
+    </div>
+    <div class="main-title-ko">기초 한국어</div>
+    <div class="main-title-en">Korean Beginner Level 1</div>
+    <div class="desc-row">
+      <div class="desc-chip">
+        <span class="desc-chip-icon">📚</span>
+        <span class="desc-chip-text">20과 전체 커리큘럼</span>
+      </div>
+      <div class="desc-chip">
+        <span class="desc-chip-icon">🎧</span>
+        <span class="desc-chip-text">음성 · 퀴즈 · 어휘</span>
+      </div>
+      <div class="desc-chip">
+        <span class="desc-chip-icon">🇰🇷</span>
+        <span class="desc-chip-text">생활 밀착 회화</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span class="url-text">elimg.com/HanwhaOcean_Level1_Index.html</span>
+    <div class="hanwha-badge">
+      <span class="lesson-count">20 Lessons</span>
+      <div class="hanwha-logo-box">HANWHA OCEAN</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== LEVEL 2 카드 ===== -->
+<div class="card lv2" id="lv2" style="margin-top:40px;">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="deco-number">2</div>
+
+  <div class="top-bar">
+    <div class="brand">
+      <span class="brand-icon">🌊</span>
+      <div class="brand-text">
+        <span class="brand-ko">한화오션 한국어교육</span>
+        <span class="brand-en">Hanwha Ocean · Korean Education</span>
+      </div>
+    </div>
+    <div class="badge-kiip">KIIP · 법무부 사회통합프로그램</div>
+  </div>
+
+  <div class="main">
+    <div class="level-badge">
+      <div class="level-dot"></div>
+      <span class="level-label">Level 2 · 초급 2급</span>
+    </div>
+    <div class="main-title-ko">비즈니스 한국어</div>
+    <div class="main-title-en">Korean Beginner Level 2</div>
+    <div class="desc-row">
+      <div class="desc-chip">
+        <span class="desc-chip-icon">💼</span>
+        <span class="desc-chip-text">20과 전체 커리큘럼</span>
+      </div>
+      <div class="desc-chip">
+        <span class="desc-chip-icon">📊</span>
+        <span class="desc-chip-text">비즈니스 · 문화 · 사회</span>
+      </div>
+      <div class="desc-chip">
+        <span class="desc-chip-icon">🎤</span>
+        <span class="desc-chip-text">면접 · 발표 준비</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span class="url-text">elimg.com/HanwhaOcean_Level2_Index.html</span>
+    <div class="hanwha-badge">
+      <span class="lesson-count">20 Lessons</span>
+      <div class="hanwha-logo-box" style="background:linear-gradient(135deg,#7c3aed,#0f172a);">HANWHA OCEAN</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== SAMSUNG LEVEL 1 카드 ===== -->
+<div class="card" id="shi1" style="margin-top:40px;background:linear-gradient(135deg,#06104a 0%,#1428A0 50%,#003366 100%);">
+  <div class="glow glow-1" style="background:radial-gradient(circle,#00aae4 0%,transparent 70%);opacity:0.3;"></div>
+  <div class="glow glow-2" style="background:radial-gradient(circle,#1428A0 0%,transparent 70%);opacity:0.2;"></div>
+  <div class="deco-number">1</div>
+
+  <div class="top-bar">
+    <div class="brand">
+      <span class="brand-icon" style="filter:drop-shadow(0 0 12px rgba(0,170,228,0.9));">⚓</span>
+      <div class="brand-text">
+        <span class="brand-ko">삼성중공업 한국어교육</span>
+        <span class="brand-en">Samsung Heavy Industries · Korean Education</span>
+      </div>
+    </div>
+    <div class="badge-kiip">KIIP · 법무부 사회통합프로그램</div>
+  </div>
+
+  <div class="main">
+    <div class="level-badge" style="background:rgba(0,170,228,0.2);border-color:rgba(0,170,228,0.5);">
+      <div class="level-dot" style="background:#00aae4;box-shadow:0 0 8px #00aae4;"></div>
+      <span class="level-label" style="color:#67e8f9;">Level 1 · 초급 1급</span>
+    </div>
+    <div class="main-title-ko">기초 한국어</div>
+    <div class="main-title-en">Korean Beginner Level 1</div>
+    <div class="desc-row">
+      <div class="desc-chip"><span class="desc-chip-icon">📚</span><span class="desc-chip-text">20과 전체 커리큘럼</span></div>
+      <div class="desc-chip"><span class="desc-chip-icon">🎧</span><span class="desc-chip-text">음성 · 퀴즈 · 어휘</span></div>
+      <div class="desc-chip"><span class="desc-chip-icon">🇰🇷</span><span class="desc-chip-text">생활 밀착 회화</span></div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span class="url-text">elimg.com/Samsung_Level1_Index.html</span>
+    <div class="hanwha-badge">
+      <span class="lesson-count">20 Lessons</span>
+      <div class="hanwha-logo-box" style="background:linear-gradient(135deg,#1428A0,#06104a);">SAMSUNG SHI</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SAMSUNG LEVEL 2 카드 ===== -->
+<div class="card" id="shi2" style="margin-top:40px;background:linear-gradient(135deg,#06104a 0%,#1428A0 45%,#004080 100%);">
+  <div class="glow glow-1" style="background:radial-gradient(circle,#00aae4 0%,transparent 70%);opacity:0.25;"></div>
+  <div class="glow glow-2" style="background:radial-gradient(circle,#0ea5e9 0%,transparent 70%);opacity:0.2;"></div>
+  <div class="deco-number">2</div>
+
+  <div class="top-bar">
+    <div class="brand">
+      <span class="brand-icon" style="filter:drop-shadow(0 0 12px rgba(0,170,228,0.9));">⚓</span>
+      <div class="brand-text">
+        <span class="brand-ko">삼성중공업 한국어교육</span>
+        <span class="brand-en">Samsung Heavy Industries · Korean Education</span>
+      </div>
+    </div>
+    <div class="badge-kiip">KIIP · 법무부 사회통합프로그램</div>
+  </div>
+
+  <div class="main">
+    <div class="level-badge" style="background:rgba(0,170,228,0.15);border-color:rgba(0,170,228,0.4);">
+      <div class="level-dot" style="background:#00aae4;box-shadow:0 0 8px #00aae4;"></div>
+      <span class="level-label" style="color:#67e8f9;">Level 2 · 초급 2급</span>
+    </div>
+    <div class="main-title-ko">비즈니스 한국어</div>
+    <div class="main-title-en">Korean Beginner Level 2</div>
+    <div class="desc-row">
+      <div class="desc-chip"><span class="desc-chip-icon">💼</span><span class="desc-chip-text">20과 전체 커리큘럼</span></div>
+      <div class="desc-chip"><span class="desc-chip-icon">📊</span><span class="desc-chip-text">비즈니스 · 문화 · 사회</span></div>
+      <div class="desc-chip"><span class="desc-chip-icon">🎤</span><span class="desc-chip-text">면접 · 발표 준비</span></div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <span class="url-text">elimg.com/Samsung_Level2_Index.html</span>
+    <div class="hanwha-badge">
+      <span class="lesson-count">20 Lessons</span>
+      <div class="hanwha-logo-box" style="background:linear-gradient(135deg,#1428A0,#06104a);">SAMSUNG SHI</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== HD현대중공업 LEVEL 1 ===== -->
+<div class="card" id="hhi1" style="margin-top:40px;background:linear-gradient(135deg,#001a3d 0%,#002c5f 50%,#003d80 100%);">
+  <div class="glow glow-1" style="background:radial-gradient(circle,#00aad2 0%,transparent 70%);opacity:0.3;"></div>
+  <div class="glow glow-2" style="background:radial-gradient(circle,#0077b6 0%,transparent 70%);opacity:0.2;"></div>
+  <div class="deco-number">1</div>
+  <div class="top-bar">
+    <div class="brand">
+      <span class="brand-icon" style="filter:drop-shadow(0 0 12px rgba(0,170,210,0.9));">🚢</span>
+      <div class="brand-text">
+        <span class="brand-ko">HD현대중공업 한국어교육</span>
+        <span class="brand-en">HD Hyundai Heavy Industries · Korean Education</span>
+      </div>
+    </div>
+    <div class="badge-kiip">KIIP · 법무부 사회통합프로그램</div>
+  </div>
+  <div class="main">
+    <div class="level-badge" style="background:rgba(0,170,210,0.2);border-color:rgba(0,170,210,0.5);">
+      <div class="level-dot" style="background:#00aad2;box-shadow:0 0 8px #00aad2;"></div>
+      <span class="level-label" style="color:#7dd3fc;">Level 1 · 초급 1급</span>
+    </div>
+    <div class="main-title-ko">기초 한국어</div>
+    <div class="main-title-en">Korean Beginner Level 1</div>
+    <div class="desc-row">
+      <div class="desc-chip"><span class="desc-chip-icon">📚</span><span class="desc-chip-text">20과 전체 커리큘럼</span></div>
+      <div class="desc-chip"><span class="desc-chip-icon">🎧</span><span class="desc-chip-text">음성 · 퀴즈 · 어휘</span></div>
+      <div class="desc-chip"><span class="desc-chip-icon">🇰🇷</span><span class="desc-chip-text">생활 밀착 회화</span></div>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <span class="url-text">elimg.com/HDHyundai_Level1_Index.html</span>
+    <div class="hanwha-badge">
+      <span class="lesson-count">20 Lessons</span>
+      <div class="hanwha-logo-box" style="background:linear-gradient(135deg,#002c5f,#001a3d);">HD HYUNDAI</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HD현대중공업 LEVEL 2 ===== -->
+<div class="card" id="hhi2" style="margin-top:40px;background:linear-gradient(135deg,#001a3d 0%,#002c5f 45%,#004070 100%);">
+  <div class="glow glow-1" style="background:radial-gradient(circle,#00aad2 0%,transparent 70%);opacity:0.25;"></div>
+  <div class="glow glow-2" style="background:radial-gradient(circle,#0ea5e9 0%,transparent 70%);opacity:0.2;"></div>
+  <div class="deco-number">2</div>
+  <div class="top-bar">
+    <div class="brand">
+      <span class="brand-icon" style="filter:drop-shadow(0 0 12px rgba(0,170,210,0.9));">🚢</span>
+      <div class="brand-text">
+        <span class="brand-ko">HD현대중공업 한국어교육</span>
+        <span class="brand-en">HD Hyundai Heavy Industries · Korean Education</span>
+      </div>
+    </div>
+    <div class="badge-kiip">KIIP · 법무부 사회통합프로그램</div>
+  </div>
+  <div class="main">
+    <div class="level-badge" style="background:rgba(0,170,210,0.15);border-color:rgba(0,170,210,0.4);">
+      <div class="level-dot" style="background:#00aad2;box-shadow:0 0 8px #00aad2;"></div>
+      <span class="level-label" style="color:#7dd3fc;">Level 2 · 초급 2급</span>
+    </div>
+    <div class="main-title-ko">비즈니스 한국어</div>
+    <div class="main-title-en">Korean Beginner Level 2</div>
+    <div class="desc-row">
+      <div class="desc-chip"><span class="desc-chip-icon">💼</span><span class="desc-chip-text">20과 전체 커리큘럼</span></div>
+      <div class="desc-chip"><span class="desc-chip-icon">📊</span><span class="desc-chip-text">비즈니스 · 문화 · 사회</span></div>
+      <div class="desc-chip"><span class="desc-chip-icon">🎤</span><span class="desc-chip-text">면접 · 발표 준비</span></div>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <span class="url-text">elimg.com/HDHyundai_Level2_Index.html</span>
+    <div class="hanwha-badge">
+      <span class="lesson-count">20 Lessons</span>
+      <div class="hanwha-logo-box" style="background:linear-gradient(135deg,#002c5f,#001a3d);">HD HYUNDAI</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 현대미포조선 LEVEL 1 ===== -->
+<div class="card" id="mipo1" style="margin-top:40px;background:linear-gradient(135deg,#002040 0%,#003580 50%,#00509e 100%);">
+  <div class="glow glow-1" style="background:radial-gradient(circle,#00c4ff 0%,transparent 70%);opacity:0.28;"></div>
+  <div class="glow glow-2" style="background:radial-gradient(circle,#0ea5e9 0%,transparent 70%);opacity:0.2;"></div>
+  <div class="deco-number">1</div>
+  <div class="top-bar">
+    <div class="brand">
+      <span class="brand-icon" style="filter:drop-shadow(0 0 12px rgba(0,196,255,0.9));">🛳️</span>
+      <div class="brand-text">
+        <span class="brand-ko">현대미포조선 한국어교육</span>
+        <span class="brand-en">Hyundai Mipo Dockyard · Korean Education</span>
+      </div>
+    </div>
+    <div class="badge-kiip">KIIP · 법무부 사회통합프로그램</div>
+  </div>
+  <div class="main">
+    <div class="level-badge" style="background:rgba(0,196,255,0.2);border-color:rgba(0,196,255,0.5);">
+      <div class="level-dot" style="background:#00c4ff;box-shadow:0 0 8px #00c4ff;"></div>
+      <span class="level-label" style="color:#bae6fd;">Level 1 · 초급 1급</span>
+    </div>
+    <div class="main-title-ko">기초 한국어</div>
+    <div class="main-title-en">Korean Beginner Level 1</div>
+    <div class="desc-row">
+      <div class="desc-chip"><span class="desc-chip-icon">📚</span><span class="desc-chip-text">20과 전체 커리큘럼</span></div>
+      <div class="desc-chip"><span class="desc-chip-icon">🎧</span><span class="desc-chip-text">음성 · 퀴즈 · 어휘</span></div>
+      <div class="desc-chip"><span class="desc-chip-icon">🇰🇷</span><span class="desc-chip-text">생활 밀착 회화</span></div>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <span class="url-text">elimg.com/Mipo_Level1_Index.html</span>
+    <div class="hanwha-badge">
+      <span class="lesson-count">20 Lessons</span>
+      <div class="hanwha-logo-box" style="background:linear-gradient(135deg,#003580,#002040);">MIPO DOCKYARD</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 현대미포조선 LEVEL 2 ===== -->
+<div class="card" id="mipo2" style="margin-top:40px;background:linear-gradient(135deg,#002040 0%,#003580 45%,#005aaa 100%);">
+  <div class="glow glow-1" style="background:radial-gradient(circle,#00c4ff 0%,transparent 70%);opacity:0.22;"></div>
+  <div class="glow glow-2" style="background:radial-gradient(circle,#60a5fa 0%,transparent 70%);opacity:0.18;"></div>
+  <div class="deco-number">2</div>
+  <div class="top-bar">
+    <div class="brand">
+      <span class="brand-icon" style="filter:drop-shadow(0 0 12px rgba(0,196,255,0.9));">🛳️</span>
+      <div class="brand-text">
+        <span class="brand-ko">현대미포조선 한국어교육</span>
+        <span class="brand-en">Hyundai Mipo Dockyard · Korean Education</span>
+      </div>
+    </div>
+    <div class="badge-kiip">KIIP · 법무부 사회통합프로그램</div>
+  </div>
+  <div class="main">
+    <div class="level-badge" style="background:rgba(0,196,255,0.15);border-color:rgba(0,196,255,0.4);">
+      <div class="level-dot" style="background:#00c4ff;box-shadow:0 0 8px #00c4ff;"></div>
+      <span class="level-label" style="color:#bae6fd;">Level 2 · 초급 2급</span>
+    </div>
+    <div class="main-title-ko">비즈니스 한국어</div>
+    <div class="main-title-en">Korean Beginner Level 2</div>
+    <div class="desc-row">
+      <div class="desc-chip"><span class="desc-chip-icon">💼</span><span class="desc-chip-text">20과 전체 커리큘럼</span></div>
+      <div class="desc-chip"><span class="desc-chip-icon">📊</span><span class="desc-chip-text">비즈니스 · 문화 · 사회</span></div>
+      <div class="desc-chip"><span class="desc-chip-icon">🎤</span><span class="desc-chip-text">면접 · 발표 준비</span></div>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <span class="url-text">elimg.com/Mipo_Level2_Index.html</span>
+    <div class="hanwha-badge">
+      <span class="lesson-count">20 Lessons</span>
+      <div class="hanwha-logo-box" style="background:linear-gradient(135deg,#003580,#002040);">MIPO DOCKYARD</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
