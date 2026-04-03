@@ -1213,11 +1213,12 @@ var AICHAT = {
     this.loading = true;
     var displayText = label || text;
     this.addMsg('user', displayText);
-    var sys = encodeURIComponent('You are a Korean language tutor for foreign workers at Hanwha Ocean shipyard in Geoje, Korea. Students are beginner level (KIIP Level 1-2). Always: 1) Keep answers SHORT and CLEAR 2) Include English translations 3) Focus on practical shipyard expressions 4) Use simple grammar. Reply in Korean with English translation.');
     try {
-      var url = 'https://text.pollinations.ai/' + encodeURIComponent(text) + '?model=openai&system=' + sys;
-      var res = await fetch(url);
-      var reply = await res.text();
+      var sysP = 'You are a Korean language tutor for foreign workers at Hanwha Ocean shipyard in Geoje, Korea. Students are beginner level (KIIP Level 1-2). Always: 1) Keep answers SHORT and CLEAR 2) Include English translations 3) Focus on practical shipyard expressions 4) Use simple grammar. Reply in Korean with English translation.';
+      var url = '/api/chat';
+      var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
       this.loading = false;
       this.addMsg('assistant', reply);
     } catch(e) {
