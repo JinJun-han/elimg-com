@@ -1083,19 +1083,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'📖', label:'이 단어 설명해줘',
-    q:'한화오션 조선소 외국인 근로자 초급 한국어 학습자입니다. 이번 과에서 배운 단어를 쉽게 설명해주세요. 예: "알겠습니다", "수고하세요", "안전 제일" 같은 표현의 뜻과 언제 쓰는지 영어로도 알려주세요.' },
-  { emoji:'🔧', label:'조선소 표현 알려줘',
-    q:'조선소에서 매일 쓰는 한국어 표현 5가지를 알려주세요. 발음, 영어 뜻, 언제 쓰는지 함께 알려주세요. 초급 수준으로 쉽게 설명해주세요.' },
-  { emoji:'👋', label:'자기소개 연습',
-    q:'저는 조선소에서 일하는 외국인 근로자입니다. 한국어로 자기소개 연습을 도와주세요. 이름, 나라, 직업을 소개하는 짧은 문장을 만들어주세요. 영어 해석도 함께 넣어주세요.' },
-  { emoji:'🛡️', label:'안전 한국어 알려줘',
-    q:'조선소 안전 관련 한국어 표현을 알려주세요. "위험해요", "조심하세요", "도와주세요", "비상구" 등 긴급할 때 꼭 필요한 말을 영어와 함께 5가지 알려주세요.' },
-  { emoji:'✏️', label:'내 문장 고쳐줘',
-    q:'한국어 초급 조선소 학습자입니다. 제 한국어 문장을 고쳐주세요: "저는 베트남 사람 이에요. 직업은 용접공." 어떻게 더 자연스럽게 말할 수 있는지 알려주세요.' },
-  { emoji:'🎯', label:'퀴즈 틀렸어요',
-    q:'한국어 초급 퀴즈에서 틀렸습니다. 이/가, 은/는, 이에요/예요 차이를 쉽게 설명해주세요. 조선소 예문으로 설명해주고 영어로도 알려주세요.' },
-];
+  { emoji:'❓', label:'이것 뭐예요? 퀴즈',
+    q:'조선소 도구 이름 맞히기 퀴즈를 해주세요. 도구의 특징을 설명하면 제가 한국어로 대답할게요. 예: "이것은 철을 자르는 도구예요. 이것은 뭐예요?" — 5개만 내주세요.' },
+  { emoji:'🔩', label:'조선소 도구 이름',
+    q:'한화오션 조선소에서 쓰는 도구/장비 이름을 한국어로 알려주세요: 그라인더, 용접기, 크레인, 안전모, 도면 등 10가지. 한국어 + 영어 + 발음을 함께요.' },
+  { emoji:'👆', label:'이/그/저 차이',
+    q:'이것/그것/저것 차이를 조선소 상황으로 설명해주세요. 예: 내 앞 도구=이것, 상대방 앞=그것, 멀리 보이는 크레인=저것. 쉽게 영어로도 설명해주세요.' },
+  { emoji:'🗣️', label:'도구 가리키며 말하기',
+    q:'조선소에서 도구를 가리키며 말하는 연습을 도와주세요. "이 용접기는 제 거예요", "저 크레인이 뭐예요?" 같은 표현 5가지를 알려주세요. 영어도 함께요.' },
+  { emoji:'✏️', label:'이에요/예요 복습',
+    q:'조선소 도구 이름으로 이에요/예요 복습을 해주세요. 그라인더예요, 용접기이에요, 크레인이에요 — 받침 규칙을 도구 예문으로 5개 만들어주세요.' },
+]
 
 var AICHAT = {
   msgs: [],
@@ -1123,7 +1121,7 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean language tutor for foreign workers at Hanwha Ocean shipyard in Geoje, Korea. Students are beginner level (KIIP Level 1-2). Always: 1) Keep answers SHORT and CLEAR 2) Include English translations 3) Focus on practical shipyard expressions 4) Use simple grammar. Reply in Korean with English translation.';
+      var sysP = 'You are a Korean vocabulary coach for shipyard tool identification. Lesson 2 focus: demonstratives 이것/그것/저것 (this/that/that over there), 이/그/저+noun, and tool names like 용접기(welder), 그라인더(grinder), 크레인(crane), 도면(blueprint), 안전모(hard hat). Keep answers SHORT with English. Use quiz-style when asked.';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
@@ -1279,9 +1277,9 @@ function renderAI() {
   <!-- 헤더 배너 -->
   <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
     <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
-    <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 조선소 한국어 실습</div>
-    <div style="font-size:11px;opacity:0.85;line-height:1.7">Google Gemini · Claude AI · Agent Harness 연계<br>
-    <span style="color:#93c5fd">🔵 Shipyard Korean Learning × AI Agents</span></div>
+    <div style="font-size:15px;font-weight:800;margin-bottom:6px">🔧 AI 도구 이름 퀴즈</div>
+    <div style="font-size:11px;opacity:0.85;line-height:1.7">이것/그것/저것 + 조선소 도구 이름 맞히기<br>
+    <span style="color:#93c5fd">🔵 Tool Name Quiz × Demonstratives</span></div>
   </div>
 
   <!-- 앱 내 AI 채팅 -->
@@ -1312,7 +1310,7 @@ function renderAI() {
       ${AICHAT.loading ? `<div style="align-self:flex-start;background:#f0f7ff;border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:13px;color:#2E75B6">⏳ AI가 답하는 중... / Generating...</div>` : ''}
     </div>
     <div style="display:flex;gap:8px">
-      <input id="ai-input" type="text" placeholder="조선소 한국어 질문 / Ask about shipyard Korean..."
+      <input id="ai-input" type="text" placeholder="조선소 도구 이름 질문 / 이것 뭐예요? ..."
         style="flex:1;padding:12px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;outline:none"
         onfocus="this.style.borderColor='#2E75B6'" onblur="this.style.borderColor='#e5e7eb'"
         onkeydown="if(event.key==='Enter'){AICHAT.input=this.value;AICHAT.send();}">
@@ -1336,7 +1334,7 @@ function renderAI() {
         <strong style="color:#1d4ed8">② 조선소 롤플레이 연습:</strong>
         <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
           <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 프롬프트 복사해서 붙여넣기</div>
-          <span style="font-family:monospace;background:#dbeafe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 한화오션 조선소 외국인 근로자예요. 이번 과에서 배운 표현으로 상사와 대화하는 롤플레이를 도와주세요. 영어로도 설명해 주세요."</span>
+          <span style="font-family:monospace;background:#dbeafe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 한화오션 조선소 외국인 근로자예요. 조선소 도구 이름을 이것/그것/저것으로 가리키는 연습을 도와주세요. 도구 사진을 보여주면 한국어로 설명해 주세요. 영어로도 알려주세요."</span>
           Copy &amp; paste to Gemini for shipyard roleplay practice
         </div>
         <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
@@ -1392,11 +1390,11 @@ function renderAI() {
     </div>
 
     ${[
-      {sent:'안전모를 착용하세요.', eng:'Please wear your safety helmet.'},
-      {sent:'작업 지시서를 확인하세요.', eng:'Please check the work order.'},
-      {sent:'도움이 필요합니다.', eng:'I need help.'},
-      {sent:'작업이 완료되었습니다.', eng:'The work is complete.'},
-      {sent:'위험합니다. 조심하세요!', eng:'It is dangerous. Please be careful!'},
+      {sent:'이것은 용접기예요.', eng:'This is a welding machine.'},
+      {sent:'저것은 크레인이에요.', eng:'That over there is a crane.'},
+      {sent:'이 그라인더는 제 거예요.', eng:'This grinder is mine.'},
+      {sent:'그것이 뭐예요?', eng:'What is that?'},
+      {sent:'이 도면을 확인하세요.', eng:'Please check this blueprint.'},
     ].map(function(item,i){ return `
       <div style="background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
         <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>

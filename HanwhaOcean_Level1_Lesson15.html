@@ -1065,19 +1065,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'📖', label:'이 단어 설명해줘',
-    q:'한화오션 조선소 외국인 근로자 초급 한국어 학습자입니다. 이번 과에서 배운 단어를 쉽게 설명해주세요. 예: "알겠습니다", "수고하세요", "안전 제일" 같은 표현의 뜻과 언제 쓰는지 영어로도 알려주세요.' },
-  { emoji:'🔧', label:'조선소 표현 알려줘',
-    q:'조선소에서 매일 쓰는 한국어 표현 5가지를 알려주세요. 발음, 영어 뜻, 언제 쓰는지 함께 알려주세요. 초급 수준으로 쉽게 설명해주세요.' },
-  { emoji:'👋', label:'자기소개 연습',
-    q:'저는 조선소에서 일하는 외국인 근로자입니다. 한국어로 자기소개 연습을 도와주세요. 이름, 나라, 직업을 소개하는 짧은 문장을 만들어주세요. 영어 해석도 함께 넣어주세요.' },
-  { emoji:'🛡️', label:'안전 한국어 알려줘',
-    q:'조선소 안전 관련 한국어 표현을 알려주세요. "위험해요", "조심하세요", "도와주세요", "비상구" 등 긴급할 때 꼭 필요한 말을 영어와 함께 5가지 알려주세요.' },
-  { emoji:'✏️', label:'내 문장 고쳐줘',
-    q:'한국어 초급 조선소 학습자입니다. 제 한국어 문장을 고쳐주세요: "저는 베트남 사람 이에요. 직업은 용접공." 어떻게 더 자연스럽게 말할 수 있는지 알려주세요.' },
-  { emoji:'🎯', label:'퀴즈 틀렸어요',
-    q:'한국어 초급 퀴즈에서 틀렸습니다. 이/가, 은/는, 이에요/예요 차이를 쉽게 설명해주세요. 조선소 예문으로 설명해주고 영어로도 알려주세요.' },
-];
+  { emoji:'🤝', label:'약속 잡기',
+    q:'한국어로 동료와 약속을 잡는 대화를 연습해주세요. "이번 주말에 만날까요?", "몇 시에 어디서 만나요?", "알겠어요. 그때 봐요" 같은 표현을 롤플레이로 해주세요.' },
+  { emoji:'🎯', label:'주말 계획 말하기',
+    q:'~(으)ㄹ 거예요 표현으로 주말 계획을 말하는 연습을 해주세요. "내일 운동할 거예요", "주말에 부산에 갈 거예요" 같은 미래 계획 문장 5개를 영어와 함께요.' },
+  { emoji:'📍', label:'만날 장소 정하기',
+    q:'약속 장소를 정하는 한국어 표현을 알려주세요. "어디서 만날까요?", "정문 앞에서 만나요", "버스 정류장에서 기다릴게요" 같은 위치+약속 표현을 영어와 함께요.' },
+  { emoji:'⏰', label:'약속 시간 표현',
+    q:'약속 시간을 한국어로 정하는 표현을 알려주세요. "몇 시가 좋아요?", "오후 3시 어때요?", "조금 늦을 것 같아요" 같은 시간+약속 표현을 영어와 함께 5가지요.' },
+  { emoji:'❌', label:'약속 취소하기',
+    q:'불가피하게 약속을 취소해야 할 때 한국어 표현을 알려주세요. "갑자기 일이 생겼어요", "미안해요. 다음에 만나요", "다음 주에 다시 약속해요" 표현을 영어와 함께요.' },
+]
 
 var AICHAT = {
   msgs: [],
@@ -1105,7 +1103,7 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean language tutor for foreign workers at Hanwha Ocean shipyard in Geoje, Korea. Students are beginner level (KIIP Level 1-2). Always: 1) Keep answers SHORT and CLEAR 2) Include English translations 3) Focus on practical shipyard expressions 4) Use simple grammar. Reply in Korean with English translation.';
+      var sysP = 'You are a Korean appointment and future plans coach for shipyard workers. Lesson focus: appointment vocab 약속(appointment), 계획(plan), 만나다(meet), 시간(time), 장소(place), future tense ~(으)ㄹ 거예요 (will/going to). Help workers make and manage social plans. SHORT answers with English.';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
@@ -1261,9 +1259,9 @@ function renderAI() {
   <!-- 헤더 배너 -->
   <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
     <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
-    <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 조선소 한국어 실습</div>
-    <div style="font-size:11px;opacity:0.85;line-height:1.7">Google Gemini · Claude AI · Agent Harness 연계<br>
-    <span style="color:#93c5fd">🔵 Shipyard Korean Learning × AI Agents</span></div>
+    <div style="font-size:15px;font-weight:800;margin-bottom:6px">📅 AI 약속 계획 도우미</div>
+    <div style="font-size:11px;opacity:0.85;line-height:1.7">만남 약속 · 미래 계획 · ~(으)ㄹ 거예요<br>
+    <span style="color:#93c5fd">🔵 Future Plans Coach × Schedule Korean</span></div>
   </div>
 
   <!-- 앱 내 AI 채팅 -->
@@ -1294,7 +1292,7 @@ function renderAI() {
       ${AICHAT.loading ? `<div style="align-self:flex-start;background:#f0f7ff;border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:13px;color:#2E75B6">⏳ AI가 답하는 중... / Generating...</div>` : ''}
     </div>
     <div style="display:flex;gap:8px">
-      <input id="ai-input" type="text" placeholder="조선소 한국어 질문 / Ask about shipyard Korean..."
+      <input id="ai-input" type="text" placeholder="약속/계획 질문 / Ask about making plans in Korean..."
         style="flex:1;padding:12px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;outline:none"
         onfocus="this.style.borderColor='#2E75B6'" onblur="this.style.borderColor='#e5e7eb'"
         onkeydown="if(event.key==='Enter'){AICHAT.input=this.value;AICHAT.send();}">
@@ -1318,7 +1316,7 @@ function renderAI() {
         <strong style="color:#1d4ed8">② 조선소 롤플레이 연습:</strong>
         <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
           <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 프롬프트 복사해서 붙여넣기</div>
-          <span style="font-family:monospace;background:#dbeafe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 한화오션 조선소 외국인 근로자예요. 이번 과에서 배운 표현으로 상사와 대화하는 롤플레이를 도와주세요. 영어로도 설명해 주세요."</span>
+          <span style="font-family:monospace;background:#dbeafe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 한화오션 조선소 외국인 근로자예요. 한국어로 동료와 약속을 잡고 주말 계획을 말하는 연습을 도와주세요. ~(으)ㄹ 거예요 표현을 사용한 대화를 영어로도 설명해 주세요."</span>
           Copy &amp; paste to Gemini for shipyard roleplay practice
         </div>
         <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
@@ -1374,11 +1372,11 @@ function renderAI() {
     </div>
 
     ${[
-      {sent:'안전모를 착용하세요.', eng:'Please wear your safety helmet.'},
-      {sent:'작업 지시서를 확인하세요.', eng:'Please check the work order.'},
-      {sent:'도움이 필요합니다.', eng:'I need help.'},
-      {sent:'작업이 완료되었습니다.', eng:'The work is complete.'},
-      {sent:'위험합니다. 조심하세요!', eng:'It is dangerous. Please be careful!'},
+      {sent:'이번 주말에 뭐 할 거예요?', eng:'What will you do this weekend?'},
+      {sent:'같이 밥 먹을까요?', eng:'Shall we eat together?'},
+      {sent:'오후 6시에 정문 앞에서 만나요.', eng:'Let's meet at 6 PM in front of the main gate.'},
+      {sent:'갑자기 야근이 생겼어요.', eng:'Suddenly I have overtime work.'},
+      {sent:'다음에 꼭 같이 가요.', eng:'Let's definitely go together next time.'},
     ].map(function(item,i){ return `
       <div style="background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
         <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>

@@ -1064,19 +1064,17 @@ function renderTopikPractice() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'📖', label:'이 단어 설명해줘',
-    q:'한화오션 조선소 외국인 근로자 초급 한국어 학습자입니다. 이번 과에서 배운 단어를 쉽게 설명해주세요. 예: "알겠습니다", "수고하세요", "안전 제일" 같은 표현의 뜻과 언제 쓰는지 영어로도 알려주세요.' },
-  { emoji:'🔧', label:'조선소 표현 알려줘',
-    q:'조선소에서 매일 쓰는 한국어 표현 5가지를 알려주세요. 발음, 영어 뜻, 언제 쓰는지 함께 알려주세요. 초급 수준으로 쉽게 설명해주세요.' },
-  { emoji:'👋', label:'자기소개 연습',
-    q:'저는 조선소에서 일하는 외국인 근로자입니다. 한국어로 자기소개 연습을 도와주세요. 이름, 나라, 직업을 소개하는 짧은 문장을 만들어주세요. 영어 해석도 함께 넣어주세요.' },
-  { emoji:'🛡️', label:'안전 한국어 알려줘',
-    q:'조선소 안전 관련 한국어 표현을 알려주세요. "위험해요", "조심하세요", "도와주세요", "비상구" 등 긴급할 때 꼭 필요한 말을 영어와 함께 5가지 알려주세요.' },
-  { emoji:'✏️', label:'내 문장 고쳐줘',
-    q:'한국어 초급 조선소 학습자입니다. 제 한국어 문장을 고쳐주세요: "저는 베트남 사람 이에요. 직업은 용접공." 어떻게 더 자연스럽게 말할 수 있는지 알려주세요.' },
-  { emoji:'🎯', label:'퀴즈 틀렸어요',
-    q:'한국어 초급 퀴즈에서 틀렸습니다. 이/가, 은/는, 이에요/예요 차이를 쉽게 설명해주세요. 조선소 예문으로 설명해주고 영어로도 알려주세요.' },
-];
+  { emoji:'🤝', label:'다문화 존중 표현',
+    q:'다양한 나라 사람들과 함께 일할 때 쓰는 한국어 표현을 알려주세요. "서로 존중해요", "문화 차이를 이해해요", "다같이 협력해요" 같은 표현을 영어와 함께 5가지요.' },
+  { emoji:'🏢', label:'한국 조직 문화',
+    q:'한국 직장 조직 문화를 이해하는 데 도움이 되는 표현을 알려주세요. 상하 관계, 존댓말, 집단주의 문화를 외국인이 이해하고 적응할 수 있는 팁을 영어와 함께요.' },
+  { emoji:'🎌', label:'차별 대응 표현',
+    q:'직장에서 차별을 경험했을 때 한국어로 대응하는 방법을 알려주세요. "그 말은 차별적이에요", "불편해요", "공정하게 대우해 주세요" 표현을 영어와 함께요.' },
+  { emoji:'💬', label:'갈등 해결 표현',
+    q:'동료와 갈등이 생겼을 때 한국어로 해결하는 표현을 알려주세요. "제 말을 오해한 것 같아요", "솔직하게 이야기해요", "타협합시다" 표현을 영어와 함께요.' },
+  { emoji:'🌍', label:'내 나라 문화 소개',
+    q:'내 나라 문화를 한국어로 소개하는 연습을 해주세요. 음식, 명절, 인사 방법, 종교를 한국어로 소개하는 표현을 영어와 함께 만드는 방법을 알려주세요.' },
+]
 
 var AICHAT = {
   msgs: [],
@@ -1104,7 +1102,7 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean language tutor for foreign workers at Hanwha Ocean shipyard in Geoje, Korea. Students are beginner level (KIIP Level 1-2). Always: 1) Keep answers SHORT and CLEAR 2) Include English translations 3) Focus on practical shipyard expressions 4) Use simple grammar. Reply in Korean with English translation.';
+      var sysP = 'You are a Korean multicultural society coach for foreign workers. Lesson focus: social vocabulary 사회(society), 문화(culture), 전통(tradition), 차별(discrimination), 존중(respect), normative expressions ~어야 해요. Help workers navigate Korean workplace culture respectfully. SHORT answers with English.';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
@@ -1260,9 +1258,9 @@ function renderAI() {
   <!-- 헤더 배너 -->
   <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
     <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
-    <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 조선소 한국어 실습</div>
-    <div style="font-size:11px;opacity:0.85;line-height:1.7">Google Gemini · Claude AI · Agent Harness 연계<br>
-    <span style="color:#93c5fd">🔵 Shipyard Korean Learning × AI Agents</span></div>
+    <div style="font-size:15px;font-weight:800;margin-bottom:6px">🌐 AI 사회 문화 코치</div>
+    <div style="font-size:11px;opacity:0.85;line-height:1.7">한국 사회 이해 · 다문화 · 존중 표현<br>
+    <span style="color:#93c5fd">🔵 Multicultural Coach × Social Korean</span></div>
   </div>
 
   <!-- 앱 내 AI 채팅 -->
@@ -1293,7 +1291,7 @@ function renderAI() {
       \${AICHAT.loading ? \`<div style="align-self:flex-start;background:#f0f7ff;border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:13px;color:#2E75B6">⏳ AI가 답하는 중... / Generating...</div>\` : ''}
     </div>
     <div style="display:flex;gap:8px">
-      <input id="ai-input" type="text" placeholder="조선소 한국어 질문 / Ask about shipyard Korean..."
+      <input id="ai-input" type="text" placeholder="사회/문화 질문 / Ask about Korean social culture..."
         style="flex:1;padding:12px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;outline:none"
         onfocus="this.style.borderColor='#2E75B6'" onblur="this.style.borderColor='#e5e7eb'"
         onkeydown="if(event.key==='Enter'){AICHAT.input=this.value;AICHAT.send();}">
@@ -1317,7 +1315,7 @@ function renderAI() {
         <strong style="color:#1d4ed8">② 조선소 롤플레이 연습:</strong>
         <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
           <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 프롬프트 복사해서 붙여넣기</div>
-          <span style="font-family:monospace;background:#dbeafe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 한화오션 조선소 외국인 근로자예요. 이번 과에서 배운 표현으로 상사와 대화하는 롤플레이를 도와주세요. 영어로도 설명해 주세요."</span>
+          <span style="font-family:monospace;background:#dbeafe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 한화오션 조선소 외국인 근로자예요. 한국 사회와 직장 문화를 이해하고 다문화 환경에서 존중하며 소통하는 한국어 표현을 배우고 싶어요. 영어로도 설명해 주세요."</span>
           Copy &amp; paste to Gemini for shipyard roleplay practice
         </div>
         <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
@@ -1373,11 +1371,11 @@ function renderAI() {
     </div>
 
     \${[
-      {sent:'안전모를 착용하세요.', eng:'Please wear your safety helmet.'},
-      {sent:'작업 지시서를 확인하세요.', eng:'Please check the work order.'},
-      {sent:'도움이 필요합니다.', eng:'I need help.'},
-      {sent:'작업이 완료되었습니다.', eng:'The work is complete.'},
-      {sent:'위험합니다. 조심하세요!', eng:'It is dangerous. Please be careful!'},
+      {sent:'서로 존중하며 일해요.', eng:'We work while respecting each other.'},
+      {sent:'문화 차이를 이해해요.', eng:'I understand cultural differences.'},
+      {sent:'모두 평등하게 대우받아야 해요.', eng:'Everyone should be treated equally.'},
+      {sent:'한국 문화를 배우고 싶어요.', eng:'I want to learn Korean culture.'},
+      {sent:'함께 일하면 더 잘 할 수 있어요.', eng:'We can do better when we work together.'},
     ].map(function(item,i){ return \`
       <div style="background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
         <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">\${item.sent}</div>
