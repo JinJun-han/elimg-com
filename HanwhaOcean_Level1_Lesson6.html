@@ -1252,11 +1252,48 @@ function renderAI() {
     <span style="color:#93c5fd">🔵 Cafeteria Order Coach × Food Korean</span></div>
   </div>
 
+  <!-- 앱 내 AI 채팅 — 로그인 불필요 -->
+  <div class="card" style="margin-bottom:10px;border:2px solid #2E75B6">
+    <div class="section-label" style="background:#1E3A5F">⚡ AI 채팅 · 로그인 불필요 · No Login Needed</div>
+    <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+      계정 없이 바로 AI에게 질문하세요<br>
+      <span style="font-size:11px;color:#2E75B6">Ask AI directly — no login needed · Free</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+      ${AI_QUICK_BTNS.map(function(b,i){return `
+        <button onclick="AICHAT.quickSend(${i})"
+          style="background:#f0f7ff;border:1px solid #2E75B6;color:#1E3A5F;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">
+          ${b.emoji} ${b.label}
+        </button>`;}).join('')}
+    </div>
+    <div class="ai-msgbox" style="background:#fff;border-radius:12px;border:1px solid #e8edf2;min-height:120px;max-height:300px;overflow-y:auto;padding:12px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px">
+      ${AICHAT.msgs.length === 0
+        ? `<div style="text-align:center;color:#aaa;padding:24px 16px;font-size:12px">
+            💡 버튼을 누르거나 아래에 입력하세요<br>
+            <span style="font-size:11px">Tap a button above or type below</span>
+          </div>`
+        : AICHAT.msgs.map(function(m){ return `
+          <div style="align-self:${m.role==='user'?'flex-end':'flex-start'};max-width:90%">
+            <div style="background:${m.role==='user'?'#2E75B6':'#f0f7ff'};color:${m.role==='user'?'#fff':'#1E3A5F'};border-radius:${m.role==='user'?'14px 14px 4px 14px':'14px 14px 14px 4px'};padding:10px 13px;font-size:13px;line-height:1.65;white-space:pre-wrap;word-break:break-word">${m.text}</div>
+            <div style="font-size:10px;color:#aaa;margin-top:3px;text-align:${m.role==='user'?'right':'left'}">${m.time}</div>
+          </div>`;}).join('')}
+      ${AICHAT.loading ? `<div style="align-self:flex-start;background:#f0f7ff;border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:13px;color:#2E75B6">⏳ AI가 답하는 중... / Generating...</div>` : ''}
+    </div>
+    <div style="display:flex;gap:8px">
+      <input id="ai-input" type="text" placeholder="한국어 질문 / Ask a question..."
+        style="flex:1;padding:12px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;outline:none"
+        onfocus="this.style.borderColor='#2E75B6'" onblur="this.style.borderColor='#e5e7eb'"
+        onkeydown="if(event.key==='Enter'){AICHAT.input=this.value;AICHAT.send();}">
+      <button onclick="AICHAT.input=document.getElementById('ai-input').value;AICHAT.send()"
+        style="background:#2E75B6;color:#fff;border-radius:10px;padding:0 18px;font-size:20px;min-width:52px;font-family:inherit;cursor:pointer;border:none">➤</button>
+    </div>
+    <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:center">Enter로 전송 · 🆓 완전 무료 · No account needed</div>
+  </div>
 
-  <!-- 외부 AI 가이드 -->
+  <!-- 외부 AI 가이드 — 선택사항 -->
   <div class="card" style="margin-bottom:10px">
-    <div class="section-label">🌐 외부 AI 서비스 · External AI</div>
-    <div style="font-size:11px;color:#888;margin:6px 0 8px">더 강력한 AI로 깊이 있게 학습하세요</div>
+    <div class="section-label" style="background:#6b7280">🌐 외부 AI · 선택사항 · Optional</div>
+    <div style="font-size:11px;color:#888;margin:6px 0 8px">더 강력한 AI로 깊이 있게 학습 (로그인 필요 / Login required)</div>
 
     <details style="margin-bottom:8px">
       <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
