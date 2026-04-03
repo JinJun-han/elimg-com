@@ -469,6 +469,7 @@ function renderMenu() {
     {page:'literature',label:'📜 시'},
     {page:'topik',label:'🎓 TOPIK'},
     {page:'geoje',label:'⚓ 조선소'},
+    {page:'ai',label:'🤖 AI실습'},
   ];
   return `<div class="menu ${state.menuOpen?'':'hide'}">${items.map(it=>`<button class="${state.page===it.page?'active':''}" onclick="setState({page:'${it.page}',menuOpen:false})">${it.label}</button>`).join('')}</div>`;
 }
@@ -483,6 +484,7 @@ function renderBottomNav() {
     {icon:'🎯',p:'quiz',t:'퀴즈'},
     {icon:'📜',p:'literature',t:'시'},
     {icon:'🎓',p:'topik',t:'TOPIK'},
+    {icon:'🤖',p:'ai',t:'AI'},
   ].map(it=>`<button class="${state.page===it.p?'active':''}" onclick="setState({page:'${it.p}'})" title="${it.t}"><div class="icon">${it.icon}</div><div>${it.t}</div></button>`).join('')}</div>`;
 }
 

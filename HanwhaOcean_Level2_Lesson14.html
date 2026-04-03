@@ -484,6 +484,7 @@ function renderMenu() {
     {id:'litquiz',label:'🧩 시퀴즈'},
     {id:'culture',label:'🏛️ 문화'},
     {id:'review',label:'📝 익힘'},
+    {id:'ai',label:'🤖 AI실습'},
   ];
   if (!state.menuOpen) return '';
   return `<div class="menu">${items.map(it=>`<button class="${state.page===it.id?'active':''}" onclick="setState({page:'${it.id}',menuOpen:false})">${it.label}</button>`).join('')}</div>`;
@@ -496,6 +497,7 @@ function renderBottomNav() {
     {id:'grammar',icon:'✏️',label:'문법'},
     {id:'dialogue',icon:'💬',label:'대화'},
     {id:'quiz',icon:'🎯',label:'퀴즈'},
+    {id:'ai',icon:'🤖',label:'AI'},
   ];
   return `<div class="bottom-nav">${items.map(it=>`<button class="${state.page===it.id?'active':''}" onclick="setState({page:'${it.id}'})" title="${it.label}"><div class="icon">${it.icon}</div>${it.label}</button>`).join('')}</div>`;
 }
@@ -520,6 +522,7 @@ function renderPage() {
       case 'culture': return renderCulture();
       case 'review': return renderReview();
       case 'curriculum': return renderCurriculum();
+      case 'ai': return renderAI();
       default: return renderHome();
     }
   })();
