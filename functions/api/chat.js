@@ -1,14 +1,16 @@
 /**
- * Cloudflare Pages Function — AI Chat Proxy
+ * Cloudflare Pages Function — AI Chat Proxy (Groq)
  * URL: https://elimg.com/api/chat
  *
- * Cloudflare 대시보드 설정 필요:
- *   Pages → elimg-com → Settings → Functions → AI Bindings
- *   Variable name: AI (자동으로 Cloudflare Workers AI에 연결됨)
+ * 설정: Cloudflare 대시보드 → Pages → elimg-com → Settings
+ *       → Environment Variables → GROQ_API_KEY = gsk_...
+ *
+ * Groq 무료 키 발급: https://console.groq.com (구글 계정, 무료, 카드 불필요)
+ * 무료 한도: 하루 14,400 요청, 분당 30 요청 — 교육용으로 충분
  */
 
 export async function onRequestPost(context) {
-  const corsHeaders = {
+  const cors = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -17,32 +19,52 @@ export async function onRequestPost(context) {
 
   try {
     const { messages } = await context.request.json();
+    const apiKey = context.env.GROQ_API_KEY;
 
-    // Cloudflare Workers AI 호출 (무료 티어: 10,000 뉴런/일)
-    const ai = context.env.AI;
-    if (!ai) {
+    if (!apiKey) {
       return new Response(JSON.stringify({
-        error: 'AI binding not configured. Please set up AI binding in Cloudflare dashboard.'
-      }), { status: 500, headers: corsHeaders });
+        choices: [{ message: { content:
+          '⚠️ AI 설정 중입니다.\n\nCloudflare 대시보드에서 GROQ_API_KEY를 등록해 주세요.\n\n'
+          + '📌 설정 방법:\n1. dash.cloudflare.com → Workers & Pages → elimg-com\n'
+          + '2. Settings → Environment Variables\n'
+          + '3. GROQ_API_KEY = gsk_... (groq.com에서 무료 발급)\n\n'
+          + '설정 후 즉시 AI 사용 가능합니다!'
+        }}]
+      }), { headers: cors });
     }
 
-    const result = await ai.run('@cf/meta/llama-3.1-8b-instruct', {
-      messages,
-      max_tokens: 600,
+    // Groq API 호출 (llama-3.1-8b-instant — 초고속, 무료)
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey,
+      },
+      body: JSON.stringify({
+        model: 'llama-3.1-8b-instant',
+        messages: messages,
+        max_tokens: 600,
+        temperature: 0.7,
+      }),
     });
 
-    return new Response(JSON.stringify({
-      choices: [{ message: { content: result.response } }]
-    }), { headers: corsHeaders });
+    if (!res.ok) {
+      const err = await res.text();
+      throw new Error('Groq error: ' + res.status + ' ' + err);
+    }
+
+    const data = await res.json();
+    return new Response(JSON.stringify(data), { headers: cors });
 
   } catch (err) {
     return new Response(JSON.stringify({
-      error: err.message || 'Unknown error'
-    }), { status: 500, headers: corsHeaders });
+      choices: [{ message: { content:
+        '⚠️ 연결 오류: ' + (err.message || 'Unknown error') + '\n잠시 후 다시 시도해 주세요.'
+      }}]
+    }), { status: 200, headers: cors });
   }
 }
 
-// CORS preflight
 export async function onRequestOptions() {
   return new Response(null, {
     headers: {
