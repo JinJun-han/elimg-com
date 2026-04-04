@@ -33,40 +33,16 @@ async function handleChat(request, env) {
 
   try {
     const { messages } = await request.json();
-    const apiKey = env.GROQ_API_KEY;
 
-    if (!apiKey) {
-      return new Response(JSON.stringify({
-        choices: [{ message: { content:
-          '⚠️ AI 설정 중입니다.\n\nCloudflare 대시보드에서 GROQ_API_KEY를 등록해 주세요.\n\n'
-          + '📌 설정 방법:\n1. dash.cloudflare.com → Workers & Pages → elimg-com\n'
-          + '2. Settings → Environment Variables\n'
-          + '3. GROQ_API_KEY = gsk_... (groq.com에서 무료 발급)\n\n'
-          + '설정 후 즉시 AI 사용 가능합니다!',
-        }}],
-      }), { headers: cors });
-    }
-
-    // Pollinations.ai API 호출 v2 (무료, 인증 불필요)
-    const res = await fetch('https://text.pollinations.ai/openai', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'openai',
-        messages,
-        max_tokens: 600,
-        temperature: 0.7,
-      }),
+    // Cloudflare Workers AI 호출 (무료, IP 제한 없음)
+    const response = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+      messages,
+      max_tokens: 600,
     });
 
-    if (!res.ok) {
-      const err = await res.text();
-      throw new Error('Groq error: ' + res.status + ' ' + err);
-    }
-
-    const data = await res.json();
+    const data = {
+      choices: [{ message: { content: response.response } }]
+    };
     return new Response(JSON.stringify(data), { headers: cors });
 
   } catch (err) {
