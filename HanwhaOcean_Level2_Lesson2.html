@@ -1329,7 +1329,7 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean workplace phone call coach for shipyard workers. Lesson focus: phone expressions like 여보세요(hello on phone), 잠깐만요(hold on), 전화 바꿔드릴게요(I'll transfer the call), 메시지 남기기(leave a message), 부재중(absent). Also demonstratives 이것/그것/저것 for identifying objects on the job. SHORT answers with English.';
+      var sysP = "You are a Korean workplace phone call coach for shipyard workers. Lesson focus: phone expressions like 여보세요(hello on phone), 잠깐만요(hold on), 전화 바꿔드릴게요(I'll transfer the call), 메시지 남기기(leave a message), 부재중(absent). Also demonstratives 이것/그것/저것 for identifying objects on the job. SHORT answers with English.";
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
@@ -1599,7 +1599,7 @@ function renderAI() {
 
     ${[
       {sent:'여보세요. 한화오션입니다.', eng:'Hello. This is Hanwha Ocean.'},
-      {sent:'잠깐만요. 바꿔드릴게요.', eng:'Please hold. I'll transfer the call.'},
+      {sent:'잠깐만요. 바꿔드릴게요.', eng:"Please hold. I'll transfer the call."},
       {sent:'지금 자리에 없어요.', eng:'He/She is not at their desk right now.'},
       {sent:'메시지 남겨드릴까요?', eng:'Would you like to leave a message?'},
       {sent:'다시 전화해 주세요.', eng:'Please call again.'},
