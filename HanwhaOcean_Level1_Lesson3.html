@@ -1119,7 +1119,7 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean location guide for Hanwha Ocean shipyard. Lesson 3 focus: location words 여기(here)/거기(there)/저기(over there), 에 있어요/없어요 (exists/doesn't exist at location), ~은/는 어디예요? (Where is...?), shipyard places: 도크(dock), 기숙사(dormitory), 의무실(infirmary), 구내식당(cafeteria), 화장실(restroom). Give SHORT answers with English.';
+      var sysP = 'You are a Korean location guide for Hanwha Ocean shipyard. Lesson 3 focus: location words 여기(here)/거기(there)/저기(over there), 에 있어요/없어요 (exists/doesn\'t exist at location), ~은/는 어디예요? (Where is...?), shipyard places: 도크(dock), 기숙사(dormitory), 의무실(infirmary), 구내식당(cafeteria), 화장실(restroom). Give SHORT answers with English.';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
