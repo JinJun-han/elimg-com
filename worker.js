@@ -35,7 +35,7 @@ async function handleChat(request, env) {
     const { messages } = await request.json();
 
     // Cloudflare Workers AI 호출 (무료, IP 제한 없음)
-    const response = await env.AI.run('@cf/meta/llama-3.2-1b-instruct', {
+    const response = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
       messages,
       max_tokens: 600,
     });
