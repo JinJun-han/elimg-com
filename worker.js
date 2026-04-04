@@ -47,7 +47,7 @@ async function handleChat(request, env) {
       }), { headers: cors });
     }
 
-    // Pollinations.ai API 호출 (무료, 인증 불필요)
+    // Pollinations.ai API 호출 v2 (무료, 인증 불필요)
     const res = await fetch('https://text.pollinations.ai/openai', {
       method: 'POST',
       headers: {
