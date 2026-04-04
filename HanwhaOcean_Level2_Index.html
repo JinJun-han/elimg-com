@@ -804,6 +804,62 @@ if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/sw.js').catch(()=>{});
   });
 }
+
+// ── 학습 진도 표시 ──────────────────────────────────────
+(function(){
+  var LEVEL = 2, TOTAL = 20;
+  var key = 'hw_l' + LEVEL + '_progress';
+  var lastKey = 'hw_l' + LEVEL + '_last';
+  try {
+    var progress = JSON.parse(localStorage.getItem(key) || '{}');
+    var done = Object.keys(progress).length;
+    var last = parseInt(localStorage.getItem(lastKey) || '0');
+
+    // 완료 레슨 카드에 체크 표시
+    document.querySelectorAll('a.lesson-card').forEach(function(card) {
+      var href = card.getAttribute('href') || '';
+      var m = href.match(/Lesson(\d+)/i);
+      if (!m) return;
+      var num = parseInt(m[1]);
+      if (progress[num]) {
+        card.style.borderLeft = '4px solid #22c55e';
+        var check = document.createElement('span');
+        check.textContent = '✅';
+        check.style.cssText = 'font-size:16px;margin-left:auto;flex-shrink:0;';
+        card.appendChild(check);
+      }
+    });
+
+    // 진도 통계 업데이트
+    var statNums = document.querySelectorAll('.stat-num');
+    if (statNums[2]) statNums[2].textContent = done + '/20';
+    var statLabels = document.querySelectorAll('.stat-label');
+    if (statLabels[2]) statLabels[2].textContent = '학습 완료';
+
+    // 이어서 학습 버튼
+    if (done > 0 && done < TOTAL) {
+      var next = last < TOTAL ? last + 1 : last;
+      var container = document.querySelector('.container');
+      if (container) {
+        var resumeDiv = document.createElement('div');
+        resumeDiv.style.cssText = 'background:linear-gradient(135deg,#003366,#0066aa);border-radius:14px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;';
+        resumeDiv.innerHTML = '<div style="color:#fff"><div style="font-size:12px;opacity:.8;margin-bottom:2px;">📖 이어서 학습</div><div style="font-weight:800;font-size:15px;color:#fff">' + done + '/20과 완료 · ' + Math.round(done/TOTAL*100) + '% 진행 중</div></div>'
+          + '<a href="HanwhaOcean_Level2_Lesson' + next + '.html" style="background:#E8C05A;color:#003366;border-radius:10px;padding:10px 18px;font-weight:800;font-size:14px;text-decoration:none;white-space:nowrap;">▶ ' + next + '과 학습하기</a>';
+        var firstCard = container.querySelector('a.lesson-card');
+        if (firstCard) container.insertBefore(resumeDiv, firstCard);
+      }
+    } else if (done >= TOTAL) {
+      var container = document.querySelector('.container');
+      if (container) {
+        var doneDiv = document.createElement('div');
+        doneDiv.style.cssText = 'background:linear-gradient(135deg,#15803d,#22c55e);border-radius:14px;padding:16px 20px;margin-bottom:16px;text-align:center;';
+        doneDiv.innerHTML = '<div style="font-size:24px;margin-bottom:4px;">🏆</div><div style="color:#fff;font-weight:800;font-size:16px;">초급 2 전 과정 완료!</div><div style="color:rgba(255,255,255,.85);font-size:13px;margin-top:4px;">수료증을 발급받으세요 ↓</div>';
+        var firstCard = container.querySelector('a.lesson-card');
+        if (firstCard) container.insertBefore(doneDiv, firstCard);
+      }
+    }
+  } catch(e) {}
+})();
 </script>
 </body>
 </html>
