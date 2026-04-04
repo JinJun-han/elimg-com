@@ -47,15 +47,14 @@ async function handleChat(request, env) {
       }), { headers: cors });
     }
 
-    // Groq API 호출 (llama-3.1-8b-instant — 초고속, 무료)
-    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    // Pollinations.ai API 호출 (무료, 인증 불필요)
+    const res = await fetch('https://text.pollinations.ai/openai', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + apiKey,
       },
       body: JSON.stringify({
-        model: 'llama-3.1-8b-instant',
+        model: 'openai',
         messages,
         max_tokens: 600,
         temperature: 0.7,
