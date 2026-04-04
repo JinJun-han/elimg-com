@@ -386,6 +386,16 @@ document.addEventListener('DOMContentLoaded', () => setLang(currentLang));
           <button class="lang-btn" data-lang="en" onclick="setLang('en')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇺🇸 English</button>
           <button class="lang-btn" data-lang="vi" onclick="setLang('vi')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇻🇳 Tieng Viet</button>
         </div>
+        <!-- 레벨 네비게이션 -->
+        <div style="margin-top:14px;padding:10px 16px;background:rgba(0,0,0,0.2);border-radius:12px;display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:center;">
+          <a href="/HanwhaOcean_Level1_Index" style="background:rgba(255,255,255,0.15);color:#fff;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,0.3);">① 초급 1</a>
+          <span style="color:rgba(255,255,255,0.6);font-size:14px;">→</span>
+          <span style="background:#fff;color:#003366;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:800;">② 초급 2</span>
+          <span style="color:rgba(255,255,255,0.6);font-size:14px;">→</span>
+          <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px dashed rgba(255,255,255,0.2);">③ 중급 준비중</span>
+          <span style="color:rgba(255,255,255,0.6);font-size:14px;">→</span>
+          <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px dashed rgba(255,255,255,0.2);">④ 고급 준비중</span>
+        </div>
     </header>
 
     <div class="container">
@@ -744,6 +754,25 @@ document.addEventListener('DOMContentLoaded', () => setLang(currentLang));
                 </div>
             </a>
         </div>
+    </div>
+
+    <!-- 레벨 이동 버튼 -->
+    <div style="max-width:1200px;margin:0 auto;padding:0 16px 16px;display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="/HanwhaOcean_Level1_Index" style="flex:1;min-width:140px;background:linear-gradient(135deg,#003366,#0066aa);color:#fff;border-radius:14px;padding:16px;text-align:center;text-decoration:none;display:block;">
+        <div style="font-size:18px;margin-bottom:4px;">← ①</div>
+        <div style="font-size:14px;font-weight:800;">1급 초급 1</div>
+        <div style="font-size:11px;opacity:0.8;margin-top:2px;">생활 한국어 20과</div>
+      </a>
+      <span style="flex:1;min-width:140px;background:#e5e7eb;color:#9ca3af;border-radius:14px;padding:16px;text-align:center;display:block;cursor:default;">
+        <div style="font-size:18px;margin-bottom:4px;">→ ③</div>
+        <div style="font-size:14px;font-weight:800;">3급 중급</div>
+        <div style="font-size:11px;margin-top:2px;">🔒 준비 중</div>
+      </span>
+      <span style="flex:1;min-width:140px;background:#e5e7eb;color:#9ca3af;border-radius:14px;padding:16px;text-align:center;display:block;cursor:default;">
+        <div style="font-size:18px;margin-bottom:4px;">→ ④</div>
+        <div style="font-size:14px;font-weight:800;">4급 고급</div>
+        <div style="font-size:11px;margin-top:2px;">🔒 준비 중</div>
+      </span>
     </div>
 
     <div style="max-width:1200px;margin:0 auto;padding:0 16px 28px;">
