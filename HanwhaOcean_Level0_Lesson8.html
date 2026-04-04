@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="한화오션 한국어교육 · GlocalBridge">
+<meta property="og:title" content="한화오션 한국어 교육 · 0급 입문 8과">
+<meta property="og:description" content="0급 입문 8과 · 한화오션 한국어교육 · KIIP 사회통합프로그램">
+<meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
+<meta property="og:url" content="https://elimg.com/HanwhaOcean_Level0_Lesson8.html">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#1E3A5F;--ocean:#2E75B6;--orange:#ED7D31;--green:#22c55e;--red:#ef4444;--purple:#8b5cf6;--pink:#ec4899;--light-blue:#D6E4F0;--light-green:#E8F5E9;--light-orange:#FFF3E0;--gray:#f8fafc;--dark:#2D3436;--level0:#15803d}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;background:var(--gray);max-width:520px;margin:0 auto;min-height:100vh;overflow-x:hidden}
+.hide{display:none!important}
+button{cursor:pointer;border:none;font-family:inherit}
+.nav{background:var(--navy);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-title{color:#fff;font-weight:700;font-size:14px}.nav-sub{color:#8899BB;font-size:10px}
+.nav-btn{background:none;color:#fff;font-size:22px;padding:4px 8px}
+.bottom-nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:6px 0;z-index:100}
+.bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
+.bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
+.bottom-nav .icon{font-size:18px}
+.page{padding:16px;padding-bottom:70px}
+h2{color:var(--navy);font-size:19px;margin-bottom:4px}
+.sub{color:#888;font-size:11px;margin-bottom:14px}
+.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
+.card-accent{border-left:4px solid var(--ocean)}
+.card-orange{border-left:4px solid var(--orange)}
+.card-green{border-left:4px solid var(--level0)}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;color:#fff}
+.tabs{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:6px 13px;border-radius:20px;background:#e5e7eb;color:#555;font-size:12px;font-weight:600;cursor:pointer}
+.tab.active{background:var(--level0);color:#fff}
+.progress{background:#e5e7eb;border-radius:8px;height:7px;width:100%;overflow:hidden}
+.progress-bar{height:100%;border-radius:8px;transition:width .5s}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tts-btn{background:var(--ocean);color:#fff;border-radius:50%;width:28px;height:28px;font-size:14px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:6px;vertical-align:middle}
+.tts-btn:hover{background:var(--navy)}
+.bubble{border-radius:12px;padding:10px 14px;max-width:85%;margin-bottom:6px}
+.bubble-left{background:#f0f7ff;border-top-left-radius:4px}
+.bubble-right{background:#fff7ed;border-top-right-radius:4px;margin-left:auto}
+.quiz-opt{padding:13px;border-radius:10px;border:2px solid #e5e7eb;background:#fff;font-size:15px;font-weight:600;text-align:left;width:100%;margin-bottom:7px;transition:all .2s;cursor:pointer}
+.quiz-opt:hover{border-color:var(--ocean)}
+.quiz-correct{background:#dcfce7;border-color:var(--green);color:#166534}
+.quiz-wrong{background:#fee2e2;border-color:var(--red);color:#991b1b}
+.input{width:100%;padding:10px 12px;border:2px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:8px}
+.input:focus{outline:none;border-color:var(--ocean)}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;width:100%;cursor:pointer}
+.btn-primary{background:var(--ocean);color:#fff}.btn-navy{background:var(--navy);color:#fff}
+.btn-green{background:var(--level0);color:#fff}.btn-orange{background:var(--orange);color:#fff}
+.section-label{background:var(--level0);color:#fff;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;margin-bottom:10px}
+.flag-card{background:#fff;border-radius:10px;padding:10px;border:1px solid #e8edf2;text-align:center;cursor:pointer;transition:all .2s}
+.flag-card:hover{border-color:var(--level0);transform:scale(1.02)}
+</style>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1E3A5F">
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS = {
+  speak(text, lang='ko-KR', rate=0.8) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang; u.rate = rate; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const koVoice = voices.find(v => v.lang.startsWith('ko')) || voices.find(v => v.lang.includes('ko'));
+    if (koVoice) u.voice = koVoice;
+    window.speechSynthesis.speak(u);
+  },
+  init() { if (window.speechSynthesis) window.speechSynthesis.getVoices(); }
+};
+window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
+function ttsBtn(text) {
+  return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'")}')" title="발음 듣기">🔊</button>`;
+}
+
+const SYSTEM_PROMPT = `You are a Korean language tutor for Hanwha Ocean shipyard foreign workers. This lesson is about countries, nationalities, and basic self-introduction in Korean. Answer in Korean with English translation. Under 150 words.`;
+
+const COUNTRIES = [
+  {kor:"베트남",eng:"Vietnam",nationality:"베트남 사람",adj:"베트남"},
+  {kor:"인도네시아",eng:"Indonesia",nationality:"인도네시아 사람",adj:"인도네시아"},
+  {kor:"필리핀",eng:"Philippines",nationality:"필리핀 사람",adj:"필리핀"},
+  {kor:"미얀마",eng:"Myanmar",nationality:"미얀마 사람",adj:"미얀마"},
+  {kor:"방글라데시",eng:"Bangladesh",nationality:"방글라데시 사람",adj:"방글라데시"},
+  {kor:"인도",eng:"India",nationality:"인도 사람",adj:"인도"},
+  {kor:"중국",eng:"China",nationality:"중국 사람",adj:"중국"},
+  {kor:"캄보디아",eng:"Cambodia",nationality:"캄보디아 사람",adj:"캄보디아"},
+  {kor:"태국",eng:"Thailand",nationality:"태국 사람",adj:"태국"},
+  {kor:"네팔",eng:"Nepal",nationality:"네팔 사람",adj:"네팔"},
+  {kor:"우즈베키스탄",eng:"Uzbekistan",nationality:"우즈베키스탄 사람",adj:"우즈베키스탄"},
+  {kor:"한국",eng:"Korea",nationality:"한국 사람/한국인",adj:"한국"},
+];
+const SELF_INTRO = [
+  {pattern:"저는 [이름]이에요/예요.",eng:"I am [name].",note:"받침O→이에요, 받침X→예요"},
+  {pattern:"저는 [나라] 사람이에요.",eng:"I am from [country].",note:"국적 표현"},
+  {pattern:"직업은 [직업]이에요/예요.",eng:"My job is [occupation].",note:"직업 소개"},
+  {pattern:"[이름]이라고 해요.",eng:"My name is [name]. (lit. they call me [name])",note:"이름 소개 다른 방법"},
+];
+const JOBS = [
+  {kor:"용접공",eng:"Welder"},{kor:"배관공",eng:"Pipe fitter"},
+  {kor:"도장공",eng:"Painter"},{kor:"전기공",eng:"Electrician"},
+  {kor:"조립공",eng:"Assembler"},{kor:"기술자",eng:"Technician"},
+  {kor:"반장",eng:"Foreman"},{kor:"안전 관리자",eng:"Safety officer"},
+];
+const DIALOGUES = [
+  {title:"다국적 팀 소개",eng:"Multicultural Team Introduction",lines:[
+    {sp:"후엔",role:"베트남",text:"안녕하세요? 저는 후엔이에요. 베트남 사람이에요. 배관공이에요.",eng:"Hello? I'm Huynh. I'm Vietnamese. I'm a pipe fitter.",side:"L"},
+    {sp:"라민",role:"이집트",text:"안녕하세요? 저는 라민이에요. 이집트 사람이에요. 용접공이에요.",eng:"Hello? I'm Ramin. I'm Egyptian. I'm a welder.",side:"R"},
+    {sp:"후엔",text:"어느 나라에서 왔어요?",eng:"Which country did you come from?",side:"L"},
+    {sp:"라민",text:"이집트요. 후엔 씨는요?",eng:"Egypt. What about you, Huynh?",side:"R"},
+    {sp:"후엔",text:"저는 베트남에서 왔어요. 만나서 반가워요!",eng:"I came from Vietnam. Nice to meet you!",side:"L"},
+  ]},
+];
+const QUIZ = [
+  {q:"'베트남 사람이에요'를 영어로?",o:["I am Vietnamese","I am Korean","I am from Indonesia","My name is Vietnam"],a:0},
+  {q:"'어느 나라 사람이에요?'의 뜻은?",o:["What is your name?","What is your job?","Which country are you from?","Where is the office?"],a:2},
+  {q:"받침이 있는 이름 뒤에 붙이는 것은?",o:["예요","이에요","요","는"],a:1},
+  {q:"'용접공'을 영어로?",o:["Painter","Welder","Electrician","Assembler"],a:1},
+  {q:"'저는 인도네시아___.' 빈칸은?",o:["이에요","예요","사람이에요","에요"],a:2},
+  {q:"'저는 ___이에요.' 빈칸에 이름이 오면 받침이 있어야 해요?",o:["네, 항상","아니요","받침이 있을 때만 '이에요'","관계없어요"],a:2},
+  {q:"'배관공'을 영어로?",o:["Welder","Pipe fitter","Electrician","Painter"],a:1},
+  {q:"'만나서 반갑습니다'의 뜻은?",o:["Thank you","I'm sorry","Nice to meet you","Please take care of me"],a:2},
+];
+const CULTURE = [
+  {icon:"🌏",t:"다문화 조선소",eng:"Multicultural Shipyard",d:"한화오션 거제 조선소에는 베트남, 인도네시아, 필리핀, 방글라데시 등 다양한 나라에서 온 근로자들이 함께 일합니다. 서로의 문화를 존중하는 것이 중요합니다.",de:"Hanwha Ocean Geoje has workers from Vietnam, Indonesia, Philippines, Bangladesh and many more. Respecting each other's cultures is essential."},
+  {icon:"🤝",t:"이름 호칭",eng:"Name Conventions",d:"한국에서는 성(family name)이 먼저 옵니다. 박민수 → 박(성) + 민수(이름). 외국인에게는 이름 + '씨'를 씁니다. '라민 씨', '후엔 씨'처럼요.",de:"In Korea, family name comes first. 박민수 → 박(last) + 민수(first). For foreigners, use first name + '씨'. Like '라민 씨', '후엔 씨'."},
+  {icon:"📋",t:"비자와 국적",eng:"Visa and Nationality",d:"한화오션에서 일하는 외국인 근로자는 주로 E-9(비전문취업) 비자나 E-7(특정활동) 비자를 가지고 있습니다. 비자 갱신 시 KIIP 이수가 도움이 됩니다.",de:"Foreign workers at Hanwha Ocean typically have E-9 (non-professional) or E-7 (specific activity) visas. KIIP completion helps with visa renewal."},
+  {icon:"🌐",t:"언어 지원",eng:"Language Support",d:"조선소에서는 통역사(interpreter)가 있습니다. 한국어를 배우면 통역사 없이도 직접 소통할 수 있어서 업무 효율이 올라갑니다.",de:"Shipyards have interpreters. Learning Korean allows you to communicate directly without one, improving work efficiency."},
+];
+
+let currentTab = 0;
+let quizState = {idx:0, score:0, answered:false};
+
+function sendAI() {
+  const input = document.getElementById('ai-input');
+  const chat = document.getElementById('ai-chat');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  chat.innerHTML += `<div class="bubble bubble-right" style="margin-bottom:8px"><b>나:</b> ${msg}</div>`;
+  chat.innerHTML += `<div id="ai-loading" class="bubble bubble-left" style="margin-bottom:8px">⏳ 생각 중...</div>`;
+  chat.scrollTop = chat.scrollHeight;
+  fetch('/api/chat', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({messages:[
+      {role:'system',content:SYSTEM_PROMPT},
+      {role:'user',content:msg}
+    ]})
+  })
+  .then(r=>r.json())
+  .then(d=>{
+    document.getElementById('ai-loading')?.remove();
+    const reply = d.choices?.[0]?.message?.content || '죄송합니다, 다시 시도해 주세요.';
+    chat.innerHTML += `<div class="bubble bubble-left" style="margin-bottom:8px"><b>AI 선생님:</b> ${reply}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+  })
+  .catch(()=>{
+    document.getElementById('ai-loading')?.remove();
+    chat.innerHTML += `<div class="bubble bubble-left" style="color:#e00;margin-bottom:8px">연결 오류. 다시 시도해 주세요.</div>`;
+  });
+}
+
+function showTab(idx) {
+  currentTab = idx;
+  render();
+}
+
+function answerQuiz(optIdx) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  const correct = QUIZ[quizState.idx].a === optIdx;
+  if (correct) quizState.score++;
+  document.querySelectorAll('.quiz-opt').forEach((el, i) => {
+    if (i === QUIZ[quizState.idx].a) el.classList.add('quiz-correct');
+    else if (i === optIdx && !correct) el.classList.add('quiz-wrong');
+    el.disabled = true;
+  });
+  document.getElementById('quiz-next-btn').classList.remove('hide');
+}
+
+function nextQuiz() {
+  if (quizState.idx < QUIZ.length - 1) {
+    quizState.idx++;
+    quizState.answered = false;
+    render();
+  } else {
+    quizState.idx = 0;
+    quizState.answered = false;
+    render();
+  }
+}
+
+function aiSection() {
+  return `<div class="card card-accent" style="margin-top:16px">
+    <div style="font-weight:700;color:var(--navy);margin-bottom:8px">🤖 AI 선생님께 질문하기</div>
+    <div id="ai-chat" style="min-height:60px;max-height:200px;overflow-y:auto;margin-bottom:8px;display:flex;flex-direction:column;gap:4px"></div>
+    <div style="display:flex;gap:6px">
+      <input class="input" id="ai-input" placeholder="나라, 국적에 대해 질문해 보세요..." style="margin:0;flex:1" onkeydown="if(event.key==='Enter')sendAI()">
+      <button class="btn btn-primary" style="width:auto;padding:10px 14px" onclick="sendAI()">전송</button>
+    </div>
+  </div>`;
+}
+
+function render() {
+  const tabs = ['나라','소개패턴','대화','퀴즈','문화'];
+  const tabHtml = tabs.map((t,i)=>`<button class="tab${currentTab===i?' active':''}" onclick="showTab(${i})">${t}</button>`).join('');
+
+  let content = '';
+  if (currentTab === 0) {
+    // Countries
+    let flagCards = COUNTRIES.map(c=>`
+      <div class="flag-card" onclick="TTS.speak('${c.kor}')">
+        <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:2px">${c.kor} ${ttsBtn(c.kor)}</div>
+        <div style="font-size:11px;color:#888;margin-bottom:4px">${c.eng}</div>
+        <div style="font-size:12px;color:var(--level0);font-weight:600">${c.nationality} ${ttsBtn(c.nationality)}</div>
+      </div>`).join('');
+    content = `
+    <h2>나라 · Countries</h2>
+    <p class="sub">조선소 주요 출신 국가 / Major shipyard worker nationalities</p>
+    <div class="grid2">${flagCards}</div>
+    <div class="card card-accent" style="margin-top:10px">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:8px">💡 패턴 기억하기</div>
+      <div style="font-size:13px;line-height:2;color:#444">
+        <div>[나라 이름] + 사람이에요 = I am from [country]</div>
+        <div style="color:var(--level0)">베트남 사람이에요 ${ttsBtn('베트남 사람이에요')}</div>
+        <div style="color:var(--level0)">인도네시아 사람이에요 ${ttsBtn('인도네시아 사람이에요')}</div>
+        <div style="color:var(--level0)">필리핀 사람이에요 ${ttsBtn('필리핀 사람이에요')}</div>
+      </div>
+    </div>
+    ${aiSection()}`;
+  } else if (currentTab === 1) {
+    // Self introduction patterns
+    let patCards = SELF_INTRO.map(p=>`
+      <div class="card card-accent">
+        <div style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:4px">${p.pattern} ${ttsBtn(p.pattern.replace('[이름]','라민').replace('[나라]','베트남').replace('[직업]','용접공'))}</div>
+        <div style="font-size:13px;color:var(--ocean);margin-bottom:4px">${p.eng}</div>
+        <div style="font-size:11px;color:#888;background:#f8fafc;padding:4px 8px;border-radius:6px">${p.note}</div>
+      </div>`).join('');
+    let jobCards = JOBS.map(j=>`
+      <div style="background:#f0f9f4;border-radius:8px;padding:8px 10px;border:1px solid #bbf7d0;cursor:pointer" onclick="TTS.speak('${j.kor}')">
+        <div style="font-size:14px;font-weight:700;color:var(--level0)">${j.kor} ${ttsBtn(j.kor)}</div>
+        <div style="font-size:11px;color:#888">${j.eng}</div>
+      </div>`).join('');
+    content = `
+    <h2>자기소개 패턴 · Self Introduction</h2>
+    <p class="sub">기본 문장 패턴 / Basic sentence patterns</p>
+    <div class="section-label">📝 문장 패턴 (Sentence Patterns)</div>
+    ${patCards}
+    <div class="card card-orange" style="margin-top:10px">
+      <div style="font-weight:700;color:var(--orange);margin-bottom:6px">⚠️ 이에요 vs 예요</div>
+      <div style="font-size:13px;line-height:1.8;color:#444">
+        <div>• 받침 있음 → <b>이에요</b>: 라<b>민</b>이에요 ${ttsBtn('라민이에요')}</div>
+        <div>• 받침 없음 → <b>예요</b>: 후<b>엔</b>예요 ${ttsBtn('후엔이에요')}</div>
+      </div>
+    </div>
+    <div class="section-label" style="margin-top:14px">👷 직업 (Jobs)</div>
+    <div class="grid2">${jobCards}</div>
+    ${aiSection()}`;
+  } else if (currentTab === 2) {
+    // Dialogues
+    let dials = DIALOGUES.map(d=>`
+      <div class="card card-accent">
+        <div style="font-weight:700;color:var(--navy);margin-bottom:2px">${d.title}</div>
+        <div style="font-size:11px;color:#888;margin-bottom:12px">${d.eng}</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          ${d.lines.map(l=>`
+            <div class="bubble bubble-${l.side==='L'?'left':'right'}" style="${l.side==='R'?'align-self:flex-end':''}">
+              <div style="font-size:10px;color:#888;margin-bottom:3px">${l.sp}${l.role?` (${l.role})`:''}</div>
+              <div style="font-size:14px;font-weight:600;color:var(--navy)">${l.text} ${ttsBtn(l.text)}</div>
+              <div style="font-size:11px;color:#666;margin-top:3px;font-style:italic">${l.eng}</div>
+            </div>`).join('')}
+        </div>
+      </div>`).join('');
+    content = `
+    <h2>대화 연습 (Dialogue Practice)</h2>
+    <p class="sub">다국적 현장에서의 첫 만남 / First meeting in a multicultural workplace</p>
+    ${dials}
+    <div class="card card-green">
+      <div style="font-weight:700;color:var(--level0);margin-bottom:8px">💬 연습해 보세요!</div>
+      <div style="font-size:13px;line-height:2;color:#444">
+        <div>안녕하세요? 저는 ___이에요/예요. ${ttsBtn('안녕하세요? 저는 라민이에요.')}</div>
+        <div>[나라] 사람이에요. ${ttsBtn('베트남 사람이에요.')}</div>
+        <div>[직업]이에요/예요. ${ttsBtn('용접공이에요.')}</div>
+        <div>잘 부탁드립니다! ${ttsBtn('잘 부탁드립니다')}</div>
+      </div>
+    </div>
+    ${aiSection()}`;
+  } else if (currentTab === 3) {
+    // Quiz
+    const q = QUIZ[quizState.idx];
+    const opts = q.o.map((opt,i)=>`<button class="quiz-opt" onclick="answerQuiz(${i})">${opt}</button>`).join('');
+    content = `
+    <h2>퀴즈 · Quiz</h2>
+    <p class="sub">나라와 자기소개를 테스트하세요!</p>
+    <div class="card card-accent">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <span class="badge" style="background:var(--level0)">${quizState.idx+1} / ${QUIZ.length}</span>
+        <span style="font-size:13px;color:var(--level0);font-weight:700">점수: ${quizState.score}</span>
+      </div>
+      <div class="progress" style="margin-bottom:14px"><div class="progress-bar" style="background:var(--level0);width:${((quizState.idx)/QUIZ.length)*100}%"></div></div>
+      <div style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:14px">${q.q}</div>
+      ${opts}
+      <button id="quiz-next-btn" class="btn btn-green hide" onclick="nextQuiz()" style="margin-top:6px">다음 문제 →</button>
+    </div>
+    ${aiSection()}`;
+  } else {
+    // Culture
+    let cards = CULTURE.map(c=>`
+      <div class="card card-green">
+        <div style="font-size:28px;margin-bottom:6px">${c.icon}</div>
+        <div style="font-weight:700;color:var(--navy);margin-bottom:2px">${c.t}</div>
+        <div style="font-size:11px;color:var(--level0);margin-bottom:6px">${c.eng}</div>
+        <div style="font-size:12px;color:#444;line-height:1.6;margin-bottom:6px">${c.d}</div>
+        <div style="font-size:11px;color:#888;line-height:1.5;font-style:italic">${c.de}</div>
+      </div>`).join('');
+    content = `
+    <h2>문화 & 배경 지식</h2>
+    <p class="sub">Multicultural shipyard culture</p>
+    ${cards}
+    ${aiSection()}`;
+  }
+
+  document.getElementById('app').innerHTML = `
+    <nav class="nav">
+      <div>
+        <div class="nav-title">0급 입문 8과 · 나라와 나</div>
+        <div class="nav-sub">My Country (국적·나라 표현)</div>
+      </div>
+      <div style="display:flex;gap:4px">
+        <a href="HanwhaOcean_Level0_Lesson7.html"><button class="nav-btn">◀</button></a>
+        <a href="HanwhaOcean_Level0_Index.html"><button class="nav-btn">🏠</button></a>
+        <a href="HanwhaOcean_Level0_Lesson9.html"><button class="nav-btn">▶</button></a>
+      </div>
+    </nav>
+    <div class="page">
+      <div class="tabs">${tabHtml}</div>
+      ${content}
+    </div>
+    <nav class="bottom-nav">
+      <button class="${currentTab===0?'active':''}" onclick="showTab(0)"><span class="icon">🌏</span>나라</button>
+      <button class="${currentTab===1?'active':''}" onclick="showTab(1)"><span class="icon">🙋</span>소개패턴</button>
+      <button class="${currentTab===2?'active':''}" onclick="showTab(2)"><span class="icon">💬</span>대화</button>
+      <button class="${currentTab===3?'active':''}" onclick="showTab(3)"><span class="icon">❓</span>퀴즈</button>
+      <button class="${currentTab===4?'active':''}" onclick="showTab(4)"><span class="icon">🤝</span>문화</button>
+    </nav>`;
+}
+
+render();
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{});});}
+</script>
+</body>
+</html>

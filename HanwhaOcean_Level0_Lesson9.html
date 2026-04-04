@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="한화오션 한국어교육 · GlocalBridge">
+<meta property="og:title" content="한화오션 한국어 교육 · 0급 입문 9과">
+<meta property="og:description" content="0급 입문 9과 · 한화오션 한국어교육 · KIIP 사회통합프로그램">
+<meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
+<meta property="og:url" content="https://elimg.com/HanwhaOcean_Level0_Lesson9.html">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#1E3A5F;--ocean:#2E75B6;--orange:#ED7D31;--green:#22c55e;--red:#ef4444;--purple:#8b5cf6;--pink:#ec4899;--light-blue:#D6E4F0;--light-green:#E8F5E9;--light-orange:#FFF3E0;--gray:#f8fafc;--dark:#2D3436;--level0:#15803d}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;background:var(--gray);max-width:520px;margin:0 auto;min-height:100vh;overflow-x:hidden}
+.hide{display:none!important}
+button{cursor:pointer;border:none;font-family:inherit}
+.nav{background:var(--navy);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-title{color:#fff;font-weight:700;font-size:14px}.nav-sub{color:#8899BB;font-size:10px}
+.nav-btn{background:none;color:#fff;font-size:22px;padding:4px 8px}
+.bottom-nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:6px 0;z-index:100}
+.bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
+.bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
+.bottom-nav .icon{font-size:18px}
+.page{padding:16px;padding-bottom:70px}
+h2{color:var(--navy);font-size:19px;margin-bottom:4px}
+.sub{color:#888;font-size:11px;margin-bottom:14px}
+.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
+.card-accent{border-left:4px solid var(--ocean)}
+.card-orange{border-left:4px solid var(--orange)}
+.card-green{border-left:4px solid var(--level0)}
+.card-red{border-left:4px solid var(--red)}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;color:#fff}
+.tabs{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:6px 13px;border-radius:20px;background:#e5e7eb;color:#555;font-size:12px;font-weight:600;cursor:pointer}
+.tab.active{background:var(--level0);color:#fff}
+.progress{background:#e5e7eb;border-radius:8px;height:7px;width:100%;overflow:hidden}
+.progress-bar{height:100%;border-radius:8px;transition:width .5s}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.tts-btn{background:var(--ocean);color:#fff;border-radius:50%;width:28px;height:28px;font-size:14px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:6px;vertical-align:middle}
+.tts-btn:hover{background:var(--navy)}
+.bubble{border-radius:12px;padding:10px 14px;max-width:85%;margin-bottom:6px}
+.bubble-left{background:#f0f7ff;border-top-left-radius:4px}
+.bubble-right{background:#fff7ed;border-top-right-radius:4px;margin-left:auto}
+.quiz-opt{padding:13px;border-radius:10px;border:2px solid #e5e7eb;background:#fff;font-size:15px;font-weight:600;text-align:left;width:100%;margin-bottom:7px;transition:all .2s;cursor:pointer}
+.quiz-opt:hover{border-color:var(--ocean)}
+.quiz-correct{background:#dcfce7;border-color:var(--green);color:#166534}
+.quiz-wrong{background:#fee2e2;border-color:var(--red);color:#991b1b}
+.input{width:100%;padding:10px 12px;border:2px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:8px}
+.input:focus{outline:none;border-color:var(--ocean)}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;width:100%;cursor:pointer}
+.btn-primary{background:var(--ocean);color:#fff}.btn-navy{background:var(--navy);color:#fff}
+.btn-green{background:var(--level0);color:#fff}.btn-orange{background:var(--orange);color:#fff}
+.section-label{background:var(--level0);color:#fff;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;margin-bottom:10px}
+.demo-box{border-radius:12px;padding:14px;text-align:center;border:2px solid transparent;cursor:pointer;transition:all .2s}
+.demo-box:hover{transform:scale(1.03)}
+</style>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1E3A5F">
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS = {
+  speak(text, lang='ko-KR', rate=0.8) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang; u.rate = rate; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const koVoice = voices.find(v => v.lang.startsWith('ko')) || voices.find(v => v.lang.includes('ko'));
+    if (koVoice) u.voice = koVoice;
+    window.speechSynthesis.speak(u);
+  },
+  init() { if (window.speechSynthesis) window.speechSynthesis.getVoices(); }
+};
+window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
+function ttsBtn(text) {
+  return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'")}')" title="발음 듣기">🔊</button>`;
+}
+
+const SYSTEM_PROMPT = `You are a Korean language tutor for Hanwha Ocean shipyard foreign workers. This lesson teaches demonstratives (this/that/there) and basic workplace direction expressions. Answer in Korean with English translation. Under 150 words.`;
+
+const DEMONSTRATIVES = [
+  {series:"이 계열 (near speaker)",color:"#dbeafe",border:"#2E75B6",items:[
+    {word:"이것",rom:"i-geot",eng:"this (thing)"},
+    {word:"이거",rom:"i-geo",eng:"this (casual)"},
+    {word:"여기",rom:"yeo-gi",eng:"here"},
+    {word:"이쪽",rom:"i-jjok",eng:"this way/direction"},
+    {word:"이 사람",rom:"i sa-ram",eng:"this person"},
+  ]},
+  {series:"그 계열 (near listener)",color:"#fef9c3",border:"#ca8a04",items:[
+    {word:"그것",rom:"geu-geot",eng:"that (near you)"},
+    {word:"그거",rom:"geu-geo",eng:"that (casual, near you)"},
+    {word:"거기",rom:"geo-gi",eng:"there (near you)"},
+    {word:"그쪽",rom:"geu-jjok",eng:"that way"},
+    {word:"그 사람",rom:"geu sa-ram",eng:"that person"},
+  ]},
+  {series:"저 계열 (far from both)",color:"#f0fdf4",border:"#15803d",items:[
+    {word:"저것",rom:"jeo-geot",eng:"that (far thing)"},
+    {word:"저거",rom:"jeo-geo",eng:"that (casual, far)"},
+    {word:"저기",rom:"jeo-gi",eng:"over there"},
+    {word:"저쪽",rom:"jeo-jjok",eng:"that way (far)"},
+    {word:"저 사람",rom:"jeo sa-ram",eng:"that person (far)"},
+  ]},
+];
+const WORKPLACE_EXPRESSIONS = [
+  {kor:"이쪽으로 오세요.",eng:"Please come this way.",sit:"길 안내"},
+  {kor:"저기 가세요.",eng:"Go over there.",sit:"방향 안내"},
+  {kor:"여기 있어요.",eng:"It's here.",sit:"위치 알려줄 때"},
+  {kor:"저거 주세요.",eng:"Please give me that.",sit:"물건 요청"},
+  {kor:"이것이 뭐예요?",eng:"What is this?",sit:"물건 질문"},
+  {kor:"거기 조심하세요.",eng:"Be careful there.",sit:"위험 경고"},
+  {kor:"저쪽에 공구 있어요.",eng:"The tools are over there.",sit:"위치 안내"},
+  {kor:"이것을 여기 놓으세요.",eng:"Put this here.",sit:"작업 지시"},
+  {kor:"빨리 오세요!",eng:"Come quickly!",sit:"긴급 상황"},
+  {kor:"천천히 하세요.",eng:"Do it slowly / Take your time.",sit:"안전 지시"},
+  {kor:"멈추세요!",eng:"Stop!",sit:"긴급 정지"},
+  {kor:"조심하세요!",eng:"Be careful!",sit:"위험 경고"},
+];
+const ACTION_VERBS = [
+  {base:"오다",cmd:"오세요",eng:"Come"},
+  {base:"가다",cmd:"가세요",eng:"Go"},
+  {base:"보다",cmd:"보세요",eng:"Look"},
+  {base:"잡다",cmd:"잡으세요",eng:"Hold/Grab"},
+  {base:"멈추다",cmd:"멈추세요",eng:"Stop"},
+  {base:"들다",cmd:"드세요/들으세요",eng:"Lift/Hold"},
+  {base:"놓다",cmd:"놓으세요",eng:"Put down"},
+  {base:"당기다",cmd:"당기세요",eng:"Pull"},
+  {base:"밀다",cmd:"미세요",eng:"Push"},
+];
+const QUIZ = [
+  {q:"'이것'의 뜻은?",o:["that (far)","that (near you)","this (near me)","where"],a:2},
+  {q:"'저기'의 뜻은?",o:["here","there (near you)","over there (far)","this way"],a:2},
+  {q:"'멈추세요!'의 뜻은?",o:["Come!","Go!","Stop!","Look!"],a:2},
+  {q:"'빨리 오세요'의 뜻은?",o:["Go slowly","Come quickly","Be careful","Stop"],a:1},
+  {q:"'그쪽'의 뜻은?",o:["this way","that way (near you)","that way (far)","here"],a:1},
+  {q:"'이것을 여기 놓으세요'의 뜻은?",o:["Put that there","Put this here","Take this away","What is this?"],a:1},
+  {q:"'당기세요'의 뜻은?",o:["Push","Pull","Stop","Go"],a:1},
+  {q:"긴급 상황에서 쓰는 표현은?",o:["천천히 하세요","잘 부탁드립니다","멈추세요!/빨리!","안녕하세요"],a:2},
+];
+const CULTURE = [
+  {icon:"📍",t:"공간 지시어 체계",eng:"Spatial Demonstrative System",d:"한국어 지시어는 3단계: 이(나 근처), 그(너 근처), 저(우리 둘 다 멀리). 영어는 this/that 2단계지만 한국어는 3단계입니다.",de:"Korean demonstratives have 3 levels: 이(near me), 그(near you), 저(far from both). English has this/that (2 levels), Korean has 3."},
+  {icon:"🔧",t:"현장 지시 소통",eng:"Workplace Command Communication",d:"조선소에서 정확한 지시어 사용은 안전과 직결됩니다. '이쪽', '저쪽', '여기', '저기'를 정확히 이해하면 작업 실수를 줄일 수 있습니다.",de:"Using exact demonstratives at the shipyard is directly linked to safety. Understanding '이쪽', '저쪽', '여기', '저기' reduces work mistakes."},
+  {icon:"🚨",t:"긴급 표현",eng:"Emergency Expressions",d:"'멈추세요!', '위험해요!', '빨리 오세요!'는 조선소에서 가장 중요한 표현들입니다. 이 표현들을 즉각 이해하고 반응할 수 있어야 합니다.",de:"'멈추세요!', '위험해요!', '빨리 오세요!' are the most important expressions at the shipyard. You must understand and react to them immediately."},
+  {icon:"👂",t:"듣고 이해하기",eng:"Listening Comprehension",d:"작업 지시는 빠르게 말해질 수 있습니다. 모르면 '다시 말씀해 주세요' (Please say it again) 또는 '천천히 말씀해 주세요' (Please speak slowly)라고 하세요.",de:"Work instructions can be spoken quickly. If you don't understand, say '다시 말씀해 주세요' or '천천히 말씀해 주세요'."},
+];
+
+let currentTab = 0;
+let quizState = {idx:0, score:0, answered:false};
+
+function sendAI() {
+  const input = document.getElementById('ai-input');
+  const chat = document.getElementById('ai-chat');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  chat.innerHTML += `<div class="bubble bubble-right" style="margin-bottom:8px"><b>나:</b> ${msg}</div>`;
+  chat.innerHTML += `<div id="ai-loading" class="bubble bubble-left" style="margin-bottom:8px">⏳ 생각 중...</div>`;
+  chat.scrollTop = chat.scrollHeight;
+  fetch('/api/chat', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({messages:[
+      {role:'system',content:SYSTEM_PROMPT},
+      {role:'user',content:msg}
+    ]})
+  })
+  .then(r=>r.json())
+  .then(d=>{
+    document.getElementById('ai-loading')?.remove();
+    const reply = d.choices?.[0]?.message?.content || '죄송합니다, 다시 시도해 주세요.';
+    chat.innerHTML += `<div class="bubble bubble-left" style="margin-bottom:8px"><b>AI 선생님:</b> ${reply}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+  })
+  .catch(()=>{
+    document.getElementById('ai-loading')?.remove();
+    chat.innerHTML += `<div class="bubble bubble-left" style="color:#e00;margin-bottom:8px">연결 오류. 다시 시도해 주세요.</div>`;
+  });
+}
+
+function showTab(idx) {
+  currentTab = idx;
+  render();
+}
+
+function answerQuiz(optIdx) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  const correct = QUIZ[quizState.idx].a === optIdx;
+  if (correct) quizState.score++;
+  document.querySelectorAll('.quiz-opt').forEach((el, i) => {
+    if (i === QUIZ[quizState.idx].a) el.classList.add('quiz-correct');
+    else if (i === optIdx && !correct) el.classList.add('quiz-wrong');
+    el.disabled = true;
+  });
+  document.getElementById('quiz-next-btn').classList.remove('hide');
+}
+
+function nextQuiz() {
+  if (quizState.idx < QUIZ.length - 1) {
+    quizState.idx++;
+    quizState.answered = false;
+    render();
+  } else {
+    quizState.idx = 0;
+    quizState.answered = false;
+    render();
+  }
+}
+
+function aiSection() {
+  return `<div class="card card-accent" style="margin-top:16px">
+    <div style="font-weight:700;color:var(--navy);margin-bottom:8px">🤖 AI 선생님께 질문하기</div>
+    <div id="ai-chat" style="min-height:60px;max-height:200px;overflow-y:auto;margin-bottom:8px;display:flex;flex-direction:column;gap:4px"></div>
+    <div style="display:flex;gap:6px">
+      <input class="input" id="ai-input" placeholder="지시어, 현장 표현 질문..." style="margin:0;flex:1" onkeydown="if(event.key==='Enter')sendAI()">
+      <button class="btn btn-primary" style="width:auto;padding:10px 14px" onclick="sendAI()">전송</button>
+    </div>
+  </div>`;
+}
+
+function render() {
+  const tabs = ['지시어','현장표현','동사','퀴즈','문화'];
+  const tabHtml = tabs.map((t,i)=>`<button class="tab${currentTab===i?' active':''}" onclick="showTab(${i})">${t}</button>`).join('');
+
+  let content = '';
+  if (currentTab === 0) {
+    // Demonstratives
+    let demoBlocks = DEMONSTRATIVES.map(d=>`
+      <div style="background:${d.color};border:2px solid ${d.border};border-radius:12px;padding:12px;margin-bottom:12px">
+        <div style="font-weight:700;color:var(--navy);margin-bottom:10px;font-size:13px">${d.series}</div>
+        ${d.items.map(item=>`
+          <div style="display:flex;align-items:center;padding:6px 0;border-bottom:1px solid rgba(0,0,0,0.06)">
+            <span style="font-size:17px;font-weight:800;color:var(--navy);min-width:80px">${item.word} ${ttsBtn(item.word)}</span>
+            <span style="font-size:11px;color:#666;min-width:90px">${item.rom}</span>
+            <span style="font-size:12px;color:#444;flex:1">${item.eng}</span>
+          </div>`).join('')}
+      </div>`).join('');
+    content = `
+    <h2>지시어 체계 (Demonstratives)</h2>
+    <p class="sub">이/그/저 3단계 지시어 / 3-level Korean demonstrative system</p>
+    ${demoBlocks}
+    <div class="card card-orange">
+      <div style="font-weight:700;color:var(--orange);margin-bottom:8px">💡 핵심 기억법</div>
+      <div style="font-size:13px;line-height:2;color:#444">
+        <div>🔵 <b>이</b> = 나(speaker) 근처 ← HERE ${ttsBtn('이것')}</div>
+        <div>🟡 <b>그</b> = 너(listener) 근처 ← THERE (near you) ${ttsBtn('그것')}</div>
+        <div>🟢 <b>저</b> = 둘 다 멀리 ← OVER THERE ${ttsBtn('저것')}</div>
+      </div>
+    </div>
+    ${aiSection()}`;
+  } else if (currentTab === 1) {
+    // Workplace expressions
+    const urgent = WORKPLACE_EXPRESSIONS.filter(e => ['긴급 상황','긴급 정지','위험 경고'].includes(e.sit));
+    const normal = WORKPLACE_EXPRESSIONS.filter(e => !['긴급 상황','긴급 정지'].includes(e.sit));
+    content = `
+    <h2>현장 표현 (Workplace Expressions)</h2>
+    <p class="sub">조선소 필수 방향·지시 표현 / Essential shipyard direction expressions</p>
+    <div class="card card-red" style="background:#fff5f5">
+      <div style="font-weight:700;color:var(--red);margin-bottom:10px">🚨 긴급 표현 먼저! (Emergency First!)</div>
+      ${urgent.map(e=>`
+        <div style="display:flex;align-items:center;padding:8px 0;border-bottom:1px solid #fee2e2">
+          <div style="flex:1">
+            <div style="font-size:16px;font-weight:800;color:var(--red)">${e.kor} ${ttsBtn(e.kor)}</div>
+            <div style="font-size:12px;color:#666">${e.eng}</div>
+          </div>
+          <span style="font-size:10px;color:#888;background:#fee2e2;padding:2px 6px;border-radius:6px">${e.sit}</span>
+        </div>`).join('')}
+    </div>
+    ${normal.map(e=>`
+      <div class="card card-accent">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div style="flex:1">
+            <div style="font-size:15px;font-weight:700;color:var(--navy)">${e.kor} ${ttsBtn(e.kor)}</div>
+            <div style="font-size:12px;color:#666;margin-top:2px">${e.eng}</div>
+          </div>
+          <span style="font-size:10px;color:#888;background:#f0f9ff;padding:2px 6px;border-radius:6px;margin-left:8px">${e.sit}</span>
+        </div>
+      </div>`).join('')}
+    ${aiSection()}`;
+  } else if (currentTab === 2) {
+    // Action verbs
+    let verbCards = ACTION_VERBS.map(v=>`
+      <div class="card card-green">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-size:11px;color:#888;margin-bottom:2px">기본형: ${v.base}</div>
+            <div style="font-size:18px;font-weight:800;color:var(--level0)">${v.cmd} ${ttsBtn(v.cmd)}</div>
+            <div style="font-size:12px;color:var(--navy);font-weight:600;margin-top:2px">${v.eng}</div>
+          </div>
+        </div>
+      </div>`).join('');
+    content = `
+    <h2>명령 동사 (-세요)</h2>
+    <p class="sub">Basic imperative verbs for the workplace</p>
+    <div class="card card-orange">
+      <div style="font-weight:700;color:var(--orange);margin-bottom:6px">📌 -세요 = polite command (please do...)</div>
+      <div style="font-size:12px;color:#555;line-height:1.8">
+        가다 → 가세요 (please go) ${ttsBtn('가세요')}<br>
+        오다 → 오세요 (please come) ${ttsBtn('오세요')}<br>
+        멈추다 → 멈추세요 (please stop) ${ttsBtn('멈추세요')}
+      </div>
+    </div>
+    ${verbCards}
+    <div class="card card-accent" style="margin-top:6px">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:8px">🔗 지시어 + 동사 조합</div>
+      <div style="font-size:13px;line-height:2;color:#444">
+        <div>이쪽으로 오세요. (Come this way.) ${ttsBtn('이쪽으로 오세요')}</div>
+        <div>저기로 가세요. (Go over there.) ${ttsBtn('저기로 가세요')}</div>
+        <div>여기 보세요. (Look here.) ${ttsBtn('여기 보세요')}</div>
+        <div>이것을 잡으세요. (Hold this.) ${ttsBtn('이것을 잡으세요')}</div>
+      </div>
+    </div>
+    ${aiSection()}`;
+  } else if (currentTab === 3) {
+    // Quiz
+    const q = QUIZ[quizState.idx];
+    const opts = q.o.map((opt,i)=>`<button class="quiz-opt" onclick="answerQuiz(${i})">${opt}</button>`).join('');
+    content = `
+    <h2>퀴즈 · Quiz</h2>
+    <p class="sub">현장 표현과 지시어를 테스트하세요!</p>
+    <div class="card card-accent">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <span class="badge" style="background:var(--level0)">${quizState.idx+1} / ${QUIZ.length}</span>
+        <span style="font-size:13px;color:var(--level0);font-weight:700">점수: ${quizState.score}</span>
+      </div>
+      <div class="progress" style="margin-bottom:14px"><div class="progress-bar" style="background:var(--level0);width:${((quizState.idx)/QUIZ.length)*100}%"></div></div>
+      <div style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:14px">${q.q}</div>
+      ${opts}
+      <button id="quiz-next-btn" class="btn btn-green hide" onclick="nextQuiz()" style="margin-top:6px">다음 문제 →</button>
+    </div>
+    ${aiSection()}`;
+  } else {
+    // Culture
+    let cards = CULTURE.map(c=>`
+      <div class="card card-green">
+        <div style="font-size:28px;margin-bottom:6px">${c.icon}</div>
+        <div style="font-weight:700;color:var(--navy);margin-bottom:2px">${c.t}</div>
+        <div style="font-size:11px;color:var(--level0);margin-bottom:6px">${c.eng}</div>
+        <div style="font-size:12px;color:#444;line-height:1.6;margin-bottom:6px">${c.d}</div>
+        <div style="font-size:11px;color:#888;line-height:1.5;font-style:italic">${c.de}</div>
+      </div>`).join('');
+    content = `
+    <h2>문화 & 배경 지식</h2>
+    <p class="sub">Workplace safety communication culture</p>
+    ${cards}
+    ${aiSection()}`;
+  }
+
+  document.getElementById('app').innerHTML = `
+    <nav class="nav">
+      <div>
+        <div class="nav-title">0급 입문 9과 · 현장 표현</div>
+        <div class="nav-sub">Workplace Basics (지시어)</div>
+      </div>
+      <div style="display:flex;gap:4px">
+        <a href="HanwhaOcean_Level0_Lesson8.html"><button class="nav-btn">◀</button></a>
+        <a href="HanwhaOcean_Level0_Index.html"><button class="nav-btn">🏠</button></a>
+        <a href="HanwhaOcean_Level0_Lesson10.html"><button class="nav-btn">▶</button></a>
+      </div>
+    </nav>
+    <div class="page">
+      <div class="tabs">${tabHtml}</div>
+      ${content}
+    </div>
+    <nav class="bottom-nav">
+      <button class="${currentTab===0?'active':''}" onclick="showTab(0)"><span class="icon">👆</span>지시어</button>
+      <button class="${currentTab===1?'active':''}" onclick="showTab(1)"><span class="icon">🔧</span>현장표현</button>
+      <button class="${currentTab===2?'active':''}" onclick="showTab(2)"><span class="icon">🏃</span>동사</button>
+      <button class="${currentTab===3?'active':''}" onclick="showTab(3)"><span class="icon">❓</span>퀴즈</button>
+      <button class="${currentTab===4?'active':''}" onclick="showTab(4)"><span class="icon">🌏</span>문화</button>
+    </nav>`;
+}
+
+render();
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{});});}
+</script>
+</body>
+</html>

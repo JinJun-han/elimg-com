@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>0급 4과 · 음절 만들기 · Building Syllables | 한화오션 한국어교육</title>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="한화오션 한국어교육 · GlocalBridge">
+    <meta property="og:title" content="0급 4과 · 음절 만들기 · Building Syllables">
+    <meta property="og:description" content="KIIP 0단계 4과 · 자음+모음 음절 조합 · 한화오션 한국어교육">
+    <meta property="og:image" content="https://elimg.com/images/og-hanwha-level0.png">
+    <meta property="og:url" content="https://elimg.com/HanwhaOcean_Level0_Lesson4.html">
+    <meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#15803d">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#1E3A5F;--ocean:#2E75B6;--orange:#ED7D31;--green:#22c55e;--red:#ef4444;--purple:#8b5cf6;--light-blue:#D6E4F0;--light-green:#E8F5E9;--light-orange:#FFF3E0;--gray:#f8fafc;--dark:#2D3436;--level0:#15803d}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;background:var(--gray);max-width:520px;margin:0 auto;min-height:100vh;overflow-x:hidden}
+.hide{display:none!important}
+button{cursor:pointer;border:none;font-family:inherit}
+.nav{background:var(--navy);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-title{color:#fff;font-weight:700;font-size:14px}.nav-sub{color:#8899BB;font-size:10px}
+.nav-btn{background:none;color:#fff;font-size:22px;padding:4px 8px}
+.menu{background:#243447;position:sticky;top:48px;z-index:99}
+.menu button{display:flex;align-items:center;gap:10px;width:100%;padding:11px 20px;background:transparent;color:#fff;font-size:13px;text-align:left}
+.menu button.active{background:var(--level0)}
+.bottom-nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:6px 0;z-index:100}
+.bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
+.bottom-nav button.active{opacity:1;color:var(--level0);font-weight:700}
+.bottom-nav .icon{font-size:18px}
+.page{padding:16px;padding-bottom:70px}
+h2{color:var(--navy);font-size:19px;margin-bottom:4px}
+.sub{color:#888;font-size:11px;margin-bottom:14px}
+.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
+.card-accent{border-left:4px solid var(--ocean)}
+.card-orange{border-left:4px solid var(--orange)}
+.card-green{border-left:4px solid var(--level0)}
+.tabs{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:6px 13px;border-radius:20px;background:#e5e7eb;color:#555;font-size:12px;font-weight:600}
+.tab.active{background:var(--level0);color:#fff}
+.progress{background:#e5e7eb;border-radius:8px;height:7px;width:100%;overflow:hidden}
+.progress-bar{height:100%;border-radius:8px;transition:width .5s}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.tts-btn{background:var(--level0);color:#fff;border-radius:50%;width:28px;height:28px;font-size:14px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:6px;vertical-align:middle}
+.tts-btn:hover{background:var(--navy)}
+.bubble{border-radius:12px;padding:10px 14px;max-width:85%;margin-bottom:6px}
+.bubble-left{background:#f0f7ff;border-top-left-radius:4px;align-self:flex-start}
+.bubble-right{background:#fff7ed;border-top-right-radius:4px;align-self:flex-end}
+.quiz-opt{padding:13px;border-radius:10px;border:2px solid #e5e7eb;background:#fff;font-size:15px;font-weight:600;text-align:left;width:100%;margin-bottom:7px;transition:all .2s}
+.quiz-opt:hover{border-color:var(--level0)}
+.quiz-correct{background:#dcfce7;border-color:var(--green);color:#166534}
+.quiz-wrong{background:#fee2e2;border-color:var(--red);color:#991b1b}
+.input{width:100%;padding:10px 12px;border:2px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:8px}
+.input:focus{outline:none;border-color:var(--level0)}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;width:100%}
+.btn-primary{background:var(--level0);color:#fff}.btn-navy{background:var(--navy);color:#fff}
+.section-label{background:var(--level0);color:#fff;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;margin-bottom:10px;display:block}
+.syllable-cell{background:#fff;border:2px solid #e5e7eb;border-radius:8px;padding:8px 4px;text-align:center;cursor:pointer;transition:all .2s;font-size:18px;font-weight:800;color:var(--navy)}
+.syllable-cell:hover{border-color:var(--level0);background:#f0fdf4;transform:scale(1.05)}
+textarea{width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;min-height:80px;resize:vertical}
+textarea:focus{outline:none;border-color:var(--level0)}
+</style>
+<link rel="manifest" href="/manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+<div id="app"></div>
+<script>
+// ===== TTS ENGINE =====
+const TTS = {
+  speak(text, lang='ko-KR', rate=0.8) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang; u.rate = rate; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const koVoice = voices.find(v => v.lang.startsWith('ko')) || voices.find(v => v.lang.includes('ko'));
+    if (koVoice) u.voice = koVoice;
+    window.speechSynthesis.speak(u);
+  },
+  init() { if (window.speechSynthesis) window.speechSynthesis.getVoices(); }
+};
+window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
+
+function ttsBtn(text) {
+  return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'")}')" title="발음 듣기">🔊</button>`;
+}
+
+// ===== DATA =====
+// Precomputed syllable grid: consonant + vowel combinations
+const GRID_CONS = ["ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅈ","ㅎ"];
+const GRID_VOWELS = ["ㅏ","ㅓ","ㅗ","ㅜ","ㅡ","ㅣ"];
+// Actual combined syllables (precomputed)
+const SYLLABLE_GRID = {
+  "ㄱ": ["가","거","고","구","그","기"],
+  "ㄴ": ["나","너","노","누","느","니"],
+  "ㄷ": ["다","더","도","두","드","디"],
+  "ㄹ": ["라","러","로","루","르","리"],
+  "ㅁ": ["마","머","모","무","므","미"],
+  "ㅂ": ["바","버","보","부","브","비"],
+  "ㅅ": ["사","서","소","수","스","시"],
+  "ㅈ": ["자","저","조","주","즈","지"],
+  "ㅎ": ["하","허","호","후","흐","히"],
+};
+
+const SIMPLE_WORDS = [
+  {kor:"바다",pron:"ba-da",eng:"sea/ocean",shipyard:"조선소 주변의 바다"},
+  {kor:"배",pron:"bae",eng:"ship/boat",shipyard:"배를 만들어요"},
+  {kor:"도구",pron:"do-gu",eng:"tool",shipyard:"작업 도구"},
+  {kor:"나사",pron:"na-sa",eng:"screw",shipyard:"볼트와 나사"},
+  {kor:"머리",pron:"meo-ri",eng:"head",shipyard:"안전모는 머리 보호"},
+  {kor:"허리",pron:"heo-ri",eng:"waist",shipyard:"안전벨트는 허리 보호"},
+  {kor:"다리",pron:"da-ri",eng:"leg/bridge",shipyard:"안전화는 다리/발 보호"},
+  {kor:"소화기",pron:"so-hwa-gi",eng:"fire extinguisher",shipyard:"소화기 위치 확인"},
+  {kor:"사무소",pron:"sa-mu-so",eng:"office",shipyard:"사무소에 신고해요"},
+  {kor:"기계",pron:"gi-gye",eng:"machine",shipyard:"기계 조작 주의"},
+  {kor:"가스",pron:"ga-seu",eng:"gas",shipyard:"가스 누출 주의"},
+  {kor:"호스",pron:"ho-seu",eng:"hose",shipyard:"호스 점검하세요"},
+];
+
+const SYLLABLE_TYPES = [
+  {type:"V형",desc:"모음만 (Vowel only)",eg:"아, 이, 우",note:"ㅇ+모음"},
+  {type:"CV형",desc:"자음+모음 (Consonant+Vowel)",eg:"가, 나, 다",note:"Most common"},
+  {type:"CVC형",desc:"자음+모음+받침 (C+V+Final)",eg:"산, 강, 배",note:"3 parts"},
+  {type:"VC형",desc:"모음+받침 (Vowel+Final)",eg:"안, 옥, 알",note:"ㅇ+V+Final"},
+];
+
+const QUIZ = [
+  {q:"'ㄱ'+'ㅏ' = ?",o:["가","기","구","고"],a:0},
+  {q:"'ㄴ'+'ㅗ' = ?",o:["나","니","노","너"],a:2},
+  {q:"'바다'의 뜻은?",o:["sky","sea/ocean","mountain","road"],a:1},
+  {q:"'소화기'를 영어로 하면?",o:["First Aid Kit","Safety Belt","Fire Extinguisher","Helmet"],a:2},
+  {q:"CV형 음절의 예는?",o:["안","산","가","강"],a:2},
+  {q:"'ㅎ'+'ㅣ' = ?",o:["하","히","호","후"],a:1},
+  {q:"'기계'의 뜻은?",o:["gas","machine","office","sea"],a:1},
+  {q:"'배'는 무슨 뜻이에요? (조선소에서)",o:["stomach","ship/boat","pear fruit","배달"],a:1},
+];
+
+const CULTURE = [
+  {icon:"🧩",t:"음절의 구조",eng:"Syllable Structure",d:"한글은 자음과 모음을 음절 단위로 모아서 씁니다. 영어처럼 왼쪽에서 오른쪽으로 쓰지 않고, 네모 안에 모아 씁니다.",de:"Hangul groups consonants and vowels into syllable blocks. Unlike English, letters are grouped into square blocks."},
+  {icon:"🚢",t:"조선소와 바다",eng:"Shipyard and the Sea",d:"'바다'라는 단어는 한국인에게 매우 특별합니다. 한국은 삼면이 바다로 둘러싸여 있고, 조선업은 한국의 자랑입니다.",de:"'바다' (sea) is very special to Koreans. Korea is surrounded by sea on three sides, and shipbuilding is Korea's pride."},
+  {icon:"📝",t:"받아쓰기 연습",eng:"Dictation Practice",d:"한글을 배울 때 받아쓰기(받아 적기)가 매우 효과적입니다. 들은 소리를 자음과 모음으로 분석해서 적어보세요.",de:"Dictation is very effective for learning Hangul. Analyze the sounds you hear into consonants and vowels."},
+  {icon:"⚓",t:"한화오션 선박",eng:"Hanwha Ocean Ships",d:"한화오션은 LNG운반선, 컨테이너선, FPSO 등 다양한 선박을 만듭니다. 여러분이 배우는 한국어는 이 배를 만드는 데 도움이 됩니다.",de:"Hanwha Ocean builds LNG carriers, container ships, FPSOs, and more. The Korean you're learning helps build these ships."},
+];
+
+// ===== APP STATE =====
+let state = {
+  page: 'grid',
+  menuOpen: false,
+  selectedCons: 'ㄱ',
+  wordReveal: {},
+  qIdx: 0, qSel: null, qScore: 0, qDone: false,
+};
+
+function setState(updates) {
+  Object.assign(state, updates);
+  render();
+}
+
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = renderNav() + renderPage() + renderBottomNav();
+}
+
+function renderNav() {
+  let menu = '';
+  if (state.menuOpen) {
+    const items = [
+      {id:'grid',l:'음절표',i:'🧩'},{id:'words',l:'단어',i:'📝'},
+      {id:'types',l:'유형',i:'📊'},{id:'quiz',l:'퀴즈',i:'🎯'},{id:'culture',l:'문화',i:'🏛️'},
+      {id:'ai',l:'AI 선생님',i:'🤖'},
+    ];
+    menu = '<div class="menu">' + items.map(it =>
+      `<button class="${state.page===it.id?'active':''}" onclick="setState({page:'${it.id}',menuOpen:false})">${it.i} ${it.l}</button>`
+    ).join('') + '</div>';
+  }
+  return `<div class="nav">
+    <a href="HanwhaOcean_Level0_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+      <span style="font-size:18px">📋</span>
+      <div><div class="nav-title">0급 입문 4과 · 음절 만들기</div><div class="nav-sub">Building Syllables · 한화오션 한국어</div></div>
+    </a>
+    <button class="nav-btn" onclick="setState({menuOpen:!state.menuOpen})">${state.menuOpen?'✕':'☰'}</button>
+  </div>${menu}`;
+}
+
+function renderBottomNav() {
+  const items = [
+    {id:'grid',i:'🧩',l:'음절표'},
+    {id:'words',i:'📝',l:'단어'},
+    {id:'types',i:'📊',l:'유형'},
+    {id:'quiz',i:'🎯',l:'퀴즈'},
+    {id:'culture',i:'🏛️',l:'문화'},
+  ];
+  return `<div class="bottom-nav">${items.map(it =>
+    `<button class="${state.page===it.id?'active':''}" onclick="setState({page:'${it.id}',menuOpen:false})">
+      <span class="icon">${it.i}</span><span>${it.l}</span></button>`
+  ).join('')}</div>`;
+}
+
+function renderPage() {
+  const pages = {
+    grid: renderGrid,
+    words: renderWords,
+    types: renderTypes,
+    quiz: renderQuiz,
+    culture: renderCulture,
+    ai: renderAI,
+  };
+  return `<div class="page">${(pages[state.page]||renderGrid)()}</div>`;
+}
+
+function renderGrid() {
+  const sylls = SYLLABLE_GRID[state.selectedCons] || [];
+  return `
+  <div style="background:linear-gradient(135deg,#14532d,#15803d);border-radius:16px;padding:16px;margin-bottom:14px;color:#fff;text-align:center">
+    <div style="font-size:12px;opacity:.8;margin-bottom:4px">0급 입문 4과 · KIIP 0단계</div>
+    <div style="font-size:22px;font-weight:800;margin-bottom:2px">음절 만들기 · Building Syllables</div>
+    <div style="font-size:13px;opacity:.85">자음 + 모음 = 음절 · Consonant + Vowel = Syllable</div>
+  </div>
+  <h2>🧩 음절표 · Syllable Grid</h2>
+  <p class="sub">자음을 선택해서 음절을 만들어 보세요 · Select a consonant to build syllables</p>
+  <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px">
+    ${GRID_CONS.map(c=>`<button onclick="setState({selectedCons:'${c}'})" style="padding:8px 14px;border-radius:20px;font-size:16px;font-weight:800;background:${state.selectedCons===c?'#15803d':'#e5e7eb'};color:${state.selectedCons===c?'#fff':'#555'}">${c}</button>`).join('')}
+  </div>
+  <div class="card" style="background:#f0fdf4;border:2px solid #15803d;margin-bottom:12px">
+    <div style="font-size:13px;color:#555;margin-bottom:8px">선택한 자음: <span style="font-size:20px;font-weight:800;color:#15803d">${state.selectedCons}</span></div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px">
+      ${GRID_VOWELS.map((v,i)=>{
+        const syl = sylls[i] || '?';
+        return `<div style="text-align:center">
+          <div style="font-size:11px;color:#888;margin-bottom:2px">${v}</div>
+          <div class="syllable-cell" onclick="TTS.speak('${syl}')">${syl}</div>
+        </div>`;
+      }).join('')}
+    </div>
+    <div style="margin-top:10px;text-align:center">
+      <button onclick="TTS.speak('${sylls.join(' ')}')" style="background:#15803d;color:#fff;border-radius:20px;padding:8px 20px;font-size:13px;font-weight:700">🔊 전체 듣기 · Listen All</button>
+    </div>
+  </div>
+  <div class="card card-accent">
+    <div style="font-weight:700;color:var(--navy);margin-bottom:6px">📐 공식 · Formula</div>
+    <div style="font-size:16px;text-align:center;color:var(--navy);font-weight:700;margin:8px 0">
+      자음 + 모음 = 음절<br>
+      <span style="font-size:13px;color:#888">Consonant + Vowel = Syllable</span>
+    </div>
+    <div style="font-size:14px;text-align:center;color:var(--ocean)">
+      ${state.selectedCons} + ㅏ = ${sylls[0] || '?'} &nbsp;|&nbsp; ${state.selectedCons} + ㅓ = ${sylls[1] || '?'} &nbsp;|&nbsp; ${state.selectedCons} + ㅗ = ${sylls[2] || '?'}
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <a href="HanwhaOcean_Level0_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과</a>
+    <a href="HanwhaOcean_Level0_Index.html" style="padding:12px 16px;border-radius:10px;background:var(--navy);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">목차</a>
+    <a href="HanwhaOcean_Level0_Lesson5.html" style="flex:1;padding:12px;border-radius:10px;background:var(--level0);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 →</a>
+  </div>`;
+}
+
+function renderWords() {
+  return `
+  <h2>📝 단어 · Vocabulary</h2>
+  <p class="sub">받침 없는 기본 단어 · Simple words (no final consonant)</p>
+  <div class="grid2">
+    ${SIMPLE_WORDS.map((w,i)=>`
+    <div class="card ${i===state.wordReveal[i]?'card-green':'card-accent'}" style="cursor:pointer" onclick="setState({wordReveal:{...state.wordReveal,${i}:!state.wordReveal[${i}]}});TTS.speak('${w.kor}')">
+      <div style="font-size:22px;font-weight:800;color:var(--navy)">${w.kor} ${ttsBtn(w.kor)}</div>
+      <div style="font-size:11px;color:var(--ocean)">[${w.pron}]</div>
+      ${state.wordReveal[i]?`
+      <div style="margin-top:6px;font-size:13px;color:#15803d;font-weight:600">${w.eng}</div>
+      <div style="font-size:11px;color:#888;margin-top:2px">⚓ ${w.shipyard}</div>
+      `:`<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 뜻 보기</div>`}
+    </div>`).join('')}
+  </div>
+  <button onclick="setState({wordReveal:{}})" style="background:#e5e7eb;color:#555;border-radius:10px;padding:10px;font-size:13px;font-weight:600;width:100%;margin-top:6px">↺ 다시 가리기 · Hide All</button>
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <a href="HanwhaOcean_Level0_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과</a>
+    <a href="HanwhaOcean_Level0_Lesson5.html" style="flex:1;padding:12px;border-radius:10px;background:var(--level0);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 →</a>
+  </div>`;
+}
+
+function renderTypes() {
+  const typeColors = ['#15803d','#2E75B6','#ED7D31','#8b5cf6'];
+  return `
+  <h2>📊 음절 유형 · Syllable Types</h2>
+  <p class="sub">한글 음절의 4가지 구조 · 4 types of Hangul syllable structure</p>
+  ${SYLLABLE_TYPES.map((t,i)=>`
+  <div class="card" style="border-left:4px solid ${typeColors[i]}">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      <div style="background:${typeColors[i]};color:#fff;border-radius:8px;padding:4px 12px;font-size:13px;font-weight:800">${t.type}</div>
+      <div style="font-size:13px;font-weight:700;color:var(--navy)">${t.desc}</div>
+    </div>
+    <div style="font-size:14px;color:#333;margin-bottom:4px">예) <b>${t.eg}</b></div>
+    <div style="font-size:11px;color:#888">${t.note}</div>
+  </div>`).join('')}
+  <div class="card card-orange">
+    <div style="font-weight:700;color:var(--orange);margin-bottom:6px">💡 요점 정리 · Key Points</div>
+    <div style="font-size:13px;color:#333;line-height:1.8">
+      • 한글 음절은 항상 <b>네모 블록</b> 안에 들어가요<br>
+      • 초성(초음) + 중성(모음) + 종성(받침)<br>
+      • 모음만 있으면 ㅇ이 자리를 채워요 (아=ㅇ+ㅏ)<br>
+      • Every syllable fits in a <b>square block</b>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <a href="HanwhaOcean_Level0_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과</a>
+    <a href="HanwhaOcean_Level0_Lesson5.html" style="flex:1;padding:12px;border-radius:10px;background:var(--level0);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 받침 →</a>
+  </div>`;
+}
+
+function renderQuiz() {
+  if (state.qDone) {
+    const pct = Math.round(state.qScore/QUIZ.length*100);
+    try {
+      var prog = JSON.parse(localStorage.getItem('hw_l0_progress')||'{}');
+      prog[4] = true;
+      localStorage.setItem('hw_l0_progress', JSON.stringify(prog));
+      localStorage.setItem('hw_l0_last', '4');
+    } catch(e){}
+    return `<div style="text-align:center;padding:20px 0">
+      <div style="font-size:56px">${pct>=80?'🎉':pct>=50?'👍':'💪'}</div>
+      <h2>퀴즈 결과 · Quiz Result</h2>
+      <div style="font-size:44px;font-weight:800;color:${pct>=80?'var(--level0)':pct>=50?'var(--orange)':'var(--red)'};margin:14px 0">${state.qScore}/${QUIZ.length}</div>
+      <div style="font-size:15px;color:#888;margin-bottom:20px">${pct}% 정답 · Correct</div>
+      <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--level0)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
+      <button onclick="setState({qIdx:0,qSel:null,qScore:0,qDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
+      <a href="HanwhaOcean_Level0_Lesson5.html" class="btn btn-primary" style="display:block;margin-top:10px;text-decoration:none;text-align:center">5과 받침 →</a>
+    </div>`;
+  }
+  const q = QUIZ[state.qIdx];
+  return `<h2>🎯 퀴즈 · Quiz</h2>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문제 ${state.qIdx+1}/${QUIZ.length}</span>
+    <span style="font-size:12px;color:var(--level0);font-weight:600">점수: ${state.qScore}</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.qIdx+1)/QUIZ.length*100}%;background:var(--level0)"></div></div>
+  <div class="card" style="background:#f0fdf4;border:2px solid #15803d;text-align:center;margin:14px 0">
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${q.q}</div>
+  </div>
+  ${q.o.map((opt,i)=>{
+    let cls = 'quiz-opt';
+    if(state.qSel!==null){
+      if(i===q.a) cls+=' quiz-correct';
+      else if(i===state.qSel) cls+=' quiz-wrong';
+    }
+    return `<button class="${cls}" onclick="${state.qSel===null?`setState({qSel:${i},qScore:state.qScore+${i===q.a?1:0}})`:''}">${String.fromCharCode(65+i)}. ${opt}</button>`;
+  }).join('')}
+  ${state.qSel!==null?`<button onclick="${state.qIdx<QUIZ.length-1?`setState({qIdx:state.qIdx+1,qSel:null})`:`setState({qDone:true})`}" class="btn btn-primary" style="margin-top:8px">${state.qIdx<QUIZ.length-1?'다음 문제 → Next':'결과 보기 → Result'}</button>`:''}`;
+}
+
+function renderCulture() {
+  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2>
+  <p class="sub">음절 구조와 조선소 · Syllable Structure & Shipyard</p>
+  ${CULTURE.map(c=>`<div class="card" style="display:flex;gap:12px;align-items:flex-start">
+    <div style="font-size:34px;flex-shrink:0">${c.icon}</div>
+    <div>
+      <div style="font-weight:700;font-size:15px;color:var(--navy)">${c.t}</div>
+      <div style="font-size:11px;color:#15803d;margin-bottom:4px">${c.eng}</div>
+      <div style="font-size:13px;color:#333;line-height:1.5">${c.d}</div>
+      <div style="font-size:12px;color:#888;margin-top:2px">${c.de}</div>
+    </div>
+  </div>`).join('')}
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <a href="HanwhaOcean_Level0_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과</a>
+    <a href="HanwhaOcean_Level0_Lesson5.html" style="flex:1;padding:12px;border-radius:10px;background:var(--level0);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 받침 →</a>
+  </div>`;
+}
+
+function renderAI() {
+  return `
+<div class="card card-green">
+  <div class="section-label">🤖 AI 한국어 선생님</div>
+  <div style="font-size:13px;color:#555;margin-bottom:10px">궁금한 것을 물어보세요! Ask anything about this lesson.</div>
+  <div id="ai-chat" style="min-height:60px;margin-bottom:10px"></div>
+  <div style="display:flex;gap:6px">
+    <textarea id="ai-input" class="input" style="min-height:44px;resize:none" placeholder="예: ㄴ+ㅏ=나 맞아요? / Is ㄴ+ㅏ=나 correct?"></textarea>
+    <button class="btn btn-primary" style="width:auto;padding:10px 14px" onclick="sendAI()">전송</button>
+  </div>
+  <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap" id="ai-quick">
+    ${["이 모음/자음을 어떻게 발음해요?","이 단어가 무슨 뜻이에요?","예문을 만들어 주세요","음절 조합 더 알려줘"]
+      .map(q=>`<button onclick="document.getElementById('ai-input').value='${q}'" style="background:#f0fdf4;border:1px solid #15803d;color:#15803d;border-radius:20px;padding:5px 12px;font-size:11px">${q}</button>`).join('')}
+  </div>
+</div>`;
+}
+
+function sendAI() {
+  const input = document.getElementById('ai-input');
+  const chat = document.getElementById('ai-chat');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  chat.innerHTML += `<div class="bubble bubble-right" style="margin-left:auto;margin-bottom:8px"><b>나:</b> ${msg}</div>`;
+  chat.innerHTML += `<div id="ai-loading" class="bubble bubble-left" style="margin-bottom:8px">⏳ 생각 중...</div>`;
+  chat.scrollTop = chat.scrollHeight;
+  const systemPrompt = `You are a Korean language tutor for foreign workers at Hanwha Ocean shipyard. This is Level 0 (beginner), Lesson 4 on building Korean syllables (자음+모음 = 음절). Answer in Korean with English translation. Be encouraging, simple, and practical. Keep answers under 150 words.`;
+  fetch('/api/chat', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({messages:[{role:'system',content:systemPrompt},{role:'user',content:msg}]})
+  })
+  .then(r=>r.json())
+  .then(d=>{
+    document.getElementById('ai-loading')?.remove();
+    const reply = d.choices?.[0]?.message?.content || '죄송합니다, 다시 시도해 주세요.';
+    chat.innerHTML += `<div class="bubble bubble-left" style="margin-bottom:8px"><b>AI 선생님:</b> ${reply}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+  })
+  .catch(()=>{
+    document.getElementById('ai-loading')?.remove();
+    chat.innerHTML += `<div class="bubble bubble-left" style="color:#e00;margin-bottom:8px">연결 오류. 다시 시도해 주세요.</div>`;
+  });
+}
+
+render();
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  });
+}
+</script>
+</body>
+</html>

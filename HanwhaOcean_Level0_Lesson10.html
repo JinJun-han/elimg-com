@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="한화오션 한국어교육 · GlocalBridge">
+<meta property="og:title" content="한화오션 한국어 교육 · 0급 입문 10과">
+<meta property="og:description" content="0급 입문 10과 · 한화오션 한국어교육 · KIIP 사회통합프로그램">
+<meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
+<meta property="og:url" content="https://elimg.com/HanwhaOcean_Level0_Lesson10.html">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#1E3A5F;--ocean:#2E75B6;--orange:#ED7D31;--green:#22c55e;--red:#ef4444;--purple:#8b5cf6;--pink:#ec4899;--light-blue:#D6E4F0;--light-green:#E8F5E9;--light-orange:#FFF3E0;--gray:#f8fafc;--dark:#2D3436;--level0:#15803d}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;background:var(--gray);max-width:520px;margin:0 auto;min-height:100vh;overflow-x:hidden}
+.hide{display:none!important}
+button{cursor:pointer;border:none;font-family:inherit}
+.nav{background:var(--navy);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-title{color:#fff;font-weight:700;font-size:14px}.nav-sub{color:#8899BB;font-size:10px}
+.nav-btn{background:none;color:#fff;font-size:22px;padding:4px 8px}
+.bottom-nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:6px 0;z-index:100}
+.bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
+.bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
+.bottom-nav .icon{font-size:18px}
+.page{padding:16px;padding-bottom:70px}
+h2{color:var(--navy);font-size:19px;margin-bottom:4px}
+.sub{color:#888;font-size:11px;margin-bottom:14px}
+.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
+.card-accent{border-left:4px solid var(--ocean)}
+.card-orange{border-left:4px solid var(--orange)}
+.card-green{border-left:4px solid var(--level0)}
+.card-red{border-left:4px solid var(--red)}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;color:#fff}
+.tabs{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:6px 13px;border-radius:20px;background:#e5e7eb;color:#555;font-size:12px;font-weight:600;cursor:pointer}
+.tab.active{background:var(--level0);color:#fff}
+.progress{background:#e5e7eb;border-radius:8px;height:7px;width:100%;overflow:hidden}
+.progress-bar{height:100%;border-radius:8px;transition:width .5s}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.tts-btn{background:var(--ocean);color:#fff;border-radius:50%;width:28px;height:28px;font-size:14px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:6px;vertical-align:middle}
+.tts-btn:hover{background:var(--navy)}
+.bubble{border-radius:12px;padding:10px 14px;max-width:85%;margin-bottom:6px}
+.bubble-left{background:#f0f7ff;border-top-left-radius:4px}
+.bubble-right{background:#fff7ed;border-top-right-radius:4px;margin-left:auto}
+.quiz-opt{padding:13px;border-radius:10px;border:2px solid #e5e7eb;background:#fff;font-size:15px;font-weight:600;text-align:left;width:100%;margin-bottom:7px;transition:all .2s;cursor:pointer}
+.quiz-opt:hover{border-color:var(--ocean)}
+.quiz-correct{background:#dcfce7;border-color:var(--green);color:#166534}
+.quiz-wrong{background:#fee2e2;border-color:var(--red);color:#991b1b}
+.input{width:100%;padding:10px 12px;border:2px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:8px}
+.input:focus{outline:none;border-color:var(--ocean)}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;width:100%;cursor:pointer}
+.btn-primary{background:var(--ocean);color:#fff}.btn-navy{background:var(--navy);color:#fff}
+.btn-green{background:var(--level0);color:#fff}.btn-orange{background:var(--orange);color:#fff}
+.section-label{background:var(--level0);color:#fff;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700;margin-bottom:10px}
+.celebration{background:linear-gradient(135deg,#15803d,#22c55e);border-radius:16px;padding:20px;text-align:center;margin-bottom:16px;color:#fff}
+.kiip-stage{border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.kiip-stage.current{background:#dcfce7;border:2px solid var(--level0)}
+.kiip-stage.done{background:#f0fdf4;border:1px solid #86efac}
+.kiip-stage.next{background:#f8fafc;border:1px solid #e5e7eb;opacity:0.7}
+</style>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1E3A5F">
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS = {
+  speak(text, lang='ko-KR', rate=0.8) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang; u.rate = rate; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const koVoice = voices.find(v => v.lang.startsWith('ko')) || voices.find(v => v.lang.includes('ko'));
+    if (koVoice) u.voice = koVoice;
+    window.speechSynthesis.speak(u);
+  },
+  init() { if (window.speechSynthesis) window.speechSynthesis.getVoices(); }
+};
+window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
+function ttsBtn(text) {
+  return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'")}')" title="발음 듣기">🔊</button>`;
+}
+
+const SYSTEM_PROMPT = `You are a Korean language tutor for Hanwha Ocean shipyard foreign workers. This is the final lesson of Level 0. It covers essential safety Korean and KIIP program introduction. Answer in Korean with English translation. Be motivating and practical. Under 150 words.`;
+
+const SAFETY_VOCAB = [
+  {kor:"위험",pron:"wi-heom",eng:"Danger",color:"#fee2e2",border:"var(--red)",icon:"🔴"},
+  {kor:"주의",pron:"ju-ui",eng:"Caution",color:"#fff7ed",border:"var(--orange)",icon:"🟠"},
+  {kor:"금지",pron:"geum-ji",eng:"Prohibited/Forbidden",color:"#fee2e2",border:"var(--red)",icon:"🚫"},
+  {kor:"대피",pron:"dae-pi",eng:"Evacuation",color:"#dcfce7",border:"var(--level0)",icon:"🟢"},
+  {kor:"비상구",pron:"bi-sang-gu",eng:"Emergency Exit",color:"#dcfce7",border:"var(--level0)",icon:"🚪"},
+  {kor:"소화기",pron:"so-hwa-gi",eng:"Fire Extinguisher",color:"#fee2e2",border:"var(--red)",icon:"🧯"},
+  {kor:"응급처치",pron:"eung-geup-cheo-chi",eng:"First Aid",color:"#dbeafe",border:"var(--ocean)",icon:"🏥"},
+  {kor:"안전모 착용",pron:"an-jeon-mo chag-yong",eng:"Wear Safety Helmet",color:"#fef9c3",border:"#ca8a04",icon:"⛑️"},
+  {kor:"보호구 착용",pron:"bo-ho-gu chag-yong",eng:"Wear PPE",color:"#dbeafe",border:"var(--ocean)",icon:"🦺"},
+  {kor:"출입금지",pron:"chul-ip-geum-ji",eng:"No Entry",color:"#fee2e2",border:"var(--red)",icon:"⛔"},
+  {kor:"흡연금지",pron:"heub-yeon-geum-ji",eng:"No Smoking",color:"#fee2e2",border:"var(--red)",icon:"🚭"},
+  {kor:"안전 제일",pron:"an-jeon je-il",eng:"Safety First",color:"#dbeafe",border:"var(--ocean)",icon:"🥇"},
+];
+const SAFETY_PHRASES = [
+  {kor:"안전 제일!",eng:"Safety first!",when:"항상/Always"},
+  {kor:"보호구를 착용하세요.",eng:"Please wear your PPE.",when:"작업 전/Before work"},
+  {kor:"위험해요! 조심하세요!",eng:"It's dangerous! Be careful!",when:"위험 경고/Danger warning"},
+  {kor:"비상구는 저쪽이에요.",eng:"The emergency exit is over there.",when:"비상 시/Emergency"},
+  {kor:"소화기 어디 있어요?",eng:"Where is the fire extinguisher?",when:"화재 시/Fire"},
+  {kor:"도움이 필요해요!",eng:"I need help!",when:"긴급 상황/Emergency"},
+  {kor:"다쳤어요. 의무실 가야 해요.",eng:"I'm injured. I need to go to the infirmary.",when:"부상 시/Injury"},
+  {kor:"작업 중지 요청합니다.",eng:"Requesting work stoppage.",when:"위험 상황/Dangerous situation"},
+];
+const KIIP_INFO = [
+  {stage:"0단계 기초",hours:"15시간",note:"완료! ✅ 당신이 지금 완료한 과정",current:true},
+  {stage:"1단계 초급1",hours:"100시간",note:"다음 → 초급1 (이미 준비됨!)"},
+  {stage:"2단계 초급2",hours:"100시간",note:"초급2"},
+  {stage:"3단계 중급1",hours:"100시간",note:"중급1"},
+  {stage:"4단계 중급2",hours:"100시간",note:"중급2"},
+  {stage:"5단계 고급",hours:"50시간",note:"고급 → 영주권/귀화 가능!"},
+];
+const QUIZ = [
+  {q:"'위험'의 영어 뜻은?",o:["Caution","Prohibited","Danger","Emergency"],a:2},
+  {q:"'비상구'는 영어로?",o:["Fire Extinguisher","Emergency Exit","First Aid","No Entry"],a:1},
+  {q:"'보호구를 착용하세요'의 뜻은?",o:["Remove your PPE","Check your PPE","Wear your PPE","Bring your PPE"],a:2},
+  {q:"'도움이 필요해요!'의 뜻은?",o:["I'm finished","I need help","I understand","I'm sorry"],a:1},
+  {q:"'흡연금지'의 뜻은?",o:["No Entry","No Smoking","No Running","Danger"],a:1},
+  {q:"KIIP 총 단계 수는?",o:["3단계","5단계","6단계","7단계"],a:2},
+  {q:"0단계 이수 후 다음 단계는?",o:["2단계","고급","1단계","5단계"],a:2},
+  {q:"'안전 제일'의 뜻은?",o:["Work First","Safety First","Speed First","Quality First"],a:1},
+];
+const CULTURE = [
+  {icon:"🏛️",t:"KIIP 사회통합프로그램",eng:"Ministry of Justice KIIP",d:"법무부 사회통합프로그램(KIIP)은 한국에 사는 외국인이 한국어와 한국문화를 배우는 공식 프로그램입니다. 이수하면 비자 갱신, 영주권, 귀화에 유리합니다.",de:"KIIP (Ministry of Justice Social Integration Program) is the official program for foreigners in Korea to learn Korean language and culture. Completion benefits visa renewal, permanent residency, and naturalization."},
+  {icon:"⚓",t:"한화오션과 KIIP",eng:"Hanwha Ocean & KIIP",d:"한화오션 한국어교육은 KIIP 커리큘럼과 연계되어 있습니다. 이 교육을 이수하면 KIIP 각 단계 학습에 연속적으로 연결됩니다.",de:"Hanwha Ocean Korean education is aligned with the KIIP curriculum. Completing this education connects seamlessly to KIIP stage learning."},
+  {icon:"🎯",t:"0급 완료 축하!",eng:"Congratulations on Level 0!",d:"0급(기초) 10과를 모두 완료하셨습니다! 이제 한글을 읽고, 기초 인사를 하고, 조선소 안전 용어를 알게 되었습니다. 다음은 초급1(1급)입니다!",de:"You completed all 10 lessons of Level 0 (Foundation)! Now you can read Hangul, do basic greetings, and know shipyard safety terms. Next is Level 1 (Elementary 1)!"},
+  {icon:"🌱",t:"계속 배워요",eng:"Keep Learning",d:"언어는 꾸준히 배울수록 늘어납니다. 매일 조금씩 연습하세요. '조금씩 조금씩!' (Little by little!) 한국어 실력이 올라가면 더 좋은 기회가 기다립니다.",de:"Language improves with consistent practice. Practice a little every day. '조금씩 조금씩!' (Little by little!) Better Korean means better opportunities."},
+];
+
+let currentTab = 0;
+let quizState = {idx:0, score:0, answered:false};
+
+function sendAI() {
+  const input = document.getElementById('ai-input');
+  const chat = document.getElementById('ai-chat');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  chat.innerHTML += `<div class="bubble bubble-right" style="margin-bottom:8px"><b>나:</b> ${msg}</div>`;
+  chat.innerHTML += `<div id="ai-loading" class="bubble bubble-left" style="margin-bottom:8px">⏳ 생각 중...</div>`;
+  chat.scrollTop = chat.scrollHeight;
+  fetch('/api/chat', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({messages:[
+      {role:'system',content:SYSTEM_PROMPT},
+      {role:'user',content:msg}
+    ]})
+  })
+  .then(r=>r.json())
+  .then(d=>{
+    document.getElementById('ai-loading')?.remove();
+    const reply = d.choices?.[0]?.message?.content || '죄송합니다, 다시 시도해 주세요.';
+    chat.innerHTML += `<div class="bubble bubble-left" style="margin-bottom:8px"><b>AI 선생님:</b> ${reply}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+  })
+  .catch(()=>{
+    document.getElementById('ai-loading')?.remove();
+    chat.innerHTML += `<div class="bubble bubble-left" style="color:#e00;margin-bottom:8px">연결 오류. 다시 시도해 주세요.</div>`;
+  });
+}
+
+function showTab(idx) {
+  currentTab = idx;
+  render();
+}
+
+function answerQuiz(optIdx) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  const correct = QUIZ[quizState.idx].a === optIdx;
+  if (correct) quizState.score++;
+  document.querySelectorAll('.quiz-opt').forEach((el, i) => {
+    if (i === QUIZ[quizState.idx].a) el.classList.add('quiz-correct');
+    else if (i === optIdx && !correct) el.classList.add('quiz-wrong');
+    el.disabled = true;
+  });
+  document.getElementById('quiz-next-btn').classList.remove('hide');
+}
+
+function nextQuiz() {
+  if (quizState.idx < QUIZ.length - 1) {
+    quizState.idx++;
+    quizState.answered = false;
+    render();
+  } else {
+    quizState.idx = 0;
+    quizState.answered = false;
+    render();
+  }
+}
+
+function aiSection() {
+  return `<div class="card card-accent" style="margin-top:16px">
+    <div style="font-weight:700;color:var(--navy);margin-bottom:8px">🤖 AI 선생님께 질문하기</div>
+    <div id="ai-chat" style="min-height:60px;max-height:200px;overflow-y:auto;margin-bottom:8px;display:flex;flex-direction:column;gap:4px"></div>
+    <div style="display:flex;gap:6px">
+      <input class="input" id="ai-input" placeholder="안전 표현, KIIP에 대해 질문하세요..." style="margin:0;flex:1" onkeydown="if(event.key==='Enter')sendAI()">
+      <button class="btn btn-primary" style="width:auto;padding:10px 14px" onclick="sendAI()">전송</button>
+    </div>
+  </div>`;
+}
+
+function completionBanner() {
+  return `<div class="celebration">
+    <div style="font-size:36px;margin-bottom:8px">🎉</div>
+    <div style="font-size:22px;font-weight:800;margin-bottom:4px">0급 입문 완료!</div>
+    <div style="font-size:14px;opacity:0.9;margin-bottom:6px">Level 0 Foundation Complete!</div>
+    <div style="font-size:12px;opacity:0.8">10과 모두 완료 · 한글 · 인사 · 숫자 · 안전 · 기초 표현</div>
+  </div>`;
+}
+
+function render() {
+  const tabs = ['안전용어','안전표현','KIIP안내','퀴즈','문화'];
+  const tabHtml = tabs.map((t,i)=>`<button class="tab${currentTab===i?' active':''}" onclick="showTab(${i})">${t}</button>`).join('');
+
+  let content = '';
+  if (currentTab === 0) {
+    // Safety vocab
+    let vocabCards = SAFETY_VOCAB.map(v=>`
+      <div style="background:${v.color};border:2px solid ${v.border};border-radius:10px;padding:10px;cursor:pointer;transition:all .2s" onclick="TTS.speak('${v.kor.replace(/'/g,"\\'")}')">
+        <div style="font-size:22px;margin-bottom:4px">${v.icon}</div>
+        <div style="font-size:16px;font-weight:800;color:var(--navy)">${v.kor} ${ttsBtn(v.kor)}</div>
+        <div style="font-size:10px;color:#666;margin-top:2px">${v.pron}</div>
+        <div style="font-size:11px;font-weight:600;color:#333;margin-top:3px">${v.eng}</div>
+      </div>`).join('');
+    content = `
+    ${completionBanner()}
+    <h2>안전 용어 (Safety Vocabulary)</h2>
+    <p class="sub">조선소 필수 안전 용어 12가지 / 12 essential shipyard safety terms</p>
+    <div class="grid2">${vocabCards}</div>
+    <div class="card card-red" style="background:#fff5f5;margin-top:10px">
+      <div style="font-weight:700;color:var(--red);margin-bottom:8px">🚨 가장 중요한 표현!</div>
+      <div style="font-size:14px;line-height:2.2;color:#444">
+        <div>위험해요! ${ttsBtn('위험해요')}</div>
+        <div>멈추세요! ${ttsBtn('멈추세요')}</div>
+        <div>도망가세요! (대피) ${ttsBtn('대피하세요')}</div>
+        <div>안전 제일! ${ttsBtn('안전 제일')}</div>
+      </div>
+    </div>
+    ${aiSection()}`;
+  } else if (currentTab === 1) {
+    // Safety phrases
+    let phraseCards = SAFETY_PHRASES.map(p=>`
+      <div class="card card-accent">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between">
+          <div style="flex:1">
+            <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:3px">${p.kor} ${ttsBtn(p.kor)}</div>
+            <div style="font-size:12px;color:#555;margin-bottom:4px">${p.eng}</div>
+            <span style="font-size:10px;background:#f0f9ff;color:var(--ocean);padding:2px 7px;border-radius:6px;font-weight:600">${p.when}</span>
+          </div>
+        </div>
+      </div>`).join('');
+    content = `
+    <h2>안전 표현 (Safety Phrases)</h2>
+    <p class="sub">현장에서 꼭 필요한 안전 표현 / Essential safety expressions at the workplace</p>
+    ${phraseCards}
+    <div class="card card-green">
+      <div style="font-weight:700;color:var(--level0);margin-bottom:8px">💡 긴급 상황 3단계</div>
+      <div style="font-size:13px;line-height:2;color:#444">
+        <div>1. <b>위험해요!</b> 소리쳐요. ${ttsBtn('위험해요')}</div>
+        <div>2. <b>도움이 필요해요!</b> ${ttsBtn('도움이 필요해요')}</div>
+        <div>3. <b>의무실 어디예요?</b> ${ttsBtn('의무실 어디예요')}</div>
+      </div>
+    </div>
+    ${aiSection()}`;
+  } else if (currentTab === 2) {
+    // KIIP info
+    let stages = KIIP_INFO.map((k,i)=>`
+      <div class="kiip-stage ${k.current?'current':i===1?'done':'next'}">
+        <div style="min-width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;background:${k.current?'var(--level0)':i===1?'var(--ocean)':'#e5e7eb'};color:${k.current||i===1?'#fff':'#888'}">${i}</div>
+        <div style="flex:1">
+          <div style="font-weight:700;color:${k.current?'var(--level0)':'var(--navy)'};font-size:14px">${k.stage} ${k.current?'✅':''}</div>
+          <div style="font-size:11px;color:#888">${k.hours} · ${k.note}</div>
+        </div>
+      </div>`).join('');
+    content = `
+    ${completionBanner()}
+    <h2>KIIP 사회통합프로그램 안내</h2>
+    <p class="sub">법무부 사회통합프로그램 전체 과정 / Ministry of Justice KIIP full program</p>
+    <div class="card">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:12px">📊 KIIP 전체 단계 (6단계)</div>
+      ${stages}
+    </div>
+    <div class="card card-green">
+      <div style="font-weight:700;color:var(--level0);margin-bottom:8px">🎯 이수 혜택 (Benefits)</div>
+      <div style="font-size:13px;line-height:2;color:#444">
+        <div>✅ 비자 연장 시 가산점 / Visa extension bonus points</div>
+        <div>✅ 영주권(F-5) 신청 자격 / Permanent residency eligibility</div>
+        <div>✅ 귀화 신청 시 필기시험 면제 / Naturalization exam exemption</div>
+        <div>✅ 취업 경쟁력 향상 / Better employment competitiveness</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+      <a href="HanwhaOcean_Level1_Lesson1.html" style="text-decoration:none">
+        <button class="btn btn-green" style="font-size:15px">초급1 시작하기 → 1단계로 진행!</button>
+      </a>
+      <a href="HanwhaOcean_Level1_Index.html" style="text-decoration:none">
+        <button class="btn btn-navy">초급1 목차 보기 📚</button>
+      </a>
+      <a href="HanwhaOcean_Level0_Index.html" style="text-decoration:none">
+        <button class="btn btn-primary">0급 목차로 돌아가기 🏠</button>
+      </a>
+    </div>
+    ${aiSection()}`;
+  } else if (currentTab === 3) {
+    // Quiz
+    const q = QUIZ[quizState.idx];
+    const opts = q.o.map((opt,i)=>`<button class="quiz-opt" onclick="answerQuiz(${i})">${opt}</button>`).join('');
+    content = `
+    <h2>퀴즈 · Quiz</h2>
+    <p class="sub">0급 마지막 퀴즈! / Final Level 0 Quiz!</p>
+    <div class="card card-accent">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <span class="badge" style="background:var(--level0)">${quizState.idx+1} / ${QUIZ.length}</span>
+        <span style="font-size:13px;color:var(--level0);font-weight:700">점수: ${quizState.score}</span>
+      </div>
+      <div class="progress" style="margin-bottom:14px"><div class="progress-bar" style="background:var(--level0);width:${((quizState.idx)/QUIZ.length)*100}%"></div></div>
+      <div style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:14px">${q.q}</div>
+      ${opts}
+      <button id="quiz-next-btn" class="btn btn-green hide" onclick="nextQuiz()" style="margin-top:6px">다음 문제 →</button>
+    </div>
+    <div class="card card-green" style="margin-top:10px">
+      <div style="font-weight:700;color:var(--level0);margin-bottom:8px">🎉 0급 완료 후 다음 단계!</div>
+      <a href="HanwhaOcean_Level1_Lesson1.html" style="text-decoration:none">
+        <button class="btn btn-green">초급1 시작하기 →</button>
+      </a>
+    </div>
+    ${aiSection()}`;
+  } else {
+    // Culture
+    let cards = CULTURE.map(c=>`
+      <div class="card card-green">
+        <div style="font-size:28px;margin-bottom:6px">${c.icon}</div>
+        <div style="font-weight:700;color:var(--navy);margin-bottom:2px">${c.t}</div>
+        <div style="font-size:11px;color:var(--level0);margin-bottom:6px">${c.eng}</div>
+        <div style="font-size:12px;color:#444;line-height:1.6;margin-bottom:6px">${c.d}</div>
+        <div style="font-size:11px;color:#888;line-height:1.5;font-style:italic">${c.de}</div>
+      </div>`).join('');
+    content = `
+    ${completionBanner()}
+    <h2>문화 & 마무리</h2>
+    <p class="sub">KIIP culture and Level 0 wrap-up</p>
+    ${cards}
+    <div style="margin-top:16px;display:flex;flex-direction:column;gap:8px">
+      <a href="HanwhaOcean_Level1_Lesson1.html" style="text-decoration:none">
+        <button class="btn btn-green" style="font-size:15px">다음 단계로 → 초급1 시작!</button>
+      </a>
+      <a href="HanwhaOcean_Level1_Index.html" style="text-decoration:none">
+        <button class="btn btn-navy">초급1 전체 목차 📚</button>
+      </a>
+    </div>
+    ${aiSection()}`;
+  }
+
+  document.getElementById('app').innerHTML = `
+    <nav class="nav">
+      <div>
+        <div class="nav-title">0급 입문 10과 · 안전 약속</div>
+        <div class="nav-sub">Safety Korean + KIIP 0단계 마무리</div>
+      </div>
+      <div style="display:flex;gap:4px">
+        <a href="HanwhaOcean_Level0_Lesson9.html"><button class="nav-btn">◀</button></a>
+        <a href="HanwhaOcean_Level0_Index.html"><button class="nav-btn">🏠</button></a>
+        <a href="HanwhaOcean_Level1_Lesson1.html"><button class="nav-btn" title="초급1 시작하기">▶</button></a>
+      </div>
+    </nav>
+    <div class="page">
+      <div class="tabs">${tabHtml}</div>
+      ${content}
+    </div>
+    <nav class="bottom-nav">
+      <button class="${currentTab===0?'active':''}" onclick="showTab(0)"><span class="icon">⚠️</span>안전용어</button>
+      <button class="${currentTab===1?'active':''}" onclick="showTab(1)"><span class="icon">🚨</span>안전표현</button>
+      <button class="${currentTab===2?'active':''}" onclick="showTab(2)"><span class="icon">🏛️</span>KIIP</button>
+      <button class="${currentTab===3?'active':''}" onclick="showTab(3)"><span class="icon">❓</span>퀴즈</button>
+      <button class="${currentTab===4?'active':''}" onclick="showTab(4)"><span class="icon">🌱</span>문화</button>
+    </nav>`;
+}
+
+render();
+if('serviceWorker' in navigator){window.addEventListener('load',()=>{navigator.serviceWorker.register('/sw.js').catch(()=>{});});}
+</script>
+</body>
+</html>

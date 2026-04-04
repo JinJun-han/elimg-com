@@ -29,9 +29,20 @@ export default {
   },
 };
 
-/* ── 진도 저장 + 피드백 버튼 주입 ───────────────────── */
+/* ── KIIP 단계 정보 ──────────────────────────────────── */
+const KIIP_STAGES = {
+  0: {label:'KIIP 0단계 · 기초', bg:'#15803d', indexUrl:'/HanwhaOcean_Level0_Index.html'},
+  1: {label:'KIIP 1단계 · 초급1', bg:'#1d4ed8', indexUrl:'/HanwhaOcean_Level1_Index.html'},
+  2: {label:'KIIP 2단계 · 초급2', bg:'#1d4ed8', indexUrl:'/HanwhaOcean_Level2_Index.html'},
+  3: {label:'KIIP 3단계 · 중급1', bg:'#7c3aed', indexUrl:'/HanwhaOcean_Level3_Index.html'},
+  4: {label:'KIIP 4단계 · 중급2', bg:'#7c3aed', indexUrl:'/HanwhaOcean_Level4_Index.html'},
+  5: {label:'KIIP 5단계 · 고급', bg:'#b45309', indexUrl:'/HanwhaOcean_Level5_Index.html'},
+};
+
+/* ── 진도 저장 + KIIP 배지 + 피드백 버튼 주입 ──────── */
 async function injectProgress(response, level, lesson) {
   const html = await response.text();
+  const ki = KIIP_STAGES[level] || {label:`KIIP ${level}단계`, bg:'#003366', indexUrl:'/'};
   const script = `
 <script>
 (function(){
@@ -44,6 +55,7 @@ async function injectProgress(response, level, lesson) {
   } catch(e) {}
 })();
 </script>
+<div id="kiip-badge" style="position:fixed;top:0;right:0;z-index:9998;background:${ki.bg};color:#fff;font-size:10px;font-weight:800;padding:5px 12px 5px 10px;border-radius:0 0 0 12px;letter-spacing:.2px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.2);" onclick="location.href='${ki.indexUrl}'">${ki.label} ↗</div>
 <style>
 #hw-feedback-btn{position:fixed;bottom:80px;right:16px;z-index:9999;background:#E8C05A;color:#003366;border:none;border-radius:50px;padding:10px 16px;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25);display:flex;align-items:center;gap:6px;transition:transform .15s;}
 #hw-feedback-btn:hover{transform:scale(1.05);}
