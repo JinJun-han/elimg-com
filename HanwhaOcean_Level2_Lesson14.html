@@ -1368,7 +1368,7 @@ function startSTT(idx, targetText, recBtn) { RECORDER.start(idx, targetText, rec
 // ===== AI 에이전틱 G스택 렌더 =====
 function renderAI() {
   setTimeout(function(){ RECORDER.autoDetect(); }, 100);
-  return \`
+  return `
   <h2>🤖 AI 실습</h2>
   <p class="sub">글로컬 아카데미 × 에이전틱 G스택</p>
 
@@ -1487,30 +1487,30 @@ function renderAI() {
       <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:14px"></div>
     </div>
 
-    \${[
+    ${[
       {sent:'안전 교육을 받아야 해요.', eng:'I need to receive safety training.'},
       {sent:'시험에 합격했어요.', eng:'I passed the exam.'},
       {sent:'이 부분을 다시 설명해 주세요.', eng:'Please explain this part again.'},
       {sent:'수료증을 받고 싶어요.', eng:'I want to receive a certificate of completion.'},
       {sent:'열심히 공부해서 합격할 거예요.', eng:'I will study hard and pass.'},
-    ].map(function(item,i){ return \`
+    ].map(function(item,i){ return `
       <div style="background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
-        <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">\${item.sent}</div>
-        <div style="font-size:10px;color:#059669;margin-bottom:8px">🇬🇧 \${item.eng}</div>
+        <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>
+        <div style="font-size:10px;color:#059669;margin-bottom:8px">🇬🇧 ${item.eng}</div>
         <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
-          <div id="score-bar-\${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+          <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
         </div>
         <div style="display:flex;gap:6px;flex-wrap:wrap">
-          <button onclick="var b=this;TTS.speak('\${item.sent.replace(/'/g,"\\\\'")}');b.textContent='🔊 재생 중...';setTimeout(function(){b.textContent='🔊 원어민'},2000)"
+          <button onclick="var b=this;TTS.speak('${item.sent.replace(/'/g,"\\\\'")}');b.textContent='🔊 재생 중...';setTimeout(function(){b.textContent='🔊 원어민'},2000)"
             style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🔊 원어민</button>
-          <button id="rec-btn-\${i}" onclick="startSTT(\${i},'\${item.sent.replace(/'/g,"\\\\'")}',this)"
+          <button id="rec-btn-${i}" onclick="startSTT(${i},'${item.sent.replace(/'/g,"\\\\'")}',this)"
             style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🎤 녹음</button>
-          <button id="play-btn-\${i}" disabled
+          <button id="play-btn-${i}" disabled
             style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;opacity:0.4">▶ 내 발음</button>
         </div>
-        <div id="stt-result-\${i}" style="font-size:11px;margin-top:6px;min-height:14px"></div>
+        <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:14px"></div>
       </div>
-    \`; }).join('')}
+    `; }).join('')}
 
     <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
       <strong>📖 사용법 / How to use:</strong><br>
@@ -1538,7 +1538,7 @@ function renderAI() {
       ④ Correction → Send your text to Claude AI</span>
     </div>
   </div>
-  \`;
+  `;
 }
 
 
