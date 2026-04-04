@@ -485,7 +485,35 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
 .kf-btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 10px 32px rgba(27,58,107,.55);}
 .kf-btn .kf-dot{width:8px;height:8px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite;flex-shrink:0;}
 .kf-label{font-size:10px;color:rgba(27,58,107,.6);font-weight:600;letter-spacing:.5px;}
+.kf-btn.hw{background:linear-gradient(135deg,#003366,#0055a5);}
 @media(max-width:600px){.kf-btn{font-size:12px;padding:10px 14px;}.kiip-topbar-text{font-size:12px;}}
+/* ── HANWHA OCEAN SECTION ── */
+.hw-sec{padding:80px 5%;background:linear-gradient(180deg,#001f44 0%,#003366 100%);}
+.hw-inner{max-width:960px;margin:0 auto;text-align:center;}
+.hw-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:12px;color:rgba(255,255,255,.85);font-weight:600;margin-bottom:18px;letter-spacing:.5px;}
+.hw-title{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,36px);color:#fff;font-weight:900;line-height:1.35;margin-bottom:10px;}
+.hw-title em{color:#E8C05A;}
+.hw-sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:40px;line-height:1.8;}
+.hw-levels{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px;}
+.hw-level-card{border-radius:16px;padding:28px 16px 22px;text-align:center;text-decoration:none;transition:.25s;border:2px solid transparent;position:relative;overflow:hidden;}
+.hw-level-card.active{background:linear-gradient(135deg,#fff 0%,#EEF6FF 100%);border-color:rgba(255,255,255,.4);cursor:pointer;}
+.hw-level-card.active:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,.3);border-color:#E8C05A;}
+.hw-level-card.coming{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.1);cursor:default;}
+.hw-level-num{font-family:'Playfair Display',serif;font-size:36px;font-weight:700;line-height:1;margin-bottom:8px;}
+.hw-level-card.active .hw-level-num{color:#003366;}
+.hw-level-card.coming .hw-level-num{color:rgba(255,255,255,.3);}
+.hw-level-name{font-size:15px;font-weight:800;margin-bottom:4px;}
+.hw-level-card.active .hw-level-name{color:#003366;}
+.hw-level-card.coming .hw-level-name{color:rgba(255,255,255,.35);}
+.hw-level-sub{font-size:11px;}
+.hw-level-card.active .hw-level-sub{color:#0055a5;}
+.hw-level-card.coming .hw-level-sub{color:rgba(255,255,255,.25);}
+.hw-level-count{display:inline-block;margin-top:10px;background:rgba(0,51,102,.1);border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700;color:#0055a5;}
+.hw-level-card.coming .hw-level-count{background:rgba(255,255,255,.06);color:rgba(255,255,255,.25);}
+.hw-lock{position:absolute;top:10px;right:12px;font-size:14px;opacity:.4;}
+.hw-note{font-size:12px;color:rgba(255,255,255,.4);margin-top:6px;}
+@media(max-width:700px){.hw-levels{grid-template-columns:repeat(2,1fr);}
+.hw-level-card{padding:20px 12px 16px;}.hw-level-num{font-size:28px;}}
 /* ── BACK TO TOP ── */
 #backTop{position:fixed;bottom:24px;right:24px;z-index:500;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--gold));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 4px 16px rgba(196,154,34,.35);}
 #backTop.vis{opacity:1;pointer-events:auto;}
@@ -575,6 +603,7 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
         <div class="nav-drop">
           <a href="#school">비즈니스 스쿨</a>
           <a href="#ai-edu">🎓 AI 교육</a>
+          <a href="#hanwha" style="color:#7dd3fc;font-weight:700;">⚓ 한화오션 한국어</a>
           <a href="#kiip" style="color:rgba(232,192,90,.9);font-weight:600;">📚 KIIP 학습앱</a>
           <a href="#pricing" style="color:rgba(232,192,90,.9);font-weight:600;">💳 요금제</a>
           <a href="#network">네트워크</a>
@@ -594,6 +623,7 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
   <a href="#founder" onclick="closeMenu()">대표</a>
   <a href="#school" onclick="closeMenu()">비즈니스 스쿨</a>
   <a href="#ai-edu" onclick="closeMenu()">🎓 AI 활용 교육</a>
+  <a href="#hanwha" onclick="closeMenu()" style="color:#7dd3fc;font-weight:700;">⚓ 한화오션 한국어 교육</a>
   <a href="#kiip" onclick="closeMenu()" style="color:var(--gold-light);">📚 KIIP 한국어 앱</a>
   <a href="#pricing" onclick="closeMenu()" style="color:var(--gold-light);">💳 요금제·서비스</a>
   <a href="#ministry" onclick="closeMenu()">사역 연계</a>
@@ -1050,6 +1080,44 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
         <p>외국인 근로자 학습 현황 대시보드 제공. 진도율·출석·퀴즈 결과 실시간 관리</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- HANWHA OCEAN KOREAN EDUCATION -->
+<section class="hw-sec" id="hanwha">
+  <div class="hw-inner">
+    <span class="hw-badge">⚓ 한화오션 × 글로컬아카데미 · Hanwha Ocean Korean Education</span>
+    <h2 class="hw-title">한화오션 해외근로자<br><em>한국어 교육 과정</em></h2>
+    <p class="hw-sub">거제 한화오션 조선소 외국인 근로자를 위한 맞춤 한국어 교육<br>AI 실습 · 어휘 · 문법 · 회화 · 퀴즈 · 베트남어 지원</p>
+    <div class="hw-levels">
+      <a href="/HanwhaOcean_Level1_Index" class="hw-level-card active">
+        <div class="hw-level-num">①</div>
+        <div class="hw-level-name">초급 1</div>
+        <div class="hw-level-sub">Beginner Level 1</div>
+        <div class="hw-level-count">📚 20과 완성</div>
+      </a>
+      <a href="/HanwhaOcean_Level2_Index" class="hw-level-card active">
+        <div class="hw-level-num">②</div>
+        <div class="hw-level-name">초급 2</div>
+        <div class="hw-level-sub">Beginner Level 2</div>
+        <div class="hw-level-count">📚 20과 완성</div>
+      </a>
+      <div class="hw-level-card coming">
+        <span class="hw-lock">🔒</span>
+        <div class="hw-level-num">③</div>
+        <div class="hw-level-name">중급</div>
+        <div class="hw-level-sub">Intermediate</div>
+        <div class="hw-level-count">🔧 준비 중</div>
+      </div>
+      <div class="hw-level-card coming">
+        <span class="hw-lock">🔒</span>
+        <div class="hw-level-num">④</div>
+        <div class="hw-level-name">고급</div>
+        <div class="hw-level-sub">Advanced</div>
+        <div class="hw-level-count">🔧 준비 중</div>
+      </div>
+    </div>
+    <p class="hw-note">① ② 과정은 현재 학습 가능 · ③ ④ 과정은 순차적으로 오픈 예정</p>
   </div>
 </section>
 
@@ -1811,10 +1879,13 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
 </footer>
 <button id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">↑</button>
 
-<!-- KIIP FLOAT BUTTON -->
+<!-- FLOAT BUTTONS -->
 <div id="kiipFloat">
-  <a href="/KIIP_Level3_Lesson1.html" class="kf-btn">
-    <span class="kf-dot"></span>📚 KIIP 학습 시작
+  <a href="/HanwhaOcean_Level1_Index" class="kf-btn hw">
+    <span class="kf-dot"></span>⚓ 한화오션 한국어
+  </a>
+  <a href="/KIIP_Level3_Lesson1.html" class="kf-btn" style="margin-top:2px;">
+    📚 KIIP 학습 시작
   </a>
   <span class="kf-label">무료 · 로그인 불필요</span>
 </div>
