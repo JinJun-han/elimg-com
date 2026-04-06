@@ -1,4 +1,4 @@
-const CACHE_NAME = 'kiip-korean-v4';
+const CACHE_NAME = 'kiip-korean-v5';
 const PRECACHE_URLS = [
   '/HanwhaOcean_Level1_Index.html',
   '/HanwhaOcean_Level2_Index.html',
