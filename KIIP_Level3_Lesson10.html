@@ -54,9 +54,6 @@ h2{color:var(--brown);font-size:18px;margin-bottom:4px;font-weight:800}
 .lang-bar{background:#fef3c7;display:flex;justify-content:center;gap:8px;padding:8px}
 .lang-btn-sm{background:rgba(180,83,9,0.1);border:1px solid #fbbf24;color:#92400e;padding:8px 16px;border-radius:20px;font-size:13px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
 .lang-btn-sm.active{background:var(--amber);color:#fff;border-color:var(--amber)}
-.wip-banner{background:linear-gradient(135deg,#78350f,#92400e);color:#fff;border-radius:12px;padding:20px;margin-bottom:16px;text-align:center}
-.wip-banner h3{font-size:18px;font-weight:800;margin-bottom:8px}
-.wip-banner p{font-size:13px;opacity:0.9;line-height:1.7;margin-bottom:4px}
 .obj-item{display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid #fde68a;font-size:14px;color:var(--text)}
 .obj-item:last-child{border-bottom:none}
 .obj-check{color:var(--amber);font-size:16px;flex-shrink:0;margin-top:1px}
@@ -86,6 +83,8 @@ window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); }
 const STATE = {
   section: 0,
   lang: localStorage.getItem('kiip_lang') || 'ko',
+  grammarTab: 0,
+  quiz: {started:false, idx:0, score:0, chosen:null, done:false},
 };
 
 function setState(newState) {
@@ -108,7 +107,103 @@ const SECTIONS = [
   {id:10, label:'AI실습', icon:'🤖'},
 ];
 
-var AI_QUICK_BTNS = [{"emoji":"♻️","label":"환경 어휘 설명","q":"KIIP 3급 10과: 환경과 자연 관련 어휘 10개를 한국어, 발음, 영어, 베트남어로 알려주세요. 오염, 재활용, 기후 관련 단어 포함해 주세요."},{"emoji":"🌍","label":"환경 표현 연습","q":"환경 보호 관련 표현을 알려주세요. \"환경을 위해 ~해야 합니다\" 같은 문장을 5개 베트남어와 함께 알려주세요."},{"emoji":"💚","label":"환경 토론 연습","q":"환경 문제에 대한 의견을 표현하는 연습을 해주세요. 환경오염, 기후변화에 대한 생각을 한국어로 말하는 방법을 가르쳐 주세요."},{"emoji":"🌱","label":"한국 환경 정책","q":"한국의 환경 정책과 분리수거 방법을 설명해 주세요. 베트남과 비교해서 비슷한 점, 다른 점을 베트남어로 알려주세요."}];
+const VOCAB = [
+  // 환경 문제
+  {ko:'환경오염', pron:'[환경오염]', en:'environmental pollution', vi:'ô nhiễm môi trường', cat:'환경 문제'},
+  {ko:'대기오염', pron:'[대기오염]', en:'air pollution', vi:'ô nhiễm không khí', cat:'환경 문제'},
+  {ko:'수질오염', pron:'[수질오염]', en:'water pollution', vi:'ô nhiễm nguồn nước', cat:'환경 문제'},
+  {ko:'미세먼지', pron:'[미세먼지]', en:'fine dust/PM', vi:'bụi mịn', cat:'환경 문제'},
+  {ko:'온난화', pron:'[온난화]', en:'global warming', vi:'nóng lên toàn cầu', cat:'환경 문제'},
+  // 자연재해
+  {ko:'홍수', pron:'[홍수]', en:'flood', vi:'lũ lụt', cat:'자연재해'},
+  {ko:'가뭄', pron:'[가뭄]', en:'drought', vi:'hạn hán', cat:'자연재해'},
+  {ko:'태풍', pron:'[태풍]', en:'typhoon', vi:'bão', cat:'자연재해'},
+  {ko:'지진', pron:'[지진]', en:'earthquake', vi:'động đất', cat:'자연재해'},
+  {ko:'산불', pron:'[산불]', en:'forest fire', vi:'cháy rừng', cat:'자연재해'},
+  // 환경 보호
+  {ko:'재활용', pron:'[재활용]', en:'recycling', vi:'tái chế', cat:'환경 보호'},
+  {ko:'분리수거', pron:'[불리수거]', en:'separate waste collection', vi:'phân loại rác', cat:'환경 보호'},
+  {ko:'친환경', pron:'[친환경]', en:'eco-friendly', vi:'thân thiện với môi trường', cat:'환경 보호'},
+  {ko:'탄소 배출', pron:'[탄소 배출]', en:'carbon emission', vi:'phát thải carbon', cat:'환경 보호'},
+  {ko:'에너지 절약', pron:'[에너지 저략]', en:'energy saving', vi:'tiết kiệm năng lượng', cat:'환경 보호'},
+  // 자연환경
+  {ko:'숲', pron:'[숲]', en:'forest', vi:'rừng', cat:'자연환경'},
+  {ko:'하천', pron:'[하천]', en:'stream/river', vi:'suối, sông nhỏ', cat:'자연환경'},
+  {ko:'해양', pron:'[해양]', en:'ocean', vi:'đại dương', cat:'자연환경'},
+  {ko:'생태계', pron:'[생태계]', en:'ecosystem', vi:'hệ sinh thái', cat:'자연환경'},
+  {ko:'멸종위기', pron:'[멸종위기]', en:'endangered', vi:'nguy cơ tuyệt chủng', cat:'자연환경'},
+  // 환경 실천
+  {ko:'절전', pron:'[절쩐]', en:'power saving', vi:'tiết kiệm điện', cat:'환경 실천'},
+  {ko:'텀블러', pron:'[텀블러]', en:'tumbler/reusable cup', vi:'cốc tái sử dụng', cat:'환경 실천'},
+  {ko:'장바구니', pron:'[장바구니]', en:'reusable shopping bag', vi:'túi đi chợ', cat:'환경 실천'},
+];
+
+const IDIOMS = [
+  {expr:'자연을 벗삼다', meaning:'자연을 친구처럼 즐기다 (to enjoy nature as a companion)', ex:'주말에 등산하며 자연을 벗삼아요.'},
+  {expr:'환경을 생각하다', meaning:'환경을 고려하다 (to consider the environment)', ex:'텀블러를 쓰는 것이 환경을 생각하는 행동이에요.'},
+  {expr:'지구를 지키다', meaning:'환경을 보호하다 (to protect the earth)', ex:'작은 실천으로도 지구를 지킬 수 있어요.'},
+  {expr:'온 지구가 몸살을 앓다', meaning:'전 세계가 환경 문제로 고통받다 (the whole earth suffers from environmental problems)', ex:'이상 기후로 온 지구가 몸살을 앓고 있어요.'},
+  {expr:'발자국을 줄이다', meaning:'탄소 발자국을 줄이다 (to reduce one\'s carbon footprint)', ex:'대중교통을 이용해 탄소 발자국을 줄여요.'},
+];
+
+const DIALOGUES = [
+  {
+    title:'대화 1 — 미세먼지',
+    lines:[
+      {sp:'수민', text:'오늘 미세먼지가 심하네요. 마스크 쓰고 나왔어요?'},
+      {sp:'린', text:'네, 요즘 미세먼지가 나빠지게 돼서 항상 챙겨요.'},
+      {sp:'수민', text:'저도 요즘 공기가 나빠진 것 같아서 걱정이에요.'},
+      {sp:'린', text:'환경 보호에 더 신경을 써야겠어요.'},
+    ]
+  },
+  {
+    title:'대화 2 — 분리수거',
+    lines:[
+      {sp:'민준', text:'린 씨, 한국 분리수거 방법 아세요?'},
+      {sp:'린', text:'조금 알아요. 처음엔 복잡했는데 이제 익숙해지게 됐어요.'},
+      {sp:'민준', text:'맞아요. 비닐, 플라스틱, 종이를 따로 버려야 해요.'},
+      {sp:'린', text:'환경을 위해서 중요한 것 같아요.'},
+    ]
+  },
+  {
+    title:'대화 3 — 기후 변화',
+    lines:[
+      {sp:'린', text:'요즘 날씨가 이상해진 것 같지 않아요?'},
+      {sp:'수민', text:'맞아요. 여름이 점점 더워지게 됐어요. 기후 변화 때문인 것 같아요.'},
+      {sp:'린', text:'저도 느꼈어요. 베트남보다 한국 여름이 더 덥다고 들었는데 정말 그런 것 같아요.'},
+      {sp:'수민', text:'온난화 문제가 심각해졌어요. 우리도 뭔가 해야 할 것 같아요.'},
+    ]
+  },
+];
+
+const QUIZ_DATA = [
+  {q:'"더워지다"의 -게 되다 올바른 형태는?', opts:['더워지되었어요','더워지게 됐어요','더워지가 됐어요','더워지어 됐어요'], ans:1},
+  {q:'-아/어지다를 올바르게 사용한 것은?', opts:['날씨가 더워졌어요.','날씨가 더워게 됐어요.','날씨가 더워되었어요.','날씨가 더워나졌어요.'], ans:0},
+  {q:'"분리수거"의 올바른 발음은?', opts:['[분리수거]','[불리수거]','[분니수거]','[분리수거]'], ans:1},
+  {q:'"환경오염"의 뜻은?', opts:['환경을 보호하다','자연이 오염되는 것','재활용하다','에너지를 아끼다'], ans:1},
+  {q:'미세먼지가 심한 날 해야 할 행동은?', opts:['창문을 열어요','마스크를 써요','야외 운동을 늘려요','에어컨을 꺼요'], ans:1},
+  {q:'"재활용"의 뜻은?', opts:['새 물건을 사다','쓰레기를 아무 데나 버리다','쓴 물건을 다시 사용하다','전기를 아끼다'], ans:2},
+  {q:'빈칸: "공기가 나빠___ 마스크를 씁니다."', opts:['지게 돼서','가서','고 나서','면서'], ans:0},
+  {q:'"지구를 지키다"의 뜻은?', opts:['지구를 관찰하다','환경을 보호하다','우주여행을 하다','지도를 만들다'], ans:1},
+  {q:'한국 분리수거에서 분리하지 않아도 되는 것은?', opts:['비닐','플라스틱','일반 쓰레기','종이'], ans:2},
+  {q:'-게 되다와 -아/어지다의 차이로 올바른 것은?', opts:['-게 되다는 과거에만 쓴다','-아/어지다는 동사에만 쓴다','-게 되다는 변화의 과정·원인 강조, -아/어지다는 상태 변화 결과 강조','-아/어지다는 미래를 나타낸다'], ans:2},
+];
+
+const CULTURE = [
+  {icon:'🌱', title:'한국의 분리수거 문화', body:'한국은 색깔별 분리수거함을 운영해요. 비닐·플라스틱·종이·음식물 쓰레기를 각각 분리해야 하고, 음식물 쓰레기는 종량제 봉투를 사용해야 해요. 외국인도 분리수거 참여가 의무이니 이사 후 바로 확인하세요.'},
+  {icon:'😷', title:'미세먼지 대응', body:'한국에서는 KF94 등급 마스크가 가장 효과적이에요. 에어코리아(AirKorea) 앱과 날씨 앱에서 미세먼지 농도를 실시간 확인할 수 있고, 미세먼지 알림 서비스에 가입하면 나쁨 단계일 때 문자 알림을 받을 수 있어요.'},
+  {icon:'♻️', title:'친환경 정책', body:'한국은 카페 내 일회용 플라스틱컵 사용을 제한하고, 일회용컵 보증금제를 시행 중이에요. 전기차 보급과 재생에너지 확대에도 힘쓰고 있어요. 텀블러와 장바구니 사용이 일상화되고 있어요.'},
+  {icon:'🌏', title:'기후변화와 한국', body:'한국도 이상 기후 현상이 증가하고 있어요. 여름이 길어지고 태풍·집중호우가 잦아졌어요. 한국 정부는 2050 탄소중립을 선언했어요. 개인의 작은 실천(텀블러, 대중교통, 절전)이 모여 큰 변화를 만들어요.'},
+];
+
+var AI_QUICK_BTNS = [
+  {emoji:'🌿', label:'환경 어휘 설명', q:'KIIP 3급 10과 어휘: 환경과 자연 관련 단어 5개를 쉽게 설명하고 예문과 베트남어 번역을 알려주세요.'},
+  {emoji:'📐', label:'문법 질문', q:'KIIP 3급: -아/어지다 문법을 쉽게 설명하고 예문 3개를 베트남어 번역과 함께 알려주세요.'},
+  {emoji:'💬', label:'롤플레이', q:'저는 베트남 출신 KIIP 3급 학습자입니다. 환경 보호를 주제로 -게 되다, -아/어지다 문법으로 대화 롤플레이해 주세요.'},
+  {emoji:'✏️', label:'내 글 첨삭', q:'KIIP 3급 학습자의 글입니다. 문법을 확인하고 수정해 주세요. 베트남어로도 설명해 주세요: '},
+  {emoji:'❓', label:'틀린 문제 설명', q:'KIIP 3급 퀴즈에서 틀렸어요. -아/어지다 문법을 다시 쉽게 설명하고 예문 3개를 베트남어와 함께 알려주세요.'},
+  {emoji:'🎯', label:'TOPIK 연습', q:'KIIP 3급 수준의 TOPIK II 환경 주제 빈칸 채우기 문제 3개를 만들어 주세요. 정답과 해설도 포함해 주세요.'},
+];
 
 var AICHAT = {
   history: [],
@@ -121,6 +216,7 @@ var AICHAT = {
     if (!inp) return;
     inp.value = b.q;
     inp.style.borderColor = '#f59e0b';
+    if (idx === 3) { inp.focus(); return; }
     this.send();
   },
 
@@ -154,7 +250,7 @@ var AICHAT = {
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div>'
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div>'
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div>'
-          + '</div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+          + '</div><span style="font-size:12px;color:#888">AI 응답 중... 🇻🇳 Đang trả lời...</span>';
         box.appendChild(ld);
         box.scrollTop = box.scrollHeight;
       }
@@ -170,18 +266,14 @@ var AICHAT = {
     var inp  = document.getElementById('ai-chat-input');
     var text = inp ? inp.value.trim() : '';
     if (!text) return;
-
     this.history.push({role:'user', content:text});
     this.addMsg('user', text);
     if (inp) inp.value = '';
     this.loading = true;
     this.setLoading(true);
-
-    var sys = "You are a Korean language tutor for KIIP Level 3. The student is likely Vietnamese. This lesson is about environment and nature (환경과 자연). Answer in Korean with Vietnamese translation. Be concise and friendly.";
-
+    var sys = 'You are a Korean language tutor for KIIP Level 3 Lesson 10 (환경과 자연 / Environment & Nature). The student is likely Vietnamese. Answer in Korean with Vietnamese translation. Be concise and friendly. Focus on KIIP content including -게 되다 and -아/어지다 grammar in environmental context.';
     try {
-      var url = '/api/chat';
-      var res  = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var data = await res.json();
       var reply = data.choices[0].message.content;
@@ -191,216 +283,846 @@ var AICHAT = {
       this.addMsg('assistant', reply);
     } catch(e) {
       this.setLoading(false);
-      this.addMsg('assistant',
-        '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요');
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요\n🇻🇳 Lỗi kết nối AI — Thử lại sau ít phút');
     }
     this.loading = false;
   }
 };
 
-// ===== RENDER =====
-function setLang(lang) {
-  STATE.lang = lang;
-  localStorage.setItem('kiip_lang', lang);
-  render();
+function copyNotebookContent10() {
+  var content = 'KIIP 3급 중급 1 · 10과 환경과 자연 학습 자료\n글로컬 아카데미 (elimg.com)\n\n=== 핵심 어휘 ===\n환경 문제: 환경오염, 대기오염, 수질오염, 미세먼지, 온난화\n자연재해: 홍수, 가뭄, 태풍, 지진, 산불\n환경 보호: 재활용, 분리수거, 친환경, 탄소 배출, 에너지 절약\n자연환경: 숲, 하천, 해양, 생태계, 멸종위기\n환경 실천: 절전, 텀블러, 장바구니\n\n=== 관용 표현 ===\n자연을 벗삼다 = 자연을 친구처럼 즐기다\n환경을 생각하다 = 환경을 고려하다\n지구를 지키다 = 환경을 보호하다\n온 지구가 몸살을 앓다 = 전 세계가 환경 문제로 고통받다\n발자국을 줄이다 = 탄소 발자국을 줄이다\n\n=== 핵심 문법 ===\n1. -게 되다 (환경 맥락): "came to be / ended up"\n   의미: 상황이 바뀌어 그렇게 됨 (외부 요인·점진적 변화)\n   예: 여름이 더워지게 됐어요. / 텀블러를 쓰게 됐어요.\n   베트남어: Mùa hè đã trở nên nóng hơn. / Tôi đã bắt đầu dùng cốc.\n\n2. -아/어지다: "becomes / gets (more)"\n   의미: 점진적 상태 변화 결과 강조\n   ㅏ/ㅗ → -아지다 / 그 외 → -어지다\n   예: 날씨가 더워졌어요. / 공기가 나빠졌어요.\n   베트남어: Thời tiết đã nóng hơn. / Không khí đã xấu đi.';
+  navigator.clipboard.writeText(content).then(function() {
+    var el = document.getElementById('copy-ok10');
+    if (el) { el.textContent = '✅ 복사 완료!'; setTimeout(function(){ el.textContent = ''; }, 3000); }
+  }).catch(function() {
+    var el = document.getElementById('copy-ok10');
+    if (el) el.textContent = '❌ 직접 복사하세요';
+  });
 }
 
-function renderNav() {
-  return `
-    <div class="nav">
-      <a href="KIIP_Level3_Index.html" class="nav-back">← 3급 목차</a>
-      <div style="text-align:center">
-        <div class="nav-title">10과 · 환경과 자연</div>
-        <div class="nav-sub">KIIP 3급 중급 1</div>
-      </div>
-      <div style="width:60px;text-align:right;font-size:11px;color:#d97706">
-        ${STATE.section+1}/${SECTIONS.length}
-      </div>
-    </div>
-  `;
+const RECORDER = {
+  streams: {}, recorders: {}, chunks: {}, audioURLs: {}, isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    const resultEl = document.getElementById('stt-result-' + idx);
+    const playBtn  = document.getElementById('play-btn-' + idx);
+    const scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, targetText, recBtn); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      this.streams[idx] = stream;
+    } catch(e) {
+      const name = e.name || '';
+      let msg = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg = '❌ <strong>마이크가 차단됨</strong> — 주소창 왼쪽 🔒 → 마이크 → <strong>허용</strong> 후 새로고침<br><span style="color:#555">🇻🇳 Micro bị chặn — Nhấn 🔒 → Micro → Cho phép → F5</span>';
+      } else if (name === 'NotFoundError') {
+        msg = '❌ <strong>마이크를 찾을 수 없어요</strong> — 마이크 연결 확인';
+      } else {
+        msg = '❌ <strong>오류: ' + name + '</strong> — Chrome/Edge에서 다시 시도';
+      }
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    const mr = new MediaRecorder(this.streams[idx]);
+    this.recorders[idx] = mr;
+    mr.ondataavailable = e => { if (e.data.size > 0) this.chunks[idx].push(e.data); };
+    mr.onstop = () => {
+      if (this.audioURLs[idx]) URL.revokeObjectURL(this.audioURLs[idx]);
+      const blob = new Blob(this.chunks[idx], {type: 'audio/webm'});
+      this.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false; playBtn.style.opacity = '1';
+        playBtn.onclick = () => { const a = new Audio(this.audioURLs[idx]); a.play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지'; recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중... · 🇻🇳 Đang ghi âm...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      const rec = new SR();
+      rec.lang = 'ko-KR'; rec.continuous = false; rec.interimResults = false;
+      rec.onresult = (e) => {
+        const said = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        const target = targetText.replace(/[\s,.?!\[\]]/g,'');
+        const conf = e.results[0][0].confidence;
+        let match = 0;
+        const minLen = Math.min(said.length, target.length);
+        for (let i = 0; i < minLen; i++) { if (said[i] === target[i]) match++; }
+        const pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        const confPct = Math.round((conf || 0.5) * 100);
+        const finalPct = Math.round((pct * 0.7) + (confPct * 0.3));
+        const color = finalPct >= 80 ? '#22c55e' : finalPct >= 50 ? '#f59e0b' : '#ef4444';
+        const msg = finalPct >= 80 ? '✅ 완벽해요! · Tuyệt vời!' : finalPct >= 50 ? '🔄 조금 더 연습! · Luyện thêm chút!' : '❌ 다시 시도! · Thử lại!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = finalPct + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = () => {};
+      rec.start();
+    }
+  },
+
+  async autoDetect() {
+    const stateEl = document.getElementById('mic-perm-state');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        const result = await navigator.permissions.query({name: 'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 이미 허용됨 — 바로 녹음하세요! · 🇻🇳 Đã cho phép!</div>';
+          if (allowBtn) { allowBtn.style.background = '#166534'; allowBtn.textContent = '✅ 허용됨 — 바로 녹음하세요'; }
+          if (blockedGuide) blockedGuide.style.display = 'none';
+          return;
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 아래 빨간 박스 순서대로 해결하세요</div>';
+          if (blockedGuide) blockedGuide.style.display = 'block';
+          if (allowBtn) { allowBtn.style.background = '#ef4444'; allowBtn.textContent = '⚠️ 차단됨 — 위 단계 완료 후 여기 클릭'; }
+          return;
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아직 허용 안 됨 — 아래 버튼을 눌러 허용해 주세요</div>';
+        }
+        result.onchange = () => RECORDER.autoDetect();
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+      }
+    } else {
+      stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+    }
+  },
+
+  async checkPermission(btn) {
+    const statusEl = document.getElementById('mic-status');
+    const box = document.getElementById('mic-check-box');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → elimg.com 에서 열기</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 미지원 브라우저 — Chrome 또는 Edge를 사용해 주세요</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      stream.getTracks().forEach(t => t.stop());
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 바로 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 성공! 🇻🇳 Đã cho phép!</span>';
+      if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
+      if (blockedGuide) blockedGuide.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 바로 녹음하세요!'; btn.style.background = '#166534'; btn.disabled = false;
+    } catch(e) {
+      const name = e.name || '';
+      btn.disabled = false;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        if (blockedGuide) blockedGuide.style.display = 'block';
+        if (stateEl) stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 빨간 박스 순서대로 해결 후 다시 클릭</div>';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444;font-size:11px">🔒 허용 완료 후 이 버튼을 다시 눌러주세요</span>';
+        btn.textContent = '🔄 허용 완료 후 다시 클릭'; btn.style.background = '#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">오류 (' + (name||'unknown') + ') — Chrome/Edge에서 다시 시도</span>';
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
+      }
+    }
+  },
+
+  stop(idx, targetText, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') this.recorders[idx].stop();
+    if (this.streams[idx]) this.streams[idx].getTracks().forEach(t => t.stop());
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음'; recBtn.style.background = '#059669';
+  }
+};
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
 }
 
-function renderLangBar() {
-  return `
-    <div class="lang-bar">
-      ${['ko','en','vi'].map(l=>`<button class="lang-btn-sm ${STATE.lang===l?'active':''}" onclick="setLang('${l}')">${l==='ko'?'🇰🇷 KO':l==='en'?'🇺🇸 EN':'🇻🇳 VI'}</button>`).join('')}
-    </div>
-  `;
+// ===== RENDER HELPERS =====
+function vocabCatColor(cat) {
+  const m = {
+    '환경 문제':'#ef4444',
+    '자연재해':'#f59e0b',
+    '환경 보호':'#22c55e',
+    '자연환경':'#3b82f6',
+    '환경 실천':'#8b5cf6'
+  };
+  return m[cat] || '#888';
 }
 
-function renderTabs() {
-  return `
-    <div class="section-tabs">
-      ${SECTIONS.map(s=>`<button class="stab ${STATE.section===s.id?'active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
-    </div>
-  `;
-}
-
-function renderBottomNav() {
-  const prev = STATE.section > 0
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section-1}})">◀ 이전</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>◀ 이전</button>`;
-  const next = STATE.section < SECTIONS.length-1
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section+1}})">다음 ▶</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>다음 ▶</button>`;
-  return `
-    <div class="bottom-nav">
-      ${prev}
-      <button class="bnav-btn" onclick="setState({section:0})"><span class="bnav-icon">🏠</span><span>홈</span></button>
-      <button class="bnav-btn" onclick="setState({section:10})"><span class="bnav-icon">🤖</span><span>AI</span></button>
-      ${next}
-    </div>
-  `;
-}
-
-function renderWIPSection(title, icon) {
-  return `
-    <div class="page">
-      <h2>${icon} ${title}</h2>
-      <p class="sub">KIIP 3급 10과 · 환경과 자연 · Environment & Nature</p>
-      <div class="wip-banner">
-        <h3>🚧 콘텐츠 준비 중</h3>
-        <p>이 섹션의 학습 자료를 열심히 제작 중입니다.<br>Content is being prepared for this section.</p>
-        <p style="margin-top:8px;font-size:12px;opacity:0.8">🇻🇳 Nội dung đang được chuẩn bị. Vui lòng quay lại sau.</p>
-      </div>
-      <div class="card card-accent">
-        <div class="section-label">💡 지금 당장 학습하려면</div>
-        <div style="font-size:13px;color:#555;margin-top:6px;line-height:1.8">
-          아래 <strong>AI 실습</strong> 탭을 이용하면 이 주제를 바로 공부할 수 있어요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Sử dụng tab <strong>AI 실습</strong> bên dưới để học ngay chủ đề này!</span>
+function renderVocabCards() {
+  const cats = [...new Set(VOCAB.map(v => v.cat))];
+  return cats.map(cat => {
+    const items = VOCAB.filter(v => v.cat === cat);
+    const color = vocabCatColor(cat);
+    return `<div class="card" style="border-left:4px solid ${color};margin-bottom:10px">
+      <div style="font-size:12px;font-weight:700;color:${color};margin-bottom:8px">${cat}</div>
+      ${items.map(v => `
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${v.ko}')">
+          <div style="min-width:90px">
+            <span style="font-size:15px;font-weight:700;color:#1a202c">${v.ko}</span>
+            <span style="font-size:11px;color:#888;margin-left:4px">${v.pron}</span>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:12px;color:#b45309">${v.en}</div>
+            <div style="font-size:12px;color:#666">${v.vi}</div>
+          </div>
+          <span style="font-size:18px">🔊</span>
         </div>
-        <button onclick="setState({section:10})" style="background:var(--amber);color:#fff;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:700;margin-top:12px;width:100%">
-          🤖 AI 실습 탭으로 이동
-        </button>
-      </div>
-    </div>
-  `;
+      `).join('')}
+    </div>`;
+  }).join('');
 }
 
-function renderIntro() {
-  return `
-    <div class="page">
-      <div class="intro-header">
-        <div style="font-size:14px;opacity:0.8;margin-bottom:4px">KIIP 3급 · 중급 1</div>
-        <h3>10과 환경과 자연</h3>
-        <div style="font-size:14px;margin-top:4px;opacity:0.9">Environment & Nature</div>
-        <div style="margin-top:12px;font-size:28px">🌿</div>
-      </div>
+function renderDialogues() {
+  return DIALOGUES.map((d, di) => `
+    <div class="card card-accent" style="margin-bottom:12px">
+      <div style="font-weight:700;font-size:14px;color:#92400e;margin-bottom:10px">${d.title}</div>
+      ${d.lines.map((l, li) => {
+        const isRight = li % 2 === 1;
+        return `<div style="display:flex;flex-direction:column;align-items:${isRight?'flex-end':'flex-start'};margin-bottom:8px;cursor:pointer" onclick="TTS.speak('${l.text.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">
+          <div style="font-size:11px;color:#888;margin-bottom:2px">${l.sp}</div>
+          <div style="max-width:85%;background:${isRight?'#fef3c7':'#fff7ed'};border:1px solid #fde68a;border-radius:${isRight?'12px 12px 4px 12px':'12px 12px 12px 4px'};padding:8px 12px;font-size:14px;line-height:1.6">${l.text} 🔊</div>
+        </div>`;
+      }).join('')}
+    </div>
+  `).join('');
+}
 
+function renderQuiz() {
+  const Q = QUIZ_DATA;
+  const s = STATE.quiz;
+  if (!s.started) {
+    return `<div class="intro-header" style="margin-bottom:16px">
+      <div style="font-size:40px;margin-bottom:8px">✅</div>
+      <h3>10과 퀴즈</h3>
+      <p style="font-size:13px;opacity:0.9">환경과 자연 · 총 ${Q.length}문제</p>
+    </div>
+    <div class="card">
+      <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:14px">어휘, 문법(-게 되다, -아/어지다), 발음, 문화를 복습해 봐요!</p>
+      <button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:16px;font-weight:700">퀴즈 시작하기 🚀</button>
+    </div>`;
+  }
+  if (s.done) {
+    const pct = Math.round(s.score / Q.length * 100);
+    const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '👍' : '📚';
+    return `<div class="intro-header" style="margin-bottom:16px">
+      <div style="font-size:40px;margin-bottom:8px">${emoji}</div>
+      <h3>${s.score}/${Q.length} 정답</h3>
+      <p style="font-size:14px;opacity:0.9">${pct}점 · ${pct>=80?'훌륭해요!':pct>=60?'잘 했어요!':'다시 도전해 봐요!'}</p>
+    </div>
+    <div class="card">
+      <button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;margin-bottom:8px">다시 풀기 🔄</button>
+      <button onclick="setState({section:0})" style="width:100%;background:#fef3c7;color:#92400e;border-radius:12px;padding:12px;font-size:14px;font-weight:600">처음으로 🏠</button>
+    </div>`;
+  }
+  const cur = Q[s.idx];
+  const answered = s.chosen !== null;
+  return `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <span style="font-size:12px;color:#888">문제 ${s.idx+1}/${Q.length}</span>
+    <span style="font-size:12px;color:var(--amber);font-weight:700">점수: ${s.score}</span>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <p style="font-size:15px;font-weight:600;line-height:1.6;color:#1a202c">${cur.q}</p>
+  </div>
+  ${cur.opts.map((opt, oi) => {
+    let bg = '#fff', border = '#fde68a', color = '#1a202c';
+    if (answered) {
+      if (oi === cur.ans) { bg = '#dcfce7'; border = '#22c55e'; color = '#166534'; }
+      else if (oi === s.chosen) { bg = '#fee2e2'; border = '#ef4444'; color = '#991b1b'; }
+    }
+    return `<button onclick="${answered ? '' : `(function(){const isC=${oi===cur.ans};setState({quiz:{...STATE.quiz,chosen:${oi},score:STATE.quiz.score+(isC?1:0)}});})()`}" style="width:100%;background:${bg};border:2px solid ${border};border-radius:10px;padding:12px 14px;margin-bottom:8px;font-size:14px;color:${color};text-align:left;font-weight:${answered&&oi===cur.ans?'700':'400'}">${answered&&oi===cur.ans?'✅ ':''}${answered&&oi===s.chosen&&oi!==cur.ans?'❌ ':''}${opt}</button>`;
+  }).join('')}
+  ${answered ? `<button onclick="(function(){if(STATE.quiz.idx+1>=Q.length){setState({quiz:{...STATE.quiz,done:true}})}else{setState({quiz:{...STATE.quiz,idx:STATE.quiz.idx+1,chosen:null}})}})()" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:13px;font-size:15px;font-weight:700;margin-top:4px">${s.idx+1 >= Q.length ? '결과 보기 🏁' : '다음 문제 →'}</button>` : ''}`;
+}
+
+// ===== SECTION RENDERERS =====
+function renderSection(id) {
+  switch(id) {
+    case 0: return `
+      <div class="intro-header">
+        <div style="font-size:36px;margin-bottom:8px">🌿</div>
+        <h3>10과 · 환경과 자연</h3>
+        <p style="font-size:13px;opacity:0.85;margin-top:4px">Environment &amp; Nature · Môi trường &amp; Thiên nhiên</p>
+      </div>
       <div class="card card-accent">
         <div class="section-label">학습 목표</div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>환경과 자연 관련 어휘를 이해하고 사용할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>환경과 자연 주제로 말하기·쓰기를 할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>AI 튜터와 함께 환경과 자연 표현을 연습할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>환경·자연 관련 어휘를 익히고 활용할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><b>-게 되다</b>: 환경 맥락에서 상황 변화를 표현할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><b>-아/어지다</b>: 점진적 상태 변화를 표현할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>환경 보호 실천 방법을 한국어로 말할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>한국의 분리수거 및 친환경 문화를 이해한다</span></div>
       </div>
-
-      <div class="card" style="background:#fef3c7;border:1px solid #fbbf24">
-        <div class="section-label" style="background:#92400e">📌 이번 과 주제</div>
-        <div style="font-size:24px;text-align:center;margin:12px 0">🌿</div>
-        <div style="font-size:18px;font-weight:800;text-align:center;color:var(--brown);margin-bottom:4px">10과 · 환경과 자연</div>
-        <div style="font-size:14px;text-align:center;color:#555;margin-bottom:8px">Environment & Nature</div>
-        <div style="background:#fff;border-radius:8px;padding:12px;font-size:13px;color:#555;line-height:1.8;border:1px solid #fde68a">
-          🚧 상세 콘텐츠는 준비 중입니다. AI 실습 탭에서 이 주제를 지금 바로 공부해 보세요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nội dung chi tiết đang được chuẩn bị. Hãy dùng tab AI 실습 để học ngay!</span>
+      <div class="card" style="background:linear-gradient(135deg,#fef3c7,#fff7ed)">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📚 이 과에서 배우는 문법</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:#f59e0b;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700">-게 되다</span>
+          <span style="background:#22c55e;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700">-아/어지다</span>
         </div>
       </div>
-
-      <div style="display:flex;gap:10px;margin-top:4px">
-        <a href="KIIP_Level3_Lesson9.html" style="flex:1;background:var(--dark);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">← 9과</a>
-        <a href="KIIP_Level3_Lesson11.html" style="flex:1;background:var(--amber);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">11과 →</a>
+      <div class="card" style="text-align:center;background:#fef3c7">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:4px">🗓️ KIIP 3급 학습 진도</div>
+        <div style="font-size:12px;color:#666">9과 여행 ✅ → <b>10과 환경과 자연 📍</b> → 11과</div>
       </div>
+    `;
 
-      <div style="margin-top:12px">
-        <div style="background:#d1fae5;border-radius:8px;height:6px;overflow:hidden;margin-bottom:4px">
-          <div style="background:#22c55e;height:100%;width:50%;transition:width 0.5s"></div>
-        </div>
-        <div style="font-size:11px;color:#888;text-align:center">3급 전체 진도 50% · 10 / 20과</div>
+    case 1: return `
+      <h2>📝 어휘</h2>
+      <p class="sub">환경과 자연 관련 핵심 어휘 23개 · tap to hear pronunciation</p>
+      ${renderVocabCards()}
+      <div class="card" style="border-left:4px solid #8b5cf6;margin-top:4px">
+        <div style="font-size:13px;font-weight:700;color:#8b5cf6;margin-bottom:10px">💡 관용 표현 (Idioms)</div>
+        ${IDIOMS.map(id => `
+          <div style="padding:8px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${id.expr}')">
+            <div style="font-size:14px;font-weight:700;color:#1a202c">🔊 ${id.expr}</div>
+            <div style="font-size:12px;color:#b45309;margin:2px 0">${id.meaning}</div>
+            <div style="font-size:12px;color:#666;font-style:italic">${id.ex}</div>
+          </div>
+        `).join('')}
       </div>
-    </div>
-  `;
-}
+    `;
 
-function renderAI() {
-  return `
-    <div class="page">
-      <h2>🤖 AI 실습</h2>
-      <p class="sub">글로컬 아카데미 × AI 한국어 튜터 · 환경과 자연</p>
-
-      <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
-        <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
-        <div style="font-size:15px;font-weight:800;margin-bottom:6px">KIIP 3급 10과 · 환경과 자연 AI 실습</div>
-        <div style="font-size:11px;opacity:0.85;line-height:1.7">Environment & Nature — 주제별 AI 튜터와 실시간 학습<br>
-        <span style="color:#93c5fd">🇻🇳 Luyện tập chủ đề "환경과 자연" cùng AI ngay trong app</span></div>
+    case 2: return `
+      <h2>📐 문법</h2>
+      <p class="sub">핵심 문법 2가지를 배워봐요</p>
+      <div style="display:flex;gap:8px;margin-bottom:14px">
+        <button onclick="setState({grammarTab:0})" style="flex:1;padding:10px;border-radius:10px;border:2px solid ${STATE.grammarTab===0?'#f59e0b':'#fde68a'};background:${STATE.grammarTab===0?'#f59e0b':'#fff'};color:${STATE.grammarTab===0?'#fff':'#92400e'};font-weight:700;font-size:13px">-게 되다</button>
+        <button onclick="setState({grammarTab:1})" style="flex:1;padding:10px;border-radius:10px;border:2px solid ${STATE.grammarTab===1?'#22c55e':'#fde68a'};background:${STATE.grammarTab===1?'#22c55e':'#fff'};color:${STATE.grammarTab===1?'#fff':'#92400e'};font-weight:700;font-size:13px">-아/어지다</button>
       </div>
-
-      <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
-        <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
-        <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
-          계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
-          <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập, không chuyển tab</span>
-        </div>
-
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-          ${AI_QUICK_BTNS.map((b,i)=>`
-            <button onclick="AICHAT.quickSend(${i})"
-              style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
-              ${b.emoji} ${b.label}
-            </button>
+      ${STATE.grammarTab === 0 ? `
+        <div class="card card-accent">
+          <div class="section-label">-게 되다 (환경 맥락 · change of state)</div>
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px">의미: ~하게 됐다 — 상황이 바뀌어 그렇게 됨</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">외부 요인이나 점진적 변화로 인해 어떤 상태나 행동에 이르게 됐을 때 사용해요.<br><b>Meaning:</b> "came to be / ended up / things changed so that..."<br><b>Nghĩa:</b> Dần dần trở thành... / Đã đi đến tình trạng...<br><span style="color:#d97706;font-size:12px">⚠️ 4과에도 나왔지만 여기서는 <b>환경 맥락</b>에서 사용해요</span></div>
+          <div style="background:#fef3c7;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:6px">📌 형태 규칙</div>
+            <div style="font-size:13px;line-height:2">
+              동사/형용사 어간 + <b>-게 되다</b><br>
+              과거: <b>-게 됐어요</b> &nbsp;|&nbsp; 현재: <b>-게 돼요</b> &nbsp;|&nbsp; 미래: <b>-게 될 거예요</b>
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:8px">예문 (tap to hear)</div>
+          ${[
+            ['여름이 더워지게 됐어요.', 'Summers have gotten hotter.', 'Mùa hè đã trở nên nóng hơn.'],
+            ['미세먼지가 심해지게 됐어요.', 'Fine dust has gotten worse.', 'Bụi mịn đã trở nên tệ hơn.'],
+            ['환경을 생각하게 됐어요.', 'I came to think about the environment.', 'Tôi đã bắt đầu nghĩ đến môi trường.'],
+            ['분리수거를 잘 하게 됐어요.', 'I became good at recycling.', 'Tôi đã quen với việc phân loại rác.'],
+            ['텀블러를 쓰게 됐어요.', 'I ended up using a tumbler.', 'Tôi đã bắt đầu dùng cốc tái sử dụng.'],
+          ].map(([ko,en,vi]) => `
+            <div style="padding:8px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+              <div style="font-size:14px;font-weight:600;color:#1a202c">🔊 ${ko}</div>
+              <div style="font-size:12px;color:#666">${en}</div>
+              <div style="font-size:12px;color:#b45309">${vi}</div>
+            </div>
           `).join('')}
         </div>
+      ` : `
+        <div class="card card-accent" style="border-left-color:#22c55e">
+          <div class="section-label" style="background:#22c55e">-아/어지다 (becomes / gets more)</div>
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px">의미: ~해지다 — 점진적으로 상태가 변함</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">형용사에 붙어 상태가 점점 변해가는 결과를 표현해요.<br><b>Meaning:</b> "becomes / gets (more)" — gradual change to a state<br><b>Nghĩa:</b> Trở nên... / Ngày càng...<br><span style="color:#059669;font-size:12px">💡 -게 되다와 비교: -아/어지다는 <b>상태 변화 결과</b> 강조, -게 되다는 <b>변화의 과정·원인</b> 강조</span></div>
+          <div style="background:#f0fdf4;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:12px;font-weight:700;color:#059669;margin-bottom:6px">📌 모음 조화 규칙</div>
+            <div style="font-size:13px;line-height:2">
+              어간 끝 모음 ㅏ/ㅗ → <b>-아지다</b> &nbsp;(좋다 → 좋아지다)<br>
+              그 외 → <b>-어지다</b> &nbsp;(나쁘다 → 나빠지다 / 크다 → 커지다)
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#059669;margin-bottom:8px">예문 (tap to hear)</div>
+          ${[
+            ['날씨가 더워졌어요.', 'The weather has gotten hotter.', 'Thời tiết đã nóng hơn.'],
+            ['공기가 나빠졌어요.', 'The air has gotten worse.', 'Không khí đã xấu đi.'],
+            ['환경이 좋아졌으면 해요.', 'I hope the environment gets better.', 'Tôi mong môi trường trở nên tốt hơn.'],
+            ['지구가 점점 뜨거워지고 있어요.', 'The earth is gradually getting hotter.', 'Trái đất đang dần nóng lên.'],
+            ['미세먼지 때문에 하늘이 뿌옇게 됐어요.', 'The sky has become hazy because of fine dust.', 'Bầu trời trở nên mờ vì bụi mịn.'],
+          ].map(([ko,en,vi]) => `
+            <div style="padding:8px 0;border-bottom:1px solid #d1fae5;cursor:pointer" onclick="TTS.speak('${ko}')">
+              <div style="font-size:14px;font-weight:600;color:#1a202c">🔊 ${ko}</div>
+              <div style="font-size:12px;color:#666">${en}</div>
+              <div style="font-size:12px;color:#059669">${vi}</div>
+            </div>
+          `).join('')}
+        </div>
+      `}
+    `;
 
-        <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
-          <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
-            💡 버튼을 누르면 AI가 바로 답해줘요<br>
-            <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
+    case 3: return `
+      <h2>💬 말하기</h2>
+      <p class="sub">환경과 자연 관련 대화 연습 · tap to hear</p>
+      ${renderDialogues()}
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">연습 활동</div>
+        <div style="font-size:14px;font-weight:700;color:#166534;margin-bottom:8px">🎯 환경 상황 연습</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">아래 질문에 -게 되다/-아/어지다를 사용해 답해 보세요:</div>
+        ${[
+          '한국에 오면서 환경 습관이 어떻게 바뀌게 됐어요? (-게 되다 사용)',
+          '요즘 기후가 어떻게 변하고 있어요? (-아/어지다 사용)',
+          '한국 분리수거를 처음 했을 때 어땠어요?',
+          '환경을 위해 매일 실천하는 것이 있어요?',
+        ].map((q,i) => `<div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">Q${i+1}. ${q}</div>`).join('')}
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🗣️ 유용한 환경 표현</div>
+        ${[
+          ['환경 보호에 신경을 써야 해요.', 'We need to pay attention to environmental protection.'],
+          ['분리수거를 잘 해야 해요.', 'We need to sort waste properly.'],
+          ['텀블러를 가지고 다니게 됐어요.', 'I ended up carrying a tumbler.'],
+          ['공기가 점점 나빠지고 있어요.', 'The air is getting worse and worse.'],
+        ].map(([ko,en]) => `
+          <div style="padding:7px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+            <div style="font-size:14px;font-weight:600">🔊 ${ko}</div>
+            <div style="font-size:12px;color:#888">${en}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 4: return `
+      <h2>👂 듣기</h2>
+      <p class="sub">린과 수민의 환경 관련 대화를 들어 보세요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🎧 상황: 한국 환경 문제와 개인 실천</div>
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">린이 한국 환경 문제에 대해 묻고, 수민이 미세먼지·탄소 배출·분리수거에 대해 설명해요.</p>
+        <button onclick="TTS.speak('린: 수민 씨, 요즘 한국 환경 문제 중에 제일 심각한 게 뭐예요? 수민: 역시 미세먼지랑 기후 변화인 것 같아요. 여름이 점점 더워지게 됐잖아요. 린: 맞아요. 제가 한국에 처음 왔을 때보다 여름이 훨씬 더워진 것 같아요. 수민: 한국도 탄소 배출을 줄이기 위해 노력하고 있어요. 린: 분리수거도 환경 보호에 도움이 되죠? 수민: 물론이죠! 재활용이 잘 되면 쓰레기가 줄어들게 되고, 환경이 좋아지게 돼요. 린: 저도 텀블러 쓰고 장바구니 들고 다니게 됐어요. 수민: 정말요? 작은 실천이 모여서 환경이 좋아지게 된다고 해요. 린: 우리 모두 함께 노력해야겠어요.')"
+          style="width:100%;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px">
+          🔊 전체 듣기
+        </button>
+      </div>
+      <div class="card" style="margin-bottom:10px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📝 듣기 스크립트</div>
+        ${[
+          ['린', '수민 씨, 요즘 한국 환경 문제 중에 제일 심각한 게 뭐예요?'],
+          ['수민', '역시 미세먼지랑 기후 변화인 것 같아요. 여름이 점점 더워지게 됐잖아요.'],
+          ['린', '맞아요. 제가 한국에 처음 왔을 때보다 여름이 훨씬 더워진 것 같아요.'],
+          ['수민', '한국도 탄소 배출을 줄이기 위해 노력하고 있어요.'],
+          ['린', '분리수거도 환경 보호에 도움이 되죠?'],
+          ['수민', '물론이죠! 재활용이 잘 되면 쓰레기가 줄어들게 되고, 환경이 좋아지게 돼요.'],
+          ['린', '저도 텀블러 쓰고 장바구니 들고 다니게 됐어요.'],
+          ['수민', '정말요? 작은 실천이 모여서 환경이 좋아지게 된다고 해요.'],
+          ['린', '우리 모두 함께 노력해야겠어요.'],
+        ].map(([sp, text]) => `
+          <div style="display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${text.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">
+            <span style="font-size:11px;font-weight:700;color:#f59e0b;min-width:36px;margin-top:2px">${sp}</span>
+            <span style="font-size:13px;line-height:1.6;flex:1">${text}</span>
+            <span>🔊</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">이해 확인 문제</div>
+        ${[
+          {q:'린과 수민이 대화에서 가장 심각하다고 한 환경 문제는?', opts:['홍수와 가뭄','미세먼지와 기후 변화','수질오염과 산불','멸종위기와 해양 오염'], ans:1},
+          {q:'수민에 따르면 재활용이 잘 되면 어떻게 돼요?', opts:['탄소 배출이 늘어요','쓰레기가 줄어들게 돼요','에너지가 많이 필요해요','공기가 나빠져요'], ans:1},
+          {q:'린이 환경을 위해 실천하게 된 것은?', opts:['전기차를 샀어요','텀블러를 쓰고 장바구니를 들고 다니게 됐어요','분리수거 앱을 만들었어요','태양광 패널을 설치했어요'], ans:1},
+          {q:'이 대화에서 -게 되다가 사용된 문장을 고르세요.', opts:['분리수거도 도움이 되죠?','여름이 점점 더워지게 됐잖아요.','한국에 처음 왔을 때','탄소 배출을 줄여요.'], ans:1},
+        ].map((item, qi) => `
+          <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">${qi+1}. ${item.q}</div>
+            ${item.opts.map((o, oi) => `
+              <div style="padding:7px 10px;background:${oi===item.ans?'#dcfce7':'#f9fafb'};border:1px solid ${oi===item.ans?'#22c55e':'#e5e7eb'};border-radius:8px;margin-bottom:4px;font-size:13px;cursor:pointer" onclick="TTS.speak('${o}')">
+                ${oi===item.ans?'✅ ':''}${o}
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 5: return `
+      <h2>🔊 발음</h2>
+      <p class="sub">경음화 + 유음화 발음 규칙</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">규칙 1: 유음화 (ㄴ+ㄹ → ㄹ+ㄹ)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">ㄴ 뒤에 ㄹ이 오거나, ㄹ 뒤에 ㄴ이 오면 둘 다 [ㄹ]로 발음해요.</div>
+        ${[
+          ['분리수거', '[불리수거]', 'separate waste collection', 'ㄴ+ㄹ → 유음화 [ㄹ]로'],
+          ['에너지 절약', '[에너지 저략]', 'energy saving', 'ㄹ+ㄹ 연음'],
+          ['멸종위기', '[멸종위기]', 'endangered', '자연스러운 발음'],
+        ].map(([word, pron, en, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:100px;font-size:15px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#f59e0b;color:#fff;padding:3px 10px;border-radius:20px;font-size:13px;font-weight:700">${pron}</div>
+              <div style="font-size:12px;color:#888">${en}</div>
+            </div>
+            <div style="font-size:11px;color:#b45309;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card" style="border-left:4px solid #8b5cf6">
+        <div class="section-label" style="background:#8b5cf6">규칙 2: 경음화 (ㄹ+ㅈ → ㄹ+ㅉ)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">ㄹ 받침 뒤에 ㅈ이 오면 [ㅉ] 된소리로 발음해요.</div>
+        ${[
+          ['절전', '[절쩐]', 'power saving', 'ㄹ+ㅈ → 경음화 [ㅉ]'],
+          ['탄소 배출', '[탄소 배출]', 'carbon emission', '자연 발음'],
+        ].map(([word, pron, en, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #ede9fe;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:100px;font-size:15px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#8b5cf6;color:#fff;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700">${pron}</div>
+              <div style="font-size:12px;color:#888">${en}</div>
+            </div>
+            <div style="font-size:11px;color:#7c3aed;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">발음 연습</div>
+        <p style="font-size:13px;color:#555;margin-bottom:10px">문장을 천천히 따라 읽어 보세요:</p>
+        ${[
+          '분리수거[불리수거]를 잘 해야 환경이 좋아져요.',
+          '여름이 점점 더워지게 됐어요.',
+          '텀블러를 쓰게 되면서 플라스틱이 줄어들었어요.',
+          '공기가 나빠져서 마스크를 쓰게 됐어요.',
+        ].map(s => `
+          <div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px;cursor:pointer" onclick="TTS.speak('${s.replace(/\[.*?\]/g,'').replace(/'/g,"\\'")}')">
+            🔊 ${s}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 6: return `
+      <h2>📖 읽기</h2>
+      <p class="sub">한국의 환경 보호</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">읽기 본문</div>
+        <div style="font-size:14px;line-height:1.9;color:#1a202c">
+          <p style="margin-bottom:12px">한국에서는 환경 보호를 위해 분리수거가 의무화되어 있어요. 비닐, 플라스틱, 종이, 음식물 쓰레기를 각각 분리해야 하고, 음식물 쓰레기는 종량제 봉투를 사용해야 해요. 외국인도 분리수거에 참여해야 해요.</p>
+          <p style="margin-bottom:12px">카페에서 일회용 플라스틱컵 사용이 제한되면서 개인 텀블러를 갖고 다니게 된 사람이 많아졌어요. 마트에서도 장바구니를 쓰는 것이 일상이 되어 가고 있어요.</p>
+          <p style="margin-bottom:12px">미세먼지 문제가 심해지면서 공기청정기 보급이 늘어나게 됐고, 외출 시 마스크 착용이 중요해졌어요. 에어코리아 앱에서 미세먼지 농도를 실시간으로 확인할 수 있어요.</p>
+          <p>한국 정부는 2050 탄소중립을 목표로 재생에너지 확대와 전기차 보급에 힘쓰고 있어요. 분리수거 방법이 궁금하면 환경부 앱에서 확인할 수 있어요.</p>
+        </div>
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">읽기 이해 문제</div>
+        ${[
+          {q:'한국에서 분리수거를 해야 하는 이유는?', opts:['자원 부족','의무화, 환경보호','처벌이 없어서','편의점이 멀어서'], ans:1},
+          {q:'카페에서 줄어든 것은?', opts:['일회용 플라스틱컵','텀블러','음식 메뉴','개인 컵'], ans:0},
+          {q:'외국인이 분리수거 방법을 확인하는 방법은?', opts:['119에 전화','112에 신고','환경부 앱','1345 콜센터'], ans:2},
+        ].map((item, qi) => `
+          <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">${qi+1}. ${item.q}</div>
+            ${item.opts.map((o, oi) => `
+              <div style="padding:7px 10px;background:${oi===item.ans?'#dcfce7':'#f9fafb'};border:1px solid ${oi===item.ans?'#22c55e':'#e5e7eb'};border-radius:8px;margin-bottom:4px;font-size:13px">
+                ${oi===item.ans?'✅ ':''}${o}
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 7: return `
+      <h2>✏️ 쓰기</h2>
+      <p class="sub">환경을 위한 나의 실천에 대해 써 봐요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">쓰기 활동</div>
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:10px">📝 주제: 환경을 위한 나의 실천</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">다음 내용을 포함해서 150~200자 정도 써 보세요:</div>
+        ${[
+          '환경 문제에 관심을 갖게 된 계기 (-게 되다 사용)',
+          '내 생활이 어떻게 달라졌어요? (-아/어지다 사용)',
+          '지금 실천하고 있는 환경 보호 행동',
+          '앞으로 환경이 어떻게 됐으면 해요?',
+        ].map((item, i) => `<div style="padding:8px;background:#fef3c7;border-radius:8px;margin-bottom:6px;font-size:13px">📌 ${i+1}. ${item}</div>`).join('')}
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">✍️ 예시 답안</div>
+        <div style="font-size:13px;line-height:1.9;color:#1a202c;background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:10px">
+          한국에 오면서 환경 문제에 관심을 <b>갖게 됐어요</b>. 처음에는 분리수거가 복잡했지만 이제 <b>익숙해졌어요</b>. 텀블러를 <b>쓰게 되면서</b> 플라스틱 사용이 <b>줄어들게 됐어요</b>. 작은 실천을 통해 환경이 조금씩 <b>좋아지게 될</b> 거라고 믿어요.
+        </div>
+        <div style="font-size:12px;color:#b45309;margin-bottom:4px">📌 문법 포인트:</div>
+        <div style="font-size:12px;color:#555;line-height:1.8">
+          • <b>갖게 됐어요</b> → -게 되다 (외부 요인으로 변화)<br>
+          • <b>익숙해졌어요</b> → -아/어지다 (점진적 상태 변화)<br>
+          • <b>쓰게 되면서</b> → -게 되다 (행동 변화 계기)<br>
+          • <b>좋아지게 될</b> → -아/어지다 + -게 되다 (미래 기대)
+        </div>
+      </div>
+      <div class="card" style="border-left:4px solid #8b5cf6">
+        <div style="font-size:13px;font-weight:700;color:#8b5cf6;margin-bottom:8px">🔤 유용한 연결 표현</div>
+        ${[
+          ['처음에는', 'at first / in the beginning'],
+          ['점점', 'gradually / more and more'],
+          ['덕분에', 'thanks to'],
+          ['그래서', 'so / therefore'],
+          ['앞으로', 'from now on / in the future'],
+          ['작은 실천이 모여서', 'small actions accumulated'],
+        ].map(([ko, en]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ede9fe;font-size:13px"><span style="font-weight:700">${ko}</span><span style="color:#888">${en}</span></div>`).join('')}
+      </div>
+    `;
+
+    case 8: return `
+      <h2>🎎 문화</h2>
+      <p class="sub">한국 환경 문화 이해하기</p>
+      ${CULTURE.map(c => `
+        <div class="card card-accent" style="margin-bottom:10px">
+          <div style="font-size:28px;margin-bottom:6px">${c.icon}</div>
+          <div style="font-size:15px;font-weight:700;color:#92400e;margin-bottom:6px">${c.title}</div>
+          <div style="font-size:13px;line-height:1.8;color:#555">${c.body}</div>
+        </div>
+      `).join('')}
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">문화 비교</div>
+        <div style="font-size:13px;color:#555;line-height:1.7">
+          <div style="margin-bottom:8px">🇰🇷 한국 vs 🌏 여러분의 나라</div>
+          ${[
+            '베트남에서 분리수거는 어떻게 해요?',
+            '미세먼지 문제가 베트남에도 있어요?',
+            '여러분 나라에서 일회용품 규제는 어떻게 돼요?',
+            '개인이 환경 보호를 위해 할 수 있는 가장 중요한 실천은?',
+          ].map((q,i) => `<div style="padding:7px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">💬 ${q}</div>`).join('')}
+        </div>
+      </div>
+      <div class="card" style="background:linear-gradient(135deg,#fef3c7,#fff7ed);text-align:center">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:6px">📱 유용한 환경 앱</div>
+        <div style="font-size:13px;line-height:1.8;color:#555;text-align:left">
+          에어코리아(AirKorea) — 미세먼지 실시간 확인<br>
+          환경부 앱 — 분리수거 방법 안내<br>
+          안전신문고 — 환경 위반 신고<br>
+          전기차 충전소 앱 — 친환경 이동 지원
+        </div>
+      </div>
+    `;
+
+    case 9: return `
+      <h2>✅ 퀴즈</h2>
+      <p class="sub">10과 내용을 얼마나 이해했나요?</p>
+      ${renderQuiz()}
+    `;
+
+    case 10: {
+      setTimeout(() => RECORDER.autoDetect(), 100);
+      const PRON_SENTS = [
+        {sent:'분리수거[불리수거]를 잘 해야 환경이 좋아져요.', vi:'Phân loại rác tốt thì môi trường sẽ tốt hơn.'},
+        {sent:'여름이 점점 더워지게 됐어요.', vi:'Mùa hè đã dần trở nên nóng hơn.'},
+        {sent:'텀블러를 쓰게 되면서 플라스틱이 줄어들었어요.', vi:'Khi bắt đầu dùng cốc tái sử dụng, lượng nhựa đã giảm.'},
+        {sent:'공기가 나빠져서 마스크를 쓰게 됐어요.', vi:'Vì không khí xấu đi nên tôi đã bắt đầu đeo khẩu trang.'},
+      ];
+      return `
+        <h2>🤖 AI 실습</h2>
+        <p class="sub">글로컬 아카데미 × 에이전틱 G스택 한국어 학습</p>
+
+        <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+          <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+          <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 한국어 실습 플랫폼</div>
+          <div style="font-size:11px;opacity:0.85;line-height:1.7">Google Gemini · NotebookLM · Agent Harness 연계<br>
+          <span style="color:#93c5fd">🇻🇳 Nền tảng học tiếng Hàn kết hợp AI Agent của Glocal Academy</span></div>
+        </div>
+
+        <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+          <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+          <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+            계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+            ${AI_QUICK_BTNS.map((b,i)=>`
+              <button onclick="AICHAT.quickSend(${i})"
+                style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
+                ${b.emoji} ${b.label}
+              </button>
+            `).join('')}
+          </div>
+          <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+            <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
+              💡 버튼을 누르면 AI가 바로 답해줘요<br>
+              <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:flex-end">
+            <textarea id="ai-chat-input"
+              placeholder="한국어로 질문하세요... 🇻🇳 Nhập câu hỏi..."
+              style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
+              onfocus="this.style.borderColor='#f59e0b'"
+              onblur="this.style.borderColor='#fde68a'"
+              onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
+            ></textarea>
+            <button onclick="AICHAT.send()" id="ai-send-btn"
+              style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>
+          </div>
+          <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+        </div>
+
+        <div class="card card-accent" style="margin-bottom:10px">
+          <div class="section-label">🌐 외부 AI 서비스 상세 가이드</div>
+          <div style="font-size:11px;color:#888;margin:6px 0 8px">계정이 있는 경우 더 강력한 AI를 사용할 수 있어요</div>
+          <details style="margin-bottom:8px">
+            <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              🔵 Gemini AI 사용법 — Google 계정 필요
+            </summary>
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#1d4ed8">① 접속:</strong> gemini.google.com<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+                <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 환경 주제 롤플레이</div>
+                <span style="font-family:monospace;background:#dbeafe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"저는 베트남인 KIIP 3급 학습자예요. 환경 보호를 주제로 -게 되다, -아/어지다 문법을 사용한 대화 연습을 도와주세요."</span>
+              </div>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+                <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">📸 환경 실천 사진 분석</div>
+                분리수거함 사진 찍어서 업로드 → "이 분리수거함 사용 방법을 베트남어로 설명해 주세요"<br>
+                <span style="color:#059669">🇻🇳 Chụp ảnh thùng phân loại rác → Upload → Giải thích bằng tiếng Việt</span>
+              </div>
+            </div>
+          </details>
+          <details style="margin-bottom:8px">
+            <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              🟣 Claude AI 사용법 — 이메일 계정 필요
+            </summary>
+            <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#7c3aed">① 접속:</strong> claude.ai (이메일로 무료 가입)<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">
+                <div style="font-weight:700;color:#7c3aed;margin-bottom:3px">✏️ 글 첨삭</div>
+                <span style="font-family:monospace;background:#ede9fe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"KIIP 3급 외국인 학습자의 글입니다. -게 되다, -아/어지다 사용을 확인하고 베트남어로 설명해 주세요."</span>
+              </div>
+            </div>
+          </details>
+          <details>
+            <summary style="background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              📓 NotebookLM 사용법 — Google 계정 필요
+            </summary>
+            <div style="background:#fff8f0;border:1px solid #fed7aa;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#ea4335">① 접속:</strong> notebooklm.google.com<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #ea4335">
+                10과 학습 내용 복사 → NotebookLM에 붙여넣기:<br>
+                <button onclick="copyNotebookContent10()" style="background:#ea4335;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0">
+                  📋 10과 학습 내용 복사하기
+                </button><span id="copy-ok10" style="font-size:11px;color:#059669;margin-left:6px"></span><br>
+                "-게 되다 문법 베트남어로 설명해줘" / "10과 퀴즈 10문제 만들어줘"
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="card card-green" style="margin-bottom:10px">
+          <div class="section-label" style="background:#059669">🎤 AI 발음 코치 · 녹음 &amp; 재생</div>
+          <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">
+            원어민 듣기 → 내가 녹음 → 다시 들으며 비교<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Nghe người bản ngữ → Tự ghi âm → Nghe lại so sánh</span>
+          </div>
+          <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#166534">
+            🆓 <strong>완전 무료</strong> — 브라우저 내장 API · 서버 없음
+          </div>
+          <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:14px;margin-bottom:10px">
+            <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px">🎙️ 마이크 허용 필요</div>
+            <div id="mic-perm-state" style="margin-bottom:10px"></div>
+            <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:10px">
+              <div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:8px">🚫 마이크가 차단되어 있어요</div>
+              <div style="background:#fff;border-radius:8px;padding:10px;font-size:12px;line-height:2;color:#1a202c">
+                <strong style="color:#1d4ed8">PC Chrome / Edge:</strong><br>
+                주소창 왼쪽 🔒 클릭 → 마이크 → <strong>허용</strong> → F5<br>
+                <strong style="color:#059669">📱 Android Chrome:</strong><br>
+                주소창 ⋮ → 사이트 설정 → 마이크 → 허용
+              </div>
+              <div style="margin-top:8px;font-size:11px;color:#059669">🇻🇳 Nhấn 🔒 góc trái → Micro → Cho phép → F5</div>
+            </div>
+            <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+              style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:12px;font-size:14px;font-weight:800">
+              🎙️ 마이크 허용하기 (여기 클릭)
+            </button>
+            <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>
+          </div>
+          ${PRON_SENTS.map((item,i)=>`
+            <div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+              <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>
+              <div style="font-size:10px;color:#059669;margin-bottom:8px">🇻🇳 ${item.vi}</div>
+              <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+                <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+              </div>
+              <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+                <button onclick="TTS.speak('${item.sent.replace(/\[.*?\]/g,'').replace(/'/g,"\\'")}'); this.textContent='🔊 재생 중...'; setTimeout(()=>this.textContent='🔊 원어민',2000)"
+                  style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">🔊 원어민</button>
+                <button id="rec-btn-${i}" onclick="startSTT(${i},'${item.sent.replace(/\[.*?\]/g,'').replace(/'/g,"\\'")}',this)"
+                  style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">🎤 녹음</button>
+                <button id="play-btn-${i}" disabled
+                  style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0;opacity:0.4">▶ 내 발음 듣기</button>
+              </div>
+              <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:16px"></div>
+            </div>
+          `).join('')}
+          <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+            <strong>📖 사용법:</strong> 1️⃣ 🔊 원어민 듣기 → 2️⃣ 🎤 녹음 → 3️⃣ ▶ 내 발음 듣기<br>
+            정확도 바: 🟢 80%+ 🟡 50~79% 🔴 50% 미만
           </div>
         </div>
 
-        <div style="display:flex;gap:6px;align-items:flex-end">
-          <textarea id="ai-chat-input"
-            placeholder="환경과 자연에 대해 질문하세요... / Ask about Environment & Nature..."
-            style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
-            onfocus="this.style.borderColor='#f59e0b'"
-            onblur="this.style.borderColor='#fde68a'"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
-          ></textarea>
-          <button onclick="AICHAT.send()"
-            id="ai-send-btn"
-            style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">
-            ➤
-          </button>
+        <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+          <div class="section-label" style="background:#059669">🌐 글로컬 G스택 학습법</div>
+          <div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.8">
+            <strong>글로컬 아카데미 AI 에이전트 기반 4단계 학습법:</strong><br>
+            <span style="color:#555">① 어휘/문법 → Gemini 설명 요청</span><br>
+            <span style="color:#555">② 말하기 → Gemini 롤플레이 실습</span><br>
+            <span style="color:#555">③ 쓰기 → Claude AI 첨삭</span><br>
+            <span style="color:#555">④ 복습 → NotebookLM Q&amp;A 정리</span><br><br>
+            <span style="color:#059669;font-size:11px">🇻🇳 ① Từ vựng/ngữ pháp → Hỏi Gemini · ② Nói → Nhập vai với Gemini · ③ Viết → Nhờ Claude sửa bài · ④ Ôn tập → NotebookLM</span>
+          </div>
         </div>
-        <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
-      </div>
+        <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
+      `;
+    }
 
-      <div class="card card-accent" style="margin-bottom:10px">
-        <div class="section-label">📖 10과 학습 가이드</div>
-        <div style="font-size:13px;color:#555;margin-top:8px;line-height:1.9">
-          <strong style="color:var(--brown)">🌿 환경과 자연 · Environment & Nature</strong><br>
-          위의 빠른 질문 버튼을 눌러 AI 튜터에게 이 주제를 배워보세요.<br>
-          직접 질문도 자유롭게 입력할 수 있어요.<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nhấn các nút câu hỏi nhanh để học chủ đề này với AI.<br>Bạn cũng có thể tự nhập câu hỏi bất kỳ.</span>
-        </div>
-      </div>
-
-      <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
-    </div>
-  `;
-}
-
-function renderSection() {
-  switch(STATE.section) {
-    case 0: return renderIntro();
-    case 10: return renderAI();
-    default: return renderWIPSection(SECTIONS[STATE.section].label, SECTIONS[STATE.section].icon);
+    default: return '<div style="padding:20px;text-align:center;color:#888">준비중이에요 🙏</div>';
   }
 }
 
+// ===== MAIN RENDER =====
 function render() {
-  document.getElementById('app').innerHTML =
-    renderNav() + renderLangBar() + renderTabs() + renderSection() + renderBottomNav();
+  const s = STATE;
+  const app = document.getElementById('app');
+  if (!app) return;
+
+  const tabsHtml = SECTIONS.map(sec =>
+    `<button class="stab${s.section===sec.id?' active':''}" onclick="setState({section:${sec.id}})">${sec.icon} ${sec.label}</button>`
+  ).join('');
+
+  const bottomNav = `
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level3_Lesson9" class="bnav-btn" style="text-decoration:none;color:#888">
+        <span class="bnav-icon">←</span><span>9과</span>
+      </a>
+      <button class="bnav-btn${s.section===0?' active':''}" onclick="setState({section:0})">
+        <span class="bnav-icon">🏠</span><span>도입</span>
+      </button>
+      <button class="bnav-btn${s.section===9?' active':''}" onclick="setState({section:9})">
+        <span class="bnav-icon">✅</span><span>퀴즈</span>
+      </button>
+      <button class="bnav-btn${s.section===10?' active':''}" onclick="setState({section:10})">
+        <span class="bnav-icon">🤖</span><span>AI실습</span>
+      </button>
+      <a href="/KIIP_Level3_Lesson11" class="bnav-btn" style="text-decoration:none;color:#888">
+        <span class="bnav-icon">→</span><span>11과</span>
+      </a>
+    </nav>
+  `;
+
+  app.innerHTML = `
+    <nav class="nav">
+      <a href="/KIIP_Level3_Index" class="nav-back">← 목차</a>
+      <div style="text-align:right">
+        <div class="nav-title">10과 · 환경과 자연</div>
+        <div class="nav-sub">KIIP 3급 중급 1</div>
+      </div>
+    </nav>
+    <div class="section-tabs">${tabsHtml}</div>
+    <div class="page">${renderSection(s.section)}</div>
+    ${bottomNav}
+  `;
+
+  // Scroll active tab into view
+  setTimeout(() => {
+    const activeTab = document.querySelector('.stab.active');
+    if (activeTab) activeTab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  }, 50);
 }
 
+// ===== INIT =====
 render();
 </script>
 <script>

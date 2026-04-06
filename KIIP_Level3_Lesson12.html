@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>KIIP 3급 12과 · 공동체 생활</title>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
@@ -11,7 +14,7 @@
 <meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://elimg.com/KIIP_Level3_Lesson12.html">
+<meta property="og:url" content="https://elimg.com/KIIP_Level3_Lesson12">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="KIIP 3급 12과 · 공동체 생활">
 <meta name="twitter:description" content="법무부 KIIP 사회통합프로그램 3급 중급 1 · 12과 공동체 생활">
@@ -22,7 +25,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KIIP Korean">
-<script src="/i18n/translations.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--amber:#f59e0b;--dark:#451a03;--brown:#92400e;--orange:#b45309;--green:#22c55e;--red:#ef4444;--gray:#fdf6e3;--white:#fff;--text:#1a202c}
@@ -51,12 +53,6 @@ h2{color:var(--brown);font-size:18px;margin-bottom:4px;font-weight:800}
 .intro-header{background:linear-gradient(135deg,#451a03,#92400e,#b45309);color:#fff;border-radius:12px;padding:20px;margin-bottom:12px;text-align:center}
 .intro-header h3{font-size:20px;font-weight:800;margin-bottom:4px}
 .section-label{display:inline-block;background:var(--amber);color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;margin-bottom:8px}
-.lang-bar{background:#fef3c7;display:flex;justify-content:center;gap:8px;padding:8px}
-.lang-btn-sm{background:rgba(180,83,9,0.1);border:1px solid #fbbf24;color:#92400e;padding:8px 16px;border-radius:20px;font-size:13px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
-.lang-btn-sm.active{background:var(--amber);color:#fff;border-color:var(--amber)}
-.wip-banner{background:linear-gradient(135deg,#78350f,#92400e);color:#fff;border-radius:12px;padding:20px;margin-bottom:16px;text-align:center}
-.wip-banner h3{font-size:18px;font-weight:800;margin-bottom:8px}
-.wip-banner p{font-size:13px;opacity:0.9;line-height:1.7;margin-bottom:4px}
 .obj-item{display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid #fde68a;font-size:14px;color:var(--text)}
 .obj-item:last-child{border-bottom:none}
 .obj-check{color:var(--amber);font-size:16px;flex-shrink:0;margin-top:1px}
@@ -82,10 +78,19 @@ const TTS = {
 };
 window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
 
+// ===== LISTENING SCRIPT =====
+const LISTENING_SCRIPT = '린: 수민 씨, 저 요즘 아파트 생활이 좀 어려워요. 수민: 왜요? 무슨 일이 있어요? 린: 층간소음이 심해서 힘들어요. 윗집에서 밤에 뛰어다니는 소리가 크게 나거든요. 수민: 그렇겠어요. 많이 불편하셨겠어요. 관리사무소에 신고하면 도움이 될 거예요. 린: 직접 얘기하기가 좀 어려워요. 수민: 그럼 제가 같이 관리사무소에 가 드릴 테니까 걱정 마세요. 린: 정말요? 감사해요. 이웃 간에 서로 배려해야겠다는 생각이 들어요. 수민: 맞아요. 한국에는 이웃사촌이라는 말이 있을 만큼 이웃 관계가 중요해요. 린: 저도 좋은 이웃이 되고 싶어요. 먼저 인사를 드릴 테니까 같이 해 줄 수 있어요? 수민: 물론이죠! 함께하겠어요.';
+
+function playListeningScript() {
+  TTS.speak(LISTENING_SCRIPT.replace(/\n/g, ' '), 'ko-KR', 0.75);
+}
+
 // ===== STATE =====
 const STATE = {
   section: 0,
   lang: localStorage.getItem('kiip_lang') || 'ko',
+  quiz: { started: false, idx: 0, score: 0, chosen: null, done: false },
+  grammarTab: 0,
 };
 
 function setState(newState) {
@@ -108,7 +113,103 @@ const SECTIONS = [
   {id:10, label:'AI실습', icon:'🤖'},
 ];
 
-var AI_QUICK_BTNS = [{"emoji":"🏠","label":"공동체 어휘 설명","q":"KIIP 3급 12과: 공동체 생활 관련 어휘 10개를 한국어, 발음, 영어, 베트남어로 알려주세요. 아파트, 이웃, 층간소음 관련 단어 포함해 주세요."},{"emoji":"🤝","label":"이웃 소통 표현","q":"이웃과 소통하는 한국어 표현을 알려주세요. 인사, 불편 사항 전달, 요청 관련 문장을 베트남어 번역과 함께 알려주세요."},{"emoji":"📣","label":"아파트 생활 연습","q":"아파트 관리소에 민원 제기하는 대화를 롤플레이해 주세요. 층간소음, 주차 문제 관련 표현을 연습하고 싶어요."},{"emoji":"🌏","label":"한국 공동체 문화","q":"한국의 아파트 문화와 공동체 생활 규칙을 설명해 주세요. 베트남 공동체 생활과 비교해서 베트남어로 알려주세요."}];
+const VOCAB = [
+  // 지역 사회
+  {ko:'이웃', pron:'[이웃]', en:'neighbor', vi:'hàng xóm', cat:'지역 사회'},
+  {ko:'공동체', pron:'[공동체]', en:'community', vi:'cộng đồng', cat:'지역 사회'},
+  {ko:'아파트 단지', pron:'[아파트 단지]', en:'apartment complex', vi:'khu chung cư', cat:'지역 사회'},
+  {ko:'관리사무소', pron:'[관리사무소]', en:'management office', vi:'văn phòng quản lý', cat:'지역 사회'},
+  {ko:'주민', pron:'[주민]', en:'resident', vi:'cư dân', cat:'지역 사회'},
+  // 공동생활 규칙
+  {ko:'층간소음', pron:'[층간소음]', en:'inter-floor noise', vi:'tiếng ồn giữa các tầng', cat:'공동생활 규칙'},
+  {ko:'분리수거', pron:'[불리수거]', en:'separate waste collection', vi:'phân loại rác', cat:'공동생활 규칙'},
+  {ko:'주차', pron:'[주차]', en:'parking', vi:'đỗ xe', cat:'공동생활 규칙'},
+  {ko:'공용 시설', pron:'[공용 시설]', en:'shared facilities', vi:'tiện ích chung', cat:'공동생활 규칙'},
+  {ko:'규칙을 지키다', pron:'[규치글 지키다]', en:'to follow rules', vi:'tuân thủ quy tắc', cat:'공동생활 규칙'},
+  // 자원봉사·참여
+  {ko:'자원봉사', pron:'[자원봉사]', en:'volunteering', vi:'tình nguyện', cat:'자원봉사·참여'},
+  {ko:'봉사활동', pron:'[봉사활동]', en:'volunteer activity', vi:'hoạt động tình nguyện', cat:'자원봉사·참여'},
+  {ko:'기부하다', pron:'[기부하다]', en:'to donate', vi:'quyên góp', cat:'자원봉사·참여'},
+  {ko:'참여하다', pron:'[참여하다]', en:'to participate', vi:'tham gia', cat:'자원봉사·참여'},
+  {ko:'협력하다', pron:'[협력하다]', en:'to cooperate', vi:'hợp tác', cat:'자원봉사·참여'},
+  // 갈등·해결
+  {ko:'갈등', pron:'[갈등]', en:'conflict', vi:'xung đột, mâu thuẫn', cat:'갈등·해결'},
+  {ko:'불편을 끼치다', pron:'[불편을 끼치다]', en:'to cause inconvenience', vi:'gây bất tiện', cat:'갈등·해결'},
+  {ko:'사과하다', pron:'[사과하다]', en:'to apologize', vi:'xin lỗi', cat:'갈등·해결'},
+  {ko:'배려하다', pron:'[배려하다]', en:'to be considerate', vi:'quan tâm, thấu hiểu', cat:'갈등·해결'},
+  {ko:'해결하다', pron:'[해결하다]', en:'to resolve', vi:'giải quyết', cat:'갈등·해결'},
+  // 다문화 공동체
+  {ko:'다문화', pron:'[다문화]', en:'multicultural', vi:'đa văn hóa', cat:'다문화 공동체'},
+  {ko:'통합', pron:'[통합]', en:'integration', vi:'hội nhập', cat:'다문화 공동체'},
+  {ko:'서로 존중하다', pron:'[서로 존중하다]', en:'to respect each other', vi:'tôn trọng lẫn nhau', cat:'다문화 공동체'},
+];
+
+const IDIOMS = [
+  {expr:'이웃사촌', meaning:'가까운 이웃은 먼 친척보다 낫다', ex:'한국에서는 이웃사촌이라고 할 만큼 이웃 관계가 중요해요.'},
+  {expr:'정이 들다', meaning:'정이 생기다, 친해지다', ex:'같은 동네에서 오래 살다 보면 이웃과 정이 들어요.'},
+  {expr:'발 벗고 나서다', meaning:'적극적으로 돕다', ex:'이웃이 어려울 때 발 벗고 나서서 도왔어요.'},
+  {expr:'서로 돕는 사회', meaning:'서로 협력하는 공동체', ex:'우리가 서로 돕는 사회를 만들어 가야 해요.'},
+  {expr:'정을 나누다', meaning:'따뜻한 마음을 서로 나누다', ex:'명절에 이웃과 음식을 나누며 정을 나눠요.'},
+];
+
+const DIALOGUES = [
+  {
+    title:'대화 1 — 층간소음 문제',
+    lines:[
+      {sp:'린', text:'위층에서 소리가 너무 나서 잠을 못 자겠어요.'},
+      {sp:'수민', text:'그렇겠어요. 관리사무소에 말씀드릴 테니까 조금 기다려 보세요.'},
+      {sp:'린', text:'감사해요. 직접 말하기 어려웠어요.'},
+      {sp:'수민', text:'서로 배려하면 해결될 거예요.'},
+    ]
+  },
+  {
+    title:'대화 2 — 자원봉사',
+    lines:[
+      {sp:'민준', text:'린 씨, 이번 주말에 지역 봉사활동이 있는데 같이 가겠어요?'},
+      {sp:'린', text:'좋아요! 어떤 봉사예요?'},
+      {sp:'민준', text:'독거노인 식사 배달이에요. 제가 신청할 테니까 린 씨는 시간만 맞춰 줘요.'},
+      {sp:'린', text:'알겠어요! 공동체를 위해 뭔가 하고 싶었어요.'},
+    ]
+  },
+  {
+    title:'대화 3 — 이웃 관계',
+    lines:[
+      {sp:'린', text:'한국 이웃들하고 잘 지내기가 쉽지 않아요.'},
+      {sp:'수민', text:'처음엔 그렇겠어요. 먼저 인사하면 좋아질 거예요.'},
+      {sp:'린', text:'제가 먼저 인사드릴 테니까 도와주세요.'},
+      {sp:'수민', text:'물론이죠! 이웃사촌이라는 말처럼 좋은 관계를 만들 수 있을 거예요.'},
+    ]
+  },
+];
+
+const QUIZ_DATA = [
+  {q:'"가다"의 -(으)ㄹ 테니까 올바른 형태는?', opts:['가을 테니까','갈 테니까','가는 테니까','가겠 테니까'], ans:1},
+  {q:'-겠-을 사용해 의도를 표현한 것은?', opts:['어제 먹었어요.','오늘 먹겠어요.','어제 먹겠어요.','내일 먹었어요.'], ans:1},
+  {q:'-겠-을 사용해 추측/공감을 표현한 것은?', opts:['제가 하겠어요.','주문 받겠습니다.','많이 힘드셨겠어요.','내일 가겠어요.'], ans:2},
+  {q:'"분리수거"의 올바른 발음은?', opts:['[분리수거]','[불리수거]','[분니수거]','[부리수거]'], ans:1},
+  {q:'"층간소음"의 의미는?', opts:['주차 문제','위아래 층 사이의 소음','이웃 간의 갈등','공용 시설 소음'], ans:1},
+  {q:'자원봉사를 신청하려면 어디에 가면 돼요?', opts:['관리사무소','다문화가족지원센터','1365 자원봉사 포털','주민센터'], ans:2},
+  {q:'빈칸: "제가 할 ___ 기다려 주세요."', opts:['테니까','으니까','으면서','겠어서'], ans:0},
+  {q:'"이웃사촌"의 의미는?', opts:['친척보다 이웃이 더 중요하다','이웃과 사촌이 같다','이웃집에 사촌이 산다','이웃과 싸웠다'], ans:0},
+  {q:'한국 정(情) 문화와 관련 없는 것은?', opts:['명절에 이웃과 음식을 나눈다','이웃사촌 문화','정을 나눈다','층간소음을 유발한다'], ans:3},
+  {q:'-(으)ㄹ 테니까 vs -(으)니까의 차이는?', opts:['-(으)ㄹ 테니까는 과거, -(으)니까는 미래','-(으)ㄹ 테니까는 화자의 의지/가정 포함, -(으)니까는 단순 이유','둘 다 같은 뜻이다','-(으)ㄹ 테니까는 명령문에 못 쓴다'], ans:1},
+];
+
+const CULTURE = [
+  {icon:'🏘️', title:'한국 아파트 문화', body:'한국 전체 가구의 약 50%가 아파트에 살아요. 층간소음 에티켓(밤 10시 이후 소음 자제), 엘리베이터 예절, 관리비 납부, 분리수거 규칙을 잘 지키는 것이 공동체 생활의 기본이에요.'},
+  {icon:'🤝', title:'자원봉사 문화', body:'한국에는 1365 자원봉사 포털(www.1365.go.kr)이 있어요. 외국인도 참여할 수 있고 봉사 시간을 인증받을 수 있어요. KIIP 이수 과정에서 봉사활동 참여를 권장해요.'},
+  {icon:'🌏', title:'다문화 공동체', body:'다문화가족지원센터에서 한국어 교육, 문화 교류 프로그램, 생활 지원 서비스를 제공해요. 다문화 가정이 증가하면서 서로 존중하는 공동체 의식이 더욱 중요해지고 있어요.'},
+  {icon:'❤️', title:'정(情) 문화', body:'한국 특유의 정(情) 문화는 따뜻한 마음을 나누는 것이에요. 이웃사촌처럼 가까운 이웃 관계를 소중히 여기고, 명절에 음식을 나누며 정을 쌓는 문화가 있어요.'},
+];
+
+var AI_QUICK_BTNS = [
+  {emoji:'🏘️', label:'공동체 어휘 설명', q:'KIIP 3급 12과 어휘: 공동체 생활 관련 단어 5개를 쉽게 설명하고 예문과 베트남어 번역을 알려주세요.'},
+  {emoji:'📐', label:'문법 질문', q:'KIIP 3급: -(으)ㄹ 테니까 문법을 쉽게 설명하고 예문 3개를 베트남어 번역과 함께 알려주세요.'},
+  {emoji:'💬', label:'롤플레이', q:'저는 베트남 출신 KIIP 3급 학습자입니다. 층간소음 문제를 해결하는 상황을 -(으)ㄹ 테니까, -겠- 문법으로 롤플레이해 주세요.'},
+  {emoji:'✏️', label:'내 글 첨삭', q:'KIIP 3급 학습자의 글입니다. 문법을 확인하고 수정해 주세요. 베트남어로도 설명해 주세요: '},
+  {emoji:'❓', label:'틀린 문제 설명', q:'KIIP 3급 퀴즈에서 틀렸어요. -겠- 문법을 다시 쉽게 설명하고 예문 3개를 베트남어와 함께 알려주세요.'},
+  {emoji:'🎯', label:'TOPIK 연습', q:'KIIP 3급 수준의 TOPIK II 공동체/사회 주제 빈칸 채우기 문제 3개를 만들어 주세요. 정답과 해설도 포함해 주세요.'},
+];
 
 var AICHAT = {
   history: [],
@@ -121,6 +222,7 @@ var AICHAT = {
     if (!inp) return;
     inp.value = b.q;
     inp.style.borderColor = '#f59e0b';
+    if (idx === 3) { inp.focus(); return; }
     this.send();
   },
 
@@ -154,7 +256,7 @@ var AICHAT = {
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div>'
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div>'
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div>'
-          + '</div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+          + '</div><span style="font-size:12px;color:#888">AI 응답 중... 🇻🇳 Đang trả lời...</span>';
         box.appendChild(ld);
         box.scrollTop = box.scrollHeight;
       }
@@ -170,18 +272,14 @@ var AICHAT = {
     var inp  = document.getElementById('ai-chat-input');
     var text = inp ? inp.value.trim() : '';
     if (!text) return;
-
     this.history.push({role:'user', content:text});
     this.addMsg('user', text);
     if (inp) inp.value = '';
     this.loading = true;
     this.setLoading(true);
-
-    var sys = "You are a Korean language tutor for KIIP Level 3. The student is likely Vietnamese. This lesson is about community life (공동체 생활). Answer in Korean with Vietnamese translation. Be concise and friendly.";
-
+    var sys = 'You are a Korean language tutor for KIIP Level 3 Lesson 12 (공동체 생활 / Community Life). The student is likely Vietnamese. Answer in Korean with Vietnamese translation. Be concise and friendly. Focus on KIIP content including -(으)ㄹ 테니까 and -겠- grammar.';
     try {
-      var url = '/api/chat';
-      var res  = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var data = await res.json();
       var reply = data.choices[0].message.content;
@@ -191,216 +289,859 @@ var AICHAT = {
       this.addMsg('assistant', reply);
     } catch(e) {
       this.setLoading(false);
-      this.addMsg('assistant',
-        '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요');
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요\n🇻🇳 Lỗi kết nối AI — Thử lại sau ít phút');
     }
     this.loading = false;
   }
 };
 
-// ===== RENDER =====
-function setLang(lang) {
-  STATE.lang = lang;
-  localStorage.setItem('kiip_lang', lang);
-  render();
+function copyNotebookContent12() {
+  var content = 'KIIP 3급 중급 1 · 12과 공동체 생활 학습 자료\n글로컬 아카데미 (elimg.com)\n\n=== 핵심 어휘 ===\n지역 사회: 이웃, 공동체, 아파트 단지, 관리사무소, 주민\n공동생활 규칙: 층간소음, 분리수거, 주차, 공용 시설, 규칙을 지키다\n자원봉사·참여: 자원봉사, 봉사활동, 기부하다, 참여하다, 협력하다\n갈등·해결: 갈등, 불편을 끼치다, 사과하다, 배려하다, 해결하다\n다문화 공동체: 다문화, 통합, 서로 존중하다\n\n=== 관용 표현 ===\n이웃사촌 = 가까운 이웃은 먼 친척보다 낫다\n정이 들다 = 정이 생기다, 친해지다\n발 벗고 나서다 = 적극적으로 돕다\n서로 돕는 사회 = 서로 협력하는 공동체\n정을 나누다 = 따뜻한 마음을 서로 나누다\n\n=== 핵심 문법 ===\n1. -(으)ㄹ 테니까: 화자의 강한 의지/가정 + 청자에게 지시/요청\n   받침 없음: -ㄹ 테니까 (가다 → 갈 테니까)\n   받침 있음: -을 테니까 (먹다 → 먹을 테니까)\n   예: 제가 도와 드릴 테니까 걱정하지 마세요.\n   베트남어: Tôi sẽ giúp bạn, vậy đừng lo.\n\n2. -겠-: (a) 의도: 제가 하겠어요. (b) 추측: 많이 힘드셨겠어요. (c) 정중: 주문 받겠습니다.\n   예: 그렇겠어요.\n   베트남어: Vậy chắc là thế.';
+  navigator.clipboard.writeText(content).then(function() {
+    var el = document.getElementById('copy-ok12');
+    if (el) { el.textContent = '✅ 복사 완료!'; setTimeout(function(){ el.textContent = ''; }, 3000); }
+  }).catch(function() {
+    var el = document.getElementById('copy-ok12');
+    if (el) el.textContent = '❌ 직접 복사하세요';
+  });
 }
 
-function renderNav() {
-  return `
-    <div class="nav">
-      <a href="KIIP_Level3_Index.html" class="nav-back">← 3급 목차</a>
-      <div style="text-align:center">
-        <div class="nav-title">12과 · 공동체 생활</div>
-        <div class="nav-sub">KIIP 3급 중급 1</div>
-      </div>
-      <div style="width:60px;text-align:right;font-size:11px;color:#d97706">
-        ${STATE.section+1}/${SECTIONS.length}
-      </div>
-    </div>
-  `;
+const RECORDER = {
+  streams: {}, recorders: {}, chunks: {}, audioURLs: {}, isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    const resultEl = document.getElementById('stt-result-' + idx);
+    const playBtn  = document.getElementById('play-btn-' + idx);
+    const scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, targetText, recBtn); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      this.streams[idx] = stream;
+    } catch(e) {
+      const name = e.name || '';
+      let msg = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg = '❌ <strong>마이크가 차단됨</strong> — 주소창 왼쪽 🔒 → 마이크 → <strong>허용</strong> 후 새로고침<br><span style="color:#555">🇻🇳 Micro bị chặn — Nhấn 🔒 → Micro → Cho phép → F5</span>';
+      } else if (name === 'NotFoundError') {
+        msg = '❌ <strong>마이크를 찾을 수 없어요</strong> — 마이크 연결 확인';
+      } else {
+        msg = '❌ <strong>오류: ' + name + '</strong> — Chrome/Edge에서 다시 시도';
+      }
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    const mr = new MediaRecorder(this.streams[idx]);
+    this.recorders[idx] = mr;
+    mr.ondataavailable = e => { if (e.data.size > 0) this.chunks[idx].push(e.data); };
+    mr.onstop = () => {
+      if (this.audioURLs[idx]) URL.revokeObjectURL(this.audioURLs[idx]);
+      const blob = new Blob(this.chunks[idx], {type: 'audio/webm'});
+      this.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false; playBtn.style.opacity = '1';
+        playBtn.onclick = () => { const a = new Audio(this.audioURLs[idx]); a.play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지'; recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중... · 🇻🇳 Đang ghi âm...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      const rec = new SR();
+      rec.lang = 'ko-KR'; rec.continuous = false; rec.interimResults = false;
+      rec.onresult = (e) => {
+        const said = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        const target = targetText.replace(/[\s,.?!\[\]]/g,'');
+        const conf = e.results[0][0].confidence;
+        let match = 0;
+        const minLen = Math.min(said.length, target.length);
+        for (let i = 0; i < minLen; i++) { if (said[i] === target[i]) match++; }
+        const pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        const confPct = Math.round((conf || 0.5) * 100);
+        const finalPct = Math.round((pct * 0.7) + (confPct * 0.3));
+        const color = finalPct >= 80 ? '#22c55e' : finalPct >= 50 ? '#f59e0b' : '#ef4444';
+        const msg = finalPct >= 80 ? '✅ 완벽해요! · Tuyệt vời!' : finalPct >= 50 ? '🔄 조금 더 연습! · Luyện thêm chút!' : '❌ 다시 시도! · Thử lại!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = finalPct + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = () => {};
+      rec.start();
+    }
+  },
+
+  async autoDetect() {
+    const stateEl = document.getElementById('mic-perm-state');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        const result = await navigator.permissions.query({name: 'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 이미 허용됨 — 바로 녹음하세요! · 🇻🇳 Đã cho phép!</div>';
+          if (allowBtn) { allowBtn.style.background = '#166534'; allowBtn.textContent = '✅ 허용됨 — 바로 녹음하세요'; }
+          if (blockedGuide) blockedGuide.style.display = 'none';
+          return;
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 아래 빨간 박스 순서대로 해결하세요</div>';
+          if (blockedGuide) blockedGuide.style.display = 'block';
+          if (allowBtn) { allowBtn.style.background = '#ef4444'; allowBtn.textContent = '⚠️ 차단됨 — 위 단계 완료 후 여기 클릭'; }
+          return;
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아직 허용 안 됨 — 아래 버튼을 눌러 허용해 주세요</div>';
+        }
+        result.onchange = () => RECORDER.autoDetect();
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+      }
+    } else {
+      stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+    }
+  },
+
+  async checkPermission(btn) {
+    const statusEl = document.getElementById('mic-status');
+    const box = document.getElementById('mic-check-box');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → elimg.com 에서 열기</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 미지원 브라우저 — Chrome 또는 Edge를 사용해 주세요</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      stream.getTracks().forEach(t => t.stop());
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 바로 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 성공! 🇻🇳 Đã cho phép!</span>';
+      if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
+      if (blockedGuide) blockedGuide.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 바로 녹음하세요!'; btn.style.background = '#166534'; btn.disabled = false;
+    } catch(e) {
+      const name = e.name || '';
+      btn.disabled = false;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        if (blockedGuide) blockedGuide.style.display = 'block';
+        if (stateEl) stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 빨간 박스 순서대로 해결 후 다시 클릭</div>';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444;font-size:11px">🔒 허용 완료 후 이 버튼을 다시 눌러주세요</span>';
+        btn.textContent = '🔄 허용 완료 후 다시 클릭'; btn.style.background = '#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">오류 (' + (name||'unknown') + ') — Chrome/Edge에서 다시 시도</span>';
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
+      }
+    }
+  },
+
+  stop(idx, targetText, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') this.recorders[idx].stop();
+    if (this.streams[idx]) this.streams[idx].getTracks().forEach(t => t.stop());
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음'; recBtn.style.background = '#059669';
+  }
+};
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
 }
 
-function renderLangBar() {
-  return `
-    <div class="lang-bar">
-      ${['ko','en','vi'].map(l=>`<button class="lang-btn-sm ${STATE.lang===l?'active':''}" onclick="setLang('${l}')">${l==='ko'?'🇰🇷 KO':l==='en'?'🇺🇸 EN':'🇻🇳 VI'}</button>`).join('')}
-    </div>
-  `;
+// ===== RENDER HELPERS =====
+function vocabCatColor(cat) {
+  const m = {
+    '지역 사회':'#f59e0b',
+    '공동생활 규칙':'#ef4444',
+    '자원봉사·참여':'#22c55e',
+    '갈등·해결':'#3b82f6',
+    '다문화 공동체':'#8b5cf6'
+  };
+  return m[cat] || '#888';
 }
 
-function renderTabs() {
-  return `
-    <div class="section-tabs">
-      ${SECTIONS.map(s=>`<button class="stab ${STATE.section===s.id?'active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
-    </div>
-  `;
-}
-
-function renderBottomNav() {
-  const prev = STATE.section > 0
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section-1}})">◀ 이전</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>◀ 이전</button>`;
-  const next = STATE.section < SECTIONS.length-1
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section+1}})">다음 ▶</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>다음 ▶</button>`;
-  return `
-    <div class="bottom-nav">
-      ${prev}
-      <button class="bnav-btn" onclick="setState({section:0})"><span class="bnav-icon">🏠</span><span>홈</span></button>
-      <button class="bnav-btn" onclick="setState({section:10})"><span class="bnav-icon">🤖</span><span>AI</span></button>
-      ${next}
-    </div>
-  `;
-}
-
-function renderWIPSection(title, icon) {
-  return `
-    <div class="page">
-      <h2>${icon} ${title}</h2>
-      <p class="sub">KIIP 3급 12과 · 공동체 생활 · Community Life</p>
-      <div class="wip-banner">
-        <h3>🚧 콘텐츠 준비 중</h3>
-        <p>이 섹션의 학습 자료를 열심히 제작 중입니다.<br>Content is being prepared for this section.</p>
-        <p style="margin-top:8px;font-size:12px;opacity:0.8">🇻🇳 Nội dung đang được chuẩn bị. Vui lòng quay lại sau.</p>
-      </div>
-      <div class="card card-accent">
-        <div class="section-label">💡 지금 당장 학습하려면</div>
-        <div style="font-size:13px;color:#555;margin-top:6px;line-height:1.8">
-          아래 <strong>AI 실습</strong> 탭을 이용하면 이 주제를 바로 공부할 수 있어요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Sử dụng tab <strong>AI 실습</strong> bên dưới để học ngay chủ đề này!</span>
+function renderVocabCards() {
+  const cats = [...new Set(VOCAB.map(v => v.cat))];
+  return cats.map(cat => {
+    const items = VOCAB.filter(v => v.cat === cat);
+    const color = vocabCatColor(cat);
+    return `<div class="card" style="border-left:4px solid ${color};margin-bottom:10px">
+      <div style="font-size:12px;font-weight:700;color:${color};margin-bottom:8px">${cat}</div>
+      ${items.map(v => `
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${v.ko}')">
+          <div style="min-width:100px">
+            <span style="font-size:15px;font-weight:700;color:#1a202c">${v.ko}</span>
+            <span style="font-size:11px;color:#888;margin-left:4px">${v.pron}</span>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:12px;color:#b45309">${v.en}</div>
+            <div style="font-size:12px;color:#666">${v.vi}</div>
+          </div>
+          <span style="font-size:18px">🔊</span>
         </div>
-        <button onclick="setState({section:10})" style="background:var(--amber);color:#fff;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:700;margin-top:12px;width:100%">
-          🤖 AI 실습 탭으로 이동
-        </button>
-      </div>
-    </div>
-  `;
+      `).join('')}
+    </div>`;
+  }).join('');
 }
 
-function renderIntro() {
-  return `
-    <div class="page">
-      <div class="intro-header">
-        <div style="font-size:14px;opacity:0.8;margin-bottom:4px">KIIP 3급 · 중급 1</div>
-        <h3>12과 공동체 생활</h3>
-        <div style="font-size:14px;margin-top:4px;opacity:0.9">Community Life</div>
-        <div style="margin-top:12px;font-size:28px">🏘️</div>
-      </div>
+function renderDialogues() {
+  return DIALOGUES.map((d, di) => `
+    <div class="card card-accent" style="margin-bottom:12px">
+      <div style="font-weight:700;font-size:14px;color:#92400e;margin-bottom:10px">${d.title}</div>
+      ${d.lines.map((l, li) => {
+        const isRight = li % 2 === 1;
+        return `<div style="display:flex;flex-direction:column;align-items:${isRight?'flex-end':'flex-start'};margin-bottom:8px;cursor:pointer" onclick="TTS.speak('${l.text.replace(/'/g,"\\'")}')">
+          <div style="font-size:11px;color:#888;margin-bottom:2px">${l.sp}</div>
+          <div style="max-width:85%;background:${isRight?'#fef3c7':'#fff7ed'};border:1px solid #fde68a;border-radius:${isRight?'12px 12px 4px 12px':'12px 12px 12px 4px'};padding:8px 12px;font-size:14px;line-height:1.6">${l.text} 🔊</div>
+        </div>`;
+      }).join('')}
+    </div>
+  `).join('');
+}
 
+function renderQuiz() {
+  const Q = QUIZ_DATA;
+  const s = STATE.quiz;
+  if (!s.started) {
+    return `<div class="intro-header" style="margin-bottom:16px">
+      <div style="font-size:40px;margin-bottom:8px">✅</div>
+      <h3>12과 퀴즈</h3>
+      <p style="font-size:13px;opacity:0.9">공동체 생활 · 총 ${Q.length}문제</p>
+    </div>
+    <div class="card">
+      <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:14px">어휘, 문법(-(으)ㄹ 테니까, -겠-), 발음, 문화를 복습해 봐요!</p>
+      <button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:16px;font-weight:700">퀴즈 시작하기 🚀</button>
+    </div>`;
+  }
+  if (s.done) {
+    const pct = Math.round(s.score / Q.length * 100);
+    const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '👍' : '📚';
+    return `<div class="intro-header" style="margin-bottom:16px">
+      <div style="font-size:40px;margin-bottom:8px">${emoji}</div>
+      <h3>${s.score}/${Q.length} 정답</h3>
+      <p style="font-size:14px;opacity:0.9">${pct}점 · ${pct>=80?'훌륭해요!':pct>=60?'잘 했어요!':'다시 도전해 봐요!'}</p>
+    </div>
+    <div class="card">
+      <button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;margin-bottom:8px">다시 풀기 🔄</button>
+      <button onclick="setState({section:0})" style="width:100%;background:#fef3c7;color:#92400e;border-radius:12px;padding:12px;font-size:14px;font-weight:600">처음으로 🏠</button>
+    </div>`;
+  }
+  const cur = Q[s.idx];
+  const answered = s.chosen !== null;
+  return `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <span style="font-size:12px;color:#888">문제 ${s.idx+1}/${Q.length}</span>
+    <span style="font-size:12px;color:var(--amber);font-weight:700">점수: ${s.score}</span>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <p style="font-size:15px;font-weight:600;line-height:1.6;color:#1a202c">${cur.q}</p>
+  </div>
+  ${cur.opts.map((opt, oi) => {
+    let bg = '#fff', border = '#fde68a', color = '#1a202c';
+    if (answered) {
+      if (oi === cur.ans) { bg = '#dcfce7'; border = '#22c55e'; color = '#166534'; }
+      else if (oi === s.chosen) { bg = '#fee2e2'; border = '#ef4444'; color = '#991b1b'; }
+    }
+    return `<button onclick="${answered ? '' : `(function(){const isC=${oi===cur.ans};setState({quiz:{...STATE.quiz,chosen:${oi},score:STATE.quiz.score+(isC?1:0)}});})()`}" style="width:100%;background:${bg};border:2px solid ${border};border-radius:10px;padding:12px 14px;margin-bottom:8px;font-size:14px;color:${color};text-align:left;font-weight:${answered&&oi===cur.ans?'700':'400'}">${answered&&oi===cur.ans?'✅ ':''}${answered&&oi===s.chosen&&oi!==cur.ans?'❌ ':''}${opt}</button>`;
+  }).join('')}
+  ${answered ? `<button onclick="(function(){if(STATE.quiz.idx+1>=Q.length){setState({quiz:{...STATE.quiz,done:true}})}else{setState({quiz:{...STATE.quiz,idx:STATE.quiz.idx+1,chosen:null}})}})()" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:13px;font-size:15px;font-weight:700;margin-top:4px">${s.idx+1 >= Q.length ? '결과 보기 🏁' : '다음 문제 →'}</button>` : ''}`;
+}
+
+// ===== SECTION RENDERERS =====
+function renderSection(id) {
+  switch(id) {
+    case 0: return `
+      <div class="intro-header">
+        <div style="font-size:36px;margin-bottom:8px">🏘️</div>
+        <h3>12과 · 공동체 생활</h3>
+        <p style="font-size:13px;opacity:0.85;margin-top:4px">Community Life · Cuộc sống cộng đồng</p>
+      </div>
       <div class="card card-accent">
         <div class="section-label">학습 목표</div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>공동체 생활 관련 어휘를 이해하고 사용할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>공동체 생활 주제로 말하기·쓰기를 할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>AI 튜터와 함께 공동체 생활 표현을 연습할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>공동체 생활 관련 어휘를 익히고 활용할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><b>-(으)ㄹ 테니까</b>: 화자의 의지를 표현하고 청자에게 요청할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><b>-겠-</b>: 의도, 추측, 정중한 표현을 구분하여 사용할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>이웃 갈등 해결, 자원봉사 참여 관련 표현을 익힌다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>한국의 공동체 문화(아파트, 정, 다문화)를 이해한다</span></div>
       </div>
-
-      <div class="card" style="background:#fef3c7;border:1px solid #fbbf24">
-        <div class="section-label" style="background:#92400e">📌 이번 과 주제</div>
-        <div style="font-size:24px;text-align:center;margin:12px 0">🏘️</div>
-        <div style="font-size:18px;font-weight:800;text-align:center;color:var(--brown);margin-bottom:4px">12과 · 공동체 생활</div>
-        <div style="font-size:14px;text-align:center;color:#555;margin-bottom:8px">Community Life</div>
-        <div style="background:#fff;border-radius:8px;padding:12px;font-size:13px;color:#555;line-height:1.8;border:1px solid #fde68a">
-          🚧 상세 콘텐츠는 준비 중입니다. AI 실습 탭에서 이 주제를 지금 바로 공부해 보세요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nội dung chi tiết đang được chuẩn bị. Hãy dùng tab AI 실습 để học ngay!</span>
+      <div class="card" style="background:linear-gradient(135deg,#fef3c7,#fff7ed)">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📚 이 과에서 배우는 문법</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:#f59e0b;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700">-(으)ㄹ 테니까</span>
+          <span style="background:#78350f;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700">-겠-</span>
         </div>
       </div>
-
-      <div style="display:flex;gap:10px;margin-top:4px">
-        <a href="KIIP_Level3_Lesson11.html" style="flex:1;background:var(--dark);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">← 11과</a>
-        <a href="KIIP_Level3_Lesson13.html" style="flex:1;background:var(--amber);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">13과 →</a>
+      <div class="card" style="text-align:center;background:#fef3c7">
+        <div style="font-size:13px;color:#92400e;font-weight:700;margin-bottom:4px">🗓️ KIIP 3급 학습 진도</div>
+        <div style="font-size:12px;color:#666">11과 교육 ✅ → <b>12과 공동체 생활 📍</b> → 3급 완료 🎉</div>
       </div>
+    `;
 
-      <div style="margin-top:12px">
-        <div style="background:#d1fae5;border-radius:8px;height:6px;overflow:hidden;margin-bottom:4px">
-          <div style="background:#22c55e;height:100%;width:60%;transition:width 0.5s"></div>
-        </div>
-        <div style="font-size:11px;color:#888;text-align:center">3급 전체 진도 60% · 12 / 20과</div>
+    case 1: return `
+      <h2>📝 어휘</h2>
+      <p class="sub">공동체 생활 관련 핵심 어휘 23개 · tap to hear pronunciation</p>
+      ${renderVocabCards()}
+      <div class="card" style="border-left:4px solid #8b5cf6;margin-top:4px">
+        <div style="font-size:13px;font-weight:700;color:#8b5cf6;margin-bottom:10px">💡 관용 표현 (Idioms)</div>
+        ${IDIOMS.map(id => `
+          <div style="padding:8px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${id.expr}')">
+            <div style="font-size:14px;font-weight:700;color:#1a202c">🔊 ${id.expr}</div>
+            <div style="font-size:12px;color:#b45309;margin:2px 0">${id.meaning}</div>
+            <div style="font-size:12px;color:#666;font-style:italic">${id.ex}</div>
+          </div>
+        `).join('')}
       </div>
-    </div>
-  `;
-}
+    `;
 
-function renderAI() {
-  return `
-    <div class="page">
-      <h2>🤖 AI 실습</h2>
-      <p class="sub">글로컬 아카데미 × AI 한국어 튜터 · 공동체 생활</p>
-
-      <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
-        <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
-        <div style="font-size:15px;font-weight:800;margin-bottom:6px">KIIP 3급 12과 · 공동체 생활 AI 실습</div>
-        <div style="font-size:11px;opacity:0.85;line-height:1.7">Community Life — 주제별 AI 튜터와 실시간 학습<br>
-        <span style="color:#93c5fd">🇻🇳 Luyện tập chủ đề "공동체 생활" cùng AI ngay trong app</span></div>
+    case 2: return `
+      <h2>📐 문법</h2>
+      <p class="sub">핵심 문법 2가지를 배워봐요</p>
+      <div style="display:flex;gap:8px;margin-bottom:14px">
+        <button onclick="setState({grammarTab:0})" style="flex:1;padding:10px;border-radius:10px;border:2px solid ${STATE.grammarTab===0?'#f59e0b':'#fde68a'};background:${STATE.grammarTab===0?'#f59e0b':'#fff'};color:${STATE.grammarTab===0?'#fff':'#92400e'};font-weight:700;font-size:13px">-(으)ㄹ 테니까</button>
+        <button onclick="setState({grammarTab:1})" style="flex:1;padding:10px;border-radius:10px;border:2px solid ${STATE.grammarTab===1?'#78350f':'#fde68a'};background:${STATE.grammarTab===1?'#78350f':'#fff'};color:${STATE.grammarTab===1?'#fff':'#92400e'};font-weight:700;font-size:13px">-겠-</button>
       </div>
-
-      <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
-        <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
-        <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
-          계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
-          <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập, không chuyển tab</span>
-        </div>
-
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-          ${AI_QUICK_BTNS.map((b,i)=>`
-            <button onclick="AICHAT.quickSend(${i})"
-              style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
-              ${b.emoji} ${b.label}
-            </button>
+      ${STATE.grammarTab === 0 ? `
+        <div class="card card-accent">
+          <div class="section-label">-(으)ㄹ 테니까</div>
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px">의미: 화자의 강한 의지/가정 + 청자에게 지시·요청</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">화자가 어떤 행동을 하겠다고 강하게 표현한 후, 청자에게 지시나 요청을 할 때 사용해요.<br><b>Meaning:</b> "Since I will... / I'm going to...so (you should...)"<br><b>Nghĩa:</b> Vì tôi sẽ... / Tôi sẽ... nên (bạn hãy...)</div>
+          <div style="background:#fef3c7;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:6px">📌 형태 규칙</div>
+            <div style="font-size:13px;line-height:2">
+              받침 없음 → <b>-ㄹ 테니까</b> &nbsp;(가다 → 갈 테니까)<br>
+              받침 있음 → <b>-을 테니까</b> &nbsp;(먹다 → 먹을 테니까)<br>
+              <span style="color:#ef4444;font-size:12px">⚠️ -(으)ㄹ 테니까 절의 주어는 보통 화자(나)</span>
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:8px">예문 (tap to hear)</div>
+          ${[
+            ['제가 도와 드릴 테니까 걱정하지 마세요.', 'I\'ll help you, so don\'t worry.', 'Tôi sẽ giúp bạn, vậy đừng lo.'],
+            ['제가 신청할 테니까 시간만 맞춰 주세요.', 'I\'ll apply, so just be available.', 'Tôi sẽ đăng ký, bạn chỉ cần sắp xếp thời gian.'],
+            ['날씨가 추울 테니까 따뜻하게 입으세요.', 'It\'ll be cold, so dress warmly.', 'Trời sẽ lạnh nên hãy mặc ấm.'],
+            ['제가 가져올 테니까 기다리세요.', 'I\'ll bring it, so wait.', 'Tôi sẽ mang đến, hãy đợi nhé.'],
+            ['늦을 테니까 먼저 시작하세요.', 'I\'ll be late, so start without me.', 'Tôi sẽ muộn, hãy bắt đầu trước.'],
+          ].map(([ko,en,vi]) => `
+            <div style="padding:8px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+              <div style="font-size:14px;font-weight:600;color:#1a202c">🔊 ${ko}</div>
+              <div style="font-size:12px;color:#666">${en}</div>
+              <div style="font-size:12px;color:#b45309">${vi}</div>
+            </div>
           `).join('')}
         </div>
+      ` : `
+        <div class="card card-accent" style="border-left-color:#78350f">
+          <div class="section-label" style="background:#78350f">-겠- (의도 / 추측 / 정중)</div>
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px">의미: 세 가지 용법</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">
+            <b>(a) 의도</b>: 화자의 1인칭 의지 표현 ("I will...")<br>
+            <b>(b) 추측/공감</b>: 상황을 보고 추측 ("It must be / I think...")<br>
+            <b>(c) 정중</b>: 서비스 상황의 격식 표현
+          </div>
+          <div style="background:#fef3c7;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:6px">📌 형태</div>
+            <div style="font-size:13px;line-height:2">
+              동사/형용사 어간 + <b>-겠-</b> + 어미(-어요/-습니다)<br>
+              먹다 → 먹<b>겠</b>어요 / 힘들다 → 힘드<b>시</b>겠어요
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:8px">예문 (tap to hear)</div>
+          ${[
+            ['제가 하겠어요.', '(의도) I will do it.', '(ý định) Tôi sẽ làm.'],
+            ['많이 힘드셨겠어요.', '(추측/공감) You must have had a hard time.', '(suy đoán/cảm thông) Chắc bạn đã vất vả lắm.'],
+            ['곧 비가 오겠어요.', '(추측) It looks like it\'ll rain soon.', '(suy đoán) Có vẻ trời sắp mưa.'],
+            ['주문 받겠습니다.', '(정중) I\'ll take your order.', '(lịch sự) Tôi sẽ nhận đơn hàng.'],
+            ['그렇겠어요.', '(추측/공감) That must be so.', '(suy đoán) Vậy chắc là thế.'],
+          ].map(([ko,en,vi]) => `
+            <div style="padding:8px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+              <div style="font-size:14px;font-weight:600;color:#1a202c">🔊 ${ko}</div>
+              <div style="font-size:12px;color:#666">${en}</div>
+              <div style="font-size:12px;color:#b45309">${vi}</div>
+            </div>
+          `).join('')}
+        </div>
+      `}
+    `;
 
-        <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
-          <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
-            💡 버튼을 누르면 AI가 바로 답해줘요<br>
-            <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
+    case 3: return `
+      <h2>💬 말하기</h2>
+      <p class="sub">공동체 생활 관련 대화 연습 · tap to hear</p>
+      ${renderDialogues()}
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">연습 활동</div>
+        <div style="font-size:14px;font-weight:700;color:#166534;margin-bottom:8px">🎯 공동체 상황 연습</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">아래 질문에 -(으)ㄹ 테니까/-겠-을 사용해 답해 보세요:</div>
+        ${[
+          '이웃과 갈등이 생기면 어떻게 해결하겠어요? (-(으)ㄹ 테니까 사용)',
+          '봉사활동에 참여한 적 있어요? (-겠- 의도 표현 사용)',
+          '층간소음 문제가 생기면 어떻게 하겠어요?',
+          '여러분 나라의 공동체 문화와 한국의 공동체 문화를 비교해 보세요.',
+        ].map((q,i) => `<div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">Q${i+1}. ${q}</div>`).join('')}
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🗣️ 유용한 공동체 생활 표현</div>
+        ${[
+          ['불편을 끼쳐서 죄송해요.', 'I\'m sorry for the inconvenience.'],
+          ['제가 도와 드릴 테니까 걱정 마세요.', 'I\'ll help you, so don\'t worry.'],
+          ['관리사무소에 문의하겠어요.', 'I\'ll contact the management office.'],
+          ['서로 배려하면서 지내요.', 'Let\'s live considerately of each other.'],
+        ].map(([ko,en]) => `
+          <div style="padding:7px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+            <div style="font-size:14px;font-weight:600">🔊 ${ko}</div>
+            <div style="font-size:12px;color:#888">${en}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 4: return `
+      <h2>👂 듣기</h2>
+      <p class="sub">린과 수민의 공동체 생활 대화를 들어 보세요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🎧 상황: 아파트 층간소음과 이웃 관계</div>
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">린이 아파트 생활의 어려움을 이야기하고, 수민이 해결 방법과 한국 이웃 문화를 설명해 줘요.</p>
+        <button onclick="playListeningScript()" style="width:100%;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px">
+          🔊 전체 듣기
+        </button>
+      </div>
+      <div class="card" style="margin-bottom:10px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📝 듣기 스크립트</div>
+        ${[
+          ['린', '수민 씨, 저 요즘 아파트 생활이 좀 어려워요.'],
+          ['수민', '왜요? 무슨 일이 있어요?'],
+          ['린', '층간소음이 심해서 힘들어요. 윗집에서 밤에 뛰어다니는 소리가 크게 나거든요.'],
+          ['수민', '그렇겠어요. 많이 불편하셨겠어요. 관리사무소에 신고하면 도움이 될 거예요.'],
+          ['린', '직접 얘기하기가 좀 어려워요.'],
+          ['수민', '그럼 제가 같이 관리사무소에 가 드릴 테니까 걱정 마세요.'],
+          ['린', '정말요? 감사해요. 이웃 간에 서로 배려해야겠다는 생각이 들어요.'],
+          ['수민', '맞아요. 한국에는 이웃사촌이라는 말이 있을 만큼 이웃 관계가 중요해요.'],
+          ['린', '저도 좋은 이웃이 되고 싶어요. 먼저 인사를 드릴 테니까 같이 해 줄 수 있어요?'],
+          ['수민', '물론이죠! 함께하겠어요.'],
+        ].map(([sp, text]) => `
+          <div style="display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${text.replace(/'/g,"\\'")}')">
+            <span style="font-size:11px;font-weight:700;color:#f59e0b;min-width:36px;margin-top:2px">${sp}</span>
+            <span style="font-size:13px;line-height:1.6;flex:1">${text}</span>
+            <span>🔊</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">이해 확인 문제</div>
+        ${[
+          {q:'린이 힘들다고 한 이유는?', opts:['주차 문제 때문에','층간소음이 심해서','이웃과 싸워서','관리비가 너무 비싸서'], ans:1},
+          {q:'수민이 한 제안은?', opts:['직접 윗집에 찾아가자','관리사무소에 같이 가겠다','경찰에 신고하자','다른 아파트로 이사하자'], ans:1},
+          {q:'"이웃사촌"이라는 말의 의미는?', opts:['이웃이 사촌이다','이웃 관계가 매우 중요하다','사촌보다 이웃이 나쁘다','이웃과 싸운다'], ans:1},
+          {q:'린이 -(으)ㄹ 테니까를 사용한 문장은?', opts:['층간소음이 심해서 힘들어요.','먼저 인사를 드릴 테니까 같이 해 줄 수 있어요?','이웃 간에 서로 배려해야 해요.','아파트 생활이 어려워요.'], ans:1},
+        ].map((item, qi) => `
+          <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">${qi+1}. ${item.q}</div>
+            ${item.opts.map((o, oi) => `
+              <div style="padding:7px 10px;background:${oi===item.ans?'#dcfce7':'#f9fafb'};border:1px solid ${oi===item.ans?'#22c55e':'#e5e7eb'};border-radius:8px;margin-bottom:4px;font-size:13px;cursor:pointer" onclick="TTS.speak('${o}')">
+                ${oi===item.ans?'✅ ':''}${o}
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 5: return `
+      <h2>🔊 발음</h2>
+      <p class="sub">경음화 + 연음 발음 규칙</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">규칙 1: 유음화 (ㄴ+ㄹ → ㄹㄹ)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">ㄴ 뒤에 ㄹ이 오면 ㄴ이 ㄹ로 바뀌어요.</div>
+        ${[
+          ['분리수거', '[불리수거]', 'separate waste collection', 'ㄴ+ㄹ → 유음화 [ㄹㄹ]'],
+        ].map(([word, pron, en, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:100px;font-size:15px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#f59e0b;color:#fff;padding:3px 10px;border-radius:20px;font-size:13px;font-weight:700">${pron}</div>
+              <div style="font-size:12px;color:#888">${en}</div>
+            </div>
+            <div style="font-size:11px;color:#b45309;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card" style="border-left:4px solid #3b82f6">
+        <div class="section-label" style="background:#3b82f6">규칙 2: 연음 (받침+모음)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">받침 뒤에 모음이 오면 받침이 다음 음절의 첫 소리로 이어져요.</div>
+        ${[
+          ['규칙을 지키다', '[규치글 지키다]', 'to follow rules', 'ㄱ+을 연음 → [규치글]'],
+        ].map(([word, pron, en, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #dbeafe;cursor:pointer" onclick="TTS.speak('규칙을 지키다')">
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+              <div style="min-width:120px;font-size:14px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#3b82f6;color:#fff;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700">${pron}</div>
+            </div>
+            <div style="font-size:11px;color:#1d4ed8;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card" style="border-left:4px solid #22c55e">
+        <div class="section-label" style="background:#22c55e">규칙 3: 자연 발음</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">변화 없이 표기대로 발음해요.</div>
+        ${[
+          ['층간소음', '[층간소음]', 'inter-floor noise'],
+          ['공동체', '[공동체]', 'community'],
+          ['봉사활동', '[봉사활동]', 'volunteer activity'],
+        ].map(([word, pron, en]) => `
+          <div style="padding:8px 0;border-bottom:1px solid #dcfce7;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:90px;font-size:14px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#22c55e;color:#fff;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700">${pron}</div>
+              <div style="font-size:12px;color:#888">${en}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">발음 연습</div>
+        <p style="font-size:13px;color:#555;margin-bottom:10px">문장을 천천히 따라 읽어 보세요:</p>
+        ${[
+          '제가 도와 드릴 테니까 걱정하지 마세요.',
+          '층간소음으로 많이 힘드셨겠어요.',
+          '분리수거[불리수거]는 공동체 생활의 기본이에요.',
+          '서로 배려하면 좋은 이웃 관계를 만들 수 있겠어요.',
+        ].map(s => `
+          <div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px;cursor:pointer" onclick="TTS.speak('${s.replace(/\[.*?\]/g,'')}')">
+            🔊 ${s}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 6: return `
+      <h2>📖 읽기</h2>
+      <p class="sub">한국의 공동체 문화</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">읽기 본문</div>
+        <div style="font-size:14px;line-height:1.9;color:#1a202c">
+          <p style="margin-bottom:12px">한국은 전체 가구의 약 50%가 아파트에 살아요. 아파트 생활에서는 층간소음이 가장 큰 사회적 문제 중 하나예요. 이웃에게 불편을 끼치지 않도록 밤 10시 이후 소음을 줄이는 것이 기본 예절이에요.</p>
+          <p style="margin-bottom:12px">아파트 관리사무소에서는 소음 문제, 주차 관리, 공용 시설 관리 등 주민 생활을 돕는 역할을 해요. 갈등이 생기면 직접 해결하기 어려울 때 관리사무소에 도움을 요청할 수 있어요.</p>
+          <p style="margin-bottom:12px">한국의 자원봉사 문화도 발달해 있어요. 1365 자원봉사 포털(www.1365.go.kr)에서 봉사활동을 신청하고 시간을 인증받을 수 있어요. 외국인도 참여할 수 있어요.</p>
+          <p>다문화 가정이 증가하면서 서로 다른 문화를 존중하고 통합하는 공동체 의식이 더욱 중요해지고 있어요. 한국 특유의 정(情) 문화처럼, 이웃과 따뜻한 마음을 나누며 사는 것이 좋은 공동체를 만드는 핵심이에요.</p>
+        </div>
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">읽기 이해 문제</div>
+        ${[
+          {q:'한국 아파트 생활에서 흔한 갈등 원인은?', opts:['주차 문제','층간소음','분리수거 규칙','관리비 문제'], ans:1},
+          {q:'자원봉사를 신청하려면 어디에 가면 돼요?', opts:['관리사무소','주민센터','1365 자원봉사 포털','다문화가족지원센터'], ans:2},
+          {q:'다문화 가정 증가로 중요해진 것은?', opts:['층간소음 규칙','서로 다른 문화를 존중하고 통합하는 공동체 의식','아파트 관리비 납부','분리수거 방법'], ans:1},
+        ].map((item, qi) => `
+          <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">${qi+1}. ${item.q}</div>
+            ${item.opts.map((o, oi) => `
+              <div style="padding:7px 10px;background:${oi===item.ans?'#dcfce7':'#f9fafb'};border:1px solid ${oi===item.ans?'#22c55e':'#e5e7eb'};border-radius:8px;margin-bottom:4px;font-size:13px">
+                ${oi===item.ans?'✅ ':''}${o}
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 7: return `
+      <h2>✏️ 쓰기</h2>
+      <p class="sub">공동체 생활 경험에 대해 써 봐요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">쓰기 활동</div>
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:10px">📝 주제: 나의 공동체 생활 이야기</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">다음 내용을 포함해서 150~200자 정도 써 보세요:</div>
+        ${[
+          '한국 공동체 생활에서의 경험 (아파트, 이웃 관계 등)',
+          '-(으)ㄹ 테니까 사용 (화자의 의지 + 청자 요청)',
+          '-겠- 사용 (의도 또는 추측 표현)',
+          '앞으로의 다짐 또는 계획',
+        ].map((item, i) => `<div style="padding:8px;background:#fef3c7;border-radius:8px;margin-bottom:6px;font-size:13px">📌 ${i+1}. ${item}</div>`).join('')}
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">✍️ 예시 답안</div>
+        <div style="font-size:13px;line-height:1.9;color:#1a202c;background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:10px">
+          저는 한국 아파트에 살면서 이웃과 좋은 관계를 유지하려고 노력해요. 처음에는 문화가 달라서 <b>어색했겠지만</b>, 이제는 조금 익숙해졌어요. 층간소음이 문제가 될 때는 직접 말하기 어려워서 관리사무소에 말씀드렸어요. 앞으로는 <b>제가 먼저 인사를 드릴 테니까</b> 더 좋은 이웃 관계를 만들 수 있을 거라 믿어요. <b>서로 배려하는 공동체가 되겠어요.</b>
+        </div>
+        <div style="font-size:12px;color:#b45309;margin-bottom:4px">📌 문법 포인트:</div>
+        <div style="font-size:12px;color:#555;line-height:1.8">
+          • <b>어색했겠지만</b> → -겠- 추측/공감<br>
+          • <b>드릴 테니까</b> → -(으)ㄹ 테니까 (화자 의지 + 청자 요청)<br>
+          • <b>되겠어요</b> → -겠- 의도
+        </div>
+      </div>
+      <div class="card" style="border-left:4px solid #8b5cf6">
+        <div style="font-size:13px;font-weight:700;color:#8b5cf6;margin-bottom:8px">🔤 유용한 연결 표현</div>
+        ${[
+          ['처음에는', 'at first'],
+          ['이제는', 'now / these days'],
+          ['앞으로는', 'from now on'],
+          ['서로', 'each other / mutually'],
+          ['노력하다', 'to make an effort'],
+          ['유지하다', 'to maintain'],
+        ].map(([ko, en]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ede9fe;font-size:13px"><span style="font-weight:700">${ko}</span><span style="color:#888">${en}</span></div>`).join('')}
+      </div>
+    `;
+
+    case 8: return `
+      <h2>🎎 문화</h2>
+      <p class="sub">한국 공동체 문화 이해하기</p>
+      ${CULTURE.map(c => `
+        <div class="card card-accent" style="margin-bottom:10px">
+          <div style="font-size:28px;margin-bottom:6px">${c.icon}</div>
+          <div style="font-size:15px;font-weight:700;color:#92400e;margin-bottom:6px">${c.title}</div>
+          <div style="font-size:13px;line-height:1.8;color:#555">${c.body}</div>
+        </div>
+      `).join('')}
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">문화 비교</div>
+        <div style="font-size:13px;color:#555;line-height:1.7">
+          <div style="margin-bottom:8px">🇰🇷 한국 vs 🌏 여러분의 나라</div>
+          ${[
+            '여러분 나라에서 이웃과 어떻게 관계를 유지해요?',
+            '아파트 또는 공동 주거 문화가 여러분 나라에도 있나요?',
+            '자원봉사 문화가 여러분 나라와 어떻게 달라요?',
+            '한국의 정(情) 문화처럼 따뜻한 나눔 문화가 있나요?',
+          ].map((q,i) => `<div style="padding:7px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">💬 ${q}</div>`).join('')}
+        </div>
+      </div>
+      <div class="card" style="background:linear-gradient(135deg,#fef3c7,#fff7ed);text-align:center">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:6px">📞 공동체 관련 주요 연락처</div>
+        <div style="font-size:13px;line-height:1.8;color:#555;text-align:left">
+          1365 — 자원봉사 신청 포털<br>
+          다문화가족지원센터 — 한국어 교육·생활 지원<br>
+          120 — 생활민원 상담<br>
+          1345 — 외국인종합안내센터 (24시간)
+        </div>
+      </div>
+    `;
+
+    case 9: return `
+      <h2>✅ 퀴즈</h2>
+      <p class="sub">12과 내용을 얼마나 이해했나요?</p>
+      ${renderQuiz()}
+    `;
+
+    case 10: {
+      setTimeout(() => RECORDER.autoDetect(), 100);
+      const PRON_SENTS = [
+        {sent:'제가 도와 드릴 테니까 걱정하지 마세요.', vi:'Tôi sẽ giúp bạn, vậy đừng lo.'},
+        {sent:'층간소음으로 많이 힘드셨겠어요.', vi:'Chắc bạn đã khổ sở lắm vì tiếng ồn giữa các tầng.'},
+        {sent:'분리수거는 공동체 생활의 기본이에요.', vi:'Phân loại rác là điều cơ bản trong cuộc sống cộng đồng.'},
+        {sent:'서로 배려하면 좋은 이웃 관계를 만들 수 있겠어요.', vi:'Nếu quan tâm lẫn nhau, chắc có thể tạo được mối quan hệ hàng xóm tốt.'},
+      ];
+      return `
+        <h2>🤖 AI 실습</h2>
+        <p class="sub">글로컬 아카데미 × 에이전틱 G스택 한국어 학습</p>
+
+        <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+          <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+          <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 한국어 실습 플랫폼</div>
+          <div style="font-size:11px;opacity:0.85;line-height:1.7">KIIP 3급 12과 공동체 생활 · AI 튜터와 실시간 학습<br>
+          <span style="color:#93c5fd">🇻🇳 Nền tảng học tiếng Hàn kết hợp AI Agent của Glocal Academy</span></div>
+        </div>
+
+        <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+          <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+          <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+            계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+            ${AI_QUICK_BTNS.map((b,i)=>`
+              <button onclick="AICHAT.quickSend(${i})"
+                style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
+                ${b.emoji} ${b.label}
+              </button>
+            `).join('')}
+          </div>
+          <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+            <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
+              💡 버튼을 누르면 AI가 바로 답해줘요<br>
+              <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:flex-end">
+            <textarea id="ai-chat-input"
+              placeholder="한국어로 질문하세요... 🇻🇳 Nhập câu hỏi..."
+              style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
+              onfocus="this.style.borderColor='#f59e0b'"
+              onblur="this.style.borderColor='#fde68a'"
+              onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
+            ></textarea>
+            <button onclick="AICHAT.send()" id="ai-send-btn"
+              style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>
+          </div>
+          <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+        </div>
+
+        <div class="card card-accent" style="margin-bottom:10px">
+          <div class="section-label">🌐 외부 AI 서비스 상세 가이드</div>
+          <div style="font-size:11px;color:#888;margin:6px 0 8px">계정이 있는 경우 더 강력한 AI를 사용할 수 있어요</div>
+          <details style="margin-bottom:8px">
+            <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              🔵 Gemini AI 사용법 — Google 계정 필요
+            </summary>
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#1d4ed8">① 접속:</strong> gemini.google.com<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+                <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 공동체 생활 롤플레이</div>
+                <span style="font-family:monospace;background:#dbeafe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"저는 베트남인 KIIP 3급 학습자예요. 층간소음 문제를 관리사무소에 신고하는 상황에서 -(으)ㄹ 테니까, -겠- 문법으로 대화 연습 도와주세요."</span>
+              </div>
+            </div>
+          </details>
+          <details style="margin-bottom:8px">
+            <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              🟣 Claude AI 사용법 — 이메일 계정 필요
+            </summary>
+            <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#7c3aed">① 접속:</strong> claude.ai (이메일로 무료 가입)<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">
+                <div style="font-weight:700;color:#7c3aed;margin-bottom:3px">✏️ 글 첨삭</div>
+                <span style="font-family:monospace;background:#ede9fe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"KIIP 3급 외국인 학습자의 글입니다. -(으)ㄹ 테니까, -겠- 사용 확인하고 베트남어로 설명해 주세요."</span>
+              </div>
+            </div>
+          </details>
+          <details>
+            <summary style="background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              📓 NotebookLM 사용법 — Google 계정 필요
+            </summary>
+            <div style="background:#fff8f0;border:1px solid #fed7aa;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#ea4335">① 접속:</strong> notebooklm.google.com<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #ea4335">
+                12과 학습 내용 복사 → NotebookLM에 붙여넣기:<br>
+                <button onclick="copyNotebookContent12()" style="background:#ea4335;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0">
+                  📋 12과 학습 내용 복사하기
+                </button><span id="copy-ok12" style="font-size:11px;color:#059669;margin-left:6px"></span><br>
+                "-(으)ㄹ 테니까 문법 베트남어로 설명해줘" / "12과 퀴즈 10문제 만들어줘"
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="card card-green" style="margin-bottom:10px">
+          <div class="section-label" style="background:#059669">🎤 AI 발음 코치 · 녹음 &amp; 재생</div>
+          <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">
+            원어민 듣기 → 내가 녹음 → 다시 들으며 비교<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Nghe người bản ngữ → Tự ghi âm → Nghe lại so sánh</span>
+          </div>
+          <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#166534">
+            🆓 <strong>완전 무료</strong> — 브라우저 내장 API · 서버 없음
+          </div>
+          <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:14px;margin-bottom:10px">
+            <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px">🎙️ 마이크 허용 필요</div>
+            <div id="mic-perm-state" style="margin-bottom:10px"></div>
+            <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:10px">
+              <div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:8px">🚫 마이크가 차단되어 있어요</div>
+              <div style="background:#fff;border-radius:8px;padding:10px;font-size:12px;line-height:2;color:#1a202c">
+                <strong style="color:#1d4ed8">PC Chrome / Edge:</strong><br>
+                주소창 왼쪽 🔒 클릭 → 마이크 → <strong>허용</strong> → F5<br>
+                <strong style="color:#059669">📱 Android Chrome:</strong><br>
+                주소창 ⋮ → 사이트 설정 → 마이크 → 허용
+              </div>
+              <div style="margin-top:8px;font-size:11px;color:#059669">🇻🇳 Nhấn 🔒 góc trái → Micro → Cho phép → F5</div>
+            </div>
+            <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+              style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:12px;font-size:14px;font-weight:800">
+              🎙️ 마이크 허용하기 (여기 클릭)
+            </button>
+            <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>
+          </div>
+          ${PRON_SENTS.map((item,i)=>`
+            <div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+              <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>
+              <div style="font-size:10px;color:#059669;margin-bottom:8px">🇻🇳 ${item.vi}</div>
+              <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+                <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+              </div>
+              <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+                <button onclick="TTS.speak('${item.sent.replace(/'/g,"\\'")}'); this.textContent='🔊 재생 중...'; setTimeout(()=>this.textContent='🔊 원어민',2000)"
+                  style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">🔊 원어민</button>
+                <button id="rec-btn-${i}" onclick="startSTT(${i},'${item.sent.replace(/'/g,"\\'")}',this)"
+                  style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">🎤 녹음</button>
+                <button id="play-btn-${i}" disabled
+                  style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0;opacity:0.4">▶ 내 발음 듣기</button>
+              </div>
+              <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:16px"></div>
+            </div>
+          `).join('')}
+          <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+            <strong>📖 사용법:</strong> 1️⃣ 🔊 원어민 듣기 → 2️⃣ 🎤 녹음 → 3️⃣ ▶ 내 발음 듣기<br>
+            정확도 바: 🟢 80%+ 🟡 50~79% 🔴 50% 미만
           </div>
         </div>
 
-        <div style="display:flex;gap:6px;align-items:flex-end">
-          <textarea id="ai-chat-input"
-            placeholder="공동체 생활에 대해 질문하세요... / Ask about Community Life..."
-            style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
-            onfocus="this.style.borderColor='#f59e0b'"
-            onblur="this.style.borderColor='#fde68a'"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
-          ></textarea>
-          <button onclick="AICHAT.send()"
-            id="ai-send-btn"
-            style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">
-            ➤
-          </button>
+        <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+          <div class="section-label" style="background:#059669">🌐 글로컬 G스택 학습법</div>
+          <div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.8">
+            <strong>글로컬 아카데미 AI 에이전트 기반 4단계 학습법:</strong><br>
+            <span style="color:#555">① 어휘/문법 → Gemini 설명 요청</span><br>
+            <span style="color:#555">② 말하기 → Gemini 롤플레이 실습</span><br>
+            <span style="color:#555">③ 쓰기 → Claude AI 첨삭</span><br>
+            <span style="color:#555">④ 복습 → NotebookLM Q&amp;A 정리</span><br><br>
+            <span style="color:#059669;font-size:11px">🇻🇳 ① Từ vựng/ngữ pháp → Hỏi Gemini · ② Nói → Nhập vai với Gemini · ③ Viết → Nhờ Claude sửa bài · ④ Ôn tập → NotebookLM</span>
+          </div>
         </div>
-        <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
-      </div>
 
-      <div class="card card-accent" style="margin-bottom:10px">
-        <div class="section-label">📖 12과 학습 가이드</div>
-        <div style="font-size:13px;color:#555;margin-top:8px;line-height:1.9">
-          <strong style="color:var(--brown)">🏘️ 공동체 생활 · Community Life</strong><br>
-          위의 빠른 질문 버튼을 눌러 AI 튜터에게 이 주제를 배워보세요.<br>
-          직접 질문도 자유롭게 입력할 수 있어요.<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nhấn các nút câu hỏi nhanh để học chủ đề này với AI.<br>Bạn cũng có thể tự nhập câu hỏi bất kỳ.</span>
-        </div>
-      </div>
+        <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
+      `;
+    }
 
-      <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
-    </div>
-  `;
-}
-
-function renderSection() {
-  switch(STATE.section) {
-    case 0: return renderIntro();
-    case 10: return renderAI();
-    default: return renderWIPSection(SECTIONS[STATE.section].label, SECTIONS[STATE.section].icon);
+    default: return '<div style="padding:20px;text-align:center;color:#888">준비중이에요 🙏</div>';
   }
 }
 
+// ===== MAIN RENDER =====
 function render() {
-  document.getElementById('app').innerHTML =
-    renderNav() + renderLangBar() + renderTabs() + renderSection() + renderBottomNav();
+  const s = STATE;
+  const app = document.getElementById('app');
+  if (!app) return;
+
+  const tabsHtml = SECTIONS.map(sec =>
+    `<button class="stab${s.section===sec.id?' active':''}" onclick="setState({section:${sec.id}})">${sec.icon} ${sec.label}</button>`
+  ).join('');
+
+  const bottomNav = `
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level3_Lesson11" class="bnav-btn" style="text-decoration:none;color:#888">
+        <span class="bnav-icon">←</span><span>11과</span>
+      </a>
+      <button class="bnav-btn${s.section===0?' active':''}" onclick="setState({section:0})">
+        <span class="bnav-icon">🏠</span><span>도입</span>
+      </button>
+      <button class="bnav-btn${s.section===9?' active':''}" onclick="setState({section:9})">
+        <span class="bnav-icon">✅</span><span>퀴즈</span>
+      </button>
+      <button class="bnav-btn${s.section===10?' active':''}" onclick="setState({section:10})">
+        <span class="bnav-icon">🤖</span><span>AI실습</span>
+      </button>
+      <a href="/KIIP_Level3_Index" class="bnav-btn" style="text-decoration:none;color:#f59e0b;font-weight:700">
+        <span class="bnav-icon">📋</span><span>목차</span>
+      </a>
+    </nav>
+  `;
+
+  app.innerHTML = `
+    <nav class="nav">
+      <a href="/KIIP_Level3_Index" class="nav-back">← 목차</a>
+      <div style="text-align:right">
+        <div class="nav-title">12과 · 공동체 생활</div>
+        <div class="nav-sub">KIIP 3급 중급 1</div>
+      </div>
+    </nav>
+    <div class="section-tabs">${tabsHtml}</div>
+    <div class="page">${renderSection(s.section)}</div>
+    ${bottomNav}
+  `;
+
+  // Scroll active tab into view
+  setTimeout(() => {
+    const activeTab = document.querySelector('.stab.active');
+    if (activeTab) activeTab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  }, 50);
 }
 
+// ===== INIT =====
 render();
 </script>
 <script>

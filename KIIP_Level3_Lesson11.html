@@ -54,12 +54,66 @@ h2{color:var(--brown);font-size:18px;margin-bottom:4px;font-weight:800}
 .lang-bar{background:#fef3c7;display:flex;justify-content:center;gap:8px;padding:8px}
 .lang-btn-sm{background:rgba(180,83,9,0.1);border:1px solid #fbbf24;color:#92400e;padding:8px 16px;border-radius:20px;font-size:13px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
 .lang-btn-sm.active{background:var(--amber);color:#fff;border-color:var(--amber)}
-.wip-banner{background:linear-gradient(135deg,#78350f,#92400e);color:#fff;border-radius:12px;padding:20px;margin-bottom:16px;text-align:center}
-.wip-banner h3{font-size:18px;font-weight:800;margin-bottom:8px}
-.wip-banner p{font-size:13px;opacity:0.9;line-height:1.7;margin-bottom:4px}
 .obj-item{display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid #fde68a;font-size:14px;color:var(--text)}
 .obj-item:last-child{border-bottom:none}
 .obj-check{color:var(--amber);font-size:16px;flex-shrink:0;margin-top:1px}
+.vocab-cat{font-size:11px;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:0.5px;margin:12px 0 6px;padding-bottom:4px;border-bottom:1px solid #fde68a}
+.vocab-row{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid #fef3c7;cursor:pointer}
+.vocab-row:last-child{border-bottom:none}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--dark);min-width:90px}
+.vocab-pron{font-size:11px;color:#999;font-weight:400}
+.vocab-def{flex:1;font-size:13px;color:#555;line-height:1.5}
+.vocab-vi{font-size:11px;color:#059669}
+.tts-btn{background:none;font-size:16px;padding:4px;flex-shrink:0;opacity:0.7}
+.grammar-box{background:linear-gradient(135deg,#fef3c7,#fff);border:2px solid #f59e0b;border-radius:12px;padding:14px;margin-bottom:10px}
+.grammar-title{font-size:16px;font-weight:800;color:var(--dark);margin-bottom:4px}
+.grammar-meaning{font-size:13px;color:var(--brown);margin-bottom:8px;line-height:1.6}
+.grammar-forms{background:#fff;border-radius:8px;padding:10px;margin-bottom:8px;border:1px solid #fde68a;font-size:12px;color:#555;line-height:1.9}
+.ex-row{padding:8px 0;border-bottom:1px solid #fef3c7;font-size:13px}
+.ex-row:last-child{border-bottom:none}
+.ex-ko{color:var(--dark);font-weight:600;line-height:1.5}
+.ex-en{color:#555;font-size:12px;line-height:1.5}
+.ex-vi{color:#059669;font-size:12px;line-height:1.5}
+.dial-bubble{background:#fff;border:1px solid #fde68a;border-radius:12px;padding:12px;margin-bottom:8px}
+.dial-speaker{font-size:11px;font-weight:700;color:var(--amber);margin-bottom:4px}
+.dial-text{font-size:14px;color:var(--dark);line-height:1.7}
+.dial-vi{font-size:11px;color:#059669;margin-top:3px;line-height:1.5}
+.dial-en{font-size:11px;color:#888;margin-top:2px;line-height:1.5}
+.listen-script{background:#fff;border-radius:10px;border:1px solid #fde68a;padding:12px;font-size:13px;line-height:2;color:var(--dark)}
+.listen-line{display:flex;gap:8px;margin-bottom:4px}
+.listen-sp{font-weight:700;color:var(--amber);min-width:32px}
+.pron-card{background:#fff;border-radius:10px;border:1px solid #fde68a;padding:12px;margin-bottom:8px}
+.pron-word{font-size:16px;font-weight:800;color:var(--dark)}
+.pron-ipa{font-size:13px;color:var(--orange);font-weight:700;margin:2px 0}
+.pron-rule{font-size:12px;color:#555;line-height:1.6}
+.pron-sent{font-size:13px;color:var(--dark);font-weight:600;line-height:1.6;margin-top:4px}
+.pron-sent-vi{font-size:11px;color:#059669}
+.read-text{font-size:14px;line-height:2;color:var(--dark)}
+.read-q{display:flex;gap:8px;padding:10px 0;border-bottom:1px solid #fef3c7;font-size:13px}
+.read-q:last-child{border-bottom:none}
+.read-qnum{font-weight:700;color:var(--amber);flex-shrink:0}
+.read-ans{color:#059669;font-weight:700}
+.write-prompt{background:linear-gradient(135deg,#fef3c7,#fff7ed);border:2px dashed #f59e0b;border-radius:12px;padding:14px;margin-bottom:10px}
+.write-model{background:#fff;border-radius:10px;border:1px solid #fde68a;padding:12px;font-size:14px;color:var(--dark);line-height:2}
+.culture-card{border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #fde68a;background:#fff}
+.culture-icon{font-size:24px;margin-bottom:6px}
+.culture-title{font-size:15px;font-weight:800;color:var(--brown);margin-bottom:6px}
+.culture-body{font-size:13px;color:#555;line-height:1.8}
+.quiz-q{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #fde68a}
+.quiz-num{font-size:11px;font-weight:700;color:var(--amber);margin-bottom:4px}
+.quiz-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px;line-height:1.6}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{background:#fef3c7;border:2px solid transparent;border-radius:10px;padding:10px 12px;font-size:13px;color:var(--dark);text-align:left;font-weight:500;transition:all 0.2s}
+.quiz-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-result{font-size:12px;margin-top:8px;padding:8px;border-radius:8px;line-height:1.6}
+.quiz-result.correct{background:#dcfce7;color:#166534}
+.quiz-result.wrong{background:#fee2e2;color:#991b1b}
+.idiom-card{background:#fff;border-radius:10px;border:1px solid #fde68a;padding:12px;margin-bottom:8px}
+.idiom-title{font-size:15px;font-weight:800;color:var(--dark);margin-bottom:2px}
+.idiom-def{font-size:12px;color:var(--orange);margin-bottom:4px}
+.idiom-ex{font-size:13px;color:#555;line-height:1.6;font-style:italic}
+.copy-btn{background:var(--amber);color:#fff;border-radius:20px;padding:8px 16px;font-size:12px;font-weight:700;margin-bottom:10px}
 @keyframes aiDot{0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1}}
 </style>
 </head>
@@ -86,6 +140,8 @@ window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); }
 const STATE = {
   section: 0,
   lang: localStorage.getItem('kiip_lang') || 'ko',
+  quizAnswers: {},
+  listenShow: false,
 };
 
 function setState(newState) {
@@ -108,7 +164,259 @@ const SECTIONS = [
   {id:10, label:'AI실습', icon:'🤖'},
 ];
 
-var AI_QUICK_BTNS = [{"emoji":"🏫","label":"교육 어휘 설명","q":"KIIP 3급 11과: 교육 관련 어휘 10개를 한국어, 발음, 영어, 베트남어로 알려주세요. 학교, 학원, 시험 관련 단어 포함해 주세요."},{"emoji":"📖","label":"학습 표현 연습","q":"공부, 시험, 성적 관련 표현을 알려주세요. 자녀 교육, 학교 관련 문장을 베트남어 번역과 함께 알려주세요."},{"emoji":"👨‍👩‍👧","label":"학부모 롤플레이","q":"학교 선생님과 학부모 상담 대화 롤플레이를 해주세요. KIIP 3급 학습자입니다. 자녀 교육 상담 표현을 연습하고 싶어요."},{"emoji":"🎓","label":"한국 교육 제도","q":"한국 교육 제도를 설명해 주세요. 초등학교, 중학교, 고등학교, 대학교 체계를 베트남 교육과 비교해서 알려주세요."}];
+const VOCAB = [
+  {cat:'교육 제도 (Education system)', words:[
+    {ko:'유치원', pron:'유치원', en:'kindergarten', vi:'mẫu giáo'},
+    {ko:'초등학교', pron:'초등학교', en:'elementary school', vi:'tiểu học'},
+    {ko:'중학교', pron:'중학교', en:'middle school', vi:'trung học cơ sở'},
+    {ko:'고등학교', pron:'고등학교', en:'high school', vi:'trung học phổ thông'},
+    {ko:'대학교', pron:'대학교', en:'university', vi:'đại học'},
+  ]},
+  {cat:'학교생활 (School life)', words:[
+    {ko:'수업', pron:'수업', en:'class / lesson', vi:'buổi học'},
+    {ko:'시험', pron:'시험', en:'exam', vi:'kỳ thi'},
+    {ko:'성적', pron:'성적', en:'grade / score', vi:'điểm số'},
+    {ko:'장학금', pron:'장학끔', en:'scholarship', vi:'học bổng'},
+    {ko:'입학하다', pron:'이파카다', en:'to enter school', vi:'nhập học'},
+  ]},
+  {cat:'학습 활동 (Learning activities)', words:[
+    {ko:'예습', pron:'예습', en:'preview study', vi:'học trước'},
+    {ko:'복습', pron:'복씁', en:'review study', vi:'ôn tập'},
+    {ko:'과제', pron:'과제', en:'assignment', vi:'bài tập về nhà'},
+    {ko:'발표하다', pron:'발표하다', en:'to present', vi:'thuyết trình'},
+    {ko:'토론하다', pron:'토론하다', en:'to discuss / debate', vi:'thảo luận'},
+  ]},
+  {cat:'교육 지원 (Educational support)', words:[
+    {ko:'학원', pron:'하권', en:'private institute', vi:'trung tâm học thêm'},
+    {ko:'과외', pron:'과외', en:'private tutoring', vi:'gia sư'},
+    {ko:'온라인 강의', pron:'온라인 강의', en:'online lecture', vi:'bài giảng trực tuyến'},
+    {ko:'교육청', pron:'교육청', en:'education office', vi:'sở giáo dục'},
+    {ko:'사회통합프로그램', pron:'KIIP', en:'KIIP', vi:'chương trình hội nhập xã hội'},
+  ]},
+  {cat:'한국 교육 특징 (Korean education features)', words:[
+    {ko:'수능', pron:'수능', en:'CSAT (college entrance exam)', vi:'kỳ thi đại học'},
+    {ko:'교육열', pron:'교육녈', en:'passion for education', vi:'nhiệt huyết giáo dục'},
+    {ko:'평생교육', pron:'평생교육', en:'lifelong education', vi:'giáo dục suốt đời'},
+  ]},
+];
+
+const IDIOMS = [
+  {title:'머리를 쓰다', def:'생각하다, 노력하다', ex:'어려운 문제는 머리를 써야 풀 수 있어요.'},
+  {title:'손에 잡히다 / 손에 안 잡히다', def:'공부가 잘 되다 / 안 되다', ex:'시험 전날 긴장돼서 공부가 손에 안 잡혀요.'},
+  {title:'밤을 새우다', def:'밤새 공부하다', ex:'시험 전날 밤을 새워서 공부했어요.'},
+  {title:'뼈를 깎는 노력', def:'매우 힘든 노력', ex:'뼈를 깎는 노력으로 수능에 합격했어요.'},
+  {title:'공부벌레', def:'공부를 매우 열심히 하는 사람', ex:'그 학생은 공부벌레예요.'},
+];
+
+const DIALOGUES = [
+  {
+    title:'대화 1 — 학원 등록',
+    lines:[
+      {sp:'린', ko:'수민 씨, 한국어 실력을 더 높이려면 어떻게 하면 좋을지 아세요?', en:'Sumin, do you know what would be good to do to improve my Korean?', vi:'Sumin ơi, bạn có biết nên làm gì để nâng cao tiếng Hàn không?'},
+      {sp:'수민', ko:'학원에 다니는 게 어떨까요? 어떤 학원이 좋은지 알아봐야겠어요.', en:'How about attending an academy? We should look into which academy is good.', vi:'Đi học ở trung tâm thì sao? Phải tìm hiểu trung tâm nào tốt.'},
+      {sp:'린', ko:'온라인 강의든지 오프라인 학원이든지 다 괜찮아요.', en:'Whether online lectures or offline academies, both are fine.', vi:'Dù là bài giảng trực tuyến hay trung tâm trực tiếp, đều được.'},
+      {sp:'수민', ko:'그럼 제가 좋은 학원 정보를 찾아 드릴게요.', en:'Then I\'ll find information about a good academy for you.', vi:'Vậy thì để tôi tìm thông tin về trung tâm tốt cho bạn.'},
+    ]
+  },
+  {
+    title:'대화 2 — 자녀 교육',
+    lines:[
+      {sp:'린', ko:'수민 씨, 한국 초등학교 입학 준비를 어떻게 해야 하는지 아세요?', en:'Sumin, do you know how to prepare for entering a Korean elementary school?', vi:'Sumin ơi, bạn có biết cần chuẩn bị gì để nhập học tiểu học Hàn Quốc không?'},
+      {sp:'수민', ko:'주민센터나 학교에 가서 물어보면 돼요. 서류가 무엇인지도 확인해야 해요.', en:'You can go to the community center or school and ask. You also need to check what documents are needed.', vi:'Bạn có thể đến trung tâm cộng đồng hoặc trường hỏi. Cũng cần xác nhận cần giấy tờ gì.'},
+      {sp:'린', ko:'외국인 아이도 한국 학교에 다닐 수 있는지 궁금했어요.', en:'I was wondering whether foreign children can also attend Korean schools.', vi:'Tôi thắc mắc liệu trẻ em nước ngoài có thể đi học trường Hàn Quốc không.'},
+      {sp:'수민', ko:'네, 외국인 자녀도 교육을 받을 수 있어요.', en:'Yes, foreign children can also receive education.', vi:'Vâng, con em người nước ngoài cũng có thể được học.'},
+    ]
+  },
+  {
+    title:'대화 3 — KIIP 공부',
+    lines:[
+      {sp:'민준', ko:'린 씨, KIIP 시험이 언제인지 알아요?', en:'Lin, do you know when the KIIP exam is?', vi:'Lin ơi, bạn có biết kỳ thi KIIP là khi nào không?'},
+      {sp:'린', ko:'네, 선생님께 물어봤더니 다음 달이래요. 어떻게 준비해야 할지 좀 막막해요.', en:'Yes, I asked the teacher and it\'s next month. I\'m a bit at a loss as to how to prepare.', vi:'Vâng, tôi hỏi thầy thì được biết là tháng sau. Tôi cảm thấy khá bối rối không biết chuẩn bị thế nào.'},
+      {sp:'민준', ko:'걱정 마세요. 교재든지 온라인 자료든지 활용하면 돼요.', en:'Don\'t worry. Whether textbooks or online materials, just use them.', vi:'Đừng lo. Dù là sách giáo khoa hay tài liệu trực tuyến, cứ tận dụng thôi.'},
+      {sp:'린', ko:'고마워요! 열심히 해야겠어요.', en:'Thank you! I\'ll have to work hard.', vi:'Cảm ơn bạn! Tôi phải cố gắng thật nhiều.'},
+    ]
+  },
+];
+
+const LISTEN_SCRIPT = [
+  {sp:'린', ko:'수민 씨, 한국 교육에 대해서 궁금한 게 있어요.'},
+  {sp:'수민', ko:'뭐가 궁금해요?'},
+  {sp:'린', ko:'제 아이를 한국 학교에 보낼 수 있는지 궁금해요.'},
+  {sp:'수민', ko:'물론이죠! 외국인 자녀도 한국 학교에 다닐 수 있어요. 구청이나 학교에 가서 서류가 어떤 건지 확인하면 돼요.'},
+  {sp:'린', ko:'입학 절차가 어떻게 되는지도 알고 싶어요.'},
+  {sp:'수민', ko:'주민등록이 된 지역 초등학교에 신청하면 돼요. 어느 학교에 가든지 교육은 무료예요.'},
+  {sp:'린', ko:'정말요? 학원은요?'},
+  {sp:'수민', ko:'학원은 사비로 다녀야 해요. 한국 부모들이 아이 학원에 열심히 투자하는지 잘 알잖아요.'},
+  {sp:'린', ko:'교육열이 정말 높군요. 저도 아이 교육에 신경을 써야겠어요.'},
+];
+
+const GRAMMAR = [
+  {
+    id:'g1',
+    title:'-(으)ㄴ/는지',
+    meaning:'"whether / if / how / what" — 문장 속에 질문을 포함하는 간접 의문문\n(used to embed a question within a sentence — indirect / embedded question)',
+    forms:`동사 현재: -는지  (가다 → 가는지)
+동사 과거: -(으)ㄴ지  (먹다 → 먹은지)
+형용사: -(으)ㄴ지  (좋다 → 좋은지, 크다 → 큰지)
+명사+이다: 인지  (학생이다 → 학생인지)
+활용 패턴: V-는지 알아요/몰라요/궁금해요 = "Do you know if/how...?"`,
+    examples:[
+      {ko:'시험이 언제인지 알아요?', en:'Do you know when the exam is?', vi:'Bạn có biết kỳ thi là khi nào không?'},
+      {ko:'어떻게 신청하는지 가르쳐 주세요.', en:'Please tell me how to apply.', vi:'Hãy cho tôi biết cách đăng ký.'},
+      {ko:'학원이 어디 있는지 몰라요.', en:'I don\'t know where the academy is.', vi:'Tôi không biết trung tâm ở đâu.'},
+      {ko:'서류가 무엇인지 확인해야 해요.', en:'I need to check what documents are needed.', vi:'Tôi cần xác nhận cần giấy tờ gì.'},
+      {ko:'성적이 좋은지 모르겠어요.', en:'I don\'t know if the grade is good.', vi:'Tôi không biết điểm có tốt không.'},
+    ]
+  },
+  {
+    id:'g2',
+    title:'-든지',
+    meaning:'"whether...or / either...or / no matter which" — 어떤 선택이든 괜찮다는 의미\n(indicates any option is acceptable)',
+    forms:`동사/형용사/명사 + 든지
+A든지 B든지 → either A or B (둘 다 괜찮음)
+어디든지 → anywhere
+누구든지 → anyone
+언제든지 → anytime`,
+    examples:[
+      {ko:'학원이든지 온라인이든지 다 괜찮아요.', en:'Whether academy or online, both are fine.', vi:'Dù là trung tâm hay trực tuyến, đều được.'},
+      {ko:'언제든지 연락하세요.', en:'Contact me anytime.', vi:'Liên hệ bất cứ lúc nào.'},
+      {ko:'누구든지 KIIP에 신청할 수 있어요.', en:'Anyone can apply for KIIP.', vi:'Ai cũng có thể đăng ký KIIP.'},
+      {ko:'어디서든지 공부할 수 있어요.', en:'You can study anywhere.', vi:'Có thể học ở bất cứ đâu.'},
+      {ko:'교재든지 인터넷이든지 활용하세요.', en:'Use textbooks or the internet, whatever.', vi:'Hãy tận dụng sách giáo khoa hay internet.'},
+    ]
+  },
+];
+
+const PRON = {
+  focus:'격음화 + 경음화 (Aspiration + Tensification)',
+  words:[
+    {word:'입학하다', ipa:'[이파카다]', rule:'ㅂ+ㅎ → 격음화 [ㅍ] · ㄱ+ㅎ → 격음화 [ㅋ]'},
+    {word:'복습', ipa:'[복씁]', rule:'ㄱ+ㅅ → 경음화 된소리 [ㅆ]'},
+    {word:'장학금', ipa:'[장학끔]', rule:'ㄱ+ㄱ → 경음화 된소리 [ㄲ]'},
+    {word:'교육청', ipa:'[교육청]', rule:'자연 발음 (natural pronunciation)'},
+    {word:'교육열', ipa:'[교육녈]', rule:'ㄱ+ㅇ → 연음 · ㄱ+ㄹ 발음 주의'},
+  ],
+  sents:[
+    {sent:'입학하다[이파카다]를 위한 서류가 무엇인지 알아요?', vi:'Bạn có biết giấy tờ nhập học cần gì không?'},
+    {sent:'복습[복씁]이 중요한지 몰랐어요.', vi:'Tôi không biết ôn tập quan trọng đến vậy.'},
+    {sent:'학원이든지 온라인이든지 열심히 공부해요.', vi:'Dù là trung tâm hay trực tuyến, tôi đều học chăm chỉ.'},
+    {sent:'장학금[장학끔]을 받을 수 있는지 알아볼게요.', vi:'Tôi sẽ tìm hiểu xem có thể nhận học bổng không.'},
+  ]
+};
+
+const READING = {
+  title:'한국의 교육 제도',
+  body:`한국의 교육 제도는 6-3-3-4 학제로 구성되어 있습니다. 초등학교 6년, 중학교 3년, 고등학교 3년, 그리고 대학교 4년입니다. 의무교육은 초등학교부터 중학교까지 총 9년입니다.
+
+대학교 입학을 위한 수능(대학수학능력시험)은 매년 11월에 실시됩니다. 한국은 교육열이 매우 높아서 학원 문화가 크게 발달해 있습니다.
+
+외국인 자녀도 한국에서 교육을 받을 권리가 있습니다. KIIP(사회통합프로그램)를 이수하면 귀화 및 영주권 신청 시 점수 인정을 받을 수 있습니다. 또한 평생교육원, 도서관 프로그램 등 다양한 무료 학습 기회를 활용할 수 있습니다.`,
+  qs:[
+    {q:'한국의 의무교육은 몇 년인가요?', a:'9년 (초등학교 6년 + 중학교 3년)'},
+    {q:'외국인 자녀가 한국 학교에 다닐 수 있나요?', a:'네, 가능합니다.'},
+    {q:'KIIP 이수가 도움이 되는 경우는?', a:'귀화 또는 영주권 신청 시 점수 인정을 받습니다.'},
+  ]
+};
+
+const WRITING = {
+  topic:'교육과 나의 학습 경험',
+  guide:'-(으)ㄴ/는지 + -든지 문법을 활용하여 자신의 학습 경험을 써 보세요.',
+  model:'한국에 와서 KIIP를 시작하게 됐어요. 처음에 어디서 신청하는지 몰라서 인터넷으로 찾았어요. 시험이 언제인지, 레벨이 어떤지 꼼꼼히 확인했어요. 학원이든지 독학이든지 꾸준히 공부하는 게 중요하다고 생각해요. 앞으로 어떤 공부가 필요한지 계속 알아봐야겠어요.',
+};
+
+const CULTURE = [
+  {icon:'📚', title:'한국의 교육열', body:'한국은 세계 최고 수준의 교육열을 가진 나라로 유명합니다. 학원 문화가 매우 발달해 있으며, 많은 학부모들이 자녀 사교육에 큰 투자를 합니다. OECD 국가 중 고등교육 이수율이 최상위권입니다.\n🇻🇳 Hàn Quốc nổi tiếng là đất nước có niềm đam mê giáo dục hàng đầu thế giới. Văn hóa học thêm (학원) rất phát triển.'},
+  {icon:'🎓', title:'KIIP 사회통합프로그램', body:'KIIP는 법무부가 운영하는 이민자 사회 통합 교육 과정입니다. 한국어와 한국 문화를 체계적으로 배울 수 있으며, 0단계~5단계로 구성됩니다. 이수 시 귀화·영주권 신청에서 가산점을 받습니다.\n🇻🇳 KIIP là chương trình giáo dục hội nhập xã hội do Bộ Tư pháp Hàn Quốc điều hành, gồm 5 cấp độ, có ích cho đơn xin nhập tịch và thường trú.'},
+  {icon:'🏫', title:'외국인 자녀 교육', body:'한국에 거주하는 외국인 자녀도 한국 학교에 다닐 수 있는 교육권이 보장됩니다. 다문화 학생을 위한 특별 지원 정책과 이중언어 교육 프로그램도 운영됩니다. 입학은 지역 주민센터나 학교에서 신청할 수 있습니다.\n🇻🇳 Trẻ em nước ngoài tại Hàn Quốc có quyền được học tại trường Hàn Quốc. Có các chương trình hỗ trợ học sinh đa văn hóa và giáo dục song ngữ.'},
+  {icon:'📱', title:'평생교육', body:'한국은 평생교육 인프라가 잘 갖춰져 있습니다. 공공 도서관 무료 강좌, K-MOOC 온라인 강의, 직업훈련 프로그램 등을 통해 누구나 언제든지 배울 수 있습니다. 이민자들도 다양한 무료 교육 기회를 활용할 수 있어요.\n🇻🇳 Hàn Quốc có hạ tầng giáo dục suốt đời tốt: thư viện công cộng, K-MOOC, chương trình đào tạo nghề — ai cũng có thể học bất cứ lúc nào.'},
+];
+
+const QUIZ = [
+  {
+    q:'다음 중 -(으)ㄴ/는지의 올바른 형태는?',
+    opts:['가는지','가은지','갔지','가인지'],
+    ans:0,
+    exp:'동사 현재형에는 -는지를 씁니다. 가다 → 가는지 ✅',
+    expvi:'Động từ thì hiện tại dùng -는지. 가다 → 가는지'
+  },
+  {
+    q:'-든지의 올바른 사용은?',
+    opts:['학원을 가든지 집에서 공부하든지 열심히 하면 돼요.','학원을 가든지 집에서 공부하면 돼요.','학원이 어디인지 모르든지.','학원에 가든지 알아요?'],
+    ans:0,
+    exp:'A든지 B든지 패턴 — 어떤 선택이든 다 괜찮다는 뜻입니다.',
+    expvi:'Mẫu A든지 B든지 — có nghĩa là cả hai lựa chọn đều được.'
+  },
+  {
+    q:'\'복습\'의 올바른 발음은?',
+    opts:['[복씁]','[복습]','[봉습]','[복쑵]'],
+    ans:0,
+    exp:'복습: ㄱ+ㅅ → 경음화로 [복씁]으로 발음됩니다.',
+    expvi:'복습: ㄱ+ㅅ → tensification → phát âm là [복씁]'
+  },
+  {
+    q:'\'입학하다\'의 올바른 발음은?',
+    opts:['[이파카다]','[입학하다]','[입하카다]','[이박하다]'],
+    ans:0,
+    exp:'ㅂ+ㅎ → 격음화 [ㅍ], ㄱ+ㅎ → 격음화 [ㅋ] → [이파카다]',
+    expvi:'ㅂ+ㅎ → aspiration [ㅍ], ㄱ+ㅎ → aspiration [ㅋ] → [이파카다]'
+  },
+  {
+    q:'\'수능\'은 무엇입니까?',
+    opts:['대학수학능력시험 (대학 입학 시험)','중학교 졸업 시험','KIIP 한국어 시험','초등학교 배치고사'],
+    ans:0,
+    exp:'수능은 \'대학수학능력시험\'의 줄임말로, 한국의 대학 입학 시험입니다.',
+    expvi:'수능 là viết tắt của 대학수학능력시험 — kỳ thi tuyển sinh đại học Hàn Quốc.'
+  },
+  {
+    q:'\'장학금\'의 뜻은 무엇입니까?',
+    opts:['scholarship (학비 지원금)','학원 등록금','시험 응시료','교과서 가격'],
+    ans:0,
+    exp:'장학금은 성적이나 형편에 따라 지원받는 학비 보조금입니다.',
+    expvi:'장학금 là học bổng — tiền hỗ trợ học phí dựa trên thành tích hoặc hoàn cảnh.'
+  },
+  {
+    q:'빈칸에 알맞은 것은? "시험이 언제___지 알아요?"',
+    opts:['인','는','은','든'],
+    ans:0,
+    exp:'\'시험\'은 명사이므로 명사+이다 형태 → 언제인지 → 빈칸에는 \'인\' ✅',
+    expvi:'\'시험\' là danh từ → dùng 인지 → điền \'인\' vào chỗ trống.'
+  },
+  {
+    q:'\'밤을 새우다\'의 뜻은?',
+    opts:['밤새 공부하거나 일하다','새벽에 일어나다','빨리 잠들다','낮잠을 자다'],
+    ans:0,
+    exp:'\'밤을 새우다\' = 잠을 자지 않고 밤을 보내다 (시험 공부 등)',
+    expvi:'\'밤을 새우다\' = thức suốt đêm (ví dụ ôn thi)'
+  },
+  {
+    q:'KIIP 사회통합프로그램을 이수하면 어떤 혜택이 있나요?',
+    opts:['귀화·영주권 신청 시 가산점','무료 대학 입학 자격','한국 시민권 자동 취득','공무원 시험 면제'],
+    ans:0,
+    exp:'KIIP 이수 시 귀화·영주권 신청에서 점수 인정을 받습니다.',
+    expvi:'Hoàn thành KIIP được cộng điểm khi nộp đơn nhập tịch hoặc thường trú.'
+  },
+  {
+    q:'다음 중 -(으)ㄴ/는지와 -든지를 올바르게 구분한 것은?',
+    opts:[
+      '시험이 언제인지 알아요? / 교재든지 영상이든지 활용하세요.',
+      '시험이 언제든지 알아요? / 교재인지 영상인지 활용하세요.',
+      '시험이 언제든지 다 괜찮아요? / 교재가 무엇인지 써요.',
+      '시험이 언제인지 다 괜찮아요? / 교재든지 활용해요?'
+    ],
+    ans:0,
+    exp:'-(으)ㄴ/는지 = 간접질문 (언제인지), -든지 = 선택 (교재든지 영상이든지)',
+    expvi:'-(으)ㄴ/는지 = câu hỏi gián tiếp · -든지 = lựa chọn (cái nào cũng được)'
+  },
+];
+
+var AI_QUICK_BTNS = [
+  {emoji:'📚', label:'교육 어휘 설명', q:'KIIP 3급 11과 어휘: 교육 관련 단어 5개를 쉽게 설명하고 예문과 베트남어 번역을 알려주세요.'},
+  {emoji:'📐', label:'문법 질문', q:'KIIP 3급: -(으)ㄴ/는지 문법을 쉽게 설명하고 예문 3개를 베트남어 번역과 함께 알려주세요.'},
+  {emoji:'💬', label:'롤플레이', q:'저는 베트남 출신 KIIP 3급 학습자입니다. 자녀 학교 입학 상담 상황을 -(으)ㄴ/는지, -든지 문법으로 롤플레이해 주세요.'},
+  {emoji:'✏️', label:'내 글 첨삭', q:'KIIP 3급 학습자의 글입니다. 문법을 확인하고 수정해 주세요. 베트남어로도 설명해 주세요: '},
+  {emoji:'❓', label:'틀린 문제 설명', q:'KIIP 3급 퀴즈에서 틀렸어요. -든지 문법을 다시 쉽게 설명하고 예문 3개를 베트남어와 함께 알려주세요.'},
+  {emoji:'🎯', label:'TOPIK 연습', q:'KIIP 3급 수준의 TOPIK II 교육 주제 빈칸 채우기 문제 3개를 만들어 주세요. 정답과 해설도 포함해 주세요.'},
+];
 
 var AICHAT = {
   history: [],
@@ -177,11 +485,10 @@ var AICHAT = {
     this.loading = true;
     this.setLoading(true);
 
-    var sys = "You are a Korean language tutor for KIIP Level 3. The student is likely Vietnamese. This lesson is about education (교육). Answer in Korean with Vietnamese translation. Be concise and friendly.";
+    var sys = 'You are a Korean language tutor for KIIP Level 3 (교육 / Education). The student is likely Vietnamese. This lesson covers -(으)ㄴ/는지 (indirect questions) and -든지 (any option is fine). Answer in Korean with Vietnamese translation. Be concise and friendly.';
 
     try {
-      var url = '/api/chat';
-      var res  = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var data = await res.json();
       var reply = data.choices[0].message.content;
@@ -191,12 +498,52 @@ var AICHAT = {
       this.addMsg('assistant', reply);
     } catch(e) {
       this.setLoading(false);
-      this.addMsg('assistant',
-        '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요');
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요');
     }
     this.loading = false;
   }
 };
+
+// ===== COPY =====
+var copy_ok11 = false;
+function copyNotebookContent11() {
+  var text = [
+    'KIIP 3급 11과 · 교육 (Education)',
+    '문법 1: -(으)ㄴ/는지 — 간접 의문문 (whether / if / how / what)',
+    '문법 2: -든지 — 어떤 선택이든 괜찮다 (either...or / no matter which)',
+    '',
+    '[어휘]',
+    '유치원 / 초등학교 / 중학교 / 고등학교 / 대학교',
+    '수업 / 시험 / 성적 / 장학금 / 입학하다',
+    '예습 / 복습 / 과제 / 발표하다 / 토론하다',
+    '학원 / 과외 / 온라인 강의 / 교육청 / KIIP',
+    '수능 / 교육열 / 평생교육',
+    '',
+    '[문법 예문]',
+    '시험이 언제인지 알아요?',
+    '어떻게 신청하는지 가르쳐 주세요.',
+    '학원이든지 온라인이든지 다 괜찮아요.',
+    '언제든지 연락하세요.',
+    '',
+    '[발음]',
+    '입학하다 [이파카다] / 복습 [복씁] / 장학금 [장학끔]',
+  ].join('\n');
+  navigator.clipboard.writeText(text).then(function() {
+    copy_ok11 = true;
+    var btn = document.getElementById('copy-btn-11');
+    if (btn) { btn.textContent = '✅ 복사됨!'; setTimeout(function(){ btn.textContent = '📋 노트북에 복사'; copy_ok11 = false; }, 2000); }
+  }).catch(function() {
+    var btn = document.getElementById('copy-btn-11');
+    if (btn) { btn.textContent = '❌ 복사 실패'; setTimeout(function(){ btn.textContent = '📋 노트북에 복사'; }, 2000); }
+  });
+}
+
+// ===== QUIZ =====
+function answerQuiz(qIdx, optIdx) {
+  if (STATE.quizAnswers[qIdx] !== undefined) return;
+  STATE.quizAnswers[qIdx] = optIdx;
+  render();
+}
 
 // ===== RENDER =====
 function setLang(lang) {
@@ -253,30 +600,6 @@ function renderBottomNav() {
   `;
 }
 
-function renderWIPSection(title, icon) {
-  return `
-    <div class="page">
-      <h2>${icon} ${title}</h2>
-      <p class="sub">KIIP 3급 11과 · 교육 · Education</p>
-      <div class="wip-banner">
-        <h3>🚧 콘텐츠 준비 중</h3>
-        <p>이 섹션의 학습 자료를 열심히 제작 중입니다.<br>Content is being prepared for this section.</p>
-        <p style="margin-top:8px;font-size:12px;opacity:0.8">🇻🇳 Nội dung đang được chuẩn bị. Vui lòng quay lại sau.</p>
-      </div>
-      <div class="card card-accent">
-        <div class="section-label">💡 지금 당장 학습하려면</div>
-        <div style="font-size:13px;color:#555;margin-top:6px;line-height:1.8">
-          아래 <strong>AI 실습</strong> 탭을 이용하면 이 주제를 바로 공부할 수 있어요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Sử dụng tab <strong>AI 실습</strong> bên dưới để học ngay chủ đề này!</span>
-        </div>
-        <button onclick="setState({section:10})" style="background:var(--amber);color:#fff;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:700;margin-top:12px;width:100%">
-          🤖 AI 실습 탭으로 이동
-        </button>
-      </div>
-    </div>
-  `;
-}
-
 function renderIntro() {
   return `
     <div class="page">
@@ -284,24 +607,30 @@ function renderIntro() {
         <div style="font-size:14px;opacity:0.8;margin-bottom:4px">KIIP 3급 · 중급 1</div>
         <h3>11과 교육</h3>
         <div style="font-size:14px;margin-top:4px;opacity:0.9">Education</div>
-        <div style="margin-top:12px;font-size:28px">📚</div>
+        <div style="margin-top:12px;font-size:32px">📚</div>
       </div>
 
       <div class="card card-accent">
         <div class="section-label">학습 목표</div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>교육 관련 어휘를 이해하고 사용할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>교육 주제로 말하기·쓰기를 할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>AI 튜터와 함께 교육 표현을 연습할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>교육 관련 어휘 23개를 이해하고 사용할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>-(으)ㄴ/는지로 간접 의문문을 만들 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>-든지로 선택의 자유를 표현할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>자녀 교육·학원·KIIP에 대해 이야기할 수 있다</span></div>
       </div>
 
       <div class="card" style="background:#fef3c7;border:1px solid #fbbf24">
-        <div class="section-label" style="background:#92400e">📌 이번 과 주제</div>
-        <div style="font-size:24px;text-align:center;margin:12px 0">📚</div>
-        <div style="font-size:18px;font-weight:800;text-align:center;color:var(--brown);margin-bottom:4px">11과 · 교육</div>
-        <div style="font-size:14px;text-align:center;color:#555;margin-bottom:8px">Education</div>
-        <div style="background:#fff;border-radius:8px;padding:12px;font-size:13px;color:#555;line-height:1.8;border:1px solid #fde68a">
-          🚧 상세 콘텐츠는 준비 중입니다. AI 실습 탭에서 이 주제를 지금 바로 공부해 보세요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nội dung chi tiết đang được chuẩn bị. Hãy dùng tab AI 실습 để học ngay!</span>
+        <div class="section-label" style="background:#92400e">📌 이번 과 문법</div>
+        <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
+          <div style="background:#fff;border-radius:8px;padding:10px;border:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:800;color:var(--dark);margin-bottom:2px">문법 1 · -(으)ㄴ/는지</div>
+            <div style="font-size:12px;color:#555">"whether / if / how / what" — 간접 의문문</div>
+            <div style="font-size:12px;color:#059669">🇻🇳 câu hỏi gián tiếp — có biết...không?</div>
+          </div>
+          <div style="background:#fff;border-radius:8px;padding:10px;border:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:800;color:var(--dark);margin-bottom:2px">문법 2 · -든지</div>
+            <div style="font-size:12px;color:#555">"whether...or / either...or" — 어떤 선택이든 괜찮음</div>
+            <div style="font-size:12px;color:#059669">🇻🇳 dù là...hay... — cái nào cũng được</div>
+          </div>
         </div>
       </div>
 
@@ -316,6 +645,360 @@ function renderIntro() {
         </div>
         <div style="font-size:11px;color:#888;text-align:center">3급 전체 진도 55% · 11 / 20과</div>
       </div>
+    </div>
+  `;
+}
+
+function renderVocab() {
+  const showEn = STATE.lang === 'en' || STATE.lang === 'ko';
+  const showVi = STATE.lang === 'vi' || STATE.lang === 'ko';
+  return `
+    <div class="page">
+      <h2>📝 어휘</h2>
+      <p class="sub">KIIP 3급 11과 · 교육 · Education — 23 단어</p>
+
+      <div class="card card-accent">
+        ${VOCAB.map(cat=>`
+          <div class="vocab-cat">${cat.cat}</div>
+          ${cat.words.map(w=>`
+            <div class="vocab-row" onclick="TTS.speak('${w.ko}')">
+              <div>
+                <div class="vocab-ko">${w.ko} <span class="vocab-pron">[${w.pron}]</span></div>
+                ${showEn ? `<div class="vocab-def">${w.en}</div>` : ''}
+                ${showVi ? `<div class="vocab-vi">🇻🇳 ${w.vi}</div>` : ''}
+              </div>
+              <button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${w.ko}')">🔊</button>
+            </div>
+          `).join('')}
+        `).join('')}
+      </div>
+
+      <div class="card card-green">
+        <div class="section-label" style="background:#059669">💡 관용 표현 (Idioms)</div>
+        ${IDIOMS.map(id=>`
+          <div class="idiom-card">
+            <div class="idiom-title" onclick="TTS.speak('${id.title}')">${id.title} 🔊</div>
+            <div class="idiom-def">${id.def}</div>
+            <div class="idiom-ex">예) ${id.ex}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function renderGrammar() {
+  return `
+    <div class="page">
+      <h2>📐 문법</h2>
+      <p class="sub">KIIP 3급 11과 · -(으)ㄴ/는지 · -든지</p>
+
+      ${GRAMMAR.map(g=>`
+        <div class="grammar-box">
+          <div class="grammar-title" onclick="TTS.speak('${g.title}')">${g.title} 🔊</div>
+          <div class="grammar-meaning" style="white-space:pre-line">${g.meaning}</div>
+          <div class="section-label">형태 (Forms)</div>
+          <div class="grammar-forms" style="white-space:pre-line">${g.forms}</div>
+          <div class="section-label">예문 (Examples)</div>
+          ${g.examples.map(ex=>`
+            <div class="ex-row">
+              <div class="ex-ko" onclick="TTS.speak('${ex.ko.replace(/'/g,"\\'")}')">▶ ${ex.ko}</div>
+              ${STATE.lang !== 'vi' ? `<div class="ex-en">${ex.en}</div>` : ''}
+              ${STATE.lang !== 'en' ? `<div class="ex-vi">🇻🇳 ${ex.vi}</div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      `).join('')}
+
+      <div class="card" style="background:#f0fdf4;border:1px solid #bbf7d0">
+        <div class="section-label" style="background:#059669">🆚 비교 포인트</div>
+        <div style="font-size:13px;color:#555;line-height:1.9;margin-top:6px">
+          <strong style="color:var(--dark)">-(으)ㄴ/는지</strong> = 질문을 문장 안에 포함 (간접 의문)<br>
+          예) 시험이 <u>언제인지</u> 알아요? → "Do you know <u>when</u> the exam is?"<br><br>
+          <strong style="color:var(--dark)">-든지</strong> = 어떤 선택이든 다 괜찮다<br>
+          예) 학원<u>이든지</u> 온라인<u>이든지</u> 다 좋아요. → "Either...or...both fine"<br><br>
+          <span style="color:#059669;font-size:12px">🇻🇳 -(으)ㄴ/는지 = câu hỏi gián tiếp · -든지 = lựa chọn tự do</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderSpeaking() {
+  return `
+    <div class="page">
+      <h2>💬 말하기</h2>
+      <p class="sub">KIIP 3급 11과 · 교육 대화 3개</p>
+
+      ${DIALOGUES.map(d=>`
+        <div class="card card-accent" style="margin-bottom:12px">
+          <div class="section-label">${d.title}</div>
+          <button onclick="TTS.speak(${JSON.stringify(d.lines.map(l=>l.ko).join(' '))})" style="background:#fef3c7;border:1px solid #fbbf24;color:var(--brown);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;margin-bottom:10px">🔊 전체 듣기</button>
+          ${d.lines.map(l=>`
+            <div class="dial-bubble">
+              <div class="dial-speaker">${l.sp}</div>
+              <div class="dial-text" onclick="TTS.speak('${l.ko.replace(/'/g,"\\'")}')">
+                ${l.ko}
+              </div>
+              ${STATE.lang !== 'vi' ? `<div class="dial-en">${l.en}</div>` : ''}
+              ${STATE.lang !== 'en' ? `<div class="dial-vi">🇻🇳 ${l.vi}</div>` : ''}
+            </div>
+          `).join('')}
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderListening() {
+  const showScript = STATE.listenShow;
+  return `
+    <div class="page">
+      <h2>👂 듣기</h2>
+      <p class="sub">KIIP 3급 11과 · 교육 듣기 지문</p>
+
+      <div class="card card-accent">
+        <div class="section-label">📻 듣기 지문</div>
+        <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+          <button onclick="TTS.speak(${JSON.stringify(LISTEN_SCRIPT.map(l=>l.ko).join(' '))})" style="background:var(--amber);color:#fff;border-radius:20px;padding:8px 16px;font-size:12px;font-weight:700">🔊 전체 듣기</button>
+          <button onclick="setState({listenShow:${!showScript}})" style="background:#fef3c7;border:1px solid #fbbf24;color:var(--brown);border-radius:20px;padding:8px 16px;font-size:12px;font-weight:700">${showScript ? '🙈 지문 숨기기' : '👁 지문 보기'}</button>
+        </div>
+
+        ${showScript ? `
+          <div class="listen-script">
+            ${LISTEN_SCRIPT.map(l=>`
+              <div class="listen-line">
+                <span class="listen-sp">${l.sp}:</span>
+                <span onclick="TTS.speak('${l.ko.replace(/'/g,"\\'")}')">
+                  ${l.ko}
+                </span>
+              </div>
+            `).join('')}
+          </div>
+        ` : `
+          <div style="background:#fef3c7;border-radius:10px;padding:20px;text-align:center;color:#92400e;font-size:13px;line-height:1.8">
+            🔊 위 버튼을 눌러 먼저 들어보세요!<br>
+            <span style="font-size:12px;color:#555">그 후 '지문 보기'로 내용을 확인하세요.</span><br>
+            <span style="font-size:11px;color:#059669">🇻🇳 Nghe trước, sau đó kiểm tra nội dung.</span>
+          </div>
+        `}
+      </div>
+
+      <div class="card">
+        <div class="section-label">✅ 이해 확인</div>
+        <div style="font-size:13px;color:#555;line-height:1.9;margin-top:6px">
+          <div style="font-weight:700;color:var(--dark);margin-bottom:4px">Q1. 린은 왜 수민에게 질문했나요?</div>
+          <div style="color:#059669">A: 자녀를 한국 학교에 보낼 수 있는지 궁금해서</div>
+          <div style="font-weight:700;color:var(--dark);margin:10px 0 4px">Q2. 한국에서 초등학교 교육은 무료인가요?</div>
+          <div style="color:#059669">A: 네, 어느 학교에 가든지 교육은 무료입니다.</div>
+          <div style="font-weight:700;color:var(--dark);margin:10px 0 4px">Q3. 학원은 어떻게 다녀야 하나요?</div>
+          <div style="color:#059669">A: 사비로 다녀야 합니다.</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderPronunciation() {
+  return `
+    <div class="page">
+      <h2>🔊 발음</h2>
+      <p class="sub">KIIP 3급 11과 · ${PRON.focus}</p>
+
+      <div class="card card-accent">
+        <div class="section-label">발음 규칙</div>
+        ${PRON.words.map(w=>`
+          <div class="pron-card">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div class="pron-word" onclick="TTS.speak('${w.word}')">${w.word} 🔊</div>
+                <div class="pron-ipa">${w.ipa}</div>
+                <div class="pron-rule">${w.rule}</div>
+              </div>
+              <button onclick="TTS.speak('${w.word}')" style="background:var(--amber);color:#fff;border-radius:50%;width:40px;height:40px;font-size:18px;flex-shrink:0">🔊</button>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="card card-green">
+        <div class="section-label" style="background:#059669">🗣 발음 연습 문장</div>
+        ${PRON.sents.map((s,i)=>`
+          <div class="pron-card">
+            <div class="pron-sent" onclick="TTS.speak('${s.sent.replace(/'/g,"\\'")}')">
+              ${i+1}. ${s.sent} 🔊
+            </div>
+            <div class="pron-sent-vi">🇻🇳 ${s.vi}</div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="card" style="background:#fff7ed;border:1px solid #fed7aa">
+        <div class="section-label" style="background:#ea580c">💡 발음 팁</div>
+        <div style="font-size:13px;color:#555;line-height:1.9;margin-top:6px">
+          <strong>격음화 (Aspiration)</strong>: ㅎ 앞뒤의 ㄱ,ㄷ,ㅂ,ㅈ → 거센소리<br>
+          입학하다: ㅂ+ㅎ=[ㅍ], ㄱ+ㅎ=[ㅋ] → [이파카다]<br><br>
+          <strong>경음화 (Tensification)</strong>: ㄱ,ㄷ,ㅂ,ㅅ,ㅈ 뒤의 평음 → 된소리<br>
+          복습: ㄱ+ㅅ → [ㄲ+ㅅ] → [복씁]<br>
+          장학금: ㄱ+ㄱ → [ㄲ] → [장학끔]<br>
+          <span style="color:#059669;font-size:12px">🇻🇳 Quy tắc phát âm: căng hóa và bật hơi trong tiếng Hàn.</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderReading() {
+  return `
+    <div class="page">
+      <h2>📖 읽기</h2>
+      <p class="sub">KIIP 3급 11과 · ${READING.title}</p>
+
+      <div class="card card-accent">
+        <div class="section-label">${READING.title}</div>
+        <button onclick="TTS.speak(${JSON.stringify(READING.body)})" style="background:#fef3c7;border:1px solid #fbbf24;color:var(--brown);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;margin-bottom:10px">🔊 본문 듣기</button>
+        <div class="read-text" style="white-space:pre-line">${READING.body}</div>
+      </div>
+
+      <div class="card card-green">
+        <div class="section-label" style="background:#059669">✅ 읽기 이해 확인</div>
+        ${READING.qs.map((q,i)=>`
+          <div class="read-q">
+            <div class="read-qnum">Q${i+1}.</div>
+            <div>
+              <div style="color:var(--dark);font-weight:600;margin-bottom:4px">${q.q}</div>
+              <div class="read-ans">→ ${q.a}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <div class="card" style="background:#fef3c7;border:1px solid #fbbf24">
+        <div class="section-label" style="background:#92400e">📊 한국 교육 6-3-3-4 체계</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+          ${[['🏫 초등학교','6년 · 의무교육'],['📚 중학교','3년 · 의무교육'],['🎒 고등학교','3년'],['🎓 대학교','4년']].map(([t,d])=>`
+            <div style="background:#fff;border-radius:8px;padding:10px;text-align:center;border:1px solid #fde68a">
+              <div style="font-size:14px;font-weight:700;color:var(--dark)">${t}</div>
+              <div style="font-size:12px;color:#555;margin-top:2px">${d}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderWriting() {
+  return `
+    <div class="page">
+      <h2>✏️ 쓰기</h2>
+      <p class="sub">KIIP 3급 11과 · 교육과 나의 학습 경험</p>
+
+      <div class="write-prompt">
+        <div class="section-label">✏️ 쓰기 주제</div>
+        <div style="font-size:15px;font-weight:800;color:var(--dark);margin:8px 0">${WRITING.topic}</div>
+        <div style="font-size:13px;color:var(--brown)">${WRITING.guide}</div>
+        <div style="font-size:12px;color:#059669;margin-top:4px">🇻🇳 Hãy viết về kinh nghiệm học tập của bạn, sử dụng -(으)ㄴ/는지 và -든지.</div>
+      </div>
+
+      <div class="card card-accent">
+        <div class="section-label">💡 쓰기 힌트</div>
+        <div style="font-size:13px;color:#555;line-height:1.9;margin-top:6px">
+          ① 어디서/어떻게 공부하는지 소개하세요.<br>
+          ② -(으)ㄴ/는지를 사용해서 궁금했던 것을 표현하세요.<br>
+          ③ -든지를 사용해서 학습 방법의 유연성을 표현하세요.<br>
+          ④ 앞으로의 학습 계획을 써 보세요.
+        </div>
+      </div>
+
+      <div class="card card-green">
+        <div class="section-label" style="background:#059669">📄 모범 답안</div>
+        <button onclick="TTS.speak(${JSON.stringify(WRITING.model)})" style="background:#fef3c7;border:1px solid #fbbf24;color:var(--brown);border-radius:20px;padding:6px 14px;font-size:12px;font-weight:700;margin-bottom:10px">🔊 모범 답안 듣기</button>
+        <div class="write-model">${WRITING.model}</div>
+        <div style="margin-top:10px;font-size:12px;color:#059669;line-height:1.8">
+          🇻🇳 Đây là câu trả lời mẫu. Bạn có thể tham khảo và viết theo kinh nghiệm của mình.
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">📋 내 글 AI 첨삭</div>
+        <div style="font-size:13px;color:#555;margin-top:6px;line-height:1.8">
+          내가 쓴 글을 AI 실습 탭에서 첨삭받을 수 있어요!<br>
+          <span style="color:#059669;font-size:12px">🇻🇳 Bạn có thể nhờ AI sửa bài viết của mình trong tab AI 실습!</span>
+        </div>
+        <button onclick="setState({section:10})" style="background:var(--amber);color:#fff;border-radius:10px;padding:10px 16px;font-size:13px;font-weight:700;margin-top:10px;width:100%">
+          🤖 AI 실습 탭으로 이동
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function renderCulture() {
+  return `
+    <div class="page">
+      <h2>🎎 문화</h2>
+      <p class="sub">KIIP 3급 11과 · 한국 교육 문화</p>
+
+      ${CULTURE.map(c=>`
+        <div class="culture-card">
+          <div class="culture-icon">${c.icon}</div>
+          <div class="culture-title">${c.title}</div>
+          <div class="culture-body" style="white-space:pre-line">${c.body}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function renderQuiz() {
+  const total = QUIZ.length;
+  const answered = Object.keys(STATE.quizAnswers).length;
+  const correct = QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.ans).length;
+
+  return `
+    <div class="page">
+      <h2>✅ 퀴즈</h2>
+      <p class="sub">KIIP 3급 11과 · 교육 · ${answered}/${total} 완료</p>
+
+      ${answered === total ? `
+        <div style="background:linear-gradient(135deg,#059669,#22c55e);color:#fff;border-radius:12px;padding:16px;text-align:center;margin-bottom:12px">
+          <div style="font-size:24px;margin-bottom:4px">🎉</div>
+          <div style="font-size:18px;font-weight:800">퀴즈 완료!</div>
+          <div style="font-size:28px;font-weight:800;margin:8px 0">${correct} / ${total}</div>
+          <div style="font-size:13px;opacity:0.9">${correct===total?'완벽해요!':correct>=7?'잘했어요!':correct>=5?'괜찮아요. 다시 복습해 보세요.':'더 연습이 필요해요.'}</div>
+          <button onclick="STATE.quizAnswers={};render()" style="background:#fff;color:#059669;border-radius:20px;padding:8px 20px;font-size:13px;font-weight:700;margin-top:10px">🔄 다시 풀기</button>
+        </div>
+      ` : ''}
+
+      ${QUIZ.map((q,i)=>{
+        const chosen = STATE.quizAnswers[i];
+        const done = chosen !== undefined;
+        const isCorrect = chosen === q.ans;
+        return `
+          <div class="quiz-q">
+            <div class="quiz-num">문제 ${i+1} / ${total}</div>
+            <div class="quiz-text">${q.q}</div>
+            <div class="quiz-opts">
+              ${q.opts.map((opt,j)=>{
+                let cls = 'quiz-opt';
+                if (done) {
+                  if (j === q.ans) cls += ' correct';
+                  else if (j === chosen) cls += ' wrong';
+                }
+                return `<button class="${cls}" onclick="answerQuiz(${i},${j})" ${done?'disabled':''}>${opt}</button>`;
+              }).join('')}
+            </div>
+            ${done ? `
+              <div class="quiz-result ${isCorrect?'correct':'wrong'}">
+                ${isCorrect ? '✅ 정답!' : '❌ 오답'}<br>
+                ${q.exp}<br>
+                <span style="font-size:11px;opacity:0.85">🇻🇳 ${q.expvi}</span>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('')}
     </div>
   `;
 }
@@ -383,6 +1066,17 @@ function renderAI() {
         </div>
       </div>
 
+      <div class="card" style="background:#f8fafc;border:1px solid #e2e8f0;margin-bottom:10px">
+        <div class="section-label" style="background:#475569">📋 노트북 복사</div>
+        <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+          11과 핵심 내용을 복사해서 메모앱이나 노트북에 붙여넣으세요.<br>
+          <span style="color:#059669;font-size:11px">🇻🇳 Sao chép nội dung chính bài 11 vào ghi chú của bạn.</span>
+        </div>
+        <button id="copy-btn-11" onclick="copyNotebookContent11()" class="copy-btn">
+          📋 노트북에 복사
+        </button>
+      </div>
+
       <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
     </div>
   `;
@@ -391,8 +1085,17 @@ function renderAI() {
 function renderSection() {
   switch(STATE.section) {
     case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2: return renderGrammar();
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderPronunciation();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
     case 10: return renderAI();
-    default: return renderWIPSection(SECTIONS[STATE.section].label, SECTIONS[STATE.section].icon);
+    default: return renderIntro();
   }
 }
 
