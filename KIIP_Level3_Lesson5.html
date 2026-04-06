@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>KIIP 3급 5과 · 공공 서비스</title>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
@@ -11,7 +14,7 @@
 <meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://elimg.com/KIIP_Level3_Lesson5.html">
+<meta property="og:url" content="https://elimg.com/KIIP_Level3_Lesson5">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="KIIP 3급 5과 · 공공 서비스">
 <meta name="twitter:description" content="법무부 KIIP 사회통합프로그램 3급 중급 1 · 5과 공공 서비스">
@@ -22,7 +25,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KIIP Korean">
-<script src="/i18n/translations.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--amber:#f59e0b;--dark:#451a03;--brown:#92400e;--orange:#b45309;--green:#22c55e;--red:#ef4444;--gray:#fdf6e3;--white:#fff;--text:#1a202c}
@@ -54,9 +56,6 @@ h2{color:var(--brown);font-size:18px;margin-bottom:4px;font-weight:800}
 .lang-bar{background:#fef3c7;display:flex;justify-content:center;gap:8px;padding:8px}
 .lang-btn-sm{background:rgba(180,83,9,0.1);border:1px solid #fbbf24;color:#92400e;padding:8px 16px;border-radius:20px;font-size:13px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
 .lang-btn-sm.active{background:var(--amber);color:#fff;border-color:var(--amber)}
-.wip-banner{background:linear-gradient(135deg,#78350f,#92400e);color:#fff;border-radius:12px;padding:20px;margin-bottom:16px;text-align:center}
-.wip-banner h3{font-size:18px;font-weight:800;margin-bottom:8px}
-.wip-banner p{font-size:13px;opacity:0.9;line-height:1.7;margin-bottom:4px}
 .obj-item{display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid #fde68a;font-size:14px;color:var(--text)}
 .obj-item:last-child{border-bottom:none}
 .obj-check{color:var(--amber);font-size:16px;flex-shrink:0;margin-top:1px}
@@ -82,10 +81,19 @@ const TTS = {
 };
 window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
 
+// ===== LISTENING SCRIPT =====
+const LISTENING_SCRIPT = '린: 수민 씨, 저 다음 주에 외국인등록증을 갱신해야 해요. 어떻게 하면 돼요? 수민: 주민센터에 가면 돼요. 여권이랑 신청서만 준비하면 되니까 어렵지 않아요. 린: 혼자 가도 괜찮을까요? 한국어가 아직 좀 부족해서요. 수민: 걱정 마세요. 직원분들이 친절하게 도와 드려요. 제가 같이 가 드릴게요. 린: 정말요? 감사해요. 그런데 얼마나 걸려요? 수민: 보통 30분 정도면 돼요. 미리 예약하면 더 빨리 할 수 있어요. 린: 어떻게 예약하면 돼요? 수민: 정부24 앱으로 온라인 예약을 하면 돼요. 제가 도와 드릴게요. 린: 정말 감사해요! 덕분에 잘 할 수 있을 것 같아요.';
+
+function playListeningScript() {
+  TTS.speak(LISTENING_SCRIPT.replace(/\n/g, ' '), 'ko-KR', 0.75);
+}
+
 // ===== STATE =====
 const STATE = {
   section: 0,
   lang: localStorage.getItem('kiip_lang') || 'ko',
+  quiz: { started: false, idx: 0, score: 0, chosen: null, done: false },
+  grammarTab: 0,
 };
 
 function setState(newState) {
@@ -108,7 +116,103 @@ const SECTIONS = [
   {id:10, label:'AI실습', icon:'🤖'},
 ];
 
-var AI_QUICK_BTNS = [{"emoji":"🏢","label":"공공기관 어휘","q":"KIIP 3급 5과: 공공 서비스 관련 어휘 10개를 한국어, 발음, 영어, 베트남어로 알려주세요. 주민센터, 경찰서, 소방서 등 포함해 주세요."},{"emoji":"📝","label":"민원 신청 표현","q":"한국 주민센터에서 민원 신청할 때 사용하는 표현을 알려주세요. 전입신고, 외국인등록증 관련 문장을 베트남어와 함께 알려주세요."},{"emoji":"🚌","label":"대중교통 연습","q":"한국 대중교통 이용할 때 표현을 연습해 주세요. 버스, 지하철, 환승 관련 대화를 롤플레이 형식으로 알려주세요."},{"emoji":"❓","label":"공공서비스 퀴즈","q":"공공 서비스 관련 KIIP 3급 수준 퀴즈 3개를 만들어 주세요. 정답과 베트남어 해설을 포함해 주세요."}];
+const VOCAB = [
+  // 공공기관 종류
+  {ko:'주민센터', pron:'[주민센터]', en:'community center', vi:'trung tâm dân cư', cat:'공공기관 종류'},
+  {ko:'구청', pron:'[구청]', en:'district office', vi:'ủy ban quận', cat:'공공기관 종류'},
+  {ko:'우체국', pron:'[우체국]', en:'post office', vi:'bưu điện', cat:'공공기관 종류'},
+  {ko:'도서관', pron:'[도서관]', en:'library', vi:'thư viện', cat:'공공기관 종류'},
+  {ko:'경찰서', pron:'[경찰서]', en:'police station', vi:'đồn cảnh sát', cat:'공공기관 종류'},
+  // 민원·서류
+  {ko:'민원', pron:'[미눤]', en:'civil petition/complaint', vi:'khiếu nại, yêu cầu hành chính', cat:'민원·서류'},
+  {ko:'서류', pron:'[서류]', en:'document', vi:'tài liệu', cat:'민원·서류'},
+  {ko:'신청서', pron:'[신청서]', en:'application form', vi:'đơn xin', cat:'민원·서류'},
+  {ko:'접수하다', pron:'[접쑤하다]', en:'to submit', vi:'nộp hồ sơ', cat:'민원·서류'},
+  {ko:'발급받다', pron:'[발끕받따]', en:'to get issued', vi:'được cấp phát', cat:'민원·서류'},
+  // 행정 서비스
+  {ko:'등록하다', pron:'[등노카다]', en:'to register', vi:'đăng ký', cat:'행정 서비스'},
+  {ko:'신고하다', pron:'[신고하다]', en:'to report/declare', vi:'khai báo', cat:'행정 서비스'},
+  {ko:'갱신하다', pron:'[갱신하다]', en:'to renew', vi:'gia hạn', cat:'행정 서비스'},
+  {ko:'외국인등록증', pron:'[외국인등록쯩]', en:'alien registration card', vi:'thẻ đăng ký người nước ngoài', cat:'행정 서비스'},
+  {ko:'체류자격', pron:'[체류자격]', en:'residence status', vi:'tư cách lưu trú', cat:'행정 서비스'},
+  // 은행·금융
+  {ko:'통장', pron:'[통장]', en:'bankbook', vi:'sổ ngân hàng', cat:'은행·금융'},
+  {ko:'계좌', pron:'[계좌]', en:'bank account', vi:'tài khoản ngân hàng', cat:'은행·금융'},
+  {ko:'송금하다', pron:'[송금하다]', en:'to remit/transfer money', vi:'chuyển tiền', cat:'은행·금융'},
+  {ko:'환전하다', pron:'[환전하다]', en:'to exchange currency', vi:'đổi tiền', cat:'은행·금융'},
+  {ko:'공과금', pron:'[공과금]', en:'utility bills', vi:'tiền điện nước', cat:'은행·금융'},
+  // 편의시설
+  {ko:'무인민원발급기', pron:'[무인민원발급기]', en:'automated civil service kiosk', vi:'máy phát hành tự động', cat:'편의시설'},
+  {ko:'정부24', pron:'[정부이십사]', en:'Government24 (e-government portal)', vi:'cổng chính phủ điện tử', cat:'편의시설'},
+  {ko:'사회통합프로그램', pron:'[사회통합프로그램]', en:'KIIP', vi:'chương trình hội nhập xã hội', cat:'편의시설'},
+];
+
+const IDIOMS = [
+  {expr:'발이 넓다', meaning:'아는 사람이 많다 (to have a wide network of people)', ex:'그 분은 발이 넓어서 도움을 받기 쉬워요.'},
+  {expr:'빨리빨리', meaning:'한국의 속도 문화 (Korea\'s fast-paced culture)', ex:'한국은 빨리빨리 문화로 서비스가 빠른 편이에요.'},
+  {expr:'서류를 갖추다', meaning:'필요한 서류를 준비하다 (to prepare necessary documents)', ex:'신청 전에 서류를 갖춰야 해요.'},
+  {expr:'줄을 서다', meaning:'순서를 기다리다 (to stand in line / wait one\'s turn)', ex:'주민센터에서 번호표 뽑고 줄을 서요.'},
+  {expr:'도장을 찍다', meaning:'서류에 인감을 날인하다 (to stamp a document with a seal)', ex:'서류에 도장을 찍어야 완료돼요.'},
+];
+
+const DIALOGUES = [
+  {
+    title:'대화 1 — 주민센터에서',
+    lines:[
+      {sp:'직원', text:'어떻게 오셨어요?'},
+      {sp:'린', text:'외국인등록증을 갱신하려고 왔어요. 어떻게 하면 돼요?'},
+      {sp:'직원', text:'신청서를 작성하시면 돼요. 여권도 가져오셨어요?'},
+      {sp:'린', text:'네, 가져왔어요. 시간이 얼마나 걸려요?'},
+    ]
+  },
+  {
+    title:'대화 2 — 우체국에서',
+    lines:[
+      {sp:'린', text:'베트남에 소포를 보내려고 하는데요, 어떻게 하면 돼요?'},
+      {sp:'직원', text:'이 신청서를 작성하시면 돼요. 무게를 달아 드릴게요.'},
+      {sp:'린', text:'감사합니다. 며칠이나 걸려요?'},
+      {sp:'직원', text:'항공으로 보내시면 5~7일 정도 걸려요.'},
+    ]
+  },
+  {
+    title:'대화 3 — 은행에서',
+    lines:[
+      {sp:'민준', text:'린 씨, 한국 통장 만들었어요?'},
+      {sp:'린', text:'아직요. 어떻게 하면 돼요?'},
+      {sp:'민준', text:'신분증이랑 외국인등록증을 가져가면 돼요. 제가 도와 드릴게요.'},
+      {sp:'린', text:'정말요? 감사해요. 같이 가도 돼요?'},
+    ]
+  },
+];
+
+const QUIZ_DATA = [
+  {q:'다음 중 -(으)면 되다의 올바른 사용은?', opts:['신청서를 작성하면 됩니다.','신청서를 작성하면 되면 됩니다.','신청서를 작성 되면 됩니다.','신청서를 작성해야 하면 됩니다.'], ans:0},
+  {q:'-아/어 드리다 vs -아/어 주다: 어떤 상황에서 드리다를 쓰나요?', opts:['친구에게 도움을 줄 때','어른이나 손님에게 공손하게 할 때','나이가 같은 동료에게 할 때','동생에게 할 때'], ans:1},
+  {q:'"등록하다"의 올바른 발음은?', opts:['[등록하다]','[등노카다]','[등녹하다]','[등록아다]'], ans:1},
+  {q:'"접수하다"의 뜻은?', opts:['서류를 발급받다','서류를 내다/제출하다','서류를 갱신하다','서류를 취소하다'], ans:1},
+  {q:'주민센터에서 할 수 없는 일은?', opts:['외국인등록증 갱신','전입신고','건강보험 신청','비행기 티켓 예약'], ans:3},
+  {q:'빈칸: "서류를 가져___ 됩니다."', opts:['오면','가면','오면서','가서'], ans:0},
+  {q:'"서류를 갖추다"의 뜻은?', opts:['서류를 버리다','필요한 서류를 준비하다','서류를 복사하다','서류를 읽다'], ans:1},
+  {q:'"발급받다"의 올바른 발음은?', opts:['[발급받다]','[발끕받따]','[발급받따]','[발끕바따]'], ans:1},
+  {q:'정부24의 주요 용도는?', opts:['음식 주문','온라인 민원 신청','쇼핑','여행 예약'], ans:1},
+  {q:'다음 중 올바른 -아/어 드리다 형태는?', opts:['도와 드릴게요','도아 드릴게요','돕아 드릴게요','도와줄게드려요'], ans:0},
+];
+
+const CULTURE = [
+  {icon:'🏛️', title:'주민센터 이용법', body:'외국인이 주민센터에서 이용할 수 있는 주요 서비스: 외국인등록증 갱신, 건강보험 신청, 교육 프로그램 안내. 번호표를 뽑아 순서를 기다리면 돼요. 직원에게 "어떻게 하면 돼요?" 라고 물어보면 친절하게 도와줘요.'},
+  {icon:'📱', title:'정부24 · 디지털 행정', body:'한국의 전자정부 서비스 정부24(www.gov.kr): 온라인 민원 신청, 모바일 신청, 대기시간 단축. 정부24 앱을 이용하면 주민센터에 직접 가지 않아도 많은 서비스를 받을 수 있어요. 스마트폰 하나로 각종 서류 발급도 가능해요.'},
+  {icon:'🏦', title:'외국인 은행 계좌 개설', body:'필요 서류: 여권 + 외국인등록증 + 체류자격 확인. 주요 은행(국민, 신한, 우리, 하나)에서 계좌를 만들 수 있어요. 인터넷뱅킹 이용 시 앱 설치 후 본인인증이 필요해요. 베트남으로 송금 시 환전 수수료를 확인하세요.'},
+  {icon:'🌏', title:'외국인 지원 서비스', body:'다문화가족지원센터: 한국어 교육, 생활 상담 제공. 외국인력지원센터: 취업 상담 및 권리 안내. 1345 외국인 종합안내센터: 24시간 통역 서비스 (베트남어 포함). 사회통합프로그램(KIIP) 이수 시 귀화 및 비자 신청에 점수 인정.'},
+];
+
+var AI_QUICK_BTNS = [
+  { emoji:'🏛️', label:'공공서비스 어휘 설명', q:'KIIP 3급 5과 어휘: 공공 서비스 관련 단어 5개를 쉽게 설명하고 예문과 베트남어 번역을 알려주세요. 주민센터, 민원, 접수하다 등 포함해 주세요.' },
+  { emoji:'📐', label:'문법 질문', q:'KIIP 3급: -(으)면 되다 문법을 쉽게 설명하고 예문 3개를 베트남어 번역과 함께 알려주세요.' },
+  { emoji:'💬', label:'롤플레이', q:'저는 베트남 출신 KIIP 3급 학습자입니다. 주민센터에서 외국인등록증을 갱신하는 상황을 -(으)면 되다, -아/어 드리다 문법으로 롤플레이해 주세요.' },
+  { emoji:'✏️', label:'내 글 첨삭', q:'KIIP 3급 학습자의 글입니다. 문법을 확인하고 수정해 주세요. 베트남어로도 설명해 주세요: ' },
+  { emoji:'❓', label:'틀린 문제 설명', q:'KIIP 3급 퀴즈에서 틀렸어요. -아/어 드리다 문법을 다시 쉽게 설명하고 예문 3개를 베트남어와 함께 알려주세요.' },
+  { emoji:'🎯', label:'TOPIK 연습', q:'KIIP 3급 수준의 TOPIK II 공공 서비스 주제 빈칸 채우기 문제 3개를 만들어 주세요. 정답과 해설도 포함해 주세요.' },
+];
 
 var AICHAT = {
   history: [],
@@ -121,6 +225,7 @@ var AICHAT = {
     if (!inp) return;
     inp.value = b.q;
     inp.style.borderColor = '#f59e0b';
+    if (idx === 3) { inp.focus(); return; }
     this.send();
   },
 
@@ -154,7 +259,7 @@ var AICHAT = {
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div>'
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div>'
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div>'
-          + '</div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+          + '</div><span style="font-size:12px;color:#888">AI 응답 중... 🇻🇳 Đang trả lời...</span>';
         box.appendChild(ld);
         box.scrollTop = box.scrollHeight;
       }
@@ -170,18 +275,14 @@ var AICHAT = {
     var inp  = document.getElementById('ai-chat-input');
     var text = inp ? inp.value.trim() : '';
     if (!text) return;
-
     this.history.push({role:'user', content:text});
     this.addMsg('user', text);
     if (inp) inp.value = '';
     this.loading = true;
     this.setLoading(true);
-
-    var sys = "You are a Korean language tutor for KIIP Level 3. The student is likely Vietnamese. This lesson is about public services (공공 서비스). Answer in Korean with Vietnamese translation. Be concise and friendly.";
-
+    var sys = 'You are a Korean language tutor for KIIP Level 3 Lesson 5 (공공 서비스 / Public Services). The student is likely Vietnamese. Answer in Korean with Vietnamese translation. Be concise and friendly. Focus on KIIP content.';
     try {
-      var url = '/api/chat';
-      var res  = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var data = await res.json();
       var reply = data.choices[0].message.content;
@@ -191,216 +292,845 @@ var AICHAT = {
       this.addMsg('assistant', reply);
     } catch(e) {
       this.setLoading(false);
-      this.addMsg('assistant',
-        '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요');
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요\n🇻🇳 Lỗi kết nối AI — Thử lại sau ít phút');
     }
     this.loading = false;
   }
 };
 
-// ===== RENDER =====
-function setLang(lang) {
-  STATE.lang = lang;
-  localStorage.setItem('kiip_lang', lang);
-  render();
+function copyNotebookContent5() {
+  var content = 'KIIP 3급 중급 1 · 5과 공공 서비스 학습 자료\n글로컬 아카데미 (elimg.com)\n\n=== 핵심 어휘 ===\n공공기관 종류: 주민센터, 구청, 우체국, 도서관, 경찰서\n민원·서류: 민원, 서류, 신청서, 접수하다, 발급받다\n행정 서비스: 등록하다, 신고하다, 갱신하다, 외국인등록증, 체류자격\n은행·금융: 통장, 계좌, 송금하다, 환전하다, 공과금\n편의시설: 무인민원발급기, 정부24, 사회통합프로그램\n\n=== 관용 표현 ===\n발이 넓다 = 아는 사람이 많다\n빨리빨리 = 한국의 속도 문화\n서류를 갖추다 = 필요한 서류를 준비하다\n줄을 서다 = 순서를 기다리다\n도장을 찍다 = 서류에 인감을 날인하다\n\n=== 핵심 문법 ===\n1. -(으)면 되다: "just need to / all you have to do is"\n   예: 신청서를 작성하면 돼요.\n   베트남어: Điền vào đơn xin là xong.\n\n2. -아/어 드리다: humble/respectful form of doing for someone\n   예: 제가 도와 드릴게요.\n   베트남어: Tôi sẽ giúp bạn.';
+  navigator.clipboard.writeText(content).then(function() {
+    var el = document.getElementById('copy-ok5');
+    if (el) { el.textContent = '✅ 복사 완료!'; setTimeout(function(){ el.textContent = ''; }, 3000); }
+  }).catch(function() {
+    var el = document.getElementById('copy-ok5');
+    if (el) el.textContent = '❌ 직접 복사하세요';
+  });
 }
 
-function renderNav() {
-  return `
-    <div class="nav">
-      <a href="KIIP_Level3_Index.html" class="nav-back">← 3급 목차</a>
-      <div style="text-align:center">
-        <div class="nav-title">5과 · 공공 서비스</div>
-        <div class="nav-sub">KIIP 3급 중급 1</div>
-      </div>
-      <div style="width:60px;text-align:right;font-size:11px;color:#d97706">
-        ${STATE.section+1}/${SECTIONS.length}
-      </div>
-    </div>
-  `;
+const RECORDER = {
+  streams: {}, recorders: {}, chunks: {}, audioURLs: {}, isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    const resultEl = document.getElementById('stt-result-' + idx);
+    const playBtn  = document.getElementById('play-btn-' + idx);
+    const scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, targetText, recBtn); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      this.streams[idx] = stream;
+    } catch(e) {
+      const name = e.name || '';
+      let msg = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg = '❌ <strong>마이크가 차단됨</strong> — 주소창 왼쪽 🔒 → 마이크 → <strong>허용</strong> 후 새로고침<br><span style="color:#555">🇻🇳 Micro bị chặn — Nhấn 🔒 → Micro → Cho phép → F5</span>';
+      } else if (name === 'NotFoundError') {
+        msg = '❌ <strong>마이크를 찾을 수 없어요</strong> — 마이크 연결 확인';
+      } else {
+        msg = '❌ <strong>오류: ' + name + '</strong> — Chrome/Edge에서 다시 시도';
+      }
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    const mr = new MediaRecorder(this.streams[idx]);
+    this.recorders[idx] = mr;
+    mr.ondataavailable = e => { if (e.data.size > 0) this.chunks[idx].push(e.data); };
+    mr.onstop = () => {
+      if (this.audioURLs[idx]) URL.revokeObjectURL(this.audioURLs[idx]);
+      const blob = new Blob(this.chunks[idx], {type: 'audio/webm'});
+      this.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false; playBtn.style.opacity = '1';
+        playBtn.onclick = () => { const a = new Audio(this.audioURLs[idx]); a.play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지'; recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중... · 🇻🇳 Đang ghi âm...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      const rec = new SR();
+      rec.lang = 'ko-KR'; rec.continuous = false; rec.interimResults = false;
+      rec.onresult = (e) => {
+        const said = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        const target = targetText.replace(/[\s,.?!]/g,'');
+        const conf = e.results[0][0].confidence;
+        let match = 0;
+        const minLen = Math.min(said.length, target.length);
+        for (let i = 0; i < minLen; i++) { if (said[i] === target[i]) match++; }
+        const pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        const confPct = Math.round((conf || 0.5) * 100);
+        const finalPct = Math.round((pct * 0.7) + (confPct * 0.3));
+        const color = finalPct >= 80 ? '#22c55e' : finalPct >= 50 ? '#f59e0b' : '#ef4444';
+        const msg = finalPct >= 80 ? '✅ 완벽해요! · Tuyệt vời!' : finalPct >= 50 ? '🔄 조금 더 연습! · Luyện thêm chút!' : '❌ 다시 시도! · Thử lại!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = finalPct + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = () => {};
+      rec.start();
+    }
+  },
+
+  async autoDetect() {
+    const stateEl = document.getElementById('mic-perm-state');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        const result = await navigator.permissions.query({name: 'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 이미 허용됨 — 바로 녹음하세요! · 🇻🇳 Đã cho phép!</div>';
+          if (allowBtn) { allowBtn.style.background = '#166534'; allowBtn.textContent = '✅ 허용됨 — 바로 녹음하세요'; }
+          if (blockedGuide) blockedGuide.style.display = 'none';
+          return;
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 아래 빨간 박스 순서대로 해결하세요</div>';
+          if (blockedGuide) blockedGuide.style.display = 'block';
+          if (allowBtn) { allowBtn.style.background = '#ef4444'; allowBtn.textContent = '⚠️ 차단됨 — 위 단계 완료 후 여기 클릭'; }
+          return;
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아직 허용 안 됨 — 아래 버튼을 눌러 허용해 주세요</div>';
+        }
+        result.onchange = () => RECORDER.autoDetect();
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+      }
+    } else {
+      stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+    }
+  },
+
+  async checkPermission(btn) {
+    const statusEl = document.getElementById('mic-status');
+    const box = document.getElementById('mic-check-box');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → elimg.com 에서 열기</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 미지원 브라우저 — Chrome 또는 Edge를 사용해 주세요</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      stream.getTracks().forEach(t => t.stop());
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 바로 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 성공! 🇻🇳 Đã cho phép!</span>';
+      if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
+      if (blockedGuide) blockedGuide.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 바로 녹음하세요!'; btn.style.background = '#166534'; btn.disabled = false;
+    } catch(e) {
+      const name = e.name || '';
+      btn.disabled = false;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        if (blockedGuide) blockedGuide.style.display = 'block';
+        if (stateEl) stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 빨간 박스 순서대로 해결 후 다시 클릭</div>';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444;font-size:11px">🔒 허용 완료 후 이 버튼을 다시 눌러주세요</span>';
+        btn.textContent = '🔄 허용 완료 후 다시 클릭'; btn.style.background = '#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">오류 (' + (name||'unknown') + ') — Chrome/Edge에서 다시 시도</span>';
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
+      }
+    }
+  },
+
+  stop(idx, targetText, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') this.recorders[idx].stop();
+    if (this.streams[idx]) this.streams[idx].getTracks().forEach(t => t.stop());
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음'; recBtn.style.background = '#059669';
+  }
+};
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
 }
 
-function renderLangBar() {
-  return `
-    <div class="lang-bar">
-      ${['ko','en','vi'].map(l=>`<button class="lang-btn-sm ${STATE.lang===l?'active':''}" onclick="setLang('${l}')">${l==='ko'?'🇰🇷 KO':l==='en'?'🇺🇸 EN':'🇻🇳 VI'}</button>`).join('')}
-    </div>
-  `;
+// ===== RENDER HELPERS =====
+function vocabCatColor(cat) {
+  const m = {'공공기관 종류':'#f59e0b','민원·서류':'#3b82f6','행정 서비스':'#22c55e','은행·금융':'#8b5cf6','편의시설':'#ef4444'};
+  return m[cat] || '#888';
 }
 
-function renderTabs() {
-  return `
-    <div class="section-tabs">
-      ${SECTIONS.map(s=>`<button class="stab ${STATE.section===s.id?'active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
-    </div>
-  `;
-}
-
-function renderBottomNav() {
-  const prev = STATE.section > 0
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section-1}})">◀ 이전</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>◀ 이전</button>`;
-  const next = STATE.section < SECTIONS.length-1
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section+1}})">다음 ▶</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>다음 ▶</button>`;
-  return `
-    <div class="bottom-nav">
-      ${prev}
-      <button class="bnav-btn" onclick="setState({section:0})"><span class="bnav-icon">🏠</span><span>홈</span></button>
-      <button class="bnav-btn" onclick="setState({section:10})"><span class="bnav-icon">🤖</span><span>AI</span></button>
-      ${next}
-    </div>
-  `;
-}
-
-function renderWIPSection(title, icon) {
-  return `
-    <div class="page">
-      <h2>${icon} ${title}</h2>
-      <p class="sub">KIIP 3급 5과 · 공공 서비스 · Public Services</p>
-      <div class="wip-banner">
-        <h3>🚧 콘텐츠 준비 중</h3>
-        <p>이 섹션의 학습 자료를 열심히 제작 중입니다.<br>Content is being prepared for this section.</p>
-        <p style="margin-top:8px;font-size:12px;opacity:0.8">🇻🇳 Nội dung đang được chuẩn bị. Vui lòng quay lại sau.</p>
-      </div>
-      <div class="card card-accent">
-        <div class="section-label">💡 지금 당장 학습하려면</div>
-        <div style="font-size:13px;color:#555;margin-top:6px;line-height:1.8">
-          아래 <strong>AI 실습</strong> 탭을 이용하면 이 주제를 바로 공부할 수 있어요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Sử dụng tab <strong>AI 실습</strong> bên dưới để học ngay chủ đề này!</span>
+function renderVocabCards() {
+  const cats = [...new Set(VOCAB.map(v => v.cat))];
+  return cats.map(cat => {
+    const items = VOCAB.filter(v => v.cat === cat);
+    const color = vocabCatColor(cat);
+    return `<div class="card" style="border-left:4px solid ${color};margin-bottom:10px">
+      <div style="font-size:12px;font-weight:700;color:${color};margin-bottom:8px">${cat}</div>
+      ${items.map(v => `
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${v.ko}')">
+          <div style="min-width:80px">
+            <span style="font-size:15px;font-weight:700;color:#1a202c">${v.ko}</span>
+            <span style="font-size:11px;color:#888;margin-left:4px">${v.pron}</span>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:12px;color:#b45309">${v.en}</div>
+            <div style="font-size:12px;color:#666">${v.vi}</div>
+          </div>
+          <span style="font-size:18px">🔊</span>
         </div>
-        <button onclick="setState({section:10})" style="background:var(--amber);color:#fff;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:700;margin-top:12px;width:100%">
-          🤖 AI 실습 탭으로 이동
-        </button>
-      </div>
-    </div>
-  `;
+      `).join('')}
+    </div>`;
+  }).join('');
 }
 
-function renderIntro() {
-  return `
-    <div class="page">
-      <div class="intro-header">
-        <div style="font-size:14px;opacity:0.8;margin-bottom:4px">KIIP 3급 · 중급 1</div>
-        <h3>5과 공공 서비스</h3>
-        <div style="font-size:14px;margin-top:4px;opacity:0.9">Public Services</div>
-        <div style="margin-top:12px;font-size:28px">🏛️</div>
-      </div>
+function renderDialogues() {
+  return DIALOGUES.map((d, di) => `
+    <div class="card card-accent" style="margin-bottom:12px">
+      <div style="font-weight:700;font-size:14px;color:#92400e;margin-bottom:10px">${d.title}</div>
+      ${d.lines.map((l, li) => {
+        const isRight = li % 2 === 1;
+        return `<div style="display:flex;flex-direction:column;align-items:${isRight?'flex-end':'flex-start'};margin-bottom:8px;cursor:pointer" onclick="TTS.speak('${l.text.replace(/'/g,"\\'")}')">
+          <div style="font-size:11px;color:#888;margin-bottom:2px">${l.sp}</div>
+          <div style="max-width:85%;background:${isRight?'#fef3c7':'#fff7ed'};border:1px solid #fde68a;border-radius:${isRight?'12px 12px 4px 12px':'12px 12px 12px 4px'};padding:8px 12px;font-size:14px;line-height:1.6">${l.text} 🔊</div>
+        </div>`;
+      }).join('')}
+    </div>
+  `).join('');
+}
 
+function renderQuiz() {
+  const Q = QUIZ_DATA;
+  const s = STATE.quiz;
+  if (!s.started) {
+    return `<div class="intro-header" style="margin-bottom:16px">
+      <div style="font-size:40px;margin-bottom:8px">✅</div>
+      <h3>5과 퀴즈</h3>
+      <p style="font-size:13px;opacity:0.9">공공 서비스 · 총 ${Q.length}문제</p>
+    </div>
+    <div class="card">
+      <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:14px">어휘, 문법, 발음, 관용표현을 복습해 봐요!</p>
+      <button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:16px;font-weight:700">퀴즈 시작하기 🚀</button>
+    </div>`;
+  }
+  if (s.done) {
+    const pct = Math.round(s.score / Q.length * 100);
+    const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '👍' : '📚';
+    return `<div class="intro-header" style="margin-bottom:16px">
+      <div style="font-size:40px;margin-bottom:8px">${emoji}</div>
+      <h3>${s.score}/${Q.length} 정답</h3>
+      <p style="font-size:14px;opacity:0.9">${pct}점 · ${pct>=80?'훌륭해요!':pct>=60?'잘 했어요!':'다시 도전해 봐요!'}</p>
+    </div>
+    <div class="card">
+      <button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;margin-bottom:8px">다시 풀기 🔄</button>
+      <button onclick="setState({section:0})" style="width:100%;background:#fef3c7;color:#92400e;border-radius:12px;padding:12px;font-size:14px;font-weight:600">처음으로 🏠</button>
+    </div>`;
+  }
+  const cur = Q[s.idx];
+  const answered = s.chosen !== null;
+  return `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <span style="font-size:12px;color:#888">문제 ${s.idx+1}/${Q.length}</span>
+    <span style="font-size:12px;color:var(--amber);font-weight:700">점수: ${s.score}</span>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <p style="font-size:15px;font-weight:600;line-height:1.6;color:#1a202c">${cur.q}</p>
+  </div>
+  ${cur.opts.map((opt, oi) => {
+    let bg = '#fff', border = '#fde68a', color = '#1a202c';
+    if (answered) {
+      if (oi === cur.ans) { bg = '#dcfce7'; border = '#22c55e'; color = '#166534'; }
+      else if (oi === s.chosen) { bg = '#fee2e2'; border = '#ef4444'; color = '#991b1b'; }
+    }
+    return `<button onclick="${answered ? '' : `(function(){const isC=${oi===cur.ans};setState({quiz:{...STATE.quiz,chosen:${oi},score:STATE.quiz.score+(isC?1:0)}});})()`}" style="width:100%;background:${bg};border:2px solid ${border};border-radius:10px;padding:12px 14px;margin-bottom:8px;font-size:14px;color:${color};text-align:left;font-weight:${answered&&oi===cur.ans?'700':'400'}">${answered&&oi===cur.ans?'✅ ':''}${answered&&oi===s.chosen&&oi!==cur.ans?'❌ ':''}${opt}</button>`;
+  }).join('')}
+  ${answered ? `<button onclick="(function(){if(STATE.quiz.idx+1>=Q.length){setState({quiz:{...STATE.quiz,done:true}})}else{setState({quiz:{...STATE.quiz,idx:STATE.quiz.idx+1,chosen:null}})}})()" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:13px;font-size:15px;font-weight:700;margin-top:4px">${s.idx+1 >= Q.length ? '결과 보기 🏁' : '다음 문제 →'}</button>` : ''}`;
+}
+
+// ===== SECTION RENDERERS =====
+function renderSection(id) {
+  switch(id) {
+    case 0: return `
+      <div class="intro-header">
+        <div style="font-size:36px;margin-bottom:8px">🏛️</div>
+        <h3>5과 · 공공 서비스</h3>
+        <p style="font-size:13px;opacity:0.85;margin-top:4px">Public Services · Dịch vụ công</p>
+      </div>
       <div class="card card-accent">
         <div class="section-label">학습 목표</div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>공공 서비스 관련 어휘를 이해하고 사용할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>공공 서비스 주제로 말하기·쓰기를 할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>AI 튜터와 함께 공공 서비스 표현을 연습할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>공공 서비스·공공기관 관련 어휘를 익히고 활용할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><b>-(으)면 되다</b>: 간단한 방법·조건을 안내할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><b>-아/어 드리다</b>: 공손하게 도움을 제안할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>주민센터·우체국·은행에서 필요한 표현을 익힌다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>한국의 공공 서비스 및 외국인 지원 제도를 이해한다</span></div>
       </div>
-
-      <div class="card" style="background:#fef3c7;border:1px solid #fbbf24">
-        <div class="section-label" style="background:#92400e">📌 이번 과 주제</div>
-        <div style="font-size:24px;text-align:center;margin:12px 0">🏛️</div>
-        <div style="font-size:18px;font-weight:800;text-align:center;color:var(--brown);margin-bottom:4px">5과 · 공공 서비스</div>
-        <div style="font-size:14px;text-align:center;color:#555;margin-bottom:8px">Public Services</div>
-        <div style="background:#fff;border-radius:8px;padding:12px;font-size:13px;color:#555;line-height:1.8;border:1px solid #fde68a">
-          🚧 상세 콘텐츠는 준비 중입니다. AI 실습 탭에서 이 주제를 지금 바로 공부해 보세요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nội dung chi tiết đang được chuẩn bị. Hãy dùng tab AI 실습 để học ngay!</span>
+      <div class="card" style="background:linear-gradient(135deg,#fef3c7,#fff7ed)">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📚 이 과에서 배우는 문법</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:#f59e0b;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700">-(으)면 되다</span>
+          <span style="background:#78350f;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700">-아/어 드리다</span>
         </div>
       </div>
-
-      <div style="display:flex;gap:10px;margin-top:4px">
-        <a href="KIIP_Level3_Lesson4.html" style="flex:1;background:var(--dark);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">← 4과</a>
-        <a href="KIIP_Level3_Lesson6.html" style="flex:1;background:var(--amber);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">6과 →</a>
+      <div class="card" style="text-align:center;background:#fef3c7">
+        <div style="font-size:13px;color:#92400e;font-weight:700;margin-bottom:4px">🗓️ KIIP 3급 학습 진도</div>
+        <div style="font-size:12px;color:#666">4과 직업과 일 ✅ → <b>5과 공공 서비스 📍</b> → 6과 건강과 병원</div>
       </div>
+    `;
 
-      <div style="margin-top:12px">
-        <div style="background:#d1fae5;border-radius:8px;height:6px;overflow:hidden;margin-bottom:4px">
-          <div style="background:#22c55e;height:100%;width:25%;transition:width 0.5s"></div>
-        </div>
-        <div style="font-size:11px;color:#888;text-align:center">3급 전체 진도 25% · 5 / 20과</div>
+    case 1: return `
+      <h2>📝 어휘</h2>
+      <p class="sub">공공 서비스 관련 핵심 어휘 · tap to hear pronunciation</p>
+      ${renderVocabCards()}
+      <div class="card" style="border-left:4px solid #8b5cf6;margin-top:4px">
+        <div style="font-size:13px;font-weight:700;color:#8b5cf6;margin-bottom:10px">💡 관용 표현 (Idioms)</div>
+        ${IDIOMS.map(id => `
+          <div style="padding:8px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${id.expr}')">
+            <div style="font-size:14px;font-weight:700;color:#1a202c">🔊 ${id.expr}</div>
+            <div style="font-size:12px;color:#b45309;margin:2px 0">${id.meaning}</div>
+            <div style="font-size:12px;color:#666;font-style:italic">${id.ex}</div>
+          </div>
+        `).join('')}
       </div>
-    </div>
-  `;
-}
+    `;
 
-function renderAI() {
-  return `
-    <div class="page">
-      <h2>🤖 AI 실습</h2>
-      <p class="sub">글로컬 아카데미 × AI 한국어 튜터 · 공공 서비스</p>
-
-      <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
-        <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
-        <div style="font-size:15px;font-weight:800;margin-bottom:6px">KIIP 3급 5과 · 공공 서비스 AI 실습</div>
-        <div style="font-size:11px;opacity:0.85;line-height:1.7">Public Services — 주제별 AI 튜터와 실시간 학습<br>
-        <span style="color:#93c5fd">🇻🇳 Luyện tập chủ đề "공공 서비스" cùng AI ngay trong app</span></div>
+    case 2: return `
+      <h2>📐 문법</h2>
+      <p class="sub">핵심 문법 2가지를 배워봐요</p>
+      <div style="display:flex;gap:8px;margin-bottom:14px">
+        <button onclick="setState({grammarTab:0})" style="flex:1;padding:10px;border-radius:10px;border:2px solid ${STATE.grammarTab===0?'#f59e0b':'#fde68a'};background:${STATE.grammarTab===0?'#f59e0b':'#fff'};color:${STATE.grammarTab===0?'#fff':'#92400e'};font-weight:700;font-size:13px">-(으)면 되다</button>
+        <button onclick="setState({grammarTab:1})" style="flex:1;padding:10px;border-radius:10px;border:2px solid ${STATE.grammarTab===1?'#78350f':'#fde68a'};background:${STATE.grammarTab===1?'#78350f':'#fff'};color:${STATE.grammarTab===1?'#fff':'#92400e'};font-weight:700;font-size:13px">-아/어 드리다</button>
       </div>
-
-      <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
-        <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
-        <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
-          계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
-          <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập, không chuyển tab</span>
-        </div>
-
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-          ${AI_QUICK_BTNS.map((b,i)=>`
-            <button onclick="AICHAT.quickSend(${i})"
-              style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
-              ${b.emoji} ${b.label}
-            </button>
+      ${STATE.grammarTab === 0 ? `
+        <div class="card card-accent">
+          <div class="section-label">-(으)면 되다</div>
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px">의미: ~하면 돼요 (그것만 하면 충분해요)</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">어떤 일을 하기 위해 필요한 조건이나 방법이 그것으로 충분함을 나타내요.<br><b>Meaning:</b> "just need to" / "all you have to do is"<br><b>Nghĩa:</b> Chỉ cần... là được / Làm vậy là xong</div>
+          <div style="background:#fef3c7;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:6px">📌 형태 규칙</div>
+            <div style="font-size:13px;line-height:1.8">
+              동사 어간 + <b>-(으)면 되다</b><br>
+              • 받침 없음 → <b>-면 되다</b> &nbsp;(가다 → 가<b>면 돼요</b>)<br>
+              • 받침 있음 → <b>-으면 되다</b> &nbsp;(받다 → 받<b>으면 돼요</b>)
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:8px">예문 (tap to hear)</div>
+          ${[
+            ['여기 서명하면 돼요.', 'Just sign here.', 'Ký vào đây là được.'],
+            ['신청서를 작성하면 돼요.', 'Just fill out the application.', 'Điền vào đơn là xong.'],
+            ['주민센터에 가면 돼요.', 'Just go to the community center.', 'Đến trung tâm dân cư là được.'],
+            ['여권만 가져오면 돼요.', 'Just bring your passport.', 'Chỉ cần mang hộ chiếu.'],
+            ['온라인으로 신청하면 돼요.', 'Just apply online.', 'Đăng ký trực tuyến là được.'],
+          ].map(([ko,en,vi]) => `
+            <div style="padding:8px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+              <div style="font-size:14px;font-weight:600;color:#1a202c">🔊 ${ko}</div>
+              <div style="font-size:12px;color:#666">${en}</div>
+              <div style="font-size:12px;color:#b45309">${vi}</div>
+            </div>
           `).join('')}
         </div>
+      ` : `
+        <div class="card card-accent" style="border-left-color:#78350f">
+          <div class="section-label" style="background:#78350f">-아/어 드리다</div>
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px">의미: 공손하게 ~해 드리다 (윗사람/손님에게)</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">말하는 사람이 상대방을 위해 어떤 행동을 하는 것을 공손하게 표현해요.<br><b>Meaning:</b> "to do something FOR someone" (politely/humbly)<br><b>Nghĩa:</b> Làm điều gì đó cho người khác một cách lịch sự</div>
+          <div style="background:#fef3c7;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:6px">📌 형태 규칙</div>
+            <div style="font-size:13px;line-height:1.8">
+              동사 어간 + <b>-아/어 드리다</b><br>
+              • ㅏ/ㅗ → <b>-아 드리다</b> &nbsp;(도와 드리다)<br>
+              • 그 외 → <b>-어 드리다</b> &nbsp;(가르쳐 드리다)<br>
+              언제 써요? 어른, 높은 분, 손님에게
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:8px">예문 (tap to hear)</div>
+          ${[
+            ['제가 도와 드릴게요.', 'I will help you.', 'Tôi sẽ giúp bạn.'],
+            ['제가 설명해 드릴게요.', 'I will explain for you.', 'Để tôi giải thích cho.'],
+            ['무게를 달아 드릴게요.', 'I will weigh it for you.', 'Để tôi cân cho bạn.'],
+            ['같이 가 드릴게요.', 'I will go with you.', 'Để tôi đi cùng bạn.'],
+            ['예약해 드릴까요?', 'Shall I make a reservation for you?', 'Để tôi đặt chỗ cho bạn nhé?'],
+          ].map(([ko,en,vi]) => `
+            <div style="padding:8px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+              <div style="font-size:14px;font-weight:600;color:#1a202c">🔊 ${ko}</div>
+              <div style="font-size:12px;color:#666">${en}</div>
+              <div style="font-size:12px;color:#b45309">${vi}</div>
+            </div>
+          `).join('')}
+          <div style="background:#fef3c7;border-radius:8px;padding:10px;margin-top:10px">
+            <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:6px">⚡ -아/어 주다 vs -아/어 드리다 비교</div>
+            <div style="font-size:12px;line-height:1.8">
+              ✅ <b>-아/어 주다</b> → 친구, 동생 등 편한 관계 (casual)<br>
+              ✅ <b>-아/어 드리다</b> → 어른, 손님, 높은 분 (respectful/humble)
+            </div>
+          </div>
+        </div>
+      `}
+    `;
 
-        <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
-          <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
-            💡 버튼을 누르면 AI가 바로 답해줘요<br>
-            <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
+    case 3: return `
+      <h2>💬 말하기</h2>
+      <p class="sub">공공 서비스 관련 대화 연습 · tap to hear</p>
+      ${renderDialogues()}
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">연습 활동</div>
+        <div style="font-size:14px;font-weight:700;color:#166534;margin-bottom:8px">🎯 공공 서비스 표현 연습</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">아래 질문에 답해 보세요:</div>
+        ${[
+          '주민센터에서 어떤 서비스를 받아 본 적 있어요?',
+          '외국인등록증 갱신할 때 무엇이 필요해요?',
+          '베트남에 돈을 보낼 때 어떻게 해요?',
+          '한국 공공 서비스에서 어려웠던 점이 있어요?',
+        ].map((q,i) => `<div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">Q${i+1}. ${q}</div>`).join('')}
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🗣️ 유용한 공공기관 표현</div>
+        ${[
+          ['어떻게 하면 돼요?', 'What do I need to do? / How do I do it?'],
+          ['이 서류를 어디에 내면 돼요?', 'Where do I submit this document?'],
+          ['신청서를 작성하면 돼요.', 'You just need to fill out the application.'],
+          ['도와 드릴까요?', 'May I help you? / Shall I assist you?'],
+        ].map(([ko,en]) => `
+          <div style="padding:7px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+            <div style="font-size:14px;font-weight:600">🔊 ${ko}</div>
+            <div style="font-size:12px;color:#888">${en}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 4: return `
+      <h2>👂 듣기</h2>
+      <p class="sub">린과 수민의 대화를 들어 보세요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🎧 상황: 외국인등록증 갱신 안내</div>
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">베트남 출신 린은 외국인등록증을 갱신해야 해요. 수민과 나누는 대화를 들어 보세요.</p>
+        <button onclick="playListeningScript()" style="width:100%;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px">
+          🔊 전체 듣기
+        </button>
+      </div>
+      <div class="card" style="margin-bottom:10px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📝 듣기 스크립트</div>
+        ${[
+          ['린', '수민 씨, 저 다음 주에 외국인등록증을 갱신해야 해요. 어떻게 하면 돼요?'],
+          ['수민', '주민센터에 가면 돼요. 여권이랑 신청서만 준비하면 되니까 어렵지 않아요.'],
+          ['린', '혼자 가도 괜찮을까요? 한국어가 아직 좀 부족해서요.'],
+          ['수민', '걱정 마세요. 직원분들이 친절하게 도와 드려요. 제가 같이 가 드릴게요.'],
+          ['린', '정말요? 감사해요. 그런데 얼마나 걸려요?'],
+          ['수민', '보통 30분 정도면 돼요. 미리 예약하면 더 빨리 할 수 있어요.'],
+          ['린', '어떻게 예약하면 돼요?'],
+          ['수민', '정부24 앱으로 온라인 예약을 하면 돼요. 제가 도와 드릴게요.'],
+          ['린', '정말 감사해요! 덕분에 잘 할 수 있을 것 같아요.'],
+        ].map(([sp, text], i) => `
+          <div style="display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${text.replace(/'/g,"\\'")}')">
+            <span style="font-size:11px;font-weight:700;color:#f59e0b;min-width:30px;margin-top:2px">${sp}</span>
+            <span style="font-size:13px;line-height:1.6;flex:1">${text}</span>
+            <span>🔊</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">이해 확인 문제</div>
+        ${[
+          {q:'린은 무엇을 갱신해야 해요?', opts:['여권','외국인등록증','운전면허증','학생증'], ans:1},
+          {q:'수민은 어디에 가면 된다고 했어요?', opts:['출입국관리사무소','구청','주민센터','우체국'], ans:2},
+          {q:'온라인 예약은 어떻게 할 수 있어요?', opts:['카카오 앱','정부24 앱','전화','직접 방문'], ans:1},
+          {q:'갱신하는 데 보통 얼마나 걸려요?', opts:['10분','30분','1시간','2시간'], ans:1},
+        ].map((item, qi) => `
+          <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">${qi+1}. ${item.q}</div>
+            ${item.opts.map((o, oi) => `
+              <div style="padding:7px 10px;background:${oi===item.ans?'#dcfce7':'#f9fafb'};border:1px solid ${oi===item.ans?'#22c55e':'#e5e7eb'};border-radius:8px;margin-bottom:4px;font-size:13px;cursor:pointer" onclick="TTS.speak('${o}')">
+                ${oi===item.ans?'✅ ':''}${o}
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 5: return `
+      <h2>🔊 발음</h2>
+      <p class="sub">공공 서비스 어휘의 격음화·경음화·연음 규칙</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">규칙 1: 격음화 (ㄱ/ㄷ + ㅎ → 거센소리)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">ㄱ 뒤에 ㅎ이 오면 [ㅋ]으로 발음해요. 예: ㄱ+ㅎ → [ㅋ]</div>
+        ${[
+          ['등록하다', '[등노카다]', 'to register', '등록+하다 → ㄱ+ㅎ → 격음화 [ㅋ]'],
+        ].map(([word, pron, en, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:80px;font-size:16px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#f59e0b;color:#fff;padding:3px 10px;border-radius:20px;font-size:13px;font-weight:700">${pron}</div>
+              <div style="font-size:12px;color:#888">${en}</div>
+            </div>
+            <div style="font-size:11px;color:#b45309;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">규칙 2: 경음화 (된소리되기)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">받침 뒤에 예사소리가 오면 된소리로 발음해요.</div>
+        ${[
+          ['접수하다', '[접쑤하다]', 'to submit', 'ㅂ+ㅅ → 된소리 [ㅆ], +ㅎ 유지'],
+          ['발급받다', '[발끕받따]', 'to get issued', 'ㄱ+ㄱ → 된소리 [ㄲ], ㄷ+ㅂ → 된소리 [ㅃ]'],
+          ['외국인등록증', '[외국인등록쯩]', 'alien registration card', 'ㄱ+ㅈ → 된소리 [ㅉ]'],
+          ['도장을 찍다', '[도장을 찍따]', 'to stamp', 'ㄱ+ㄷ → 된소리 [ㄷ→ㄸ]'],
+        ].map(([word, pron, en, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:100px;font-size:15px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#f59e0b;color:#fff;padding:3px 10px;border-radius:20px;font-size:13px;font-weight:700">${pron}</div>
+            </div>
+            <div style="font-size:11px;color:#b45309;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">발음 연습</div>
+        <p style="font-size:13px;color:#555;margin-bottom:10px">문장을 천천히 따라 읽어 보세요:</p>
+        ${[
+          '신청서[신청서]를 작성하면 돼요.',
+          '외국인등록증[외국인등록쯩]을 갱신해야 해요.',
+          '접수하다[접쑤하다]와 발급받다[발끕받따].',
+          '등록하다[등노카다] — 주민센터에서 등록하면 돼요.',
+        ].map(s => `
+          <div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px;cursor:pointer" onclick="TTS.speak('${s.replace(/\[.*?\]/g,'')}')">
+            🔊 ${s}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 6: return `
+      <h2>📖 읽기</h2>
+      <p class="sub">한국의 공공 서비스 — 외국인을 위한 안내</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">읽기 본문</div>
+        <div style="font-size:14px;line-height:1.9;color:#1a202c">
+          <p style="margin-bottom:12px">외국인이 자주 이용하는 공공 서비스로는 주민센터, 출입국관리사무소, 은행, 우체국 등이 있습니다.</p>
+          <p style="margin-bottom:12px">주민센터에서는 외국인등록증 갱신, 주민등록등본 발급, 전입신고 등을 할 수 있어요. 번호표를 뽑아 기다리면 직원이 친절하게 도와 줘요.</p>
+          <p style="margin-bottom:12px">정부24(www.gov.kr) 앱을 이용하면 온라인으로 신청할 수 있어서 편리해요. 대기 시간도 줄일 수 있고, 모바일에서 바로 신청하면 돼요.</p>
+          <p>외국어 지원 서비스도 확대되고 있어요. 1345 외국인 종합안내센터에 전화하면 24시간 베트남어 통역 서비스를 받을 수 있어요. 사회통합프로그램(KIIP) 이수 시 귀화 신청에 점수를 인정받을 수 있어요.</p>
+        </div>
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">읽기 이해 문제</div>
+        ${[
+          {q:'주민센터에서 할 수 없는 것은?', opts:['외국인등록증 갱신','전입신고','비행기 예약','주민등록등본 발급'], ans:2},
+          {q:'정부24의 장점이 아닌 것은?', opts:['온라인 신청 가능','대기 시간 단축','모바일 신청 가능','무료 번역 제공'], ans:3},
+          {q:'1345에 전화하면 받을 수 있는 서비스는?', opts:['음식 배달','외국어 통역','취업 알선','의료 지원'], ans:1},
+        ].map((item, qi) => `
+          <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">${qi+1}. ${item.q}</div>
+            ${item.opts.map((o, oi) => `
+              <div style="padding:7px 10px;background:${oi===item.ans?'#dcfce7':'#f9fafb'};border:1px solid ${oi===item.ans?'#22c55e':'#e5e7eb'};border-radius:8px;margin-bottom:4px;font-size:13px">
+                ${oi===item.ans?'✅ ':''}${o}
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 7: return `
+      <h2>✏️ 쓰기</h2>
+      <p class="sub">공공 서비스 이용 경험을 써 봐요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">쓰기 활동</div>
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:10px">📝 주제: 한국 공공 서비스 이용 경험</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">다음 내용을 포함해서 150~200자 정도 써 보세요:</div>
+        ${[
+          '어떤 공공기관에 갔어요? (주민센터, 은행, 우체국 등)',
+          '무엇을 하러 갔어요? (-(으)면 되다 사용)',
+          '거기서 어떤 도움을 받았어요? (-아/어 드리다 사용)',
+          '느낀 점이나 앞으로의 계획',
+        ].map((item, i) => `<div style="padding:8px;background:#fef3c7;border-radius:8px;margin-bottom:6px;font-size:13px">📌 ${i+1}. ${item}</div>`).join('')}
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">✍️ 예시 답안</div>
+        <div style="font-size:13px;line-height:1.9;color:#1a202c;background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:10px">
+          저는 지난주에 주민센터에 외국인등록증을 갱신하러 갔어요. 직원한테 물어보니까 신청서를 작성하고 여권을 제출하<b>면 돼요</b>라고 했어요. 친절한 직원분이 서류 작성을 도와 드<b>리겠다</b>고 하셔서 정말 감사했어요. 앞으로는 정부24 앱으로 온라인 신청을 해보려고 해요. 그러면 시간을 절약할 수 있을 것 같아요.
+        </div>
+        <div style="font-size:12px;color:#b45309;margin-bottom:4px">📌 문법 포인트:</div>
+        <div style="font-size:12px;color:#555;line-height:1.8">
+          • <b>작성하면 돼요</b> → -(으)면 되다 (방법 안내)<br>
+          • <b>도와 드리겠다</b> → -아/어 드리다 (공손한 도움 제안)<br>
+          • <b>절약할 수 있을 것 같아요</b> → 예상 표현
+        </div>
+      </div>
+      <div class="card" style="border-left:4px solid #8b5cf6">
+        <div style="font-size:13px;font-weight:700;color:#8b5cf6;margin-bottom:8px">🔤 유용한 연결 표현</div>
+        ${[
+          ['먼저', 'first of all'],
+          ['그리고 나서', 'and then / after that'],
+          ['처음에는', 'at first'],
+          ['하지만', 'however'],
+          ['덕분에', 'thanks to'],
+          ['앞으로는', 'in the future'],
+        ].map(([ko, en]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ede9fe;font-size:13px"><span style="font-weight:700">${ko}</span><span style="color:#888">${en}</span></div>`).join('')}
+      </div>
+    `;
+
+    case 8: return `
+      <h2>🎎 문화</h2>
+      <p class="sub">한국의 공공 서비스 문화 이해하기</p>
+      ${CULTURE.map(c => `
+        <div class="card card-accent" style="margin-bottom:10px">
+          <div style="font-size:28px;margin-bottom:6px">${c.icon}</div>
+          <div style="font-size:15px;font-weight:700;color:#92400e;margin-bottom:6px">${c.title}</div>
+          <div style="font-size:13px;line-height:1.8;color:#555">${c.body}</div>
+        </div>
+      `).join('')}
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">문화 비교</div>
+        <div style="font-size:13px;color:#555;line-height:1.7">
+          <div style="margin-bottom:8px">🇰🇷 한국 vs 🇻🇳 베트남</div>
+          ${[
+            '여러분 나라에서도 주민센터 같은 곳이 있나요?',
+            '베트남에서 공문서를 발급받으려면 어떻게 해요?',
+            '한국과 베트남의 은행 서비스 차이점이 있나요?',
+            '한국의 빨리빨리 문화를 경험한 적이 있어요?',
+          ].map((q,i) => `<div style="padding:7px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">💬 ${q}</div>`).join('')}
+        </div>
+      </div>
+      <div class="card" style="background:linear-gradient(135deg,#fef3c7,#fff7ed);text-align:center">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:6px">📞 외국인 지원 연락처</div>
+        <div style="font-size:13px;line-height:1.8;color:#555">
+          1345 외국인 종합안내센터 (24시간)<br>
+          다문화가족지원센터 ☎ 1577-1366<br>
+          사회통합프로그램 KIIP ☎ 1345
+        </div>
+      </div>
+    `;
+
+    case 9: return `
+      <h2>✅ 퀴즈</h2>
+      <p class="sub">5과 내용을 얼마나 이해했나요?</p>
+      ${renderQuiz()}
+    `;
+
+    case 10: {
+      setTimeout(() => RECORDER.autoDetect(), 100);
+      const PRON_SENTS = [
+        {sent:'신청서를 작성하면 돼요.', vi:'Điền vào đơn xin là được.'},
+        {sent:'제가 도와 드릴게요.', vi:'Tôi sẽ giúp bạn.'},
+        {sent:'외국인등록증을 갱신해야 해요.', vi:'Tôi cần gia hạn thẻ đăng ký người nước ngoài.'},
+        {sent:'여기에 서명하시면 됩니다.', vi:'Ký vào đây là được.'},
+      ];
+      return `
+        <h2>🤖 AI 실습</h2>
+        <p class="sub">글로컬 아카데미 × 에이전틱 G스택 한국어 학습</p>
+
+        <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+          <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+          <div style="font-size:15px;font-weight:800;margin-bottom:6px">KIIP 3급 5과 · 공공 서비스 AI 실습</div>
+          <div style="font-size:11px;opacity:0.85;line-height:1.7">Public Services — 주제별 AI 튜터와 실시간 학습<br>
+          <span style="color:#93c5fd">🇻🇳 Luyện tập chủ đề "공공 서비스" cùng AI ngay trong app</span></div>
+        </div>
+
+        <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+          <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+          <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+            계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+            ${AI_QUICK_BTNS.map((b,i)=>`
+              <button onclick="AICHAT.quickSend(${i})"
+                style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
+                ${b.emoji} ${b.label}
+              </button>
+            `).join('')}
+          </div>
+          <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+            <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
+              💡 버튼을 누르면 AI가 바로 답해줘요<br>
+              <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:flex-end">
+            <textarea id="ai-chat-input"
+              placeholder="공공 서비스에 대해 질문하세요... 🇻🇳 Nhập câu hỏi về dịch vụ công..."
+              style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
+              onfocus="this.style.borderColor='#f59e0b'"
+              onblur="this.style.borderColor='#fde68a'"
+              onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
+            ></textarea>
+            <button onclick="AICHAT.send()" id="ai-send-btn"
+              style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>
+          </div>
+          <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+        </div>
+
+        <div class="card card-accent" style="margin-bottom:10px">
+          <div class="section-label">🌐 외부 AI 서비스 상세 가이드</div>
+          <div style="font-size:11px;color:#888;margin:6px 0 8px">계정이 있는 경우 더 강력한 AI를 사용할 수 있어요</div>
+          <details style="margin-bottom:8px">
+            <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              🔵 Gemini AI 사용법 — Google 계정 필요
+            </summary>
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#1d4ed8">① 접속:</strong> gemini.google.com<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+                <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 주민센터 롤플레이</div>
+                <span style="font-family:monospace;background:#dbeafe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"저는 베트남인 KIIP 3급 학습자예요. 주민센터에서 외국인등록증 갱신하는 상황을 -(으)면 되다, -아/어 드리다 문법으로 롤플레이해 주세요."</span>
+              </div>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+                <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">📸 공문서 사진 질문</div>
+                공문서나 신청서 사진 찍어서 업로드 → "이게 무슨 뜻이에요?"<br>
+                <span style="color:#059669">🇻🇳 Chụp ảnh tài liệu → Upload → Hỏi nghĩa</span>
+              </div>
+            </div>
+          </details>
+          <details style="margin-bottom:8px">
+            <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              🟣 Claude AI 사용법 — 이메일 계정 필요
+            </summary>
+            <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#7c3aed">① 접속:</strong> claude.ai (이메일로 무료 가입)<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">
+                <div style="font-weight:700;color:#7c3aed;margin-bottom:3px">✏️ 공공 서비스 작문 첨삭</div>
+                <span style="font-family:monospace;background:#ede9fe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"KIIP 3급 외국인 학습자의 글입니다. -(으)면 되다, -아/어 드리다 사용 확인하고 베트남어로 설명해 주세요."</span>
+              </div>
+            </div>
+          </details>
+          <details>
+            <summary style="background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              📓 NotebookLM 사용법 — Google 계정 필요
+            </summary>
+            <div style="background:#fff8f0;border:1px solid #fed7aa;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#ea4335">① 접속:</strong> notebooklm.google.com<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #ea4335">
+                5과 학습 내용 복사 → NotebookLM에 붙여넣기:<br>
+                <button onclick="copyNotebookContent5()" style="background:#ea4335;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0">
+                  📋 5과 학습 내용 복사하기
+                </button><span id="copy-ok5" style="font-size:11px;color:#059669;margin-left:6px"></span><br>
+                "-(으)면 되다 문법 베트남어로 설명해줘" / "5과 퀴즈 10문제 만들어줘"
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="card card-green" style="margin-bottom:10px">
+          <div class="section-label" style="background:#059669">🎤 AI 발음 코치 · 녹음 &amp; 재생</div>
+          <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">
+            원어민 듣기 → 내가 녹음 → 다시 들으며 비교<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Nghe người bản ngữ → Tự ghi âm → Nghe lại so sánh</span>
+          </div>
+          <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#166534">
+            🆓 <strong>완전 무료</strong> — 브라우저 내장 API · 서버 없음
+          </div>
+          <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:14px;margin-bottom:10px">
+            <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px">🎙️ 마이크 허용 필요</div>
+            <div id="mic-perm-state" style="margin-bottom:10px"></div>
+            <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:10px">
+              <div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:8px">🚫 마이크가 차단되어 있어요</div>
+              <div style="background:#fff;border-radius:8px;padding:10px;font-size:12px;line-height:2;color:#1a202c">
+                <strong style="color:#1d4ed8">PC Chrome / Edge:</strong><br>
+                주소창 왼쪽 🔒 클릭 → 마이크 → <strong>허용</strong> → F5<br>
+                <strong style="color:#059669">📱 Android Chrome:</strong><br>
+                주소창 ⋮ → 사이트 설정 → 마이크 → 허용
+              </div>
+              <div style="margin-top:8px;font-size:11px;color:#059669">🇻🇳 Nhấn 🔒 góc trái → Micro → Cho phép → F5</div>
+            </div>
+            <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+              style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:12px;font-size:14px;font-weight:800">
+              🎙️ 마이크 허용하기 (여기 클릭)
+            </button>
+            <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>
+          </div>
+          ${PRON_SENTS.map((item,i)=>`
+            <div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+              <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>
+              <div style="font-size:10px;color:#059669;margin-bottom:8px">🇻🇳 ${item.vi}</div>
+              <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+                <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+              </div>
+              <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+                <button onclick="TTS.speak('${item.sent.replace(/'/g,"\\'")}'); this.textContent='🔊 재생 중...'; setTimeout(()=>this.textContent='🔊 원어민',2000)"
+                  style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">🔊 원어민</button>
+                <button id="rec-btn-${i}" onclick="startSTT(${i},'${item.sent.replace(/'/g,"\\'")}',this)"
+                  style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">🎤 녹음</button>
+                <button id="play-btn-${i}" disabled
+                  style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0;opacity:0.4">▶ 내 발음 듣기</button>
+              </div>
+              <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:16px"></div>
+            </div>
+          `).join('')}
+          <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+            <strong>📖 사용법:</strong> 1️⃣ 🔊 원어민 듣기 → 2️⃣ 🎤 녹음 → 3️⃣ ▶ 내 발음 듣기<br>
+            정확도 바: 🟢 80%+ 🟡 50~79% 🔴 50% 미만
           </div>
         </div>
 
-        <div style="display:flex;gap:6px;align-items:flex-end">
-          <textarea id="ai-chat-input"
-            placeholder="공공 서비스에 대해 질문하세요... / Ask about Public Services..."
-            style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
-            onfocus="this.style.borderColor='#f59e0b'"
-            onblur="this.style.borderColor='#fde68a'"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
-          ></textarea>
-          <button onclick="AICHAT.send()"
-            id="ai-send-btn"
-            style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">
-            ➤
-          </button>
+        <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+          <div class="section-label" style="background:#059669">🌐 글로컬 G스택 학습법</div>
+          <div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.8">
+            <strong>글로컬 아카데미 AI 에이전트 기반 4단계 학습법:</strong><br>
+            <span style="color:#555">① 어휘/문법 → Gemini 설명 요청</span><br>
+            <span style="color:#555">② 말하기 → Gemini 롤플레이 실습</span><br>
+            <span style="color:#555">③ 쓰기 → Claude AI 첨삭</span><br>
+            <span style="color:#555">④ 복습 → NotebookLM Q&amp;A 정리</span><br><br>
+            <span style="color:#059669;font-size:11px">🇻🇳 ① Từ vựng/ngữ pháp → Hỏi Gemini · ② Nói → Nhập vai với Gemini · ③ Viết → Nhờ Claude sửa bài · ④ Ôn tập → NotebookLM</span>
+          </div>
         </div>
-        <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
-      </div>
+      `;
+    }
 
-      <div class="card card-accent" style="margin-bottom:10px">
-        <div class="section-label">📖 5과 학습 가이드</div>
-        <div style="font-size:13px;color:#555;margin-top:8px;line-height:1.9">
-          <strong style="color:var(--brown)">🏛️ 공공 서비스 · Public Services</strong><br>
-          위의 빠른 질문 버튼을 눌러 AI 튜터에게 이 주제를 배워보세요.<br>
-          직접 질문도 자유롭게 입력할 수 있어요.<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nhấn các nút câu hỏi nhanh để học chủ đề này với AI.<br>Bạn cũng có thể tự nhập câu hỏi bất kỳ.</span>
-        </div>
-      </div>
-
-      <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
-    </div>
-  `;
-}
-
-function renderSection() {
-  switch(STATE.section) {
-    case 0: return renderIntro();
-    case 10: return renderAI();
-    default: return renderWIPSection(SECTIONS[STATE.section].label, SECTIONS[STATE.section].icon);
+    default: return '<div style="padding:20px;text-align:center;color:#888">준비중이에요 🙏</div>';
   }
 }
 
+// ===== MAIN RENDER =====
 function render() {
-  document.getElementById('app').innerHTML =
-    renderNav() + renderLangBar() + renderTabs() + renderSection() + renderBottomNav();
+  const s = STATE;
+  const app = document.getElementById('app');
+  if (!app) return;
+
+  const tabsHtml = SECTIONS.map(sec =>
+    `<button class="stab${s.section===sec.id?' active':''}" onclick="setState({section:${sec.id}})">${sec.icon} ${sec.label}</button>`
+  ).join('');
+
+  const bottomNav = `
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level3_Lesson4" class="bnav-btn" style="text-decoration:none;color:#888">
+        <span class="bnav-icon">←</span><span>4과</span>
+      </a>
+      <button class="bnav-btn${s.section===0?' active':''}" onclick="setState({section:0})">
+        <span class="bnav-icon">🏠</span><span>도입</span>
+      </button>
+      <button class="bnav-btn${s.section===9?' active':''}" onclick="setState({section:9})">
+        <span class="bnav-icon">✅</span><span>퀴즈</span>
+      </button>
+      <button class="bnav-btn${s.section===10?' active':''}" onclick="setState({section:10})">
+        <span class="bnav-icon">🤖</span><span>AI실습</span>
+      </button>
+      <a href="/KIIP_Level3_Lesson6" class="bnav-btn" style="text-decoration:none;color:#888">
+        <span class="bnav-icon">→</span><span>6과</span>
+      </a>
+    </nav>
+  `;
+
+  app.innerHTML = `
+    <nav class="nav">
+      <a href="/KIIP_Level3_Index" class="nav-back">← 목차</a>
+      <div style="text-align:right">
+        <div class="nav-title">5과 · 공공 서비스</div>
+        <div class="nav-sub">KIIP 3급 중급 1</div>
+      </div>
+    </nav>
+    <div class="section-tabs">${tabsHtml}</div>
+    <div class="page">${renderSection(s.section)}</div>
+    ${bottomNav}
+  `;
+
+  // Scroll active tab into view
+  setTimeout(() => {
+    const activeTab = document.querySelector('.stab.active');
+    if (activeTab) activeTab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  }, 50);
 }
 
+// ===== INIT =====
 render();
 </script>
 <script>
