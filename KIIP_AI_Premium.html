@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>KIIP AI 프리미엄 · 글로컬 아카데미 | 신청~수료 원스톱</title>
+<meta name="description" content="법무부 사회통합프로그램 0~5급 AI 완성 · 신청부터 수료까지 원스톱 · 18개국 언어 · 실시간 AI 발음코치 · TOPIK 연계">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="글로컬 아카데미 KIIP · GlocalBridge">
+<meta property="og:title" content="KIIP AI 프리미엄 · 신청부터 수료까지 원스톱">
+<meta property="og:description" content="법무부 사회통합프로그램보다 스마트한 AI 학습 · 0~5급 · 장소 찾기 · TOPIK 연계">
+<meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://elimg.com/KIIP_AI_Premium.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1E3A5F">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KIIP AI">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1E3A5F;--ocean:#2E75B6;--gold:#F59E0B;
+  --green:#10B981;--purple:#8B5CF6;--pink:#EC4899;--red:#EF4444;
+  --gray:#F8FAFC;--border:#E2E8F0;--text:#1E293B;--muted:#64748B;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:var(--gray);color:var(--text);max-width:520px;margin:0 auto;min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+.top-nav{background:linear-gradient(135deg,var(--navy),#0f2942);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.2)}
+.nav-brand-title{font-size:15px;font-weight:900;color:#fff}
+.nav-brand-sub{font-size:10px;color:#8899BB}
+.nav-badge{background:var(--gold);color:var(--navy);font-size:10px;font-weight:900;padding:4px 12px;border-radius:20px;letter-spacing:0.5px}
+
+/* LEVEL STRIP */
+.level-strip{background:linear-gradient(135deg,#0f172a,#1e293b);padding:14px 12px;display:flex;gap:5px}
+.level-btn{flex:1;padding:10px 2px;border-radius:10px;border:2px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);color:rgba(255,255,255,0.5);font-size:10px;font-weight:700;text-align:center;cursor:pointer;transition:all 0.2s;font-family:inherit}
+.level-btn .lv-num{font-size:17px;font-weight:900;display:block;line-height:1.2}
+.level-btn .lv-name{font-size:8px;opacity:0.8;margin-top:2px;display:block}
+
+/* TAB BAR */
+.tab-bar{background:#fff;border-bottom:1px solid var(--border);display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;position:sticky;top:52px;z-index:99;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
+.tab-bar::-webkit-scrollbar{display:none}
+.tab-item{flex-shrink:0;padding:10px 14px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.2s}
+.tab-item.active{color:var(--ocean);border-bottom-color:var(--ocean)}
+
+/* CONTENT */
+.content{padding:16px;padding-bottom:90px}
+
+/* CARDS */
+.card{background:#fff;border-radius:14px;padding:16px;margin-bottom:12px;border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,0.04)}
+.card-dark{background:linear-gradient(135deg,var(--navy),#0f2942);color:#fff;border:none}
+.card-gold{background:linear-gradient(135deg,#92400e,#b45309);color:#fff;border:none}
+
+/* LEVEL CARDS */
+.level-card{display:flex;align-items:center;gap:12px;padding:13px 14px;background:#fff;border-radius:14px;border:1px solid var(--border);margin-bottom:8px;text-decoration:none;color:inherit;transition:all 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.level-card:hover{transform:translateX(4px);box-shadow:0 4px 16px rgba(0,0,0,0.1)}
+.level-dot{width:46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;flex-shrink:0}
+.level-info{flex:1}
+.level-name{font-size:14px;font-weight:800}
+.level-desc{font-size:11px;color:var(--muted);margin-top:2px}
+.level-meta{font-size:10px;color:var(--muted);margin-top:3px}
+
+/* STEP FLOW */
+.step-item{display:flex;gap:14px;padding-bottom:22px;position:relative}
+.step-item:last-child{padding-bottom:0}
+.step-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:36px}
+.step-circle{width:36px;height:36px;border-radius:50%;background:var(--ocean);color:#fff;font-size:14px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.step-circle.done{background:var(--green)}
+.step-circle.curr{background:var(--gold);color:var(--navy)}
+.step-line{width:2px;flex:1;background:var(--border);margin:4px 0;min-height:16px}
+.step-body{flex:1;padding-top:6px}
+.step-title{font-size:14px;font-weight:800;margin-bottom:4px}
+.step-desc{font-size:12px;color:var(--muted);line-height:1.7}
+.step-btn{display:inline-block;margin-top:8px;background:var(--ocean);color:#fff;padding:6px 16px;border-radius:20px;font-size:11px;font-weight:700;text-decoration:none;cursor:pointer;border:none;font-family:inherit}
+
+/* REGION */
+.region-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.region-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px 10px;text-align:center;text-decoration:none;color:inherit;transition:all 0.15s;display:block}
+.region-card:hover{border-color:var(--ocean);background:#f0f7ff;transform:translateY(-2px)}
+.region-flag{font-size:26px;margin-bottom:4px}
+.region-name{font-size:13px;font-weight:800}
+.region-count{font-size:10px;color:var(--muted);margin-top:2px}
+
+/* COMPARE TABLE */
+.compare-table{width:100%;border-collapse:collapse;font-size:12px}
+.compare-table th{background:var(--navy);color:#fff;padding:8px 10px;text-align:center}
+.compare-table td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:center}
+.compare-table tr:nth-child(even) td{background:#f8fafc}
+.yes{color:var(--green);font-weight:900;font-size:15px}
+.no{color:var(--red);font-size:13px}
+.part{color:var(--gold);font-weight:700}
+
+/* TOPIK */
+.topik-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.topik-card{border-radius:12px;padding:14px 10px;text-align:center;color:#fff}
+.topik-grade{font-size:22px;font-weight:900}
+.topik-skill{font-size:10px;opacity:0.85;margin-top:2px}
+.topik-kiip{font-size:10px;margin-top:6px;background:rgba(255,255,255,0.2);border-radius:6px;padding:3px 8px}
+
+/* AI */
+.ai-chatbox{background:#fff;border:1px solid var(--border);border-radius:14px;min-height:220px;max-height:320px;overflow-y:auto;padding:12px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px}
+.ai-msg{display:flex;gap:8px;align-items:flex-start}
+.ai-msg.user{flex-direction:row-reverse}
+.ai-avatar{width:30px;height:30px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.ai-bubble{max-width:82%;padding:9px 12px;border-radius:12px;font-size:13px;line-height:1.6}
+.ai-bubble.bot{background:#f0f7ff;color:var(--text);border-top-left-radius:4px}
+.ai-bubble.user-b{background:var(--ocean);color:#fff;border-top-right-radius:4px}
+.ai-row{display:flex;gap:8px}
+.ai-input{flex:1;padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-size:13px;font-family:inherit;outline:none}
+.ai-input:focus{border-color:var(--ocean)}
+.ai-send{background:var(--ocean);color:#fff;border:none;border-radius:10px;padding:10px 16px;font-size:18px;cursor:pointer}
+
+/* QUICK BTNS */
+.qbtns{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.qbtn{background:#f0f7ff;border:1px solid #bfdbfe;color:var(--navy);border-radius:20px;padding:5px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;transition:all 0.15s}
+.qbtn:hover{background:#dbeafe}
+
+/* PROGRESS */
+.prog-wrap{background:var(--border);border-radius:8px;height:7px;overflow:hidden;margin-top:6px}
+.prog-fill{height:100%;border-radius:8px;transition:width 0.5s}
+
+/* UTIL */
+.btn{display:block;width:100%;padding:13px;border-radius:12px;font-size:14px;font-weight:800;text-align:center;cursor:pointer;border:none;font-family:inherit;text-decoration:none;transition:opacity 0.2s}
+.btn:hover{opacity:0.9}
+.btn-primary{background:var(--ocean);color:#fff}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.sec-title{font-size:16px;font-weight:900;color:var(--text);margin-bottom:3px}
+.sec-sub{font-size:12px;color:var(--muted);margin-bottom:14px}
+.divider{height:1px;background:var(--border);margin:18px 0}
+.badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:10px;font-weight:700;color:#fff}
+.tag{display:inline-flex;align-items:center;background:rgba(255,255,255,0.18);border-radius:6px;padding:3px 10px;font-size:11px;margin:2px}
+
+/* BOTTOM NAV */
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:520px;background:#fff;border-top:1px solid var(--border);display:flex;z-index:100;padding:4px 0;box-shadow:0 -2px 12px rgba(0,0,0,0.08)}
+.bnav{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 2px;font-size:9px;font-weight:700;color:var(--muted);cursor:pointer;border:none;background:none;font-family:inherit;transition:color 0.2s}
+.bnav.active{color:var(--ocean)}
+.bnav-icon{font-size:19px}
+
+@media(prefers-color-scheme:dark){
+  body{background:#0f172a;color:#e2e8f0}
+  .card,.level-card,.region-card,.ai-chatbox{background:#1e293b;border-color:#334155}
+  .tab-bar,.bottom-nav{background:#1e293b;border-color:#334155}
+  .ai-bubble.bot{background:#0f2942}
+  .ai-input{background:#1e293b;border-color:#334155;color:#e2e8f0}
+  .compare-table tr:nth-child(even) td{background:#1e293b}
+}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+
+<nav class="bottom-nav">
+  <button class="bnav active" id="bn-home" onclick="setTab('home')"><span class="bnav-icon">🏠</span>홈</button>
+  <button class="bnav" id="bn-apply" onclick="setTab('apply')"><span class="bnav-icon">📝</span>신청</button>
+  <button class="bnav" id="bn-location" onclick="setTab('location')"><span class="bnav-icon">📍</span>장소</button>
+  <button class="bnav" id="bn-study" onclick="setTab('study')"><span class="bnav-icon">📚</span>학습</button>
+  <button class="bnav" id="bn-topik" onclick="setTab('topik')"><span class="bnav-icon">📊</span>TOPIK</button>
+  <button class="bnav" id="bn-ai" onclick="setTab('ai')"><span class="bnav-icon">🤖</span>AI</button>
+</nav>
+
+<script>
+// ===== DATA =====
+const LEVELS = [
+  {n:0,name:'기초',eng:'Pre-Beginner',hours:'15H',color:'#10B981',icon:'🌱',
+   desc:'한글 자모 · 기초 인사 · 숫자',topik:'TOPIK 준비 전',lessons:8,
+   feature:'한글 입문',url:'/KIIP_Level0_Index'},
+  {n:1,name:'초급1',eng:'Beginner 1',hours:'100H',color:'#3B82F6',icon:'📗',
+   desc:'일상 의사소통 · 직장생활 기초',topik:'TOPIK I 1급 목표',lessons:20,
+   feature:'조선소 특화',url:'/HanwhaOcean_Level1_Index'},
+  {n:2,name:'초급2',eng:'Beginner 2',hours:'100H',color:'#F59E0B',icon:'📘',
+   desc:'공공기관 · 의료 · 금융 이용',topik:'TOPIK I 2급 목표',lessons:20,
+   feature:'TOPIK I 완성',url:'/HanwhaOcean_Level2_Index'},
+  {n:3,name:'중급1',eng:'Intermediate 1',hours:'100H',color:'#8B5CF6',icon:'📙',
+   desc:'한국 역사 · 문화 · 직업 능력',topik:'TOPIK II 3급 목표',lessons:20,
+   feature:'사회 참여',url:'/KIIP_Level3_Index'},
+  {n:4,name:'중급2',eng:'Intermediate 2',hours:'100H',color:'#EC4899',icon:'📕',
+   desc:'사회 참여 · 고급 의사소통',topik:'TOPIK II 4급 목표',lessons:20,
+   feature:'글로컬 인재',url:'/KIIP_Full_Program'},
+  {n:5,name:'고급',eng:'Advanced',hours:'50~70H',color:'#EF4444',icon:'🎓',
+   desc:'한국 정치 · 경제 · 법 · 귀화',topik:'TOPIK II 5급+ 목표',lessons:20,
+   feature:'귀화 · 영주권',url:'/KIIP_Full_Program'},
+];
+
+const REGIONS = [
+  {name:'서울',flag:'🏙️',count:'120+',code:'11'},{name:'경기',flag:'🌾',count:'150+',code:'41'},
+  {name:'인천',flag:'✈️',count:'60+',code:'28'},{name:'부산',flag:'⚓',count:'50+',code:'26'},
+  {name:'경남',flag:'🚢',count:'45+',code:'48'},{name:'대구',flag:'🌊',count:'35+',code:'27'},
+  {name:'경북',flag:'🍎',count:'40+',code:'47'},{name:'충남',flag:'🌻',count:'30+',code:'44'},
+  {name:'전남',flag:'🍵',count:'25+',code:'46'},{name:'전북',flag:'🌿',count:'25+',code:'45'},
+  {name:'강원',flag:'🏔️',count:'20+',code:'42'},{name:'제주',flag:'🍊',count:'15+',code:'50'},
+];
+
+const QBTNS = [
+  {e:'📝',l:'신청 방법',q:'KIIP 사회통합프로그램 신청 방법을 단계별로 알려주세요.'},
+  {e:'📍',l:'장소 찾기',q:'내 지역 KIIP 수업 장소는 어떻게 찾나요?'},
+  {e:'🎯',l:'TOPIK 연계',q:'KIIP와 TOPIK은 어떻게 연계되나요? 급수별로 알려주세요.'},
+  {e:'🛂',l:'비자 가점',q:'KIIP 이수 시 비자 가점과 혜택은 무엇인가요?'},
+  {e:'⏰',l:'이수 기간',q:'KIIP 0급부터 5급까지 전 과정 이수에 얼마나 걸리나요?'},
+  {e:'🎓',l:'귀화 조건',q:'KIIP 이수와 귀화 · 영주권 신청 조건의 관계를 알려주세요.'},
+];
+
+// ===== STATE =====
+let S = { tab:'home', level:1 };
+let aiMsgs = [{role:'bot',text:'안녕하세요! 👋 저는 글로컬 KIIP AI 튜터예요.\n\nKIIP 신청 방법, 장소 찾기, TOPIK 연계, 비자 가점 등\n무엇이든 물어보세요! 로그인 없이 무제한 무료입니다. 😊'}];
+let aiLoading = false;
+
+// ===== RENDER =====
+function render() {
+  document.getElementById('app').innerHTML = rNav() + rStrip() + rTabs() + `<div class="content">${rPage()}</div>`;
+  ['home','apply','location','study','topik','ai'].forEach(t => {
+    const el = document.getElementById('bn-'+t);
+    if(el) el.className = 'bnav' + (S.tab===t?' active':'');
+  });
+}
+
+function rNav() {
+  return `<div class="top-nav">
+    <div class="nav-brand">
+      <div class="nav-brand-title">🎓 KIIP AI 프리미엄</div>
+      <div class="nav-brand-sub">글로컬 아카데미 · 법무부 사회통합프로그램 공식 커리큘럼</div>
+    </div>
+    <span class="nav-badge">✨ AI</span>
+  </div>`;
+}
+
+function rStrip() {
+  return `<div class="level-strip">
+    ${LEVELS.map(lv=>`
+      <button class="level-btn" onclick="setState({level:${lv.n}})"
+        style="border-color:${S.level===lv.n?lv.color:'rgba(255,255,255,0.08)'};background:${S.level===lv.n?lv.color+'22':'rgba(255,255,255,0.04)'};color:${S.level===lv.n?lv.color:'rgba(255,255,255,0.5)'}">
+        <span class="lv-num">${lv.n}급</span>
+        <span class="lv-name">${lv.name}</span>
+      </button>`).join('')}
+  </div>`;
+}
+
+function rTabs() {
+  const tabs = [{id:'home',l:'🏠 홈'},{id:'apply',l:'📝 수업 신청'},{id:'location',l:'📍 장소 찾기'},{id:'study',l:'📚 레벨 학습'},{id:'topik',l:'📊 TOPIK'},{id:'ai',l:'🤖 AI 튜터'}];
+  return `<div class="tab-bar">${tabs.map(t=>`<div class="tab-item${S.tab===t.id?' active':''}" onclick="setTab('${t.id}')">${t.l}</div>`).join('')}</div>`;
+}
+
+function rPage() {
+  return ({home:rHome,apply:rApply,location:rLocation,study:rStudy,topik:rTopik,ai:rAI}[S.tab]||rHome)();
+}
+
+// ===== HOME =====
+function rHome() {
+  const lv = LEVELS[S.level];
+  return `
+  <div class="card card-dark" style="background:linear-gradient(135deg,${lv.color}CC,${lv.color}77);margin-bottom:14px">
+    <div style="font-size:11px;opacity:0.75;margin-bottom:6px">현재 선택 · ${lv.n}급 ${lv.icon}</div>
+    <div style="font-size:24px;font-weight:900;margin-bottom:4px">${lv.name}</div>
+    <div style="font-size:12px;opacity:0.85;margin-bottom:12px">${lv.eng} · ${lv.hours} · ${lv.lessons}과 · ${lv.topik}</div>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px">
+      <span class="tag">🎯 ${lv.topik}</span>
+      <span class="tag">⭐ ${lv.feature}</span>
+      <span class="tag">📖 ${lv.lessons}과</span>
+    </div>
+    <a href="${lv.url}" class="btn" style="background:#fff;color:${lv.color};padding:11px;font-size:13px">📖 ${lv.n}급 수업 바로 시작 →</a>
+  </div>
+
+  <div class="sec-title">법무부 앱 vs 글로컬 AI</div>
+  <div class="sec-sub">더 스마트하게, 더 자유롭게</div>
+  <div class="card" style="padding:0;overflow:hidden;margin-bottom:16px">
+    <table class="compare-table">
+      <thead><tr><th style="text-align:left;padding-left:12px">기능</th><th>법무부 앱</th><th>글로컬 AI</th></tr></thead>
+      <tbody>
+        <tr><td style="text-align:left;padding-left:12px;font-weight:700">모바일 최적화</td><td class="part">△</td><td class="yes">✅</td></tr>
+        <tr><td style="text-align:left;padding-left:12px;font-weight:700">AI 발음 코치</td><td class="no">✗</td><td class="yes">✅</td></tr>
+        <tr><td style="text-align:left;padding-left:12px;font-weight:700">AI 튜터 (무제한)</td><td class="no">✗</td><td class="yes">✅</td></tr>
+        <tr><td style="text-align:left;padding-left:12px;font-weight:700">18개국 언어</td><td class="no">✗</td><td class="yes">✅</td></tr>
+        <tr><td style="text-align:left;padding-left:12px;font-weight:700">로그인 없이 학습</td><td class="no">✗</td><td class="yes">✅</td></tr>
+        <tr><td style="text-align:left;padding-left:12px;font-weight:700">TOPIK 통합 준비</td><td class="no">✗</td><td class="yes">✅</td></tr>
+        <tr><td style="text-align:left;padding-left:12px;font-weight:700">조선소 특화 과정</td><td class="no">✗</td><td class="yes">✅</td></tr>
+        <tr><td style="text-align:left;padding-left:12px;font-weight:700">PWA 앱 설치</td><td class="no">✗</td><td class="yes">✅</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-title">빠른 시작</div>
+  <div class="sec-sub">원하는 것을 바로 선택하세요</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
+    ${[
+      {i:'📝',l:'수업 신청',s:'사회통합포털 연결',t:'apply',c:'#3B82F6'},
+      {i:'📍',l:'장소 찾기',s:'내 지역 운영기관',t:'location',c:'#10B981'},
+      {i:'📚',l:'지금 학습',s:lv.n+'급 바로 시작',t:'study',c:lv.color},
+      {i:'🤖',l:'AI 튜터',s:'무제한 무료 질문',t:'ai',c:'#8B5CF6'},
+    ].map(it=>`
+      <button onclick="setTab('${it.t}')" style="background:#fff;border:2px solid ${it.c}18;border-radius:14px;padding:14px 10px;text-align:left;cursor:pointer;font-family:inherit;transition:all 0.2s;box-shadow:0 1px 4px rgba(0,0,0,0.06)" onmouseover="this.style.borderColor='${it.c}'" onmouseout="this.style.borderColor='${it.c}18'">
+        <div style="font-size:24px;margin-bottom:6px">${it.i}</div>
+        <div style="font-size:13px;font-weight:800;color:#1e293b">${it.l}</div>
+        <div style="font-size:10px;color:#64748b;margin-top:2px">${it.s}</div>
+      </button>`).join('')}
+  </div>
+
+  <div class="sec-title">전 과정 로드맵</div>
+  <div class="sec-sub">0급 → 5급 · 총 415H + 한국사회이해 50~70H</div>
+  ${LEVELS.map(lv=>`
+    <div class="card" style="padding:12px 14px;margin-bottom:8px;border-left:4px solid ${lv.color}">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="badge" style="background:${lv.color}">${lv.n}급</span>
+          <span style="font-weight:800;font-size:13px">${lv.name} ${lv.icon}</span>
+          <span style="font-size:10px;color:#94a3b8">${lv.hours}</span>
+        </div>
+        <a href="${lv.url}" style="font-size:11px;font-weight:700;color:${lv.color};text-decoration:none">학습 →</a>
+      </div>
+      <div style="font-size:11px;color:#64748b;margin-bottom:6px">${lv.desc} · ${lv.topik}</div>
+      <div class="prog-wrap"><div class="prog-fill" style="width:${lv.n<3?'100':'0'}%;background:${lv.color}"></div></div>
+    </div>`).join('')}
+
+  <a href="/KIIP_Full_Program" class="btn btn-navy" style="margin-top:4px">📋 전 과정 상세 보기 →</a>
+  `;
+}
+
+// ===== APPLY =====
+function rApply() {
+  const steps = [
+    {n:1,s:'done',icon:'🛂',title:'체류자격 확인',
+     desc:'참여 가능: F-2·F-4·F-5·F-6·H-2·결혼이민자·인도적체류자 등\n※ E-9·E-10은 제한 (고용허가제 별도 과정)'},
+    {n:2,s:'curr',icon:'💻',title:'사회통합포털 회원가입',
+     desc:'socinet.go.kr 접속 → 회원가입 → 외국인등록번호 입력 → 본인인증',
+     action:{label:'사회통합포털 접속 →',url:'https://www.socinet.go.kr'}},
+    {n:3,s:'',icon:'📋',title:'사전평가 신청',
+     desc:'온라인 한국어 능력 진단 → 결과에 따라 0~4단계 배치\n※ 사전평가 없이 0단계부터 시작 가능',
+     action:{label:'사전평가 신청 →',url:'https://www.socinet.go.kr'}},
+    {n:4,s:'',icon:'📍',title:'운영기관(장소) 선택',
+     desc:'내 지역 KIIP 인정 운영기관 선택\n야간반·주말반·온라인반 확인 후 신청',
+     action:{label:'장소 찾기 →',tab:'location'}},
+    {n:5,s:'',icon:'✅',title:'수업 신청 완료',
+     desc:'운영기관 선택 → 개강 일정 확인 → 신청 완료\n수업료: 완전 무료 (법무부 지원)'},
+    {n:6,s:'',icon:'📚',title:'수업 참석 · 이수',
+     desc:'출석률 80% 이상 필수 · 단계별 평가 통과\n5단계 이수 완료 → 이수증 발급 → 영주권·귀화 가점',
+     action:{label:'글로컬 AI로 예습 →',tab:'study'}},
+  ];
+
+  return `
+  <div class="sec-title">📝 KIIP 수업 신청 가이드</div>
+  <div class="sec-sub">사회통합프로그램 신청부터 수료까지 6단계</div>
+
+  <div class="card card-gold" style="margin-bottom:16px">
+    <div style="font-size:13px;font-weight:800;margin-bottom:6px">🎉 수업료 완전 무료!</div>
+    <div style="font-size:12px;opacity:0.9;line-height:1.8">
+      법무부 지원으로 한국어·한국문화 수업 무료<br>
+      이수 완료 시 영주권·귀화 신청 가점 혜택<br>
+      F-5 영주권 · 귀화 · E-7-4 전환 모두 유리
+    </div>
+  </div>
+
+  ${steps.map((s,i)=>`
+    <div class="step-item">
+      <div class="step-left">
+        <div class="step-circle ${s.s}">${s.s==='done'?'✓':s.n}</div>
+        ${i<steps.length-1?'<div class="step-line"></div>':''}
+      </div>
+      <div class="step-body">
+        <div style="font-size:20px;margin-bottom:4px">${s.icon}</div>
+        <div class="step-title">${s.n}단계. ${s.title}</div>
+        <div class="step-desc">${s.desc.replace(/\n/g,'<br>')}</div>
+        ${s.action?(s.action.tab
+          ?`<button onclick="setTab('${s.action.tab}')" class="step-btn">${s.action.label}</button>`
+          :`<a href="${s.action.url}" target="_blank" class="step-btn">${s.action.label}</a>`)
+        :''}
+      </div>
+    </div>`).join('')}
+
+  <div class="divider"></div>
+  <div class="sec-title" style="font-size:14px">📞 도움이 필요할 때</div>
+  ${[
+    {i:'🌐',l:'사회통합포털',v:'www.socinet.go.kr'},
+    {i:'📞',l:'이민자 콜센터',v:'☎ 1345 (24시간 무료)'},
+    {i:'🏢',l:'출입국외국인지원센터',v:'가까운 센터 방문 가능'},
+    {i:'🤖',l:'글로컬 AI 튜터',v:'아래 AI 탭에서 무제한 질문'},
+  ].map(c=>`
+    <div class="card" style="display:flex;align-items:center;gap:12px;padding:12px 14px;margin-bottom:8px">
+      <span style="font-size:22px">${c.i}</span>
+      <div><div style="font-size:12px;font-weight:800">${c.l}</div><div style="font-size:11px;color:#64748b;margin-top:2px">${c.v}</div></div>
+    </div>`).join('')}
+  `;
+}
+
+// ===== LOCATION =====
+function rLocation() {
+  return `
+  <div class="sec-title">📍 KIIP 운영기관 찾기</div>
+  <div class="sec-sub">내 지역 선택 → 공식 포털로 바로 연결</div>
+
+  <div class="card card-dark" style="margin-bottom:14px">
+    <div style="font-size:13px;font-weight:800;margin-bottom:6px">🔍 3단계로 찾기</div>
+    <div style="font-size:12px;opacity:0.9;line-height:1.9">
+      1️⃣ 아래 지역 선택 → 사회통합포털 이동<br>
+      2️⃣ 야간반·주말반 여부 확인<br>
+      3️⃣ 운영기관 선택 후 수업 신청
+    </div>
+    <a href="https://www.socinet.go.kr/soci/institution/InstitutionList.do" target="_blank"
+       class="btn btn-gold" style="margin-top:12px;font-size:12px;padding:10px">
+      🌐 전국 운영기관 검색 →
+    </a>
+  </div>
+
+  <div class="sec-title" style="font-size:14px">지역별 기관 찾기</div>
+  <div class="region-grid" style="margin-top:8px">
+    ${REGIONS.map(r=>`
+      <a href="https://www.socinet.go.kr/soci/institution/InstitutionList.do?sidoCode=${r.code}"
+         target="_blank" class="region-card">
+        <div class="region-flag">${r.flag}</div>
+        <div class="region-name">${r.name}</div>
+        <div class="region-count">${r.count} 기관</div>
+      </a>`).join('')}
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-title" style="font-size:14px">⏰ 수업 시간대</div>
+  ${[
+    {i:'🌅',l:'주간반',d:'평일 오전·오후 · 가장 많은 기관'},
+    {i:'🌙',l:'야간반',d:'평일 저녁 18:00~ · 직장인 추천'},
+    {i:'📅',l:'주말반',d:'토·일 · 주 1~2회'},
+    {i:'💻',l:'온라인반',d:'사이버한국어대학 연계 · 장소 무관'},
+  ].map(t=>`
+    <div class="card" style="display:flex;align-items:center;gap:12px;padding:12px 14px;margin-bottom:8px">
+      <span style="font-size:24px">${t.i}</span>
+      <div><div style="font-weight:800;font-size:13px">${t.l}</div><div style="font-size:11px;color:#64748b;margin-top:2px">${t.d}</div></div>
+    </div>`).join('')}
+
+  <div class="divider"></div>
+  <div class="sec-title" style="font-size:14px">🚢 조선소 특화 클래스</div>
+  <div class="card" style="border-left:4px solid #2E75B6;margin-top:8px">
+    <div style="font-size:13px;font-weight:800;margin-bottom:6px">한화오션 거제 한국어반</div>
+    <div style="font-size:12px;color:#64748b;line-height:1.8">
+      한화오션 거제 외국인 근로자 대상<br>
+      현장 맞춤 KIIP 1~2급 운영 · TOPIK·비자 원스톱
+    </div>
+    <a href="/HanwhaOcean_Level1_Index" class="btn btn-primary" style="margin-top:10px;font-size:12px;padding:10px">
+      🚢 한화오션 한국어반 시작 →
+    </a>
+  </div>
+  `;
+}
+
+// ===== STUDY =====
+function rStudy() {
+  const lv = LEVELS[S.level];
+  return `
+  <div class="sec-title">📚 레벨별 학습</div>
+  <div class="sec-sub">상단 급수 버튼으로 레벨을 선택하세요</div>
+
+  <div class="card" style="background:linear-gradient(135deg,${lv.color},${lv.color}AA);color:#fff;border:none;margin-bottom:16px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <div style="font-size:42px">${lv.icon}</div>
+      <div>
+        <div style="font-size:10px;opacity:0.75">${lv.n}급 · ${lv.eng}</div>
+        <div style="font-size:22px;font-weight:900">${lv.name}</div>
+        <div style="font-size:11px;opacity:0.85;margin-top:2px">${lv.hours} · ${lv.lessons}과</div>
+      </div>
+    </div>
+    <div style="margin-top:10px;display:flex;gap:5px;flex-wrap:wrap">
+      <span class="tag">🎯 ${lv.topik}</span>
+      <span class="tag">✓ ${lv.desc}</span>
+      <span class="tag">⭐ ${lv.feature}</span>
+    </div>
+    <a href="${lv.url}" class="btn" style="background:#fff;color:${lv.color};margin-top:12px;padding:11px;font-size:13px">
+      📖 ${lv.n}급 수업 시작하기 →
+    </a>
+  </div>
+
+  <div class="sec-title" style="font-size:14px">전체 급수 바로가기</div>
+  ${LEVELS.map(l=>`
+    <a href="${l.url}" class="level-card" style="${S.level===l.n?`border-left:4px solid ${l.color}`:''}">
+      <div class="level-dot" style="background:${l.color}">${l.n}</div>
+      <div class="level-info">
+        <div class="level-name">${l.name} ${l.icon}</div>
+        <div class="level-desc">${l.desc}</div>
+        <div class="level-meta">${l.hours} · ${l.lessons}과 · ${l.topik}</div>
+      </div>
+      <div style="color:#94a3b8;font-size:18px">→</div>
+    </a>`).join('')}
+
+  <div class="divider"></div>
+  <div class="sec-title" style="font-size:14px">🎁 특화 트랙</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+    <a href="/Korean_Education_Hub" class="card" style="text-align:center;text-decoration:none;color:inherit;border-top:3px solid #2E75B6;padding:16px 10px">
+      <div style="font-size:30px;margin-bottom:6px">🚢</div>
+      <div style="font-size:12px;font-weight:800">조선소 특화</div>
+      <div style="font-size:10px;color:#64748b;margin-top:3px">한화오션·HD현대</div>
+    </a>
+    <a href="/KIIP_Student_Track_Index" class="card" style="text-align:center;text-decoration:none;color:inherit;border-top:3px solid #10B981;padding:16px 10px">
+      <div style="font-size:30px;margin-bottom:6px">🎓</div>
+      <div style="font-size:12px;font-weight:800">유학생 취업</div>
+      <div style="font-size:10px;color:#64748b;margin-top:3px">이력서·TOPIK·비자</div>
+    </a>
+  </div>
+  `;
+}
+
+// ===== TOPIK =====
+function rTopik() {
+  const tLevels = [
+    {g:'1급',c:'#16a34a',k:'KIIP 0~1단계',s:'80~139점',sk:'일상적 표현'},
+    {g:'2급',c:'#15803d',k:'KIIP 2단계',s:'140~200점',sk:'기본 의사소통'},
+    {g:'3급',c:'#2563eb',k:'KIIP 3단계',s:'120~149점',sk:'일상·업무 구사'},
+    {g:'4급',c:'#1d4ed8',k:'KIIP 4단계',s:'150~189점',sk:'사회적 소통'},
+    {g:'5급',c:'#7c3aed',k:'KIIP 5단계',s:'190~229점',sk:'전문 분야 이해'},
+    {g:'6급',c:'#6d28d9',k:'KIIP 5단계+',s:'230점↑',sk:'전문적 소통'},
+  ];
+
+  return `
+  <div class="sec-title">📊 TOPIK 완전 정복</div>
+  <div class="sec-sub">사회통합프로그램 × TOPIK 연계 로드맵</div>
+
+  <div class="card card-dark" style="margin-bottom:14px">
+    <div style="font-size:13px;font-weight:800;margin-bottom:8px">💡 KIIP × TOPIK 핵심 혜택</div>
+    <div style="font-size:12px;opacity:0.9;line-height:2">
+      ✅ KIIP 3단계↑ 이수 → TOPIK II 3급 면제 가능<br>
+      ✅ KIIP 5단계 이수 → TOPIK 없이 귀화 신청<br>
+      ✅ E-7-4 전환 시 TOPIK 점수 가점 부여<br>
+      ✅ F-5 영주권 · F-6 비자 신청 시 KIIP = TOPIK 대체
+    </div>
+  </div>
+
+  <div class="sec-title" style="font-size:14px">TOPIK I &nbsp;(1~2급) · 입문·초급</div>
+  <div class="topik-grid" style="margin-top:8px">
+    ${tLevels.slice(0,2).map(t=>`
+      <div class="topik-card" style="background:${t.c}">
+        <div class="topik-grade">${t.g}</div>
+        <div class="topik-skill">${t.sk}</div>
+        <div class="topik-kiip">${t.k}</div>
+        <div style="font-size:10px;margin-top:4px;opacity:0.8">${t.s}</div>
+      </div>`).join('')}
+  </div>
+
+  <div class="sec-title" style="font-size:14px;margin-top:8px">TOPIK II (3~6급) · 중급·고급</div>
+  <div class="topik-grid" style="margin-top:8px">
+    ${tLevels.slice(2).map(t=>`
+      <div class="topik-card" style="background:${t.c}">
+        <div class="topik-grade">${t.g}</div>
+        <div class="topik-skill">${t.sk}</div>
+        <div class="topik-kiip">${t.k}</div>
+        <div style="font-size:10px;margin-top:4px;opacity:0.8">${t.s}</div>
+      </div>`).join('')}
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-title" style="font-size:14px">📅 시험 일정</div>
+  <div class="card" style="margin-top:8px">
+    ${[
+      {l:'접수',v:'시험 약 2~3개월 전'},
+      {l:'시험',v:'연 6회 (1·4·5·7·10·11월)'},
+      {l:'결과',v:'시험 후 약 5주'},
+      {l:'접수처',v:'한국교육과정평가원 topik.go.kr'},
+    ].map(r=>`
+      <div style="display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #f1f5f9;font-size:12px">
+        <span style="color:#64748b;font-weight:700">${r.l}</span>
+        <span style="font-weight:700">${r.v}</span>
+      </div>`).join('')}
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-title" style="font-size:14px">🎯 급수별 학습 바로가기</div>
+  ${LEVELS.map(lv=>`
+    <a href="${lv.url}" class="level-card" style="border-left:4px solid ${lv.color}">
+      <div class="level-dot" style="background:${lv.color}">${lv.n}</div>
+      <div class="level-info">
+        <div class="level-name">${lv.name} → ${lv.topik}</div>
+        <div class="level-desc">${lv.desc}</div>
+      </div>
+      <div style="color:${lv.color};font-size:16px">→</div>
+    </a>`).join('')}
+
+  <a href="https://www.topik.go.kr" target="_blank" class="btn btn-navy" style="margin-top:8px">
+    🌐 TOPIK 공식 사이트 →
+  </a>
+  `;
+}
+
+// ===== AI =====
+function rAI() {
+  return `
+  <div class="sec-title">🤖 AI 튜터</div>
+  <div class="sec-sub">KIIP 전문 AI · 로그인 없이 무제한 무료</div>
+
+  <div class="card card-dark" style="margin-bottom:12px">
+    <div style="font-size:12px;line-height:2;opacity:0.9">
+      💬 신청 방법 · 장소 · TOPIK · 비자 가점 · 귀화 조건 안내<br>
+      🌏 한국어 · 영어 · 베트남어 · 미얀마어 등 다국어 응답<br>
+      ⚡ 실시간 응답 · 완전 무료
+    </div>
+  </div>
+
+  <div class="qbtns">
+    ${QBTNS.map((b,i)=>`<button class="qbtn" onclick="aiQuick(${i})">${b.e} ${b.l}</button>`).join('')}
+  </div>
+
+  <div class="ai-chatbox" id="aiBox">
+    ${aiMsgs.map(m=>`
+      <div class="ai-msg${m.role==='user'?' user':''}">
+        <div class="ai-avatar">${m.role==='bot'?'🤖':'👤'}</div>
+        <div class="ai-bubble ${m.role==='bot'?'bot':'user-b'}">${m.text.replace(/\n/g,'<br>')}</div>
+      </div>`).join('')}
+    ${aiLoading?`<div class="ai-msg"><div class="ai-avatar">🤖</div><div class="ai-bubble bot" style="color:#94a3b8">⏳ 답변 생성 중...</div></div>`:''}
+  </div>
+
+  <div class="ai-row">
+    <input class="ai-input" id="aiIn" type="text" placeholder="KIIP에 대해 무엇이든 물어보세요..." onkeydown="if(event.key==='Enter')aiSend()">
+    <button class="ai-send" onclick="aiSend()">➤</button>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-title" style="font-size:13px">🎤 AI 발음 코치</div>
+  <div class="card" style="text-align:center;margin-top:8px">
+    <div style="font-size:30px;margin-bottom:8px">🎤</div>
+    <div style="font-size:13px;font-weight:800;margin-bottom:4px">실시간 발음 비교</div>
+    <div style="font-size:11px;color:#64748b;margin-bottom:12px">원어민 발음 듣기 → 내 발음 녹음 → 즉시 비교</div>
+    <a href="${LEVELS[S.level].url}" class="btn btn-primary" style="font-size:12px;padding:10px">
+      ${LEVELS[S.level].n}급 발음 코치 시작 →
+    </a>
+  </div>
+  `;
+}
+
+// ===== AI FUNCTIONS =====
+async function aiSend() {
+  const inp = document.getElementById('aiIn');
+  if (!inp) return;
+  const text = inp.value.trim();
+  if (!text || aiLoading) return;
+  inp.value = '';
+  aiMsgs.push({role:'user',text});
+  aiLoading = true;
+  render(); scrollAI();
+
+  try {
+    const sys = 'You are a KIIP (Korea Immigration and Integration Program) expert AI tutor for GlocalBridge (elimg.com). Help immigrants with: KIIP registration at socinet.go.kr, finding nearby classes, TOPIK exam prep (grades 1-6), visa score benefits (E-7-4, F-5, F-6), naturalization requirements. Answer in Korean by default, switch language if user writes in another language. Keep answers concise and practical. Users can study free at elimg.com.';
+    const res = await fetch('/api/chat', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})
+    });
+    const data = await res.json();
+    const reply = data.choices?.[0]?.message?.content || '죄송합니다. 잠시 후 다시 시도해주세요.';
+    aiMsgs.push({role:'bot',text:reply});
+  } catch(e) {
+    aiMsgs.push({role:'bot',text:'⚠️ 연결 오류입니다.\n\n📞 이민자 콜센터 1345 (24시간)\n🌐 socinet.go.kr 에서 도움받으세요.'});
+  }
+  aiLoading = false;
+  render(); scrollAI();
+}
+
+function aiQuick(i) {
+  const inp = document.getElementById('aiIn');
+  if (inp) { inp.value = QBTNS[i].q; aiSend(); }
+  else { setState({tab:'ai'}); setTimeout(()=>{const inp2=document.getElementById('aiIn');if(inp2){inp2.value=QBTNS[i].q;aiSend();}},100); }
+}
+
+function scrollAI() {
+  setTimeout(()=>{ const b=document.getElementById('aiBox'); if(b) b.scrollTop=b.scrollHeight; },80);
+}
+
+// ===== HELPERS =====
+function setState(u) { Object.assign(S,u); render(); }
+function setTab(t) { S.tab=t; render(); window.scrollTo(0,0); }
+
+// ===== INIT =====
+render();
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{ navigator.serviceWorker.register('/sw.js').catch(()=>{}); });
+}
+</script>
+</body>
+</html>
