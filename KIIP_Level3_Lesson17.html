@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>KIIP 3급 17과 · 법과 제도</title>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
@@ -11,7 +14,7 @@
 <meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://elimg.com/KIIP_Level3_Lesson17.html">
+<meta property="og:url" content="https://elimg.com/KIIP_Level3_Lesson17">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="KIIP 3급 17과 · 법과 제도">
 <meta name="twitter:description" content="법무부 KIIP 사회통합프로그램 3급 중급 1 · 17과 법과 제도">
@@ -54,9 +57,6 @@ h2{color:var(--brown);font-size:18px;margin-bottom:4px;font-weight:800}
 .lang-bar{background:#fef3c7;display:flex;justify-content:center;gap:8px;padding:8px}
 .lang-btn-sm{background:rgba(180,83,9,0.1);border:1px solid #fbbf24;color:#92400e;padding:8px 16px;border-radius:20px;font-size:13px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
 .lang-btn-sm.active{background:var(--amber);color:#fff;border-color:var(--amber)}
-.wip-banner{background:linear-gradient(135deg,#78350f,#92400e);color:#fff;border-radius:12px;padding:20px;margin-bottom:16px;text-align:center}
-.wip-banner h3{font-size:18px;font-weight:800;margin-bottom:8px}
-.wip-banner p{font-size:13px;opacity:0.9;line-height:1.7;margin-bottom:4px}
 .obj-item{display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid #fde68a;font-size:14px;color:var(--text)}
 .obj-item:last-child{border-bottom:none}
 .obj-check{color:var(--amber);font-size:16px;flex-shrink:0;margin-top:1px}
@@ -86,6 +86,9 @@ window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); }
 const STATE = {
   section: 0,
   lang: localStorage.getItem('kiip_lang') || 'ko',
+  grammarTab: 0,
+  quiz: {started:false, idx:0, score:0, chosen:null, done:false},
+  quizAnswers: {},
 };
 
 function setState(newState) {
@@ -108,7 +111,62 @@ const SECTIONS = [
   {id:10, label:'AI실습', icon:'🤖'},
 ];
 
-var AI_QUICK_BTNS = [{"emoji":"📋","label":"법·제도 어휘 설명","q":"KIIP 3급 17과: 법과 제도 관련 어휘 10개를 한국어, 발음, 영어, 베트남어로 알려주세요. 법률, 권리, 의무 관련 단어 포함해 주세요."},{"emoji":"🪪","label":"체류 관련 표현","q":"외국인 체류 및 비자 관련 표현을 알려주세요. 비자 갱신, 체류 연장, 외국인등록증 관련 문장을 베트남어와 함께 알려주세요."},{"emoji":"⚖️","label":"법적 권리 연습","q":"한국에서 외국인이 알아야 할 권리와 의무를 설명해 주세요. 근로 권리, 의료 보험 관련 표현을 KIIP 수준으로 알려주세요."},{"emoji":"🚔","label":"법 관련 롤플레이","q":"경찰이나 법적 기관과 대화하는 상황 롤플레이를 해주세요. 신분 확인, 도움 요청 관련 표현을 베트남어와 함께 알려주세요."}];
+const VOCAB = [
+  // 법률 용어
+  {ko:'법률', pron:'[법률]', en:'law / statute', vi:'luật pháp', cat:'법률 용어'},
+  {ko:'규정', pron:'[규정]', en:'regulation / rule', vi:'quy định', cat:'법률 용어'},
+  {ko:'의무', pron:'[의무]', en:'duty / obligation', vi:'nghĩa vụ', cat:'법률 용어'},
+  {ko:'권리', pron:'[권리]', en:'right', vi:'quyền lợi', cat:'법률 용어'},
+  {ko:'위반하다', pron:'[위반하다]', en:'to violate', vi:'vi phạm', cat:'법률 용어'},
+  // 법적 절차
+  {ko:'신고하다', pron:'[신고하다]', en:'to report / declare', vi:'khai báo, tố cáo', cat:'법적 절차'},
+  {ko:'신청하다', pron:'[신청하다]', en:'to apply', vi:'đăng ký, xin cấp', cat:'법적 절차'},
+  {ko:'허가', pron:'[허가]', en:'permission / license', vi:'giấy phép', cat:'법적 절차'},
+  {ko:'계약', pron:'[계약]', en:'contract', vi:'hợp đồng', cat:'법적 절차'},
+  {ko:'서류', pron:'[서류]', en:'documents / paperwork', vi:'giấy tờ', cat:'법적 절차'},
+  // 생활 법률
+  {ko:'임대차', pron:'[임대차]', en:'lease / rental', vi:'thuê nhà, hợp đồng thuê', cat:'생활 법률'},
+  {ko:'근로계약', pron:'[근노계약]', en:'employment contract', vi:'hợp đồng lao động', cat:'생활 법률'},
+  {ko:'보험', pron:'[보험]', en:'insurance', vi:'bảo hiểm', cat:'생활 법률'},
+  {ko:'세금', pron:'[세금]', en:'tax', vi:'thuế', cat:'생활 법률'},
+  {ko:'벌금', pron:'[벌금]', en:'fine / penalty', vi:'tiền phạt', cat:'생활 법률'},
+  // 제도 관련
+  {ko:'사회통합', pron:'[사회통합]', en:'social integration', vi:'hội nhập xã hội', cat:'제도 관련'},
+  {ko:'비자', pron:'[비자]', en:'visa', vi:'thị thực (visa)', cat:'제도 관련'},
+  {ko:'영주권', pron:'[영주권]', en:'permanent residency', vi:'thẻ thường trú', cat:'제도 관련'},
+  {ko:'귀화', pron:'[귀화]', en:'naturalization', vi:'nhập tịch', cat:'제도 관련'},
+  {ko:'외국인등록증', pron:'[외국인등록증]', en:'alien registration card', vi:'thẻ đăng ký người nước ngoài', cat:'제도 관련'},
+  // 표현
+  {ko:'합법적', pron:'[합법적]', en:'legal / lawful', vi:'hợp pháp', cat:'표현'},
+  {ko:'불법', pron:'[불법]', en:'illegal', vi:'bất hợp pháp', cat:'표현'},
+  {ko:'처벌', pron:'[처벌]', en:'punishment / penalty', vi:'trừng phạt', cat:'표현'},
+  {ko:'보호', pron:'[보호]', en:'protection', vi:'bảo vệ', cat:'표현'},
+  {ko:'준수하다', pron:'[준수하다]', en:'to comply with / observe', vi:'tuân thủ', cat:'표현'},
+];
+
+const QUIZ_DATA = [
+  {q:'"법에 따르면 외국인도 근로계약을 ____ 수 있어요." 빈칸에 알맞은 것은?', opts:['맺을','맺어서','맺고','맺이'], ans:0},
+  {q:'-에 따르면의 올바른 용법은?', opts:['결과를 나타낼 때 사용','출처·근거를 인용할 때 사용','가정 조건을 나타낼 때 사용','반대 의견을 말할 때 사용'], ans:1},
+  {q:'"비자가 만료될 경우에는 즉시 ____해야 해요." 빈칸에 알맞은 것은?', opts:['신고','연장','귀화','처벌'], ans:1},
+  {q:'-(으)ㄹ 경우에는의 의미로 가장 알맞은 것은?', opts:['~하기 때문에','만약 ~하면, ~한 상황에서는','~하면서','~하더라도'], ans:1},
+  {q:'"규정에 따르면 신청서를 먼저 제출해야 해요." 이 문장에서 -에 따르면의 역할은?', opts:['결과 설명','규정을 출처로 인용','가정을 표현','반대 의견 제시'], ans:1},
+];
+
+const CULTURE_DATA = [
+  {icon:'🏛️', title:'KIIP 사회통합프로그램 이수 혜택', body:'한국 KIIP(사회통합프로그램)를 이수하면 영주권·귀화 신청 시 우대를 받을 수 있어요. 한국어 능력 인정, 귀화 필기시험 면제, 체류 점수 가산 등 다양한 혜택이 있어요. KIIP 5단계를 마치면 사회통합프로그램 이수증을 받을 수 있어요.'},
+  {icon:'🪪', title:'외국인 등록 제도', body:'한국에 90일 이상 체류하는 외국인은 외국인등록증을 발급받아야 해요. 입국 후 90일 이내에 거주지 관할 출입국·외국인청에 신청해야 하고, 이를 위반하면 과태료가 부과될 수 있어요. 외국인등록증은 한국에서 신분증 역할을 해요.'},
+  {icon:'⚖️', title:'외국인 근로자 권리 보호', body:'한국 근로기준법에 따르면 외국인 근로자도 한국인과 동등한 근로 권리를 가져요. 최저임금, 연장근로수당, 유급휴가 등이 보장돼요. 부당한 대우를 받을 경우에는 고용노동부(국번 없이 1350) 또는 외국인노동자지원센터에 신고할 수 있어요.'},
+  {icon:'📋', title:'비자 연장 및 체류 관리', body:'비자 만료 전에 체류 기간 연장 신청을 해야 해요. 비자가 만료될 경우에는 미등록 체류자가 되어 법적 처벌을 받을 수 있어요. 하이코리아(www.hikorea.go.kr) 온라인 포털에서 비자 연장 신청이 가능해요. 기간을 잊지 않도록 달력에 표시해 두세요.'},
+];
+
+var AI_QUICK_BTNS = [
+  {emoji:'⚖️', label:'법률 어휘 설명', q:'KIIP 3급 17과 어휘: 법률 관련 단어 5개를 쉽게 설명하고 예문과 베트남어 번역을 알려주세요.'},
+  {emoji:'📐', label:'문법 질문', q:'KIIP 3급: -에 따르면 문법을 쉽게 설명하고 예문 3개를 베트남어 번역과 함께 알려주세요.'},
+  {emoji:'💬', label:'롤플레이', q:'저는 베트남 출신 KIIP 3급 학습자입니다. 외국인 등록 및 비자 연장 상황을 -에 따르면, -(으)ㄹ 경우에는 문법으로 롤플레이해 주세요.'},
+  {emoji:'✏️', label:'내 글 첨삭', q:'KIIP 3급 학습자의 글입니다. 문법을 확인하고 수정해 주세요. 베트남어로도 설명해 주세요: '},
+  {emoji:'❓', label:'틀린 문제 설명', q:'KIIP 3급 퀴즈에서 틀렸어요. -(으)ㄹ 경우에는 문법을 다시 쉽게 설명하고 예문 3개를 베트남어와 함께 알려주세요.'},
+  {emoji:'🎯', label:'TOPIK 연습', q:'KIIP 3급 수준의 TOPIK II 법률/제도 주제 빈칸 채우기 문제 3개를 만들어 주세요. 정답과 해설도 포함해 주세요.'},
+];
 
 var AICHAT = {
   history: [],
@@ -121,6 +179,7 @@ var AICHAT = {
     if (!inp) return;
     inp.value = b.q;
     inp.style.borderColor = '#f59e0b';
+    if (idx === 3) { inp.focus(); return; }
     this.send();
   },
 
@@ -154,7 +213,7 @@ var AICHAT = {
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div>'
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div>'
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div>'
-          + '</div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+          + '</div><span style="font-size:12px;color:#888">AI 응답 중... 🇻🇳 Đang trả lời...</span>';
         box.appendChild(ld);
         box.scrollTop = box.scrollHeight;
       }
@@ -170,18 +229,14 @@ var AICHAT = {
     var inp  = document.getElementById('ai-chat-input');
     var text = inp ? inp.value.trim() : '';
     if (!text) return;
-
     this.history.push({role:'user', content:text});
     this.addMsg('user', text);
     if (inp) inp.value = '';
     this.loading = true;
     this.setLoading(true);
-
-    var sys = "You are a Korean language tutor for KIIP Level 3. The student is likely Vietnamese. This lesson is about law and systems (법과 제도). Answer in Korean with Vietnamese translation. Be concise and friendly.";
-
+    var sys = 'You are a Korean language tutor for KIIP Level 3 Lesson 17 (법과 제도 / Law & Systems). Grammar focus: -에 따르면, -(으)ㄹ 경우에는. Student is likely Vietnamese. Answer in Korean with Vietnamese translation. Be concise and friendly.';
     try {
-      var url = '/api/chat';
-      var res  = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var data = await res.json();
       var reply = data.choices[0].message.content;
@@ -191,216 +246,859 @@ var AICHAT = {
       this.addMsg('assistant', reply);
     } catch(e) {
       this.setLoading(false);
-      this.addMsg('assistant',
-        '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요');
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요\n🇻🇳 Lỗi kết nối AI — Thử lại sau ít phút');
     }
     this.loading = false;
   }
 };
 
-// ===== RENDER =====
-function setLang(lang) {
-  STATE.lang = lang;
-  localStorage.setItem('kiip_lang', lang);
-  render();
+function copyNotebookContent17() {
+  var content = 'KIIP 3급 중급 1 · 17과 법과 제도 학습 자료\n글로컬 아카데미 (elimg.com)\n\n=== 핵심 어휘 ===\n법률 용어: 법률, 규정, 의무, 권리, 위반하다\n법적 절차: 신고하다, 신청하다, 허가, 계약, 서류\n생활 법률: 임대차, 근로계약, 보험, 세금, 벌금\n제도 관련: 사회통합, 비자, 영주권, 귀화, 외국인등록증\n표현: 합법적, 불법, 처벌, 보호, 준수하다\n\n=== 핵심 문법 ===\n1. -에 따르면 (according to — citing source)\n   의미: ~에 의하면, ~을 보면 (인용·출처 표현)\n   예: 법에 따르면 외국인도 근로계약을 맺을 수 있어요.\n   예: 뉴스에 따르면 새 비자 정책이 생겼다고 해요.\n   예: 규정에 따르면 신청서를 먼저 제출해야 해요.\n   베트남어: Theo luật... / Theo quy định... / Theo tin tức...\n\n2. -(으)ㄹ 경우에는 (in the case that / if)\n   의미: 만약 ~하면, ~한 상황에서는\n   받침 없거나 ㄹ 받침 → -ㄹ 경우에는\n   받침 있으면 → -을 경우에는\n   예: 계약을 위반할 경우에는 벌금을 내야 해요.\n   예: 비자가 만료될 경우에는 즉시 연장해야 해요.\n   예: 사고가 날 경우에는 즉시 신고하세요.\n   베트남어: Trong trường hợp vi phạm... / Trong trường hợp visa hết hạn...';
+  navigator.clipboard.writeText(content).then(function() {
+    var el = document.getElementById('copy-ok17');
+    if (el) { el.textContent = '✅ 복사 완료!'; setTimeout(function(){ el.textContent = ''; }, 3000); }
+  }).catch(function() {
+    var el = document.getElementById('copy-ok17');
+    if (el) el.textContent = '❌ 직접 복사하세요';
+  });
 }
 
-function renderNav() {
-  return `
-    <div class="nav">
-      <a href="KIIP_Level3_Index.html" class="nav-back">← 3급 목차</a>
-      <div style="text-align:center">
-        <div class="nav-title">17과 · 법과 제도</div>
-        <div class="nav-sub">KIIP 3급 중급 1</div>
-      </div>
-      <div style="width:60px;text-align:right;font-size:11px;color:#d97706">
-        ${STATE.section+1}/${SECTIONS.length}
-      </div>
-    </div>
-  `;
+const RECORDER = {
+  streams: {}, recorders: {}, chunks: {}, audioURLs: {}, isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    const resultEl = document.getElementById('stt-result-' + idx);
+    const playBtn  = document.getElementById('play-btn-' + idx);
+    const scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, targetText, recBtn); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      this.streams[idx] = stream;
+    } catch(e) {
+      const name = e.name || '';
+      let msg = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg = '❌ <strong>마이크가 차단됨</strong> — 주소창 왼쪽 🔒 → 마이크 → <strong>허용</strong> 후 새로고침<br><span style="color:#555">🇻🇳 Micro bị chặn — Nhấn 🔒 → Micro → Cho phép → F5</span>';
+      } else if (name === 'NotFoundError') {
+        msg = '❌ <strong>마이크를 찾을 수 없어요</strong> — 마이크 연결 확인';
+      } else {
+        msg = '❌ <strong>오류: ' + name + '</strong> — Chrome/Edge에서 다시 시도';
+      }
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    const mr = new MediaRecorder(this.streams[idx]);
+    this.recorders[idx] = mr;
+    mr.ondataavailable = e => { if (e.data.size > 0) this.chunks[idx].push(e.data); };
+    mr.onstop = () => {
+      if (this.audioURLs[idx]) URL.revokeObjectURL(this.audioURLs[idx]);
+      const blob = new Blob(this.chunks[idx], {type: 'audio/webm'});
+      this.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false; playBtn.style.opacity = '1';
+        playBtn.onclick = () => { const a = new Audio(this.audioURLs[idx]); a.play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지'; recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중... · 🇻🇳 Đang ghi âm...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      const rec = new SR();
+      rec.lang = 'ko-KR'; rec.continuous = false; rec.interimResults = false;
+      rec.onresult = (e) => {
+        const said = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        const target = targetText.replace(/[\s,.?!\[\]]/g,'');
+        const conf = e.results[0][0].confidence;
+        let match = 0;
+        const minLen = Math.min(said.length, target.length);
+        for (let i = 0; i < minLen; i++) { if (said[i] === target[i]) match++; }
+        const pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        const confPct = Math.round((conf || 0.5) * 100);
+        const finalPct = Math.round((pct * 0.7) + (confPct * 0.3));
+        const color = finalPct >= 80 ? '#22c55e' : finalPct >= 50 ? '#f59e0b' : '#ef4444';
+        const msg = finalPct >= 80 ? '✅ 완벽해요! · Tuyệt vời!' : finalPct >= 50 ? '🔄 조금 더 연습! · Luyện thêm chút!' : '❌ 다시 시도! · Thử lại!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = finalPct + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = () => {};
+      rec.start();
+    }
+  },
+
+  async autoDetect() {
+    const stateEl = document.getElementById('mic-perm-state');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        const result = await navigator.permissions.query({name: 'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 이미 허용됨 — 바로 녹음하세요! · 🇻🇳 Đã cho phép!</div>';
+          if (allowBtn) { allowBtn.style.background = '#166534'; allowBtn.textContent = '✅ 허용됨 — 바로 녹음하세요'; }
+          if (blockedGuide) blockedGuide.style.display = 'none';
+          return;
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 아래 빨간 박스 순서대로 해결하세요</div>';
+          if (blockedGuide) blockedGuide.style.display = 'block';
+          if (allowBtn) { allowBtn.style.background = '#ef4444'; allowBtn.textContent = '⚠️ 차단됨 — 위 단계 완료 후 여기 클릭'; }
+          return;
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아직 허용 안 됨 — 아래 버튼을 눌러 허용해 주세요</div>';
+        }
+        result.onchange = () => RECORDER.autoDetect();
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+      }
+    } else {
+      stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+    }
+  },
+
+  async checkPermission(btn) {
+    const statusEl = document.getElementById('mic-status');
+    const box = document.getElementById('mic-check-box');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → elimg.com 에서 열기</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 미지원 브라우저 — Chrome 또는 Edge를 사용해 주세요</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      stream.getTracks().forEach(t => t.stop());
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 바로 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 성공! 🇻🇳 Đã cho phép!</span>';
+      if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
+      if (blockedGuide) blockedGuide.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 바로 녹음하세요!'; btn.style.background = '#166534'; btn.disabled = false;
+    } catch(e) {
+      const name = e.name || '';
+      btn.disabled = false;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        if (blockedGuide) blockedGuide.style.display = 'block';
+        if (stateEl) stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 빨간 박스 순서대로 해결 후 다시 클릭</div>';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444;font-size:11px">🔒 허용 완료 후 이 버튼을 다시 눌러주세요</span>';
+        btn.textContent = '🔄 허용 완료 후 다시 클릭'; btn.style.background = '#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">오류 (' + (name||'unknown') + ') — Chrome/Edge에서 다시 시도</span>';
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
+      }
+    }
+  },
+
+  stop(idx, targetText, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') this.recorders[idx].stop();
+    if (this.streams[idx]) this.streams[idx].getTracks().forEach(t => t.stop());
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음'; recBtn.style.background = '#059669';
+  }
+};
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
 }
 
-function renderLangBar() {
-  return `
-    <div class="lang-bar">
-      ${['ko','en','vi'].map(l=>`<button class="lang-btn-sm ${STATE.lang===l?'active':''}" onclick="setLang('${l}')">${l==='ko'?'🇰🇷 KO':l==='en'?'🇺🇸 EN':'🇻🇳 VI'}</button>`).join('')}
-    </div>
-  `;
+// ===== RENDER HELPERS =====
+function vocabCatColor(cat) {
+  const m = {
+    '법률 용어':'#ef4444',
+    '법적 절차':'#f59e0b',
+    '생활 법률':'#22c55e',
+    '제도 관련':'#3b82f6',
+    '표현':'#8b5cf6'
+  };
+  return m[cat] || '#888';
 }
 
-function renderTabs() {
-  return `
-    <div class="section-tabs">
-      ${SECTIONS.map(s=>`<button class="stab ${STATE.section===s.id?'active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
-    </div>
-  `;
-}
-
-function renderBottomNav() {
-  const prev = STATE.section > 0
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section-1}})">◀ 이전</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>◀ 이전</button>`;
-  const next = STATE.section < SECTIONS.length-1
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section+1}})">다음 ▶</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>다음 ▶</button>`;
-  return `
-    <div class="bottom-nav">
-      ${prev}
-      <button class="bnav-btn" onclick="setState({section:0})"><span class="bnav-icon">🏠</span><span>홈</span></button>
-      <button class="bnav-btn" onclick="setState({section:10})"><span class="bnav-icon">🤖</span><span>AI</span></button>
-      ${next}
-    </div>
-  `;
-}
-
-function renderWIPSection(title, icon) {
-  return `
-    <div class="page">
-      <h2>${icon} ${title}</h2>
-      <p class="sub">KIIP 3급 17과 · 법과 제도 · Law & Systems</p>
-      <div class="wip-banner">
-        <h3>🚧 콘텐츠 준비 중</h3>
-        <p>이 섹션의 학습 자료를 열심히 제작 중입니다.<br>Content is being prepared for this section.</p>
-        <p style="margin-top:8px;font-size:12px;opacity:0.8">🇻🇳 Nội dung đang được chuẩn bị. Vui lòng quay lại sau.</p>
-      </div>
-      <div class="card card-accent">
-        <div class="section-label">💡 지금 당장 학습하려면</div>
-        <div style="font-size:13px;color:#555;margin-top:6px;line-height:1.8">
-          아래 <strong>AI 실습</strong> 탭을 이용하면 이 주제를 바로 공부할 수 있어요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Sử dụng tab <strong>AI 실습</strong> bên dưới để học ngay chủ đề này!</span>
+function renderVocabCards() {
+  const cats = [...new Set(VOCAB.map(v => v.cat))];
+  return cats.map(cat => {
+    const items = VOCAB.filter(v => v.cat === cat);
+    const color = vocabCatColor(cat);
+    return `<div class="card" style="border-left:4px solid ${color};margin-bottom:10px">
+      <div style="font-size:12px;font-weight:700;color:${color};margin-bottom:8px">${cat}</div>
+      ${items.map(v => `
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${v.ko}')">
+          <div style="min-width:100px">
+            <span style="font-size:15px;font-weight:700;color:#1a202c">${v.ko}</span>
+            <span style="font-size:11px;color:#888;margin-left:4px">${v.pron}</span>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:12px;color:#b45309">${v.en}</div>
+            <div style="font-size:12px;color:#666">${v.vi}</div>
+          </div>
+          <span style="font-size:18px">🔊</span>
         </div>
-        <button onclick="setState({section:10})" style="background:var(--amber);color:#fff;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:700;margin-top:12px;width:100%">
-          🤖 AI 실습 탭으로 이동
-        </button>
-      </div>
-    </div>
-  `;
+      `).join('')}
+    </div>`;
+  }).join('');
 }
 
-function renderIntro() {
-  return `
-    <div class="page">
-      <div class="intro-header">
-        <div style="font-size:14px;opacity:0.8;margin-bottom:4px">KIIP 3급 · 중급 1</div>
-        <h3>17과 법과 제도</h3>
-        <div style="font-size:14px;margin-top:4px;opacity:0.9">Law & Systems</div>
-        <div style="margin-top:12px;font-size:28px">⚖️</div>
-      </div>
+function renderQuiz() {
+  const Q = QUIZ_DATA;
+  const s = STATE.quiz;
+  if (!s.started) {
+    return `<div class="intro-header" style="margin-bottom:16px">
+      <div style="font-size:40px;margin-bottom:8px">✅</div>
+      <h3>17과 퀴즈</h3>
+      <p style="font-size:13px;opacity:0.9">법과 제도 · 총 ${Q.length}문제</p>
+    </div>
+    <div class="card">
+      <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:14px">어휘, 문법(-에 따르면, -(으)ㄹ 경우에는)을 복습해 봐요!</p>
+      <button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:16px;font-weight:700">퀴즈 시작하기 🚀</button>
+    </div>`;
+  }
+  if (s.done) {
+    const pct = Math.round(s.score / Q.length * 100);
+    const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '👍' : '📚';
+    return `<div class="intro-header" style="margin-bottom:16px">
+      <div style="font-size:40px;margin-bottom:8px">${emoji}</div>
+      <h3>${s.score}/${Q.length} 정답</h3>
+      <p style="font-size:14px;opacity:0.9">${pct}점 · ${pct>=80?'훌륭해요!':pct>=60?'잘 했어요!':'다시 도전해 봐요!'}</p>
+    </div>
+    <div class="card">
+      <button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;margin-bottom:8px">다시 풀기 🔄</button>
+      <button onclick="setState({section:0})" style="width:100%;background:#fef3c7;color:#92400e;border-radius:12px;padding:12px;font-size:14px;font-weight:600">처음으로 🏠</button>
+    </div>`;
+  }
+  const cur = Q[s.idx];
+  const answered = s.chosen !== null;
+  return `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <span style="font-size:12px;color:#888">문제 ${s.idx+1}/${Q.length}</span>
+    <span style="font-size:12px;color:var(--amber);font-weight:700">점수: ${s.score}</span>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <p style="font-size:15px;font-weight:600;line-height:1.6;color:#1a202c">${cur.q}</p>
+  </div>
+  ${cur.opts.map((opt, oi) => {
+    let bg = '#fff', border = '#fde68a', color = '#1a202c';
+    if (answered) {
+      if (oi === cur.ans) { bg = '#dcfce7'; border = '#22c55e'; color = '#166534'; }
+      else if (oi === s.chosen) { bg = '#fee2e2'; border = '#ef4444'; color = '#991b1b'; }
+    }
+    return `<button onclick="${answered ? '' : `(function(){const isC=${oi===cur.ans};setState({quiz:{...STATE.quiz,chosen:${oi},score:STATE.quiz.score+(isC?1:0)}});})()`}" style="width:100%;background:${bg};border:2px solid ${border};border-radius:10px;padding:12px 14px;margin-bottom:8px;font-size:14px;color:${color};text-align:left;font-weight:${answered&&oi===cur.ans?'700':'400'}">${answered&&oi===cur.ans?'✅ ':''}${answered&&oi===s.chosen&&oi!==cur.ans?'❌ ':''}${opt}</button>`;
+  }).join('')}
+  ${answered ? `<button onclick="(function(){if(STATE.quiz.idx+1>=Q.length){setState({quiz:{...STATE.quiz,done:true}})}else{setState({quiz:{...STATE.quiz,idx:STATE.quiz.idx+1,chosen:null}})}})()" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:13px;font-size:15px;font-weight:700;margin-top:4px">${s.idx+1 >= Q.length ? '결과 보기 🏁' : '다음 문제 →'}</button>` : ''}`;
+}
 
+// ===== SECTION RENDERERS =====
+function renderSection(id) {
+  switch(id) {
+    case 0: return `
+      <div class="intro-header">
+        <div style="font-size:36px;margin-bottom:8px">⚖️</div>
+        <h3>17과 · 법과 제도</h3>
+        <p style="font-size:13px;opacity:0.85;margin-top:4px">Law &amp; Systems · Pháp luật &amp; Hệ thống</p>
+      </div>
       <div class="card card-accent">
         <div class="section-label">학습 목표</div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>법과 제도 관련 어휘를 이해하고 사용할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>법과 제도 주제로 말하기·쓰기를 할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>AI 튜터와 함께 법과 제도 표현을 연습할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>법과 제도 관련 어휘를 익히고 활용할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><b>-에 따르면</b>: 출처·근거를 인용하여 정보를 전달할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><b>-(으)ㄹ 경우에는</b>: 특정 상황과 그에 따른 행동을 표현할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>비자·외국인등록증 관련 절차를 한국어로 이해할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>한국 KIIP 사회통합프로그램 혜택을 이해한다</span></div>
       </div>
-
-      <div class="card" style="background:#fef3c7;border:1px solid #fbbf24">
-        <div class="section-label" style="background:#92400e">📌 이번 과 주제</div>
-        <div style="font-size:24px;text-align:center;margin:12px 0">⚖️</div>
-        <div style="font-size:18px;font-weight:800;text-align:center;color:var(--brown);margin-bottom:4px">17과 · 법과 제도</div>
-        <div style="font-size:14px;text-align:center;color:#555;margin-bottom:8px">Law & Systems</div>
-        <div style="background:#fff;border-radius:8px;padding:12px;font-size:13px;color:#555;line-height:1.8;border:1px solid #fde68a">
-          🚧 상세 콘텐츠는 준비 중입니다. AI 실습 탭에서 이 주제를 지금 바로 공부해 보세요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nội dung chi tiết đang được chuẩn bị. Hãy dùng tab AI 실습 để học ngay!</span>
+      <div class="card" style="background:linear-gradient(135deg,#fef3c7,#fff7ed)">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📚 이 과에서 배우는 문법</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:#f59e0b;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700">-에 따르면</span>
+          <span style="background:#22c55e;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700">-(으)ㄹ 경우에는</span>
         </div>
       </div>
-
-      <div style="display:flex;gap:10px;margin-top:4px">
-        <a href="KIIP_Level3_Lesson16.html" style="flex:1;background:var(--dark);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">← 16과</a>
-        <a href="KIIP_Level3_Lesson18.html" style="flex:1;background:var(--amber);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">18과 →</a>
-      </div>
-
-      <div style="margin-top:12px">
-        <div style="background:#d1fae5;border-radius:8px;height:6px;overflow:hidden;margin-bottom:4px">
+      <div class="card" style="text-align:center;background:#fef3c7">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:4px">🗓️ KIIP 3급 학습 진도</div>
+        <div style="font-size:12px;color:#666">16과 ✅ → <b>17과 법과 제도 📍</b> → 18과</div>
+        <div style="background:#d1fae5;border-radius:8px;height:6px;overflow:hidden;margin:10px 0 4px">
           <div style="background:#22c55e;height:100%;width:85%;transition:width 0.5s"></div>
         </div>
-        <div style="font-size:11px;color:#888;text-align:center">3급 전체 진도 85% · 17 / 20과</div>
+        <div style="font-size:11px;color:#888">3급 전체 진도 85% · 17 / 20과</div>
       </div>
-    </div>
-  `;
-}
-
-function renderAI() {
-  return `
-    <div class="page">
-      <h2>🤖 AI 실습</h2>
-      <p class="sub">글로컬 아카데미 × AI 한국어 튜터 · 법과 제도</p>
-
-      <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
-        <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
-        <div style="font-size:15px;font-weight:800;margin-bottom:6px">KIIP 3급 17과 · 법과 제도 AI 실습</div>
-        <div style="font-size:11px;opacity:0.85;line-height:1.7">Law & Systems — 주제별 AI 튜터와 실시간 학습<br>
-        <span style="color:#93c5fd">🇻🇳 Luyện tập chủ đề "법과 제도" cùng AI ngay trong app</span></div>
+      <div style="display:flex;gap:10px;margin-top:4px">
+        <a href="/KIIP_Level3_Lesson16" style="flex:1;background:var(--dark);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">← 16과</a>
+        <a href="/KIIP_Level3_Lesson18" style="flex:1;background:var(--amber);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">18과 →</a>
       </div>
+    `;
 
-      <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
-        <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
-        <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
-          계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
-          <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập, không chuyển tab</span>
-        </div>
+    case 1: return `
+      <h2>📝 어휘</h2>
+      <p class="sub">법과 제도 관련 핵심 어휘 25개 · tap to hear pronunciation</p>
+      ${renderVocabCards()}
+    `;
 
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-          ${AI_QUICK_BTNS.map((b,i)=>`
-            <button onclick="AICHAT.quickSend(${i})"
-              style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
-              ${b.emoji} ${b.label}
-            </button>
+    case 2: return `
+      <h2>📐 문법</h2>
+      <p class="sub">핵심 문법 2가지를 배워봐요</p>
+      <div style="display:flex;gap:8px;margin-bottom:14px">
+        <button onclick="setState({grammarTab:0})" style="flex:1;padding:10px;border-radius:10px;border:2px solid ${STATE.grammarTab===0?'#f59e0b':'#fde68a'};background:${STATE.grammarTab===0?'#f59e0b':'#fff'};color:${STATE.grammarTab===0?'#fff':'#92400e'};font-weight:700;font-size:13px">-에 따르면</button>
+        <button onclick="setState({grammarTab:1})" style="flex:1;padding:10px;border-radius:10px;border:2px solid ${STATE.grammarTab===1?'#22c55e':'#fde68a'};background:${STATE.grammarTab===1?'#22c55e':'#fff'};color:${STATE.grammarTab===1?'#fff':'#92400e'};font-weight:700;font-size:13px">-(으)ㄹ 경우에는</button>
+      </div>
+      ${STATE.grammarTab === 0 ? `
+        <div class="card card-accent">
+          <div class="section-label">-에 따르면 (according to)</div>
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px">의미: ~에 의하면, ~을 보면 (출처·근거 인용)</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">어떤 정보나 규정을 인용할 때 사용해요. 뉴스, 법률, 규정 등을 출처로 밝히면서 말할 때 씁니다.<br><b>Meaning:</b> "according to / based on" — citing a source<br><b>Nghĩa:</b> Theo... / Dựa theo...<br><span style="color:#d97706;font-size:12px">💡 명사 + -에 따르면 형태로 사용해요</span></div>
+          <div style="background:#fef3c7;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:6px">📌 형태 규칙</div>
+            <div style="font-size:13px;line-height:2">
+              <b>명사 + -에 따르면</b><br>
+              법에 따르면 / 규정에 따르면 / 뉴스에 따르면 / 연구에 따르면
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:8px">예문 (tap to hear)</div>
+          ${[
+            ['법에 따르면 외국인도 근로계약을 맺을 수 있어요.', 'According to the law, foreigners can also sign employment contracts.', 'Theo luật, người nước ngoài cũng có thể ký hợp đồng lao động.'],
+            ['뉴스에 따르면 새 비자 정책이 생겼다고 해요.', 'According to the news, a new visa policy has been created.', 'Theo tin tức, đã có chính sách visa mới.'],
+            ['규정에 따르면 신청서를 먼저 제출해야 해요.', 'According to the regulations, you must submit the application form first.', 'Theo quy định, bạn phải nộp đơn đăng ký trước.'],
+            ['출입국 규정에 따르면 비자를 미리 신청해야 해요.', 'According to immigration regulations, you must apply for a visa in advance.', 'Theo quy định xuất nhập cảnh, bạn phải xin visa trước.'],
+            ['법률에 따르면 근로자는 최저임금을 받을 권리가 있어요.', 'According to the law, workers have the right to receive minimum wage.', 'Theo pháp luật, người lao động có quyền nhận lương tối thiểu.'],
+          ].map(([ko,en,vi]) => `
+            <div style="padding:8px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko.replace(/'/g,"\\'")}')">
+              <div style="font-size:14px;font-weight:600;color:#1a202c">🔊 ${ko}</div>
+              <div style="font-size:12px;color:#666">${en}</div>
+              <div style="font-size:12px;color:#b45309">${vi}</div>
+            </div>
           `).join('')}
         </div>
+      ` : `
+        <div class="card card-accent" style="border-left-color:#22c55e">
+          <div class="section-label" style="background:#22c55e">-(으)ㄹ 경우에는 (in the case that / if)</div>
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px">의미: 만약 ~하면, ~한 상황에서는</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">특정 상황이나 조건이 발생했을 때 어떻게 해야 하는지 설명할 때 사용해요.<br><b>Meaning:</b> "in the case that / if this situation occurs"<br><b>Nghĩa:</b> Trong trường hợp... / Nếu xảy ra...<br><span style="color:#059669;font-size:12px">💡 -에 따르면과 함께 쓰면 법·규정 문장에 자주 나와요</span></div>
+          <div style="background:#f0fdf4;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:12px;font-weight:700;color:#059669;margin-bottom:6px">📌 형태 규칙</div>
+            <div style="font-size:13px;line-height:2">
+              받침 없거나 ㄹ 받침 → <b>-ㄹ 경우에는</b> &nbsp;(가다 → 갈 경우에는)<br>
+              받침 있으면 → <b>-을 경우에는</b> &nbsp;(위반하다 → 위반할 경우에는)
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#059669;margin-bottom:8px">예문 (tap to hear)</div>
+          ${[
+            ['계약을 위반할 경우에는 벌금을 내야 해요.', 'In the case of violating the contract, you must pay a fine.', 'Trong trường hợp vi phạm hợp đồng, bạn phải nộp phạt.'],
+            ['비자가 만료될 경우에는 즉시 연장해야 해요.', 'In the case that your visa expires, you must renew it immediately.', 'Trong trường hợp visa hết hạn, bạn phải gia hạn ngay lập tức.'],
+            ['사고가 날 경우에는 즉시 신고하세요.', 'In the case of an accident, please report it immediately.', 'Trong trường hợp xảy ra tai nạn, hãy báo cáo ngay.'],
+            ['서류가 부족할 경우에는 다시 방문해야 해요.', 'In the case that documents are insufficient, you must visit again.', 'Trong trường hợp thiếu giấy tờ, bạn phải đến lại.'],
+            ['체류 기간을 초과할 경우에는 처벌을 받을 수 있어요.', 'In the case of exceeding your stay period, you may be penalized.', 'Trong trường hợp vượt quá thời hạn lưu trú, bạn có thể bị phạt.'],
+          ].map(([ko,en,vi]) => `
+            <div style="padding:8px 0;border-bottom:1px solid #d1fae5;cursor:pointer" onclick="TTS.speak('${ko.replace(/'/g,"\\'")}')">
+              <div style="font-size:14px;font-weight:600;color:#1a202c">🔊 ${ko}</div>
+              <div style="font-size:12px;color:#666">${en}</div>
+              <div style="font-size:12px;color:#059669">${vi}</div>
+            </div>
+          `).join('')}
+        </div>
+      `}
+    `;
 
-        <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
-          <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
-            💡 버튼을 누르면 AI가 바로 답해줘요<br>
-            <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
+    case 3: return `
+      <h2>💬 말하기</h2>
+      <p class="sub">비자 연장·외국인등록증 관련 대화 연습 · tap to hear</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🎯 상황: 비자 연장 문의</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">출입국외국인청에 전화하여 비자 연장 방법을 문의하는 상황이에요.</div>
+        ${[
+          {sp:'린', text:'여보세요. 비자 연장을 하고 싶은데요. 어떻게 해야 해요?'},
+          {sp:'직원', text:'네, 규정에 따르면 비자 만료 2개월 전에 신청하시면 돼요.'},
+          {sp:'린', text:'서류는 무엇이 필요해요?'},
+          {sp:'직원', text:'여권, 외국인등록증, 신청서, 사진이 필요해요. 서류가 부족할 경우에는 다시 방문해야 해요.'},
+          {sp:'린', text:'비자가 만료될 경우에는 어떻게 돼요?'},
+          {sp:'직원', text:'법에 따르면 만료 후에도 체류하면 불법 체류자가 되어 처벌받을 수 있어요.'},
+        ].map((l, li) => {
+          const isRight = li % 2 === 1;
+          return `<div style="display:flex;flex-direction:column;align-items:${isRight?'flex-end':'flex-start'};margin-bottom:8px;cursor:pointer" onclick="TTS.speak('${l.text.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">
+            <div style="font-size:11px;color:#888;margin-bottom:2px">${l.sp}</div>
+            <div style="max-width:85%;background:${isRight?'#fef3c7':'#fff7ed'};border:1px solid #fde68a;border-radius:${isRight?'12px 12px 4px 12px':'12px 12px 12px 4px'};padding:8px 12px;font-size:14px;line-height:1.6">${l.text} 🔊</div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">연습 활동</div>
+        <div style="font-size:14px;font-weight:700;color:#166534;margin-bottom:8px">🎯 상황 연습</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">아래 질문에 -에 따르면, -(으)ㄹ 경우에는을 사용해 답해 보세요:</div>
+        ${[
+          '외국인등록증을 발급받는 방법을 설명해 보세요. (-에 따르면 사용)',
+          '비자가 만료될 경우에는 어떻게 해야 해요? (-(으)ㄹ 경우에는 사용)',
+          '근로계약을 위반하면 어떤 처벌을 받아요?',
+          '영주권을 신청하려면 무엇이 필요해요?',
+        ].map((q,i) => `<div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">Q${i+1}. ${q}</div>`).join('')}
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🗣️ 유용한 법률 표현</div>
+        ${[
+          ['규정에 따르면 이렇게 해야 해요.', 'According to regulations, you need to do it this way.'],
+          ['서류를 먼저 제출해 주세요.', 'Please submit the documents first.'],
+          ['비자 연장 신청을 하고 싶어요.', 'I would like to apply for a visa extension.'],
+          ['어디에 신고해야 해요?', 'Where should I report/file?'],
+        ].map(([ko,en]) => `
+          <div style="padding:7px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko.replace(/'/g,"\\'")}')">
+            <div style="font-size:14px;font-weight:600">🔊 ${ko}</div>
+            <div style="font-size:12px;color:#888">${en}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 4: return `
+      <h2>👂 듣기</h2>
+      <p class="sub">린과 수민의 비자 갱신 대화를 들어 보세요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🎧 상황: 비자 연장에 대해 이야기하기</div>
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">린이 비자 연장 방법을 묻고 수민이 규정과 절차를 설명해요. -에 따르면과 -(으)ㄹ 경우에는 문법을 잘 들어 보세요.</p>
+        <button onclick="TTS.speak('린: 수민 씨, 제 비자가 곧 만료되는데 어떻게 해야 해요? 수민: 출입국 규정에 따르면 만료 2개월 전에 연장 신청을 해야 해요. 린: 어디에 신청해요? 수민: 출입국외국인청이나 하이코리아 사이트에서 신청할 수 있어요. 린: 서류가 부족할 경우에는 어떻게 돼요? 수민: 서류가 부족할 경우에는 다시 방문해야 하니까 미리 잘 준비하세요. 린: 비자가 만료될 경우에는 정말 큰일 나는 거죠? 수민: 맞아요. 법에 따르면 만료 후 체류하면 불법 체류가 돼서 벌금이나 강제 출국 처벌을 받을 수 있어요. 린: 알겠어요. 규정에 따라 꼭 미리 준수하도록 할게요. 수민: 잘 했어요. 합법적으로 체류하는 것이 중요해요.')"
+          style="width:100%;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px">
+          🔊 전체 듣기
+        </button>
+      </div>
+      <div class="card" style="margin-bottom:10px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📝 듣기 스크립트</div>
+        ${[
+          ['린', '수민 씨, 제 비자가 곧 만료되는데 어떻게 해야 해요?'],
+          ['수민', '출입국 규정에 따르면 만료 2개월 전에 연장 신청을 해야 해요.'],
+          ['린', '어디에 신청해요?'],
+          ['수민', '출입국외국인청이나 하이코리아 사이트에서 신청할 수 있어요.'],
+          ['린', '서류가 부족할 경우에는 어떻게 돼요?'],
+          ['수민', '서류가 부족할 경우에는 다시 방문해야 하니까 미리 잘 준비하세요.'],
+          ['린', '비자가 만료될 경우에는 정말 큰일 나는 거죠?'],
+          ['수민', '맞아요. 법에 따르면 만료 후 체류하면 불법 체류가 돼서 벌금이나 강제 출국 처벌을 받을 수 있어요.'],
+          ['린', '알겠어요. 규정에 따라 꼭 미리 준수하도록 할게요.'],
+          ['수민', '잘 했어요. 합법적으로 체류하는 것이 중요해요.'],
+        ].map(([sp, text]) => `
+          <div style="display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${text.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">
+            <span style="font-size:11px;font-weight:700;color:#f59e0b;min-width:36px;margin-top:2px">${sp}</span>
+            <span style="font-size:13px;line-height:1.6;flex:1">${text}</span>
+            <span>🔊</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">이해 확인 문제</div>
+        ${[
+          {q:'규정에 따르면 비자 연장 신청은 언제 해야 해요?', opts:['만료 1주일 전','만료 2개월 전','만료 당일','만료 6개월 전'], ans:1},
+          {q:'서류가 부족할 경우에는 어떻게 해요?', opts:['전화로 제출해요','다시 방문해야 해요','온라인으로 보내요','기다리면 돼요'], ans:1},
+          {q:'비자 만료 후 체류하면 어떻게 돼요?', opts:['경고를 받아요','벌금이나 강제 출국 처벌을 받아요','자동으로 연장돼요','다음 달에 처리돼요'], ans:1},
+          {q:'이 대화에서 -에 따르면이 사용된 문장을 고르세요.', opts:['어디에 신청해요?','출입국 규정에 따르면 만료 2개월 전에 연장 신청을 해야 해요.','비자가 곧 만료되는데요.','잘 했어요.'], ans:1},
+        ].map((item, qi) => `
+          <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">${qi+1}. ${item.q}</div>
+            ${item.opts.map((o, oi) => `
+              <div style="padding:7px 10px;background:${oi===item.ans?'#dcfce7':'#f9fafb'};border:1px solid ${oi===item.ans?'#22c55e':'#e5e7eb'};border-radius:8px;margin-bottom:4px;font-size:13px;cursor:pointer" onclick="TTS.speak('${o.replace(/'/g,"\\'")}')">
+                ${oi===item.ans?'✅ ':''}${o}
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 5: return `
+      <h2>🔊 발음</h2>
+      <p class="sub">경음화 + 격음화 발음 규칙</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">규칙 1: 경음화 (받침 뒤 평음 → 된소리)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">ㄱ, ㄷ, ㅂ, ㅅ, ㅈ 받침 뒤에 오는 평음은 된소리로 발음해요.</div>
+        ${[
+          ['법규', '[법꾸]', 'law and regulations', 'ㅂ+ㄱ → 경음화 [ㄲ]'],
+          ['합법', '[합뻡]', 'lawful / legal', 'ㅂ+ㅂ → 경음화 [ㅂ]'],
+          ['벌금', '[벌금]', 'fine', '자연스러운 발음'],
+        ].map(([word, pron, en, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:80px;font-size:15px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#f59e0b;color:#fff;padding:3px 10px;border-radius:20px;font-size:13px;font-weight:700">${pron}</div>
+              <div style="font-size:12px;color:#888">${en}</div>
+            </div>
+            <div style="font-size:11px;color:#b45309;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card" style="border-left:4px solid #8b5cf6">
+        <div class="section-label" style="background:#8b5cf6">규칙 2: 격음화 (ㅎ 연음 → 거센소리)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">ㅎ 받침 뒤에 ㄱ, ㄷ, ㅈ이 오면 거센소리 [ㅋ, ㅌ, ㅊ]로 발음해요.</div>
+        ${[
+          ['입학하다', '[이파카다]', 'to enter school', 'ㅂ+ㅎ→[ㅍ], ㅎ+ㄱ→[ㅋ] 격음화'],
+          ['신고하다', '[신고하다]', 'to report / declare', 'ㅎ 뒤 자연 연음'],
+          ['합법적', '[합뻡쩍]', 'legal / lawful', 'ㅂ 경음화 + 적 경음화'],
+        ].map(([word, pron, en, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #ede9fe;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:80px;font-size:15px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#8b5cf6;color:#fff;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700">${pron}</div>
+              <div style="font-size:12px;color:#888">${en}</div>
+            </div>
+            <div style="font-size:11px;color:#7c3aed;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">발음 연습</div>
+        <p style="font-size:13px;color:#555;margin-bottom:10px">문장을 천천히 따라 읽어 보세요:</p>
+        ${[
+          '법에[법에] 따르면 외국인도 근로계약을 맺을 수 있어요.',
+          '비자가 만료될 경우에는 즉시 연장해야 해요.',
+          '규정에 따르면 신청서를 먼저 제출해야 해요.',
+          '계약을 위반할[위반할] 경우에는 벌금[벌금]을 내야 해요.',
+        ].map(s => `
+          <div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px;cursor:pointer" onclick="TTS.speak('${s.replace(/\[.*?\]/g,'').replace(/'/g,"\\'")}')">
+            🔊 ${s}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 6: return `
+      <h2>📖 읽기</h2>
+      <p class="sub">외국인 근로자 권리와 KIIP 이수 혜택</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">읽기 본문</div>
+        <div style="font-size:14px;line-height:1.9;color:#1a202c">
+          <p style="margin-bottom:12px">한국 근로기준법에 따르면 외국인 근로자도 한국인과 동일한 근로 권리를 가져요. 최저임금, 연장근로수당, 유급휴가가 모두 보장되어 있어요. 이를 위반하는 고용주는 법적 처벌을 받을 수 있어요.</p>
+          <p style="margin-bottom:12px">한국에 90일 이상 체류하는 외국인은 출입국외국인청에 외국인 등록을 해야 해요. 규정에 따르면 입국 후 90일 이내에 신청해야 하고, 이를 어길 경우에는 과태료가 부과될 수 있어요.</p>
+          <p style="margin-bottom:12px">KIIP 사회통합프로그램을 이수하면 여러 가지 혜택을 받을 수 있어요. 출입국 규정에 따르면 KIIP 이수자는 영주권·귀화 신청 시 우대를 받고, 귀화 필기시험이 면제될 수 있어요.</p>
+          <p>부당한 대우를 받을 경우에는 고용노동부(국번 없이 1350) 또는 외국인노동자지원센터에 신고할 수 있어요. 합법적인 권리 보호를 위해 법률 정보를 잘 알아 두는 것이 중요해요.</p>
+        </div>
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">읽기 이해 문제</div>
+        ${[
+          {q:'외국인 근로자가 부당한 대우를 받을 경우 어디에 신고해요?', opts:['112 경찰','고용노동부(1350)','119 소방서','1345 이민자 지원'], ans:1},
+          {q:'외국인 등록은 입국 후 며칠 이내에 해야 해요?', opts:['30일','60일','90일','180일'], ans:2},
+          {q:'KIIP 이수의 혜택으로 맞는 것은?', opts:['무료 의료 지원','귀화 필기시험 면제 가능','세금 납부 면제','무료 주거 지원'], ans:1},
+        ].map((item, qi) => `
+          <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">${qi+1}. ${item.q}</div>
+            ${item.opts.map((o, oi) => `
+              <div style="padding:7px 10px;background:${oi===item.ans?'#dcfce7':'#f9fafb'};border:1px solid ${oi===item.ans?'#22c55e':'#e5e7eb'};border-radius:8px;margin-bottom:4px;font-size:13px">
+                ${oi===item.ans?'✅ ':''}${o}
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 7: return `
+      <h2>✏️ 쓰기</h2>
+      <p class="sub">외국인으로서 나의 권리와 의무에 대해 써 봐요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">쓰기 활동</div>
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:10px">📝 주제: 한국에서 외국인의 권리와 의무</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">다음 내용을 포함해서 150~200자 정도 써 보세요:</div>
+        ${[
+          '한국 법에 따르면 외국인에게 어떤 권리가 있어요? (-에 따르면 사용)',
+          '규정을 어길 경우에는 어떤 결과가 생겨요? (-(으)ㄹ 경우에는 사용)',
+          '외국인으로서 꼭 지켜야 할 의무는 무엇이에요?',
+          '권리를 보호받기 위해 어떤 정보를 알아야 해요?',
+        ].map((item, i) => `<div style="padding:8px;background:#fef3c7;border-radius:8px;margin-bottom:6px;font-size:13px">📌 ${i+1}. ${item}</div>`).join('')}
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">✍️ 예시 답안</div>
+        <div style="font-size:13px;line-height:1.9;color:#1a202c;background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:10px">
+          <b>법에 따르면</b> 외국인도 한국인과 같은 근로 권리를 가져요. 최저임금을 받을 권리가 있고, 계약서에 서명하기 전에 내용을 꼭 확인해야 해요. 만약 계약을 <b>위반할 경우에는</b> 벌금이나 법적 처벌을 받을 수 있어요. 또한 <b>규정에 따르면</b> 입국 후 90일 이내에 외국인 등록을 해야 해요. 비자가 <b>만료될 경우에는</b> 즉시 연장 신청을 해야 불법 체류자가 되는 것을 막을 수 있어요.
+        </div>
+        <div style="font-size:12px;color:#b45309;margin-bottom:4px">📌 문법 포인트:</div>
+        <div style="font-size:12px;color:#555;line-height:1.8">
+          • <b>법에 따르면</b> → -에 따르면 (법률 출처 인용)<br>
+          • <b>위반할 경우에는</b> → -(으)ㄹ 경우에는 (조건·상황)<br>
+          • <b>규정에 따르면</b> → -에 따르면 (규정 출처 인용)<br>
+          • <b>만료될 경우에는</b> → -(으)ㄹ 경우에는 (상황·결과)
+        </div>
+      </div>
+      <div class="card" style="border-left:4px solid #8b5cf6">
+        <div style="font-size:13px;font-weight:700;color:#8b5cf6;margin-bottom:8px">🔤 유용한 연결 표현</div>
+        ${[
+          ['먼저', 'first / firstly'],
+          ['또한', 'also / in addition'],
+          ['만약', 'if / in case'],
+          ['따라서', 'therefore / accordingly'],
+          ['반드시', 'must / definitely'],
+          ['특히', 'especially / in particular'],
+        ].map(([ko, en]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ede9fe;font-size:13px"><span style="font-weight:700">${ko}</span><span style="color:#888">${en}</span></div>`).join('')}
+      </div>
+    `;
+
+    case 8: return `
+      <h2>🎎 문화</h2>
+      <p class="sub">한국의 외국인 제도와 KIIP 혜택 이해하기</p>
+      ${CULTURE_DATA.map(c => `
+        <div class="card card-accent" style="margin-bottom:10px">
+          <div style="font-size:28px;margin-bottom:6px">${c.icon}</div>
+          <div style="font-size:15px;font-weight:700;color:#92400e;margin-bottom:6px">${c.title}</div>
+          <div style="font-size:13px;line-height:1.8;color:#555">${c.body}</div>
+        </div>
+      `).join('')}
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">문화 비교</div>
+        <div style="font-size:13px;color:#555;line-height:1.7">
+          <div style="margin-bottom:8px">🇰🇷 한국 vs 🇻🇳 베트남</div>
+          ${[
+            '베트남에도 외국인 등록 제도가 있어요?',
+            '베트남에서 외국인의 근로 권리는 어떻게 보호받아요?',
+            '여러분 나라의 사회통합 프로그램은 무엇이에요?',
+            '한국에서 법을 지키기 위해 가장 중요한 것은 무엇이라고 생각해요?',
+          ].map((q,i) => `<div style="padding:7px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">💬 ${q}</div>`).join('')}
+        </div>
+      </div>
+      <div class="card" style="background:linear-gradient(135deg,#fef3c7,#fff7ed);text-align:center">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:6px">📞 유용한 외국인 지원 연락처</div>
+        <div style="font-size:13px;line-height:1.8;color:#555;text-align:left">
+          하이코리아(HiKorea) — www.hikorea.go.kr (비자·등록)<br>
+          고용노동부 — 국번 없이 1350 (근로 권리 상담)<br>
+          외국인 종합 안내센터 — 1345 (24시간, 다국어)<br>
+          법무부 출입국·외국인청 — www.immigration.go.kr
+        </div>
+      </div>
+    `;
+
+    case 9: return `
+      <h2>✅ 퀴즈</h2>
+      <p class="sub">17과 내용을 얼마나 이해했나요?</p>
+      ${renderQuiz()}
+    `;
+
+    case 10: {
+      setTimeout(() => RECORDER.autoDetect(), 100);
+      const PRON_SENTS = [
+        {sent:'법에 따르면 외국인도 근로계약을 맺을 수 있어요.', vi:'Theo luật, người nước ngoài cũng có thể ký hợp đồng lao động.'},
+        {sent:'비자가 만료될 경우에는 즉시 연장해야 해요.', vi:'Trong trường hợp visa hết hạn, bạn phải gia hạn ngay lập tức.'},
+        {sent:'규정에 따르면 신청서를 먼저 제출해야 해요.', vi:'Theo quy định, bạn phải nộp đơn đăng ký trước.'},
+        {sent:'계약을 위반할 경우에는 벌금을 내야 해요.', vi:'Trong trường hợp vi phạm hợp đồng, bạn phải nộp phạt.'},
+      ];
+      return `
+        <h2>🤖 AI 실습</h2>
+        <p class="sub">글로컬 아카데미 × 에이전틱 G스택 한국어 학습</p>
+
+        <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+          <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+          <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 한국어 실습 플랫폼</div>
+          <div style="font-size:11px;opacity:0.85;line-height:1.7">Google Gemini · NotebookLM · Agent Harness 연계<br>
+          <span style="color:#93c5fd">🇻🇳 Nền tảng học tiếng Hàn kết hợp AI Agent của Glocal Academy</span></div>
+        </div>
+
+        <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+          <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+          <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+            계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+            ${AI_QUICK_BTNS.map((b,i)=>`
+              <button onclick="AICHAT.quickSend(${i})"
+                style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
+                ${b.emoji} ${b.label}
+              </button>
+            `).join('')}
+          </div>
+          <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+            <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
+              💡 버튼을 누르면 AI가 바로 답해줘요<br>
+              <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:flex-end">
+            <textarea id="ai-chat-input"
+              placeholder="법과 제도에 대해 질문하세요... 🇻🇳 Nhập câu hỏi về pháp luật..."
+              style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
+              onfocus="this.style.borderColor='#f59e0b'"
+              onblur="this.style.borderColor='#fde68a'"
+              onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
+            ></textarea>
+            <button onclick="AICHAT.send()" id="ai-send-btn"
+              style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>
+          </div>
+          <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+        </div>
+
+        <div class="card card-accent" style="margin-bottom:10px">
+          <div class="section-label">🌐 외부 AI 서비스 상세 가이드</div>
+          <div style="font-size:11px;color:#888;margin:6px 0 8px">계정이 있는 경우 더 강력한 AI를 사용할 수 있어요</div>
+          <details style="margin-bottom:8px">
+            <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              🔵 Gemini AI 사용법 — Google 계정 필요
+            </summary>
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#1d4ed8">① 접속:</strong> gemini.google.com<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+                <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 법과 제도 롤플레이</div>
+                <span style="font-family:monospace;background:#dbeafe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"저는 베트남인 KIIP 3급 학습자예요. 비자 연장 상황을 -에 따르면, -(으)ㄹ 경우에는 문법으로 롤플레이해 주세요."</span>
+              </div>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+                <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">📸 서류 사진 분석</div>
+                외국인등록증 또는 계약서 사진 업로드 → "이 서류의 주요 내용을 베트남어로 설명해 주세요"<br>
+                <span style="color:#059669">🇻🇳 Chụp ảnh giấy tờ → Upload → Giải thích bằng tiếng Việt</span>
+              </div>
+            </div>
+          </details>
+          <details style="margin-bottom:8px">
+            <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              🟣 Claude AI 사용법 — 이메일 계정 필요
+            </summary>
+            <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#7c3aed">① 접속:</strong> claude.ai (이메일로 무료 가입)<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">
+                <div style="font-weight:700;color:#7c3aed;margin-bottom:3px">✏️ 글 첨삭</div>
+                <span style="font-family:monospace;background:#ede9fe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"KIIP 3급 외국인 학습자의 글입니다. -에 따르면, -(으)ㄹ 경우에는 사용을 확인하고 베트남어로 설명해 주세요."</span>
+              </div>
+            </div>
+          </details>
+          <details>
+            <summary style="background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              📓 NotebookLM 사용법 — Google 계정 필요
+            </summary>
+            <div style="background:#fff8f0;border:1px solid #fed7aa;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#ea4335">① 접속:</strong> notebooklm.google.com<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #ea4335">
+                17과 학습 내용 복사 → NotebookLM에 붙여넣기:<br>
+                <button onclick="copyNotebookContent17()" style="background:#ea4335;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0">
+                  📋 17과 학습 내용 복사하기
+                </button><span id="copy-ok17" style="font-size:11px;color:#059669;margin-left:6px"></span><br>
+                "-에 따르면 문법 베트남어로 설명해줘" / "17과 퀴즈 5문제 만들어줘"
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="card card-green" style="margin-bottom:10px">
+          <div class="section-label" style="background:#059669">🎤 AI 발음 코치 · 녹음 &amp; 재생</div>
+          <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">
+            원어민 듣기 → 내가 녹음 → 다시 들으며 비교<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Nghe người bản ngữ → Tự ghi âm → Nghe lại so sánh</span>
+          </div>
+          <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#166534">
+            🆓 <strong>완전 무료</strong> — 브라우저 내장 API · 서버 없음
+          </div>
+          <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:14px;margin-bottom:10px">
+            <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px">🎙️ 마이크 허용 필요</div>
+            <div id="mic-perm-state" style="margin-bottom:10px"></div>
+            <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:10px">
+              <div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:8px">🚫 마이크가 차단되어 있어요</div>
+              <div style="background:#fff;border-radius:8px;padding:10px;font-size:12px;line-height:2;color:#1a202c">
+                <strong style="color:#1d4ed8">PC Chrome / Edge:</strong><br>
+                주소창 왼쪽 🔒 클릭 → 마이크 → <strong>허용</strong> → F5<br>
+                <strong style="color:#059669">📱 Android Chrome:</strong><br>
+                주소창 ⋮ → 사이트 설정 → 마이크 → 허용
+              </div>
+              <div style="margin-top:8px;font-size:11px;color:#059669">🇻🇳 Nhấn 🔒 góc trái → Micro → Cho phép → F5</div>
+            </div>
+            <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+              style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:12px;font-size:14px;font-weight:800">
+              🎙️ 마이크 허용하기 (여기 클릭)
+            </button>
+            <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>
+          </div>
+          ${PRON_SENTS.map((item,i)=>`
+            <div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+              <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>
+              <div style="font-size:10px;color:#059669;margin-bottom:8px">🇻🇳 ${item.vi}</div>
+              <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+                <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+              </div>
+              <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+                <button onclick="TTS.speak('${item.sent.replace(/\[.*?\]/g,'').replace(/'/g,"\\'")}'); this.textContent='🔊 재생 중...'; setTimeout(()=>this.textContent='🔊 원어민',2000)"
+                  style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">🔊 원어민</button>
+                <button id="rec-btn-${i}" onclick="startSTT(${i},'${item.sent.replace(/\[.*?\]/g,'').replace(/'/g,"\\'")}',this)"
+                  style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">🎤 녹음</button>
+                <button id="play-btn-${i}" disabled
+                  style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0;opacity:0.4">▶ 내 발음 듣기</button>
+              </div>
+              <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:16px"></div>
+            </div>
+          `).join('')}
+          <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+            <strong>📖 사용법:</strong> 1️⃣ 🔊 원어민 듣기 → 2️⃣ 🎤 녹음 → 3️⃣ ▶ 내 발음 듣기<br>
+            정확도 바: 🟢 80%+ 🟡 50~79% 🔴 50% 미만
           </div>
         </div>
 
-        <div style="display:flex;gap:6px;align-items:flex-end">
-          <textarea id="ai-chat-input"
-            placeholder="법과 제도에 대해 질문하세요... / Ask about Law & Systems..."
-            style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
-            onfocus="this.style.borderColor='#f59e0b'"
-            onblur="this.style.borderColor='#fde68a'"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
-          ></textarea>
-          <button onclick="AICHAT.send()"
-            id="ai-send-btn"
-            style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">
-            ➤
-          </button>
+        <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+          <div class="section-label" style="background:#059669">🌐 글로컬 G스택 학습법</div>
+          <div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.8">
+            <strong>글로컬 아카데미 AI 에이전트 기반 4단계 학습법:</strong><br>
+            <span style="color:#555">① 어휘/문법 → Gemini 설명 요청</span><br>
+            <span style="color:#555">② 말하기 → Gemini 롤플레이 실습</span><br>
+            <span style="color:#555">③ 쓰기 → Claude AI 첨삭</span><br>
+            <span style="color:#555">④ 복습 → NotebookLM Q&amp;A 정리</span><br><br>
+            <span style="color:#059669;font-size:11px">🇻🇳 ① Từ vựng/ngữ pháp → Hỏi Gemini · ② Nói → Nhập vai với Gemini · ③ Viết → Nhờ Claude sửa bài · ④ Ôn tập → NotebookLM</span>
+          </div>
         </div>
-        <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+        <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
+      `;
+    }
+
+    default: return `
+      <div class="intro-header">
+        <div style="font-size:36px;margin-bottom:8px">⚖️</div>
+        <h3>17과 · 법과 제도</h3>
+        <p style="font-size:13px;opacity:0.85;margin-top:4px">Law &amp; Systems · Pháp luật &amp; Hệ thống</p>
       </div>
-
-      <div class="card card-accent" style="margin-bottom:10px">
-        <div class="section-label">📖 17과 학습 가이드</div>
-        <div style="font-size:13px;color:#555;margin-top:8px;line-height:1.9">
-          <strong style="color:var(--brown)">⚖️ 법과 제도 · Law & Systems</strong><br>
-          위의 빠른 질문 버튼을 눌러 AI 튜터에게 이 주제를 배워보세요.<br>
-          직접 질문도 자유롭게 입력할 수 있어요.<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nhấn các nút câu hỏi nhanh để học chủ đề này với AI.<br>Bạn cũng có thể tự nhập câu hỏi bất kỳ.</span>
-        </div>
+      <div class="card card-accent">
+        <div class="section-label">학습 목표</div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>법과 제도 관련 어휘를 익히고 활용할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>-에 따르면, -(으)ㄹ 경우에는 문법을 이해하고 사용할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>AI 튜터와 함께 법과 제도 표현을 연습할 수 있다</span></div>
       </div>
-
-      <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
-    </div>
-  `;
-}
-
-function renderSection() {
-  switch(STATE.section) {
-    case 0: return renderIntro();
-    case 10: return renderAI();
-    default: return renderWIPSection(SECTIONS[STATE.section].label, SECTIONS[STATE.section].icon);
+    `;
   }
 }
 
+// ===== MAIN RENDER =====
 function render() {
-  document.getElementById('app').innerHTML =
-    renderNav() + renderLangBar() + renderTabs() + renderSection() + renderBottomNav();
+  const s = STATE;
+  const app = document.getElementById('app');
+  if (!app) return;
+
+  const tabsHtml = SECTIONS.map(sec =>
+    `<button class="stab${s.section===sec.id?' active':''}" onclick="setState({section:${sec.id}})">${sec.icon} ${sec.label}</button>`
+  ).join('');
+
+  const bottomNav = `
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level3_Lesson16" class="bnav-btn" style="text-decoration:none;color:#888">
+        <span class="bnav-icon">←</span><span>16과</span>
+      </a>
+      <button class="bnav-btn${s.section===0?' active':''}" onclick="setState({section:0})">
+        <span class="bnav-icon">🏠</span><span>도입</span>
+      </button>
+      <button class="bnav-btn${s.section===9?' active':''}" onclick="setState({section:9})">
+        <span class="bnav-icon">✅</span><span>퀴즈</span>
+      </button>
+      <button class="bnav-btn${s.section===10?' active':''}" onclick="setState({section:10})">
+        <span class="bnav-icon">🤖</span><span>AI실습</span>
+      </button>
+      <a href="/KIIP_Level3_Lesson18" class="bnav-btn" style="text-decoration:none;color:#888">
+        <span class="bnav-icon">→</span><span>18과</span>
+      </a>
+    </nav>
+  `;
+
+  app.innerHTML = `
+    <nav class="nav">
+      <a href="/KIIP_Level3_Index" class="nav-back">← 목차</a>
+      <div style="text-align:right">
+        <div class="nav-title">17과 · 법과 제도</div>
+        <div class="nav-sub">KIIP 3급 중급 1</div>
+      </div>
+    </nav>
+    <div class="section-tabs">${tabsHtml}</div>
+    <div class="page">${renderSection(s.section)}</div>
+    ${bottomNav}
+  `;
+
+  setTimeout(() => {
+    const activeTab = document.querySelector('.stab.active');
+    if (activeTab) activeTab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  }, 50);
 }
 
+// ===== INIT =====
 render();
 </script>
 <script>
