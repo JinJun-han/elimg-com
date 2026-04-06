@@ -880,6 +880,10 @@ function renderSpeaking() {
 }
 
 // SECTION 4: 듣기
+function playListeningScript() {
+  TTS.speak(LISTENING_SCRIPT.replace(/\n/g, ' '), 'ko-KR', 0.75);
+}
+
 function answerListen(qi, oi) {
   if (STATE.listenAnswers[qi] !== undefined) return;
   setState({listenAnswers: {...STATE.listenAnswers, [qi]: oi}});
@@ -905,7 +909,7 @@ function renderListening() {
       <div class="listen-box">
         <div class="section-label" style="margin-bottom:8px">듣기 내용</div>
         <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-          <button onclick="TTS.speak('${LISTENING_SCRIPT.replace(/'/g,"\\'")}', 'ko-KR', 0.75)" style="background:#f59e0b;color:#fff;border-radius:20px;padding:8px 18px;font-size:13px;font-weight:700">🔊 전체 듣기</button>
+          <button onclick="playListeningScript()" style="background:#f59e0b;color:#fff;border-radius:20px;padding:8px 18px;font-size:13px;font-weight:700">🔊 전체 듣기</button>
           <button onclick="setState({listenRevealed:!STATE.listenRevealed})" style="background:#92400e;color:#fff;border-radius:20px;padding:8px 18px;font-size:13px;font-weight:700">
             ${STATE.listenRevealed ? '📄 스크립트 숨기기' : '📄 스크립트 보기'}
           </button>
