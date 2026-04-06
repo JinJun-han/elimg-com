@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -537,7 +537,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level1_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level1_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 1 목차 · Contents</div></div>
     </a>
@@ -605,7 +605,7 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">⚓ 이순신 장군 소개 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson2.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2과 이것은 뭐예요?</a><a href="HanwhaOcean_Level1_Lesson4.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">4과 몇 시예요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level1_Lesson2" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2과 이것은 뭐예요?</a><a href="/HanwhaOcean_Level1_Lesson4" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">4과 몇 시예요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -1081,18 +1081,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🏥', label:'의무실 어디예요?',
-    q:'조선소에서 다쳤어요. 의무실 찾는 대화를 연습해주세요. "의무실이 어디예요?", "2층에 있어요", "왼쪽으로 가세요" 같은 표현을 롤플레이로 연습시켜주세요.' },
-  { emoji:'📍', label:'장소 이름 알려줘',
-    q:'한화오션 조선소 안 주요 장소 이름을 한국어로 알려주세요: 도크, 기숙사, 구내식당, 화장실, 의무실, 정문, 주차장. 한국어+영어+위치 힌트 함께요.' },
-  { emoji:'🧭', label:'여기/거기/저기 차이',
-    q:'여기/거기/저기 차이를 조선소 상황으로 설명해주세요. 위치 표현 있어요/없어요도 함께요. 예: "화장실은 저기 오른쪽에 있어요." 영어로도 설명해주세요.' },
-  { emoji:'🚶', label:'길 안내 표현',
-    q:'조선소에서 길을 안내하는 한국어 표현 5가지를 알려주세요. 앞으로, 뒤로, 왼쪽, 오른쪽, 엘리베이터, 계단 등 방향 표현도 영어와 함께요.' },
-  { emoji:'🆘', label:'긴급 상황 위치',
-    q:'조선소 긴급 상황에서 쓰는 위치/장소 표현을 알려주세요. "비상구는 어디예요?", "구급함이 여기 있어요", "빨리 의무실로 가세요" 등을 영어와 함께요.' },
-]
-
+  {emoji:'📍',label:'에 있어요/없어요',
+   q:'에있어요없어요 location is 어디에있어요를 알려주세요' },
+  {emoji:'🧭',label:'위치 표현',
+   q:'위치표현 위아래앞뒤 position words 위치단어를 알려주세요' },
+  {emoji:'❓',label:'어디에 있어요?',
+   q:'어디에있어요 where is 위치묻기 찾기를 알려주세요' },
+  {emoji:'➡️',label:'방향 말하기',
+   q:'방향말하기 direction 길안내 어떻게가요를 알려주세요' },
+  {emoji:'🏭',label:'직장 위치 표현',
+   q:'장소표현 직장장소 workplace location 어디서일해를 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1119,13 +1118,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean location guide for Hanwha Ocean shipyard. Lesson 3 focus: location words 여기(here)/거기(there)/저기(over there), 에 있어요/없어요 (exists/doesn\'t exist at location), ~은/는 어디예요? (Where is...?), shipyard places: 도크(dock), 기숙사(dormitory), 의무실(infirmary), 구내식당(cafeteria), 화장실(restroom). Give SHORT answers with English.';
+      var sysP = 'You are a Korean location guide for Hanwha Ocean shipyard. Lesson 3 focus: location words 여기(here)/거기(there)/저기(over there), 에 있어요/없어요 (exists/doesn\'t exist at location), ~은/는 어디예요? (Where is...?), shipyard places: 도크(dock), 기숙사(dormitory), 의무실(infirmary), 구내식당(cafeteria), 화장실(restroom). Give SHORT answers with English. LESSON:L1L3';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');
