@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>KIIP 3급 4과 · 직업과 일</title>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
@@ -11,7 +14,7 @@
 <meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://elimg.com/KIIP_Level3_Lesson4.html">
+<meta property="og:url" content="https://elimg.com/KIIP_Level3_Lesson4">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="KIIP 3급 4과 · 직업과 일">
 <meta name="twitter:description" content="법무부 KIIP 사회통합프로그램 3급 중급 1 · 4과 직업과 일">
@@ -22,7 +25,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="KIIP Korean">
-<script src="/i18n/translations.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--amber:#f59e0b;--dark:#451a03;--brown:#92400e;--orange:#b45309;--green:#22c55e;--red:#ef4444;--gray:#fdf6e3;--white:#fff;--text:#1a202c}
@@ -54,9 +56,6 @@ h2{color:var(--brown);font-size:18px;margin-bottom:4px;font-weight:800}
 .lang-bar{background:#fef3c7;display:flex;justify-content:center;gap:8px;padding:8px}
 .lang-btn-sm{background:rgba(180,83,9,0.1);border:1px solid #fbbf24;color:#92400e;padding:8px 16px;border-radius:20px;font-size:13px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
 .lang-btn-sm.active{background:var(--amber);color:#fff;border-color:var(--amber)}
-.wip-banner{background:linear-gradient(135deg,#78350f,#92400e);color:#fff;border-radius:12px;padding:20px;margin-bottom:16px;text-align:center}
-.wip-banner h3{font-size:18px;font-weight:800;margin-bottom:8px}
-.wip-banner p{font-size:13px;opacity:0.9;line-height:1.7;margin-bottom:4px}
 .obj-item{display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid #fde68a;font-size:14px;color:var(--text)}
 .obj-item:last-child{border-bottom:none}
 .obj-check{color:var(--amber);font-size:16px;flex-shrink:0;margin-top:1px}
@@ -82,10 +81,19 @@ const TTS = {
 };
 window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
 
+// ===== LISTENING SCRIPT =====
+const LISTENING_SCRIPT = '린: 민준 씨, 저 다음 달부터 새 회사에 출근하게 됐어요. 민준: 정말요? 축하해요! 어디서 일하게 됐어요? 린: 이태원에 있는 작은 무역 회사예요. 처음에는 한국어가 부족해서 취업이 어려울 것 같았는데, 열심히 준비하니까 됐어요. 민준: 면접이 어려웠겠다. 어떻게 준비했어요? 린: 자기소개서를 여러 번 고쳐 썼고, 면접 질문도 미리 연습했어요. 그리고 한국 직장 문화에 대해서도 공부했어요. 민준: 대단해요! 새 직장에서 어떤 일을 하게 돼요? 린: 무역 서류 작성이랑 외국 거래처 이메일 번역을 맡게 됐어요. 저한테 딱 맞는 일인 것 같아요. 민준: 정말 잘 됐네요. 직장 생활 잘 할 수 있을 거예요.';
+
+function playListeningScript() {
+  TTS.speak(LISTENING_SCRIPT.replace(/\n/g, ' '), 'ko-KR', 0.75);
+}
+
 // ===== STATE =====
 const STATE = {
   section: 0,
   lang: localStorage.getItem('kiip_lang') || 'ko',
+  quiz: { started: false, idx: 0, score: 0, chosen: null, done: false },
+  grammarTab: 0,
 };
 
 function setState(newState) {
@@ -108,7 +116,101 @@ const SECTIONS = [
   {id:10, label:'AI실습', icon:'🤖'},
 ];
 
-var AI_QUICK_BTNS = [{"emoji":"👔","label":"직업 어휘 설명","q":"KIIP 3급 4과: 직업과 일 관련 어휘 10개를 한국어, 발음, 영어, 베트남어로 알려주세요. 다양한 직종 이름 포함해 주세요."},{"emoji":"📋","label":"이력서 표현","q":"한국 이력서와 자기소개서에 자주 쓰는 표현을 알려주세요. 베트남어 번역과 예시 문장도 포함해 주세요."},{"emoji":"🤝","label":"면접 롤플레이","q":"한국 취업 면접 롤플레이를 해주세요. KIIP 3급 학습자입니다. 자기소개, 지원 동기, 강점 설명하는 표현을 연습하고 싶어요."},{"emoji":"🏭","label":"직장 문화 설명","q":"한국 직장 문화에 대해 설명해 주세요. 상하관계, 회식, 야근 관련 표현을 베트남어로 설명해 주세요."}];
+const VOCAB = [
+  // 직업·직종
+  {ko:'직업', pron:'[지겁]', en:'occupation/job', vi:'nghề nghiệp', cat:'직업·직종'},
+  {ko:'직장', pron:'[직짱]', en:'workplace', vi:'nơi làm việc', cat:'직업·직종'},
+  {ko:'회사원', pron:'[회사원]', en:'office worker', vi:'nhân viên văn phòng', cat:'직업·직종'},
+  {ko:'공무원', pron:'[공무원]', en:'public servant', vi:'công chức', cat:'직업·직종'},
+  {ko:'자영업자', pron:'[자영업짜]', en:'self-employed person', vi:'người tự kinh doanh', cat:'직업·직종'},
+  // 업무·능력
+  {ko:'업무', pron:'[엄무]', en:'work/duties', vi:'công việc', cat:'업무·능력'},
+  {ko:'능력', pron:'[능녁]', en:'ability/competence', vi:'năng lực', cat:'업무·능력'},
+  {ko:'경력', pron:'[경녁]', en:'career/experience', vi:'kinh nghiệm làm việc', cat:'업무·능력'},
+  {ko:'자격증', pron:'[자격쯩]', en:'certificate/license', vi:'chứng chỉ', cat:'업무·능력'},
+  {ko:'지원하다', pron:'[지원하다]', en:'to apply for', vi:'ứng tuyển', cat:'업무·능력'},
+  // 근무조건
+  {ko:'급여', pron:'[그뷔]', en:'salary/pay', vi:'lương', cat:'근무조건'},
+  {ko:'수당', pron:'[수당]', en:'allowance/benefit', vi:'phụ cấp', cat:'근무조건'},
+  {ko:'야근', pron:'[야근]', en:'overtime work', vi:'làm thêm giờ tối', cat:'근무조건'},
+  {ko:'휴가', pron:'[휴가]', en:'vacation/leave', vi:'kỳ nghỉ', cat:'근무조건'},
+  {ko:'복지', pron:'[복찌]', en:'welfare/benefits', vi:'phúc lợi', cat:'근무조건'},
+  // 구직·이력서
+  {ko:'이력서', pron:'[이력써]', en:'résumé/CV', vi:'hồ sơ xin việc', cat:'구직·이력서'},
+  {ko:'자기소개서', pron:'[자기소개서]', en:'cover letter', vi:'thư giới thiệu bản thân', cat:'구직·이력서'},
+  {ko:'면접', pron:'[면쩝]', en:'job interview', vi:'phỏng vấn', cat:'구직·이력서'},
+  {ko:'합격', pron:'[합껵]', en:'passing/acceptance', vi:'trúng tuyển', cat:'구직·이력서'},
+  {ko:'불합격', pron:'[불합껵]', en:'rejection/failure', vi:'không trúng tuyển', cat:'구직·이력서'},
+  // 직장생활
+  {ko:'출근하다', pron:'[출근하다]', en:'to go to work', vi:'đi làm', cat:'직장생활'},
+  {ko:'퇴근하다', pron:'[퇴근하다]', en:'to leave work', vi:'tan làm', cat:'직장생활'},
+  {ko:'승진하다', pron:'[승진하다]', en:'to get promoted', vi:'được thăng chức', cat:'직장생활'},
+];
+
+const IDIOMS = [
+  {expr:'발 벗고 나서다', meaning:'적극적으로 돕다 (to jump in and help actively)', ex:'팀장님이 발 벗고 나서서 문제를 해결했어요.'},
+  {expr:'손이 많이 가다', meaning:'일이 복잡하고 시간이 걸리다 (requires a lot of effort)', ex:'이 업무는 손이 많이 가서 혼자 하기 힘들어요.'},
+  {expr:'야근을 밥 먹듯 하다', meaning:'야근을 아주 자주 하다 (to work overtime very often)', ex:'그 회사는 야근을 밥 먹듯 해서 힘들대요.'},
+  {expr:'칼퇴근', meaning:'정시에 딱 퇴근하다 (to leave work exactly on time)', ex:'저는 칼퇴근이 가능한 회사를 찾고 있어요.'},
+  {expr:'일머리가 있다', meaning:'일을 잘 파악하고 처리하는 능력이 있다 (to have a knack for work)', ex:'신입인데도 일머리가 있어서 벌써 잘 하네요.'},
+];
+
+const DIALOGUES = [
+  {
+    title:'대화 1 — 면접 준비',
+    lines:[
+      {sp:'수민', text:'린 씨, 내일 면접이죠? 잘 준비됐어요?'},
+      {sp:'린', text:'네, 자기소개서도 다 쓰고 예상 질문도 연습했어요. 그런데 좀 떨려요.'},
+      {sp:'수민', text:'걱정 말아요. 린 씨 경력이면 충분히 해볼 만해요.'},
+      {sp:'린', text:'감사해요. 열심히 해볼게요!'},
+    ]
+  },
+  {
+    title:'대화 2 — 직장 적응',
+    lines:[
+      {sp:'민준', text:'린 씨, 새 직장 생활은 어때요? 적응할 만해요?'},
+      {sp:'린', text:'처음엔 힘들었는데 요즘은 익숙해지게 됐어요. 동료들이 친절해서 다행이에요.'},
+      {sp:'민준', text:'업무는요?'},
+      {sp:'린', text:'번역 일은 할 만한데, 서류 작성은 아직 배우는 중이에요.'},
+    ]
+  },
+  {
+    title:'대화 3 — 이력서 작성',
+    lines:[
+      {sp:'직원', text:'자기소개서에 어떤 내용을 써야 해요?'},
+      {sp:'상담사', text:'지원 동기, 경력, 강점을 쓰면 돼요. 구체적인 예시를 들면 더 좋아요.'},
+      {sp:'직원', text:'외국인이라서 불리하지 않을까요?'},
+      {sp:'상담사', text:'요즘은 외국어 능력이 강점이 되는 회사도 많아요. 자신 있게 쓰세요.'},
+    ]
+  },
+];
+
+const QUIZ_DATA = [
+  {q:'다음 중 올바른 문장을 고르세요.', opts:['이 일은 충분히 해볼 만해요.','이 일은 충분히 해볼 만이에요.','이 일은 충분히 해볼 할 만해요.','이 일은 충분히 해볼 만합니다이에요.'], ans:0},
+  {q:'"합격"의 올바른 발음은?', opts:['[합격]','[합껵]','[하격]','[합끼억]'], ans:1},
+  {q:'"자격증"의 올바른 발음은?', opts:['[자격증]','[자격쯩]','[자그증]','[자격중]'], ans:1},
+  {q:'"이력서"의 올바른 발음은?', opts:['[이력서]','[이력써]','[이녁서]','[이려써]'], ans:1},
+  {q:'"면접"의 올바른 발음은?', opts:['[면접]','[면쩝]','[면졉]','[면절]'], ans:1},
+  {q:'빈칸에 알맞은 것: "한국에 온 후 취업하고 싶어서 열심히 공부_____."', opts:['하게 됐어요','하는 편이에요','해볼 만해요','할 반면에요'], ans:0},
+  {q:'"야근을 밥 먹듯 하다"의 뜻은?', opts:['밥을 먹으면서 야근하다','야근을 매우 자주 하다','야근 후에 밥을 먹다','야근을 싫어하다'], ans:1},
+  {q:'"칼퇴근"의 의미는?', opts:['일찍 퇴근하다','늦게 퇴근하다','정시에 퇴근하다','퇴근을 안 하다'], ans:2},
+  {q:'빈칸: "이 업무는 손이 _____ 혼자 하기 힘들어요."', opts:['많이 가서','많이 와서','적게 가서','없어서'], ans:0},
+  {q:'"-(으)ㄹ 만하다" 표현의 뜻은?', opts:['꼭 해야 한다','해도 좋을 가치가 있다','절대 하면 안 된다','하기 매우 쉽다'], ans:1},
+];
+
+const CULTURE = [
+  {icon:'🍻', title:'한국의 회식 문화', body:'한국 직장에서는 회식(팀 식사/음주)이 중요한 사회 활동이에요. 보통 퇴근 후 삼겹살, 치킨 등을 먹으며 팀워크를 쌓아요. 최근에는 술 없는 회식도 늘고 있어요.'},
+  {icon:'🌙', title:'야근 문화의 변화', body:'예전에는 야근이 당연하게 여겨졌지만, 2018년 주 52시간 근무제 시행 이후 칼퇴근 문화가 확산되고 있어요. 워라밸(Work-Life Balance)을 중시하는 직장인이 늘었어요.'},
+  {icon:'🤝', title:'직장 내 호칭 문화', body:'한국 직장에서는 직급(대리, 과장, 부장 등) 또는 "○○ 씨", "○○ 님"으로 부르는 것이 일반적이에요. 최근 스타트업에서는 영어 이름이나 "님" 호칭을 사용하는 곳도 많아요.'},
+  {icon:'📋', title:'외국인 취업 지원', body:'고용노동부와 각 지자체에서 외국인 근로자를 위한 취업 상담, 이력서 작성, 한국어 교육 등을 지원해요. 외국인력지원센터와 고용센터를 활용할 수 있어요.'},
+];
+
+var AI_QUICK_BTNS = [
+  {emoji:'👔', label:'직업 어휘 설명', q:'KIIP 3급 4과: 직업과 일 관련 어휘 10개를 한국어, 발음, 영어, 베트남어로 알려주세요. 다양한 직종 이름 포함해 주세요.'},
+  {emoji:'📋', label:'이력서 표현', q:'한국 이력서와 자기소개서에 자주 쓰는 표현을 알려주세요. 베트남어 번역과 예시 문장도 포함해 주세요.'},
+  {emoji:'🤝', label:'면접 롤플레이', q:'한국 취업 면접 롤플레이를 해주세요. KIIP 3급 학습자입니다. 자기소개, 지원 동기, 강점 설명하는 표현을 연습하고 싶어요.'},
+  {emoji:'🏭', label:'직장 문화 설명', q:'한국 직장 문화에 대해 설명해 주세요. 상하관계, 회식, 야근 관련 표현을 베트남어로 설명해 주세요.'},
+];
 
 var AICHAT = {
   history: [],
@@ -149,266 +251,587 @@ var AICHAT = {
       if (box && !el) {
         var ld = document.createElement('div');
         ld.id = 'ai-loading-dot';
-        ld.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:6px';
-        ld.innerHTML = '<div style="display:flex;gap:4px">'
-          + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div>'
-          + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div>'
-          + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div>'
-          + '</div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+        ld.style.cssText = 'display:flex;gap:4px;align-items:center;padding:8px 12px;background:#fff;border-radius:14px 14px 14px 4px;border:1px solid #fde68a;margin-bottom:6px;width:fit-content';
+        ld.innerHTML = [0,1,2].map(i=>'<span style="width:7px;height:7px;background:#f59e0b;border-radius:50%;display:inline-block;animation:aiDot 1.2s ease-in-out '+i*0.2+'s infinite"></span>').join('');
         box.appendChild(ld);
         box.scrollTop = box.scrollHeight;
       }
-      if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+      if (btn) { btn.disabled = true; btn.style.opacity = '0.5'; }
     } else {
       if (el) el.remove();
-      if (btn) { btn.textContent = '➤'; btn.disabled = false; }
+      if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
     }
+    this.loading = on;
   },
 
-  send: async function() {
+  send: function() {
     if (this.loading) return;
-    var inp  = document.getElementById('ai-chat-input');
-    var text = inp ? inp.value.trim() : '';
-    if (!text) return;
-
-    this.history.push({role:'user', content:text});
-    this.addMsg('user', text);
-    if (inp) inp.value = '';
-    this.loading = true;
+    var inp = document.getElementById('ai-chat-input');
+    if (!inp) return;
+    var msg = inp.value.trim();
+    if (!msg) return;
+    inp.value = '';
+    inp.style.borderColor = '#fde68a';
+    inp.style.height = 'auto';
+    this.addMsg('user', msg);
+    this.history.push({role:'user', content: msg});
     this.setLoading(true);
-
-    var sys = "You are a Korean language tutor for KIIP Level 3. The student is likely Vietnamese. This lesson is about occupations and work (직업과 일). Answer in Korean with Vietnamese translation. Be concise and friendly.";
-
-    try {
-      var url = '/api/chat';
-      var res  = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      var data = await res.json();
-      var reply = data.choices[0].message.content;
-      if (!reply || reply.trim() === '') throw new Error('빈 응답');
-      this.history.push({role:'assistant', content:reply});
-      this.setLoading(false);
-      this.addMsg('assistant', reply);
-    } catch(e) {
-      this.setLoading(false);
-      this.addMsg('assistant',
-        '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요');
-    }
-    this.loading = false;
+    var self = this;
+    var systemPrompt = 'You are a friendly Korean language tutor for KIIP Level 3 Lesson 4 (직업과 일 / Jobs and Work). Help learners understand Korean workplace vocabulary, job-related expressions, and grammar including -(으)ㄹ 만하다 and -게 되다. Provide explanations in Korean with Vietnamese translations when helpful. Be encouraging and practical.';
+    var payload = {
+      model: 'claude-opus-4-5',
+      max_tokens: 1024,
+      system: systemPrompt,
+      messages: self.history.slice(-10)
+    };
+    fetch('https://glocal-voice.vercel.app/api/chat', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      self.setLoading(false);
+      var reply = (data.content && data.content[0] && data.content[0].text) ? data.content[0].text : (data.error ? '오류: ' + (data.error.message||JSON.stringify(data.error)) : '응답 없음');
+      self.addMsg('assistant', reply);
+      self.history.push({role:'assistant', content: reply});
+    })
+    .catch(function(e){
+      self.setLoading(false);
+      self.addMsg('assistant', '연결 오류가 발생했어요. 잠시 후 다시 시도해 주세요. (' + e.message + ')');
+    });
   }
 };
 
-// ===== RENDER =====
-function setLang(lang) {
-  STATE.lang = lang;
-  localStorage.setItem('kiip_lang', lang);
-  render();
+// ===== RENDER HELPERS =====
+function vocabCatColor(cat) {
+  const m = {'직업·직종':'#f59e0b','업무·능력':'#3b82f6','근무조건':'#22c55e','구직·이력서':'#8b5cf6','직장생활':'#ef4444'};
+  return m[cat] || '#888';
 }
 
-function renderNav() {
-  return `
-    <div class="nav">
-      <a href="KIIP_Level3_Index.html" class="nav-back">← 3급 목차</a>
-      <div style="text-align:center">
-        <div class="nav-title">4과 · 직업과 일</div>
-        <div class="nav-sub">KIIP 3급 중급 1</div>
-      </div>
-      <div style="width:60px;text-align:right;font-size:11px;color:#d97706">
-        ${STATE.section+1}/${SECTIONS.length}
-      </div>
-    </div>
-  `;
-}
-
-function renderLangBar() {
-  return `
-    <div class="lang-bar">
-      ${['ko','en','vi'].map(l=>`<button class="lang-btn-sm ${STATE.lang===l?'active':''}" onclick="setLang('${l}')">${l==='ko'?'🇰🇷 KO':l==='en'?'🇺🇸 EN':'🇻🇳 VI'}</button>`).join('')}
-    </div>
-  `;
-}
-
-function renderTabs() {
-  return `
-    <div class="section-tabs">
-      ${SECTIONS.map(s=>`<button class="stab ${STATE.section===s.id?'active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
-    </div>
-  `;
-}
-
-function renderBottomNav() {
-  const prev = STATE.section > 0
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section-1}})">◀ 이전</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>◀ 이전</button>`;
-  const next = STATE.section < SECTIONS.length-1
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section+1}})">다음 ▶</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>다음 ▶</button>`;
-  return `
-    <div class="bottom-nav">
-      ${prev}
-      <button class="bnav-btn" onclick="setState({section:0})"><span class="bnav-icon">🏠</span><span>홈</span></button>
-      <button class="bnav-btn" onclick="setState({section:10})"><span class="bnav-icon">🤖</span><span>AI</span></button>
-      ${next}
-    </div>
-  `;
-}
-
-function renderWIPSection(title, icon) {
-  return `
-    <div class="page">
-      <h2>${icon} ${title}</h2>
-      <p class="sub">KIIP 3급 4과 · 직업과 일 · Occupation & Work</p>
-      <div class="wip-banner">
-        <h3>🚧 콘텐츠 준비 중</h3>
-        <p>이 섹션의 학습 자료를 열심히 제작 중입니다.<br>Content is being prepared for this section.</p>
-        <p style="margin-top:8px;font-size:12px;opacity:0.8">🇻🇳 Nội dung đang được chuẩn bị. Vui lòng quay lại sau.</p>
-      </div>
-      <div class="card card-accent">
-        <div class="section-label">💡 지금 당장 학습하려면</div>
-        <div style="font-size:13px;color:#555;margin-top:6px;line-height:1.8">
-          아래 <strong>AI 실습</strong> 탭을 이용하면 이 주제를 바로 공부할 수 있어요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Sử dụng tab <strong>AI 실습</strong> bên dưới để học ngay chủ đề này!</span>
+function renderVocabCards() {
+  const cats = [...new Set(VOCAB.map(v => v.cat))];
+  return cats.map(cat => {
+    const items = VOCAB.filter(v => v.cat === cat);
+    const color = vocabCatColor(cat);
+    return `<div class="card" style="border-left:4px solid ${color};margin-bottom:10px">
+      <div style="font-size:12px;font-weight:700;color:${color};margin-bottom:8px">${cat}</div>
+      ${items.map(v => `
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${v.ko}')">
+          <div style="min-width:80px">
+            <span style="font-size:15px;font-weight:700;color:#1a202c">${v.ko}</span>
+            <span style="font-size:11px;color:#888;margin-left:4px">${v.pron}</span>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:12px;color:#b45309">${v.en}</div>
+            <div style="font-size:12px;color:#666">${v.vi}</div>
+          </div>
+          <span style="font-size:18px">🔊</span>
         </div>
-        <button onclick="setState({section:10})" style="background:var(--amber);color:#fff;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:700;margin-top:12px;width:100%">
-          🤖 AI 실습 탭으로 이동
-        </button>
-      </div>
-    </div>
-  `;
+      `).join('')}
+    </div>`;
+  }).join('');
 }
 
-function renderIntro() {
-  return `
-    <div class="page">
-      <div class="intro-header">
-        <div style="font-size:14px;opacity:0.8;margin-bottom:4px">KIIP 3급 · 중급 1</div>
-        <h3>4과 직업과 일</h3>
-        <div style="font-size:14px;margin-top:4px;opacity:0.9">Occupation & Work</div>
-        <div style="margin-top:12px;font-size:28px">💼</div>
-      </div>
+function renderDialogues() {
+  return DIALOGUES.map((d, di) => `
+    <div class="card card-accent" style="margin-bottom:12px">
+      <div style="font-weight:700;font-size:14px;color:#92400e;margin-bottom:10px">${d.title}</div>
+      ${d.lines.map((l, li) => {
+        const isRight = li % 2 === 1;
+        return `<div style="display:flex;flex-direction:column;align-items:${isRight?'flex-end':'flex-start'};margin-bottom:8px;cursor:pointer" onclick="TTS.speak('${l.text.replace(/'/g,"\\'")}')">
+          <div style="font-size:11px;color:#888;margin-bottom:2px">${l.sp}</div>
+          <div style="max-width:85%;background:${isRight?'#fef3c7':'#fff7ed'};border:1px solid #fde68a;border-radius:${isRight?'12px 12px 4px 12px':'12px 12px 12px 4px'};padding:8px 12px;font-size:14px;line-height:1.6">${l.text} 🔊</div>
+        </div>`;
+      }).join('')}
+    </div>
+  `).join('');
+}
 
+function renderQuiz() {
+  const Q = QUIZ_DATA;
+  const s = STATE.quiz;
+  if (!s.started) {
+    return `<div class="intro-header" style="margin-bottom:16px">
+      <div style="font-size:40px;margin-bottom:8px">✅</div>
+      <h3>4과 퀴즈</h3>
+      <p style="font-size:13px;opacity:0.9">직업과 일 · 총 ${Q.length}문제</p>
+    </div>
+    <div class="card">
+      <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:14px">어휘, 문법, 발음, 관용표현을 복습해 봐요!</p>
+      <button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:16px;font-weight:700">퀴즈 시작하기 🚀</button>
+    </div>`;
+  }
+  if (s.done) {
+    const pct = Math.round(s.score / Q.length * 100);
+    const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '👍' : '📚';
+    return `<div class="intro-header" style="margin-bottom:16px">
+      <div style="font-size:40px;margin-bottom:8px">${emoji}</div>
+      <h3>${s.score}/${Q.length} 정답</h3>
+      <p style="font-size:14px;opacity:0.9">${pct}점 · ${pct>=80?'훌륭해요!':pct>=60?'잘 했어요!':'다시 도전해 봐요!'}</p>
+    </div>
+    <div class="card">
+      <button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;margin-bottom:8px">다시 풀기 🔄</button>
+      <button onclick="setState({section:0})" style="width:100%;background:#fef3c7;color:#92400e;border-radius:12px;padding:12px;font-size:14px;font-weight:600">처음으로 🏠</button>
+    </div>`;
+  }
+  const cur = Q[s.idx];
+  const answered = s.chosen !== null;
+  return `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <span style="font-size:12px;color:#888">문제 ${s.idx+1}/${Q.length}</span>
+    <span style="font-size:12px;color:var(--amber);font-weight:700">점수: ${s.score}</span>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <p style="font-size:15px;font-weight:600;line-height:1.6;color:#1a202c">${cur.q}</p>
+  </div>
+  ${cur.opts.map((opt, oi) => {
+    let bg = '#fff', border = '#fde68a', color = '#1a202c';
+    if (answered) {
+      if (oi === cur.ans) { bg = '#dcfce7'; border = '#22c55e'; color = '#166534'; }
+      else if (oi === s.chosen) { bg = '#fee2e2'; border = '#ef4444'; color = '#991b1b'; }
+    }
+    return `<button onclick="${answered ? '' : `(function(){const isC=${oi===cur.ans};setState({quiz:{...STATE.quiz,chosen:${oi},score:STATE.quiz.score+(isC?1:0)}});})()`}" style="width:100%;background:${bg};border:2px solid ${border};border-radius:10px;padding:12px 14px;margin-bottom:8px;font-size:14px;color:${color};text-align:left;font-weight:${answered&&oi===cur.ans?'700':'400'}">${answered&&oi===cur.ans?'✅ ':''}${answered&&oi===s.chosen&&oi!==cur.ans?'❌ ':''}${opt}</button>`;
+  }).join('')}
+  ${answered ? `<button onclick="(function(){if(STATE.quiz.idx+1>=Q.length){setState({quiz:{...STATE.quiz,done:true}})}else{setState({quiz:{...STATE.quiz,idx:STATE.quiz.idx+1,chosen:null}})}})()" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:13px;font-size:15px;font-weight:700;margin-top:4px">${s.idx+1 >= Q.length ? '결과 보기 🏁' : '다음 문제 →'}</button>` : ''}`;
+}
+
+// ===== SECTION RENDERERS =====
+function renderSection(id) {
+  switch(id) {
+    case 0: return `
+      <div class="intro-header">
+        <div style="font-size:36px;margin-bottom:8px">👔</div>
+        <h3>4과 · 직업과 일</h3>
+        <p style="font-size:13px;opacity:0.85;margin-top:4px">Occupation &amp; Work · Nghề nghiệp và công việc</p>
+      </div>
       <div class="card card-accent">
         <div class="section-label">학습 목표</div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>직업과 일 관련 어휘를 이해하고 사용할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>직업과 일 주제로 말하기·쓰기를 할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>AI 튜터와 함께 직업과 일 표현을 연습할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>직업·직장 관련 어휘를 익히고 활용할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><b>-(으)ㄹ 만하다</b>: 가치·추천 표현을 사용할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><b>-게 되다</b>: 변화·결과를 나타낼 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>이력서 작성 및 면접 표현을 익힌다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>한국 직장 문화(회식·야근·호칭)를 이해한다</span></div>
       </div>
-
-      <div class="card" style="background:#fef3c7;border:1px solid #fbbf24">
-        <div class="section-label" style="background:#92400e">📌 이번 과 주제</div>
-        <div style="font-size:24px;text-align:center;margin:12px 0">💼</div>
-        <div style="font-size:18px;font-weight:800;text-align:center;color:var(--brown);margin-bottom:4px">4과 · 직업과 일</div>
-        <div style="font-size:14px;text-align:center;color:#555;margin-bottom:8px">Occupation & Work</div>
-        <div style="background:#fff;border-radius:8px;padding:12px;font-size:13px;color:#555;line-height:1.8;border:1px solid #fde68a">
-          🚧 상세 콘텐츠는 준비 중입니다. AI 실습 탭에서 이 주제를 지금 바로 공부해 보세요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nội dung chi tiết đang được chuẩn bị. Hãy dùng tab AI 실습 để học ngay!</span>
+      <div class="card" style="background:linear-gradient(135deg,#fef3c7,#fff7ed)">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📚 이 과에서 배우는 문법</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:#f59e0b;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700">-(으)ㄹ 만하다</span>
+          <span style="background:#78350f;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700">-게 되다</span>
         </div>
       </div>
-
-      <div style="display:flex;gap:10px;margin-top:4px">
-        <a href="KIIP_Level3_Lesson3.html" style="flex:1;background:var(--dark);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">← 3과</a>
-        <a href="KIIP_Level3_Lesson5.html" style="flex:1;background:var(--amber);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">5과 →</a>
+      <div class="card" style="text-align:center;background:#fef3c7">
+        <div style="font-size:13px;color:#92400e;font-weight:700;margin-bottom:4px">🗓️ KIIP 3급 학습 진도</div>
+        <div style="font-size:12px;color:#666">3과 소비와 경제 ✅ → <b>4과 직업과 일 📍</b> → 5과 이동과 교통</div>
       </div>
+    `;
 
-      <div style="margin-top:12px">
-        <div style="background:#d1fae5;border-radius:8px;height:6px;overflow:hidden;margin-bottom:4px">
-          <div style="background:#22c55e;height:100%;width:20%;transition:width 0.5s"></div>
-        </div>
-        <div style="font-size:11px;color:#888;text-align:center">3급 전체 진도 20% · 4 / 20과</div>
+    case 1: return `
+      <h2>📝 어휘</h2>
+      <p class="sub">직업과 일 관련 핵심 어휘 · tap to hear pronunciation</p>
+      ${renderVocabCards()}
+      <div class="card" style="border-left:4px solid #8b5cf6;margin-top:4px">
+        <div style="font-size:13px;font-weight:700;color:#8b5cf6;margin-bottom:10px">💡 관용 표현 (Idioms)</div>
+        ${IDIOMS.map(id => `
+          <div style="padding:8px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${id.expr}')">
+            <div style="font-size:14px;font-weight:700;color:#1a202c">🔊 ${id.expr}</div>
+            <div style="font-size:12px;color:#b45309;margin:2px 0">${id.meaning}</div>
+            <div style="font-size:12px;color:#666;font-style:italic">${id.ex}</div>
+          </div>
+        `).join('')}
       </div>
-    </div>
-  `;
-}
+    `;
 
-function renderAI() {
-  return `
-    <div class="page">
-      <h2>🤖 AI 실습</h2>
-      <p class="sub">글로컬 아카데미 × AI 한국어 튜터 · 직업과 일</p>
-
-      <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
-        <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
-        <div style="font-size:15px;font-weight:800;margin-bottom:6px">KIIP 3급 4과 · 직업과 일 AI 실습</div>
-        <div style="font-size:11px;opacity:0.85;line-height:1.7">Occupation & Work — 주제별 AI 튜터와 실시간 학습<br>
-        <span style="color:#93c5fd">🇻🇳 Luyện tập chủ đề "직업과 일" cùng AI ngay trong app</span></div>
+    case 2: return `
+      <h2>📐 문법</h2>
+      <p class="sub">핵심 문법 2가지를 배워봐요</p>
+      <div style="display:flex;gap:8px;margin-bottom:14px">
+        <button onclick="setState({grammarTab:0})" style="flex:1;padding:10px;border-radius:10px;border:2px solid ${STATE.grammarTab===0?'#f59e0b':'#fde68a'};background:${STATE.grammarTab===0?'#f59e0b':'#fff'};color:${STATE.grammarTab===0?'#fff':'#92400e'};font-weight:700;font-size:13px">-(으)ㄹ 만하다</button>
+        <button onclick="setState({grammarTab:1})" style="flex:1;padding:10px;border-radius:10px;border:2px solid ${STATE.grammarTab===1?'#78350f':'#fde68a'};background:${STATE.grammarTab===1?'#78350f':'#fff'};color:${STATE.grammarTab===1?'#fff':'#92400e'};font-weight:700;font-size:13px">-게 되다</button>
       </div>
-
-      <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
-        <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
-        <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
-          계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
-          <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập, không chuyển tab</span>
-        </div>
-
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-          ${AI_QUICK_BTNS.map((b,i)=>`
-            <button onclick="AICHAT.quickSend(${i})"
-              style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
-              ${b.emoji} ${b.label}
-            </button>
+      ${STATE.grammarTab === 0 ? `
+        <div class="card card-accent">
+          <div class="section-label">-(으)ㄹ 만하다</div>
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px">의미: ~할 가치가 있다 / 충분히 ~할 수 있다</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">어떤 일을 할 정도의 가치나 이유가 있음을 나타내요.<br><b>Meaning:</b> "worth doing" / "good enough to do"<br><b>Nghĩa:</b> Đáng làm / Xứng đáng để làm</div>
+          <div style="background:#fef3c7;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:6px">📌 형태 규칙</div>
+            <div style="font-size:13px;line-height:1.8">
+              동사 어간 + <b>-(으)ㄹ 만하다</b><br>
+              • 받침 없음 → <b>-ㄹ 만하다</b> &nbsp;(가다 → 가<b>ㄹ 만하다</b>)<br>
+              • 받침 있음 → <b>-을 만하다</b> &nbsp;(읽다 → 읽<b>을 만하다</b>)
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:8px">예문 (tap to hear)</div>
+          ${[
+            ['이 영화는 볼 만해요.', 'This movie is worth watching.', 'Bộ phim này đáng xem.'],
+            ['이 직업은 도전해 볼 만해요.', 'This job is worth trying.', 'Nghề này đáng để thử.'],
+            ['그 회사는 지원할 만해요.', 'That company is worth applying to.', 'Công ty đó đáng để ứng tuyển.'],
+            ['가격이 좀 비싸지만 살 만해요.', 'It is a bit expensive but worth buying.', 'Hơi đắt nhưng đáng mua.'],
+            ['한국 생활도 익숙해지면 살 만해요.', 'Life in Korea is livable once you get used to it.', 'Sống ở Hàn Quốc cũng ổn khi quen rồi.'],
+          ].map(([ko,en,vi]) => `
+            <div style="padding:8px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+              <div style="font-size:14px;font-weight:600;color:#1a202c">🔊 ${ko}</div>
+              <div style="font-size:12px;color:#666">${en}</div>
+              <div style="font-size:12px;color:#b45309">${vi}</div>
+            </div>
           `).join('')}
         </div>
-
-        <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
-          <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
-            💡 버튼을 누르면 AI가 바로 답해줘요<br>
-            <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
+      ` : `
+        <div class="card card-accent" style="border-left-color:#78350f">
+          <div class="section-label" style="background:#78350f">-게 되다</div>
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px">의미: ~하게 됐다 (결과/변화)</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">자신의 의지와 관계없이 어떤 상황이나 상태가 됨을 나타내요.<br><b>Meaning:</b> "came to be" / "ended up" / "it happened that..."<br><b>Nghĩa:</b> Trở nên / Dẫn đến / Đã đến lúc</div>
+          <div style="background:#fef3c7;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:6px">📌 형태 규칙</div>
+            <div style="font-size:13px;line-height:1.8">
+              동사 어간 + <b>-게 되다</b><br>
+              과거: -게 됐어요 / 현재: -게 돼요 / 미래: -게 될 거예요
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:8px">예문 (tap to hear)</div>
+          ${[
+            ['한국어를 잘 하게 됐어요.', 'I came to speak Korean well.', 'Tôi đã nói được tiếng Hàn tốt.'],
+            ['새 회사에 다니게 됐어요.', 'I ended up working at a new company.', 'Tôi đã bắt đầu làm ở công ty mới.'],
+            ['이 일을 맡게 됐어요.', 'I ended up taking on this task.', 'Tôi đã được giao việc này.'],
+            ['한국 생활에 익숙해지게 됐어요.', 'I became accustomed to life in Korea.', 'Tôi đã quen với cuộc sống ở Hàn Quốc.'],
+            ['덕분에 취업하게 됐어요.', 'Thanks to you, I got a job.', 'Nhờ đó tôi đã có được việc làm.'],
+          ].map(([ko,en,vi]) => `
+            <div style="padding:8px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+              <div style="font-size:14px;font-weight:600;color:#1a202c">🔊 ${ko}</div>
+              <div style="font-size:12px;color:#666">${en}</div>
+              <div style="font-size:12px;color:#b45309">${vi}</div>
+            </div>
+          `).join('')}
+          <div style="background:#fef3c7;border-radius:8px;padding:10px;margin-top:10px">
+            <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:6px">⚡ -(으)ㄹ 만하다 vs -게 되다 비교</div>
+            <div style="font-size:12px;line-height:1.8">
+              ✅ <b>-(으)ㄹ 만하다</b> → 가치/추천 (worth, good enough)<br>
+              ✅ <b>-게 되다</b> → 변화/결과 (came to be, ended up)
+            </div>
           </div>
         </div>
+      `}
+    `;
 
-        <div style="display:flex;gap:6px;align-items:flex-end">
-          <textarea id="ai-chat-input"
-            placeholder="직업과 일에 대해 질문하세요... / Ask about Occupation & Work..."
-            style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
-            onfocus="this.style.borderColor='#f59e0b'"
-            onblur="this.style.borderColor='#fde68a'"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
-          ></textarea>
-          <button onclick="AICHAT.send()"
-            id="ai-send-btn"
-            style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">
-            ➤
-          </button>
-        </div>
-        <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+    case 3: return `
+      <h2>💬 말하기</h2>
+      <p class="sub">직업·직장 관련 대화 연습 · tap to hear</p>
+      ${renderDialogues()}
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">연습 활동</div>
+        <div style="font-size:14px;font-weight:700;color:#166534;margin-bottom:8px">🎯 직업 소개 연습</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">아래 질문에 답해 보세요:</div>
+        ${[
+          '지금 어떤 일을 하고 싶어요? / 하고 있어요?',
+          '취업을 위해 어떤 준비를 했어요? (또는 할 거예요?)',
+          '한국에서 일하면서 어떤 점이 힘들어요?',
+          '한국 직장에서 어떤 능력이 중요하다고 생각해요?',
+        ].map((q,i) => `<div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">Q${i+1}. ${q}</div>`).join('')}
       </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🗣️ 유용한 면접 표현</div>
+        ${[
+          ['저는 ○○ 분야에서 일하고 싶어요.', 'I want to work in the ○○ field.'],
+          ['제 강점은 성실함과 책임감이에요.', 'My strengths are diligence and responsibility.'],
+          ['○○ 때문에 이 회사에 지원하게 됐어요.', 'I applied to this company because of ○○.'],
+          ['열심히 배우고 노력하겠습니다.', 'I will work hard and keep learning.'],
+        ].map(([ko,en]) => `
+          <div style="padding:7px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+            <div style="font-size:14px;font-weight:600">🔊 ${ko}</div>
+            <div style="font-size:12px;color:#888">${en}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
 
-      <div class="card card-accent" style="margin-bottom:10px">
-        <div class="section-label">📖 4과 학습 가이드</div>
-        <div style="font-size:13px;color:#555;margin-top:8px;line-height:1.9">
-          <strong style="color:var(--brown)">💼 직업과 일 · Occupation & Work</strong><br>
-          위의 빠른 질문 버튼을 눌러 AI 튜터에게 이 주제를 배워보세요.<br>
-          직접 질문도 자유롭게 입력할 수 있어요.<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nhấn các nút câu hỏi nhanh để học chủ đề này với AI.<br>Bạn cũng có thể tự nhập câu hỏi bất kỳ.</span>
+    case 4: return `
+      <h2>👂 듣기</h2>
+      <p class="sub">린과 민준의 대화를 들어 보세요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🎧 상황: 취업 성공 이야기</div>
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">베트남 출신 린은 한국 취업에 성공했어요. 민준과 나누는 대화를 들어 보세요.</p>
+        <button onclick="playListeningScript()" style="width:100%;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px">
+          🔊 전체 듣기
+        </button>
+      </div>
+      <div class="card" style="margin-bottom:10px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📝 듣기 스크립트</div>
+        ${[
+          ['린', '민준 씨, 저 다음 달부터 새 회사에 출근하게 됐어요.'],
+          ['민준', '정말요? 축하해요! 어디서 일하게 됐어요?'],
+          ['린', '이태원에 있는 작은 무역 회사예요. 처음에는 한국어가 부족해서 취업이 어려울 것 같았는데, 열심히 준비하니까 됐어요.'],
+          ['민준', '면접이 어려웠겠다. 어떻게 준비했어요?'],
+          ['린', '자기소개서를 여러 번 고쳐 썼고, 면접 질문도 미리 연습했어요. 그리고 한국 직장 문화에 대해서도 공부했어요.'],
+          ['민준', '대단해요! 새 직장에서 어떤 일을 하게 돼요?'],
+          ['린', '무역 서류 작성이랑 외국 거래처 이메일 번역을 맡게 됐어요. 저한테 딱 맞는 일인 것 같아요.'],
+          ['민준', '정말 잘 됐네요. 직장 생활 잘 할 수 있을 거예요.'],
+        ].map(([sp, text], i) => `
+          <div style="display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${text.replace(/'/g,"\\'")}')">
+            <span style="font-size:11px;font-weight:700;color:#f59e0b;min-width:30px;margin-top:2px">${sp}</span>
+            <span style="font-size:13px;line-height:1.6;flex:1">${text}</span>
+            <span>🔊</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">이해 확인 문제</div>
+        ${[
+          {q:'린은 어디서 일하게 됐어요?', opts:['이태원 무역 회사','강남 IT 회사','종로 음식점','인천 공항'], ans:0},
+          {q:'린은 면접 준비를 어떻게 했어요?', opts:['아무것도 안 했어요','자기소개서를 쓰고 질문을 연습했어요','친구에게 부탁했어요','인터넷만 봤어요'], ans:1},
+          {q:'린은 새 직장에서 어떤 일을 맡게 됐어요?', opts:['서류 작성과 이메일 번역','회계와 세금','판매와 마케팅','요리와 서빙'], ans:0},
+          {q:'린에 대한 설명으로 맞는 것은?', opts:['취업에 실패했어요','한국어가 처음부터 완벽했어요','열심히 준비해서 취업했어요','직장이 마음에 안 들어요'], ans:2},
+        ].map((item, qi) => `
+          <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">${qi+1}. ${item.q}</div>
+            ${item.opts.map((o, oi) => `
+              <div style="padding:7px 10px;background:${oi===item.ans?'#dcfce7':'#f9fafb'};border:1px solid ${oi===item.ans?'#22c55e':'#e5e7eb'};border-radius:8px;margin-bottom:4px;font-size:13px;cursor:pointer" onclick="TTS.speak('${o}')">
+                ${oi===item.ans?'✅ ':''}${o}
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 5: return `
+      <h2>🔊 발음</h2>
+      <p class="sub">직업 어휘의 경음화(된소리되기) + 연음 규칙</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">규칙 1: 경음화 (된소리되기)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">받침 뒤에 예사소리(ㄱ,ㄷ,ㅂ,ㅅ,ㅈ)가 오면 된소리(ㄲ,ㄸ,ㅃ,ㅆ,ㅉ)로 발음해요.</div>
+        ${[
+          ['직업', '[지겁]', 'occupation', 'job → the ㄱ after ㄱ becomes ㄲ... actually 직+업 = [지겁]'],
+          ['합격', '[합껵]', 'passing', '합+격 → ㄱ 뒤 ㄱ → [합껵]'],
+          ['면접', '[면쩝]', 'interview', '면+접 → ㅂ 뒤 ㅈ → [면쩝]'],
+          ['이력서', '[이력써]', 'résumé', '이력+서 → ㄱ 뒤 ㅅ → [이력써]'],
+          ['자격증', '[자격쯩]', 'certificate', '자격+증 → ㄱ 뒤 ㅈ → [자격쯩]'],
+        ].map(([word, pron, en, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:80px;font-size:16px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#f59e0b;color:#fff;padding:3px 10px;border-radius:20px;font-size:13px;font-weight:700">${pron}</div>
+              <div style="font-size:12px;color:#888">${en}</div>
+            </div>
+            <div style="font-size:11px;color:#b45309;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card" style="border-left:4px solid #3b82f6">
+        <div class="section-label" style="background:#3b82f6">규칙 2: 연음 (이어 읽기)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">받침이 있는 글자 뒤에 모음으로 시작하는 글자가 오면 받침이 다음 음절의 초성으로 이어져요.</div>
+        ${[
+          ['직업이에요', '[지거비에요]', '직업+이에요 → 받침 ㅂ이 이어짐'],
+          ['합격이에요', '[합꺼기에요]', '합격+이에요 → 연음'],
+          ['이력서예요', '[이력써예요]', '이력+서예요 → 경음화+연음'],
+        ].map(([word, pron, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #e0f2fe;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:100px;font-size:15px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#3b82f6;color:#fff;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700">${pron}</div>
+            </div>
+            <div style="font-size:11px;color:#1d4ed8;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">발음 연습</div>
+        <p style="font-size:13px;color:#555;margin-bottom:10px">문장을 천천히 따라 읽어 보세요:</p>
+        ${[
+          '직업[지겁]을 찾고 있어요.',
+          '면접[면쩝]에 합격[합껵]했어요!',
+          '이력서[이력써]에 자격증[자격쯩]을 써요.',
+        ].map(s => `
+          <div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px;cursor:pointer" onclick="TTS.speak('${s.replace(/\[.*?\]/g,'')}')">
+            🔊 ${s}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 6: return `
+      <h2>📖 읽기</h2>
+      <p class="sub">한국의 외국인 근로자 취업 현황</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">읽기 본문</div>
+        <div style="font-size:14px;line-height:1.9;color:#1a202c">
+          <p style="margin-bottom:12px">한국에는 많은 외국인 근로자가 일하고 있습니다. 제조업, 서비스업, IT 분야 등 다양한 곳에서 외국인들이 능력을 발휘하고 있어요.</p>
+          <p style="margin-bottom:12px">외국인이 한국에서 취업하려면 먼저 적합한 비자를 취득해야 합니다. 취업 비자의 종류에는 E-7(특정활동), E-9(비전문취업), F-2(거주) 등이 있어요. 비자 종류에 따라 일할 수 있는 직종이 달라지므로 미리 확인하는 것이 중요합니다.</p>
+          <p style="margin-bottom:12px">취업을 위해서는 이력서와 자기소개서 작성이 필수예요. 한국의 이력서에는 사진, 학력, 경력, 자격증 등을 기재합니다. 자기소개서에는 지원 동기와 강점을 구체적으로 써야 해요.</p>
+          <p>면접에서는 한국어 능력과 함께 성실성, 팀워크, 적응력을 중요하게 봐요. 또한 한국 직장 문화에 대한 이해도 면접관에게 좋은 인상을 줄 수 있어요. 외국인 취업 지원을 위해 고용노동부와 각 지역 고용센터에서 무료 상담 서비스를 제공하고 있으니 적극 활용해 보세요.</p>
         </div>
       </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">읽기 이해 문제</div>
+        ${[
+          {q:'외국인이 한국에서 취업할 때 먼저 해야 하는 것은?', opts:['이력서 쓰기','적합한 비자 취득','한국어 시험 보기','회사에 전화하기'], ans:1},
+          {q:'한국 이력서에 들어가는 내용이 아닌 것은?', opts:['사진','학력','자격증','종교'], ans:3},
+          {q:'면접에서 중요하게 보는 것으로 언급되지 않은 것은?', opts:['한국어 능력','성실성','외모','팀워크'], ans:2},
+        ].map((item, qi) => `
+          <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">${qi+1}. ${item.q}</div>
+            ${item.opts.map((o, oi) => `
+              <div style="padding:7px 10px;background:${oi===item.ans?'#dcfce7':'#f9fafb'};border:1px solid ${oi===item.ans?'#22c55e':'#e5e7eb'};border-radius:8px;margin-bottom:4px;font-size:13px">
+                ${oi===item.ans?'✅ ':''}${o}
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
 
-      <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
-    </div>
-  `;
-}
+    case 7: return `
+      <h2>✏️ 쓰기</h2>
+      <p class="sub">나의 직업 이야기를 써 봐요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">쓰기 활동</div>
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:10px">📝 주제: 나의 직업 계획 또는 경험</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">다음 내용을 포함해서 150~200자 정도 써 보세요:</div>
+        ${[
+          '현재 직업 또는 원하는 직업이 무엇인지',
+          '그 직업을 선택한 이유 (-게 되다 사용)',
+          '그 일의 좋은 점 (-ㄹ 만하다 사용)',
+          '앞으로의 계획이나 목표',
+        ].map((item, i) => `<div style="padding:8px;background:#fef3c7;border-radius:8px;margin-bottom:6px;font-size:13px">📌 ${i+1}. ${item}</div>`).join('')}
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">✍️ 예시 답안</div>
+        <div style="font-size:13px;line-height:1.9;color:#1a202c;background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:10px">
+          저는 베트남 출신으로 한국에 온 지 3년이 됐어요. 처음에는 언어도 문화도 낯설었지만, 지금은 많이 익숙해<b>지게 됐어요</b>. 저는 현재 무역 회사에서 번역 업무를 맡고 있어요. 이 일은 외국어 능력을 활용할 수 있어서 정말 해<b>볼 만한</b> 직업인 것 같아요. 앞으로는 한국어 자격증도 취득하고, 더 큰 회사에 지원하<b>게 될</b> 거예요. 열심히 노력하겠습니다.
+        </div>
+        <div style="font-size:12px;color:#b45309;margin-bottom:4px">📌 문법 포인트:</div>
+        <div style="font-size:12px;color:#555;line-height:1.8">
+          • <b>익숙해지게 됐어요</b> → -게 되다 (변화)<br>
+          • <b>해볼 만한</b> → -(으)ㄹ 만하다 (가치)<br>
+          • <b>지원하게 될 거예요</b> → -게 되다 미래형
+        </div>
+      </div>
+      <div class="card" style="border-left:4px solid #8b5cf6">
+        <div style="font-size:13px;font-weight:700;color:#8b5cf6;margin-bottom:8px">🔤 유용한 연결 표현</div>
+        ${[
+          ['먼저', 'first of all'],
+          ['그리고', 'and/also'],
+          ['하지만', 'however'],
+          ['그래서', 'so/therefore'],
+          ['앞으로는', 'in the future'],
+          ['덕분에', 'thanks to'],
+        ].map(([ko, en]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ede9fe;font-size:13px"><span style="font-weight:700">${ko}</span><span style="color:#888">${en}</span></div>`).join('')}
+      </div>
+    `;
 
-function renderSection() {
-  switch(STATE.section) {
-    case 0: return renderIntro();
-    case 10: return renderAI();
-    default: return renderWIPSection(SECTIONS[STATE.section].label, SECTIONS[STATE.section].icon);
+    case 8: return `
+      <h2>🎎 문화</h2>
+      <p class="sub">한국 직장 문화 이해하기</p>
+      ${CULTURE.map(c => `
+        <div class="card card-accent" style="margin-bottom:10px">
+          <div style="font-size:28px;margin-bottom:6px">${c.icon}</div>
+          <div style="font-size:15px;font-weight:700;color:#92400e;margin-bottom:6px">${c.title}</div>
+          <div style="font-size:13px;line-height:1.8;color:#555">${c.body}</div>
+        </div>
+      `).join('')}
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">문화 비교</div>
+        <div style="font-size:13px;color:#555;line-height:1.7">
+          <div style="margin-bottom:8px">🇰🇷 한국 vs 🌏 여러분의 나라</div>
+          ${[
+            '여러분 나라에서도 회식 문화가 있나요?',
+            '야근에 대한 인식이 어떤가요?',
+            '직장에서 상사를 어떻게 부르나요?',
+            '이력서에 사진을 붙이나요?',
+          ].map((q,i) => `<div style="padding:7px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">💬 ${q}</div>`).join('')}
+        </div>
+      </div>
+      <div class="card" style="background:linear-gradient(135deg,#fef3c7,#fff7ed);text-align:center">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:6px">📞 외국인 취업 지원 기관</div>
+        <div style="font-size:13px;line-height:1.8;color:#555">
+          고용노동부 고용센터 ☎ 1350<br>
+          외국인력지원센터 ☎ 1644-0947<br>
+          사회통합프로그램 ☎ 1345
+        </div>
+      </div>
+    `;
+
+    case 9: return `
+      <h2>✅ 퀴즈</h2>
+      <p class="sub">4과 내용을 얼마나 이해했나요?</p>
+      ${renderQuiz()}
+    `;
+
+    case 10: return `
+      <h2>🤖 AI 실습</h2>
+      <p class="sub">AI와 함께 직업·취업 한국어 연습해요</p>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+        ${AI_QUICK_BTNS.map((b,i) => `<button onclick="AICHAT.quickSend(${i})" style="background:#fef3c7;border:1px solid #fbbf24;color:#92400e;padding:8px 12px;border-radius:20px;font-size:13px;font-weight:600;min-height:44px">${b.emoji} ${b.label}</button>`).join('')}
+      </div>
+      <div style="background:#fff;border:1px solid #fde68a;border-radius:12px;overflow:hidden">
+        <div id="ai-chat-messages" style="height:320px;overflow-y:auto;padding:12px;display:flex;flex-direction:column">
+          <div class="ai-placeholder" style="text-align:center;color:#aaa;font-size:13px;margin:auto">위 버튼을 누르거나 아래에 질문을 입력하세요 💬</div>
+        </div>
+        <div style="border-top:1px solid #fde68a;padding:8px;display:flex;gap:8px;align-items:flex-end">
+          <textarea id="ai-chat-input" placeholder="한국어로 질문하거나 연습해 보세요..." rows="2"
+            style="flex:1;border:1px solid #fde68a;border-radius:8px;padding:8px;font-size:13px;resize:none;font-family:inherit;line-height:1.5;max-height:80px;overflow-y:auto"
+            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send();}"
+            oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,80)+'px'"></textarea>
+          <button id="ai-send-btn" onclick="AICHAT.send()" style="background:#f59e0b;color:#fff;border-radius:8px;padding:10px 16px;font-weight:700;font-size:14px;min-height:44px;flex-shrink:0">전송</button>
+        </div>
+      </div>
+    `;
+
+    default: return '<div style="padding:20px;text-align:center;color:#888">준비중이에요 🙏</div>';
   }
 }
 
+// ===== MAIN RENDER =====
 function render() {
-  document.getElementById('app').innerHTML =
-    renderNav() + renderLangBar() + renderTabs() + renderSection() + renderBottomNav();
+  const s = STATE;
+  const app = document.getElementById('app');
+  if (!app) return;
+
+  const tabsHtml = SECTIONS.map(sec =>
+    `<button class="stab${s.section===sec.id?' active':''}" onclick="setState({section:${sec.id}})">${sec.icon} ${sec.label}</button>`
+  ).join('');
+
+  const bottomNav = `
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level3_Lesson3" class="bnav-btn" style="text-decoration:none;color:#888">
+        <span class="bnav-icon">←</span><span>3과</span>
+      </a>
+      <button class="bnav-btn${s.section===0?' active':''}" onclick="setState({section:0})">
+        <span class="bnav-icon">🏠</span><span>도입</span>
+      </button>
+      <button class="bnav-btn${s.section===9?' active':''}" onclick="setState({section:9})">
+        <span class="bnav-icon">✅</span><span>퀴즈</span>
+      </button>
+      <button class="bnav-btn${s.section===10?' active':''}" onclick="setState({section:10})">
+        <span class="bnav-icon">🤖</span><span>AI실습</span>
+      </button>
+      <a href="/KIIP_Level3_Lesson5" class="bnav-btn" style="text-decoration:none;color:#888">
+        <span class="bnav-icon">→</span><span>5과</span>
+      </a>
+    </nav>
+  `;
+
+  app.innerHTML = `
+    <nav class="nav">
+      <a href="/KIIP_Level3_Index" class="nav-back">← 목차</a>
+      <div style="text-align:right">
+        <div class="nav-title">4과 · 직업과 일</div>
+        <div class="nav-sub">KIIP 3급 중급 1</div>
+      </div>
+    </nav>
+    <div class="section-tabs">${tabsHtml}</div>
+    <div class="page">${renderSection(s.section)}</div>
+    ${bottomNav}
+  `;
+
+  // Scroll active tab into view
+  setTimeout(() => {
+    const activeTab = document.querySelector('.stab.active');
+    if (activeTab) activeTab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  }, 50);
 }
 
+// ===== INIT =====
 render();
-</script>
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {});
-  });
-}
 </script>
 </body>
 </html>
