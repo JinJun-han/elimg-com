@@ -601,7 +601,7 @@ function renderTabs() {
 
 function renderBottomNav() {
   const prev = STATE.section > 0 ? `<button class="bnav-btn" onclick="setState({section:${STATE.section-1}})">◀ 이전</button>` : `<button class="bnav-btn" style="opacity:0.3" disabled>◀ 이전</button>`;
-  const next = STATE.section < SECTIONS.length-1 ? `<button class="bnav-btn" onclick="setState({section:${STATE.section+1}})">다음 ▶</button>` : `<button class="bnav-btn" style="opacity:0.3" disabled>다음 ▶</button>`;
+  const next = STATE.section < SECTIONS.length-1 ? `<button class="bnav-btn" onclick="setState({section:${STATE.section+1}})">다음 ▶</button>` : `<a href="/KIIP_Level3_Lesson2" class="bnav-btn" style="text-decoration:none;color:#f59e0b;font-weight:700"><span class="bnav-icon">→</span><span>2과</span></a>`;
   return `
     <div class="bottom-nav">
       ${prev}
