@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>KIIP 3급 15과 · 한국 사회</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
 <meta property="og:title" content="KIIP 3급 15과 · 한국 사회">
@@ -11,7 +14,7 @@
 <meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://elimg.com/KIIP_Level3_Lesson15.html">
+<meta property="og:url" content="https://elimg.com/KIIP_Level3_Lesson15">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="KIIP 3급 15과 · 한국 사회">
 <meta name="twitter:description" content="법무부 KIIP 사회통합프로그램 3급 중급 1 · 15과 한국 사회">
@@ -51,12 +54,6 @@ h2{color:var(--brown);font-size:18px;margin-bottom:4px;font-weight:800}
 .intro-header{background:linear-gradient(135deg,#451a03,#92400e,#b45309);color:#fff;border-radius:12px;padding:20px;margin-bottom:12px;text-align:center}
 .intro-header h3{font-size:20px;font-weight:800;margin-bottom:4px}
 .section-label{display:inline-block;background:var(--amber);color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:12px;margin-bottom:8px}
-.lang-bar{background:#fef3c7;display:flex;justify-content:center;gap:8px;padding:8px}
-.lang-btn-sm{background:rgba(180,83,9,0.1);border:1px solid #fbbf24;color:#92400e;padding:8px 16px;border-radius:20px;font-size:13px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
-.lang-btn-sm.active{background:var(--amber);color:#fff;border-color:var(--amber)}
-.wip-banner{background:linear-gradient(135deg,#78350f,#92400e);color:#fff;border-radius:12px;padding:20px;margin-bottom:16px;text-align:center}
-.wip-banner h3{font-size:18px;font-weight:800;margin-bottom:8px}
-.wip-banner p{font-size:13px;opacity:0.9;line-height:1.7;margin-bottom:4px}
 .obj-item{display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid #fde68a;font-size:14px;color:var(--text)}
 .obj-item:last-child{border-bottom:none}
 .obj-check{color:var(--amber);font-size:16px;flex-shrink:0;margin-top:1px}
@@ -86,6 +83,9 @@ window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); }
 const STATE = {
   section: 0,
   lang: localStorage.getItem('kiip_lang') || 'ko',
+  grammarTab: 0,
+  quizAnswers: {},
+  quiz: {started:false, idx:0, score:0, chosen:null, done:false},
 };
 
 function setState(newState) {
@@ -108,7 +108,55 @@ const SECTIONS = [
   {id:10, label:'AI실습', icon:'🤖'},
 ];
 
-var AI_QUICK_BTNS = [{"emoji":"🌐","label":"사회 어휘 설명","q":"KIIP 3급 15과: 한국 사회 관련 어휘 10개를 한국어, 발음, 영어, 베트남어로 알려주세요. 다문화, 인구, 사회 현상 관련 단어 포함해 주세요."},{"emoji":"📊","label":"사회 현상 표현","q":"한국 사회 현상을 설명하는 표현을 알려주세요. 저출산, 고령화, 다문화 사회 관련 문장을 베트남어와 함께 알려주세요."},{"emoji":"💬","label":"사회 이슈 토론","q":"한국 사회 이슈에 대한 의견을 표현하는 연습을 해주세요. 외국인 근로자, 다문화 가정에 대한 생각을 한국어로 말하는 방법을 알려주세요."},{"emoji":"🤝","label":"다문화 사회 이해","q":"한국의 다문화 사회 정책을 설명해 주세요. KIIP 프로그램의 목적과 사회통합 관련 내용을 베트남어로 알려주세요."}];
+const VOCAB = [
+  // 사회 변화
+  {ko:'고령화', pron:'[고령화]', en:'aging (of society)', vi:'già hóa (xã hội)', cat:'사회 변화'},
+  {ko:'저출산', pron:'[저출산]', en:'low birth rate', vi:'tỷ lệ sinh thấp', cat:'사회 변화'},
+  {ko:'다문화', pron:'[다문화]', en:'multiculturalism', vi:'đa văn hóa', cat:'사회 변화'},
+  {ko:'정보화', pron:'[정보화]', en:'informatization', vi:'tin học hóa', cat:'사회 변화'},
+  {ko:'세계화', pron:'[세계화]', en:'globalization', vi:'toàn cầu hóa', cat:'사회 변화'},
+  // 사회 문제
+  {ko:'실업', pron:'[시럽]', en:'unemployment', vi:'thất nghiệp', cat:'사회 문제'},
+  {ko:'빈부격차', pron:'[빈부격차]', en:'wealth gap', vi:'khoảng cách giàu nghèo', cat:'사회 문제'},
+  {ko:'환경오염', pron:'[환경오염]', en:'environmental pollution', vi:'ô nhiễm môi trường', cat:'사회 문제'},
+  {ko:'교통체증', pron:'[교통체증]', en:'traffic congestion', vi:'tắc nghẽn giao thông', cat:'사회 문제'},
+  {ko:'주거비', pron:'[주거비]', en:'housing cost', vi:'chi phí nhà ở', cat:'사회 문제'},
+  // 사회 제도
+  {ko:'복지', pron:'[복찌]', en:'welfare', vi:'phúc lợi', cat:'사회 제도'},
+  {ko:'의료보험', pron:'[의료보험]', en:'health insurance', vi:'bảo hiểm y tế', cat:'사회 제도'},
+  {ko:'연금', pron:'[연금]', en:'pension', vi:'lương hưu', cat:'사회 제도'},
+  {ko:'사회보장', pron:'[사회보장]', en:'social security', vi:'an sinh xã hội', cat:'사회 제도'},
+  {ko:'지원제도', pron:'[지원제도]', en:'support system', vi:'chế độ hỗ trợ', cat:'사회 제도'},
+  // 현대 생활
+  {ko:'1인 가구', pron:'[일인 가구]', en:'single-person household', vi:'hộ gia đình một người', cat:'현대 생활'},
+  {ko:'맞벌이', pron:'[맏버리]', en:'dual-income (couple)', vi:'vợ chồng cùng đi làm', cat:'현대 생활'},
+  {ko:'재택근무', pron:'[재택근무]', en:'working from home', vi:'làm việc tại nhà', cat:'현대 생활'},
+  {ko:'온라인쇼핑', pron:'[온라인쇼핑]', en:'online shopping', vi:'mua sắm trực tuyến', cat:'현대 생활'},
+  {ko:'비대면', pron:'[비대면]', en:'non-face-to-face / contactless', vi:'không tiếp xúc trực tiếp', cat:'현대 생활'},
+  // 표현
+  {ko:'증가하다', pron:'[증가하다]', en:'to increase', vi:'tăng lên', cat:'표현'},
+  {ko:'감소하다', pron:'[감소하다]', en:'to decrease', vi:'giảm xuống', cat:'표현'},
+  {ko:'변화하다', pron:'[변화하다]', en:'to change', vi:'thay đổi', cat:'표현'},
+  {ko:'영향을 미치다', pron:'[영향을 미치다]', en:'to have an effect on', vi:'có ảnh hưởng đến', cat:'표현'},
+  {ko:'해결하다', pron:'[해결하다]', en:'to solve', vi:'giải quyết', cat:'표현'},
+];
+
+const QUIZ_DATA = [
+  {q:'"고령화로 인해 사회가 ___." 빈칸에 알맞은 것은?', opts:['빠르게 변화해 왔어요.','천천히 줄어들게 됐어요.','갑자기 시작됐어요.','멈추게 됐어요.'], ans:0},
+  {q:'-아/어 오다 문법의 의미로 올바른 것은?', opts:['앞으로 할 계획','갑자기 일어난 사건','과거부터 지금까지 계속해 온 행동','미래의 반복'],ans:2},
+  {q:'-(으)로 인해의 의미는?', opts:['~하기 위해서','~때문에 / ~로 인하여','~하면서','~한 후에'], ans:1},
+  {q:'"저출산___학교 수가 줄어들고 있어요." 빈칸에 알맞은 것은?', opts:['을 통해','에 의해','으로 인해','로 인한 후에'], ans:2},
+  {q:'"맞벌이 부부"의 뜻은?', opts:['혼자 사는 사람','부부가 모두 직장에 다니는 것','재택근무 하는 사람','은퇴한 부부'], ans:1},
+];
+
+var AI_QUICK_BTNS = [
+  {emoji:'🏙️', label:'사회 어휘 설명', q:'KIIP 3급 15과 어휘: 한국 사회 관련 단어 5개를 쉽게 설명하고 예문과 베트남어 번역을 알려주세요.'},
+  {emoji:'📐', label:'문법 질문', q:'KIIP 3급: -아/어 오다 문법을 쉽게 설명하고 예문 3개를 베트남어 번역과 함께 알려주세요.'},
+  {emoji:'💬', label:'롤플레이', q:'저는 베트남 출신 KIIP 3급 학습자입니다. 한국 사회 변화에 대한 토론 상황을 -아/어 오다, -(으)로 인해 문법으로 롤플레이해 주세요.'},
+  {emoji:'✏️', label:'내 글 첨삭', q:'KIIP 3급 학습자의 글입니다. 문법을 확인하고 수정해 주세요. 베트남어로도 설명해 주세요: '},
+  {emoji:'❓', label:'틀린 문제 설명', q:'KIIP 3급 퀴즈에서 틀렸어요. -(으)로 인해 문법을 다시 쉽게 설명하고 예문 3개를 베트남어와 함께 알려주세요.'},
+  {emoji:'🎯', label:'TOPIK 연습', q:'KIIP 3급 수준의 TOPIK II 사회 변화 주제 빈칸 채우기 문제 3개를 만들어 주세요. 정답과 해설도 포함해 주세요.'},
+];
 
 var AICHAT = {
   history: [],
@@ -121,6 +169,7 @@ var AICHAT = {
     if (!inp) return;
     inp.value = b.q;
     inp.style.borderColor = '#f59e0b';
+    if (idx === 3) { inp.focus(); return; }
     this.send();
   },
 
@@ -154,7 +203,7 @@ var AICHAT = {
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div>'
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div>'
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div>'
-          + '</div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+          + '</div><span style="font-size:12px;color:#888">AI 응답 중... 🇻🇳 Đang trả lời...</span>';
         box.appendChild(ld);
         box.scrollTop = box.scrollHeight;
       }
@@ -170,18 +219,14 @@ var AICHAT = {
     var inp  = document.getElementById('ai-chat-input');
     var text = inp ? inp.value.trim() : '';
     if (!text) return;
-
     this.history.push({role:'user', content:text});
     this.addMsg('user', text);
     if (inp) inp.value = '';
     this.loading = true;
     this.setLoading(true);
-
-    var sys = "You are a Korean language tutor for KIIP Level 3. The student is likely Vietnamese. This lesson is about Korean society (한국 사회). Answer in Korean with Vietnamese translation. Be concise and friendly.";
-
+    var sys = 'You are a Korean language tutor for KIIP Level 3 Lesson 15 (한국 사회 / Korean Society). Grammar focus: -아/어 오다, -(으)로 인해. Student is likely Vietnamese. Answer in Korean with Vietnamese translation. Be concise and friendly.';
     try {
-      var url = '/api/chat';
-      var res  = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var data = await res.json();
       var reply = data.choices[0].message.content;
@@ -191,216 +236,883 @@ var AICHAT = {
       this.addMsg('assistant', reply);
     } catch(e) {
       this.setLoading(false);
-      this.addMsg('assistant',
-        '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요');
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요\n🇻🇳 Lỗi kết nối AI — Thử lại sau ít phút');
     }
     this.loading = false;
   }
 };
 
-// ===== RENDER =====
-function setLang(lang) {
-  STATE.lang = lang;
-  localStorage.setItem('kiip_lang', lang);
-  render();
+function copyNotebookContent15() {
+  var content = 'KIIP 3급 중급 1 · 15과 한국 사회 학습 자료\n글로컬 아카데미 (elimg.com)\n\n=== 핵심 어휘 ===\n사회 변화: 고령화, 저출산, 다문화, 정보화, 세계화\n사회 문제: 실업, 빈부격차, 환경오염, 교통체증, 주거비\n사회 제도: 복지, 의료보험, 연금, 사회보장, 지원제도\n현대 생활: 1인 가구, 맞벌이, 재택근무, 온라인쇼핑, 비대면\n표현: 증가하다, 감소하다, 변화하다, 영향을 미치다, 해결하다\n\n=== 핵심 문법 ===\n1. -아/어 오다: "have been doing up to now / ongoing from past"\n   의미: 과거부터 지금까지 계속해 온 행동이나 상태\n   예: 한국에서 10년 동안 살아 왔어요.\n   예: 정부가 복지 정책을 발전시켜 왔어요.\n   예: 한국 사회는 빠르게 변화해 왔어요.\n   베트남어: Đã sống ở Hàn Quốc 10 năm cho đến nay.\n\n2. -(으)로 인해: "due to / because of — formal"\n   의미: ~때문에, ~로 인하여 (격식체)\n   예: 고령화로 인해 사회 구조가 변하고 있어요.\n   예: 저출산으로 인해 학교 수가 줄어들고 있어요.\n   예: 세계화로 인해 다문화 가정이 늘어났어요.\n   베트남어: Do già hóa, cấu trúc xã hội đang thay đổi.';
+  navigator.clipboard.writeText(content).then(function() {
+    var el = document.getElementById('copy-ok15');
+    if (el) { el.textContent = '✅ 복사 완료!'; setTimeout(function(){ el.textContent = ''; }, 3000); }
+  }).catch(function() {
+    var el = document.getElementById('copy-ok15');
+    if (el) el.textContent = '❌ 직접 복사하세요';
+  });
 }
 
-function renderNav() {
-  return `
-    <div class="nav">
-      <a href="KIIP_Level3_Index.html" class="nav-back">← 3급 목차</a>
-      <div style="text-align:center">
-        <div class="nav-title">15과 · 한국 사회</div>
-        <div class="nav-sub">KIIP 3급 중급 1</div>
-      </div>
-      <div style="width:60px;text-align:right;font-size:11px;color:#d97706">
-        ${STATE.section+1}/${SECTIONS.length}
-      </div>
-    </div>
-  `;
+const RECORDER = {
+  streams: {}, recorders: {}, chunks: {}, audioURLs: {}, isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    const resultEl = document.getElementById('stt-result-' + idx);
+    const playBtn  = document.getElementById('play-btn-' + idx);
+    const scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, targetText, recBtn); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      this.streams[idx] = stream;
+    } catch(e) {
+      const name = e.name || '';
+      let msg = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg = '❌ <strong>마이크가 차단됨</strong> — 주소창 왼쪽 🔒 → 마이크 → <strong>허용</strong> 후 새로고침<br><span style="color:#555">🇻🇳 Micro bị chặn — Nhấn 🔒 → Micro → Cho phép → F5</span>';
+      } else if (name === 'NotFoundError') {
+        msg = '❌ <strong>마이크를 찾을 수 없어요</strong> — 마이크 연결 확인';
+      } else {
+        msg = '❌ <strong>오류: ' + name + '</strong> — Chrome/Edge에서 다시 시도';
+      }
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    const mr = new MediaRecorder(this.streams[idx]);
+    this.recorders[idx] = mr;
+    mr.ondataavailable = e => { if (e.data.size > 0) this.chunks[idx].push(e.data); };
+    mr.onstop = () => {
+      if (this.audioURLs[idx]) URL.revokeObjectURL(this.audioURLs[idx]);
+      const blob = new Blob(this.chunks[idx], {type: 'audio/webm'});
+      this.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false; playBtn.style.opacity = '1';
+        playBtn.onclick = () => { const a = new Audio(this.audioURLs[idx]); a.play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지'; recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중... · 🇻🇳 Đang ghi âm...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      const rec = new SR();
+      rec.lang = 'ko-KR'; rec.continuous = false; rec.interimResults = false;
+      rec.onresult = (e) => {
+        const said = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        const target = targetText.replace(/[\s,.?!\[\]]/g,'');
+        const conf = e.results[0][0].confidence;
+        let match = 0;
+        const minLen = Math.min(said.length, target.length);
+        for (let i = 0; i < minLen; i++) { if (said[i] === target[i]) match++; }
+        const pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        const confPct = Math.round((conf || 0.5) * 100);
+        const finalPct = Math.round((pct * 0.7) + (confPct * 0.3));
+        const color = finalPct >= 80 ? '#22c55e' : finalPct >= 50 ? '#f59e0b' : '#ef4444';
+        const msg = finalPct >= 80 ? '✅ 완벽해요! · Tuyệt vời!' : finalPct >= 50 ? '🔄 조금 더 연습! · Luyện thêm chút!' : '❌ 다시 시도! · Thử lại!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = finalPct + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = () => {};
+      rec.start();
+    }
+  },
+
+  async autoDetect() {
+    const stateEl = document.getElementById('mic-perm-state');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        const result = await navigator.permissions.query({name: 'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 이미 허용됨 — 바로 녹음하세요! · 🇻🇳 Đã cho phép!</div>';
+          if (allowBtn) { allowBtn.style.background = '#166534'; allowBtn.textContent = '✅ 허용됨 — 바로 녹음하세요'; }
+          if (blockedGuide) blockedGuide.style.display = 'none';
+          return;
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 아래 빨간 박스 순서대로 해결하세요</div>';
+          if (blockedGuide) blockedGuide.style.display = 'block';
+          if (allowBtn) { allowBtn.style.background = '#ef4444'; allowBtn.textContent = '⚠️ 차단됨 — 위 단계 완료 후 여기 클릭'; }
+          return;
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아직 허용 안 됨 — 아래 버튼을 눌러 허용해 주세요</div>';
+        }
+        result.onchange = () => RECORDER.autoDetect();
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+      }
+    } else {
+      stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+    }
+  },
+
+  async checkPermission(btn) {
+    const statusEl = document.getElementById('mic-status');
+    const box = document.getElementById('mic-check-box');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → elimg.com 에서 열기</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 미지원 브라우저 — Chrome 또는 Edge를 사용해 주세요</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      stream.getTracks().forEach(t => t.stop());
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 바로 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 성공! 🇻🇳 Đã cho phép!</span>';
+      if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
+      if (blockedGuide) blockedGuide.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 바로 녹음하세요!'; btn.style.background = '#166534'; btn.disabled = false;
+    } catch(e) {
+      const name = e.name || '';
+      btn.disabled = false;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        if (blockedGuide) blockedGuide.style.display = 'block';
+        if (stateEl) stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 빨간 박스 순서대로 해결 후 다시 클릭</div>';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444;font-size:11px">🔒 허용 완료 후 이 버튼을 다시 눌러주세요</span>';
+        btn.textContent = '🔄 허용 완료 후 다시 클릭'; btn.style.background = '#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">오류 (' + (name||'unknown') + ') — Chrome/Edge에서 다시 시도</span>';
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
+      }
+    }
+  },
+
+  stop(idx, targetText, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') this.recorders[idx].stop();
+    if (this.streams[idx]) this.streams[idx].getTracks().forEach(t => t.stop());
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음'; recBtn.style.background = '#059669';
+  }
+};
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
 }
 
-function renderLangBar() {
-  return `
-    <div class="lang-bar">
-      ${['ko','en','vi'].map(l=>`<button class="lang-btn-sm ${STATE.lang===l?'active':''}" onclick="setLang('${l}')">${l==='ko'?'🇰🇷 KO':l==='en'?'🇺🇸 EN':'🇻🇳 VI'}</button>`).join('')}
-    </div>
-  `;
+// ===== RENDER HELPERS =====
+function vocabCatColor(cat) {
+  const m = {
+    '사회 변화':'#ef4444',
+    '사회 문제':'#f59e0b',
+    '사회 제도':'#22c55e',
+    '현대 생활':'#3b82f6',
+    '표현':'#8b5cf6'
+  };
+  return m[cat] || '#888';
 }
 
-function renderTabs() {
-  return `
-    <div class="section-tabs">
-      ${SECTIONS.map(s=>`<button class="stab ${STATE.section===s.id?'active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
-    </div>
-  `;
-}
-
-function renderBottomNav() {
-  const prev = STATE.section > 0
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section-1}})">◀ 이전</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>◀ 이전</button>`;
-  const next = STATE.section < SECTIONS.length-1
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section+1}})">다음 ▶</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>다음 ▶</button>`;
-  return `
-    <div class="bottom-nav">
-      ${prev}
-      <button class="bnav-btn" onclick="setState({section:0})"><span class="bnav-icon">🏠</span><span>홈</span></button>
-      <button class="bnav-btn" onclick="setState({section:10})"><span class="bnav-icon">🤖</span><span>AI</span></button>
-      ${next}
-    </div>
-  `;
-}
-
-function renderWIPSection(title, icon) {
-  return `
-    <div class="page">
-      <h2>${icon} ${title}</h2>
-      <p class="sub">KIIP 3급 15과 · 한국 사회 · Korean Society</p>
-      <div class="wip-banner">
-        <h3>🚧 콘텐츠 준비 중</h3>
-        <p>이 섹션의 학습 자료를 열심히 제작 중입니다.<br>Content is being prepared for this section.</p>
-        <p style="margin-top:8px;font-size:12px;opacity:0.8">🇻🇳 Nội dung đang được chuẩn bị. Vui lòng quay lại sau.</p>
-      </div>
-      <div class="card card-accent">
-        <div class="section-label">💡 지금 당장 학습하려면</div>
-        <div style="font-size:13px;color:#555;margin-top:6px;line-height:1.8">
-          아래 <strong>AI 실습</strong> 탭을 이용하면 이 주제를 바로 공부할 수 있어요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Sử dụng tab <strong>AI 실습</strong> bên dưới để học ngay chủ đề này!</span>
+function renderVocabCards() {
+  const cats = [...new Set(VOCAB.map(v => v.cat))];
+  return cats.map(cat => {
+    const items = VOCAB.filter(v => v.cat === cat);
+    const color = vocabCatColor(cat);
+    return `<div class="card" style="border-left:4px solid ${color};margin-bottom:10px">
+      <div style="font-size:12px;font-weight:700;color:${color};margin-bottom:8px">${cat}</div>
+      ${items.map(v => `
+        <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${v.ko}')">
+          <div style="min-width:100px">
+            <span style="font-size:15px;font-weight:700;color:#1a202c">${v.ko}</span>
+            <span style="font-size:11px;color:#888;margin-left:4px">${v.pron}</span>
+          </div>
+          <div style="flex:1">
+            <div style="font-size:12px;color:#b45309">${v.en}</div>
+            <div style="font-size:12px;color:#666">${v.vi}</div>
+          </div>
+          <span style="font-size:18px">🔊</span>
         </div>
-        <button onclick="setState({section:10})" style="background:var(--amber);color:#fff;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:700;margin-top:12px;width:100%">
-          🤖 AI 실습 탭으로 이동
-        </button>
-      </div>
-    </div>
-  `;
+      `).join('')}
+    </div>`;
+  }).join('');
 }
 
-function renderIntro() {
-  return `
-    <div class="page">
-      <div class="intro-header">
-        <div style="font-size:14px;opacity:0.8;margin-bottom:4px">KIIP 3급 · 중급 1</div>
-        <h3>15과 한국 사회</h3>
-        <div style="font-size:14px;margin-top:4px;opacity:0.9">Korean Society</div>
-        <div style="margin-top:12px;font-size:28px">🇰🇷</div>
-      </div>
+function renderQuiz() {
+  const Q = QUIZ_DATA;
+  const s = STATE.quiz;
+  if (!s.started) {
+    return `<div class="intro-header" style="margin-bottom:16px">
+      <div style="font-size:40px;margin-bottom:8px">✅</div>
+      <h3>15과 퀴즈</h3>
+      <p style="font-size:13px;opacity:0.9">한국 사회 · 총 ${Q.length}문제</p>
+    </div>
+    <div class="card">
+      <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:14px">어휘, 문법(-아/어 오다, -(으)로 인해)을 복습해 봐요!</p>
+      <button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:16px;font-weight:700">퀴즈 시작하기 🚀</button>
+    </div>`;
+  }
+  if (s.done) {
+    const pct = Math.round(s.score / Q.length * 100);
+    const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '👍' : '📚';
+    return `<div class="intro-header" style="margin-bottom:16px">
+      <div style="font-size:40px;margin-bottom:8px">${emoji}</div>
+      <h3>${s.score}/${Q.length} 정답</h3>
+      <p style="font-size:14px;opacity:0.9">${pct}점 · ${pct>=80?'훌륭해요!':pct>=60?'잘 했어요!':'다시 도전해 봐요!'}</p>
+    </div>
+    <div class="card">
+      <button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;margin-bottom:8px">다시 풀기 🔄</button>
+      <button onclick="setState({section:0})" style="width:100%;background:#fef3c7;color:#92400e;border-radius:12px;padding:12px;font-size:14px;font-weight:600">처음으로 🏠</button>
+    </div>`;
+  }
+  const cur = Q[s.idx];
+  const answered = s.chosen !== null;
+  return `<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+    <span style="font-size:12px;color:#888">문제 ${s.idx+1}/${Q.length}</span>
+    <span style="font-size:12px;color:var(--amber);font-weight:700">점수: ${s.score}</span>
+  </div>
+  <div class="card" style="margin-bottom:12px">
+    <p style="font-size:15px;font-weight:600;line-height:1.6;color:#1a202c">${cur.q}</p>
+  </div>
+  ${cur.opts.map((opt, oi) => {
+    let bg = '#fff', border = '#fde68a', color = '#1a202c';
+    if (answered) {
+      if (oi === cur.ans) { bg = '#dcfce7'; border = '#22c55e'; color = '#166534'; }
+      else if (oi === s.chosen) { bg = '#fee2e2'; border = '#ef4444'; color = '#991b1b'; }
+    }
+    return `<button onclick="${answered ? '' : `(function(){const isC=${oi===cur.ans};setState({quiz:{...STATE.quiz,chosen:${oi},score:STATE.quiz.score+(isC?1:0)}});})()`}" style="width:100%;background:${bg};border:2px solid ${border};border-radius:10px;padding:12px 14px;margin-bottom:8px;font-size:14px;color:${color};text-align:left;font-weight:${answered&&oi===cur.ans?'700':'400'}">${answered&&oi===cur.ans?'✅ ':''}${answered&&oi===s.chosen&&oi!==cur.ans?'❌ ':''}${opt}</button>`;
+  }).join('')}
+  ${answered ? `<button onclick="(function(){if(STATE.quiz.idx+1>=Q.length){setState({quiz:{...STATE.quiz,done:true}})}else{setState({quiz:{...STATE.quiz,idx:STATE.quiz.idx+1,chosen:null}})}})()" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:13px;font-size:15px;font-weight:700;margin-top:4px">${s.idx+1 >= Q.length ? '결과 보기 🏁' : '다음 문제 →'}</button>` : ''}`;
+}
 
+// ===== SECTION RENDERERS =====
+function renderSection(id) {
+  switch(id) {
+    case 0: return `
+      <div class="intro-header">
+        <div style="font-size:36px;margin-bottom:8px">🏙️</div>
+        <h3>15과 · 한국 사회</h3>
+        <p style="font-size:13px;opacity:0.85;margin-top:4px">Korean Society · Xã hội Hàn Quốc</p>
+      </div>
       <div class="card card-accent">
         <div class="section-label">학습 목표</div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>한국 사회 관련 어휘를 이해하고 사용할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>한국 사회 주제로 말하기·쓰기를 할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>AI 튜터와 함께 한국 사회 표현을 연습할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>한국 사회 변화 관련 어휘를 익히고 활용할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><b>-아/어 오다</b>: 과거부터 지금까지 계속해 온 행동을 표현할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><b>-(으)로 인해</b>: 원인을 격식체로 표현할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>한국의 사회 문제와 복지 제도를 이해할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>한국 사회 변화에 대해 말하고 쓸 수 있다</span></div>
       </div>
-
-      <div class="card" style="background:#fef3c7;border:1px solid #fbbf24">
-        <div class="section-label" style="background:#92400e">📌 이번 과 주제</div>
-        <div style="font-size:24px;text-align:center;margin:12px 0">🇰🇷</div>
-        <div style="font-size:18px;font-weight:800;text-align:center;color:var(--brown);margin-bottom:4px">15과 · 한국 사회</div>
-        <div style="font-size:14px;text-align:center;color:#555;margin-bottom:8px">Korean Society</div>
-        <div style="background:#fff;border-radius:8px;padding:12px;font-size:13px;color:#555;line-height:1.8;border:1px solid #fde68a">
-          🚧 상세 콘텐츠는 준비 중입니다. AI 실습 탭에서 이 주제를 지금 바로 공부해 보세요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nội dung chi tiết đang được chuẩn bị. Hãy dùng tab AI 실습 để học ngay!</span>
+      <div class="card" style="background:linear-gradient(135deg,#fef3c7,#fff7ed)">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📚 이 과에서 배우는 문법</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <span style="background:#f59e0b;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700">-아/어 오다</span>
+          <span style="background:#22c55e;color:#fff;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:700">-(으)로 인해</span>
         </div>
       </div>
-
-      <div style="display:flex;gap:10px;margin-top:4px">
-        <a href="KIIP_Level3_Lesson14.html" style="flex:1;background:var(--dark);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">← 14과</a>
-        <a href="KIIP_Level3_Lesson16.html" style="flex:1;background:var(--amber);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">16과 →</a>
-      </div>
-
-      <div style="margin-top:12px">
+      <div class="card" style="text-align:center;background:#fef3c7">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:4px">🗓️ KIIP 3급 학습 진도</div>
+        <div style="font-size:12px;color:#666;margin-bottom:10px">14과 ✅ → <b>15과 한국 사회 📍</b> → 16과</div>
         <div style="background:#d1fae5;border-radius:8px;height:6px;overflow:hidden;margin-bottom:4px">
           <div style="background:#22c55e;height:100%;width:75%;transition:width 0.5s"></div>
         </div>
-        <div style="font-size:11px;color:#888;text-align:center">3급 전체 진도 75% · 15 / 20과</div>
+        <div style="font-size:11px;color:#888">3급 전체 진도 75% · 15 / 20과</div>
       </div>
-    </div>
-  `;
-}
-
-function renderAI() {
-  return `
-    <div class="page">
-      <h2>🤖 AI 실습</h2>
-      <p class="sub">글로컬 아카데미 × AI 한국어 튜터 · 한국 사회</p>
-
-      <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
-        <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
-        <div style="font-size:15px;font-weight:800;margin-bottom:6px">KIIP 3급 15과 · 한국 사회 AI 실습</div>
-        <div style="font-size:11px;opacity:0.85;line-height:1.7">Korean Society — 주제별 AI 튜터와 실시간 학습<br>
-        <span style="color:#93c5fd">🇻🇳 Luyện tập chủ đề "한국 사회" cùng AI ngay trong app</span></div>
+      <div style="display:flex;gap:10px;margin-top:4px">
+        <a href="/KIIP_Level3_Lesson14" style="flex:1;background:var(--dark);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">← 14과</a>
+        <a href="/KIIP_Level3_Lesson16" style="flex:1;background:var(--amber);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">16과 →</a>
       </div>
+    `;
 
-      <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
-        <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
-        <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
-          계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
-          <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập, không chuyển tab</span>
-        </div>
+    case 1: return `
+      <h2>📝 어휘</h2>
+      <p class="sub">한국 사회 관련 핵심 어휘 25개 · tap to hear pronunciation</p>
+      ${renderVocabCards()}
+    `;
 
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-          ${AI_QUICK_BTNS.map((b,i)=>`
-            <button onclick="AICHAT.quickSend(${i})"
-              style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
-              ${b.emoji} ${b.label}
-            </button>
+    case 2: return `
+      <h2>📐 문법</h2>
+      <p class="sub">핵심 문법 2가지를 배워봐요</p>
+      <div style="display:flex;gap:8px;margin-bottom:14px">
+        <button onclick="setState({grammarTab:0})" style="flex:1;padding:10px;border-radius:10px;border:2px solid ${STATE.grammarTab===0?'#f59e0b':'#fde68a'};background:${STATE.grammarTab===0?'#f59e0b':'#fff'};color:${STATE.grammarTab===0?'#fff':'#92400e'};font-weight:700;font-size:13px">-아/어 오다</button>
+        <button onclick="setState({grammarTab:1})" style="flex:1;padding:10px;border-radius:10px;border:2px solid ${STATE.grammarTab===1?'#22c55e':'#fde68a'};background:${STATE.grammarTab===1?'#22c55e':'#fff'};color:${STATE.grammarTab===1?'#fff':'#92400e'};font-weight:700;font-size:13px">-(으)로 인해</button>
+      </div>
+      ${STATE.grammarTab === 0 ? `
+        <div class="card card-accent">
+          <div class="section-label">-아/어 오다 (have been doing up to now)</div>
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px">의미: 과거부터 지금까지 계속해 온 행동·상태</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">
+            과거에 시작한 행동이나 상태가 현재까지 계속 이어지고 있을 때 사용해요.<br>
+            <b>Meaning:</b> "have been doing (up to now)" — ongoing from past to present<br>
+            <b>Nghĩa:</b> Đã (làm gì đó) từ trước đến nay / Tiếp tục... cho đến bây giờ
+          </div>
+          <div style="background:#fef3c7;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:6px">📌 형태 규칙</div>
+            <div style="font-size:13px;line-height:2">
+              동사 어간 끝 모음 ㅏ/ㅗ → <b>-아 오다</b> &nbsp;(살다 → 살아 오다)<br>
+              그 외 → <b>-어 오다</b> &nbsp;(발전시키다 → 발전시켜 오다)<br>
+              하다 → <b>-해 오다</b> &nbsp;(변화하다 → 변화해 오다)
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#b45309;margin-bottom:8px">예문 (tap to hear)</div>
+          ${[
+            ['한국에서 10년 동안 살아 왔어요.', 'I have been living in Korea for 10 years.', 'Tôi đã sống ở Hàn Quốc 10 năm cho đến nay.'],
+            ['정부가 복지 정책을 발전시켜 왔어요.', 'The government has been developing welfare policies.', 'Chính phủ đã phát triển các chính sách phúc lợi cho đến nay.'],
+            ['한국 사회는 빠르게 변화해 왔어요.', 'Korean society has been changing rapidly.', 'Xã hội Hàn Quốc đã thay đổi nhanh chóng cho đến nay.'],
+            ['다문화 가정이 계속 늘어나 왔어요.', 'Multicultural families have been continuously increasing.', 'Gia đình đa văn hóa đã tiếp tục tăng lên.'],
+            ['한국은 꾸준히 발전해 왔어요.', 'Korea has been steadily developing.', 'Hàn Quốc đã phát triển đều đặn cho đến nay.'],
+          ].map(([ko,en,vi]) => `
+            <div style="padding:8px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+              <div style="font-size:14px;font-weight:600;color:#1a202c">🔊 ${ko}</div>
+              <div style="font-size:12px;color:#666">${en}</div>
+              <div style="font-size:12px;color:#b45309">${vi}</div>
+            </div>
           `).join('')}
         </div>
+      ` : `
+        <div class="card card-accent" style="border-left-color:#22c55e">
+          <div class="section-label" style="background:#22c55e">-(으)로 인해 (due to / because of — formal)</div>
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:6px">의미: ~때문에, ~로 인하여 (격식체)</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">
+            원인이나 이유를 격식적으로 표현할 때 사용해요. 공식 문서, 뉴스, 발표 등에서 자주 써요.<br>
+            <b>Meaning:</b> "due to / because of / owing to" — formal register<br>
+            <b>Nghĩa:</b> Do... / Vì... (văn phong trang trọng)<br>
+            <span style="color:#059669;font-size:12px">💡 때문에보다 격식적이에요. More formal than 때문에.</span>
+          </div>
+          <div style="background:#f0fdf4;border-radius:8px;padding:12px;margin-bottom:10px">
+            <div style="font-size:12px;font-weight:700;color:#059669;margin-bottom:6px">📌 형태 규칙</div>
+            <div style="font-size:13px;line-height:2">
+              받침 없는 명사 → <b>-로 인해</b> &nbsp;(세계화 → 세계화로 인해)<br>
+              받침 있는 명사 → <b>-으로 인해</b> &nbsp;(인구 감소 → 인구 감소로 인해)<br>
+              ※ -(으)로 인하여 = -(으)로 인해 (동일 의미)
+            </div>
+          </div>
+          <div style="font-size:12px;font-weight:700;color:#059669;margin-bottom:8px">예문 (tap to hear)</div>
+          ${[
+            ['고령화로 인해 사회 구조가 변하고 있어요.', 'Due to aging, the social structure is changing.', 'Do già hóa, cấu trúc xã hội đang thay đổi.'],
+            ['저출산으로 인해 학교 수가 줄어들고 있어요.', 'Due to low birth rates, the number of schools is decreasing.', 'Do tỷ lệ sinh thấp, số trường học đang giảm.'],
+            ['세계화로 인해 다문화 가정이 늘어났어요.', 'Due to globalization, multicultural families have increased.', 'Do toàn cầu hóa, gia đình đa văn hóa đã tăng lên.'],
+            ['경제 위기로 인해 실업률이 높아졌어요.', 'Due to the economic crisis, the unemployment rate has risen.', 'Do khủng hoảng kinh tế, tỷ lệ thất nghiệp đã tăng.'],
+            ['코로나로 인해 비대면 문화가 발전했어요.', 'Due to COVID, non-face-to-face culture has developed.', 'Do COVID, văn hóa không tiếp xúc đã phát triển.'],
+          ].map(([ko,en,vi]) => `
+            <div style="padding:8px 0;border-bottom:1px solid #d1fae5;cursor:pointer" onclick="TTS.speak('${ko}')">
+              <div style="font-size:14px;font-weight:600;color:#1a202c">🔊 ${ko}</div>
+              <div style="font-size:12px;color:#666">${en}</div>
+              <div style="font-size:12px;color:#059669">${vi}</div>
+            </div>
+          `).join('')}
+        </div>
+      `}
+    `;
 
-        <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
-          <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
-            💡 버튼을 누르면 AI가 바로 답해줘요<br>
-            <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
+    case 3: return `
+      <h2>💬 말하기</h2>
+      <p class="sub">한국 사회 변화에 대해 친구와 이야기해 봐요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div style="font-weight:700;font-size:14px;color:#92400e;margin-bottom:10px">대화 — 1인 가구와 사회 변화</div>
+        ${[
+          ['수민', '린 씨, 요즘 한국에서 1인 가구가 정말 많이 늘었죠?'],
+          ['린', '네, 맞아요. 저출산과 고령화로 인해 가구 구조가 많이 바뀐 것 같아요.'],
+          ['수민', '맞아요. 젊은 사람들이 혼자 살아 오면서 온라인쇼핑이나 비대면 서비스도 발전했어요.'],
+          ['린', '저도 한국에 살면서 배달 앱을 많이 쓰게 됐어요. 편리해서 좋아요.'],
+          ['수민', '맞벌이 부부도 많아지면서 재택근무 문화도 자리를 잡아 왔어요.'],
+          ['린', '베트남도 비슷한 변화가 일어나고 있어요. 사회가 빠르게 변화하고 있네요.'],
+        ].map((l, li) => {
+          const isRight = li % 2 === 1;
+          return `<div style="display:flex;flex-direction:column;align-items:${isRight?'flex-end':'flex-start'};margin-bottom:8px;cursor:pointer" onclick="TTS.speak('${l[1].replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">
+            <div style="font-size:11px;color:#888;margin-bottom:2px">${l[0]}</div>
+            <div style="max-width:85%;background:${isRight?'#fef3c7':'#fff7ed'};border:1px solid #fde68a;border-radius:${isRight?'12px 12px 4px 12px':'12px 12px 12px 4px'};padding:8px 12px;font-size:14px;line-height:1.6">${l[1]} 🔊</div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">연습 활동</div>
+        <div style="font-size:14px;font-weight:700;color:#166534;margin-bottom:8px">🎯 사회 변화 말하기 연습</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">아래 질문에 -아/어 오다와 -(으)로 인해를 사용해 답해 보세요:</div>
+        ${[
+          '한국에 살면서 어떤 변화를 겪어 왔어요? (-아/어 오다)',
+          '고령화로 인해 어떤 사회 변화가 생겼나요? (-(으)로 인해)',
+          '여러분 나라와 한국 사회의 비슷한 점은 무엇인가요?',
+          '한국 사회에서 가장 중요하다고 생각하는 제도는 무엇인가요?',
+        ].map((q,i) => `<div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">Q${i+1}. ${q}</div>`).join('')}
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🗣️ 유용한 사회 변화 표현</div>
+        ${[
+          ['사회가 빠르게 변화해 왔어요.', 'Society has been changing rapidly.'],
+          ['저출산으로 인해 인구가 줄고 있어요.', 'Due to low birth rates, the population is decreasing.'],
+          ['복지 제도가 발전해 왔어요.', 'The welfare system has been developing.'],
+          ['세계화로 인해 다문화 사회가 됐어요.', 'Due to globalization, we became a multicultural society.'],
+        ].map(([ko,en]) => `
+          <div style="padding:7px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${ko}')">
+            <div style="font-size:14px;font-weight:600">🔊 ${ko}</div>
+            <div style="font-size:12px;color:#888">${en}</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 4: return `
+      <h2>👂 듣기</h2>
+      <p class="sub">린과 수민의 1인 가구·맞벌이 대화를 들어 보세요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🎧 상황: 한국 사회 변화와 1인 가구</div>
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">린이 1인 가구 증가와 맞벌이 부부 문제에 대해 수민과 이야기해요.</p>
+        <button onclick="TTS.speak('린: 수민 씨, 요즘 한국에 혼자 사는 사람이 많아졌죠? 수민: 네, 1인 가구가 전체 가구의 30%가 넘었어요. 저출산과 고령화로 인해 가구 구조가 많이 바뀌었어요. 린: 맞아요. 젊은 사람들이 결혼을 늦추면서 혼자 살아 오는 경우가 많아졌어요. 수민: 맞벌이 부부도 많아지면서 아이 돌봄 문제도 커지고 있어요. 린: 그래서 정부가 어린이집이나 돌봄 지원 제도를 늘려 왔군요. 수민: 맞아요. 복지 예산도 계속 증가해 왔어요. 린: 외국인도 이런 복지 혜택을 받을 수 있나요? 수민: 네, 건강보험에 가입하면 의료 혜택을 받을 수 있어요. 린: 한국 사회보장 제도가 잘 발전해 왔네요.')"
+          style="width:100%;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px">
+          🔊 전체 듣기
+        </button>
+      </div>
+      <div class="card" style="margin-bottom:10px">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📝 듣기 스크립트</div>
+        ${[
+          ['린', '수민 씨, 요즘 한국에 혼자 사는 사람이 많아졌죠?'],
+          ['수민', '네, 1인 가구가 전체 가구의 30%가 넘었어요. 저출산과 고령화로 인해 가구 구조가 많이 바뀌었어요.'],
+          ['린', '맞아요. 젊은 사람들이 결혼을 늦추면서 혼자 살아 오는 경우가 많아졌어요.'],
+          ['수민', '맞벌이 부부도 많아지면서 아이 돌봄 문제도 커지고 있어요.'],
+          ['린', '그래서 정부가 어린이집이나 돌봄 지원 제도를 늘려 왔군요.'],
+          ['수민', '맞아요. 복지 예산도 계속 증가해 왔어요.'],
+          ['린', '외국인도 이런 복지 혜택을 받을 수 있나요?'],
+          ['수민', '네, 건강보험에 가입하면 의료 혜택을 받을 수 있어요.'],
+          ['린', '한국 사회보장 제도가 잘 발전해 왔네요.'],
+        ].map(([sp, text]) => `
+          <div style="display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak('${text.replace(/'/g,"\\'").replace(/"/g,'&quot;')}')">
+            <span style="font-size:11px;font-weight:700;color:#f59e0b;min-width:36px;margin-top:2px">${sp}</span>
+            <span style="font-size:13px;line-height:1.6;flex:1">${text}</span>
+            <span>🔊</span>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">이해 확인 문제</div>
+        ${[
+          {q:'1인 가구가 늘어난 원인으로 언급된 것은?', opts:['세계화와 정보화','저출산과 고령화','경제 성장과 복지','교통 발전과 도시화'], ans:1},
+          {q:'맞벌이 부부 증가로 인한 문제는?', opts:['주거비 상승','아이 돌봄 문제','교통체증','환경오염'], ans:1},
+          {q:'외국인이 받을 수 있는 혜택으로 언급된 것은?', opts:['연금','국민기초생활보장','건강보험 의료 혜택','주거 지원'], ans:2},
+          {q:'이 대화에서 -아/어 오다가 사용된 문장은?', opts:['가구 구조가 많이 바뀌었어요.','혼자 살아 오는 경우가 많아졌어요.','1인 가구가 30%가 넘었어요.','돌봄 문제가 커지고 있어요.'], ans:1},
+        ].map((item, qi) => `
+          <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">${qi+1}. ${item.q}</div>
+            ${item.opts.map((o, oi) => `
+              <div style="padding:7px 10px;background:${oi===item.ans?'#dcfce7':'#f9fafb'};border:1px solid ${oi===item.ans?'#22c55e':'#e5e7eb'};border-radius:8px;margin-bottom:4px;font-size:13px;cursor:pointer" onclick="TTS.speak('${o}')">
+                ${oi===item.ans?'✅ ':''}${o}
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 5: return `
+      <h2>🔊 발음</h2>
+      <p class="sub">경음화 · 비음화 · 유음화 발음 규칙</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">규칙 1: 경음화 (ㄹ+ㅈ → ㄹ+ㅉ)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">받침 ㄹ 뒤에 ㅈ이 오면 [ㅉ] 된소리로 발음해요.</div>
+        ${[
+          ['저출산', '[저출싼]', 'low birth rate', 'ㄹ받침+ㅅ → 경음화'],
+          ['복지', '[복찌]', 'welfare', 'ㄱ받침+ㅈ → 경음화'],
+        ].map(([word, pron, en, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #fde68a;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:100px;font-size:15px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#f59e0b;color:#fff;padding:3px 10px;border-radius:20px;font-size:13px;font-weight:700">${pron}</div>
+              <div style="font-size:12px;color:#888">${en}</div>
+            </div>
+            <div style="font-size:11px;color:#b45309;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card" style="border-left:4px solid #8b5cf6">
+        <div class="section-label" style="background:#8b5cf6">규칙 2: 비음화 (ㄱ/ㄷ/ㅂ + ㄴ/ㅁ → ㅇ/ㄴ/ㅁ)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">받침 ㄱ·ㄷ·ㅂ 뒤에 ㄴ·ㅁ이 오면 비음 [ㅇ·ㄴ·ㅁ]으로 바뀌어요.</div>
+        ${[
+          ['입력', '[임녁]', 'input', 'ㅂ+ㄹ→ㅂ비음화→ㄹ유음화'],
+          ['빈부격차', '[빈부격차]', 'wealth gap', '자연 발음 연습'],
+        ].map(([word, pron, en, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #ede9fe;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:100px;font-size:15px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#8b5cf6;color:#fff;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700">${pron}</div>
+              <div style="font-size:12px;color:#888">${en}</div>
+            </div>
+            <div style="font-size:11px;color:#7c3aed;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card" style="border-left:4px solid #3b82f6">
+        <div class="section-label" style="background:#3b82f6">규칙 3: 유음화 (ㄴ+ㄹ 또는 ㄹ+ㄴ → ㄹ+ㄹ)</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:10px">ㄴ과 ㄹ이 만나면 둘 다 [ㄹ]로 발음해요.</div>
+        ${[
+          ['연령', '[열령]', 'age / age group', 'ㄴ+ㄹ → 유음화'],
+          ['실업률', '[시럼뉼]', 'unemployment rate', 'ㄹ+ㄹ 복합'],
+        ].map(([word, pron, en, tip]) => `
+          <div style="padding:10px 0;border-bottom:1px solid #dbeafe;cursor:pointer" onclick="TTS.speak('${word}')">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="min-width:100px;font-size:15px;font-weight:700;color:#1a202c">${word} 🔊</div>
+              <div style="background:#3b82f6;color:#fff;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700">${pron}</div>
+              <div style="font-size:12px;color:#888">${en}</div>
+            </div>
+            <div style="font-size:11px;color:#1d4ed8;margin-top:4px">${tip}</div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">발음 연습</div>
+        <p style="font-size:13px;color:#555;margin-bottom:10px">문장을 천천히 따라 읽어 보세요:</p>
+        ${[
+          '저출산[저출싼]으로 인해 인구가 줄어들고 있어요.',
+          '한국은 빠르게 발전해 왔어요.',
+          '고령화로 인해 복지[복찌] 예산이 늘어났어요.',
+          '연령[열령] 구조가 변화해 왔어요.',
+        ].map(s => `
+          <div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px;cursor:pointer" onclick="TTS.speak('${s.replace(/\[.*?\]/g,'').replace(/'/g,"\\'")}')">
+            🔊 ${s}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 6: return `
+      <h2>📖 읽기</h2>
+      <p class="sub">한국의 고령화 사회와 다문화 사회</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">읽기 본문</div>
+        <div style="font-size:14px;line-height:1.9;color:#1a202c">
+          <p style="margin-bottom:12px">한국은 빠르게 고령화 사회로 변화해 왔어요. 65세 이상 노인 인구가 전체의 18%를 넘어섰고, 저출산으로 인해 생산 가능 인구도 줄어들고 있어요. 이런 변화로 인해 국민연금, 의료보험 등 사회보장 제도의 중요성이 더욱 커지고 있어요.</p>
+          <p style="margin-bottom:12px">한편, 세계화와 이민으로 인해 한국은 다문화 사회로 변해 왔어요. 외국인 주민이 250만 명을 넘어서면서 다문화 가정을 위한 지원 제도도 발전해 왔어요. KIIP(사회통합프로그램)도 그 일환으로 운영되고 있어요.</p>
+          <p style="margin-bottom:12px">또한 코로나19로 인해 재택근무, 온라인쇼핑, 비대면 서비스가 일상화됐어요. 1인 가구가 증가하면서 소규모 가구를 위한 주거 정책과 복지 서비스도 확대돼 왔어요.</p>
+          <p>정부는 이러한 사회 변화에 대응하기 위해 다양한 제도를 마련해 왔어요. 외국인도 건강보험에 가입할 수 있고, 다문화 가족 지원센터를 통해 한국어 교육과 생활 지원을 받을 수 있어요.</p>
+        </div>
+      </div>
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">읽기 이해 문제</div>
+        ${[
+          {q:'한국 고령화와 관련된 내용이 아닌 것은?', opts:['65세 이상 인구 증가','저출산으로 인한 생산 가능 인구 감소','국민연금 중요성 증가','다문화 가정 지원'], ans:3},
+          {q:'KIIP 프로그램은 무엇을 위한 것인가요?', opts:['고령화 해결','다문화 가정 지원','환경 보호','교통 개선'], ans:1},
+          {q:'코로나19로 인해 일상화된 것이 아닌 것은?', opts:['재택근무','온라인쇼핑','비대면 서비스','대면 회의'], ans:3},
+        ].map((item, qi) => `
+          <div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">
+            <div style="font-size:13px;font-weight:700;margin-bottom:8px">${qi+1}. ${item.q}</div>
+            ${item.opts.map((o, oi) => `
+              <div style="padding:7px 10px;background:${oi===item.ans?'#dcfce7':'#f9fafb'};border:1px solid ${oi===item.ans?'#22c55e':'#e5e7eb'};border-radius:8px;margin-bottom:4px;font-size:13px">
+                ${oi===item.ans?'✅ ':''}${o}
+              </div>
+            `).join('')}
+          </div>
+        `).join('')}
+      </div>
+    `;
+
+    case 7: return `
+      <h2>✏️ 쓰기</h2>
+      <p class="sub">한국에서 경험한 사회 변화에 대해 써 봐요</p>
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div class="section-label">쓰기 활동</div>
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:10px">📝 주제: 한국 사회에서 내가 경험한 변화</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">다음 내용을 포함해서 150~200자 정도 써 보세요:</div>
+        ${[
+          '한국에서 어떤 사회 변화를 경험해 왔어요? (-아/어 오다 사용)',
+          '어떤 변화가 나에게 영향을 미쳤어요? (-(으)로 인해 사용)',
+          '한국의 복지 제도나 지원제도를 이용한 경험이 있어요?',
+          '앞으로 한국 사회가 어떻게 변화했으면 좋겠어요?',
+        ].map((item, i) => `<div style="padding:8px;background:#fef3c7;border-radius:8px;margin-bottom:6px;font-size:13px">📌 ${i+1}. ${item}</div>`).join('')}
+      </div>
+      <div class="card">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">✍️ 예시 답안</div>
+        <div style="font-size:13px;line-height:1.9;color:#1a202c;background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:10px">
+          저는 한국에서 5년 동안 살아 <b>왔어요</b>. 고령화로 <b>인해</b> 노인 복지 시설이 늘어나는 것을 직접 보았어요. 코로나로 <b>인해</b> 비대면 생활이 일상화되었고, 저도 재택근무를 경험해 <b>왔어요</b>. 한국의 의료보험 덕분에 병원비가 저렴해서 좋았어요. 앞으로 다문화 가정을 위한 지원 제도가 더 발전해 <b>왔으면</b> 좋겠어요.
+        </div>
+        <div style="font-size:12px;color:#b45309;margin-bottom:4px">📌 문법 포인트:</div>
+        <div style="font-size:12px;color:#555;line-height:1.8">
+          • <b>살아 왔어요</b> → -아/어 오다 (과거부터 지금까지)<br>
+          • <b>고령화로 인해</b> → -(으)로 인해 (원인, 격식체)<br>
+          • <b>경험해 왔어요</b> → -아/어 오다 (지속적 경험)<br>
+          • <b>발전해 왔으면</b> → -아/어 오다 + -(으)면 좋겠다 (희망)
+        </div>
+      </div>
+      <div class="card" style="border-left:4px solid #8b5cf6">
+        <div style="font-size:13px;font-weight:700;color:#8b5cf6;margin-bottom:8px">🔤 유용한 연결 표현</div>
+        ${[
+          ['~ 덕분에', 'thanks to ~'],
+          ['~ 때문에', 'because of ~'],
+          ['점점', 'gradually / increasingly'],
+          ['그 결과', 'as a result'],
+          ['앞으로', 'from now on / in the future'],
+          ['한편', 'on the other hand / meanwhile'],
+        ].map(([ko, en]) => `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ede9fe;font-size:13px"><span style="font-weight:700">${ko}</span><span style="color:#888">${en}</span></div>`).join('')}
+      </div>
+    `;
+
+    case 8: return `
+      <h2>🎎 문화</h2>
+      <p class="sub">한국의 복지 제도와 다문화 가족 지원 정책</p>
+      ${[
+        {icon:'🏥', title:'한국 의료보험 제도', body:'한국의 건강보험은 전 국민 의무 가입이에요. 외국인도 6개월 이상 체류하면 가입해야 해요. 병원비의 일부만 내면 되기 때문에 큰 부담 없이 의료 서비스를 받을 수 있어요. 건강보험료는 소득에 따라 달라요.'},
+        {icon:'👨‍👩‍👧', title:'다문화 가족 지원센터', body:'전국 250여 개 다문화 가족 지원센터에서 한국어 교육, 취업 상담, 법률 지원, 자녀 교육 지원 등을 무료로 받을 수 있어요. KIIP 프로그램도 이 지원 정책의 일환이에요. 다누리 콜센터(1577-1366)에서 13개 언어로 상담이 가능해요.'},
+        {icon:'👴', title:'노인 복지와 고령화 정책', body:'고령화로 인해 한국은 노인 복지에 더 많은 투자를 해 왔어요. 65세 이상은 지하철을 무료로 이용할 수 있고, 기초연금을 받을 수 있어요. 노인 일자리 사업도 운영되고 있어요.'},
+        {icon:'🏠', title:'1인 가구 지원 정책', body:'1인 가구 증가로 인해 소규모 주거 공간과 관련 서비스가 발전해 왔어요. 청년 1인 가구를 위한 공공임대주택, 생활비 지원 등의 제도가 있어요. 혼밥·혼술 문화와 함께 1인용 가전·가구 시장도 성장했어요.'},
+      ].map(c => `
+        <div class="card card-accent" style="margin-bottom:10px">
+          <div style="font-size:28px;margin-bottom:6px">${c.icon}</div>
+          <div style="font-size:15px;font-weight:700;color:#92400e;margin-bottom:6px">${c.title}</div>
+          <div style="font-size:13px;line-height:1.8;color:#555">${c.body}</div>
+        </div>
+      `).join('')}
+      <div class="card card-green">
+        <div class="section-label" style="background:#22c55e">문화 비교</div>
+        <div style="font-size:13px;color:#555;line-height:1.7">
+          <div style="margin-bottom:8px">🇰🇷 한국 vs 🌏 여러분의 나라</div>
+          ${[
+            '베트남에서 고령화나 저출산 문제가 있나요?',
+            '베트남 의료보험 제도는 어떻게 돼요?',
+            '여러분 나라에서 외국인을 위한 복지 제도가 있나요?',
+            '한국과 베트남 사회에서 가장 다른 점은 무엇인가요?',
+          ].map((q,i) => `<div style="padding:7px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">💬 ${q}</div>`).join('')}
+        </div>
+      </div>
+      <div class="card" style="background:linear-gradient(135deg,#fef3c7,#fff7ed);text-align:center">
+        <div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:6px">📱 유용한 앱 &amp; 연락처</div>
+        <div style="font-size:13px;line-height:1.8;color:#555;text-align:left">
+          다누리 콜센터: 1577-1366 (13개 언어 지원)<br>
+          외국인종합안내센터: 1345<br>
+          건강보험공단: 1577-1000<br>
+          고용노동부 외국인 근로자 지원: 1350
+        </div>
+      </div>
+    `;
+
+    case 9: return `
+      <h2>✅ 퀴즈</h2>
+      <p class="sub">15과 내용을 얼마나 이해했나요?</p>
+      ${renderQuiz()}
+    `;
+
+    case 10: {
+      setTimeout(() => RECORDER.autoDetect(), 100);
+      const PRON_SENTS = [
+        {sent:'고령화로 인해 노인 복지가 중요해졌어요.', vi:'Do xã hội già hóa, phúc lợi người cao tuổi đã trở nên quan trọng.'},
+        {sent:'한국은 빠르게 발전해 왔어요.', vi:'Hàn Quốc đã phát triển nhanh chóng cho đến nay.'},
+        {sent:'저출산으로 인해 인구가 줄어들고 있어요.', vi:'Do tỷ lệ sinh thấp, dân số đang giảm dần.'},
+        {sent:'다문화 가정이 계속 늘어나 왔어요.', vi:'Gia đình đa văn hóa đã tiếp tục tăng lên.'},
+      ];
+      return `
+        <h2>🤖 AI 실습</h2>
+        <p class="sub">글로컬 아카데미 × 에이전틱 G스택 한국어 학습</p>
+
+        <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+          <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+          <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 한국어 실습 플랫폼</div>
+          <div style="font-size:11px;opacity:0.85;line-height:1.7">KIIP 3급 15과 한국 사회 · AI Agent 연계<br>
+          <span style="color:#93c5fd">🇻🇳 Nền tảng học tiếng Hàn kết hợp AI Agent của Glocal Academy</span></div>
+        </div>
+
+        <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+          <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+          <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+            계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+            ${AI_QUICK_BTNS.map((b,i)=>`
+              <button onclick="AICHAT.quickSend(${i})"
+                style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
+                ${b.emoji} ${b.label}
+              </button>
+            `).join('')}
+          </div>
+          <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+            <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
+              💡 버튼을 누르면 AI가 바로 답해줘요<br>
+              <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
+            </div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:flex-end">
+            <textarea id="ai-chat-input"
+              placeholder="한국 사회에 대해 질문하세요... 🇻🇳 Nhập câu hỏi..."
+              style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
+              onfocus="this.style.borderColor='#f59e0b'"
+              onblur="this.style.borderColor='#fde68a'"
+              onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
+            ></textarea>
+            <button onclick="AICHAT.send()" id="ai-send-btn"
+              style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>
+          </div>
+          <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+        </div>
+
+        <div class="card card-accent" style="margin-bottom:10px">
+          <div class="section-label">🌐 외부 AI 서비스 상세 가이드</div>
+          <div style="font-size:11px;color:#888;margin:6px 0 8px">계정이 있는 경우 더 강력한 AI를 사용할 수 있어요</div>
+          <details style="margin-bottom:8px">
+            <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              🔵 Gemini AI 사용법 — Google 계정 필요
+            </summary>
+            <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#1d4ed8">① 접속:</strong> gemini.google.com<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+                <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 사회 변화 롤플레이</div>
+                <span style="font-family:monospace;background:#dbeafe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"저는 베트남인 KIIP 3급 학습자예요. 한국 사회 변화를 주제로 -아/어 오다, -(으)로 인해 문법을 사용한 대화 연습을 도와주세요."</span>
+              </div>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+                <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">📊 사회 이슈 분석</div>
+                "한국 고령화 사회의 원인과 결과를 -(으)로 인해 문법으로 5문장 만들어 주세요. 베트남어 번역도 함께요."<br>
+                <span style="color:#059669">🇻🇳 Phân tích vấn đề xã hội Hàn Quốc bằng tiếng Hàn</span>
+              </div>
+            </div>
+          </details>
+          <details style="margin-bottom:8px">
+            <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              🟣 Claude AI 사용법 — 이메일 계정 필요
+            </summary>
+            <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#7c3aed">① 접속:</strong> claude.ai (이메일로 무료 가입)<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">
+                <div style="font-weight:700;color:#7c3aed;margin-bottom:3px">✏️ 글 첨삭</div>
+                <span style="font-family:monospace;background:#ede9fe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"KIIP 3급 외국인 학습자의 글입니다. -아/어 오다, -(으)로 인해 사용을 확인하고 베트남어로 설명해 주세요."</span>
+              </div>
+            </div>
+          </details>
+          <details>
+            <summary style="background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+              📓 NotebookLM 사용법 — Google 계정 필요
+            </summary>
+            <div style="background:#fff8f0;border:1px solid #fed7aa;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+              <strong style="color:#ea4335">① 접속:</strong> notebooklm.google.com<br>
+              <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #ea4335">
+                15과 학습 내용 복사 → NotebookLM에 붙여넣기:<br>
+                <button onclick="copyNotebookContent15()" style="background:#ea4335;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0">
+                  📋 15과 학습 내용 복사하기
+                </button><span id="copy-ok15" style="font-size:11px;color:#059669;margin-left:6px"></span><br>
+                "-아/어 오다 문법 베트남어로 설명해줘" / "15과 퀴즈 10문제 만들어줘"
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="card card-green" style="margin-bottom:10px">
+          <div class="section-label" style="background:#059669">🎤 AI 발음 코치 · 녹음 &amp; 재생</div>
+          <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">
+            원어민 듣기 → 내가 녹음 → 다시 들으며 비교<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Nghe người bản ngữ → Tự ghi âm → Nghe lại so sánh</span>
+          </div>
+          <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#166534">
+            🆓 <strong>완전 무료</strong> — 브라우저 내장 API · 서버 없음
+          </div>
+          <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:14px;margin-bottom:10px">
+            <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px">🎙️ 마이크 허용 필요</div>
+            <div id="mic-perm-state" style="margin-bottom:10px"></div>
+            <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:10px">
+              <div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:8px">🚫 마이크가 차단��어 있어요</div>
+              <div style="background:#fff;border-radius:8px;padding:10px;font-size:12px;line-height:2;color:#1a202c">
+                <strong style="color:#1d4ed8">PC Chrome / Edge:</strong><br>
+                주소창 왼쪽 🔒 클릭 → 마이크 → <strong>허용</strong> → F5<br>
+                <strong style="color:#059669">📱 Android Chrome:</strong><br>
+                주소창 ⋮ → 사이트 설정 → 마이크 → 허용
+              </div>
+              <div style="margin-top:8px;font-size:11px;color:#059669">🇻🇳 Nhấn 🔒 góc trái → Micro → Cho phép → F5</div>
+            </div>
+            <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+              style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:12px;font-size:14px;font-weight:800">
+              🎙️ 마이크 허용하기 (여기 클릭)
+            </button>
+            <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>
+          </div>
+          ${PRON_SENTS.map((item,i)=>`
+            <div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+              <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>
+              <div style="font-size:10px;color:#059669;margin-bottom:8px">🇻🇳 ${item.vi}</div>
+              <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+                <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+              </div>
+              <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+                <button onclick="TTS.speak('${item.sent.replace(/\[.*?\]/g,'').replace(/'/g,"\\'")}'); this.textContent='🔊 재생 중...'; setTimeout(()=>this.textContent='🔊 원어민',2000)"
+                  style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">🔊 원어민</button>
+                <button id="rec-btn-${i}" onclick="startSTT(${i},'${item.sent.replace(/\[.*?\]/g,'').replace(/'/g,"\\'")}',this)"
+                  style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">🎤 녹음</button>
+                <button id="play-btn-${i}" disabled
+                  style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0;opacity:0.4">▶ 내 발음 듣기</button>
+              </div>
+              <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:16px"></div>
+            </div>
+          `).join('')}
+          <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+            <strong>📖 사용법:</strong> 1️⃣ 🔊 원어민 듣기 → 2️⃣ 🎤 녹음 → 3️⃣ ▶ 내 발음 듣기<br>
+            정확도 바: 🟢 80%+ 🟡 50~79% 🔴 50% 미만
           </div>
         </div>
 
-        <div style="display:flex;gap:6px;align-items:flex-end">
-          <textarea id="ai-chat-input"
-            placeholder="한국 사회에 대해 질문하세요... / Ask about Korean Society..."
-            style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
-            onfocus="this.style.borderColor='#f59e0b'"
-            onblur="this.style.borderColor='#fde68a'"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
-          ></textarea>
-          <button onclick="AICHAT.send()"
-            id="ai-send-btn"
-            style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">
-            ➤
-          </button>
+        <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+          <div class="section-label" style="background:#059669">🌐 글로컬 G스택 4단계 학습법</div>
+          <div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.8">
+            <strong>글로컬 아카데미 AI 에이전트 기반 4단계 학습법:</strong><br>
+            <span style="color:#555">① 어휘/문법 → Gemini 설명 요청</span><br>
+            <span style="color:#555">② 말하기 → Gemini 롤플레이 실습</span><br>
+            <span style="color:#555">③ 쓰기 → Claude AI 첨삭</span><br>
+            <span style="color:#555">④ 복습 → NotebookLM Q&amp;A 정리</span><br><br>
+            <span style="color:#059669;font-size:11px">🇻🇳 ① Từ vựng/ngữ pháp → Hỏi Gemini · ② Nói → Nhập vai với Gemini · ③ Viết → Nhờ Claude sửa bài · ④ Ôn tập → NotebookLM</span>
+          </div>
         </div>
-        <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+        <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
+      `;
+    }
+
+    default: return `
+      <div class="intro-header">
+        <div style="font-size:36px;margin-bottom:8px">🏙️</div>
+        <h3>15과 · 한국 사회</h3>
+        <p style="font-size:13px;opacity:0.85;margin-top:4px">Korean Society · Xã hội Hàn Quốc</p>
       </div>
-
-      <div class="card card-accent" style="margin-bottom:10px">
-        <div class="section-label">📖 15과 학습 가이드</div>
-        <div style="font-size:13px;color:#555;margin-top:8px;line-height:1.9">
-          <strong style="color:var(--brown)">🇰🇷 한국 사회 · Korean Society</strong><br>
-          위의 빠른 질문 버튼을 눌러 AI 튜터에게 이 주제를 배워보세요.<br>
-          직접 질문도 자유롭게 입력할 수 있어요.<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nhấn các nút câu hỏi nhanh để học chủ đề này với AI.<br>Bạn cũng có thể tự nhập câu hỏi bất kỳ.</span>
-        </div>
-      </div>
-
-      <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
-    </div>
-  `;
-}
-
-function renderSection() {
-  switch(STATE.section) {
-    case 0: return renderIntro();
-    case 10: return renderAI();
-    default: return renderWIPSection(SECTIONS[STATE.section].label, SECTIONS[STATE.section].icon);
+    `;
   }
 }
 
+// ===== MAIN RENDER =====
 function render() {
-  document.getElementById('app').innerHTML =
-    renderNav() + renderLangBar() + renderTabs() + renderSection() + renderBottomNav();
+  const s = STATE;
+  const app = document.getElementById('app');
+  if (!app) return;
+
+  const tabsHtml = SECTIONS.map(sec =>
+    `<button class="stab${s.section===sec.id?' active':''}" onclick="setState({section:${sec.id}})">${sec.icon} ${sec.label}</button>`
+  ).join('');
+
+  const bottomNav = `
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level3_Lesson14" class="bnav-btn" style="text-decoration:none;color:#888">
+        <span class="bnav-icon">←</span><span>14과</span>
+      </a>
+      <button class="bnav-btn${s.section===0?' active':''}" onclick="setState({section:0})">
+        <span class="bnav-icon">🏠</span><span>도입</span>
+      </button>
+      <button class="bnav-btn${s.section===9?' active':''}" onclick="setState({section:9})">
+        <span class="bnav-icon">✅</span><span>퀴즈</span>
+      </button>
+      <button class="bnav-btn${s.section===10?' active':''}" onclick="setState({section:10})">
+        <span class="bnav-icon">🤖</span><span>AI실습</span>
+      </button>
+      <a href="/KIIP_Level3_Lesson16" class="bnav-btn" style="text-decoration:none;color:#888">
+        <span class="bnav-icon">→</span><span>16과</span>
+      </a>
+    </nav>
+  `;
+
+  app.innerHTML = `
+    <nav class="nav">
+      <a href="/KIIP_Level3_Index" class="nav-back">← 목차</a>
+      <div style="text-align:right">
+        <div class="nav-title">15과 · 한국 사회</div>
+        <div class="nav-sub">KIIP 3급 중급 1</div>
+      </div>
+    </nav>
+    <div class="section-tabs">${tabsHtml}</div>
+    <div class="page">${renderSection(s.section)}</div>
+    ${bottomNav}
+  `;
+
+  // Scroll active tab into view
+  setTimeout(() => {
+    const activeTab = document.querySelector('.stab.active');
+    if (activeTab) activeTab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  }, 50);
 }
 
+// ===== INIT =====
 render();
 </script>
 <script>
