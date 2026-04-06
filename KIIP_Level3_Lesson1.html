@@ -571,7 +571,7 @@ const QUIZ = [
 function renderNav() {
   return `
     <div class="nav">
-      <a href="KIIP_Level3_Index.html" class="nav-back">← 3급 목차</a>
+      <a href="/KIIP_Level3_Index" class="nav-back">← 3급 목차</a>
       <div style="text-align:center">
         <div class="nav-title">1과 · 대인 관계</div>
         <div class="nav-sub">KIIP 3급 중급 1</div>
@@ -1132,7 +1132,7 @@ function renderQuiz() {
           <div style="font-size:16px;font-weight:700;color:#92400e;margin:8px 0">${pct}점 · ${pct>=80?'우수!':pct>=60?'보통':'다시 공부해요'}</div>
           <div style="font-size:13px;color:#888;margin-bottom:16px">${pct>=80?'잘했어요! 다음 단원으로 이동하세요.':'틀린 문제를 다시 확인하고 복습하세요.'}</div>
           <button onclick="setState({quizAnswers:{},quizDone:false})" style="background:#f59e0b;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;margin-bottom:8px;width:100%">다시 풀기</button>
-          <a href="KIIP_Level3_Lesson2.html" style="display:block;background:#92400e;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-align:center;text-decoration:none">다음 과: 건강한 생활 →</a>
+          <a href="/KIIP_Level3_Lesson2" style="display:block;background:#92400e;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-align:center;text-decoration:none">다음 과: 건강한 생활 →</a>
         </div>
         <div style="margin-top:16px">
           ${QUIZ.map((q,qi)=>`
