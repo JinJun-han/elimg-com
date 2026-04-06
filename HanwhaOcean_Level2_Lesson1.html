@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -493,7 +493,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level2_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level2_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 2 목차 · Contents</div></div>
     </a>
@@ -532,8 +532,8 @@ function renderHome() {
     <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 2-1과 · Beginner Level 2 Lesson 1</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ TOPIK I 준비 완료</span>
-      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
-    </div
+      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 2급 초급 2 진행 중</span>
+    </div>
     <div style="font-size:26px;font-weight:800;margin-bottom:2px">자기소개를 잘 해요</div>
     <div style="font-size:13px;color:#aabbdd">I introduce myself well — 자기소개와 인상 관리 · Self-Introduction & Impression Management</div>
     <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
@@ -561,10 +561,11 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🚢 K-조선 경쟁력 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Index.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 0급 목차</a><a href="HanwhaOcean_Level2_Lesson2.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-2과 회사에서 전화해요 →</a></div>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level1_Lesson20" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 1급 20과 완료</a><a href="/HanwhaOcean_Level2_Lesson2" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-2과 회사에서 전화해요 →</a></div>
+  <div style="margin-top:8px"><a href="/HanwhaOcean_Level2_Index" style="display:block;padding:10px;border-radius:10px;background:#f3f4f6;color:#888;font-size:12px;font-weight:700;text-align:center;text-decoration:none">📋 2급 목차 보기</a></div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson2.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson2" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-2과 회사에서 전화해요</strong>
@@ -1174,18 +1175,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🏆', label:'경력 소개 만들기',
-    q:'한화오션 조선소 중급 한국어 학습자입니다. "저는 3년 경력의 용접공입니다. 장점은 성실한 것이에요." 처럼 경력과 장점을 소개하는 문장 5개를 만들어주세요. 영어도 함께요.' },
-  { emoji:'🌟', label:'장점/단점 표현',
-    q:'자기소개에서 쓰는 장점/단점 표현을 알려주세요. 성실하다, 꼼꼼하다, 적응력이 있다, 경험이 있다. 조선소 상황 예문으로 5개씩 영어와 함께 알려주세요.' },
-  { emoji:'🎯', label:'목표/포부 표현',
-    q:'한국어로 목표와 포부를 표현하는 방법을 알려주세요. "한국어를 더 잘하고 싶어요", "기술을 향상시키고 싶어요" 같은 표현을 조선소 맥락으로 5개 알려주세요.' },
-  { emoji:'📝', label:'~는데 사용법',
-    q:'한국어 ~(으)ㄴ/는데 표현을 자기소개에서 어떻게 쓰는지 설명해주세요. "경력이 있는데 더 배우고 싶어요", "어렵지만 열심히 해요" 같은 예문 5개를 영어와 함께요.' },
-  { emoji:'🤝', label:'첫 출근 대화',
-    q:'조선소 첫 출근 날 상사/동료에게 자기소개하는 대화를 연습해주세요. 이름, 나라, 경력, 포부를 말하는 롤플레이를 영어 해석과 함께 해주세요.' },
-]
-
+  {emoji:'💼',label:'경력 소개하기',
+   q:'경력소개 career intro 자기소개경력 직장경력을 알려주세요' },
+  {emoji:'📝',label:'(으)ㄴ/는데 문법',
+   q:'으ㄴ는데문법 background contrast 는데문법 ㄴ데는데를 알려주세요' },
+  {emoji:'🏅',label:'기술/자격증',
+   q:'기술자격증 skill certificate 자격증 기술어필을 알려주세요' },
+  {emoji:'🏭',label:'직장 경험',
+   q:'직장경험 work experience 어디서일했어요 경험말하기를 알려주세요' },
+  {emoji:'⭐',label:'자기 어필',
+   q:'자기어필 selling yourself 강점말하기 잘하는것을 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1212,13 +1212,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean self-introduction coach for intermediate learners at Hanwha Ocean shipyard. Lesson focus: career self-intro using ~(으)ㄴ/는데 (background/contrast), ~지만 (but/however), personality words: 자신감(confidence), 성격(personality), 장점(strength), 단점(weakness), 경력(career), 목표(goal). Keep answers SHORT with English translations.';
+      var sysP = 'You are a Korean self-introduction coach for intermediate learners at Hanwha Ocean shipyard. Lesson focus: career self-intro using ~(으)ㄴ/는데 (background/contrast), ~지만 (but/however), personality words: 자신감(confidence), 성격(personality), 장점(strength), 단점(weakness), 경력(career), 목표(goal). Keep answers SHORT with English translations. LESSON:L2L1';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

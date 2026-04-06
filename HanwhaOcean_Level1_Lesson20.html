@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -572,7 +572,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level1_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level1_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 1 목차 · Contents</div></div>
     </a>
@@ -612,7 +612,7 @@ function renderHome() {
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ 0급 한글 입문 완료</span>
       <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">🎓 1급 초급 1 완료!</span>
-    </div
+    </div>
     <div style="font-size:26px;font-weight:800;margin-bottom:2px">꿈이 뭐예요?</div>
     <div style="font-size:13px;color:#aabbdd">What's your dream? — 꿈과 미래 · Dreams & Future Plans</div>
     <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
@@ -640,7 +640,8 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🚀 한국의 미래 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson19.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 19과 한국 생활이 어때요?</a><a href="HanwhaOcean_Level1_Lesson1.html" style="flex:1;padding:12px;border-radius:10px;background:#10b981;color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">🎓 수료! 처음부터 다시</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level1_Lesson19" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 19과 한국 생활이 어때요?</a><a href="/HanwhaOcean_Level2_Index" style="flex:1;padding:12px;border-radius:10px;background:#f59e0b;color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">📘 2급 초급 2 시작 →</a></div>
+  <div style="margin-top:8px"><a href="/HanwhaOcean_Level1_Lesson1" style="display:block;padding:10px;border-radius:10px;background:#f3f4f6;color:#888;font-size:12px;font-weight:700;text-align:center;text-decoration:none">🔄 1급 처음부터 다시</a></div>`;
 }
 
 function renderCurriculum() {
@@ -1116,18 +1117,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🎯', label:'내 꿈 말하기',
-    q:'한국어로 꿈과 목표를 표현하는 연습을 해주세요. "저는 조선소 기술자가 되고 싶어요", "한국어를 잘하고 싶어요" 같은 표현을 영어와 함께 5가지 만들어주세요.' },
-  { emoji:'📜', label:'자격증/기술 목표',
-    q:'조선소 기술 자격증과 관련된 한국어 표현을 알려주세요. 용접 자격증, 기술 향상, 승진, 자격 시험 준비에 쓰는 표현을 영어와 함께 5가지 알려주세요.' },
-  { emoji:'📈', label:'성장/발전 표현',
-    q:'직업적 성장을 표현하는 한국어를 알려주세요. "기술이 늘고 있어요", "작년보다 잘 해요", "계속 배우고 싶어요" 같은 발전 표현을 영어와 함께 알려주세요.' },
-  { emoji:'🏠', label:'고향/미래 계획',
-    q:'고향으로 돌아가거나 한국에서 정착하는 미래 계획을 한국어로 말하는 연습을 해주세요. "3년 후에 고향에 돌아갈 거예요", "한국에서 더 일하고 싶어요" 표현을 영어와 함께요.' },
-  { emoji:'💬', label:'~(으)려고 하다',
-    q:'의도 표현 ~(으)려고 하다를 목표 문장으로 연습해주세요. "한국어를 공부하려고 해요", "자격증을 따려고 해요" 같은 계획 문장 5개를 영어와 함께 만들어주세요.' },
-]
-
+  {emoji:'🔮',label:'(으)ㄹ 거예요',
+   q:'으ㄹ거예요만들기 future tense 미래형 ㄹ거예요를 알려주세요' },
+  {emoji:'📅',label:'계획 말하기',
+   q:'계획말하기 describing plans 앞으로계획 무슨계획을 알려주세요' },
+  {emoji:'⭐',label:'희망/꿈 표현',
+   q:'희망꿈표현 hope dream 고싶어요 원해요를 알려주세요' },
+  {emoji:'🎯',label:'미래 목표',
+   q:'미래목표 future goal 목표말하기 앞으로를 알려주세요' },
+  {emoji:'🗣️',label:'미래 대화',
+   q:'미래대화 future conversation 계획이야기 꿈이야기를 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1154,13 +1154,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean future goals and aspirations coach for shipyard workers. Lesson focus: goal vocab 꿈(dream), 미래(future), 계획(plan), 목표(goal), 자격증(certificate), intention expression ~(으)려고 하다 (intend to/plan to). Help workers express career and life goals. SHORT answers with English.';
+      var sysP = 'You are a Korean future goals and aspirations coach for shipyard workers. Lesson focus: goal vocab 꿈(dream), 미래(future), 계획(plan), 목표(goal), 자격증(certificate), intention expression ~(으)려고 하다 (intend to/plan to). Help workers express career and life goals. SHORT answers with English. LESSON:L1L20';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');
