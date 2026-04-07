@@ -3,18 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>KIIP 3급 20과 · 종합 복습 & 수료 시험</title>
+<title>KIIP 3급 20과 · 종합 복습 &amp; 수료 시험</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
-<meta property="og:title" content="KIIP 3급 20과 · 종합 복습 & 수료 시험">
-<meta property="og:description" content="법무부 KIIP 사회통합프로그램 3급 중급 1 · 20과 종합 복습 & 수료 시험 · Final Review & Exam">
+<meta property="og:title" content="KIIP 3급 20과 · 종합 복습 &amp; 수료 시험">
+<meta property="og:description" content="법무부 KIIP 사회통합프로그램 3급 중급 1 · 20과 종합 복습 &amp; 수료 시험 · Final Review &amp; Exam">
 <meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:url" content="https://elimg.com/KIIP_Level3_Lesson20.html">
+<meta property="og:url" content="https://elimg.com/KIIP_Level3_Lesson20">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="KIIP 3급 20과 · 종합 복습 & 수료 시험">
-<meta name="twitter:description" content="법무부 KIIP 사회통합프로그램 3급 중급 1 · 20과 종합 복습 & 수료 시험">
+<meta name="twitter:title" content="KIIP 3급 20과 · 종합 복습 &amp; 수료 시험">
+<meta name="twitter:description" content="법무부 KIIP 사회통합프로그램 3급 중급 1 · 20과 종합 복습 &amp; 수료 시험">
 <meta name="twitter:image" content="https://elimg.com/images/og-hanwha-level1.png">
 <meta name="theme-color" content="#f59e0b">
 <link rel="manifest" href="/manifest.json">
@@ -54,9 +57,6 @@ h2{color:var(--brown);font-size:18px;margin-bottom:4px;font-weight:800}
 .lang-bar{background:#fef3c7;display:flex;justify-content:center;gap:8px;padding:8px}
 .lang-btn-sm{background:rgba(180,83,9,0.1);border:1px solid #fbbf24;color:#92400e;padding:8px 16px;border-radius:20px;font-size:13px;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
 .lang-btn-sm.active{background:var(--amber);color:#fff;border-color:var(--amber)}
-.wip-banner{background:linear-gradient(135deg,#78350f,#92400e);color:#fff;border-radius:12px;padding:20px;margin-bottom:16px;text-align:center}
-.wip-banner h3{font-size:18px;font-weight:800;margin-bottom:8px}
-.wip-banner p{font-size:13px;opacity:0.9;line-height:1.7;margin-bottom:4px}
 .obj-item{display:flex;align-items:flex-start;gap:8px;padding:10px 0;border-bottom:1px solid #fde68a;font-size:14px;color:var(--text)}
 .obj-item:last-child{border-bottom:none}
 .obj-check{color:var(--amber);font-size:16px;flex-shrink:0;margin-top:1px}
@@ -86,6 +86,9 @@ window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); }
 const STATE = {
   section: 0,
   lang: localStorage.getItem('kiip_lang') || 'ko',
+  grammarTab: 0,
+  quizAnswers: {},
+  quiz: {started:false, idx:0, score:0, chosen:null, done:false},
 };
 
 function setState(newState) {
@@ -95,20 +98,40 @@ function setState(newState) {
 
 // ===== DATA =====
 const SECTIONS = [
-  {id:0, label:'도입', icon:'🏠'},
-  {id:1, label:'어휘', icon:'📝'},
-  {id:2, label:'문법', icon:'📐'},
+  {id:0, label:'도입', icon:'🏆'},
+  {id:1, label:'문법 복습', icon:'📐'},
+  {id:2, label:'어휘 복습', icon:'📝'},
   {id:3, label:'말하기', icon:'💬'},
   {id:4, label:'듣기', icon:'👂'},
   {id:5, label:'발음', icon:'🔊'},
   {id:6, label:'읽기', icon:'📖'},
   {id:7, label:'쓰기', icon:'✏️'},
   {id:8, label:'문화', icon:'🎎'},
-  {id:9, label:'퀴즈', icon:'✅'},
+  {id:9, label:'모의시험', icon:'✅'},
   {id:10, label:'AI실습', icon:'🤖'},
 ];
 
-var AI_QUICK_BTNS = [{"emoji":"📝","label":"핵심 어휘 총정리","q":"KIIP 3급 전체 핵심 어휘를 주제별로 정리해 주세요. 대인관계, 건강, 직업, 경제, 역사 등 각 단원 핵심 단어를 베트남어와 함께 알려주세요."},{"emoji":"📐","label":"핵심 문법 복습","q":"KIIP 3급에서 배운 핵심 문법 패턴을 정리해 주세요. -(으)ㄹ수록, -아/어서인지, -는 반면에 등 문법을 예문과 베트남어 번역으로 알려주세요."},{"emoji":"📋","label":"모의시험 문제","q":"KIIP 3급 수료 시험 형식의 모의문제 5개를 만들어 주세요. 어휘, 문법, 읽기 영역을 포함하고 정답과 해설을 베트남어로 알려주세요."},{"emoji":"🎯","label":"시험 합격 전략","q":"KIIP 3급 수료 시험 합격을 위한 전략을 알려주세요. 시험 유형, 자주 나오는 문제, 효과적인 공부 방법을 베트남어로 설명해 주세요."}];
+const QUIZ_DATA = [
+  {q:'빈칸: "한국어를 공부___ 실력이 늘어요." — -다 보면 형태는?', opts:['하다 보면','하면서','하기 위해','하고서'], ans:0, exp:'-다 보면: 계속하면 결과가 생긴다'},
+  {q:'"비가 오는 바람에 옷이 젖었어요"의 뜻은?', opts:['비가 와서 기분이 좋다','비가 왔기 때문에 옷이 젖었다 (예상치 못한 결과)','비를 맞으며 걸었다','비가 오니까 집에 있다'], ans:1, exp:'-는 바람에: 예상치 못한 부정적 결과'},
+  {q:'"합격할지 모르겠어요"에서 사용된 문법은?', opts:['-(으)ㄹ 뻔하다','-(으)ㄹ지 모르다','-고 나서','-는 데 비해'], ans:1, exp:'-(으)ㄹ지 모르다: 불확실함'},
+  {q:'"서울은 복잡한 ___ 제주도는 조용해요." — 빈칸은?', opts:['반면에','바람에','채로','김에'], ans:0, exp:'-(으)ㄴ/는 반면에: 대조'},
+  {q:'"신발을 신은 ___ 집에 들어왔어요." — 빈칸은?', opts:['채로','바람에','김에','탓에'], ans:0, exp:'-(으)ㄴ 채로: ~한 상태 그대로'},
+  {q:'"-기 위한"이 올바른 문장은?', opts:['취업하기 위한 준비를 해요.','취업하기 위한을 공부해요.','취업이기 위한 좋아요.','취업했기 위한이에요.'], ans:0, exp:'-기 위한 뒤에는 반드시 명사'},
+  {q:'"경복궁을 방문하고서 역사에 관심이 생겼어요"의 문법은?', opts:['-고서','-고 나서','-아/어서','둘 다 가능'], ans:3, exp:'-고서와 -고 나서는 비슷하지만 -고서가 더 강한 순서 강조'},
+  {q:'한국의 전통 명절로 올바른 것은?', opts:['크리스마스, 할로윈','설날, 추석','노동절, 어린이날','발렌타인데이, 화이트데이'], ans:1, exp:'설날(음력 1월 1일), 추석(음력 8월 15일)이 대표 전통 명절'},
+  {q:'KIIP 사회통합프로그램의 혜택이 아닌 것은?', opts:['귀화 신청 시험 면제','영주권 신청 우대','무료 한국어 교육','한국 국적 자동 취득'], ans:3, exp:'KIIP 이수 후 국적은 자동 취득되지 않아요 — 귀화 신청 절차 필요'},
+  {q:'빈칸: "한복은 불편하___ 아름다워요." — 올바른 형태는?', opts:['면서도','는 데 비해','는 탓에','는 바람에'], ans:0, exp:'-(으)면서도: 동시에 상반된 상황'},
+];
+
+var AI_QUICK_BTNS = [
+  {emoji:'📚', label:'문법 전체 복습', q:'KIIP 3급 1-19과 핵심 문법 10개를 정리해 주세요. 각 문법의 의미와 예문을 베트남어 번역과 함께 알려주세요.'},
+  {emoji:'📝', label:'어휘 퀴즈', q:'KIIP 3급 핵심 어휘 10개로 빈칸 채우기 문제를 만들어 주세요. 정답과 베트남어 번역도 포함해 주세요.'},
+  {emoji:'💬', label:'종합 롤플레이', q:'저는 KIIP 3급 학습자입니다. 지금까지 배운 문법(-(으)ㄹ지 모르다, -는 데 비해, -(으)면서도 등)을 모두 활용한 종합 대화 연습을 해 주세요.'},
+  {emoji:'✏️', label:'작문 첨삭', q:'KIIP 3급 학습자의 글입니다. 1-19과 문법을 확인하고 수정해 주세요. 베트남어로도 설명해 주세요: '},
+  {emoji:'🎯', label:'모의 TOPIK', q:'KIIP 3급 수준의 TOPIK II 종합 문제 5개를 만들어 주세요. 어휘, 문법, 읽기 유형으로 구성하고 정답과 해설도 포함해 주세요.'},
+  {emoji:'🏆', label:'수료 준비 체크', q:'KIIP 3급 수료 시험을 앞두고 꼭 알아야 할 핵심 내용을 정리해 주세요. 문법, 어휘, 문화 각 5개씩 베트남어로 설명해 주세요.'},
+];
 
 var AICHAT = {
   history: [],
@@ -121,6 +144,7 @@ var AICHAT = {
     if (!inp) return;
     inp.value = b.q;
     inp.style.borderColor = '#f59e0b';
+    if (idx === 3) { inp.focus(); return; }
     this.send();
   },
 
@@ -154,7 +178,7 @@ var AICHAT = {
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div>'
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div>'
           + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div>'
-          + '</div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+          + '</div><span style="font-size:12px;color:#888">AI 응답 중... 🇻🇳 Đang trả lời...</span>';
         box.appendChild(ld);
         box.scrollTop = box.scrollHeight;
       }
@@ -170,18 +194,14 @@ var AICHAT = {
     var inp  = document.getElementById('ai-chat-input');
     var text = inp ? inp.value.trim() : '';
     if (!text) return;
-
     this.history.push({role:'user', content:text});
     this.addMsg('user', text);
     if (inp) inp.value = '';
     this.loading = true;
     this.setLoading(true);
-
-    var sys = "You are a Korean language tutor for KIIP Level 3. The student is likely Vietnamese and preparing for the KIIP Level 3 final exam. Help them review all topics covered in the course. Answer in Korean with Vietnamese translation. Be encouraging and thorough.";
-
+    var sys = 'You are a Korean language tutor for KIIP Level 3 Lesson 20 (종합 복습 & 수료 시험). This is the final comprehensive review of all 19 lessons. Student is Vietnamese. Answer in Korean with Vietnamese translation.';
     try {
-      var url = '/api/chat';
-      var res  = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
       if (!res.ok) throw new Error('HTTP ' + res.status);
       var data = await res.json();
       var reply = data.choices[0].message.content;
@@ -191,216 +211,831 @@ var AICHAT = {
       this.addMsg('assistant', reply);
     } catch(e) {
       this.setLoading(false);
-      this.addMsg('assistant',
-        '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요');
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결 방법:\n1. 잠시 후 다시 시도해 주세요\n2. 인터넷 연결을 확인해 주세요\n🇻🇳 Lỗi kết nối AI — Thử lại sau ít phút');
     }
     this.loading = false;
   }
 };
 
-// ===== RENDER =====
-function setLang(lang) {
-  STATE.lang = lang;
-  localStorage.setItem('kiip_lang', lang);
-  render();
+function copyNotebookContent20() {
+  var content = 'KIIP 3급 중급 1 · 20과 종합 복습 & 수료 시험\n글로컬 아카데미 (elimg.com)\n\n=== 1-19과 핵심 문법 총정리 ===\n1과 -(으)ㄹ수록: ~할수록 더 (the more... the more)\n2과 -는 바람에: 예상치 못한 부정적 결과 (because of unexpectedly)\n3과 -(으)ㄴ/는 데 비해: 대조 (compared to, in contrast to)\n4과 -게 되다: 상황이 바뀌어 ~하게 됨 (came to be / ended up)\n5과 -아/어지다: 점진적 상태 변화 (becomes / gets more)\n6과 -(으)ㄹ지 모르다: 불확실함 (not sure if / might)\n7과 -(으)ㄴ/는 반면에: 대조 (on the other hand / whereas)\n8과 -(으)ㄴ 채로: ~한 상태 그대로 (while still in the state of)\n9과 -는 김에: 하는 기회에 (while you are at it / since you are doing)\n10과 -게 되다/-아/어지다: 환경 맥락 변화 표현\n11과 -(으)ㄹ 뻔하다: 하마터면 ~할 뻔했다 (almost / nearly)\n12과 -기 위한: 목적 (for the purpose of)\n13과 -고서: 순서 강조 (after doing, then)\n14과 -고 나서: 완료 후 다음 행동 (after completing)\n15과 -(으)로 인해: ~로 인한 원인 (due to / because of)\n16과 -(으)ㄴ/는 탓에: 부정적 원인 (because of — negative)\n17과 -다 보면: 계속하면 결과 생긴다 (if you keep doing, eventually)\n18과 -아/어 봤자: 해도 소용없다 (even if you do, it is no use)\n19과 -(으)면서도: 동시에 상반 (even while / at the same time)\n\n=== 수료 혜택 ===\n- 귀화 신청 필기시험 면제\n- 영주권 신청 우대\n- 체류 자격 변경 시 가산점';
+  navigator.clipboard.writeText(content).then(function() {
+    var el = document.getElementById('copy-ok20');
+    if (el) { el.textContent = '✅ 복사 완료!'; setTimeout(function(){ el.textContent = ''; }, 3000); }
+  }).catch(function() {
+    var el = document.getElementById('copy-btn-20');
+    if (el) el.textContent = '❌ 직접 복사하세요';
+  });
 }
 
-function renderNav() {
-  return `
-    <div class="nav">
-      <a href="KIIP_Level3_Index.html" class="nav-back">← 3급 목차</a>
-      <div style="text-align:center">
-        <div class="nav-title">20과 · 종합 복습 & 수료 시험</div>
-        <div class="nav-sub">KIIP 3급 중급 1</div>
-      </div>
-      <div style="width:60px;text-align:right;font-size:11px;color:#d97706">
-        ${STATE.section+1}/${SECTIONS.length}
-      </div>
-    </div>
-  `;
+// ===== RECORDER =====
+const RECORDER = {
+  streams: {}, recorders: {}, chunks: {}, audioURLs: {}, isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    const resultEl = document.getElementById('stt-result-' + idx);
+    const playBtn  = document.getElementById('play-btn-' + idx);
+    const scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, targetText, recBtn); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      this.streams[idx] = stream;
+    } catch(e) {
+      const name = e.name || '';
+      let msg = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg = '❌ <strong>마이크가 차단됨</strong> — 주소창 왼쪽 🔒 → 마이크 → <strong>허용</strong> 후 새로고침<br><span style="color:#555">🇻🇳 Micro bị chặn — Nhấn 🔒 → Micro → Cho phép → F5</span>';
+      } else if (name === 'NotFoundError') {
+        msg = '❌ <strong>마이크를 찾을 수 없어요</strong> — 마이크 연결 확인';
+      } else {
+        msg = '❌ <strong>오류: ' + name + '</strong> — Chrome/Edge에서 다시 시도';
+      }
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    const mr = new MediaRecorder(this.streams[idx]);
+    this.recorders[idx] = mr;
+    mr.ondataavailable = e => { if (e.data.size > 0) this.chunks[idx].push(e.data); };
+    mr.onstop = () => {
+      if (this.audioURLs[idx]) URL.revokeObjectURL(this.audioURLs[idx]);
+      const blob = new Blob(this.chunks[idx], {type: 'audio/webm'});
+      this.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false; playBtn.style.opacity = '1';
+        playBtn.onclick = () => { const a = new Audio(this.audioURLs[idx]); a.play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지'; recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중... · 🇻🇳 Đang ghi âm...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      const rec = new SR();
+      rec.lang = 'ko-KR'; rec.continuous = false; rec.interimResults = false;
+      rec.onresult = (e) => {
+        const said = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        const target = targetText.replace(/[\s,.?!\[\]]/g,'');
+        const conf = e.results[0][0].confidence;
+        let match = 0;
+        const minLen = Math.min(said.length, target.length);
+        for (let i = 0; i < minLen; i++) { if (said[i] === target[i]) match++; }
+        const pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        const confPct = Math.round((conf || 0.5) * 100);
+        const finalPct = Math.round((pct * 0.7) + (confPct * 0.3));
+        const color = finalPct >= 80 ? '#22c55e' : finalPct >= 50 ? '#f59e0b' : '#ef4444';
+        const msg = finalPct >= 80 ? '✅ 완벽해요! · Tuyệt vời!' : finalPct >= 50 ? '🔄 조금 더 연습! · Luyện thêm chút!' : '❌ 다시 시도! · Thử lại!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = finalPct + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = () => {};
+      rec.start();
+    }
+  },
+
+  async autoDetect() {
+    const stateEl = document.getElementById('mic-perm-state');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        const result = await navigator.permissions.query({name: 'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 이미 허용됨 — 바로 녹음하세요! · 🇻🇳 Đã cho phép!</div>';
+          if (allowBtn) { allowBtn.style.background = '#166534'; allowBtn.textContent = '✅ 허용됨 — 바로 녹음하세요'; }
+          if (blockedGuide) blockedGuide.style.display = 'none';
+          return;
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 아래 빨간 박스 순서대로 해결하세요</div>';
+          if (blockedGuide) blockedGuide.style.display = 'block';
+          if (allowBtn) { allowBtn.style.background = '#ef4444'; allowBtn.textContent = '⚠️ 차단됨 — 위 단계 완료 후 여기 클릭'; }
+          return;
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아직 허용 안 됨 — 아래 버튼을 눌러 허용해 주세요</div>';
+        }
+        result.onchange = () => RECORDER.autoDetect();
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+      }
+    } else {
+      stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+    }
+  },
+
+  async checkPermission(btn) {
+    const statusEl = document.getElementById('mic-status');
+    const box = document.getElementById('mic-check-box');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → elimg.com 에서 열기</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 미지원 브라우저 — Chrome 또는 Edge를 사용해 주세요</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      stream.getTracks().forEach(t => t.stop());
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 바로 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 성공! 🇻🇳 Đã cho phép!</span>';
+      if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
+      if (blockedGuide) blockedGuide.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 바로 녹음하세요!'; btn.style.background = '#166534'; btn.disabled = false;
+    } catch(e) {
+      const name = e.name || '';
+      btn.disabled = false;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        if (blockedGuide) blockedGuide.style.display = 'block';
+        if (stateEl) stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 빨간 박스 순서대로 해결 후 다시 클릭</div>';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444;font-size:11px">🔒 허용 완료 후 이 버튼을 다시 눌러주세요</span>';
+        btn.textContent = '🔄 허용 완료 후 다시 클릭'; btn.style.background = '#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">오류 (' + (name||'unknown') + ') — Chrome/Edge에서 다시 시도</span>';
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
+      }
+    }
+  },
+
+  stop(idx, targetText, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') this.recorders[idx].stop();
+    if (this.streams[idx]) this.streams[idx].getTracks().forEach(t => t.stop());
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음'; recBtn.style.background = '#059669';
+  }
+};
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
 }
 
-function renderLangBar() {
-  return `
-    <div class="lang-bar">
-      ${['ko','en','vi'].map(l=>`<button class="lang-btn-sm ${STATE.lang===l?'active':''}" onclick="setLang('${l}')">${l==='ko'?'🇰🇷 KO':l==='en'?'🇺🇸 EN':'🇻🇳 VI'}</button>`).join('')}
-    </div>
-  `;
+// ===== QUIZ RENDER =====
+function renderQuiz() {
+  const Q = QUIZ_DATA;
+  const s = STATE.quiz;
+  if (!s.started) {
+    return '<div class="intro-header" style="margin-bottom:16px">'
+      + '<div style="font-size:40px;margin-bottom:8px">🏆</div>'
+      + '<h3>20과 모의 수료 시험</h3>'
+      + '<p style="font-size:13px;opacity:0.9">1-19과 종합 · 총 ' + Q.length + '문제</p>'
+      + '</div>'
+      + '<div class="card">'
+      + '<p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:14px">1-19과 핵심 문법, 어휘, 문화를 모두 복습해 봐요!</p>'
+      + '<button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:16px;font-weight:700">모의 시험 시작하기 🚀</button>'
+      + '</div>';
+  }
+  if (s.done) {
+    const pct = Math.round(s.score / Q.length * 100);
+    const emoji = pct >= 80 ? '🏆' : pct >= 60 ? '👍' : '📚';
+    return '<div class="intro-header" style="margin-bottom:16px">'
+      + '<div style="font-size:40px;margin-bottom:8px">' + emoji + '</div>'
+      + '<h3>' + s.score + '/' + Q.length + ' 정답</h3>'
+      + '<p style="font-size:14px;opacity:0.9">' + pct + '점 · ' + (pct>=80?'수료 시험 준비 완료!':pct>=60?'잘 했어요! 조금 더 복습해요!':'더 열심히 복습해 봐요!') + '</p>'
+      + '</div>'
+      + '<div class="card">'
+      + '<button onclick="setState({quiz:{started:true,idx:0,score:0,chosen:null,done:false}})" style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;margin-bottom:8px">다시 풀기 🔄</button>'
+      + '<button onclick="setState({section:0})" style="width:100%;background:#fef3c7;color:#92400e;border-radius:12px;padding:12px;font-size:14px;font-weight:600">처음으로 🏠</button>'
+      + '</div>';
+  }
+  const cur = Q[s.idx];
+  const answered = s.chosen !== null;
+  let html = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">'
+    + '<span style="font-size:12px;color:#888">문제 ' + (s.idx+1) + '/' + Q.length + '</span>'
+    + '<span style="font-size:12px;color:var(--amber);font-weight:700">점수: ' + s.score + '</span>'
+    + '</div>'
+    + '<div class="card" style="margin-bottom:12px">'
+    + '<p style="font-size:15px;font-weight:600;line-height:1.6;color:#1a202c">' + cur.q + '</p>'
+    + '</div>';
+  for (var oi = 0; oi < cur.opts.length; oi++) {
+    var opt = cur.opts[oi];
+    var bg = '#fff', border = '#fde68a', color = '#1a202c';
+    if (answered) {
+      if (oi === cur.ans) { bg = '#dcfce7'; border = '#22c55e'; color = '#166534'; }
+      else if (oi === s.chosen) { bg = '#fee2e2'; border = '#ef4444'; color = '#991b1b'; }
+    }
+    var prefix = '';
+    if (answered && oi === cur.ans) prefix = '✅ ';
+    if (answered && oi === s.chosen && oi !== cur.ans) prefix = '❌ ';
+    var clickStr = '';
+    if (!answered) {
+      var isC = (oi === cur.ans);
+      clickStr = 'onclick="(function(){setState({quiz:{...STATE.quiz,chosen:' + oi + ',score:STATE.quiz.score+' + (isC?1:0) + '}});})()"';
+    }
+    html += '<button ' + clickStr + ' style="width:100%;background:' + bg + ';border:2px solid ' + border + ';border-radius:10px;padding:12px 14px;margin-bottom:8px;font-size:14px;color:' + color + ';text-align:left;font-weight:' + (answered&&oi===cur.ans?'700':'400') + '">' + prefix + opt + '</button>';
+  }
+  if (answered) {
+    html += '<div style="background:#fef3c7;border-radius:8px;padding:10px;margin-bottom:8px;font-size:12px;color:#92400e;line-height:1.6">'
+      + '<strong>💡 해설:</strong> ' + cur.exp + '</div>';
+    var isLast = (s.idx + 1 >= Q.length);
+    html += '<button onclick="(function(){if(STATE.quiz.idx+1>=QUIZ_DATA.length){setState({quiz:{...STATE.quiz,done:true}})}else{setState({quiz:{...STATE.quiz,idx:STATE.quiz.idx+1,chosen:null}})};})()" '
+      + 'style="width:100%;background:var(--amber);color:#fff;border-radius:12px;padding:13px;font-size:15px;font-weight:700;margin-top:4px">'
+      + (isLast ? '결과 보기 🏁' : '다음 문제 →') + '</button>';
+  }
+  return html;
 }
 
-function renderTabs() {
-  return `
-    <div class="section-tabs">
-      ${SECTIONS.map(s=>`<button class="stab ${STATE.section===s.id?'active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
-    </div>
-  `;
-}
+// ===== SECTION RENDERER =====
+function renderSection(id) {
+  switch(id) {
+    case 0: return renderCase0();
+    case 1: return renderCase1();
+    case 2: return renderCase2();
+    case 3: return renderCase3();
+    case 4: return renderCase4();
+    case 5: return renderCase5();
+    case 6: return renderCase6();
+    case 7: return renderCase7();
+    case 8: return renderCase8();
+    case 9: {
+      return '<h2>✅ 모의 수료 시험</h2>'
+        + '<p class="sub">KIIP 3급 1-19과 종합 평가 · 총 10문제</p>'
+        + renderQuiz();
+    }
+    case 10: {
+      setTimeout(() => RECORDER.autoDetect(), 100);
+      const PRON_SENTS = [
+        {sent:'한국어를 열심히 공부하다 보면 실력이 늘어요.', vi:'Nếu cứ chăm chỉ học tiếng Hàn, trình độ sẽ tăng.'},
+        {sent:'한국은 전통을 지키면서도 현대화에 성공했어요.', vi:'Hàn Quốc thành công hiện đại hóa trong khi vẫn giữ truyền thống.'},
+        {sent:'KIIP를 수료하고서 귀화 신청이 쉬워졌어요.', vi:'Sau khi hoàn thành KIIP, việc xin nhập tịch trở nên dễ hơn.'},
+        {sent:'취업하기 위한 노력이 드디어 결실을 맺었어요.', vi:'Nỗ lực để xin việc làm cuối cùng đã đơm hoa kết trái.'},
+      ];
+      var pronHtml = PRON_SENTS.map(function(item, i) {
+        var sentEsc = item.sent.replace(/'/g, "\\'");
+        return '<div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">'
+          + '<div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">' + item.sent + '</div>'
+          + '<div style="font-size:10px;color:#059669;margin-bottom:8px">🇻🇳 ' + item.vi + '</div>'
+          + '<div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">'
+          + '<div id="score-bar-' + i + '" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>'
+          + '</div>'
+          + '<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">'
+          + '<button onclick="TTS.speak(\'' + sentEsc + '\'); this.textContent=\'🔊 재생 중...\'; setTimeout(()=>this.textContent=\'🔊 원어민\',2000)" '
+          + 'style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">🔊 원어민</button>'
+          + '<button id="rec-btn-' + i + '" onclick="startSTT(' + i + ',\'' + sentEsc + '\',this)" '
+          + 'style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0">🎤 녹음</button>'
+          + '<button id="play-btn-' + i + '" disabled '
+          + 'style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;flex-shrink:0;opacity:0.4">▶ 내 발음 듣기</button>'
+          + '</div>'
+          + '<div id="stt-result-' + i + '" style="font-size:11px;margin-top:6px;min-height:16px"></div>'
+          + '</div>';
+      }).join('');
 
-function renderBottomNav() {
-  const prev = STATE.section > 0
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section-1}})">◀ 이전</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>◀ 이전</button>`;
-  const next = STATE.section < SECTIONS.length-1
-    ? `<button class="bnav-btn" onclick="setState({section:${STATE.section+1}})">다음 ▶</button>`
-    : `<button class="bnav-btn" style="opacity:0.3" disabled>다음 ▶</button>`;
-  return `
-    <div class="bottom-nav">
-      ${prev}
-      <button class="bnav-btn" onclick="setState({section:0})"><span class="bnav-icon">🏠</span><span>홈</span></button>
-      <button class="bnav-btn" onclick="setState({section:10})"><span class="bnav-icon">🤖</span><span>AI</span></button>
-      ${next}
-    </div>
-  `;
-}
-
-function renderWIPSection(title, icon) {
-  return `
-    <div class="page">
-      <h2>${icon} ${title}</h2>
-      <p class="sub">KIIP 3급 20과 · 종합 복습 & 수료 시험 · Final Review & Exam</p>
-      <div class="wip-banner">
-        <h3>🚧 콘텐츠 준비 중</h3>
-        <p>이 섹션의 학습 자료를 열심히 제작 중입니다.<br>Content is being prepared for this section.</p>
-        <p style="margin-top:8px;font-size:12px;opacity:0.8">🇻🇳 Nội dung đang được chuẩn bị. Vui lòng quay lại sau.</p>
-      </div>
-      <div class="card card-accent">
-        <div class="section-label">💡 지금 당장 학습하려면</div>
-        <div style="font-size:13px;color:#555;margin-top:6px;line-height:1.8">
-          아래 <strong>AI 실습</strong> 탭을 이용하면 이 주제를 바로 공부할 수 있어요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Sử dụng tab <strong>AI 실습</strong> bên dưới để học ngay chủ đề này!</span>
-        </div>
-        <button onclick="setState({section:10})" style="background:var(--amber);color:#fff;border-radius:10px;padding:12px 20px;font-size:14px;font-weight:700;margin-top:12px;width:100%">
-          🤖 AI 실습 탭으로 이동
-        </button>
-      </div>
-    </div>
-  `;
-}
-
-function renderIntro() {
-  return `
-    <div class="page">
-      <div class="intro-header">
-        <div style="font-size:14px;opacity:0.8;margin-bottom:4px">KIIP 3급 · 중급 1</div>
-        <h3>20과 종합 복습 & 수료 시험</h3>
-        <div style="font-size:14px;margin-top:4px;opacity:0.9">Final Review & Exam</div>
-        <div style="margin-top:12px;font-size:28px">🎓</div>
-      </div>
-
-      <div class="card card-accent">
-        <div class="section-label">학습 목표</div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>종합 복습 & 수료 시험 관련 어휘를 이해하고 사용할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>종합 복습 & 수료 시험 주제로 말하기·쓰기를 할 수 있다</span></div>
-        <div class="obj-item"><span class="obj-check">✅</span><span>AI 튜터와 함께 종합 복습 & 수료 시험 표현을 연습할 수 있다</span></div>
-      </div>
-
-      <div class="card" style="background:#fef3c7;border:1px solid #fbbf24">
-        <div class="section-label" style="background:#92400e">📌 이번 과 주제</div>
-        <div style="font-size:24px;text-align:center;margin:12px 0">🎓</div>
-        <div style="font-size:18px;font-weight:800;text-align:center;color:var(--brown);margin-bottom:4px">20과 · 종합 복습 & 수료 시험</div>
-        <div style="font-size:14px;text-align:center;color:#555;margin-bottom:8px">Final Review & Exam</div>
-        <div style="background:#fff;border-radius:8px;padding:12px;font-size:13px;color:#555;line-height:1.8;border:1px solid #fde68a">
-          🚧 상세 콘텐츠는 준비 중입니다. AI 실습 탭에서 이 주제를 지금 바로 공부해 보세요!<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nội dung chi tiết đang được chuẩn bị. Hãy dùng tab AI 실습 để học ngay!</span>
-        </div>
-      </div>
-
-      <div style="display:flex;gap:10px;margin-top:4px">
-        <a href="KIIP_Level3_Lesson19.html" style="flex:1;background:var(--dark);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">← 19과</a>
-        <a href="KIIP_Level3_Index.html" style="flex:1;background:#6b7280;color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">목차 →</a>
-      </div>
-
-      <div style="margin-top:12px">
-        <div style="background:#d1fae5;border-radius:8px;height:6px;overflow:hidden;margin-bottom:4px">
-          <div style="background:#22c55e;height:100%;width:100%;transition:width 0.5s"></div>
-        </div>
-        <div style="font-size:11px;color:#888;text-align:center">3급 전체 진도 100% · 20 / 20과</div>
-      </div>
-    </div>
-  `;
-}
-
-function renderAI() {
-  return `
-    <div class="page">
-      <h2>🤖 AI 실습</h2>
-      <p class="sub">글로컬 아카데미 × AI 한국어 튜터 · 종합 복습 & 수료 시험</p>
-
-      <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
-        <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
-        <div style="font-size:15px;font-weight:800;margin-bottom:6px">KIIP 3급 20과 · 종합 복습 & 수료 시험 AI 실습</div>
-        <div style="font-size:11px;opacity:0.85;line-height:1.7">Final Review & Exam — 주제별 AI 튜터와 실시간 학습<br>
-        <span style="color:#93c5fd">🇻🇳 Luyện tập chủ đề "종합 복습 & 수료 시험" cùng AI ngay trong app</span></div>
-      </div>
-
-      <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
-        <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
-        <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
-          계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>
-          <span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập, không chuyển tab</span>
-        </div>
-
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-          ${AI_QUICK_BTNS.map((b,i)=>`
-            <button onclick="AICHAT.quickSend(${i})"
-              style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
-              ${b.emoji} ${b.label}
-            </button>
-          `).join('')}
-        </div>
-
-        <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
-          <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
-            💡 버튼을 누르면 AI가 바로 답해줘요<br>
-            <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:6px;align-items:flex-end">
-          <textarea id="ai-chat-input"
-            placeholder="종합 복습 & 수료 시험에 대해 질문하세요... / Ask about Final Review & Exam..."
-            style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
-            onfocus="this.style.borderColor='#f59e0b'"
-            onblur="this.style.borderColor='#fde68a'"
-            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
-          ></textarea>
-          <button onclick="AICHAT.send()"
-            id="ai-send-btn"
-            style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">
-            ➤
-          </button>
-        </div>
-        <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
-      </div>
-
-      <div class="card card-accent" style="margin-bottom:10px">
-        <div class="section-label">📖 20과 학습 가이드</div>
-        <div style="font-size:13px;color:#555;margin-top:8px;line-height:1.9">
-          <strong style="color:var(--brown)">🎓 종합 복습 & 수료 시험 · Final Review & Exam</strong><br>
-          위의 빠른 질문 버튼을 눌러 AI 튜터에게 이 주제를 배워보세요.<br>
-          직접 질문도 자유롭게 입력할 수 있어요.<br>
-          <span style="color:#059669;font-size:12px">🇻🇳 Nhấn các nút câu hỏi nhanh để học chủ đề này với AI.<br>Bạn cũng có thể tự nhập câu hỏi bất kỳ.</span>
-        </div>
-      </div>
-
-      <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
-    </div>
-  `;
-}
-
-function renderSection() {
-  switch(STATE.section) {
-    case 0: return renderIntro();
-    case 10: return renderAI();
-    default: return renderWIPSection(SECTIONS[STATE.section].label, SECTIONS[STATE.section].icon);
+      return '<h2>🤖 AI 실습</h2>'
+        + '<p class="sub">글로컬 아카데미 × 에이전틱 G스택 한국어 학습</p>'
+        + '<div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">'
+        + '<div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>'
+        + '<div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 한국어 실습 플랫폼 · 20과 종합</div>'
+        + '<div style="font-size:11px;opacity:0.85;line-height:1.7">KIIP 3급 종합 복습 &amp; 수료 시험 준비 AI 실습<br>'
+        + '<span style="color:#93c5fd">🇻🇳 Luyện tập tổng hợp 20 bài cùng AI của Glocal Academy</span></div>'
+        + '</div>'
+        + '<div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">'
+        + '<div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>'
+        + '<div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">계정 없이 바로 AI에게 질문하세요 — 새 탭 이동 없음<br>'
+        + '<span style="color:#059669;font-size:11px">🇻🇳 Hỏi AI ngay trong app — không cần đăng nhập</span></div>'
+        + '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">'
+        + AI_QUICK_BTNS.map(function(b, i) {
+            return '<button onclick="AICHAT.quickSend(' + i + ')" '
+              + 'style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">'
+              + b.emoji + ' ' + b.label + '</button>';
+          }).join('')
+        + '</div>'
+        + '<div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">'
+        + '<div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">💡 버튼을 누르면 AI가 바로 답해줘요<br>'
+        + '<span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span></div>'
+        + '</div>'
+        + '<div style="display:flex;gap:6px;align-items:flex-end">'
+        + '<textarea id="ai-chat-input" placeholder="종합 복습 &amp; 수료 시험에 대해 질문하세요..." '
+        + 'style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none" '
+        + 'onfocus="this.style.borderColor=\'#f59e0b\'" onblur="this.style.borderColor=\'#fde68a\'" '
+        + 'onkeydown="if(event.key===\'Enter\'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"></textarea>'
+        + '<button onclick="AICHAT.send()" id="ai-send-btn" '
+        + 'style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>'
+        + '</div>'
+        + '<div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>'
+        + '</div>'
+        + '<div class="card card-accent" style="margin-bottom:10px">'
+        + '<div class="section-label">🌐 외부 AI 서비스 상세 가이드</div>'
+        + '<div style="font-size:11px;color:#888;margin:6px 0 8px">계정이 있는 경우 더 강력한 AI를 사용할 수 있어요</div>'
+        + '<details style="margin-bottom:8px">'
+        + '<summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">🔵 Gemini AI 사용법 — Google 계정 필요</summary>'
+        + '<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">'
+        + '<strong style="color:#1d4ed8">① 접속:</strong> gemini.google.com<br>'
+        + '<div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">'
+        + '<div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 종합 복습 롤플레이</div>'
+        + '<span style="font-family:monospace;background:#dbeafe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"저는 베트남인 KIIP 3급 학습자예요. 1-19과 핵심 문법을 모두 사용한 종합 대화 연습을 도와주세요."</span>'
+        + '</div></div></details>'
+        + '<details style="margin-bottom:8px">'
+        + '<summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">🟣 Claude AI 사용법 — 이메일 계정 필요</summary>'
+        + '<div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">'
+        + '<strong style="color:#7c3aed">① 접속:</strong> claude.ai (이메일로 무료 가입)<br>'
+        + '<div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">'
+        + '<div style="font-weight:700;color:#7c3aed;margin-bottom:3px">✏️ 종합 에세이 첨삭</div>'
+        + '<span style="font-family:monospace;background:#ede9fe;padding:2px 6px;border-radius:4px;display:block;margin:4px 0">"KIIP 3급 외국인 학습자의 글입니다. 1-19과 문법 사용을 확인하고 베트남어로 설명해 주세요."</span>'
+        + '</div></div></details>'
+        + '<details>'
+        + '<summary style="background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">📓 NotebookLM 사용법 — Google 계정 필요</summary>'
+        + '<div style="background:#fff8f0;border:1px solid #fed7aa;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">'
+        + '<strong style="color:#ea4335">① 접속:</strong> notebooklm.google.com<br>'
+        + '<div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #ea4335">'
+        + '20과 학습 내용 복사 → NotebookLM에 붙여넣기:<br>'
+        + '<button id="copy-btn-20" onclick="copyNotebookContent20()" style="background:#ea4335;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0">📋 20과 전체 문법 복사하기</button>'
+        + '<span id="copy-ok20" style="font-size:11px;color:#059669;margin-left:6px"></span><br>'
+        + '"3급 전체 문법 퀴즈 10문제 만들어줘" / "수료 시험 준비 체크리스트"'
+        + '</div></div></details>'
+        + '</div>'
+        + '<div class="card card-green" style="margin-bottom:10px">'
+        + '<div class="section-label" style="background:#059669">🎤 AI 발음 코치 · 녹음 &amp; 재생</div>'
+        + '<div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">원어민 듣기 → 내가 녹음 → 다시 들으며 비교<br>'
+        + '<span style="color:#059669;font-size:11px">🇻🇳 Nghe người bản ngữ → Tự ghi âm → Nghe lại so sánh</span></div>'
+        + '<div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#166534">🆓 <strong>완전 무료</strong> — 브라우저 내장 API · 서버 없음</div>'
+        + '<div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:14px;margin-bottom:10px">'
+        + '<div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px">🎙️ 마이크 허용 필요</div>'
+        + '<div id="mic-perm-state" style="margin-bottom:10px"></div>'
+        + '<div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:10px">'
+        + '<div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:8px">🚫 마이크가 차단되어 있어요</div>'
+        + '<div style="background:#fff;border-radius:8px;padding:10px;font-size:12px;line-height:2;color:#1a202c">'
+        + '<strong style="color:#1d4ed8">PC Chrome / Edge:</strong><br>주소창 왼쪽 🔒 클릭 → 마이크 → <strong>허용</strong> → F5<br>'
+        + '<strong style="color:#059669">📱 Android Chrome:</strong><br>주소창 ⋮ → 사이트 설정 → 마이크 → 허용</div>'
+        + '<div style="margin-top:8px;font-size:11px;color:#059669">🇻🇳 Nhấn 🔒 góc trái → Micro → Cho phép → F5</div>'
+        + '</div>'
+        + '<button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)" '
+        + 'style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:12px;font-size:14px;font-weight:800">🎙️ 마이크 허용하기 (여기 클릭)</button>'
+        + '<div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>'
+        + '</div>'
+        + pronHtml
+        + '<div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">'
+        + '<strong>📖 사용법:</strong> 1️⃣ 🔊 원어민 듣기 → 2️⃣ 🎤 녹음 → 3️⃣ ▶ 내 발음 듣기<br>'
+        + '정확도 바: 🟢 80%+ 🟡 50~79% 🔴 50% 미만</div>'
+        + '</div>'
+        + '<div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">'
+        + '<div class="section-label" style="background:#059669">🌐 글로컬 G스택 학습법</div>'
+        + '<div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.8">'
+        + '<strong>글로컬 아카데미 AI 에이전트 기반 4단계 학습법:</strong><br>'
+        + '<span style="color:#555">① 어휘/문법 → Gemini 설명 요청</span><br>'
+        + '<span style="color:#555">② 말하기 → Gemini 롤플레이 실습</span><br>'
+        + '<span style="color:#555">③ 쓰기 → Claude AI 첨삭</span><br>'
+        + '<span style="color:#555">④ 복습 → NotebookLM Q&amp;A 정리</span><br><br>'
+        + '<span style="color:#059669;font-size:11px">🇻🇳 ① Từ vựng/ngữ pháp → Hỏi Gemini · ② Nói → Nhập vai với Gemini · ③ Viết → Nhờ Claude sửa bài · ④ Ôn tập → NotebookLM</span>'
+        + '</div></div>'
+        + '<p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>';
+    }
+    default: return '<div style="padding:20px;text-align:center;color:#888">준비중이에요 🙏</div>';
   }
 }
 
-function render() {
-  document.getElementById('app').innerHTML =
-    renderNav() + renderLangBar() + renderTabs() + renderSection() + renderBottomNav();
+function renderCase0() {
+  const badges = [
+    {n:'1과',g:'-(으)ㄹ수록'},{n:'2과',g:'-는 바람에'},{n:'3과',g:'-는 데 비해'},
+    {n:'4과',g:'-게 되다'},{n:'5과',g:'-아/어지다'},{n:'6과',g:'-(으)ㄹ지 모르다'},
+    {n:'7과',g:'-는 반면에'},{n:'8과',g:'-(으)ㄴ 채로'},{n:'9과',g:'-는 김에'},
+    {n:'10과',g:'-게 되다/어지다'},{n:'11과',g:'-(으)ㄹ 뻔하다'},{n:'12과',g:'-기 위한'},
+    {n:'13과',g:'-고서'},{n:'14과',g:'-고 나서'},{n:'15과',g:'-(으)로 인해'},
+    {n:'16과',g:'-는 탓에'},{n:'17과',g:'-다 보면'},{n:'18과',g:'-아/어 봤자'},
+    {n:'19과',g:'-(으)면서도'},
+  ];
+  return '<div style="background:linear-gradient(135deg,#451a03,#92400e,#b45309);color:#fff;border-radius:12px;padding:20px;margin-bottom:12px;text-align:center">'
+    + '<div style="font-size:48px;margin-bottom:8px">🏆</div>'
+    + '<h3 style="font-size:20px;font-weight:800;margin-bottom:4px">20과 · 종합 복습 &amp; 수료 시험</h3>'
+    + '<div style="font-size:14px;opacity:0.9;margin-bottom:4px">Final Review &amp; Graduation Exam</div>'
+    + '<div style="font-size:13px;opacity:0.8">🇻🇳 Ôn tập tổng hợp &amp; Thi tốt nghiệp</div>'
+    + '</div>'
+    + '<div class="card card-accent">'
+    + '<div class="section-label">학습 목표</div>'
+    + '<div class="obj-item"><span class="obj-check">✅</span><span>KIIP 3급 1-19과 핵심 문법을 모두 복습할 수 있다</span></div>'
+    + '<div class="obj-item"><span class="obj-check">✅</span><span>주요 어휘와 표현을 주제별로 정리할 수 있다</span></div>'
+    + '<div class="obj-item"><span class="obj-check">✅</span><span>모의 수료 시험 10문제를 풀 수 있다</span></div>'
+    + '<div class="obj-item"><span class="obj-check">✅</span><span>AI 튜터와 함께 종합 복습을 완성할 수 있다</span></div>'
+    + '</div>'
+    + '<div class="card" style="background:#fef3c7;border:1px solid #fbbf24">'
+    + '<div class="section-label" style="background:#92400e">📐 3급 19개 문법 뱃지</div>'
+    + '<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px">'
+    + badges.map(function(b) {
+        return '<div style="background:#fff;border:1px solid #fde68a;border-radius:10px;padding:6px 10px;font-size:11px;text-align:center">'
+          + '<div style="font-size:10px;color:#888">' + b.n + '</div>'
+          + '<div style="font-weight:700;color:#92400e;font-size:12px">' + b.g + '</div>'
+          + '</div>';
+      }).join('')
+    + '</div>'
+    + '</div>'
+    + '<div class="card">'
+    + '<div class="section-label">📊 3급 전체 진도</div>'
+    + '<div style="background:#d1fae5;border-radius:8px;height:10px;overflow:hidden;margin:10px 0 6px">'
+    + '<div style="background:#22c55e;height:100%;width:100%;transition:width 0.5s;border-radius:8px"></div>'
+    + '</div>'
+    + '<div style="font-size:12px;color:#059669;font-weight:700;text-align:center">100% 완료 · 20 / 20과 🎓</div>'
+    + '</div>'
+    + '<div style="display:flex;gap:10px;margin-top:4px">'
+    + '<a href="/KIIP_Level3_Lesson19" style="flex:1;background:var(--dark);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">← 19과</a>'
+    + '<a href="/KIIP_Level3_Index" style="flex:1;background:#f59e0b;color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">📋 3급 목차</a>'
+    + '</div>';
 }
 
+function renderCase1() {
+  const lessons = [
+    {n:1, g:'-(으)ㄹ수록', m:'~할수록 더 (the more... the more)', ex:'공부할수록 실력이 늘어요.', vi:'Càng học càng giỏi.'},
+    {n:2, g:'-는 바람에', m:'예상치 못한 부정적 결과 (because of unexpectedly)', ex:'비가 오는 바람에 옷이 젖었어요.', vi:'Vì mưa bất ngờ nên áo bị ướt.'},
+    {n:3, g:'-(으)ㄴ/는 데 비해', m:'대조 (compared to, in contrast)', ex:'한국은 더운 데 비해 캐나다는 추워요.', vi:'Hàn Quốc nóng, trong khi Canada lạnh.'},
+    {n:4, g:'-게 되다', m:'상황이 바뀌어 ~하게 됨 (came to be)', ex:'한국어를 좋아하게 됐어요.', vi:'Tôi đã trở nên yêu thích tiếng Hàn.'},
+    {n:5, g:'-아/어지다', m:'점진적 상태 변화 (becomes/gets more)', ex:'날씨가 더워졌어요.', vi:'Thời tiết đã trở nên nóng hơn.'},
+    {n:6, g:'-(으)ㄹ지 모르다', m:'불확실함 (not sure if/might)', ex:'합격할지 모르겠어요.', vi:'Không biết có đỗ không.'},
+    {n:7, g:'-(으)ㄴ/는 반면에', m:'대조 (on the other hand/whereas)', ex:'서울은 복잡한 반면에 제주는 조용해요.', vi:'Seoul đông đúc, trong khi Jeju thì yên tĩnh.'},
+    {n:8, g:'-(으)ㄴ 채로', m:'~한 상태 그대로 (while still in state of)', ex:'신발을 신은 채로 들어왔어요.', vi:'Đi vào trong khi vẫn đi giày.'},
+    {n:9, g:'-는 김에', m:'하는 기회에 (while you are at it)', ex:'마트 가는 김에 우유도 사요.', vi:'Tiện đi siêu thị thì mua thêm sữa.'},
+    {n:10, g:'-아/어지게 되다', m:'점진적 변화 복합 표현 (gradual change combo)', ex:'공기가 나빠지게 됐어요.', vi:'Không khí đã trở nên xấu đi.'},
+    {n:11, g:'-(으)ㄹ 뻔하다', m:'하마터면 ~할 뻔했다 (almost/nearly did)', ex:'넘어질 뻔했어요.', vi:'Suýt nữa thì ngã.'},
+    {n:12, g:'-기 위한 + 명사', m:'목적 (for the purpose of + noun)', ex:'취업하기 위한 준비를 해요.', vi:'Chuẩn bị để xin việc làm.'},
+    {n:13, g:'-고서', m:'순서 강조 (after doing, then — strong sequence)', ex:'밥을 먹고서 운동했어요.', vi:'Ăn cơm xong rồi mới tập thể dục.'},
+    {n:14, g:'-고 나서', m:'완료 후 다음 행동 (after completing)', ex:'숙제를 다 하고 나서 쉬었어요.', vi:'Làm xong bài tập rồi nghỉ ngơi.'},
+    {n:15, g:'-(으)로 인해', m:'원인·결과 (due to/because of)', ex:'사고로 인해 도로가 막혔어요.', vi:'Do tai nạn nên đường bị tắc.'},
+    {n:16, g:'-(으)ㄴ/는 탓에', m:'부정적 원인 (because of — negative result)', ex:'늦게 잔 탓에 피곤해요.', vi:'Vì ngủ muộn nên mệt.'},
+    {n:17, g:'-다 보면', m:'계속하면 결과 생긴다 (if you keep doing, eventually)', ex:'연습하다 보면 잘하게 돼요.', vi:'Nếu cứ luyện tập thì sẽ giỏi thôi.'},
+    {n:18, g:'-아/어 봤자', m:'해도 소용없다 (even if you do, no use)', ex:'말해 봤자 안 들어요.', vi:'Nói cũng vô ích, không ai nghe.'},
+    {n:19, g:'-(으)면서도', m:'동시에 상반 (even while/at the same time)', ex:'힘들면서도 열심히 해요.', vi:'Dù mệt nhưng vẫn cố gắng.'},
+  ];
+  return '<h2>📐 문법 복습</h2>'
+    + '<p class="sub">KIIP 3급 1-19과 핵심 문법 전체 정리</p>'
+    + lessons.map(function(l) {
+        return '<div class="card card-accent" style="margin-bottom:8px">'
+          + '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">'
+          + '<span style="background:#f59e0b;color:#fff;border-radius:20px;padding:3px 10px;font-size:11px;font-weight:700">' + l.n + '과</span>'
+          + '<span style="font-size:15px;font-weight:800;color:#92400e">' + l.g + '</span>'
+          + '</div>'
+          + '<div style="font-size:12px;color:#555;margin-bottom:6px">' + l.m + '</div>'
+          + '<div style="background:#fef3c7;border-radius:8px;padding:8px;cursor:pointer" onclick="TTS.speak(\'' + l.ex.replace(/'/g,"\\'") + '\')">'
+          + '<div style="font-size:13px;font-weight:600;color:#1a202c">🔊 ' + l.ex + '</div>'
+          + '<div style="font-size:11px;color:#059669;margin-top:2px">🇻🇳 ' + l.vi + '</div>'
+          + '</div>'
+          + '</div>';
+      }).join('');
+}
+
+function renderCase2() {
+  const topics = [
+    {topic:'대인관계', color:'#ef4444', words:[
+      {ko:'갈등', vi:'mâu thuẫn'},{ko:'화해하다', vi:'hòa giải'},{ko:'배려하다', vi:'quan tâm'},
+      {ko:'이해하다', vi:'thông cảm'},{ko:'사귀다', vi:'kết bạn/hẹn hò'},
+    ]},
+    {topic:'건강·의료', color:'#f59e0b', words:[
+      {ko:'증상', vi:'triệu chứng'},{ko:'처방전', vi:'đơn thuốc'},{ko:'진료', vi:'khám bệnh'},
+      {ko:'수술', vi:'phẫu thuật'},{ko:'보험', vi:'bảo hiểm'},
+    ]},
+    {topic:'소비·경제', color:'#22c55e', words:[
+      {ko:'할부', vi:'trả góp'},{ko:'환불', vi:'hoàn tiền'},{ko:'영수증', vi:'hóa đơn'},
+      {ko:'예산', vi:'ngân sách'},{ko:'지출', vi:'chi tiêu'},
+    ]},
+    {topic:'직업·취업', color:'#3b82f6', words:[
+      {ko:'이력서', vi:'sơ yếu lý lịch'},{ko:'자기소개서', vi:'thư giới thiệu bản thân'},{ko:'면접', vi:'phỏng vấn'},
+      {ko:'채용', vi:'tuyển dụng'},{ko:'계약서', vi:'hợp đồng'},
+    ]},
+    {topic:'공공서비스', color:'#8b5cf6', words:[
+      {ko:'민원', vi:'khiếu nại/thủ tục hành chính'},{ko:'신청서', vi:'đơn xin'},{ko:'주민센터', vi:'trung tâm dân cư'},
+      {ko:'외국인등록증', vi:'thẻ đăng ký người nước ngoài'},{ko:'체류', vi:'lưu trú'},
+    ]},
+    {topic:'환경·자연', color:'#059669', words:[
+      {ko:'재활용', vi:'tái chế'},{ko:'분리수거', vi:'phân loại rác'},{ko:'온난화', vi:'nóng lên toàn cầu'},
+      {ko:'미세먼지', vi:'bụi mịn'},{ko:'친환경', vi:'thân thiện với môi trường'},
+    ]},
+    {topic:'교육·학습', color:'#dc2626', words:[
+      {ko:'장학금', vi:'học bổng'},{ko:'수강신청', vi:'đăng ký môn học'},{ko:'논문', vi:'luận văn'},
+      {ko:'졸업', vi:'tốt nghiệp'},{ko:'입학', vi:'nhập học'},
+    ]},
+    {topic:'역사·문화', color:'#92400e', words:[
+      {ko:'조선', vi:'Joseon (triều đại)'},{ko:'독립운동', vi:'phong trào độc lập'},{ko:'왕조', vi:'triều đại'},
+      {ko:'문화재', vi:'di sản văn hóa'},{ko:'세계유산', vi:'di sản thế giới'},
+    ]},
+    {topic:'사회통합', color:'#1d4ed8', words:[
+      {ko:'귀화', vi:'nhập tịch'},{ko:'영주권', vi:'thẻ thường trú nhân'},{ko:'비자', vi:'thị thực'},
+      {ko:'다문화', vi:'đa văn hóa'},{ko:'사회통합', vi:'hội nhập xã hội'},
+    ]},
+  ];
+  return '<h2>📝 어휘 복습</h2>'
+    + '<p class="sub">KIIP 3급 주제별 핵심 어휘 총정리</p>'
+    + topics.map(function(t) {
+        return '<div class="card" style="border-left:4px solid ' + t.color + ';margin-bottom:8px">'
+          + '<div style="font-size:12px;font-weight:700;color:' + t.color + ';margin-bottom:8px">' + t.topic + '</div>'
+          + t.words.map(function(w) {
+              return '<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak(\'' + w.ko + '\')">'
+                + '<span style="font-size:14px;font-weight:700;color:#1a202c">🔊 ' + w.ko + '</span>'
+                + '<span style="font-size:12px;color:#666">' + w.vi + '</span>'
+                + '</div>';
+            }).join('')
+          + '</div>';
+      }).join('');
+}
+
+function renderCase3() {
+  return '<h2>💬 말하기 종합</h2>'
+    + '<p class="sub">3급 종합 대화 연습 · tap to hear</p>'
+    + '<div class="card card-accent" style="margin-bottom:12px">'
+    + '<div style="font-weight:700;font-size:14px;color:#92400e;margin-bottom:10px">대화 1 — 취업 면접 연습</div>'
+    + [
+        ['면접관', '자기소개를 해 주세요.'],
+        ['린', '안녕하세요. 저는 베트남 출신 린입니다. 한국에 온 지 3년이 됐고, KIIP 3급을 수료하게 됐습니다.'],
+        ['면접관', '한국어를 어떻게 공부하게 됐어요?'],
+        ['린', '처음엔 어려웠지만 공부하다 보면 실력이 느는 것 같아요. 열심히 한 탓에 피곤한 날도 있었지만 포기하지 않았어요.'],
+        ['면접관', '앞으로의 목표는 무엇인가요?'],
+        ['린', '취업하기 위한 준비를 계속하면서도 한국어 실력을 키우고 싶어요.'],
+      ].map(function(l, li) {
+        var isRight = li % 2 === 1;
+        return '<div style="display:flex;flex-direction:column;align-items:' + (isRight?'flex-end':'flex-start') + ';margin-bottom:8px;cursor:pointer" onclick="TTS.speak(\'' + l[1].replace(/'/g,"\\'") + '\')">'
+          + '<div style="font-size:11px;color:#888;margin-bottom:2px">' + l[0] + '</div>'
+          + '<div style="max-width:85%;background:' + (isRight?'#fef3c7':'#fff7ed') + ';border:1px solid #fde68a;border-radius:' + (isRight?'12px 12px 4px 12px':'12px 12px 12px 4px') + ';padding:8px 12px;font-size:13px;line-height:1.6">' + l[1] + ' 🔊</div>'
+          + '</div>';
+      }).join('')
+    + '</div>'
+    + '<div class="card card-accent" style="margin-bottom:12px">'
+    + '<div style="font-weight:700;font-size:14px;color:#92400e;margin-bottom:10px">대화 2 — 지역 소개</div>'
+    + [
+        ['수민', '린 씨, 한국에서 제일 좋아하는 곳이 어디예요?'],
+        ['린', '경주예요! 역사 문화재가 많은 데 비해 입장료가 저렴해서 좋아요.'],
+        ['수민', '경주에 가는 김에 불국사도 꼭 들러 보세요.'],
+        ['린', '맞아요. 전통을 지키면서도 현대적인 카페도 많아서 정말 매력적이에요.'],
+      ].map(function(l, li) {
+        var isRight = li % 2 === 1;
+        return '<div style="display:flex;flex-direction:column;align-items:' + (isRight?'flex-end':'flex-start') + ';margin-bottom:8px;cursor:pointer" onclick="TTS.speak(\'' + l[1].replace(/'/g,"\\'") + '\')">'
+          + '<div style="font-size:11px;color:#888;margin-bottom:2px">' + l[0] + '</div>'
+          + '<div style="max-width:85%;background:' + (isRight?'#fef3c7':'#fff7ed') + ';border:1px solid #fde68a;border-radius:' + (isRight?'12px 12px 4px 12px':'12px 12px 12px 4px') + ';padding:8px 12px;font-size:13px;line-height:1.6">' + l[1] + ' 🔊</div>'
+          + '</div>';
+      }).join('')
+    + '</div>'
+    + '<div class="card card-green">'
+    + '<div class="section-label" style="background:#22c55e">종합 연습 문제</div>'
+    + '<div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:8px">다음 문법을 모두 사용해서 자기 이야기를 해 보세요:</div>'
+    + '<div style="display:flex;flex-wrap:wrap;gap:6px">'
+    + ['-다 보면','-(으)면서도','-는 반면에','-기 위한','-고 나서'].map(function(g) {
+        return '<span style="background:#f59e0b;color:#fff;padding:4px 10px;border-radius:16px;font-size:12px;font-weight:700">' + g + '</span>';
+      }).join('')
+    + '</div>'
+    + '</div>';
+}
+
+function renderCase4() {
+  var script = [
+    ['린', '저는 베트남 출신 린입니다. 한국에 온 지 벌써 3년이 됐어요.'],
+    ['린', '처음에는 한국어가 너무 어려워서 포기할 뻔했어요.'],
+    ['린', '하지만 KIIP 수업을 듣다 보면 실력이 늘더라고요.'],
+    ['린', '선생님들이 친절한 데 비해 수업 내용은 꽤 깊이 있었어요.'],
+    ['린', '어려운 문법도 반복하다 보면 자연스럽게 익혀지게 됐어요.'],
+    ['린', '3급 수료하고 나서 취업 면접도 도전해 볼 예정이에요.'],
+    ['린', '한국 생활이 힘들면서도 매일 새로운 것을 배울 수 있어서 감사해요.'],
+    ['린', 'KIIP를 수료하기 위한 노력이 드디어 결실을 맺었어요. 감사합니다!'],
+  ];
+  var fullText = script.map(function(l){ return l[1]; }).join(' ');
+  return '<h2>👂 듣기 종합</h2>'
+    + '<p class="sub">린의 KIIP 3급 수료 소감 (1-19과 문법 종합)</p>'
+    + '<div class="card card-accent" style="margin-bottom:12px">'
+    + '<div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">🎧 상황: 린의 수료 소감 발표</div>'
+    + '<p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">1-19과에서 배운 주요 문법이 모두 포함된 린의 수료 소감입니다.</p>'
+    + '<button onclick="TTS.speak(\'' + fullText.replace(/'/g,"\\'") + '\')" '
+    + 'style="width:100%;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;padding:14px;font-size:15px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px">🔊 전체 듣기</button>'
+    + '</div>'
+    + '<div class="card" style="margin-bottom:10px">'
+    + '<div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">📝 스크립트 &amp; 문법 포인트</div>'
+    + script.map(function(l, i) {
+        var grammars = ['','-(으)ㄹ 뻔하다','-다 보면','-는 데 비해','-게 되다','-고 나서','-(으)면서도','-기 위한'];
+        var g = grammars[i] ? '<span style="background:#fef3c7;border-radius:4px;padding:1px 6px;font-size:10px;color:#92400e;margin-left:6px">' + grammars[i] + '</span>' : '';
+        return '<div style="display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak(\'' + l[1].replace(/'/g,"\\'") + '\')">'
+          + '<span style="font-size:11px;font-weight:700;color:#f59e0b;min-width:36px;margin-top:2px">' + l[0] + '</span>'
+          + '<span style="font-size:13px;line-height:1.6;flex:1">' + l[1] + g + ' 🔊</span>'
+          + '</div>';
+      }).join('')
+    + '</div>'
+    + '<div class="card card-green">'
+    + '<div class="section-label" style="background:#22c55e">이해 확인 문제</div>'
+    + [
+        {q:'린이 처음에 한국어가 어려워서 어떻게 할 뻔했어요?', opts:['떠날 뻔했어요','포기할 뻔했어요','화낼 뻔했어요','울 뻔했어요'], ans:1},
+        {q:'린이 KIIP 수료 후 도전하려는 것은?', opts:['유학','취업 면접','귀화 신청','대학원'], ans:1},
+        {q:'"반복하다 보면 익혀진다"에서 사용된 문법은?', opts:['-는 탓에','-고서','-다 보면','-(으)ㄹ 뻔하다'], ans:2},
+      ].map(function(item, qi) {
+        return '<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">'
+          + '<div style="font-size:13px;font-weight:700;margin-bottom:8px">' + (qi+1) + '. ' + item.q + '</div>'
+          + item.opts.map(function(o, oi) {
+              return '<div style="padding:7px 10px;background:' + (oi===item.ans?'#dcfce7':'#f9fafb') + ';border:1px solid ' + (oi===item.ans?'#22c55e':'#e5e7eb') + ';border-radius:8px;margin-bottom:4px;font-size:13px">'
+                + (oi===item.ans?'✅ ':'') + o + '</div>';
+            }).join('')
+          + '</div>';
+      }).join('')
+    + '</div>';
+}
+
+function renderCase5() {
+  const rules = [
+    {name:'격음화', rule:'예사소리 + ㅎ → 거센소리', examples:[
+      {word:'좋다', pron:'[조타]', tip:'ㄷ+ㅎ → [ㅌ]'},
+      {word:'입학', pron:'[이팍]', tip:'ㅂ+ㅎ → [ㅍ]'},
+      {word:'백화점', pron:'[배콰점]', tip:'ㄱ+ㅎ → [ㅋ]'},
+    ], color:'#ef4444'},
+    {name:'경음화', rule:'ㄹ 받침 + ㅈ,ㄷ,ㅅ → 된소리', examples:[
+      {word:'절전', pron:'[절쩐]', tip:'ㄹ+ㅈ → [ㅉ]'},
+      {word:'발달', pron:'[발딸]', tip:'ㄹ+ㄷ → [ㄸ]'},
+      {word:'결석', pron:'[결썩]', tip:'ㄹ+ㅅ → [ㅆ]'},
+    ], color:'#8b5cf6'},
+    {name:'비음화', rule:'ㄱ,ㄷ,ㅂ + ㄴ,ㅁ → [ㅇ,ㄴ,ㅁ]', examples:[
+      {word:'국민', pron:'[궁민]', tip:'ㄱ+ㅁ → [ㅇ]'},
+      {word:'학년', pron:'[항년]', tip:'ㄱ+ㄴ → [ㅇ]'},
+      {word:'입문', pron:'[임문]', tip:'ㅂ+ㅁ → [ㅁ]'},
+    ], color:'#f59e0b'},
+    {name:'유음화', rule:'ㄴ+ㄹ 또는 ㄹ+ㄴ → [ㄹ+ㄹ]', examples:[
+      {word:'분리수거', pron:'[불리수거]', tip:'ㄴ+ㄹ → [ㄹ]'},
+      {word:'신라', pron:'[실라]', tip:'ㄴ+ㄹ → [ㄹ+ㄹ]'},
+      {word:'편리', pron:'[펼리]', tip:'ㄴ+ㄹ → 유음화'},
+    ], color:'#22c55e'},
+    {name:'연음', rule:'받침 + 모음 → 받침이 다음 음절 초성으로', examples:[
+      {word:'한국어', pron:'[한구거]', tip:'ㄱ+어 → [구]'},
+      {word:'읽어요', pron:'[일거요]', tip:'ㄺ+어 → [거]'},
+      {word:'넣어요', pron:'[너어요]', tip:'ㅎ+어 → 탈락'},
+    ], color:'#3b82f6'},
+  ];
+  return '<h2>🔊 발음 종합 복습</h2>'
+    + '<p class="sub">KIIP 3급 1-19과 주요 발음 규칙 5가지 요약</p>'
+    + rules.map(function(r) {
+        return '<div class="card" style="border-left:4px solid ' + r.color + ';margin-bottom:10px">'
+          + '<div class="section-label" style="background:' + r.color + '">' + r.name + '</div>'
+          + '<div style="font-size:12px;color:#555;margin:4px 0 10px;line-height:1.6">' + r.rule + '</div>'
+          + r.examples.map(function(e) {
+              return '<div style="padding:8px 0;border-bottom:1px solid #fef3c7;cursor:pointer" onclick="TTS.speak(\'' + e.word + '\')">'
+                + '<div style="display:flex;align-items:center;gap:10px">'
+                + '<div style="min-width:80px;font-size:14px;font-weight:700">' + e.word + ' 🔊</div>'
+                + '<div style="background:' + r.color + ';color:#fff;padding:2px 10px;border-radius:20px;font-size:12px;font-weight:700">' + e.pron + '</div>'
+                + '<div style="font-size:11px;color:#888">' + e.tip + '</div>'
+                + '</div>'
+                + '</div>';
+            }).join('')
+          + '</div>';
+      }).join('')
+    + '<div class="card card-green">'
+    + '<div class="section-label" style="background:#22c55e">발음 연습 문장</div>'
+    + [
+        '한국어를 열심히 공부하다 보면 실력이 늘어요.',
+        '분리수거[불리수거]를 잘 하면 환경이 좋아져요.',
+        'KIIP를 수료하고 나서 귀화 신청이 쉬워졌어요.',
+        '취업하기 위한 노력이 드디어 결실을 맺었어요.',
+      ].map(function(s) {
+        var clean = s.replace(/\[.*?\]/g,'');
+        return '<div style="padding:8px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px;cursor:pointer" onclick="TTS.speak(\'' + clean.replace(/'/g,"\\'") + '\')">'
+          + '🔊 ' + s + '</div>';
+      }).join('')
+    + '</div>';
+}
+
+function renderCase6() {
+  return '<h2>📖 읽기 종합</h2>'
+    + '<p class="sub">KIIP 수료 후 영주권 · 귀화 혜택 안내</p>'
+    + '<div class="card card-accent" style="margin-bottom:12px">'
+    + '<div class="section-label">읽기 본문</div>'
+    + '<div style="font-size:14px;line-height:1.9;color:#1a202c">'
+    + '<p style="margin-bottom:12px">법무부 사회통합프로그램(KIIP)을 수료하면 여러 가지 혜택을 받을 수 있어요. 귀화 신청 시 필기시험이 면제되는 반면에, KIIP를 이수하지 않으면 별도의 시험을 치러야 해요.</p>'
+    + '<p style="margin-bottom:12px">영주권을 신청하는 경우에도 KIIP 이수가 우대 사항이에요. 체류 자격 변경 심사 시 가산점이 부여되기 때문에 취업비자나 거주비자로 변경할 때 도움이 돼요.</p>'
+    + '<p style="margin-bottom:12px">KIIP 5단계(귀화용)를 수료하고 나서 귀화 신청을 하면 필기시험이 완전히 면제돼요. 단, 귀화 신청 후에도 면접 심사는 별도로 진행되니 한국어 말하기 연습을 꾸준히 하는 것이 중요해요.</p>'
+    + '<p>다문화가족지원센터와 외국인지원센터에서도 무료 한국어 교육을 제공하고 있어요. KIIP 수료 후에도 계속 배우다 보면 한국 생활이 점점 편해질 거예요.</p>'
+    + '</div>'
+    + '</div>'
+    + '<div class="card card-green">'
+    + '<div class="section-label" style="background:#22c55e">읽기 이해 문제</div>'
+    + [
+        {q:'KIIP를 수료하면 귀화 신청 시 면제되는 것은?', opts:['면접 심사','필기시험','신체검사','서류 제출'], ans:1},
+        {q:'영주권 신청 시 KIIP 이수의 역할은?', opts:['필수 조건','우대 사항','면제 사유','거부 요인'], ans:1},
+        {q:'"수료하고 나서"에서 사용된 문법은?', opts:['-다 보면','-고 나서','-(으)면서도','-는 바람에'], ans:1},
+        {q:'KIIP 5단계를 수료해도 면제되지 않는 것은?', opts:['필기시험','이수 증명서 발급','면접 심사','추가 교육'], ans:2},
+      ].map(function(item, qi) {
+        return '<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #fde68a">'
+          + '<div style="font-size:13px;font-weight:700;margin-bottom:8px">' + (qi+1) + '. ' + item.q + '</div>'
+          + item.opts.map(function(o, oi) {
+              return '<div style="padding:7px 10px;background:' + (oi===item.ans?'#dcfce7':'#f9fafb') + ';border:1px solid ' + (oi===item.ans?'#22c55e':'#e5e7eb') + ';border-radius:8px;margin-bottom:4px;font-size:13px">'
+                + (oi===item.ans?'✅ ':'') + o + '</div>';
+            }).join('')
+          + '</div>';
+      }).join('')
+    + '</div>';
+}
+
+function renderCase7() {
+  return '<h2>✏️ 쓰기 종합</h2>'
+    + '<p class="sub">한국에서 생활하면서 느낀 점 · 200자 에세이</p>'
+    + '<div class="card card-accent" style="margin-bottom:12px">'
+    + '<div class="section-label">쓰기 활동</div>'
+    + '<div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:10px">📝 주제: 한국에서 생활하면서 느낀 점</div>'
+    + '<div style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px">다음 내용을 포함해서 200자 정도 써 보세요:</div>'
+    + [
+        '한국에 오게 된 이유 (-게 되다)',
+        '한국 생활의 어려운 점과 좋은 점 (-는 반면에)',
+        '가장 기억에 남는 경험 (-고 나서 / -다 보면)',
+        '앞으로의 목표 (-기 위한 / -(으)면서도)',
+      ].map(function(item, i) {
+        return '<div style="padding:8px;background:#fef3c7;border-radius:8px;margin-bottom:6px;font-size:13px">📌 ' + (i+1) + '. ' + item + '</div>';
+      }).join('')
+    + '</div>'
+    + '<div class="card" style="margin-bottom:10px">'
+    + '<div style="font-size:13px;font-weight:700;color:#92400e;margin-bottom:8px">✍️ 모델 답안 (200자)</div>'
+    + '<div style="font-size:13px;line-height:1.9;color:#1a202c;background:#fef3c7;padding:12px;border-radius:8px;margin-bottom:10px">'
+    + '저는 일을 위해 한국에 <b>오게 됐어요</b>. 처음에는 한국어가 어려운 <b>반면에</b> 사람들이 친절해서 용기를 잃지 않았어요. KIIP 수업을 듣<b>다 보면</b> 실력이 조금씩 늘었어요. 수료하<b>고 나서</b> 취업에 도전할 예정이에요. 힘들<b>면서도</b> 한국 생활이 즐거운 것은 매일 성장하기 때문이에요. 앞으로도 한국어 실력을 키우<b>기 위한</b> 노력을 계속하겠어요.'
+    + '</div>'
+    + '<div style="font-size:12px;color:#b45309;margin-bottom:4px">📌 문법 포인트:</div>'
+    + '<div style="font-size:12px;color:#555;line-height:1.8">'
+    + '• <b>오게 됐어요</b> → -게 되다<br>• <b>반면에</b> → -(으)ㄴ 반면에<br>'
+    + '• <b>보면</b> → -다 보면<br>• <b>고 나서</b> → -고 나서<br>'
+    + '• <b>면서도</b> → -(으)면서도<br>• <b>위한</b> → -기 위한'
+    + '</div>'
+    + '</div>'
+    + '<div class="card" style="border-left:4px solid #8b5cf6">'
+    + '<div style="font-size:13px;font-weight:700;color:#8b5cf6;margin-bottom:8px">🔤 유용한 연결 표현</div>'
+    + [
+        ['처음에는', 'at first'],
+        ['조금씩', 'little by little'],
+        ['덕분에', 'thanks to'],
+        ['그럼에도 불구하고', 'nevertheless'],
+        ['앞으로도', 'from now on too'],
+        ['드디어', 'finally / at last'],
+      ].map(function(pair) {
+        return '<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #ede9fe;font-size:13px"><span style="font-weight:700">' + pair[0] + '</span><span style="color:#888">' + pair[1] + '</span></div>';
+      }).join('')
+    + '</div>';
+}
+
+function renderCase8() {
+  const cultures = [
+    {icon:'🍚', title:'한국 음식 문화', body:'한국 음식은 발효 음식(김치, 된장, 간장)이 기본이에요. 밥 + 국 + 반찬 구조가 일상적이고, 함께 먹는 문화를 중시해요. 치킨과 맥주(치맥), 불고기, 비빔밥 등이 세계적으로 유명해졌어요.'},
+    {icon:'🎎', title:'전통 명절 & 풍습', body:'설날(음력 1월 1일): 차례 지내기, 세배, 떡국 먹기. 추석(음력 8월 15일): 성묘, 강강술래, 송편 만들기. 한복 입기, 윷놀이 등 전통이 지금도 이어지고 있어요.'},
+    {icon:'🌸', title:'K-문�� (한류)', body:'K-POP, K-드라마, K-뷰티, K-푸드가 전 세계에서 인기예요. BTS, BLACKPINK 등 한국 아이돌이 글로벌 스타가 됐어요. 한국어를 배우는 외국인이 급증하게 된 이유 중 하나예요.'},
+    {icon:'🏛️', title:'한국 역사 & 유산', body:'조선(1392-1910): 한글 창제(세종대왕, 1443년), 유교 문화. 일제강점기(1910-1945) 극복 후 빠른 경제 성장. UNESCO 세계유산: 석굴암, 불국사, 창덕궁, 수원 화성 등.'},
+    {icon:'🏢', title:'현대 한국 사회', body:'IT 강국 — 삼성, LG, 현대 등 글로벌 기업. 교육열이 높고 대학 진학률이 세계 최고 수준. 다문화 사회로 변화 중 — 외국인 250만 명 이상 거주. 사회통합프로그램(KIIP)으로 외국인 통합 지원.'},
+    {icon:'🤝', title:'한국의 예절 & 문화', body:'어른을 공경하는 유교 문화가 기본. 두 손으로 물건 주고받기, 식사 자리에서 어른이 먼저. 빨리빨리 문화 — 속도와 효율을 중시. 눈치 문화 — 상황을 읽고 배려하는 것이 중요.'},
+  ];
+  return '<h2>🎎 문화 종합</h2>'
+    + '<p class="sub">한국 대표 문화 총정리</p>'
+    + cultures.map(function(c) {
+        return '<div class="card card-accent" style="margin-bottom:10px">'
+          + '<div style="font-size:28px;margin-bottom:6px">' + c.icon + '</div>'
+          + '<div style="font-size:15px;font-weight:700;color:#92400e;margin-bottom:6px">' + c.title + '</div>'
+          + '<div style="font-size:13px;line-height:1.8;color:#555">' + c.body + '</div>'
+          + '</div>';
+      }).join('')
+    + '<div class="card card-green">'
+    + '<div class="section-label" style="background:#22c55e">문화 비교 활동</div>'
+    + '<div style="font-size:13px;color:#555;line-height:1.7">'
+    + '<div style="margin-bottom:8px">🇰🇷 한국 vs 🇻🇳 베트남 — 비교해 보세요!</div>'
+    + [
+        '한국과 베트남의 추석/중추절 풍습이 비슷한 점은?',
+        'K-문화 중에서 베트남에서 가장 인기 있는 것은?',
+        '한국의 "빨리빨리" 문화가 베트남과 다른 점은?',
+        '한국에 와서 문화 충격을 받은 경험이 있어요?',
+      ].map(function(q) {
+        return '<div style="padding:7px;background:#f0fdf4;border-radius:8px;margin-bottom:6px;font-size:13px">💬 ' + q + '</div>';
+      }).join('')
+    + '</div>'
+    + '</div>';
+}
+
+// ===== MAIN RENDER =====
+function render() {
+  const s = STATE;
+  const app = document.getElementById('app');
+  if (!app) return;
+
+  const tabsHtml = SECTIONS.map(function(sec) {
+    return '<button class="stab' + (s.section===sec.id?' active':'') + '" onclick="setState({section:' + sec.id + '})">' + sec.icon + ' ' + sec.label + '</button>';
+  }).join('');
+
+  const bottomNav = '<nav class="bottom-nav">'
+    + '<a href="/KIIP_Level3_Lesson19" class="bnav-btn" style="text-decoration:none;color:#888">'
+    + '<span class="bnav-icon">←</span><span>19과</span>'
+    + '</a>'
+    + '<button class="bnav-btn' + (s.section===0?' active':'') + '" onclick="setState({section:0})">'
+    + '<span class="bnav-icon">🏠</span><span>도입</span>'
+    + '</button>'
+    + '<button class="bnav-btn' + (s.section===9?' active':'') + '" onclick="setState({section:9})">'
+    + '<span class="bnav-icon">✅</span><span>시험</span>'
+    + '</button>'
+    + '<button class="bnav-btn' + (s.section===10?' active':'') + '" onclick="setState({section:10})">'
+    + '<span class="bnav-icon">🤖</span><span>AI실습</span>'
+    + '</button>'
+    + '<a href="/KIIP_Level3_Index" class="bnav-btn" style="text-decoration:none;color:#f59e0b;font-weight:700">'
+    + '<span class="bnav-icon">📋</span><span>목차</span>'
+    + '</a>'
+    + '</nav>';
+
+  app.innerHTML = '<nav class="nav">'
+    + '<a href="/KIIP_Level3_Index" class="nav-back">← 목차</a>'
+    + '<div style="text-align:right">'
+    + '<div class="nav-title">20과 · 종합 복습 &amp; 수료 시험</div>'
+    + '<div class="nav-sub">KIIP 3급 중급 1</div>'
+    + '</div>'
+    + '</nav>'
+    + '<div class="section-tabs">' + tabsHtml + '</div>'
+    + '<div class="page">' + renderSection(s.section) + '</div>'
+    + bottomNav;
+
+  setTimeout(function() {
+    var activeTab = document.querySelector('.stab.active');
+    if (activeTab) activeTab.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  }, 50);
+}
+
+// ===== INIT =====
 render();
 </script>
 <script>
