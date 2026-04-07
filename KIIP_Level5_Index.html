@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>KIIP 5급 한국사회이해 · 사회통합프로그램 최종 단계</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
+<meta property="og:title" content="KIIP 5급 한국사회이해 · 사회통합프로그램 최종 단계">
+<meta property="og:description" content="법무부 사회통합프로그램 5급 한국사회이해 · 귀화 시험 최종 단계 · 20단원 완성">
+<meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://elimg.com/KIIP_Level5_Index.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KIIP 5급 한국사회이해">
+<meta name="twitter:description" content="법무부 사회통합프로그램 5급 · 한국사회이해 · 귀화 시험 최종 단계">
+<meta name="twitter:image" content="https://elimg.com/images/og-hanwha-level1.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#059669">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KIIP Korean">
+<script src="/i18n/translations.js"></script>
+<script>
+const TRANSLATIONS = {
+  ko: {
+    progress_label: '전체 진도 · Overall Progress',
+    lessons_complete: '20단원 완성',
+    cert_title: '수료증 발급',
+    cert_desc: '전 과정 20단원 완료 후 수료증을 발급받으세요',
+    cert_name_placeholder: '이름을 입력하세요',
+    cert_button: '수료증 발급 →',
+    prev_level: '← 4급 중급 2',
+    next_level: '🏆 귀화 시험 준비 완료!',
+    hub_link: '← KIIP 전체 프로그램',
+  },
+  en: {
+    progress_label: 'Overall Progress',
+    lessons_complete: '20 Complete Units',
+    cert_title: 'Certificate',
+    cert_desc: 'Issue your certificate after completing all 20 units',
+    cert_name_placeholder: 'Enter your name',
+    cert_button: 'Get Certificate →',
+    prev_level: '← Level 4 Intermediate 2',
+    next_level: '🏆 Naturalization Exam Ready!',
+    hub_link: '← KIIP Full Program',
+  },
+  vi: {
+    progress_label: 'Tiến độ tổng thể',
+    lessons_complete: 'Hoàn thành 20 bài',
+    cert_title: 'Cấp chứng chỉ',
+    cert_desc: 'Nhận chứng chỉ sau khi hoàn thành 20 bài',
+    cert_name_placeholder: 'Nhập tên của bạn',
+    cert_button: 'Nhận chứng chỉ →',
+    prev_level: '← Cấp 4 Trung cấp 2',
+    next_level: '🏆 Sẵn sàng thi nhập tịch!',
+    hub_link: '← Chương trình KIIP',
+  }
+};
+let currentLang = localStorage.getItem('kiip_lang') || 'ko';
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('kiip_lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+      if (el.tagName === 'INPUT') {
+        el.placeholder = TRANSLATIONS[lang][key];
+      } else {
+        el.textContent = TRANSLATIONS[lang][key];
+      }
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.style.opacity = btn.dataset.lang === lang ? '1' : '0.4';
+  });
+}
+document.addEventListener('DOMContentLoaded', () => setLang(currentLang));
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;background:#f0fdf4;color:#1a202c;min-height:100vh}
+.hub-link{display:block;text-align:center;padding:8px;font-size:12px;color:#065f46;background:#d1fae5;text-decoration:none;border-bottom:1px solid #a7f3d0}
+.hub-link:hover{background:#a7f3d0}
+.header{background:linear-gradient(135deg,#064e3b,#059669,#10b981);color:#fff;padding:24px 16px;text-align:center}
+.header h1{font-size:22px;margin-bottom:4px}
+.header p{font-size:13px;opacity:0.85}
+.badges{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.badge{padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;color:#fff}
+.badge-green{background:linear-gradient(135deg,#059669,#047857)}
+.badge-teal{background:linear-gradient(135deg,#0d9488,#0f766e)}
+.badge-emerald{background:linear-gradient(135deg,#10b981,#059669)}
+.container{max-width:480px;margin:0 auto;padding:16px}
+.section-title{font-size:16px;font-weight:800;color:#065f46;margin:16px 0 8px;display:flex;align-items:center;gap:8px}
+.lesson-card{display:flex;align-items:center;background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-decoration:none;color:inherit;transition:transform 0.15s,box-shadow 0.15s;border-left:4px solid #059669}
+.lesson-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.12)}
+.lesson-num{font-size:13px;font-weight:800;color:#fff;background:#059669;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lesson-info{margin-left:12px;flex:1}
+.lesson-title{font-size:14px;font-weight:700;color:#1a202c}
+.lesson-sub{font-size:11px;color:#888;margin-top:2px}
+.lesson-theme{font-size:10px;color:#059669;font-weight:600;margin-top:2px}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin:16px 0}
+.stat{background:#fff;border-radius:12px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.stat-num{font-size:20px;font-weight:800;color:#059669}
+.stat-label{font-size:10px;color:#888;margin-top:2px}
+.next-btn{border-radius:16px;padding:16px;text-align:center;margin-top:12px;cursor:pointer;text-decoration:none;display:block;font-weight:700;font-size:14px}
+.btn-green{background:linear-gradient(135deg,#059669,#047857);color:#fff}
+.btn-darkgreen{background:linear-gradient(135deg,#064e3b,#065f46);color:#fff}
+.btn-gold{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
+.footer{text-align:center;padding:20px;font-size:11px;color:#aaa}
+.cert-section{background:linear-gradient(135deg,#064e3b,#065f46);padding:28px 20px;margin:28px 0;border-radius:16px;text-align:center;color:#fff}
+</style>
+</head>
+<body>
+
+<a href="/KIIP_Full_Program" class="hub-link" data-i18n="hub_link">← KIIP 전체 프로그램</a>
+
+<div class="header">
+  <h1>📗 KIIP 5급 · 한국사회이해</h1>
+  <p>Korean Society Understanding · 사회통합프로그램 최종 단계</p>
+  <div style="margin-top:12px;display:flex;justify-content:center;gap:8px;">
+    <button class="lang-btn" data-lang="ko" onclick="setLang('ko')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇰🇷 KO</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇺🇸 EN</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLang('vi')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇻🇳 VI</button>
+  </div>
+  <div class="badges">
+    <span class="badge badge-teal">📚 법무부 공식 교재</span>
+    <span class="badge badge-green">⏱ 50시간</span>
+    <span class="badge badge-green">📖 20단원</span>
+    <span class="badge badge-emerald">🏛 귀화 시험 준비</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats">
+    <div class="stat"><div class="stat-num">20</div><div class="stat-label">단원</div></div>
+    <div class="stat"><div class="stat-num">50</div><div class="stat-label">시간</div></div>
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">핵심영역</div></div>
+    <div class="stat"><div class="stat-num">🏆</div><div class="stat-label">귀화준비</div></div>
+  </div>
+
+  <div class="section-title">📗 5급 한국사회이해 · 20단원</div>
+
+  <div style="background:#ecfdf5;border:1px solid #a7f3d0;border-radius:12px;padding:14px;margin-bottom:16px;text-align:center">
+    <div style="font-size:20px;margin-bottom:6px">🚧</div>
+    <div style="font-size:14px;font-weight:700;color:#059669">5급 콘텐츠 준비 중</div>
+    <div style="font-size:12px;color:#555;margin-top:4px">4급을 완료한 학습자를 위한 한국사회이해 과정입니다.<br>🇻🇳 Nội dung đang được chuẩn bị. Hoàn thành cấp 4 trước!</div>
+  </div>
+
+  <a href="/KIIP_Level5_Lesson1" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">1</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 역사 1 · Ancient &amp; Medieval Korea</div>
+      <div class="lesson-sub">고조선 · 삼국 · 고려 · 조선</div>
+      <div class="lesson-theme">🏯 고대와 중세 역사</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson2" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">2</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 역사 2 · Modern Korean History</div>
+      <div class="lesson-sub">일제강점기 · 광복 · 6.25전쟁 · 경제 발전</div>
+      <div class="lesson-theme">📜 근현대사</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson3" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">3</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 정치 1 · Democracy &amp; Government</div>
+      <div class="lesson-sub">민주주의 · 3권 분립 · 정부 구조</div>
+      <div class="lesson-theme">🏛 민주주의와 정부</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson4" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">4</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 정치 2 · Elections &amp; Civic Participation</div>
+      <div class="lesson-sub">선거 제도 · 지방자치 · 시민 참여</div>
+      <div class="lesson-theme">🗳️ 선거와 시민 참여</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson5" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">5</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 경제 1 · Economic Development</div>
+      <div class="lesson-sub">한강의 기적 · 산업화 · 경제 성장</div>
+      <div class="lesson-theme">📈 경제 발전</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson6" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">6</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 경제 2 · Economic Structure</div>
+      <div class="lesson-sub">대기업 · 중소기업 · 무역 · 금융</div>
+      <div class="lesson-theme">💹 경제 구조</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson7" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">7</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 사회 1 · Social Change</div>
+      <div class="lesson-sub">저출산 · 고령화 · 사회 변화</div>
+      <div class="lesson-theme">👥 사회 변화</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson8" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">8</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 사회 2 · Multicultural Society</div>
+      <div class="lesson-sub">다문화 가족 · 외국인 정책 · 사회 통합</div>
+      <div class="lesson-theme">🌍 다문화 사회</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson9" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">9</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 문화 1 · Traditional Culture</div>
+      <div class="lesson-sub">전통 의식 · 명절 · 한복 · 한식</div>
+      <div class="lesson-theme">🎎 전통문화</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson10" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">10</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 문화 2 · Contemporary Culture</div>
+      <div class="lesson-sub">한류 · K팝 · 드라마 · 영화</div>
+      <div class="lesson-theme">🎵 한류와 현대문화</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson11" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">11</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 교육 · Education System</div>
+      <div class="lesson-sub">학교 제도 · 교육 정책 · 평생교육</div>
+      <div class="lesson-theme">📚 교육 제도</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson12" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">12</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 의료와 복지 · Healthcare &amp; Welfare</div>
+      <div class="lesson-sub">건강보험 · 사회보장 · 복지 제도</div>
+      <div class="lesson-theme">🏥 의료와 복지</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson13" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">13</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 법과 제도 · Law &amp; Legal System</div>
+      <div class="lesson-sub">헌법 · 법원 · 법 체계 · 권리와 의무</div>
+      <div class="lesson-theme">⚖️ 법과 제도</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson14" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">14</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 외교 · Foreign Policy</div>
+      <div class="lesson-sub">한미 관계 · 한중일 · 국제기구</div>
+      <div class="lesson-theme">🌐 외교와 국제 관계</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson15" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">15</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 통일 · Korean Unification</div>
+      <div class="lesson-sub">분단 역사 · 남북 관계 · 통일 정책</div>
+      <div class="lesson-theme">🕊️ 통일과 평화</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson16" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">16</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 지역 · Regions of Korea</div>
+      <div class="lesson-sub">수도권 · 충청 · 전라 · 경상 · 강원 · 제주</div>
+      <div class="lesson-theme">🗺️ 지역과 지방</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson17" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">17</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 종교 · Religion in Korea</div>
+      <div class="lesson-sub">불교 · 기독교 · 유교 · 종교의 자유</div>
+      <div class="lesson-theme">🙏 종교와 신앙</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson18" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">18</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 언론과 미디어 · Media &amp; Press</div>
+      <div class="lesson-sub">방송 · 신문 · SNS · 언론의 자유</div>
+      <div class="lesson-theme">📺 언론과 미디어</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson19" class="lesson-card" style="opacity:0.6">
+    <div class="lesson-num">19</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국의 과학기술 · Science &amp; Technology</div>
+      <div class="lesson-sub">반도체 · IT · AI · 우주항공</div>
+      <div class="lesson-theme">🔬 과학기술 강국</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level5_Lesson20" class="lesson-card" style="opacity:0.6;border-left-color:#059669;background:#ecfdf5">
+    <div class="lesson-num" style="background:#059669">20</div>
+    <div class="lesson-info">
+      <div class="lesson-title">🎓 종합 평가 &amp; 귀화 시험 준비 · Final Exam Prep</div>
+      <div class="lesson-sub">5급 전 과정 종합 복습 + 귀화 모의 시험</div>
+      <div class="lesson-theme">🏆 KIIP 5급 완성 · 귀화 시험 도전!</div>
+    </div>
+  </a>
+
+  <div style="display:flex;gap:8px;margin-top:20px;">
+    <a href="/KIIP_Level4_Index" class="next-btn btn-darkgreen" style="flex:1;font-size:13px;">
+      <span data-i18n="prev_level">← 4급 중급 2</span>
+    </a>
+    <div class="next-btn btn-gold" style="flex:1;font-size:13px;cursor:default;">
+      <span data-i18n="next_level">🏆 귀화 시험 준비 완료!</span>
+    </div>
+  </div>
+
+  <div class="cert-section">
+    <div style="font-size:32px;margin-bottom:8px;">🏆</div>
+    <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;" data-i18n="cert_title">수료증 발급</h3>
+    <p style="font-size:13px;opacity:0.8;margin-bottom:16px;" data-i18n="cert_desc">전 과정 20단원 완료 후 수료증을 발급받으세요</p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+      <input id="certName" type="text" data-i18n="cert_name_placeholder" placeholder="이름을 입력하세요" style="padding:10px 16px;border-radius:8px;border:none;font-size:14px;min-width:200px;">
+      <button onclick="issueCert(5)" style="background:#059669;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;" data-i18n="cert_button">수료증 발급 →</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    법무부 사회통합프로그램 (KIIP) 5급 한국사회이해<br>
+    법무부 출입국·외국인정책본부 편찬<br>
+    © 2026 GlocalBridge Korean Education
+  </div>
+</div>
+
+<script>
+function issueCert(level) {
+  const name = document.getElementById('certName').value.trim() || '학습자';
+  window.open('/HanwhaOcean_Certificate.html?level=' + level + '&name=' + encodeURIComponent(name), '_blank');
+}
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>
