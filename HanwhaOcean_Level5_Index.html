@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>한화오션 한국어 교육 · 5급 고급 전체 목차</title>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="한화오션 한국어교육 · GlocalBridge">
+    <meta property="og:title" content="한화오션 한국어 교육 · 5급 고급 전체 목차">
+    <meta property="og:description" content="한화오션 해외근로자 한국어교육 · 중급 3급 · 비즈니스 한국어 20과 커리큘럼">
+    <meta property="og:image" content="https://elimg.com/images/og-hanwha-level5.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://elimg.com/HanwhaOcean_Level5_Index.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="한화오션 한국어 교육 · 5급 고급 전체 목차">
+    <meta name="twitter:description" content="한화오션 해외근로자 한국어교육 · 중급 3급 · 비즈니스 한국어 20과 커리큘럼">
+    <meta name="twitter:image" content="https://elimg.com/images/og-hanwha-level5.png">
+<script>
+const TRANSLATIONS = {
+  ko: {
+    progress_label: '전체 진도 · Overall Progress',
+    lessons_complete: '20과 완성 · 20 Complete Lessons',
+    cert_title: '수료증 발급',
+    cert_desc: '전 과정 20과 완료 후 수료증을 발급받으세요',
+    cert_name_placeholder: '이름을 입력하세요',
+    cert_button: '수료증 발급 →',
+    social_integration: '사회통합',
+    business: '비즈니스',
+    culture_society: '문화·사회',
+    interview_presentation: '면접·발표',
+  },
+  en: {
+    progress_label: 'Overall Progress',
+    lessons_complete: '20 Complete Lessons',
+    cert_title: 'Certificate',
+    cert_desc: 'Issue your certificate after completing all 20 lessons',
+    cert_name_placeholder: 'Enter your name',
+    cert_button: 'Get Certificate →',
+    social_integration: 'Social Integration',
+    business: 'Business',
+    culture_society: 'Culture & Society',
+    interview_presentation: 'Interview & Presentation',
+  },
+  vi: {
+    progress_label: 'Tien do tong the',
+    lessons_complete: 'Hoan thanh 20 bai hoc',
+    cert_title: 'Cap chung chi',
+    cert_desc: 'Nhan chung chi sau khi hoan thanh toan bo 20 bai',
+    cert_name_placeholder: 'Nhap ten cua ban',
+    cert_button: 'Nhan chung chi →',
+    social_integration: 'Hoi nhap xa hoi',
+    business: 'Kinh doanh',
+    culture_society: 'Van hoa & Xa hoi',
+    interview_presentation: 'Phong van & Thuyet trinh',
+  }
+};
+let currentLang = localStorage.getItem('kiip_lang') || 'ko';
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('kiip_lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+      if (el.tagName === 'INPUT') {
+        el.placeholder = TRANSLATIONS[lang][key];
+      } else {
+        el.textContent = TRANSLATIONS[lang][key];
+      }
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.style.opacity = btn.dataset.lang === lang ? '1' : '0.4';
+  });
+}
+document.addEventListener('DOMContentLoaded', () => setLang(currentLang));
+</script>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1E3A5F">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KIIP Korean">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1E3A5F;
+            --ocean: #0284C7;
+            --green: #059669;
+            --purple: #4c1d95;
+            --orange: #8b5cf6;
+            --pink: #ec4899;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #f0f7ff 0%, #f3f4f6 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--navy) 0%, #0f172a 100%);
+            color: white;
+            padding: 32px 20px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(30, 58, 95, 0.15);
+        }
+
+        header .logo {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 12px;
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        header .subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 2px;
+        }
+
+        header .subtitle-en {
+            font-size: 13px;
+            opacity: 0.75;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 16px;
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 28px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            border-left: 4px solid var(--ocean);
+        }
+
+        .intro-section h2 {
+            color: var(--navy);
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .intro-section p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        .progress-container {
+            margin-bottom: 24px;
+        }
+
+        .progress-label {
+            font-size: 12px;
+            color: #888;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar.fill {
+            background: linear-gradient(90deg, var(--ocean), var(--green));
+            width: 100%;
+        }
+
+        .theme-legend {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 28px;
+            font-size: 13px;
+        }
+
+        .theme-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .theme-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .lesson-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 14px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .lesson-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lesson-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .lesson-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--navy);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .lesson-card.theme-social {
+            border-top-color: var(--green);
+        }
+
+        .lesson-card.theme-work {
+            border-top-color: var(--ocean);
+        }
+
+        .lesson-card.theme-culture {
+            border-top-color: var(--purple);
+        }
+
+        .lesson-card.theme-business {
+            border-top-color: var(--orange);
+        }
+
+        .lesson-card-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #f3f4f6 100%);
+            padding: 12px 12px 8px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .lesson-number {
+            font-size: 12px;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .lesson-icon {
+            font-size: 28px;
+            margin: 6px 0;
+        }
+
+        .lesson-card-body {
+            padding: 12px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .lesson-title-kor {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .lesson-title-eng {
+            font-size: 12px;
+            color: #666;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .lesson-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 11px;
+            color: #999;
+        }
+
+        footer {
+            background: var(--navy);
+            color: white;
+            padding: 24px 20px;
+            text-align: center;
+            font-size: 13px;
+            line-height: 1.7;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #bfdbfe;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-brand {
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .footer-divider {
+            opacity: 0.3;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            header h1 {
+                font-size: 22px;
+            }
+
+            header .subtitle {
+                font-size: 13px;
+            }
+
+            .container {
+                padding: 16px 12px;
+            }
+
+            .intro-section {
+                padding: 16px;
+            }
+
+            .lesson-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">🌊 한화오션 · Hanwha Ocean</div>
+        <h1>한국어 교육 · 5급 고급</h1>
+        <div class="subtitle">Korean Language Education · Level 2 Advanced</div>
+        <div class="subtitle-en">전체 목차 · Full Lesson Index</div>
+        <div style="margin-top:12px;display:flex;justify-content:center;gap:8px;">
+          <button class="lang-btn" data-lang="ko" onclick="setLang('ko')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇰🇷 한국어</button>
+          <button class="lang-btn" data-lang="en" onclick="setLang('en')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇺🇸 English</button>
+          <button class="lang-btn" data-lang="vi" onclick="setLang('vi')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇻🇳 Tieng Viet</button>
+        </div>
+        <!-- 레벨 네비게이션 -->
+        <div style="margin-top:14px;padding:10px 16px;background:rgba(0,0,0,0.2);border-radius:12px;display:inline-flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:center;">
+          <a href="/HanwhaOcean_Level1_Index" style="background:rgba(255,255,255,0.15);color:#fff;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;text-decoration:none;border:1px solid rgba(255,255,255,0.3);">① 초급 1</a>
+          <span style="color:rgba(255,255,255,0.6);font-size:14px;">→</span>
+          <span style="background:#fff;color:#003366;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:800;">② 고급</span>
+          <span style="color:rgba(255,255,255,0.6);font-size:14px;">→</span>
+          <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px dashed rgba(255,255,255,0.2);">③ 중급 준비중</span>
+          <span style="color:rgba(255,255,255,0.6);font-size:14px;">→</span>
+          <span style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);padding:5px 14px;border-radius:20px;font-size:12px;font-weight:700;border:1px dashed rgba(255,255,255,0.2);">④ 고급 준비중</span>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="intro-section">
+            <h2>📚 5급 고급 전체 커리큘럼</h2>
+            <p>이 과정은 비즈니스 한국어, 사회통합, 한국 문화 이해를 종합적으로 다룹니다.</p>
+            <p style="margin-bottom: 0;">This comprehensive course covers business Korean, social integration, and Korean cultural understanding across 20 lessons.</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-label" data-i18n="progress_label">전체 진도 · Overall Progress</div>
+            <div class="progress-bar">
+                <div class="progress-bar fill"></div>
+            </div>
+            <div style="font-size: 12px; color: #666; margin-top: 6px;" data-i18n="lessons_complete">20과 완성 · 20 Complete Lessons</div>
+        </div>
+
+        <div class="theme-legend">
+            <div class="theme-item">
+                <div class="theme-dot" style="background: var(--green)"></div>
+                <span>사회통합 · Social Integration (1-5과)</span>
+            </div>
+            <div class="theme-item">
+                <div class="theme-dot" style="background: var(--ocean)"></div>
+                <span>비즈니스 · Business (6-9과)</span>
+            </div>
+            <div class="theme-item">
+                <div class="theme-dot" style="background: var(--purple)"></div>
+                <span>문화·사회 · Culture & Society (10-18과)</span>
+            </div>
+            <div class="theme-item">
+                <div class="theme-dot" style="background: var(--orange)"></div>
+                <span>면접·발표 · Interview & Presentation (17-20과)</span>
+            </div>
+        </div>
+
+        <div class="lesson-grid">
+            <!-- Lessons 1-5: Social Integration (Green) -->
+            <a href="/HanwhaOcean_Level5_Lesson1" class="lesson-card theme-business">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 1</div>
+                    <div class="lesson-icon">🤝</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">글로벌 비즈니스 한국어</div>
+                    <div style="font-size:12px;color:#666;">Global Business Korean</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson2" class="lesson-card theme-work">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 2</div>
+                    <div class="lesson-icon">📞</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">조선 산업 기술 논문 읽기</div>
+                    <div style="font-size:12px;color:#666;">Shipbuilding Technical Papers</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson3" class="lesson-card theme-business">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 3</div>
+                    <div class="lesson-icon">📅</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">특허와 지식재산권</div>
+                    <div style="font-size:12px;color:#666;">Patents & IP</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson4" class="lesson-card theme-business">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 4</div>
+                    <div class="lesson-icon">🏦</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">ESG 경영과 지속가능성</div>
+                    <div style="font-size:12px;color:#666;">ESG & Sustainability</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson5" class="lesson-card theme-work">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 5</div>
+                    <div class="lesson-icon">🏥</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">탄소중립과 친환경 선박</div>
+                    <div style="font-size:12px;color:#666;">Carbon Neutrality</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson6" class="lesson-card theme-work">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 6</div>
+                    <div class="lesson-icon">📰</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">AI와 스마트 조선소</div>
+                    <div style="font-size:12px;color:#666;">AI & Smart Shipyard</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson7" class="lesson-card theme-work">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 7</div>
+                    <div class="lesson-icon">💼</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">자율운항선박의 미래</div>
+                    <div style="font-size:12px;color:#666;">Future Autonomous Vessels</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson8" class="lesson-card theme-work">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 8</div>
+                    <div class="lesson-icon">📝</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">수소 에너지와 선박</div>
+                    <div style="font-size:12px;color:#666;">Hydrogen Energy Ships</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson9" class="lesson-card theme-culture">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 9</div>
+                    <div class="lesson-icon">🔧</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">한국 정치와 경제 구조</div>
+                    <div style="font-size:12px;color:#666;">Korean Politics & Economy</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson10" class="lesson-card theme-culture">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 10</div>
+                    <div class="lesson-icon">🏛️</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">동아시아 국제 관계</div>
+                    <div style="font-size:12px;color:#666;">East Asian Relations</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson11" class="lesson-card theme-culture">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 11</div>
+                    <div class="lesson-icon">✈️</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">한류와 글로벌 문화</div>
+                    <div style="font-size:12px;color:#666;">Hallyu & Global Culture</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson12" class="lesson-card theme-business">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 12</div>
+                    <div class="lesson-icon">🍲</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">학술 논문 작성법</div>
+                    <div style="font-size:12px;color:#666;">Academic Writing</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson13" class="lesson-card theme-business">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 13</div>
+                    <div class="lesson-icon">🌿</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">프레젠테이션 마스터</div>
+                    <div style="font-size:12px;color:#666;">Presentation Mastery</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson14" class="lesson-card theme-business">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 14</div>
+                    <div class="lesson-icon">📚</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">리더십과 비전 선포</div>
+                    <div style="font-size:12px;color:#666;">Leadership & Vision</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson15" class="lesson-card theme-culture">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 15</div>
+                    <div class="lesson-icon">📊</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">고전 한국 문학 걸작</div>
+                    <div style="font-size:12px;color:#666;">Classical Masterpieces</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson16" class="lesson-card theme-culture">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 16</div>
+                    <div class="lesson-icon">⚖️</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">현대 한국 문학 탐구</div>
+                    <div style="font-size:12px;color:#666;">Modern Literature</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson17" class="lesson-card theme-culture">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 17</div>
+                    <div class="lesson-icon">👔</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">글로컬 사역과 선교</div>
+                    <div style="font-size:12px;color:#666;">Glocal Ministry</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson18" class="lesson-card theme-business">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 18</div>
+                    <div class="lesson-icon">🏘️</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">창업과 비즈니스 모델</div>
+                    <div style="font-size:12px;color:#666;">Entrepreneurship</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson19" class="lesson-card theme-business">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 19</div>
+                    <div class="lesson-icon">🎤</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">국제 인재와 네트워킹</div>
+                    <div style="font-size:12px;color:#666;">Global Talent Network</div>
+                </div>
+            </a>
+
+            <a href="/HanwhaOcean_Level5_Lesson20" class="lesson-card theme-culture">
+                <div class="lesson-card-header">
+                    <div class="lesson-number">Lesson 20</div>
+                    <div class="lesson-icon">🌟</div>
+                </div>
+                <div class="lesson-card-body">
+                    <div style="font-size:15px;font-weight:700;color:#1a365d;margin-bottom:4px;">5급 수료 및 TOPIK 6급 도전</div>
+                    <div style="font-size:12px;color:#666;">Level 5 Completion</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- 레벨 이동 버튼 -->
+    <div style="max-width:1200px;margin:0 auto;padding:0 16px 16px;display:flex;gap:10px;flex-wrap:wrap;">
+      <a href="/HanwhaOcean_Level1_Index" style="flex:1;min-width:140px;background:linear-gradient(135deg,#003366,#0066aa);color:#fff;border-radius:14px;padding:16px;text-align:center;text-decoration:none;display:block;">
+        <div style="font-size:18px;margin-bottom:4px;">← ①</div>
+        <div style="font-size:14px;font-weight:800;">1급 초급 1</div>
+        <div style="font-size:11px;opacity:0.8;margin-top:2px;">생활 한국어 20과</div>
+      </a>
+      <a href="/KIIP_Level5_Index" style="flex:1;min-width:140px;background:linear-gradient(135deg,#92400e,#4c1d95);color:#fff;border-radius:14px;padding:16px;text-align:center;text-decoration:none;display:block;">
+        <div style="font-size:18px;margin-bottom:4px;">③ →</div>
+        <div style="font-size:14px;font-weight:800;">5급 고급</div>
+        <div style="font-size:11px;opacity:0.85;margin-top:2px;">한국어와 한국문화</div>
+      </a>
+    </div>
+
+    <div style="max-width:1200px;margin:0 auto;padding:0 16px 28px;">
+      <div style="background:linear-gradient(135deg,#1E3A5F,#0f2942);padding:28px 20px;border-radius:16px;text-align:center;color:#fff;">
+        <div style="font-size:32px;margin-bottom:8px;">🏆</div>
+        <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;" data-i18n="cert_title">수료증 발급</h3>
+        <p style="font-size:13px;opacity:0.8;margin-bottom:16px;" data-i18n="cert_desc">전 과정 20과 완료 후 수료증을 발급받으세요</p>
+        <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+          <input id="certName" type="text" data-i18n="cert_name_placeholder" placeholder="이름을 입력하세요" style="padding:10px 16px;border-radius:8px;border:none;font-size:14px;min-width:200px;">
+          <button onclick="issueCert(2)" style="background:#8b5cf6;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;" data-i18n="cert_button">수료증 발급 →</button>
+        </div>
+      </div>
+    </div>
+    <script>
+    function issueCert(level){
+      const name=document.getElementById('certName').value.trim()||'학습자';
+      window.open('/HanwhaOcean_Certificate.html?level='+level+'&name='+encodeURIComponent(name),'_blank');
+    }
+    </script>
+
+    <footer>
+        <div class="footer-brand">🌊 글로컬브릿지 · GlocalBridge</div>
+        <div>KIIP 한국어와 한국문화 <span class="footer-divider">|</span> 한화오션 외국인 근로자 교육</div>
+        <div style="font-size: 12px; opacity: 0.75; margin-top: 8px;">Ministry of Justice Social Integration Program · Korean Language and Culture</div>
+    </footer>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  });
+}
+
+// ── 학습 진도 표시 ──────────────────────────────────────
+(function(){
+  var LEVEL = 2, TOTAL = 20;
+  var key = 'hw_l' + LEVEL + '_progress';
+  var lastKey = 'hw_l' + LEVEL + '_last';
+  try {
+    var progress = JSON.parse(localStorage.getItem(key) || '{}');
+    var done = Object.keys(progress).length;
+    var last = parseInt(localStorage.getItem(lastKey) || '0');
+
+    // 완료 레슨 카드에 체크 표시
+    document.querySelectorAll('a.lesson-card').forEach(function(card) {
+      var href = card.getAttribute('href') || '';
+      var m = href.match(/Lesson(\d+)/i);
+      if (!m) return;
+      var num = parseInt(m[1]);
+      if (progress[num]) {
+        card.style.borderLeft = '4px solid #22c55e';
+        var check = document.createElement('span');
+        check.textContent = '✅';
+        check.style.cssText = 'font-size:16px;margin-left:auto;flex-shrink:0;';
+        card.appendChild(check);
+      }
+    });
+
+    // 진도 통계 업데이트
+    var statNums = document.querySelectorAll('.stat-num');
+    if (statNums[2]) statNums[2].textContent = done + '/20';
+    var statLabels = document.querySelectorAll('.stat-label');
+    if (statLabels[2]) statLabels[2].textContent = '학습 완료';
+
+    // 이어서 학습 버튼
+    if (done > 0 && done < TOTAL) {
+      var next = last < TOTAL ? last + 1 : last;
+      var container = document.querySelector('.container');
+      if (container) {
+        var resumeDiv = document.createElement('div');
+        resumeDiv.style.cssText = 'background:linear-gradient(135deg,#003366,#0066aa);border-radius:14px;padding:16px 20px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;';
+        resumeDiv.innerHTML = '<div style="color:#fff"><div style="font-size:12px;opacity:.8;margin-bottom:2px;">📖 이어서 학습</div><div style="font-weight:800;font-size:15px;color:#fff">' + done + '/20과 완료 · ' + Math.round(done/TOTAL*100) + '% 진행 중</div></div>'
+          + '<a href="HanwhaOcean_Level5_Lesson' + next + '.html" style="background:#E8C05A;color:#003366;border-radius:10px;padding:10px 18px;font-weight:800;font-size:14px;text-decoration:none;white-space:nowrap;">▶ ' + next + '과 학습하기</a>';
+        var firstCard = container.querySelector('a.lesson-card');
+        if (firstCard) container.insertBefore(resumeDiv, firstCard);
+      }
+    } else if (done >= TOTAL) {
+      var container = document.querySelector('.container');
+      if (container) {
+        var doneDiv = document.createElement('div');
+        doneDiv.style.cssText = 'background:linear-gradient(135deg,#15803d,#22c55e);border-radius:14px;padding:16px 20px;margin-bottom:16px;text-align:center;';
+        doneDiv.innerHTML = '<div style="font-size:24px;margin-bottom:4px;">🏆</div><div style="color:#fff;font-weight:800;font-size:16px;">고급 전 과정 완료!</div><div style="color:rgba(255,255,255,.85);font-size:13px;margin-top:4px;">수료증을 발급받으세요 ↓</div>';
+        var firstCard = container.querySelector('a.lesson-card');
+        if (firstCard) container.insertBefore(doneDiv, firstCard);
+      }
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>
