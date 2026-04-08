@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -465,7 +465,7 @@ function render() {
 }
 
 function renderNav() {
-  return `<div class="nav"><a href="HanwhaOcean_Level2_Index.html" style="text-decoration:none;color:inherit"><div><div class="nav-title">한화오션</div><div class="nav-sub">← Level 2 목차 · Contents</div></div></a><button class="nav-btn" onclick="setState({menuOpen:!state.menuOpen})">☰</button></div>`;
+  return `<div class="nav"><a href="/HanwhaOcean_Level2_Index" style="text-decoration:none;color:inherit"><div><div class="nav-title">한화오션</div><div class="nav-sub">← Level 2 목차 · Contents</div></div></a><button class="nav-btn" onclick="setState({menuOpen:!state.menuOpen})">☰</button></div>`;
 }
 
 function renderMenu() {
@@ -564,16 +564,16 @@ function renderHome() {
     </button>`).join('')}
   </div>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555;margin-bottom:8px">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level2_Lesson13.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 13과 환경을생각해요</a><a href="HanwhaOcean_Level2_Lesson15.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">15과 경제뉴스를읽어요 →</a></div>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level2_Lesson13" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 13과 환경을생각해요</a><a href="/HanwhaOcean_Level2_Lesson15" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">15과 경제뉴스를읽어요 →</a></div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson13.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson13" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-13과 환경을 생각해요</strong>
         <div style="font-size:11px;color:#888;margin-top:2px">Thinking About Environment</div>
       </div>
-    </a><a href="HanwhaOcean_Level2_Lesson15.html" style="display:block;text-decoration:none;flex:1">
+    </a><a href="/HanwhaOcean_Level2_Lesson15" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-15과 경제 뉴스를 읽어요</strong>
@@ -1048,7 +1048,7 @@ function renderLiteratureQuiz() {
       <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
       <button onclick="setState({fqIdx:0,fqSel:null,fqScore:0,fqDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
       <button onclick="setState({page:'literature'})" class="btn" style="margin-top:8px;background:#e5e7eb;color:#555">📜 시 다시 읽기 · Read Poem Again</button>
-      <a href="HanwhaOcean_Level2_Lesson15.html" style="display:block;text-decoration:none;margin-top:16px">
+      <a href="/HanwhaOcean_Level2_Lesson15" style="display:block;text-decoration:none;margin-top:16px">
         <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
           ➡️ 다음 과: 2-15 경제 뉴스를 읽어요 · Next Lesson
         </button>
@@ -1128,7 +1128,7 @@ function renderCulture() {
       </div>
     </div>
   </div>`).join('')}
-  <a href="HanwhaOcean_Level2_Lesson15.html" style="display:block;text-decoration:none;margin-top:16px">
+  <a href="/HanwhaOcean_Level2_Lesson15" style="display:block;text-decoration:none;margin-top:16px">
     <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
       ➡️ 다음 과: 2-15 경제 뉴스를 읽어요 · Next Lesson
     </button>
@@ -1181,18 +1181,17 @@ function renderReview() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🎓', label:'직업 훈련 표현',
-    q:'조선소 직업 훈련과 관련된 한국어 표현을 알려주세요. "안전 교육을 받았어요", "기술 훈련이 있어요", "수료증을 받고 싶어요" 같은 표현을 영어와 함께 5가지요.' },
-  { emoji:'📝', label:'시험/평가 표현',
-    q:'한국 시험과 평가 관련 한국어를 알려주세요. 시험, 평가, 합격, 불합격, 성적이 영어로 뭔지, 자격시험을 준비할 때 필요한 표현을 영어와 함께요.' },
-  { emoji:'🏫', label:'사회통합프로그램',
-    q:'KIIP 사회통합프로그램에 대해 한국어로 설명해주세요. 참여 방법, 단계, 수료 혜택을 외국인 근로자가 이해할 수 있도록 영어와 함께 설명해주세요.' },
-  { emoji:'💡', label:'모르는 것 물어보기',
-    q:'교육/훈련 중 모르는 것을 질문하는 한국어를 알려주세요. "이 부분을 다시 설명해 주세요", "실습해볼 수 있어요?", "숙제가 있어요?" 표현을 영어와 함께요.' },
-  { emoji:'🔑', label:'~해야 해요 교육 표현',
-    q:'교육에서 쓰는 의무/필요 표현을 연습해주세요. "교육에 참석해야 해요", "안전 규정을 숙지해야 해요", "시험에 합격해야 해요" 문장 5개를 영어와 함께요.' },
-]
-
+  {emoji:'📝',label:'직업훈련 신청',
+   q:'직업훈련신청 job training application 훈련신청 교육신청을 알려주세요' },
+  {emoji:'🏅',label:'자격증 취득',
+   q:'자격증취득 getting certificate 자격증 국가기술자격을 알려주세요' },
+  {emoji:'🏫',label:'훈련 과정',
+   q:'훈련과정 training course 교육과정 직업교육을 알려주세요' },
+  {emoji:'💼',label:'취업 준비',
+   q:'취업준비 job preparation 이직준비 구직을 알려주세요' },
+  {emoji:'🎓',label:'훈련 표현',
+   q:'훈련표현 training expression 교육표현 수료를 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1219,13 +1218,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean vocational training and education coach. Lesson focus: education vocabulary 교육(education), 학교(school), 학생(student), 시험(exam), 졸업(graduation), necessity/requirement ~해야 해요. Help workers understand training programs and educational requirements. SHORT answers with English.';
+      var sysP = 'You are a Korean vocational training and education coach. Lesson focus: education vocabulary 교육(education), 학교(school), 학생(student), 시험(exam), 졸업(graduation), necessity/requirement ~해야 해요. Help workers understand training programs and educational requirements. SHORT answers with English. LESSON:L2L14';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -493,7 +493,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level2_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level2_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 2 목차 · Contents</div></div>
     </a>
@@ -532,7 +532,7 @@ function renderHome() {
     <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 2-5과 · Beginner Level 2 Lesson 5</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ TOPIK I 준비 완료</span>
-      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
+      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 2급 초급 2 진행 중</span>
     </div
     <div style="font-size:26px;font-weight:800;margin-bottom:2px">병원에서 설명해요</div>
     <div style="font-size:13px;color:#aabbdd">Explaining at the Hospital — 의료 시스템과 증상 · Healthcare System & Symptoms</div>
@@ -561,16 +561,16 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🏥 K-의료 경쟁력 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level2_Lesson4.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-4과 은행에 가요</a><a href="HanwhaOcean_Level2_Lesson6.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-6과 뉴스를 이해해요 →</a></div>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level2_Lesson4" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-4과 은행에 가요</a><a href="/HanwhaOcean_Level2_Lesson6" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-6과 뉴스를 이해해요 →</a></div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson4.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson4" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-4과 은행에 가요</strong>
         <div style="font-size:11px;color:#888;margin-top:2px">Going to the Bank</div>
       </div>
-    </a><a href="HanwhaOcean_Level2_Lesson6.html" style="display:block;text-decoration:none;flex:1">
+    </a><a href="/HanwhaOcean_Level2_Lesson6" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-6과 뉴스를 이해해요</strong>
@@ -1181,18 +1181,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🤒', label:'증상 설명하기',
-    q:'조선소 작업 중 다치거나 아플 때 한국어로 증상을 설명하는 연습을 해주세요. "여기가 아파요", "어지러워요", "숨이 차요" 같은 표현을 의사에게 말하는 롤플레이로 해주세요.' },
-  { emoji:'💊', label:'처방/약 표현',
-    q:'병원에서 처방받고 약국에서 약을 사는 한국어를 알려주세요. "이 약은 언제 먹어요?", "식후에 드세요", "하루 세 번" 같은 표현을 영어와 함께 알려주세요.' },
-  { emoji:'🚑', label:'긴급 상황 표현',
-    q:'조선소 작업 중 긴급 의료 상황에서 쓰는 한국어를 알려주세요. "119에 신고해주세요", "사람이 쓰러졌어요", "빨리 구급차를 불러주세요" 표현을 영어와 함께요.' },
-  { emoji:'📋', label:'~다고 하다 표현',
-    q:'한국어 간접화법 ~다고 하다를 의료 상황으로 연습해주세요. "의사가 감기라고 했어요", "약을 먹으라고 했어요" 같은 표현 5개를 영어와 함께 알려주세요.' },
-  { emoji:'🏪', label:'의료보험/비용',
-    q:'한국에서 외국인 근로자가 병원을 이용할 때 알아야 할 한국어를 알려주세요. 건강보험, 진찰료, 약값, 산재보험 관련 표현을 영어와 함께 5가지 알려주세요.' },
-]
-
+  {emoji:'🩺',label:'증상 설명하기',
+   q:'증상설명 symptom description 어디아파요 의사에게를 알려주세요' },
+  {emoji:'📄',label:'진단서/처방전',
+   q:'진단서처방전 diagnosis prescription 진단서 처방전을 알려주세요' },
+  {emoji:'💊',label:'약국에서',
+   q:'약국에서 at pharmacy 약사 약이름을 알려주세요' },
+  {emoji:'🏥',label:'의료보험',
+   q:'의료보험 health insurance 건강보험 보험카드를 알려주세요' },
+  {emoji:'🚨',label:'응급 상황',
+   q:'응급상황 emergency situation 응급실 119전화를 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1219,13 +1218,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean medical guide for foreign workers in Korea. Lesson focus: hospital/medical vocabulary 병원(hospital), 의사(doctor), 처방(prescription), 약(medicine), 약국(pharmacy), 증상(symptom), indirect quotation ~다고 하다 (doctor said...), ~(으)면 좋겠다 (I hope...). Help describe symptoms and understand doctor instructions. SHORT answers with English.';
+      var sysP = 'You are a Korean medical guide for foreign workers in Korea. Lesson focus: hospital/medical vocabulary 병원(hospital), 의사(doctor), 처방(prescription), 약(medicine), 약국(pharmacy), 증상(symptom), indirect quotation ~다고 하다 (doctor said...), ~(으)면 좋겠다 (I hope...). Help describe symptoms and understand doctor instructions. SHORT answers with English. LESSON:L2L5';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

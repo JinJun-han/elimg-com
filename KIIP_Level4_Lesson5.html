@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 4급 5과 · 정치와 시민</title>
+<meta name="theme-color" content="#1d4ed8"/>
+<meta property="og:title" content="KIIP 4급 5과 · 정치와 시민"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level4_Lesson5.html"/>
+<meta property="og:description" content="KIIP 4급 5과 정치와 시민 - 어휘, 문법, 말하기, 듣기, 읽기, 쓰기, 문화, 퀴즈"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1d4ed8;--navy:#1e3a5f;--indigo:#1e40af;--green:#22c55e;--red:#ef4444;--gray:#f0f4ff;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(30,58,95,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #dbeafe;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:700}
+.tab-btn:hover{background:#eff6ff}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #dbeafe;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(30,58,95,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--blue)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(30,58,95,0.08);border:1px solid #dbeafe}
+.card-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--blue)}
+h3{font-size:16px;font-weight:700;color:var(--indigo);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 12px rgba(29,78,216,0.15)}
+.vocab-card.flipped{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--navy)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--blue);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue);margin:14px 0 8px;padding:4px 10px;background:#eff6ff;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.grammar-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.grammar-tab{padding:8px 18px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.grammar-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rule-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:6px}
+.example-list{list-style:none}
+.example-list li{padding:8px 12px;border-radius:8px;margin-bottom:6px;background:#f8faff;border:1px solid #dbeafe;font-size:14px;line-height:1.6}
+.example-list li .ko{color:var(--navy);font-weight:600}
+.example-list li .en{color:#475569;font-size:12px}
+.practice-item{background:#fff;border:2px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.practice-item input{border:1px solid #bfdbfe;border-radius:6px;padding:6px 10px;font-size:14px;width:140px;margin:0 4px}
+.practice-item input:focus{outline:none;border-color:var(--blue)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.check-btn:hover{background:var(--indigo)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.topik-card{background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #bfdbfe;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--blue);background:#eff6ff}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f8faff;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--blue);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--indigo)}
+.bubble{background:#eff6ff;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#dbeafe}
+.listen-script-box{background:#f0f4ff;border:2px dashed #bfdbfe;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--navy)}
+.listen-q{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.reveal-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--indigo)}
+.pron-rule{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #bfdbfe}
+.pron-word{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:6px 12px;margin:4px;font-size:14px}
+.pron-arrow{color:var(--blue);font-weight:700}
+.reading-text{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--blue);font-weight:700}
+.writing-guide{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--navy)}
+textarea{width:100%;border:2px solid #bfdbfe;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--blue)}
+.sample-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--navy);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--navy);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #dbeafe;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #dbeafe;background:#f8faff;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--blue);background:#eff6ff}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--navy);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#60a5fa}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #dbeafe}
+.pron-sent{background:#f0f4ff;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--navy);flex:1}
+.rec-btn{background:var(--blue);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--indigo)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #dbeafe;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.lang-toggle{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.lang-btn{padding:6px 14px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:12px;font-weight:600;color:#64748b;transition:all 0.2s}
+.lang-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tip-box{background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:#475569;margin-top:8px}
+.tip-box strong{color:var(--blue)}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#eff6ff;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--navy)}
+.intro-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--indigo) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--navy)}
+.objective-list li::before{content:'✓';color:var(--blue);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--navy)}
+.section-nav-btn:hover{border-color:var(--blue);background:#eff6ff;color:var(--blue)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},vocabShowEng:true,
+  listenRevealed:false,listenAnswers:{},
+  gramPracticeShown:{},readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  grammarTab:0,topikAnswers:{},
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'문법',icon:'📐'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'발음',icon:'🔊'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'민주주의',hanja:'민주주의(民主主義)',en:'democracy',vi:'dân chủ',cat:'정치제도'},
+  {ko:'선거',hanja:'선거(選擧)',en:'election',vi:'bầu cử',cat:'정치제도'},
+  {ko:'투표',hanja:'투표(投票)',en:'voting',vi:'bỏ phiếu',cat:'정치제도'},
+  {ko:'국회',hanja:'국회(國會)',en:'National Assembly',vi:'Quốc hội',cat:'정치제도'},
+  {ko:'정당',hanja:'정당(政黨)',en:'political party',vi:'đảng chính trị',cat:'정치제도'},
+  {ko:'시민',hanja:'시민(市民)',en:'citizen',vi:'công dân',cat:'시민참여'},
+  {ko:'청원',hanja:'청원(請願)',en:'petition',vi:'kiến nghị',cat:'시민참여'},
+  {ko:'집회',hanja:'집회(集會)',en:'assembly/rally',vi:'hội họp',cat:'시민참여'},
+  {ko:'권리',hanja:'권리(權利)',en:'rights',vi:'quyền lợi',cat:'시민참여'},
+  {ko:'의무',hanja:'의무(義務)',en:'duty/obligation',vi:'nghĩa vụ',cat:'시민참여'},
+  {ko:'법률',hanja:'법률(法律)',en:'law/legislation',vi:'pháp luật',cat:'법과 질서'},
+  {ko:'헌법',hanja:'헌법(憲法)',en:'constitution',vi:'hiến pháp',cat:'법과 질서'},
+  {ko:'규정',hanja:'규정(規定)',en:'regulation/rule',vi:'quy định',cat:'법과 질서'},
+  {ko:'위반',hanja:'위반(違反)',en:'violation',vi:'vi phạm',cat:'법과 질서'},
+  {ko:'판결',hanja:'판결(判決)',en:'verdict/ruling',vi:'phán quyết',cat:'법과 질서'},
+  {ko:'복지',hanja:'복지(福祉)',en:'welfare',vi:'phúc lợi',cat:'사회참여'},
+  {ko:'평등',hanja:'평등(平等)',en:'equality',vi:'bình đẳng',cat:'사회참여'},
+  {ko:'인권',hanja:'인권(人權)',en:'human rights',vi:'nhân quyền',cat:'사회참여'},
+  {ko:'차별',hanja:'차별(差別)',en:'discrimination',vi:'phân biệt đối xử',cat:'사회참여'},
+  {ko:'갈등',hanja:'갈등(葛藤)',en:'conflict',vi:'xung đột',cat:'사회참여'},
+];
+
+const GRAM1={
+  title:'-(으)ㄴ/는 셈이다',
+  meaning:'실제로는 아니지만 그것과 비슷하거나 그렇다고 볼 수 있음을 나타냄.',
+  en:'It amounts to / It\'s as good as / It\'s practically / It can be said that',
+  rule:'동사 현재: -는 셈이다 / 동사 과거: -(으)ㄴ 셈이다 / 형용사: -(으)ㄴ 셈이다',
+  examples:[
+    {ko:'매번 선거에 참여했으니 좋은 시민인 셈이다.',en:'Having voted every election, I\'m practically a good citizen.'},
+    {ko:'투표를 안 하면 권리를 포기하는 셈이다.',en:'Not voting amounts to giving up your rights.'},
+    {ko:'헌법을 알면 민주주의를 이해하는 셈이다.',en:'Knowing the constitution amounts to understanding democracy.'},
+    {ko:'청원을 제출했으니 의견을 낸 셈이다.',en:'Having submitted a petition, it\'s as if I expressed my opinion.'},
+    {ko:'규정을 몰랐어도 위반한 셈이다.',en:'Even not knowing the regulation, it amounts to a violation.'},
+  ],
+  practice:[
+    {q:'매일 뉴스를 보___ 정치에 관심이 있___ .',answer:'는 셈이다'},
+    {q:'투표를 안 했으니 권리를 포기하___ .',answer:'ㄴ 셈이다'},
+    {q:'헌법을 읽었으니 법을 공부하___ .',answer:'ㄴ 셈이다'},
+    {q:'청원에 서명했으니 참여하___ .',answer:'ㄴ 셈이다'},
+    {q:'집회에 나갔으니 의견을 표현하___ .',answer:'ㄴ 셈이다'},
+  ],
+  topik:[
+    {q:'다음 중 "-(으)ㄴ/는 셈이다"를 바르게 쓴 문장은?',opts:['투표를 안 했으니 포기한 셈이다.','투표를 안 했으니 포기하는 셈이다.','투표를 안 했으니 포기할 셈이다.','투표를 안 했으니 포기하여 셈이다.'],answer:0},
+    {q:'빈칸: "매일 신문을 읽으니 정치를 공부하는 ___ ."',opts:['셈이다','마련이다','한이다','편이다'],answer:0},
+  ]
+};
+
+const GRAM2={
+  title:'-는 한',
+  meaning:'어떤 조건이나 상황이 지속되는 동안에는 그 결과도 계속됨을 나타냄.',
+  en:'As long as / So long as / As far as',
+  rule:'동사/형용사 어간 + -는 한 (형용사·이다: -(으)ㄴ 한)',
+  examples:[
+    {ko:'민주주의가 존재하는 한 시민의 권리는 보장된다.',en:'As long as democracy exists, citizens\' rights are guaranteed.'},
+    {ko:'법을 지키는 한 누구도 처벌받지 않는다.',en:'As long as you follow the law, no one is punished.'},
+    {ko:'선거에 참여하는 한 민주주의는 살아 있다.',en:'As long as people participate in elections, democracy is alive.'},
+    {ko:'인권을 존중하는 한 사회는 발전한다.',en:'As long as human rights are respected, society progresses.'},
+    {ko:'차별이 없는 한 모두가 평등하게 살 수 있다.',en:'As long as there is no discrimination, everyone can live equally.'},
+  ],
+  practice:[
+    {q:'법을 지키___ 문제가 없습니다.',answer:'는 한'},
+    {q:'민주주의가 있___ 자유가 보장됩니다.',answer:'는 한'},
+    {q:'시민이 참여하___ 사회가 발전합니다.',answer:'는 한'},
+    {q:'평등을 추구하___ 갈등이 줄어듭니다.',answer:'는 한'},
+    {q:'인권을 존중하___ 차별이 없어집니다.',answer:'는 한'},
+  ],
+  topik:[
+    {q:'빈칸: "시민이 투표에 참여하___ 민주주의는 지속됩니다."',opts:['는 한','는 셈이다','기 마련이다','고 보면'],answer:0},
+    {q:'"-는 한"의 의미로 알맞은 것은?',opts:['~하는 동안에는 계속','~했기 때문에','~할 것 같다','~하면 당연히'],answer:0},
+  ]
+};
+
+const QUIZ=[
+  {q:'"민주주의"의 영어 번역은?',opts:['republic','democracy','constitution','election'],answer:1},
+  {q:'"투표를 안 하면 권리를 포기하는 셈이다."에서 "셈이다"의 의미는?',opts:['~해서 다행이다','~한 것이나 다름없다','~하기 위해','~해도 괜찮다'],answer:1},
+  {q:'"법을 지키는 한 처벌받지 않는다."에서 "-는 한"의 의미는?',opts:['~하기 때문에','~하는 동안에는','~한 것 같다','~했는데도'],answer:1},
+  {q:'"헌법"이 의미하는 것은?',opts:['지방 규정','나라의 기본 법','판사의 판결','시민의 청원'],answer:1},
+  {q:'다음 중 시민의 의무가 아닌 것은?',opts:['납세','국방','준법','차별'],answer:3},
+  {q:'"집회"의 뜻은?',opts:['선거 결과','여러 사람이 모이는 것','법원 판결','정당 활동'],answer:1},
+  {q:'빈칸: "매일 뉴스를 보니 정치를 아는 ___."',opts:['셈이다','는 한','기 마련이다','고 보면'],answer:0},
+  {q:'"인권"의 영어는?',opts:['welfare','equality','human rights','discrimination'],answer:2},
+  {q:'"평등"의 반대 의미에 가까운 단어는?',opts:['복지','차별','의무','권리'],answer:1},
+  {q:'빈칸: "시민이 참여하___ 민주주의는 발전합니다."',opts:['는 한','는 셈이다','기 마련이다','고 보면'],answer:0},
+];
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level4_Lesson4">← 4과</a>
+      <span class="nav-title">4급 5과 · 정치와 시민</span>
+      <a href="/KIIP_Level4_Lesson6">6과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level4_Lesson4"><span class="icon">⬅️</span>4과</a>
+      <a href="/KIIP_Level4_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level4_Lesson6"><span class="icon">➡️</span>6과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let gramHtml;
+      if(STATE.grammarTab===0){gramHtml=renderGramBlock(GRAM1,'gram1');}
+      else{gramHtml=renderGramBlock(GRAM2,'gram2');}
+      return `<h2>📐 문법</h2>
+        <div class="grammar-tabs">
+          <button class="grammar-tab${STATE.grammarTab===0?' active':''}" onclick="setState({grammarTab:0})">1. -(으)ㄴ/는 셈이다</button>
+          <button class="grammar-tab${STATE.grammarTab===1?' active':''}" onclick="setState({grammarTab:1})">2. -는 한</button>
+        </div>${gramHtml}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderPronunciation();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10:{
+      setTimeout(()=>RECORDER.autoDetect(),100);
+      const PRON_SENTS=[
+        '매번 선거에 참여했으니 좋은 시민인 셈입니다.',
+        '법을 지키는 한 모든 사람은 평등하게 권리를 누립니다.',
+        '민주주의에서 시민의 참여는 매우 중요합니다.',
+        '헌법은 국민의 기본 권리를 보장하는 나라의 기본법입니다.',
+      ];
+      return `<h2>🤖 AI 발음 실습</h2>
+        <div class="ai-section">
+          <h3>발음 연습</h3>
+          <p style="font-size:13px;color:#64748b;margin-bottom:12px">문장을 따라 말하고 AI가 발음을 분석합니다.</p>
+          <div id="rec-status"><p style="color:#94a3b8;font-size:13px">마이크 상태 확인 중...</p></div>
+          ${PRON_SENTS.map((s,i)=>`
+            <div class="pron-sent" id="pron-sent-${i}">
+              <span class="sent-text">${s} ${ttsBtn(s)}</span>
+              <div id="score-badge-${i}" class="score-badge">-</div>
+              <button class="rec-btn" id="rec-btn-${i}" onclick="RECORDER.toggle(${i},PRON_SENTS_10)">🎤 녹음</button>
+            </div>`).join('')}
+          <div id="stt-result" style="min-height:32px;margin-top:8px;font-size:13px;color:#475569"></div>
+        </div>
+        <script>var PRON_SENTS_10=${JSON.stringify(PRON_SENTS)};<\/script>
+        <div class="card">
+          <div class="card-title">💡 AI 활용 연습 주제</div>
+          <div class="speaking-topics">
+            <div class="speaking-topic">AI에게 "한국 민주주의의 특징을 한국어로 설명해 줘"라고 질문해 보세요.</div>
+            <div class="speaking-topic">"-(으)ㄴ/는 셈이다"와 "-는 한"을 사용하여 시민 참여에 대한 문장 5개를 만들어 달라고 해 보세요.</div>
+            <div class="speaking-topic">AI와 함께 "나의 시민 참여 경험" 주제로 글쓰기 연습을 해 보세요.</div>
+          </div>
+        </div>`;
+    }
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 4급 · 5과</div>
+      <h1 style="margin-top:12px">정치와 시민</h1>
+      <p class="subtitle">Politics &amp; Citizenship · Chính trị và Công dân</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>정치, 시민 참여, 법과 질서 관련 어휘 20개를 익힌다.</li>
+        <li>-(으)ㄴ/는 셈이다를 사용하여 비유적 동등 표현을 할 수 있다.</li>
+        <li>-는 한을 사용하여 조건과 지속 관계를 표현할 수 있다.</li>
+        <li>민주주의와 시민 참여에 대해 말하고 쓸 수 있다.</li>
+        <li>한국의 선거 제도와 헌법 문화를 이해한다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🔑 핵심 표현</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          투표를 안 하면 권리를 포기하는 <strong>셈이다</strong>. ${ttsBtn('투표를 안 하면 권리를 포기하는 셈이다.')}
+        </div>
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          법을 지키<strong>는 한</strong> 누구도 처벌받지 않는다. ${ttsBtn('법을 지키는 한 누구도 처벌받지 않는다.')}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 학습 섹션</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.filter(s=>s.id>0).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `
+    <h2>📝 어휘</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div class="lang-toggle">
+        <button class="lang-btn${STATE.lang==='ko'?' active':''}" onclick="setState({lang:'ko',vocabFlipped:{}})">한국어</button>
+        <button class="lang-btn${STATE.lang==='en'?' active':''}" onclick="setState({lang:'en',vocabFlipped:{}})">English</button>
+        <button class="lang-btn${STATE.lang==='vi'?' active':''}" onclick="setState({lang:'vi',vocabFlipped:{}})">Tiếng Việt</button>
+      </div>
+      <button class="check-btn" onclick="setState({vocabFlipped:{}})">초기화</button>
+    </div>
+    <div class="tip-box" style="margin-bottom:14px"><strong>💡 Tip:</strong> 카드를 클릭하면 뒤집어집니다!</div>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map(v=>{
+          const idx=VOCAB.indexOf(v);
+          const flipped=STATE.vocabFlipped[idx];
+          const meaning=STATE.lang==='vi'?v.vi:v.en;
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="STATE.vocabFlipped[${idx}]=!STATE.vocabFlipped[${idx}];render()">
+            ${!flipped
+              ?`<span class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</span><span class="vocab-hanja">${v.hanja}</span>`
+              :`<span class="vocab-ko">${meaning}</span><span class="vocab-eng">${v.ko}</span>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderGramBlock(gram,prefix){
+  const practiceHtml=gram.practice.map((p,i)=>{
+    const shown=STATE.gramPracticeShown[prefix+'_'+i];
+    const q=p.q.replace('___',`<input id="${prefix}-inp-${i}" placeholder="___" style="width:110px"/>`);
+    return `<div class="practice-item">
+      <div style="font-size:14px;color:var(--navy);margin-bottom:8px;line-height:1.6">${q}</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" onclick="
+          var v=document.getElementById('${prefix}-inp-${i}').value.trim();
+          if(v==='${p.answer}'){document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=answer-reveal>✅ 정답!</span>';}
+          else{document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=wrong-reveal>❌ 다시 해보세요</span>';}
+        ">확인</button>
+        <button class="check-btn" style="background:#64748b" onclick="STATE.gramPracticeShown['${prefix}_${i}']=true;render()">정답 보기</button>
+      </div>
+      <div id="${prefix}-fb-${i}">${shown?`<span class="answer-reveal">정답: ${p.answer}</span>`:''}</div>
+    </div>`;
+  }).join('');
+  const topikHtml=gram.topik.map((t,i)=>{
+    const key=prefix+'_topik_'+i;
+    const chosen=STATE.topikAnswers[key];
+    return `<div class="topik-card">
+      <div class="q-text">${t.q}</div>
+      <div class="topik-options">
+        ${t.opts.map((opt,j)=>{
+          let cls='topik-opt';
+          if(chosen!==undefined){if(j===t.answer)cls+=' correct';else if(j===chosen)cls+=' wrong';}
+          return `<button class="${cls}" onclick="STATE.topikAnswers['${key}']=${j};render()" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+        }).join('')}
+      </div>
+      ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;color:${chosen===t.answer?'#166534':'#991b1b'};font-weight:700">${chosen===t.answer?'✅ 정답!':'❌ 오답 - 정답: '+(t.answer+1)+'번'}</div>`:''}
+    </div>`;
+  }).join('');
+  return `
+    <div class="card">
+      <div class="card-title">📌 ${gram.title}</div>
+      <div class="rule-box"><div class="rule-title">의미</div><div style="font-size:14px;color:var(--navy);margin-bottom:4px">${gram.meaning}</div><div style="font-size:13px;color:#475569">🇺🇸 ${gram.en}</div></div>
+      <div class="rule-box"><div class="rule-title">형태 규칙</div><div style="font-size:14px;color:var(--navy)">${gram.rule}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 예문</div>
+      <ul class="example-list">${gram.examples.map(e=>`<li><span class="ko">${e.ko} ${ttsBtn(e.ko)}</span><br><span class="en">${e.en}</span></li>`).join('')}</ul>
+    </div>
+    <div class="card"><div class="card-title">✏️ 빈칸 채우기 연습</div>${practiceHtml}</div>
+    <div class="card"><div class="card-title">📋 TOPIK 유형</div>${topikHtml}</div>`;
+}
+
+function renderSpeaking(){
+  const dialogues=[
+    {title:'대화 1: 한국의 선거',lines:[
+      {speaker:'A',text:'한국에서는 선거가 자주 있나요?',side:'a'},
+      {speaker:'B',text:'네, 대통령 선거, 국회의원 선거 등 여러 종류가 있어요.',side:'b'},
+      {speaker:'A',text:'외국인도 투표할 수 있나요?',side:'a'},
+      {speaker:'B',text:'영주권자는 지방선거에서 투표할 수 있어요.',side:'b'},
+      {speaker:'A',text:'그러면 저도 투표하면 시민 역할을 하는 셈이네요.',side:'a'},
+      {speaker:'B',text:'맞아요! 참여하는 한 민주주의는 살아 있어요.',side:'b'},
+    ]},
+    {title:'대화 2: 시민의 권리와 의무',lines:[
+      {speaker:'A',text:'한국에서 살면서 어떤 권리가 있나요?',side:'a'},
+      {speaker:'B',text:'법을 지키는 한 여러 권리를 누릴 수 있어요.',side:'b'},
+      {speaker:'A',text:'세금도 내야 하나요?',side:'a'},
+      {speaker:'B',text:'네, 세금을 내는 건 시민의 의무를 다하는 셈이에요.',side:'b'},
+      {speaker:'A',text:'의무를 다하면 권리도 보장받나요?',side:'a'},
+      {speaker:'B',text:'민주주의 사회에서는 그렇죠.',side:'b'},
+    ]},
+    {title:'대화 3: 사회 갈등과 해결',lines:[
+      {speaker:'A',text:'한국 사회에도 갈등이 많나요?',side:'a'},
+      {speaker:'B',text:'네, 차별과 불평등 문제가 있어요.',side:'b'},
+      {speaker:'A',text:'어떻게 해결할 수 있을까요?',side:'a'},
+      {speaker:'B',text:'시민들이 청원하고 집회를 여는 것도 방법이에요.',side:'b'},
+      {speaker:'A',text:'그러면 실제로 변화가 생기는 셈이군요.',side:'a'},
+      {speaker:'B',text:'참여하는 한 변화는 가능해요.',side:'b'},
+    ]},
+  ];
+  const topics=['한국의 선거 제도에 대해 여러분 나라의 선거 제도와 비교해 보세요.','시민의 권리와 의무 중 가장 중요한 것은 무엇이라고 생각하나요?','사회 갈등을 해결하기 위해 시민이 할 수 있는 방법을 이야기해 보세요.'];
+  return `<h2>💬 말하기</h2>
+    ${dialogues.map(d=>`<div class="card"><div class="card-title">${d.title}</div><div class="dialogue">
+      ${d.lines.map(l=>`<div class="dialogue-line${l.side==='b'?' b':''}"><span class="speaker">${l.speaker}</span><div class="bubble">${l.text} ${ttsBtn(l.text)}</div></div>`).join('')}
+    </div></div>`).join('')}
+    <div class="card"><div class="card-title">🗣️ 자유 말하기 주제</div><div class="speaking-topics">
+      ${topics.map((t,i)=>`<div class="speaking-topic"><strong>${i+1}.</strong> ${t}</div>`).join('')}
+    </div></div>`;
+}
+
+function renderListening(){
+  const script='[시민 교육 강의]\n\n민주주의 사회에서 시민은 권리와 의무를 동시에 가집니다. 가장 중요한 시민 참여 방법은 투표입니다. 선거에 참여하는 한 시민의 의견이 정치에 반영됩니다.\n\n한국은 민주주의 국가로, 국회에서 법률을 만들고 정부가 집행합니다. 헌법은 국가의 기본법으로, 시민의 권리를 보장합니다.\n\n시민들은 청원, 집회, 언론 등을 통해 의견을 표현할 수 있습니다. 이런 참여를 통해 사회 문제를 해결하고 평등과 인권을 증진할 수 있습니다. 법을 지키는 한 모든 시민은 평등하게 권리를 누릴 수 있습니다.';
+  const questions=[
+    {q:'1. 민주주의에서 가장 중요한 시민 참여 방법은?',opts:['청원','투표','집회','언론'],answer:1},
+    {q:'2. 헌법의 역할은?',opts:['세금 징수','시민 권리 보장','전쟁 선포','선거 관리'],answer:1},
+    {q:'3. 시민이 의견을 표현하는 방법이 아닌 것은?',opts:['청원','집회','언론','위반'],answer:3},
+  ];
+  return `<h2>👂 듣기</h2>
+    <div class="card">
+      <div class="card-title">🎬 시민 교육 강의</div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:!STATE.listenRevealed})">${STATE.listenRevealed?'📄 스크립트 숨기기':'📄 스크립트 보기'}</button>
+      ${STATE.listenRevealed?`<div class="listen-script-box">${script.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}</div>`:''}
+      <div style="text-align:center;margin-bottom:12px">
+        <button class="reveal-btn" onclick="TTS.speak(${JSON.stringify(script)})">🔊 전체 듣기</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 듣기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.listenAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.listenAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderPronunciation(){
+  const words=[{word:'한국',pron:'한국'},{word:'선거',pron:'선거'},{word:'권리',pron:'권리'},{word:'민주주의',pron:'민주주의'}];
+  const sents=[
+    {text:'법을 지키는 한 권리가 보장됩니다.',note:'한[한] - 비음 뒤 평음 유지'},
+    {text:'시민이 참여하는 한 민주주의가 살아있습니다.',note:'참여하는[차며하는]'},
+  ];
+  return `<h2>🔊 발음</h2>
+    <div class="card">
+      <div class="card-title">📏 발음 규칙: 받침 'ㄴ' 뒤 경음화 없음</div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">받침 'ㄴ' 뒤에 오는 자음은 경음화되지 않습니다. "한국"은 [한꾹]이 아니라 [한국]으로, "선거"는 [선꺼]가 아니라 [선거]로 발음합니다.</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:8px">예: 한국 → [한국], 선거 → [선거] (경음화 없음)</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">${words.map(w=>`<div class="pron-word"><span style="font-weight:700;color:var(--navy)">${w.word}</span><span class="pron-arrow">→</span><span style="color:var(--blue)">[${w.pron}]</span>${ttsBtn(w.word)}</div>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗣️ 문장 발음 연습</div>
+      ${sents.map(s=>`<div style="background:#eff6ff;border-radius:10px;padding:12px 14px;margin-bottom:10px"><div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">${s.text} ${ttsBtn(s.text)}</div><div style="font-size:12px;color:var(--blue)">${s.note}</div></div>`).join('')}
+    </div>`;
+}
+
+function renderReading(){
+  const rawText='민주주의는 시민이 주인인 정치 체계입니다. 선거를 통해 지도자를 선출하고, 헌법으로 권리를 보장받습니다. 매번 선거에 참여했다면 민주주의를 지킨 셈입니다.\n\n한국의 국회는 300명의 국회의원으로 구성되어 있습니다. 국민이 투표하는 한 대의민주주의가 작동합니다.\n\n외국인도 한국에서 여러 권리를 누릴 수 있습니다. 법을 지키는 한 차별 없이 생활할 권리가 있습니다. 또한 영주권자는 지방선거에서 투표권도 가집니다. 이처럼 참여하는 한 모두가 더 나은 사회를 만들 수 있습니다.';
+  const questions=[
+    {q:'1. 이 글의 중심 내용은?',opts:['한국 경제','민주주의와 시민 참여','외국인 취업','한국 문화'],answer:1},
+    {q:'2. "매번 선거에 참여했다면 민주주의를 지킨 셈입니다."에서 "셈이다"의 뜻은?',opts:['~해서 좋다','~한 것이나 마찬가지다','~하기 위해서다','~하면 된다'],answer:1},
+    {q:'3. 외국인이 한국에서 지방선거 투표권을 갖는 조건은?',opts:['귀화','영주권 취득','취업비자','유학비자'],answer:1},
+  ];
+  const highlighted=rawText
+    .replace(/셈입니다/g,'<span class="highlight">셈입니다</span>')
+    .replace(/는 한/g,'<span class="highlight">는 한</span>')
+    .replace(/\n\n/g,'<br><br>');
+  return `<h2>📖 읽기</h2>
+    <div class="card"><div class="card-title">📰 민주주의와 시민 참여 ${ttsBtn(rawText)}</div><div class="reading-text">${highlighted}</div></div>
+    <div class="card"><div class="card-title">❓ 읽기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.readAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.readAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderWriting(){
+  const sample='저는 민주주의 국가에서 산다는 것이 얼마나 소중한지 알게 되었습니다. 매일 뉴스를 보고 정치에 관심을 가지는 것도 시민의 역할을 다하는 셈입니다.\n\n시민이 참여하는 한 민주주의는 더 강해질 것입니다. 저도 한국에서 영주권을 받으면 투표에 참여하고 싶습니다. 법을 지키는 한 저도 평등하게 권리를 누릴 수 있다고 생각합니다.\n\n앞으로 더 많은 사람들이 선거에 참여하기를 바랍니다. 참여하는 한 우리 사회는 더 나아질 것이기 때문입니다.';
+  return `<h2>✏️ 쓰기</h2>
+    <div class="card">
+      <div class="card-title">📌 쓰기 주제</div>
+      <div style="background:var(--indigo);color:#fff;border-radius:10px;padding:14px;font-size:16px;font-weight:700;text-align:center;margin-bottom:12px">민주주의와 나의 시민 참여</div>
+      <div class="writing-guide"><h3>작성 가이드</h3><ul>
+        <li>민주주의에서 시민 참여가 중요한 이유를 쓰세요.</li>
+        <li>-(으)ㄴ/는 셈이다를 한 번 이상 사용하세요.</li>
+        <li>-는 한을 한 번 이상 사용하세요.</li>
+        <li>선거, 청원, 집회 중 하나를 선택해 경험이나 의견을 쓰세요.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 내 글쓰기</div>
+      <textarea placeholder="여기에 글을 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <span style="font-size:12px;color:#94a3b8">${STATE.writingText.length}자</span>
+        <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'샘플 숨기기':'샘플 답안 보기'}</button>
+      </div>
+      ${STATE.sampleShown?`<div class="sample-box">${sample.replace(/\n\n/g,'<br><br>')}</div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  const sections=[
+    {title:'🗳️ 한국의 선거 제도',text:'한국은 대통령 선거(5년), 국회의원 선거(4년), 지방선거(4년)가 있습니다. 만 18세 이상 국민은 투표권이 있으며, 영주권을 가진 외국인도 지방선거에서 투표할 수 있습니다.'},
+    {title:'📜 대한민국 헌법',text:'헌법은 1948년 제정되어 여러 차례 개정되었습니다. 국민의 기본권(자유, 평등, 사회권 등)을 보장하고 국가 권력의 한계를 규정합니다.'},
+    {title:'🤝 시민 참여 방법',text:'한국 시민은 청원, 집회, 언론 활동 등으로 의견을 표현할 수 있습니다. 인터넷 청원 시스템을 통해 온라인으로도 정책 의견을 낼 수 있습니다.'},
+    {title:'⚖️ 법과 평등',text:'한국 헌법은 모든 국민의 법 앞의 평등을 규정합니다. 성별, 종교, 출신에 의한 차별은 금지되며 인권위원회가 차별 문제를 다룹니다.'},
+  ];
+  const topics=['한국의 선거 제도를 여러분 나라의 제도와 비교해 보세요.','헌법이 왜 중요한지 이야기해 보세요.','시민 참여 방법 중 가장 효과적인 것은 무엇이라고 생각하나요?'];
+  return `<h2>🎎 문화</h2>
+    <div class="card"><div class="card-title">🇰🇷 한국의 정치 문화와 제도</div>
+      ${sections.map(s=>`<div class="culture-section"><h4>${s.title}</h4><p>${s.text}</p></div>`).join('')}
+    </div>
+    <div class="card"><div class="card-title">💬 토론 질문</div><div class="speaking-topics">
+      ${topics.map((t,i)=>`<div class="speaking-topic"><strong>${i+1}.</strong> ${t}</div>`).join('')}
+    </div></div>`;
+}
+
+function renderQuiz(){
+  const total=QUIZ.length;
+  const answered=Object.keys(STATE.quizAnswers).length;
+  const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+  return `<h2>✅ 퀴즈</h2>
+    <div class="card" style="background:var(--navy);color:#fff;text-align:center;padding:14px">
+      <div style="font-size:14px;opacity:0.8">진행: ${answered}/${total}</div>
+      ${STATE.quizDone?`<div style="font-size:28px;font-weight:900;color:#60a5fa;margin-top:4px">${correct}/${total}</div>`:''}
+    </div>
+    ${QUIZ.map((q,i)=>{
+      const chosen=STATE.quizAnswers[i];
+      const isCorrect=chosen===q.answer;
+      let cardCls='quiz-card';
+      if(chosen!==undefined)cardCls+=isCorrect?' answered-correct':' answered-wrong';
+      return `<div class="${cardCls}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>{
+            let cls='quiz-opt';
+            if(chosen!==undefined){if(j===q.answer)cls+=' selected-correct';else if(j===chosen)cls+=' selected-wrong';}
+            return `<button class="${cls}" onclick="if(STATE.quizAnswers[${i}]===undefined){STATE.quizAnswers[${i}]=${j};render();}" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>
+        ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${isCorrect?'#166534':'#991b1b'}">${isCorrect?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}
+      </div>`;
+    }).join('')}
+    ${answered===total&&!STATE.quizDone?`<div style="text-align:center;margin:12px 0"><button class="reveal-btn" onclick="setState({quizDone:true})">결과 보기</button></div>`:''}
+    ${STATE.quizDone?`<div class="quiz-score"><div>최종 점수</div><div class="score-num">${correct}/${total}</div><div style="margin-top:8px">${correct>=9?'🎉 우수!':correct>=7?'👍 잘 했어요!':correct>=5?'📚 복습해 보세요.':'💪 더 열심히!'}</div><button class="check-btn" style="margin-top:12px;background:rgba(255,255,255,0.2)" onclick="setState({quizAnswers:{},quizDone:false})">다시 풀기</button></div>`:''}`;
+}
+
+const RECORDER={
+  stream:null,mediaRecorder:null,chunks:[],isRecording:false,
+  recognition:null,sttActive:false,currentIdx:-1,scores:{},
+  autoDetect(){
+    if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+      navigator.mediaDevices.getUserMedia({audio:true})
+        .then(s=>{s.getTracks().forEach(t=>t.stop());this.showUI('ready');})
+        .catch(()=>this.showUI('denied'));
+    }else{this.showUI('denied');}
+  },
+  showUI(state){
+    const el=document.getElementById('rec-status');if(!el)return;
+    if(state==='ready')el.innerHTML='<p style="color:#059669;font-weight:700">✅ 마이크 준비 완료!</p>';
+    else el.innerHTML='<p style="color:#ef4444;font-weight:700">❌ 마이크를 사용할 수 없습니다.</p>';
+  },
+  toggle(idx,sents){
+    if(this.sttActive&&this.currentIdx===idx)this.stopSTT(idx);
+    else{if(this.sttActive)this.stopSTT(this.currentIdx);this.startSTT(idx,sents);}
+  },
+  startSTT(idx,sents){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){const el=document.getElementById('stt-result');if(el)el.innerHTML='<span style="color:#ef4444">음성 인식 미지원 브라우저입니다.</span>';return;}
+    this.recognition=new SR();
+    this.recognition.lang='ko-KR';this.recognition.interimResults=false;
+    this.sttActive=true;this.currentIdx=idx;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='⏹ 중지';btn.classList.add('recording');}
+    const rEl=document.getElementById('stt-result');
+    if(rEl)rEl.innerHTML='<span style="color:var(--blue)">🎤 듣는 중...</span>';
+    this.recognition.onresult=(e)=>{
+      const tr=e.results[0][0].transcript;
+      const score=this.calcScore(tr,sents[idx]);
+      this.scores[idx]=score;
+      const badge=document.getElementById('score-badge-'+idx);
+      if(badge){badge.className='score-badge '+(score>=80?'good':score>=50?'ok':'bad');badge.textContent=score+'%';}
+      if(rEl)rEl.innerHTML=`<span style="color:var(--navy)">인식: "${tr}"</span> <span style="font-weight:700;color:${score>=80?'#166534':score>=50?'#854d0e':'#991b1b'}">(${score}점)</span>`;
+      this.sttActive=false;
+      if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+    };
+    this.recognition.onerror=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.onend=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.start();
+  },
+  stopSTT(idx){
+    if(this.recognition){try{this.recognition.stop();}catch(e){}}
+    this.sttActive=false;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+  },
+  calcScore(transcript,target){
+    if(!transcript||!target)return 0;
+    const t=transcript.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    const g=target.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    if(t===g)return 100;
+    const tw=t.split(/\s+/),gw=g.split(/\s+/);
+    let m=0;gw.forEach(w=>{if(tw.includes(w))m++;});
+    return Math.round((m/Math.max(gw.length,1))*100);
+  }
+};
+
+render();
+</script>
+</body>
+</html>

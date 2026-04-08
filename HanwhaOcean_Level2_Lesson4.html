@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -458,7 +458,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level2_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level2_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 2 목차 · Contents</div></div>
     </a>
@@ -497,7 +497,7 @@ function renderHome() {
     <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 2-4과 · Beginner Level 2 Lesson 4</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ TOPIK I 준비 완료</span>
-      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
+      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 2급 초급 2 진행 중</span>
     </div
     <div style="font-size:26px;font-weight:800;margin-bottom:2px">은행에 가요</div>
     <div style="font-size:13px;color:#aabbdd">Going to the Bank — 은행 거래와 금융 · Banking & Finance</div>
@@ -526,16 +526,16 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🏗️ 한국의 인프라 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level2_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 1과 안녕하세요?</a><a href="HanwhaOcean_Level2_Lesson5.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">3과 여기가 어디예요? →</a></div>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level2_Lesson3" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 1과 안녕하세요?</a><a href="/HanwhaOcean_Level2_Lesson5" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">3과 여기가 어디예요? →</a></div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson3.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson3" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-3과 약속을 변경해요</strong>
         <div style="font-size:11px;color:#888;margin-top:2px">Changing Appointments</div>
       </div>
-    </a><a href="HanwhaOcean_Level2_Lesson5.html" style="display:block;text-decoration:none;flex:1">
+    </a><a href="/HanwhaOcean_Level2_Lesson5" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-5과 병원에서 설명해요</strong>
@@ -1147,18 +1147,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'💳', label:'계좌 개설하기',
-    q:'한국 은행에서 계좌를 개설하는 한국어 대화를 연습해주세요. "계좌를 만들고 싶어요", "외국인 등록증이 있어요", "통장 주세요" 같은 표현을 롤플레이로 해주세요.' },
-  { emoji:'💸', label:'해외 송금하기',
-    q:'고향으로 돈을 보내는 한국어 표현을 알려주세요. "해외 송금하고 싶어요", "환율이 얼마예요?", "수수료가 얼마예요?" 같은 은행 표현 5개를 영어와 함께 알려주세요.' },
-  { emoji:'🔢', label:'계좌번호 말하기',
-    q:'한국어로 계좌번호, 전화번호, 금액을 말하는 연습을 해주세요. 숫자를 한국어로 읽는 방법과 "제 계좌번호는 ~입니다" 표현을 영어와 함께 알려주세요.' },
-  { emoji:'🏧', label:'ATM 사용 표현',
-    q:'한국 ATM 사용 관련 한국어를 알려주세요. 입금, 출금, 이체, 잔액조회, 비밀번호 표현을 영어와 함께 알려주세요. ATM 화면 한국어도 설명해주세요.' },
-  { emoji:'❓', label:'은행 어휘 복습',
-    q:'은행에서 쓰는 중요한 한국어 단어를 복습해주세요. 계좌, 입금, 출금, 이자, 수수료, 환율, 원금을 예문과 영어 설명으로 각각 알려주세요.' },
-]
-
+  {emoji:'🏦',label:'계좌 개설',
+   q:'계좌개설 open bank account 통장만들기 은행계좌를 알려주세요' },
+  {emoji:'💸',label:'송금/이체',
+   q:'송금이체 money transfer 고향송금 해외송금을 알려주세요' },
+  {emoji:'🏧',label:'ATM 사용법',
+   q:'atm사용 atm use 현금인출 카드기계를 알려주세요' },
+  {emoji:'💱',label:'환전하기',
+   q:'환전하기 currency exchange 환율 외화를 알려주세요' },
+  {emoji:'💬',label:'은행 표현',
+   q:'은행표현 banking expression 은행에서 금융을 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1185,13 +1184,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean banking guide for foreign workers in Korea. Lesson focus: banking vocabulary 계좌(account), 입금(deposit), 출금(withdrawal), 이자(interest), 수수료(fee), 환율(exchange rate), 송금(remittance). Help with practical banking conversations at Korean banks. SHORT answers with English.';
+      var sysP = 'You are a Korean banking guide for foreign workers in Korea. Lesson focus: banking vocabulary 계좌(account), 입금(deposit), 출금(withdrawal), 이자(interest), 수수료(fee), 환율(exchange rate), 송금(remittance). Help with practical banking conversations at Korean banks. SHORT answers with English. LESSON:L2L4';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

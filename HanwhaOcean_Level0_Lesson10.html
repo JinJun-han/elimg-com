@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -24,7 +24,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -85,7 +85,9 @@ function ttsBtn(text) {
   return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'")}')" title="발음 듣기">🔊</button>`;
 }
 
-const SYSTEM_PROMPT = `You are a Korean language tutor for Hanwha Ocean shipyard foreign workers. This is the final lesson of Level 0. It covers essential safety Korean and KIIP program introduction. Answer in Korean with English translation. Be motivating and practical. Under 150 words.`;
+const SYSTEM_PROMPT = `You are a Korean language tutor for Hanwha Ocean shipyard foreign workers. This is the final lesson of Level 0. It covers essential safety Korean and KIIP program introduction. Answer in Korean with English translation. Be motivating and practical. Under 150 words.
+LESSON:L0L10`;
+const systemPrompt = SYSTEM_PROMPT;
 
 const SAFETY_VOCAB = [
   {kor:"위험",pron:"wi-heom",eng:"Danger",color:"#fee2e2",border:"var(--red)",icon:"🔴"},
@@ -139,6 +141,14 @@ const CULTURE = [
 let currentTab = 0;
 let quizState = {idx:0, score:0, answered:false};
 
+
+function _typeText(el, text, speed) {
+  var i=0;
+  function _next(){
+    if(i<text.length){ el.textContent+=text[i++]; setTimeout(_next, speed); }
+  }
+  _next();
+}
 function sendAI() {
   const input = document.getElementById('ai-input');
   const chat = document.getElementById('ai-chat');
@@ -151,17 +161,19 @@ function sendAI() {
   fetch('/api/chat', {
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({messages:[
-      {role:'system',content:SYSTEM_PROMPT},
-      {role:'user',content:msg}
-    ]})
+    body: JSON.stringify({messages:[{role:'system',content:systemPrompt},{role:'user',content:msg}]})
   })
   .then(r=>r.json())
   .then(d=>{
     document.getElementById('ai-loading')?.remove();
     const reply = d.choices?.[0]?.message?.content || '죄송합니다, 다시 시도해 주세요.';
-    chat.innerHTML += `<div class="bubble bubble-left" style="margin-bottom:8px"><b>AI 선생님:</b> ${reply}</div>`;
-    chat.scrollTop = chat.scrollHeight;
+    const _el=document.createElement('div');
+    _el.className='bubble bubble-left';_el.style.marginBottom='8px';
+    _el.innerHTML='<b>AI 선생님:</b> <span></span>';
+    chat.appendChild(_el);
+    const _sp=_el.querySelector('span');
+    _typeText(_sp, reply, 18);
+    chat.scrollTop=chat.scrollHeight;
   })
   .catch(()=>{
     document.getElementById('ai-loading')?.remove();
@@ -203,7 +215,7 @@ function aiSection() {
   return `<div class="card card-accent" style="margin-top:16px">
     <div style="font-weight:700;color:var(--navy);margin-bottom:8px">🤖 AI 선생님께 질문하기</div>
     <div id="ai-chat" style="min-height:60px;max-height:200px;overflow-y:auto;margin-bottom:8px;display:flex;flex-direction:column;gap:4px"></div>
-    <div style="display:flex;gap:6px">
+    <div style="margin-bottom:8px;display:flex;gap:6px;flex-wrap:wrap" id="ai-quick">\n      <button onclick="(function(){document.getElementById('ai-input').value="안전 기본 표현";sendAI();})()" style="background:#f0fdf4;border:1px solid #15803d;color:#15803d;border-radius:20px;padding:5px 12px;font-size:11px">안전 기본 표현</button><button onclick="(function(){document.getElementById('ai-input').value="비상 상황 대처";sendAI();})()" style="background:#f0fdf4;border:1px solid #15803d;color:#15803d;border-radius:20px;padding:5px 12px;font-size:11px">비상 상황 대처</button><button onclick="(function(){document.getElementById('ai-input').value="KIIP 프로그램";sendAI();})()" style="background:#f0fdf4;border:1px solid #15803d;color:#15803d;border-radius:20px;padding:5px 12px;font-size:11px">KIIP 프로그램</button><button onclick="(function(){document.getElementById('ai-input').value="KIIP 단계 안내";sendAI();})()" style="background:#f0fdf4;border:1px solid #15803d;color:#15803d;border-radius:20px;padding:5px 12px;font-size:11px">KIIP 단계 안내</button><button onclick="(function(){document.getElementById('ai-input').value="귀화/영주권";sendAI();})()" style="background:#f0fdf4;border:1px solid #15803d;color:#15803d;border-radius:20px;padding:5px 12px;font-size:11px">귀화/영주권</button>\n    </div><div style="display:flex;gap:6px">
       <input class="input" id="ai-input" placeholder="안전 표현, KIIP에 대해 질문하세요..." style="margin:0;flex:1" onkeydown="if(event.key==='Enter')sendAI()">
       <button class="btn btn-primary" style="width:auto;padding:10px 14px" onclick="sendAI()">전송</button>
     </div>
@@ -307,7 +319,7 @@ function render() {
       <a href="HanwhaOcean_Level1_Index.html" style="text-decoration:none">
         <button class="btn btn-navy">초급1 목차 보기 📚</button>
       </a>
-      <a href="HanwhaOcean_Level0_Index.html" style="text-decoration:none">
+      <a href="/HanwhaOcean_Level0_Index" style="text-decoration:none">
         <button class="btn btn-primary">0급 목차로 돌아가기 🏠</button>
       </a>
     </div>
@@ -369,8 +381,8 @@ function render() {
         <div class="nav-sub">Safety Korean + KIIP 0단계 마무리</div>
       </div>
       <div style="display:flex;gap:4px">
-        <a href="HanwhaOcean_Level0_Lesson9.html"><button class="nav-btn">◀</button></a>
-        <a href="HanwhaOcean_Level0_Index.html"><button class="nav-btn">🏠</button></a>
+        <a href="/HanwhaOcean_Level0_Lesson9"><button class="nav-btn">◀</button></a>
+        <a href="/HanwhaOcean_Level0_Index"><button class="nav-btn">🏠</button></a>
         <a href="HanwhaOcean_Level1_Lesson1.html"><button class="nav-btn" title="초급1 시작하기">▶</button></a>
       </div>
     </nav>

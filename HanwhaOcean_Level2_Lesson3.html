@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -454,7 +454,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level2_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level2_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 2 목차 · Contents</div></div>
     </a>
@@ -493,7 +493,7 @@ function renderHome() {
     <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 2-3과 · Beginner Level 2 Lesson 3</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ TOPIK I 준비 완료</span>
-      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
+      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 2급 초급 2 진행 중</span>
     </div
     <div style="font-size:26px;font-weight:800;margin-bottom:2px">약속을 변경해요</div>
     <div style="font-size:13px;color:#aabbdd">I change appointments — 약속 변경과 비즈니스 문화 · Changing Appointments & Business Culture</div>
@@ -522,16 +522,16 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🚢 K-조선 경쟁력 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Index.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 0급 목차</a><a href="HanwhaOcean_Level2_Lesson2.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-2과 회사에서 전화해요 →</a></div>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level2_Index" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2급 목차</a><a href="/HanwhaOcean_Level2_Lesson2" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-2과 회사에서 전화해요 →</a></div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson2.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson2" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-2과 회사에서 전화해요</strong>
         <div style="font-size:11px;color:#888;margin-top:2px">Making Work Calls</div>
       </div>
-    </a><a href="HanwhaOcean_Level2_Lesson4.html" style="display:block;text-decoration:none;flex:1">
+    </a><a href="/HanwhaOcean_Level2_Lesson4" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-4과 은행에 가요</strong>
@@ -1141,18 +1141,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🔄', label:'약속 변경 요청',
-    q:'약속을 변경 요청하는 한국어 대화를 연습해주세요. "목요일 오후 2시로 변경하고 싶어요", "괜찮으시면 다음 주로 미뤄도 될까요?" 같은 표현을 롤플레이로 해주세요.' },
-  { emoji:'❌', label:'약속 취소하기',
-    q:'약속을 취소하는 한국어 표현을 알려주세요. "갑자기 일이 생겼어요", "죄송하지만 취소하고 싶어요", "다음에 다시 잡아도 될까요?" 표현 5개를 영어와 함께 알려주세요.' },
-  { emoji:'📆', label:'날짜/요일 표현',
-    q:'한국어로 날짜와 요일을 말하는 연습을 해주세요. 월화수목금토일, 이번 주, 다음 주, 모레, 글피 표현을 조선소 일정 예문으로 영어와 함께 알려주세요.' },
-  { emoji:'🤝', label:'회의 일정 잡기',
-    q:'조선소에서 회의 일정을 잡는 한국어 대화를 연습해주세요. "언제 시간이 되세요?", "오후 3시는 어때요?", "그 시간은 괜찮아요" 같은 표현을 롤플레이로 해주세요.' },
-  { emoji:'📝', label:'~는데 복습',
-    q:'약속/일정 상황에서 ~(으)ㄴ/는데 표현을 연습해주세요. "회의가 있는데 시간을 바꿀 수 있어요?", "약속이 있었는데 취소해야 해요" — 예문 5개를 영어와 함께요.' },
-]
-
+  {emoji:'🔄',label:'약속 변경 요청',
+   q:'약속변경요청 reschedule 변경해도될까요 일정변경을 알려주세요' },
+  {emoji:'❌',label:'약속 취소하기',
+   q:'약속취소 cancel appointment 취소하기 못가요를 알려주세요' },
+  {emoji:'📆',label:'날짜/요일 표현',
+   q:'날짜요일표현 date day expression 날짜말하기 요일을 알려주세요' },
+  {emoji:'🤝',label:'회의 일정 잡기',
+   q:'회의일정잡기 schedule meeting 회의잡기 언제시간을 알려주세요' },
+  {emoji:'📝',label:'-는데 복습',
+   q:'는데복습 는데grammar review 는데연습 배경설명을 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1179,13 +1178,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean appointment and schedule coach for shipyard workers. Lesson focus: appointment change/cancel expressions like 약속 변경(appointment change), 취소(cancellation), 회의(meeting), 일정(schedule), ~(으)ㄴ/는데 for background explanation, date/time expressions for rescheduling. SHORT practical answers with English.';
+      var sysP = 'You are a Korean appointment and schedule coach for shipyard workers. Lesson focus: appointment change/cancel expressions like 약속 변경(appointment change), 취소(cancellation), 회의(meeting), 일정(schedule), ~(으)ㄴ/는데 for background explanation, date/time expressions for rescheduling. SHORT practical answers with English. LESSON:L2L3';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

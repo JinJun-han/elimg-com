@@ -30,10 +30,14 @@ const TRANSLATIONS = {
     powered_by: 'Powered by GlocalBridge',
     stat1: '3개 그룹사',
     stat2: '4개 조선소',
-    stat3: '40과 커리큘럼',
+    stat3: '6레벨 × 20과',
     stat4: '3개 언어 지원',
-    level1_btn: '1급 초급 1',
-    level2_btn: '2급 초급 2',
+    level0_btn: '0급 입문',
+    level1_btn: '1급 초급1',
+    level2_btn: '2급 초급2',
+    level3_btn: '3급 중급1',
+    level4_btn: '4급 중급2',
+    level5_btn: '5급 고급',
     cert_btn: '수료증',
     footer_copy: '© 2026 GlocalBridge · 법무부 사회통합프로그램 연계',
   },
@@ -43,10 +47,14 @@ const TRANSLATIONS = {
     powered_by: 'Powered by GlocalBridge',
     stat1: '3 Groups',
     stat2: '4 Shipyards',
-    stat3: '40 Lessons',
+    stat3: '6 Levels × 20',
     stat4: '3 Languages',
-    level1_btn: 'Level 1 Beginner',
-    level2_btn: 'Level 2 Beginner',
+    level0_btn: 'L0 Foundation',
+    level1_btn: 'L1 Beginner 1',
+    level2_btn: 'L2 Beginner 2',
+    level3_btn: 'L3 Intermediate 1',
+    level4_btn: 'L4 Intermediate 2',
+    level5_btn: 'L5 Advanced',
     cert_btn: 'Certificate',
     footer_copy: '© 2026 GlocalBridge · Ministry of Justice Social Integration Program',
   },
@@ -56,10 +64,14 @@ const TRANSLATIONS = {
     powered_by: 'Powered by GlocalBridge',
     stat1: '3 tap doan',
     stat2: '4 xuong dong tau',
-    stat3: '40 bai hoc',
+    stat3: '6 cap × 20 bai',
     stat4: '3 ngon ngu',
-    level1_btn: 'Cap 1 Co ban',
-    level2_btn: 'Cap 2 Co ban',
+    level0_btn: 'C0 Nhap mon',
+    level1_btn: 'C1 So cap 1',
+    level2_btn: 'C2 So cap 2',
+    level3_btn: 'C3 Trung cap 1',
+    level4_btn: 'C4 Trung cap 2',
+    level5_btn: 'C5 Cao cap',
     cert_btn: 'Chung chi',
     footer_copy: '© 2026 GlocalBridge · Chuong trinh hoi nhap xa hoi Bo Tu phap',
   }
@@ -174,8 +186,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="stat-box-label" data-i18n="stat2">4개 조선소</div>
   </div>
   <div class="stat-box">
-    <div class="stat-box-num">40</div>
-    <div class="stat-box-label" data-i18n="stat3">40과 커리큘럼</div>
+    <div class="stat-box-num">120</div>
+    <div class="stat-box-label" data-i18n="stat3">6레벨 × 20과</div>
   </div>
   <div class="stat-box">
     <div class="stat-box-num">3</div>
@@ -194,10 +206,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="card-body">
         <span class="card-emoji">🌊</span>
         <div class="card-name-ko">한화오션</div>
-        <div class="card-name-en">Hanwha Ocean</div>
+        <div class="card-name-en">Hanwha Ocean · 사회통합프로그램 KIIP</div>
         <div class="card-btns">
-          <a href="HanwhaOcean_Level1_Index.html" class="card-btn" style="background:#003366;" data-i18n="level1_btn">1급 초급 1</a>
-          <a href="HanwhaOcean_Level2_Index.html" class="card-btn" style="background:#004488;" data-i18n="level2_btn">2급 초급 2</a>
+          <a href="HanwhaOcean_Level0_Index.html" class="card-btn" style="background:#15803d;" data-i18n="level0_btn">0급 입문</a>
+          <a href="HanwhaOcean_Level1_Index.html" class="card-btn" style="background:#003366;" data-i18n="level1_btn">1급 초급1</a>
+          <a href="HanwhaOcean_Level2_Index.html" class="card-btn" style="background:#004488;" data-i18n="level2_btn">2급 초급2</a>
+          <a href="#" class="card-btn" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);cursor:not-allowed;" onclick="event.preventDefault();">🔒 3급 중급1 (준비 중)</a>
+          <a href="#" class="card-btn" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);cursor:not-allowed;" onclick="event.preventDefault();">🔒 4급 중급2 (준비 중)</a>
+          <a href="#" class="card-btn" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.4);cursor:not-allowed;" onclick="event.preventDefault();">🔒 5급 고급 (준비 중)</a>
           <a href="HanwhaOcean_Certificate.html" class="card-btn btn-cert" data-i18n="cert_btn">수료증</a>
         </div>
       </div>
@@ -266,9 +282,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <span style="font-size:20px;">📚</span>
     <div style="font-size:14px;font-weight:800;color:#fff;margin:6px 0 4px;">공유 커리큘럼 안내</div>
     <div style="font-size:11px;color:rgba(255,255,255,0.45);line-height:1.8;">
-      모든 조선소의 과정 내용(1급 20과, 2급 20과)은 동일한 커리큘럼을 공유합니다.<br>
+      모든 조선소의 과정 내용(0~5급 총 6레벨 × 20과)은 동일한 KIIP 커리큘럼을 공유합니다.<br>
+      한화오션은 0·1·2급 학습 가능, 3·4·5급은 순차 오픈 예정입니다.<br>
       수료증과 교육 페이지는 각 회사별로 커스터마이징됩니다.<br>
-      <span style="color:rgba(255,255,255,0.3);">All shipyards share the same curriculum · Certificates & branding are company-specific.</span>
+      <span style="color:rgba(255,255,255,0.3);">All shipyards share the same KIIP curriculum (6 levels × 20 lessons) · Certificates & branding are company-specific.</span>
     </div>
   </div>
 

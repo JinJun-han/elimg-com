@@ -1,0 +1,786 @@
+
+// ===== TTS =====
+const TTS = {
+  speak(text, lang='ko-KR', rate=0.8) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang; u.rate = rate; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const koVoice = voices.find(v => v.lang.startsWith('ko')) || voices.find(v => v.lang.includes('ko'));
+    if (koVoice) u.voice = koVoice;
+    window.speechSynthesis.speak(u);
+  },
+  init() { if (window.speechSynthesis) window.speechSynthesis.getVoices(); }
+};
+window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
+
+function ttsBtn(text) {
+  return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'").replace(/"/g,"&quot;")}')" title="발음 듣기">🔊</button>`;
+}
+
+// ===== STATE =====
+const STATE = {
+  section: 0,
+  vocabFlipped: {},
+  vocabShowEng: true,
+  listenRevealed: false,
+  listenAnswers: {},
+  readAnswers: {},
+  writingText: '',
+  sampleShown: false,
+  quizAnswers: {},
+  quizDone: false,
+  lang: localStorage.getItem('kiip_lang') || 'ko',
+};
+
+function setState(newState) {
+  Object.assign(STATE, newState);
+  render();
+}
+
+// ===== SECTIONS =====
+const SECTIONS = [
+  {id:0, label:'도입', icon:'🏠'},
+  {id:1, label:'어휘', icon:'📝'},
+  {id:2, label:'문법', icon:'📐'},
+  {id:3, label:'말하기', icon:'💬'},
+  {id:4, label:'듣기', icon:'👂'},
+  {id:5, label:'발음', icon:'🔊'},
+  {id:6, label:'읽기', icon:'📖'},
+  {id:7, label:'쓰기', icon:'✏️'},
+  {id:8, label:'문화', icon:'🎎'},
+  {id:9, label:'퀴즈', icon:'✅'},
+  {id:10, label:'AI실습', icon:'🤖'},
+];
+
+// ===== VOCAB =====
+const VOCAB = [
+  // 소비·쇼핑
+  {kor:'소비하다', pron:'so-bi-ha-da', eng:'to consume / to spend', vi:'Tiêu dùng, chi tiêu', cat:'소비·쇼핑'},
+  {kor:'지출', pron:'ji-chul', eng:'expenditure / spending', vi:'Chi tiêu, khoản chi', cat:'소비·쇼핑'},
+  {kor:'할인', pron:'ha-rin', eng:'discount', vi:'Giảm giá', cat:'소비·쇼핑'},
+  {kor:'영수증', pron:'yeong-su-jeung', eng:'receipt', vi:'Hóa đơn, biên lai', cat:'소비·쇼핑'},
+  {kor:'환불하다', pron:'hwan-bul-ha-da', eng:'to get a refund', vi:'Hoàn tiền', cat:'소비·쇼핑'},
+  {kor:'교환하다', pron:'gyo-hwan-ha-da', eng:'to exchange (a product)', vi:'Đổi hàng', cat:'소비·쇼핑'},
+  {kor:'충동구매', pron:'chung-dong-gu-mae', eng:'impulse buying', vi:'Mua sắm bốc đồng', cat:'소비·쇼핑'},
+  // 경제·금융
+  {kor:'저축하다', pron:'jeo-chuk-ha-da', eng:'to save (money)', vi:'Tiết kiệm tiền', cat:'경제·금융'},
+  {kor:'대출', pron:'dae-chul', eng:'loan', vi:'Vay tiền, khoản vay', cat:'경제·금융'},
+  {kor:'이자', pron:'i-ja', eng:'interest (on money)', vi:'Lãi suất, tiền lãi', cat:'경제·금융'},
+  {kor:'가계부', pron:'ga-gye-bu', eng:'household account book / budget diary', vi:'Sổ chi tiêu gia đình', cat:'경제·금융'},
+  {kor:'신용카드', pron:'si-nyong-ka-deu', eng:'credit card', vi:'Thẻ tín dụng', cat:'경제·금융'},
+  {kor:'현금', pron:'hyeon-geum', eng:'cash', vi:'Tiền mặt', cat:'경제·금융'},
+  // 가격·비교
+  {kor:'비싸다', pron:'bi-ssa-da', eng:'to be expensive', vi:'Đắt (tiền)', cat:'가격·비교'},
+  {kor:'저렴하다', pron:'jeo-ryeom-ha-da', eng:'to be affordable / cheap', vi:'Rẻ, phải chăng', cat:'가격·비교'},
+  {kor:'가성비', pron:'ga-seong-bi', eng:'cost-effectiveness / value for money', vi:'Tính giá trị đồng tiền', cat:'가격·비교'},
+  {kor:'물가', pron:'mul-ga', eng:'price level / cost of living', vi:'Mức giá cả, giá sinh hoạt', cat:'가격·비교'},
+  {kor:'세금', pron:'se-geum', eng:'tax', vi:'Thuế', cat:'가격·비교'},
+  // 소비 습관
+  {kor:'낭비하다', pron:'nang-bi-ha-da', eng:'to waste (money / resources)', vi:'Lãng phí', cat:'소비 습관'},
+  {kor:'절약하다', pron:'jeo-ryak-ha-da', eng:'to save / to be frugal', vi:'Tiết kiệm, tiêu dùng hợp lý', cat:'소비 습관'},
+  {kor:'비교하다', pron:'bi-gyo-ha-da', eng:'to compare', vi:'So sánh', cat:'소비 습관'},
+  {kor:'합리적이다', pron:'ham-ni-jeog-i-da', eng:'to be rational / reasonable', vi:'Hợp lý, có lý trí', cat:'소비 습관'},
+  {kor:'계획적으로', pron:'gye-hoek-jeog-eu-ro', eng:'systematically / as planned', vi:'Có kế hoạch, có tổ chức', cat:'소비 습관'},
+];
+
+const ECONOMY_EXPR = [
+  {expr:'티끌 모아 태산', meaning:'Little drops make an ocean (every penny counts)', vi:'Góp gió thành bão, tiết kiệm từng chút', ex:'티끌 모아 태산이라고 조금씩 저축해 보세요.'},
+  {expr:'돈을 물 쓰듯 하다', meaning:'to spend money like water (extravagantly)', vi:'Tiêu tiền như nước', ex:'요즘 돈을 물 쓰듯 써서 저축이 하나도 안 돼요.'},
+  {expr:'가격 대비 성능', meaning:'price-to-performance ratio (value for money)', vi:'Hiệu suất so với giá cả', ex:'이 제품은 가격 대비 성능이 정말 좋아요.'},
+  {expr:'알뜰살뜰하다', meaning:'to be thrifty and careful with money', vi:'Tiết kiệm và cẩn thận trong chi tiêu', ex:'그 사람은 정말 알뜰살뜰하게 생활해요.'},
+  {expr:'분수에 맞게 살다', meaning:'to live within one\'s means', vi:'Sống phù hợp với khả năng tài chính', ex:'분수에 맞게 살아야 나중에 후회가 없어요.'},
+];
+
+// ===== GRAMMAR =====
+const GRAM1 = {
+  title: '-에 비해(서)',
+  eng: 'compared to / in comparison with',
+  desc: '두 가지를 비교할 때 사용. 앞에 오는 것을 기준으로 뒤에 오는 것의 차이를 표현함',
+  descEng: 'Used to compare two things. Expresses a difference using the preceding noun as a standard.',
+  rule: '명사 + 에 비해(서) + 비교 내용',
+  conj: [
+    {base:'가격', form:'가격에 비해(서)'},
+    {base:'작년', form:'작년에 비해(서)'},
+    {base:'다른 나라', form:'다른 나라에 비해(서)'},
+    {base:'기대', form:'기대에 비해(서)'},
+  ],
+  examples: [
+    {kor:'한국은 물가가 베트남에 비해서 비싼 편이에요.', eng:'Compared to Vietnam, prices in Korea tend to be more expensive.', vi:'So với Việt Nam, giá cả ở Hàn Quốc thường đắt hơn.'},
+    {kor:'이 제품은 가격에 비해서 품질이 정말 좋아요.', eng:'Compared to the price, the quality of this product is really good.', vi:'So với giá, chất lượng sản phẩm này thực sự tốt.'},
+    {kor:'올해는 작년에 비해 물가가 많이 올랐어요.', eng:'Compared to last year, prices have risen a lot this year.', vi:'So với năm ngoái, giá cả năm nay đã tăng nhiều.'},
+    {kor:'온라인 쇼핑은 오프라인에 비해 더 저렴한 경우가 많아요.', eng:'Online shopping is often cheaper compared to offline shopping.', vi:'Mua sắm online thường rẻ hơn so với mua trực tiếp.'},
+    {kor:'기대에 비해서 맛이 별로 없었어요.', eng:'Compared to my expectations, it wasn\'t very tasty.', vi:'So với kỳ vọng, vị không ngon cho lắm.'},
+  ],
+  practice: [
+    {q:'이 가게는 다른 가게 _______ 가격이 싸요. (비해서)', ans:'에 비해서'},
+    {q:'올해 소비가 지난해 _______ 많이 늘었어요. (비해)', ans:'에 비해'},
+    {q:'한국 물가는 제 나라 _______ 비싼 편이에요. (비해서)', ans:'에 비해서'},
+    {q:'이 제품은 품질 _______ 너무 비싸요. (에 비해)', ans:'에 비해'},
+    {q:'기대 _______ 결과가 좋지 않았어요. (에 비해서)', ans:'에 비해서'},
+  ],
+};
+
+const GRAM2 = {
+  title: '-는 반면(에)',
+  eng: 'on the other hand / whereas / while',
+  desc: '두 가지 상황이 서로 대조됨을 나타낼 때 사용. 앞뒤 내용이 반대되는 관계임을 강조함',
+  descEng: 'Used to contrast two situations. Emphasizes that the two clauses are opposite or contrasting.',
+  rule: '동사/형용사 어간 + -는 반면(에) / 명사 + 인 반면(에)',
+  conj: [
+    {base:'비싸다 (형용사)', form:'비싼 반면에'},
+    {base:'저축하다 (동사)', form:'저축하는 반면에'},
+    {base:'현금 (명사)', form:'현금인 반면에'},
+    {base:'낭비하다 (동사)', form:'낭비하는 반면에'},
+  ],
+  examples: [
+    {kor:'백화점은 품질이 좋은 반면에 가격이 비싸요.', eng:'Department stores have good quality, whereas the prices are expensive.', vi:'Trung tâm thương mại có chất lượng tốt, trong khi đó giá lại đắt.'},
+    {kor:'현금은 편리한 반면에 도난 위험이 있어요.', eng:'Cash is convenient, whereas there is a risk of theft.', vi:'Tiền mặt tiện lợi, nhưng ngược lại có nguy cơ bị mất cắp.'},
+    {kor:'동생은 돈을 잘 모으는 반면에 저는 잘 쓰는 편이에요.', eng:'My younger sibling saves money well, whereas I tend to spend it.', vi:'Em tôi tiết kiệm giỏi, trong khi tôi lại hay tiêu.'},
+    {kor:'온라인 쇼핑은 가격이 저렴한 반면에 배송 시간이 걸려요.', eng:'Online shopping is affordable, whereas it takes time for delivery.', vi:'Mua online giá rẻ, nhưng ngược lại phải chờ giao hàng.'},
+    {kor:'신용카드는 사용하기 편한 반면에 과소비하기 쉬워요.', eng:'Credit cards are convenient to use, whereas it\'s easy to overspend.', vi:'Thẻ tín dụng tiện dùng, nhưng dễ tiêu quá mức.'},
+  ],
+  practice: [
+    {q:'이 가게는 가격이 싼 _______ 품질이 좋지 않아요.', ans:'반면에'},
+    {q:'신용카드는 편리한 _______ 관리가 어려워요.', ans:'반면에'},
+    {q:'전통 시장은 저렴한 _______ 대형마트는 편리해요.', ans:'반면에'},
+    {q:'누나는 저축을 잘하는 _______ 형은 소비가 많아요.', ans:'반면에'},
+    {q:'이 제품은 디자인이 좋은 _______ 내구성이 약해요.', ans:'반면에'},
+  ],
+  note: '⚠️ 비교: -는 반면에 vs -지만\n• -는 반면에: 대조를 강하게 강조, 주로 글쓰기·발표에서 사용\n• -지만: 일상 대화에서 자연스러운 역접 표현\n예: 값이 비싼 반면에 품질이 좋아요. (강조)\n    값이 비싸지만 품질이 좋아요. (일상)',
+};
+
+// ===== DIALOGUES =====
+const DIALOGUES = [
+  {
+    title:'대화 1: 쇼핑 비교',
+    situation:'상황: 친구와 함께 쇼핑하면서 제품을 비교',
+    lines:[
+      {sp:'A', side:'L', text:'이 가방 어때요? 디자인이 마음에 드는데 가격이 좀 비싸네요.', eng:'How is this bag? I like the design, but the price is a bit expensive.', vi:'Túi này sao? Tôi thích thiết kế nhưng giá hơi đắt nhỉ.'},
+      {sp:'B', side:'R', text:'저쪽 가방에 비해서 많이 비싸네요. 가성비를 따지면 저쪽이 더 나을 것 같아요.', eng:'Compared to that bag over there, it\'s much more expensive. In terms of value for money, that one seems better.', vi:'So với chiếc túi đằng kia thì đắt hơn nhiều. Xét về giá trị đồng tiền thì cái kia có vẻ hơn.'},
+      {sp:'A', side:'L', text:'맞아요. 이건 품질은 좋은 반면에 실용성이 좀 떨어지는 것 같아요.', eng:'You\'re right. This one has good quality, whereas the practicality seems a bit lacking.', vi:'Đúng vậy. Cái này chất lượng tốt, nhưng ngược lại tính thực dụng hơi kém.'},
+      {sp:'B', side:'R', text:'할인 행사할 때 사는 게 나을 것 같아요. 혹시 온라인에서 찾아볼까요?', eng:'It might be better to buy it when there\'s a sale. Shall we look online?', vi:'Chờ dịp giảm giá mua sẽ tốt hơn. Hay mình tìm xem trên mạng nhé?'},
+      {sp:'A', side:'L', text:'좋아요! 온라인은 오프라인에 비해서 보통 더 저렴하니까요.', eng:'Good idea! Online is usually cheaper compared to offline.', vi:'Ý kiến hay! Mua online thường rẻ hơn so với mua trực tiếp mà.'},
+    ]
+  },
+  {
+    title:'대화 2: 소비 습관 이야기',
+    situation:'상황: 동료와 월급날 이후 소비에 대해 이야기',
+    lines:[
+      {sp:'A', side:'L', text:'이번 달에 지출이 너무 많아서 저축을 못 했어요.', eng:'My expenditures were too high this month, so I couldn\'t save anything.', vi:'Tháng này chi tiêu nhiều quá nên không tiết kiệm được.'},
+      {sp:'B', side:'R', text:'저도 그래요. 충동구매를 하는 반면에 계획 소비를 잘 못하는 편이에요.', eng:'Me too. I tend to make impulse purchases, whereas I\'m not good at planned spending.', vi:'Tôi cũng vậy. Tôi hay mua bốc đồng, trong khi lại không giỏi chi tiêu có kế hoạch.'},
+      {sp:'A', side:'L', text:'저는 가계부를 써보려고 했는데 3일도 못 하겠더라고요.', eng:'I tried keeping a household account book, but I couldn\'t even last 3 days.', vi:'Tôi đã thử viết sổ chi tiêu nhưng không làm được 3 ngày.'},
+      {sp:'B', side:'R', text:'앱으로 하면 훨씬 편해요. 카드 내역을 자동으로 기록해 줘서요.', eng:'Using an app is much more convenient. It automatically records your card transactions.', vi:'Dùng app thì tiện hơn nhiều. Nó tự ghi lại lịch sử thẻ cho bạn.'},
+      {sp:'A', side:'L', text:'그래요? 어떤 앱이에요? 다른 앱들에 비해서 사용하기 쉬운가요?', eng:'Really? What app is it? Is it easy to use compared to other apps?', vi:'Vậy hả? App gì vậy? Có dễ dùng hơn so với các app khác không?'},
+      {sp:'B', side:'R', text:'네, 화면이 단순한 반면에 기능이 충분해서 좋아요.', eng:'Yes, the interface is simple whereas the features are sufficient, so it\'s good.', vi:'Có, giao diện đơn giản nhưng tính năng đủ dùng nên thích lắm.'},
+    ]
+  },
+  {
+    title:'대화 3: 환불·교환',
+    situation:'상황: 마트 서비스 센터에서 교환 요청',
+    lines:[
+      {sp:'직원', side:'L', text:'어서 오세요. 무엇을 도와드릴까요?', eng:'Welcome. How can I help you?', vi:'Xin chào. Tôi có thể giúp gì cho bạn?'},
+      {sp:'고객', side:'R', text:'이 제품을 교환하고 싶어요. 며칠 전에 샀는데 불량품인 것 같아요.', eng:'I\'d like to exchange this product. I bought it a few days ago, and it seems defective.', vi:'Tôi muốn đổi sản phẩm này. Tôi mua vài ngày trước, hình như bị lỗi.'},
+      {sp:'직원', side:'L', text:'영수증 가지고 오셨어요? 구매일로부터 7일 이내이면 교환이 가능합니다.', eng:'Did you bring a receipt? If it\'s within 7 days of purchase, an exchange is possible.', vi:'Bạn có mang hóa đơn không? Nếu trong vòng 7 ngày kể từ ngày mua thì có thể đổi.'},
+      {sp:'고객', side:'R', text:'네, 여기 있어요. 교환 대신 환불도 가능한가요?', eng:'Yes, here it is. Is a refund also possible instead of an exchange?', vi:'Có, đây ạ. Ngoài đổi hàng thì hoàn tiền có được không?'},
+      {sp:'직원', side:'L', text:'네, 가능합니다. 현금으로 사신 반면에 카드 환불도 원하시면 카드로도 드릴 수 있어요.', eng:'Yes, it\'s possible. You paid in cash, whereas if you\'d like a card refund, we can do that too.', vi:'Có được ạ. Bạn trả tiền mặt, nhưng nếu muốn hoàn vào thẻ thì cũng có thể.'},
+      {sp:'고객', side:'R', text:'현금으로 주시면 감사하겠어요. 다음에도 이 가게를 이용할게요.', eng:'I\'d appreciate it in cash, please. I\'ll use this store again.', vi:'Vậy hoàn tiền mặt cho tôi ạ. Lần sau tôi sẽ tiếp tục mua ở đây.'},
+    ]
+  },
+];
+
+const FREE_SPEAKING = [
+  {q:'한국에서 생활하면서 소비 습관이 어떻게 바뀌었어요?', eng:'How have your spending habits changed since living in Korea?', vi:'Kể từ khi sống ở Hàn Quốc, thói quen chi tiêu của bạn thay đổi thế nào?'},
+  {q:'절약을 위해 어떤 방법을 사용하고 있어요?', eng:'What methods do you use to save money?', vi:'Bạn dùng cách nào để tiết kiệm tiền?'},
+  {q:'온라인 쇼핑과 오프라인 쇼핑 중 어떤 것을 더 좋아해요? 왜요?', eng:'Which do you prefer, online or offline shopping? Why?', vi:'Bạn thích mua sắm online hay trực tiếp hơn? Tại sao?'},
+];
+
+// ===== LISTENING =====
+const LISTENING_SCRIPT = `진행자: 오늘은 한국의 소비 문화에 대해 이야기해 볼게요. 두 분은 한국에서 소비할 때 어떤 점이 인상적이었어요?
+
+마야: 저는 온라인 쇼핑이 정말 편리한 것 같아요. 베트남에 비해서 배송이 훨씬 빠르고 반품도 쉬운 편이에요.
+
+지우: 저도 그 점이 좋아요. 그런데 너무 편리한 반면에 충동구매를 하게 되는 것 같아요. 지난달에 필요하지 않은 것들을 많이 샀어요.
+
+진행자: 절약하는 방법은 어떤 것이 있을까요?
+
+마야: 저는 가계부 앱을 사용해요. 매일 지출을 기록하는 반면에 월말에 얼마나 썼는지 확인할 수 있어요.
+
+지우: 저는 쇼핑 전에 미리 목록을 만들어요. 목록에 없는 것은 사지 않으려고 노력해요. 계획적으로 소비하는 것이 중요한 것 같아요.`;
+
+const LISTEN_QS = [
+  {q:'마야가 한국 온라인 쇼핑에서 좋다고 한 점은?', opts:['가격이 싸다','배송이 빠르고 반품이 쉽다','할인이 많다','품질이 좋다'], ans:1, exp:'베트남에 비해서 배송이 훨씬 빠르고 반품도 쉬운 편이에요.'},
+  {q:'지우가 충동구매를 하게 된 이유는?', opts:['물건이 필요해서','친구의 추천','너무 편리해서','가격이 싸서'], ans:2, exp:'너무 편리한 반면에 충동구매를 하게 되는 것 같아요.'},
+  {q:'마야가 지출을 관리하는 방법은?', opts:['통장을 따로 만든다','가계부 앱을 사용한다','현금만 사용한다','신용카드를 안 쓴다'], ans:1, exp:'가계부 앱을 사용해요. 매일 지출을 기록해요.'},
+  {q:'지우가 충동구매를 줄이기 위해 하는 것은?', opts:['신용카드를 안 쓴다','쇼핑 전에 목록을 만든다','온라인 쇼핑을 안 한다','매일 가격을 비교한다'], ans:1, exp:'쇼핑 전에 미리 목록을 만들어요. 목록에 없는 것은 사지 않으려고 노력해요.'},
+];
+
+// ===== PRONUNCIATION =====
+const PRON_RULE = {
+  title: '경음화 (Tensification / Fortis Rule)',
+  desc: '받침 뒤에 예사소리(ㄱ,ㄷ,ㅂ,ㅅ,ㅈ)가 오면 된소리(ㄲ,ㄸ,ㅃ,ㅆ,ㅉ)로 발음됨',
+  descEng: 'When a plain consonant (ㄱ,ㄷ,ㅂ,ㅅ,ㅈ) follows a final consonant (받침), it becomes a tense consonant.',
+};
+const PRON_WORDS = [
+  {kor:'신용카드', phonetic:'[신용카드] → [시뇽까드]', note:'ㅇ받침 + ㄱ → ㄲ'},
+  {kor:'가격 대비', phonetic:'[가격대비] → [가격때비]', note:'ㄱ받침 + ㄷ → ㄸ'},
+  {kor:'적금', phonetic:'[적금] → [적끔]', note:'ㄱ받침 + ㄱ → ㄲ'},
+  {kor:'지출', phonetic:'[지출] → [지출]', note:'받침 없음, 변화 없음'},
+  {kor:'할인', phonetic:'[할인] → [하린]', note:'연음 (ㄹ받침 + 이)'},
+  {kor:'소비', phonetic:'[소비] → [소비]', note:'경음화 없음'},
+];
+
+// ===== READING =====
+const READING_TEXT = `현대 한국 사회에서는 다양한 방식으로 소비가 이루어집니다. 전통 시장에 비해서 대형 마트나 온라인 쇼핑몰을 이용하는 사람들이 많아졌습니다.
+
+온라인 쇼핑은 가격이 저렴한 반면에 직접 물건을 보고 살 수 없다는 단점이 있습니다. 반대로 오프라인 매장은 물건을 직접 확인할 수 있는 반면에 온라인보다 가격이 비싼 경우가 많습니다.
+
+한국의 물가는 다른 아시아 국가에 비해서 높은 편입니다. 특히 서울은 세계에서도 생활비가 비싼 도시 중 하나입니다. 그래서 많은 사람들이 가성비를 중요하게 생각하고, 할인 정보를 꼼꼼히 확인하며 쇼핑을 합니다.
+
+최근에는 합리적인 소비를 위해 가계부 앱을 사용하거나 신용카드 대신 현금을 사용하는 사람들도 늘고 있습니다. 또한 충동구매를 줄이려고 쇼핑 전에 필요한 물건 목록을 미리 작성하는 방법도 많이 사용됩니다.
+
+절약은 작은 습관에서 시작됩니다. 티끌 모아 태산이라는 말처럼, 매일 조금씩 절약하면 나중에 큰 돈이 될 수 있습니다.`;
+
+const READ_QS = [
+  {q:'온라인 쇼핑의 단점으로 언급된 것은?', opts:['배송이 느리다','직접 물건을 볼 수 없다','할인이 없다','환불이 어렵다'], ans:1, exp:'온라인 쇼핑은 직접 물건을 보고 살 수 없다는 단점이 있습니다.'},
+  {q:'한국 물가에 대한 설명으로 맞는 것은?', opts:['아시아에서 가장 싸다','다른 아시아 국가보다 높은 편이다','물가가 낮아지고 있다','물가가 일정하다'], ans:1, exp:'한국의 물가는 다른 아시아 국가에 비해서 높은 편입니다.'},
+  {q:'"티끌 모아 태산"의 의미는?', opts:['큰 돈은 한 번에 모아야 한다','작은 절약이 쌓이면 큰 돈이 된다','돈보다 건강이 중요하다','낭비하면 후회한다'], ans:1, exp:'매일 조금씩 절약하면 나중에 큰 돈이 될 수 있습니다.'},
+];
+
+// ===== WRITING =====
+const WRITING_PROMPT = {
+  title: '나의 소비 습관',
+  eng: 'Write about your spending habits',
+  vi: 'Viết về thói quen chi tiêu của bạn',
+  guide: [
+    '한국에서의 소비 습관을 다른 나라와 비교해 보세요 (-에 비해서)',
+    '온라인/오프라인 쇼핑의 장단점을 대조해서 써 보세요 (-는 반면에)',
+    '절약하기 위해 어떤 노력을 하는지 쓰세요',
+    '가장 최근에 산 물건과 그 이유를 설명해 보세요',
+    '150자 이상 써 보세요',
+  ],
+  sample: '저는 한국에서 생활하면서 소비 습관이 많이 바뀌었어요. 베트남에 비해서 온라인 쇼핑이 훨씬 편리하고 빠른 반면에 충동구매를 하게 될 때가 많아요. 그래서 요즘은 가계부 앱으로 지출을 기록하고, 쇼핑할 때 미리 목록을 만들어요. 가성비를 꼼꼼히 따지고 할인할 때만 사려고 노력해요. 절약은 작은 습관에서 시작된다고 생각해요.',
+};
+
+// ===== CULTURE =====
+const CULTURE = {
+  title: '한국의 소비 문화',
+  items: [
+    {icon:'🏪', name:'전통 시장 vs 대형마트', desc:'한국에는 전통 시장이 많아요. 전통 시장은 대형마트에 비해서 가격이 저렴한 반면에 주차나 접근성이 불편한 경우가 있어요. 최근 정부에서는 전통 시장 살리기 운동을 하고 있어요.', eng:'Korea has many traditional markets. Traditional markets are cheaper compared to large supermarkets, whereas parking and accessibility can be inconvenient. Recently the government has been running campaigns to revitalize traditional markets.', vi:'Hàn Quốc có nhiều chợ truyền thống. Chợ truyền thống giá rẻ hơn siêu thị lớn, nhưng ngược lại đỗ xe và tiếp cận đôi khi bất tiện. Gần đây chính phủ đang thúc đẩy phong trào hồi sinh chợ truyền thống.'},
+    {icon:'📱', name:'모바일 결제 문화', desc:'한국은 삼성페이, 카카오페이 등 모바일 결제가 매우 발달했어요. 현금 사용이 줄어들고 있는 반면에 모바일 결제 비율은 계속 높아지고 있어요.', eng:'Korea has highly developed mobile payment systems like Samsung Pay and KakaoPay. Cash usage is declining, whereas the proportion of mobile payments continues to rise.', vi:'Hàn Quốc có hệ thống thanh toán di động rất phát triển như Samsung Pay, KakaoPay. Dùng tiền mặt đang giảm, trong khi đó tỷ lệ thanh toán di động tiếp tục tăng.'},
+    {icon:'🎁', name:'쿠팡·네이버 쇼핑', desc:'쿠팡은 당일 배송, 새벽 배송 서비스로 유명해요. 다른 나라 배송에 비해서 훨씬 빠른 편이에요. 외국인도 쉽게 이용할 수 있어요.', eng:'Coupang is famous for same-day and dawn delivery services. Compared to delivery in other countries, it is much faster. Foreigners can also use it easily.', vi:'Coupang nổi tiếng với dịch vụ giao hàng trong ngày và giao hàng sáng sớm. So với giao hàng ở các nước khác thì nhanh hơn nhiều. Người nước ngoài cũng dễ sử dụng.'},
+    {icon:'💸', name:'세일 문화 (블랙프라이데이·신세계세일)', desc:'한국에서는 백화점 세일, 블랙프라이데이, 코리아세일페스타 등 다양한 할인 행사가 있어요. 이 기간에 합리적으로 쇼핑하면 큰 절약이 가능해요.', eng:'In Korea, there are various discount events such as department store sales, Black Friday, and Korea Sale Festa. Shopping wisely during these periods can lead to big savings.', vi:'Ở Hàn Quốc có nhiều sự kiện giảm giá như sale trung tâm thương mại, Black Friday, Korea Sale Festa. Mua sắm khôn ngoan trong dịp này có thể tiết kiệm được nhiều.'},
+  ],
+  discussion: [
+    {q:'여러분 나라의 쇼핑 문화와 한국의 쇼핑 문화를 비교해 보세요.', eng:'Compare shopping culture in your country with shopping culture in Korea.', vi:'Hãy so sánh văn hóa mua sắm ở nước bạn với văn hóa mua sắm ở Hàn Quốc.'},
+    {q:'온라인 쇼핑이 발전하면서 어떤 장단점이 생겼나요?', eng:'What advantages and disadvantages have come with the development of online shopping?', vi:'Khi mua sắm online phát triển, những lợi ích và bất lợi gì nảy sinh?'},
+  ],
+};
+
+// ===== QUIZ =====
+const QUIZ = [
+  {
+    q:'"할인"의 뜻은 무엇이에요?',
+    opts:['가격을 올리다','가격을 낮추다','물건을 교환하다','세금을 내다'],
+    ans: 1,
+  },
+  {
+    q:'"이 가방은 가격 _____ 품질이 정말 좋아요." 빈칸에 알맞은 것은?',
+    opts:['에 비해서','는 반면에','이기 때문에','으로 인해'],
+    ans: 0,
+  },
+  {
+    q:'다음 중 "-는 반면에"를 올바르게 사용한 문장은?',
+    opts:['온라인이 싼 반면에 오프라인은 비싸요.','온라인이 싸 반면에 오프라인은 비싸요.','온라인이 싸는 반면에 비싸요.','온라인 반면에 비싸요.'],
+    ans: 0,
+  },
+  {
+    q:'"저축하다"의 반대 의미와 가장 가까운 것은?',
+    opts:['절약하다','낭비하다','비교하다','교환하다'],
+    ans: 1,
+  },
+  {
+    q:'"올해 물가가 작년 _____ 많이 올랐어요." 빈칸에 맞는 것은?',
+    opts:['에 비해서','는 반면에','인 반면에','이라서'],
+    ans: 0,
+  },
+  {
+    q:'다음 중 "가성비"의 뜻으로 맞는 것은?',
+    opts:['가격과 성격의 비율','가격 대비 성능·품질','감성과 비용','가게와 성능'],
+    ans: 1,
+  },
+  {
+    q:'"신용카드는 편리한 _____ 과소비하기 쉬워요."',
+    opts:['에 비해서','는 반면에','기 때문에','에도 불구하고'],
+    ans: 1,
+  },
+  {
+    q:'"환불하다"의 뜻은?',
+    opts:['물건을 교환하다','지불한 돈을 돌려받다','새 물건을 사다','영수증을 받다'],
+    ans: 1,
+  },
+  {
+    q:'"티끌 모아 태산"이 의미하는 것은?',
+    opts:['큰 돈은 한 번에 모아야 한다','작은 것이 쌓이면 큰 것이 된다','낭비하면 항상 후회한다','태산처럼 큰 소비를 해야 한다'],
+    ans: 1,
+  },
+  {
+    q:'다음 문장 중 문법이 올바른 것은?',
+    opts:['한국은 베트남에 비해서 물가가 높아요.','한국은 베트남 비해서 물가가 높아요.','한국은 베트남에 비해서는 물가가 높아요도.','한국은 베트남 반면에 물가가 높아요.'],
+    ans: 0,
+  },
+];
+
+var AI_QUICK_BTNS = [
+  {emoji:'🛒', label:'소비 어휘 설명', q:'KIIP 3급 3과 어휘: 소비와 경제 관련 단어를 10개 알려주세요. 한국어, 발음, 영어, 베트남어를 포함해 주세요.'},
+  {emoji:'📊', label:'문법 연습', q:'KIIP 3급 3과: "-에 비해서"와 "-는 반면에"를 사용해서 소비·쇼핑에 관한 문장을 각각 5개씩 만들어 주세요.'},
+  {emoji:'🏪', label:'쇼핑 롤플레이', q:'한국 마트에서 물건을 환불하는 상황을 롤플레이 해주세요. 저는 KIIP 3급 학습자입니다. 환불·교환 표현을 연습하고 싶어요.'},
+  {emoji:'🇻🇳', label:'베트남어로 설명', q:'소비와 경제 관련 한국어 표현을 베트남어로 설명해 주세요. 쇼핑, 저축, 할인 관련 단어와 문장을 알려주세요.'},
+];
+
+var AICHAT = {
+  history: [],
+  loading: false,
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx];
+    if (!b) return;
+    var inp = document.getElementById('ai-chat-input');
+    if (!inp) return;
+    inp.value = b.q;
+    this.send();
+  },
+  addMsg: function(role, text) {
+    var box = document.getElementById('ai-chat-messages');
+    if (!box) return;
+    var ph = box.querySelector('.ai-placeholder');
+    if (ph) ph.remove();
+    var isUser = role === 'user';
+    var d = document.createElement('div');
+    d.style.cssText = 'display:flex;flex-direction:column;align-items:' + (isUser?'flex-end':'flex-start') + ';gap:2px;margin-bottom:6px';
+    var safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    d.innerHTML = '<div style="font-size:10px;color:#888;margin:0 4px">' + (isUser?'🙋 나':'🤖 AI') + '</div>'
+      + '<div style="max-width:90%;padding:10px 13px;border-radius:' + (isUser?'14px 14px 4px 14px':'14px 14px 14px 4px') + ';background:' + (isUser?'#f59e0b':'#fff') + ';color:' + (isUser?'#fff':'#1a202c') + ';font-size:13px;line-height:1.7;border:1px solid ' + (isUser?'#d97706':'#fde68a') + ';word-break:break-word">' + safe + '</div>';
+    box.appendChild(d);
+    box.scrollTop = box.scrollHeight;
+  },
+  setLoading: function(on) {
+    var box = document.getElementById('ai-chat-messages');
+    var el = document.getElementById('ai-loading-dot');
+    var btn = document.getElementById('ai-send-btn');
+    if (on) {
+      if (box && !el) {
+        var ld = document.createElement('div');
+        ld.id = 'ai-loading-dot';
+        ld.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:6px';
+        ld.innerHTML = '<div style="display:flex;gap:4px"><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div></div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+        box.appendChild(ld);
+        box.scrollTop = box.scrollHeight;
+      }
+      if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+    } else {
+      if (el) el.remove();
+      if (btn) { btn.textContent = '➤'; btn.disabled = false; }
+    }
+  },
+  send: async function() {
+    if (this.loading) return;
+    var inp = document.getElementById('ai-chat-input');
+    var text = inp ? inp.value.trim() : '';
+    if (!text) return;
+    this.history.push({role:'user', content:text});
+    this.addMsg('user', text);
+    if (inp) inp.value = '';
+    this.loading = true;
+    this.setLoading(true);
+    var sys = 'You are a Korean language tutor for KIIP Level 3, Lesson 3: 소비와 경제 (Consumption & Economy). The student is likely Vietnamese. Focus on -에 비해서 and -는 반면에 grammar, plus shopping/economy vocabulary. Answer in Korean with Vietnamese translation when helpful. Be concise and encouraging.';
+    try {
+      var res = await fetch('/api/chat', {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
+      if (!reply || reply.trim() === '') throw new Error('빈 응답');
+      this.history.push({role:'assistant', content:reply});
+      this.setLoading(false);
+      this.addMsg('assistant', reply);
+    } catch(e) {
+      this.setLoading(false);
+      this.addMsg('assistant', '⚠️ AI 연결 오류: ' + e.message + '\n잠시 후 다시 시도해 주세요.');
+    }
+    this.loading = false;
+  }
+};
+
+// ===== RENDER =====
+function setLang(lang) {
+  STATE.lang = lang;
+  localStorage.setItem('kiip_lang', lang);
+  render();
+}
+
+function playListeningScript() {
+  TTS.speak(LISTENING_SCRIPT.replace(/\n/g, ' '), 'ko-KR', 0.75);
+}
+
+function renderNav() {
+  return `<div class="nav">
+    <a href="/KIIP_Level3_Index" class="nav-back">← 3급 목차</a>
+    <div style="text-align:center"><div class="nav-title">3과 · 소비와 경제</div><div class="nav-sub">KIIP 3급 중급 1</div></div>
+    <div style="width:60px;text-align:right;font-size:11px;color:#d97706">${STATE.section+1}/${SECTIONS.length}</div>
+  </div>`;
+}
+
+function renderLangBar() {
+  return `<div class="lang-bar">${['ko','en','vi'].map(l=>`<button class="lang-btn-sm ${STATE.lang===l?'active':''}" onclick="setLang('${l}')">${l==='ko'?'🇰🇷 KO':l==='en'?'🇺🇸 EN':'🇻🇳 VI'}</button>`).join('')}</div>`;
+}
+
+function renderTabs() {
+  return `<div class="section-tabs">${SECTIONS.map(s=>`<button class="stab ${STATE.section===s.id?'active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}</div>`;
+}
+
+function renderBottomNav() {
+  const prev = STATE.section > 0 ? `<button class="bnav-btn" onclick="setState({section:${STATE.section-1}})">◀ 이전</button>` : `<button class="bnav-btn" style="opacity:0.3" disabled>◀ 이전</button>`;
+  const next = STATE.section < SECTIONS.length-1 ? `<button class="bnav-btn" onclick="setState({section:${STATE.section+1}})">다음 ▶</button>` : `<button class="bnav-btn" style="opacity:0.3" disabled>다음 ▶</button>`;
+  return `<div class="bottom-nav">${prev}<button class="bnav-btn" onclick="setState({section:0})"><span class="bnav-icon">🏠</span><span>홈</span></button><button class="bnav-btn" onclick="setState({section:9})"><span class="bnav-icon">✅</span><span>퀴즈</span></button>${next}</div>`;
+}
+
+// 0: 도입
+function renderIntro() {
+  return `<div class="page">
+    <div class="intro-header">
+      <div style="font-size:14px;opacity:0.8;margin-bottom:4px">KIIP 3급 · 중급 1</div>
+      <h3>3과 소비와 경제</h3>
+      <div style="font-size:14px;margin-top:4px;opacity:0.9">Consumption & Economy · Tiêu dùng & Kinh tế</div>
+      <div style="margin-top:12px;font-size:28px">🛒</div>
+    </div>
+    <div class="card card-accent">
+      <div class="section-label">학습 목표</div>
+      <div class="obj-item"><span class="obj-check">✅</span><span>소비와 경제 관련 어휘를 이해하고 사용할 수 있다</span></div>
+      <div class="obj-item"><span class="obj-check">✅</span><span><strong>-에 비해서</strong>를 사용하여 비교 표현을 할 수 있다</span></div>
+      <div class="obj-item"><span class="obj-check">✅</span><span><strong>-는 반면에</strong>를 사용하여 대조 표현을 할 수 있다</span></div>
+      <div class="obj-item"><span class="obj-check">✅</span><span>쇼핑·환불 상황에서 대화할 수 있다</span></div>
+    </div>
+    <div class="card">
+      <div class="section-label">생각해 봅시다 💭</div>
+      <div class="think-q">한국에서 쇼핑할 때 어떤 점이 인상적이었어요?<div class="eng">What impressed you about shopping in Korea?</div></div>
+      <div class="think-q">온라인 쇼핑과 오프라인 쇼핑 중 어떤 것을 더 자주 이용해요?<div class="eng">Which do you use more, online or offline shopping?</div></div>
+    </div>
+    <div class="card">
+      <div class="section-label">단원 구성</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">${SECTIONS.slice(1).map(s=>`<div style="background:#fffbeb;border-radius:8px;padding:8px;text-align:center;font-size:12px;font-weight:600;color:#92400e;border:1px solid #fde68a">${s.icon} ${s.label}</div>`).join('')}</div>
+    </div>
+    <div style="display:flex;gap:10px;margin-bottom:10px">
+      <a href="/KIIP_Level3_Lesson2" style="flex:1;background:var(--dark);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">← 2과 건강한 생활</a>
+      <a href="/KIIP_Level3_Lesson4" style="flex:1;background:#e5e7eb;color:#555;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">4과 →</a>
+    </div>
+    <div style="background:#d1fae5;border-radius:8px;height:6px;overflow:hidden;margin-bottom:4px"><div style="background:#22c55e;height:100%;width:15%"></div></div>
+    <div style="font-size:11px;color:#888;text-align:center;margin-bottom:10px">3급 전체 진도 15% · 3 / 20과</div>
+    <button onclick="setState({section:1})" style="width:100%;padding:14px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;font-size:16px;font-weight:700">학습 시작하기 →</button>
+  </div>`;
+}
+
+// 1: 어휘
+function renderVocab() {
+  const cats = [...new Set(VOCAB.map(v=>v.cat))];
+  return `<div class="page">
+    <h2>📝 어휘</h2>
+    <p class="sub">소비와 경제 어휘 · 23개 단어 · 클릭하면 뒤집혀요</p>
+    <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+      <button onclick="toggleAllVocab(true)" style="background:#f59e0b;color:#fff;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700">뜻 모두 보기</button>
+      <button onclick="toggleAllVocab(false)" style="background:#92400e;color:#fff;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700">뜻 숨기기</button>
+      <button onclick="TTS.speak('${VOCAB.map(v=>v.kor).join(', ')}')" style="background:#b45309;color:#fff;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700">🔊 전체 듣기</button>
+    </div>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">${cat}</div>
+      <div class="vocab-grid">${VOCAB.filter(v=>v.cat===cat).map(v=>{
+        const idx=VOCAB.indexOf(v); const flipped=STATE.vocabFlipped[idx];
+        return `<div class="vocab-card ${flipped?'flipped':''}" onclick="flipVocab(${idx})">
+          <div style="display:flex;align-items:center;gap:4px"><span class="vocab-kor">${v.kor}</span>${ttsBtn(v.kor)}</div>
+          <div class="vocab-pron">${v.pron}</div>
+          ${flipped||STATE.vocabShowEng?`<div class="vocab-eng">${v.eng}</div><div class="vocab-vi">${v.vi}</div>`:'<div class="vocab-eng" style="color:#fbbf24">탭하여 뜻 보기</div>'}
+        </div>`;
+      }).join('')}</div>
+    `).join('')}
+    <div style="margin-top:16px">
+      <div class="vocab-cat">💡 소비 관용 표현</div>
+      ${ECONOMY_EXPR.map(e=>`
+        <div class="card card-accent" style="margin-bottom:8px;padding:12px 14px">
+          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-size:15px;font-weight:800;color:#92400e">${e.expr}</span>${ttsBtn(e.expr)}</div>
+          <div style="font-size:12px;color:#555;margin-top:4px">${e.meaning}</div>
+          <div style="font-size:11px;color:#888;margin-top:2px">🇻🇳 ${e.vi}</div>
+          <div style="background:#fef3c7;border-radius:6px;padding:6px 10px;margin-top:6px;font-size:13px;color:#451a03">✏️ 예문: ${e.ex} ${ttsBtn(e.ex)}</div>
+        </div>
+      `).join('')}
+    </div>
+  </div>`;
+}
+
+function flipVocab(i) { setState({vocabFlipped:{...STATE.vocabFlipped,[i]:!STATE.vocabFlipped[i]}}); }
+function toggleAllVocab(show) {
+  const f={};VOCAB.forEach((v,i)=>{f[i]=show;});
+  setState({vocabFlipped:f,vocabShowEng:show});
+}
+
+// 2: 문법
+function renderGrammar() {
+  function gramBlock(g, key) {
+    return `<div class="gram-box">
+      <div class="gram-title">${g.title} ${ttsBtn(g.title)}</div>
+      <div class="gram-eng">${g.eng}</div>
+      <div class="gram-rule">📌 형태: ${g.rule}</div>
+      <div style="font-size:13px;color:#555;margin-bottom:8px;line-height:1.6">${g.desc}<br><span style="color:#888;font-size:11px">${g.descEng}</span></div>
+      <div class="section-label" style="margin-bottom:8px">활용</div>
+      <div class="gram-conj">${g.conj.map(c=>`<span class="conj-chip">${c.base} → ${c.form}</span>`).join('')}</div>
+      <div class="section-label" style="margin-bottom:8px">예문</div>
+      ${g.examples.map(e=>`<div class="example-item"><div style="flex:1"><div class="example-kor">${e.kor} ${ttsBtn(e.kor)}</div><div class="example-eng">${STATE.lang==='vi'&&e.vi?'🇻🇳 '+e.vi:e.eng}</div></div></div>`).join('')}
+      <div class="section-label" style="margin-top:10px;margin-bottom:8px">연습</div>
+      ${g.practice.map((p,pi)=>`<div class="practice-item">
+        <div class="practice-q">${p.q}</div>
+        <input class="practice-input" type="text" placeholder="답을 입력하세요..." oninput="checkPractice(this,'${p.ans}')">
+        <div id="practice-${key}-${pi}" class="answer-box" style="display:none">정답: <strong>${p.ans}</strong> ${ttsBtn(p.ans)}</div>
+        <button class="answer-reveal" onclick="showPracticeAnswer('${key}',${pi})">정답 확인</button>
+      </div>`).join('')}
+      ${g.note?`<div style="background:#fef3c7;border-radius:8px;padding:10px 12px;margin-top:8px;font-size:12px;color:#92400e;white-space:pre-line">${g.note}</div>`:''}
+    </div>`;
+  }
+  return `<div class="page"><h2>📐 문법</h2><p class="sub">이 단원의 핵심 문법 2가지를 배워 보세요</p>${gramBlock(GRAM1,'g1')}${gramBlock(GRAM2,'g2')}</div>`;
+}
+function showPracticeAnswer(key,idx){const el=document.getElementById(`practice-${key}-${idx}`);if(el)el.style.display='block';}
+function checkPractice(input,ans){if(input.value.trim()===ans){input.style.borderColor='#22c55e';input.style.background='#dcfce7';}else{input.style.borderColor='#fde68a';input.style.background='#fff';}}
+
+// 3: 말하기
+function renderSpeaking() {
+  function renderDialogue(d) {
+    return `<div class="card card-accent" style="margin-bottom:12px">
+      <div style="font-weight:700;color:#92400e;margin-bottom:4px">${d.title}</div>
+      <div style="font-size:11px;color:#888;margin-bottom:10px">${d.situation}</div>
+      <div class="dialogue-container">${d.lines.map(l=>`
+        <div class="bubble-wrap ${l.side==='R'?'right':''}">
+          <div class="avatar">${l.side==='L'?'👤':'🙂'}</div>
+          <div>
+            <div style="font-size:10px;font-weight:700;color:#f59e0b;margin-bottom:2px;${l.side==='R'?'text-align:right':''}">${l.sp}</div>
+            <div class="bubble ${l.side==='L'?'bubble-left':'bubble-right'}">
+              <div class="bubble-text">${l.text} ${ttsBtn(l.text)}</div>
+              <div class="bubble-eng">${STATE.lang==='vi'&&l.vi?'🇻🇳 '+l.vi:l.eng}</div>
+            </div>
+          </div>
+        </div>`).join('')}</div>
+      <div style="background:#fef3c7;border-radius:8px;padding:8px;margin-top:8px;font-size:12px;color:#92400e">🎭 역할극: A와 B 역할을 나누어 대화를 연습해 보세요.</div>
+    </div>`;
+  }
+  return `<div class="page">
+    <h2>💬 말하기</h2>
+    <p class="sub">소비와 경제에 대해 이야기하기</p>
+    ${DIALOGUES.map(d=>renderDialogue(d)).join('')}
+    <div class="card">
+      <div class="section-label">자유 말하기</div>
+      ${FREE_SPEAKING.map((q,i)=>`<div class="discussion-q"><span style="color:#f59e0b;font-weight:800">Q${i+1}. </span>${q.q}<div style="font-size:11px;color:#888;margin-top:4px;font-style:italic">${STATE.lang==='vi'&&q.vi?'🇻🇳 '+q.vi:q.eng}</div></div>`).join('')}
+      <div style="background:#fffbeb;border-radius:8px;padding:10px;margin-top:4px;font-size:12px;color:#92400e">💡 <strong>-에 비해서</strong>와 <strong>-는 반면에</strong>를 사용해서 말해 보세요.</div>
+    </div>
+  </div>`;
+}
+
+// 4: 듣기
+function answerListen(qi, oi) {
+  if (STATE.listenAnswers[qi] !== undefined) return;
+  setState({listenAnswers:{...STATE.listenAnswers,[qi]:oi}});
+}
+function renderListening() {
+  return `<div class="page">
+    <h2>👂 듣기</h2>
+    <p class="sub">소비와 경제에 관한 대화 듣기</p>
+    <div class="listen-box">
+      <div class="section-label" style="margin-bottom:8px">듣기 전</div>
+      <div style="font-size:14px;color:#555;margin-bottom:8px"><strong>생각해 보세요:</strong> 한국에서 쇼핑할 때 불편했던 점이 있어요?</div>
+      <div style="background:#fef3c7;border-radius:8px;padding:10px;font-size:13px"><strong>핵심 어휘 미리 보기:</strong><br>충동구매 · 가계부 앱 · 목록 · 계획적 소비 · 절약</div>
+    </div>
+    <div class="listen-box">
+      <div class="section-label" style="margin-bottom:8px">듣기 내용</div>
+      <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+        <button onclick="playListeningScript()" style="background:#f59e0b;color:#fff;border-radius:20px;padding:8px 18px;font-size:13px;font-weight:700">🔊 전체 듣기</button>
+        <button onclick="setState({listenRevealed:!STATE.listenRevealed})" style="background:#92400e;color:#fff;border-radius:20px;padding:8px 18px;font-size:13px;font-weight:700">${STATE.listenRevealed?'📄 스크립트 숨기기':'📄 스크립트 보기'}</button>
+      </div>
+      ${STATE.listenRevealed?`<div class="script-box" style="white-space:pre-line">${LISTENING_SCRIPT}</div>`:''}
+    </div>
+    <div class="listen-box">
+      <div class="section-label" style="margin-bottom:8px">듣기 문제</div>
+      ${LISTEN_QS.map((q,qi)=>{
+        const chosen=STATE.listenAnswers[qi];
+        return `<div style="margin-bottom:14px">
+          <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:8px">${qi+1}. ${q.q}</div>
+          ${q.opts.map((o,oi)=>{let cls='mcq-option';if(chosen!==undefined){if(oi===q.ans)cls+=' mcq-correct';else if(oi===chosen)cls+=' mcq-wrong';}return `<button class="${cls}" onclick="answerListen(${qi},${oi})">${o}</button>`;}).join('')}
+          ${chosen!==undefined?`<div style="background:#fffbeb;border-radius:8px;padding:8px 10px;font-size:12px;color:#92400e;margin-top:4px">💡 ${q.exp}</div>`:''}
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+}
+
+// 5: 발음
+function renderPronunciation() {
+  return `<div class="page">
+    <h2>🔊 발음</h2>
+    <p class="sub">경음화 — 소비·경제 어휘 발음 연습</p>
+    <div class="pron-rule">
+      <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:6px">${PRON_RULE.title}</div>
+      <div style="font-size:13px;color:#555;line-height:1.7">${PRON_RULE.desc}</div>
+      <div style="font-size:12px;color:#888;margin-top:4px;font-style:italic">${PRON_RULE.descEng}</div>
+    </div>
+    ${PRON_WORDS.map(w=>`<div class="pron-word"><div><span class="pron-kor">${w.kor}</span><span class="pron-phonetic">${w.phonetic}</span><div style="font-size:11px;color:#888;margin-top:2px">${w.note}</div></div>${ttsBtn(w.kor)}</div>`).join('')}
+    <div class="card card-accent" style="margin-top:12px">
+      <div class="section-label">발음 연습 문장</div>
+      ${['이 제품은 가격에 비해서 품질이 정말 좋아요.','신용카드는 편리한 반면에 과소비하기 쉬워요.','온라인 쇼핑이 오프라인에 비해 저렴한 편이에요.','할인 행사 때 사는 것이 절약하는 방법이에요.'].map(s=>`
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #fde68a">
+          <span style="font-size:14px;color:var(--text);flex:1;font-weight:500">${s}</span>${ttsBtn(s)}
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+// 6: 읽기
+function answerRead(qi,oi){if(STATE.readAnswers[qi]!==undefined)return;setState({readAnswers:{...STATE.readAnswers,[qi]:oi}});}
+function renderReading() {
+  return `<div class="page">
+    <h2>📖 읽기</h2>
+    <p class="sub">소비와 경제 · 읽고 이해하기</p>
+    <div class="card card-accent">
+      <div class="section-label">읽기 전</div>
+      <div style="font-size:13px;color:#555;margin-top:4px;line-height:1.7">💭 한국 사람들은 어떻게 쇼핑하고 어떻게 절약할까요?<br><span style="color:#888;font-size:11px">How do Koreans shop and save money?</span></div>
+    </div>
+    <div class="reading-text" style="white-space:pre-line">${READING_TEXT}</div>
+    <div class="section-label">읽기 문제</div>
+    ${READ_QS.map((q,qi)=>{
+      const chosen=STATE.readAnswers[qi];
+      return `<div class="card" style="margin-top:8px">
+        <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:8px">${qi+1}. ${q.q}</div>
+        ${q.opts.map((o,oi)=>{let cls='mcq-option';if(chosen!==undefined){if(oi===q.ans)cls+=' mcq-correct';else if(oi===chosen)cls+=' mcq-wrong';}return `<button class="${cls}" onclick="answerRead(${qi},${oi})">${o}</button>`;}).join('')}
+        ${chosen!==undefined?`<div style="background:#fffbeb;border-radius:8px;padding:8px 10px;font-size:12px;color:#92400e;margin-top:4px">💡 ${q.exp}</div>`:''}
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+// 7: 쓰기
+function renderWriting() {
+  return `<div class="page">
+    <h2>✏️ 쓰기</h2>
+    <p class="sub">${WRITING_PROMPT.title} · ${WRITING_PROMPT.eng}</p>
+    <div class="card card-accent">
+      <div class="section-label">쓰기 주제</div>
+      <div style="font-size:16px;font-weight:800;color:#92400e;margin:8px 0">🛒 나의 소비 습관을 소개해 보세요.</div>
+      <div style="font-size:13px;color:#888">🇻🇳 ${WRITING_PROMPT.vi}</div>
+    </div>
+    <div class="writing-guide">
+      <div class="section-label">쓰기 가이드</div>
+      <ul style="margin-top:6px;padding-left:4px;list-style:none">${WRITING_PROMPT.guide.map(g=>`<li style="padding:4px 0;font-size:13px;color:var(--text)">✅ ${g}</li>`).join('')}</ul>
+      <div style="background:#fffbeb;border-radius:8px;padding:8px;margin-top:6px;font-size:12px;color:#92400e">💡 <strong>-에 비해서</strong>와 <strong>-는 반면에</strong>를 꼭 사용해 보세요!</div>
+    </div>
+    <textarea class="writing-area" placeholder="예: 한국은 베트남에 비해서 온라인 쇼핑이 훨씬 편리한 반면에..." oninput="setState({writingText:this.value})">${STATE.writingText}</textarea>
+    <div class="char-counter">${STATE.writingText.length}자 / 150자 이상 목표</div>
+    <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+      <button onclick="setState({sampleShown:!STATE.sampleShown})" style="flex:1;background:#92400e;color:#fff;border-radius:10px;padding:12px;font-size:13px;font-weight:700">${STATE.sampleShown?'📄 예문 숨기기':'📄 예문 보기'}</button>
+      <button onclick="setState({section:10})" style="flex:1;background:linear-gradient(135deg,#7c3aed,#1d4ed8);color:#fff;border-radius:10px;padding:12px;font-size:13px;font-weight:700">🤖 AI 피드백 받기</button>
+    </div>
+    ${STATE.sampleShown?`<div class="card" style="margin-top:12px"><div class="section-label">예문 답안</div><div class="sample-answer">${WRITING_PROMPT.sample}</div></div>`:''}
+  </div>`;
+}
+
+// 8: 문화
+function renderCulture() {
+  return `<div class="page">
+    <h2>🎎 문화</h2>
+    <p class="sub">${CULTURE.title}</p>
+    ${CULTURE.items.map(item=>`<div class="culture-text"><div style="font-size:22px;margin-bottom:8px">${item.icon}</div><div style="font-size:15px;font-weight:800;color:#92400e;margin-bottom:6px">${item.name}</div><div>${item.desc}</div><div style="color:#888;font-size:12px;margin-top:6px;font-style:italic">${STATE.lang==='vi'?'🇻🇳 '+item.vi:item.eng}</div></div>`).join('')}
+    <div class="card">
+      <div class="section-label">토론해 봅시다 💬</div>
+      ${CULTURE.discussion.map((q,i)=>`<div class="discussion-q"><span style="color:#f59e0b;font-weight:800">Q${i+1}. </span>${q.q}<div style="font-size:11px;color:#888;margin-top:4px;font-style:italic">${STATE.lang==='vi'&&q.vi?'🇻🇳 '+q.vi:q.eng}</div></div>`).join('')}
+    </div>
+  </div>`;
+}
+
+// 9: 퀴즈
+function answerQuiz(qi,oi){if(STATE.quizDone||STATE.quizAnswers[qi]!==undefined)return;setState({quizAnswers:{...STATE.quizAnswers,[qi]:oi}});}
+function finishQuiz(){setState({quizDone:true});}
+function renderQuiz() {
+  const answered=Object.keys(STATE.quizAnswers).length;
+  const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.ans).length;
+  const pct=Math.round(correct/QUIZ.length*100);
+  if (STATE.quizDone) {
+    return `<div class="page">
+      <h2>✅ 퀴즈 결과</h2>
+      <div class="quiz-result">
+        <div style="font-size:36px;margin-bottom:8px">${pct>=80?'🏆':pct>=60?'👍':'💪'}</div>
+        <div class="score-big">${correct}/${QUIZ.length}</div>
+        <div style="font-size:18px;font-weight:700;color:#92400e;margin-top:4px">${pct}점</div>
+        <div style="font-size:13px;color:#888;margin-bottom:16px">${pct>=80?'잘했어요! 다음 단원으로 이동하세요.':'틀린 문제를 다시 확인하고 복습하세요.'}</div>
+        <button onclick="setState({quizAnswers:{},quizDone:false})" style="background:#f59e0b;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;margin-bottom:8px;width:100%">다시 풀기</button>
+        <a href="/KIIP_Level3_Lesson4" style="display:block;background:#92400e;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-align:center;text-decoration:none">다음 과: 4과 →</a>
+      </div>
+      <div style="margin-top:16px">${QUIZ.map((q,i)=>{const ok=STATE.quizAnswers[i]===q.ans;return `<div class="quiz-card" style="border-left:4px solid ${ok?'var(--green)':'var(--red)'}"><div class="quiz-num">Q${i+1} ${ok?'✅':'❌'}</div><div class="quiz-q" style="white-space:pre-line">${q.q}</div><div style="font-size:13px;background:${ok?'#dcfce7':'#fee2e2'};border-radius:8px;padding:8px 10px;color:${ok?'#166534':'#991b1b'}">정답: ${q.opts[q.ans]}</div></div>`;}).join('')}</div>
+    </div>`;
+  }
+  return `<div class="page">
+    <h2>✅ 퀴즈</h2>
+    <p class="sub">3과 소비와 경제 · ${QUIZ.length}문제 · ${answered}/${QUIZ.length} 완료</p>
+    <div style="background:#d1fae5;border-radius:8px;height:6px;overflow:hidden;margin-bottom:12px"><div style="background:#22c55e;height:100%;width:${answered/QUIZ.length*100}%;transition:width 0.3s"></div></div>
+    ${QUIZ.map((q,qi)=>{
+      const chosen=STATE.quizAnswers[qi];
+      return `<div class="quiz-card"><div class="quiz-num">Q${qi+1}</div><div class="quiz-q" style="white-space:pre-line">${q.q}</div>
+        ${q.opts.map((o,oi)=>{let cls='quiz-opt';if(chosen!==undefined){if(oi===q.ans)cls+=' quiz-correct';else if(oi===chosen)cls+=' quiz-wrong';}return `<button class="${cls}" onclick="answerQuiz(${qi},${oi})" ${chosen!==undefined?'disabled':''}>${o}</button>`;}).join('')}
+      </div>`;
+    }).join('')}
+    ${answered===QUIZ.length?`<button onclick="finishQuiz()" style="width:100%;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;padding:14px;font-size:16px;font-weight:700;margin-top:8px">결과 확인 →</button>`:`<div style="text-align:center;padding:12px;font-size:13px;color:#888">모든 문제에 답한 후 결과를 확인할 수 있어요 (${answered}/${QUIZ.length})</div>`}
+  </div>`;
+}
+
+// 10: AI 실습
+function renderAI() {
+  return `<div class="page">
+    <h2>🤖 AI 실습</h2>
+    <p class="sub">글로컬 아카데미 × AI 한국어 튜터 · 소비와 경제</p>
+    <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+      <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · KIIP 3급 3과</div>
+      <div style="font-size:15px;font-weight:800;margin-bottom:6px">소비와 경제 AI 튜터</div>
+      <div style="font-size:11px;opacity:0.85;line-height:1.7">-에 비해서 / -는 반면에 + 소비 어휘를 AI와 함께 연습하세요<br><span style="color:#93c5fd">🇻🇳 Luyện ngữ pháp và từ vựng tiêu dùng cùng AI</span></div>
+    </div>
+    <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+      <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin:10px 0">${AI_QUICK_BTNS.map((b,i)=>`<button onclick="AICHAT.quickSend(${i})" style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">${b.emoji} ${b.label}</button>`).join('')}</div>
+      <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+        <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">💡 버튼을 누르면 AI가 바로 답해줘요<br><span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span></div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:flex-end">
+        <textarea id="ai-chat-input" placeholder="소비와 경제에 대해 질문하세요..." style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none" onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#fde68a'" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"></textarea>
+        <button onclick="AICHAT.send()" id="ai-send-btn" style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>
+      </div>
+      <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+    </div>
+    <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
+  </div>`;
+}
+
+function renderSection() {
+  switch(STATE.section) {
+    case 0:  return renderIntro();
+    case 1:  return renderVocab();
+    case 2:  return renderGrammar();
+    case 3:  return renderSpeaking();
+    case 4:  return renderListening();
+    case 5:  return renderPronunciation();
+    case 6:  return renderReading();
+    case 7:  return renderWriting();
+    case 8:  return renderCulture();
+    case 9:  return renderQuiz();
+    case 10: return renderAI();
+    default: return renderIntro();
+  }
+}
+
+function render() {
+  document.getElementById('app').innerHTML =
+    renderNav() + renderLangBar() + renderTabs() + renderSection() + renderBottomNav();
+  window.scrollTo(0, 0);
+}
+
+render();
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{});

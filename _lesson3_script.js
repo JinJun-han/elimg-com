@@ -1,0 +1,1355 @@
+﻿
+// ===== TTS ENGINE =====
+const TTS = {
+  speak(text, lang='ko-KR', rate=0.8) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang; u.rate = rate; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const koVoice = voices.find(v => v.lang.startsWith('ko')) || voices.find(v => v.lang.includes('ko'));
+    if (koVoice) u.voice = koVoice;
+    window.speechSynthesis.speak(u);
+  },
+  init() { if (window.speechSynthesis) window.speechSynthesis.getVoices(); }
+};
+window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
+
+function ttsBtn(text) {
+  return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'")}')" title="발음 듣기">🔊</button>`;
+}
+
+// ===== DATA =====
+const VOCAB_PLACES = [
+  {kor:"여기",pron:"yeo-gi",eng:"here"},
+  {kor:"거기",pron:"geo-gi",eng:"there"},
+  {kor:"저기",pron:"jeo-gi",eng:"over there"},
+  {kor:"어디",pron:"eo-di",eng:"where"},
+  {kor:"위",pron:"wi",eng:"above/up"},
+  {kor:"아래",pron:"a-rae",eng:"below/down"},
+  {kor:"앞",pron:"ap",eng:"front"},
+  {kor:"뒤",pron:"dwi",eng:"back/behind"},
+  {kor:"옆",pron:"yeop",eng:"beside/next to"},
+  {kor:"안",pron:"an",eng:"inside"},
+  {kor:"밖",pron:"bak",eng:"outside"},
+  {kor:"사이",pron:"sa-i",eng:"between"},
+  {kor:"화장실",pron:"hwa-jang-sil",eng:"restroom"},
+  {kor:"식당",pron:"sik-dang",eng:"restaurant/cafeteria"},
+  {kor:"병원",pron:"byeong-won",eng:"hospital"},
+  {kor:"은행",pron:"eun-haeng",eng:"bank"},
+  {kor:"학교",pron:"hak-gyo",eng:"school"},
+  {kor:"편의점",pron:"pyeon-ui-jeom",eng:"convenience store"},
+];
+
+const VOCAB_SHIPYARD = [
+  {kor:"화장실이 어디예요?",eng:"Where is the restroom?",sit:"시설을 찾을 때 / Finding facilities"},
+  {kor:"구내식당은 저기예요.",eng:"The cafeteria is over there.",sit:"안내할 때 / Giving directions"},
+  {kor:"의무실은 2층에 있어요.",eng:"The infirmary is on the 2nd floor.",sit:"위치 안내 / Location info"},
+  {kor:"여기가 도크예요.",eng:"This is the dock.",sit:"현장 안내 / Site tour"},
+  {kor:"교육장은 어디에 있어요?",eng:"Where is the training room?",sit:"교육 시 / During training"},
+  {kor:"탈의실은 이 건물 안에 있어요.",eng:"The locker room is inside this building.",sit:"시설 안내 / Facility guide"},
+  {kor:"비상구는 저기 왼쪽이에요.",eng:"The emergency exit is over there on the left.",sit:"안전 안내 / Safety guide"},
+  {kor:"흡연실은 밖에 있어요.",eng:"The smoking area is outside.",sit:"규칙 안내 / Rules info"},
+  {kor:"주차장은 건물 뒤에 있어요.",eng:"The parking lot is behind the building.",sit:"위치 안내 / Directions"},
+  {kor:"사무실은 3층에 있어요.",eng:"The office is on the 3rd floor.",sit:"방문 시 / When visiting"},
+  {kor:"여기서 가까워요.",eng:"It's close from here.",sit:"거리 설명 / Distance"},
+  {kor:"거기서 오른쪽으로 가세요.",eng:"Go right from there.",sit:"길 안내 / Directions"},
+  {kor:"출입구 앞에서 만나요.",eng:"Let's meet at the entrance.",sit:"약속 시 / Making plans"},
+  {kor:"안전 교육장은 1층이에요.",eng:"Safety training room is on the 1st floor.",sit:"교육 안내 / Training info"},
+  {kor:"기숙사는 조선소 밖에 있어요.",eng:"The dormitory is outside the shipyard.",sit:"생활 안내 / Living info"},
+  {kor:"여기서 멀어요?",eng:"Is it far from here?",sit:"거리 질문 / Asking distance"},
+];
+
+const VOCAB_LOCATION = [
+  {kor:"여기",eng:"here"},
+  {kor:"거기",eng:"there"},
+  {kor:"저기",eng:"over there"},
+  {kor:"어디",eng:"where"},
+  {kor:"왼쪽",eng:"left"},
+  {kor:"오른쪽",eng:"right"},
+  {kor:"위",eng:"up/above"},
+  {kor:"아래",eng:"down/below"},
+  {kor:"앞",eng:"front"},
+  {kor:"뒤",eng:"back"},
+  {kor:"옆",eng:"beside"},
+  {kor:"안",eng:"inside"},
+  {kor:"밖",eng:"outside"},
+  {kor:"사이",eng:"between"},
+  {kor:"근처",eng:"nearby"},
+  {kor:"1층",eng:"1st floor"},
+  {kor:"2층",eng:"2nd floor"},
+  {kor:"3층",eng:"3rd floor"},
+  {kor:"건물",eng:"building"},
+  {kor:"계단",eng:"stairs"},
+  {kor:"엘리베이터",eng:"elevator"},
+  {kor:"입구",eng:"entrance"},
+  {kor:"출구",eng:"exit"},
+  {kor:"길",eng:"road/way"},
+  {kor:"교차로",eng:"intersection"},
+  {kor:"신호등",eng:"traffic light"},
+  {kor:"버스 정류장",eng:"bus stop"},
+  {kor:"지하철역",eng:"subway station"},
+  {kor:"마트",eng:"mart/supermarket"},
+  {kor:"약국",eng:"pharmacy"},
+  {kor:"우체국",eng:"post office"},
+  {kor:"경찰서",eng:"police station"},
+  {kor:"소방서",eng:"fire station"},
+  {kor:"공원",eng:"park"},
+  {kor:"도서관",eng:"library"},
+  {kor:"시장",eng:"market"},
+];
+
+const VOCAB_SHIPYARD_NOUNS = [
+  {kor:"도크",eng:"dock"},
+  {kor:"탑재장",eng:"erection site"},
+  {kor:"도장실",eng:"painting room"},
+  {kor:"자재창고",eng:"material warehouse"},
+  {kor:"사무실",eng:"office"},
+  {kor:"교육장",eng:"training room"},
+  {kor:"의무실",eng:"infirmary"},
+  {kor:"구내식당",eng:"cafeteria"},
+  {kor:"기숙사",eng:"dormitory"},
+  {kor:"휴게실",eng:"break room"},
+  {kor:"탈의실",eng:"locker room"},
+  {kor:"흡연실",eng:"smoking area"},
+  {kor:"주차장",eng:"parking lot"},
+  {kor:"출입구",eng:"entrance/exit"},
+  {kor:"비상구",eng:"emergency exit"},
+  {kor:"경비실",eng:"guard post"},
+  {kor:"작업장",eng:"workshop"},
+  {kor:"용접실",eng:"welding room"},
+  {kor:"배관실",eng:"piping room"},
+  {kor:"전기실",eng:"electrical room"},
+  {kor:"도장 작업장",eng:"painting workshop"},
+  {kor:"자재 적치장",eng:"material storage"},
+  {kor:"조립장",eng:"assembly area"},
+  {kor:"시험실",eng:"testing room"},
+  {kor:"세척장",eng:"cleaning area"},
+  {kor:"폐기물 처리장",eng:"waste disposal"},
+  {kor:"안전 관리실",eng:"safety office"},
+  {kor:"통역실",eng:"interpreter's room"},
+  {kor:"회의실",eng:"meeting room"},
+  {kor:"컨테이너 사무실",eng:"container office"},
+];
+
+const GRAMMAR = [
+  {title:"여기/거기/저기 + 이에요/예요",eng:"Here/There + is/are",
+   desc:"장소를 가리키며 말할 때 사용해요.",descEng:"Used when pointing at and naming places.",
+   rule:"여기 = 말하는 사람 가까이 / 거기 = 듣는 사람 가까이 / 저기 = 둘 다 멀리",ruleEng:"여기 = near speaker / 거기 = near listener / 저기 = far from both",
+   examples:[
+    {q:"여기가 어디예요?",a:"여기는 도크예요.",eng:"Where is here? - This is the dock.",note:"여기+는"},
+    {q:"거기가 뭐예요?",a:"거기는 구내식당이에요.",eng:"What is there? - That's the cafeteria.",note:"거기+는"},
+    {q:"저기는 뭐예요?",a:"저기는 자재창고예요.",eng:"What's over there? - That's the warehouse.",note:"저기+는"},
+    {q:"",a:"여기가 교육장이에요.",eng:"Here is the training room.",note:"여기+가"},
+    {q:"",a:"저기가 비상구예요.",eng:"Over there is the emergency exit.",note:"저기+가"},
+   ]},
+  {title:"명사 + 은/는 어디예요?",eng:"N + Where is...?",
+   desc:"장소의 위치를 물을 때 사용해요.",descEng:"Used when asking where a place is.",
+   rule:"받침 O + 은 어디예요? / 받침 X + 는 어디예요?",ruleEng:"Final consonant → 은 / No final consonant → 는",
+   examples:[
+    {q:"",a:"화장실은 어디예요?",eng:"Where is the restroom?",note:"화장실(받침O)→은"},
+    {q:"",a:"의무실은 어디예요?",eng:"Where is the infirmary?",note:"의무실(받침O)→은"},
+    {q:"",a:"구내식당은 어디예요?",eng:"Where is the cafeteria?",note:"구내식당(받침O)→은"},
+    {q:"",a:"교육장은 어디예요?",eng:"Where is the training room?",note:"교육장(받침O)→은"},
+    {q:"",a:"기숙사는 어디예요?",eng:"Where is the dormitory?",note:"기숙사(받침X)→는"},
+   ]},
+  {title:"명사 + 에 있어요/없어요",eng:"N + 에 (Location particle)",
+   desc:"사물이나 사람의 위치를 말할 때 '에'를 사용해요.",descEng:"Use 에 to indicate where something/someone is located.",
+   rule:"장소 + 에 + 있어요 (있다) / 없어요 (없다)",ruleEng:"Place + 에 + 있어요 (exists) / 없어요 (doesn't exist)",
+   examples:[
+    {q:"화장실이 어디에 있어요?",a:"1층에 있어요.",eng:"Where is the restroom? - On the 1st floor.",note:"1층+에"},
+    {q:"의무실이 어디에 있어요?",a:"2층에 있어요.",eng:"Where is the infirmary? - On the 2nd floor.",note:"2층+에"},
+    {q:"편의점이 있어요?",a:"네, 기숙사 앞에 있어요.",eng:"Is there a store? - Yes, in front of the dorm.",note:"앞+에"},
+    {q:"여기에 ATM이 있어요?",a:"아니요, 여기에 없어요.",eng:"Is there an ATM here? - No, there isn't.",note:"여기+에 없어요"},
+    {q:"소화기가 어디에 있어요?",a:"비상구 옆에 있어요.",eng:"Where is the extinguisher? - Next to the exit.",note:"옆+에"},
+   ]},
+];
+
+const DIALOGUES = [
+  {title:"조선소 시설 안내",eng:"Shipyard Facility Tour",lines:[
+    {sp:"민수",role:"관리자",text:"라민 씨, 여기가 조선소 교육장이에요.",eng:"Ramin, this is the shipyard training room.",side:"L"},
+    {sp:"라민",role:"용접공",text:"네. 화장실은 어디에 있어요?",eng:"Yes. Where is the restroom?",side:"R"},
+    {sp:"민수",text:"화장실은 저기 왼쪽에 있어요.",eng:"The restroom is over there on the left.",side:"L"},
+    {sp:"라민",text:"구내식당은요?",eng:"What about the cafeteria?",side:"R"},
+    {sp:"민수",text:"구내식당은 이 건물 2층에 있어요.",eng:"The cafeteria is on the 2nd floor of this building.",side:"L"},
+    {sp:"라민",text:"감사합니다. 의무실은 어디예요?",eng:"Thank you. Where is the infirmary?",side:"R"},
+    {sp:"민수",text:"의무실은 저기 건물 1층에 있어요. 비상구 옆이에요.",eng:"The infirmary is on the 1st floor there. Next to the exit.",side:"L"},
+  ]},
+  {title:"길 물어보기",eng:"Asking for Directions",lines:[
+    {sp:"후엔",role:"배관공",text:"안젤라 씨, 기숙사가 어디에 있어요?",eng:"Angela, where is the dormitory?",side:"L"},
+    {sp:"안젤라",role:"통역사",text:"기숙사는 조선소 밖에 있어요. 여기서 가까워요.",eng:"The dorm is outside the shipyard. It's close from here.",side:"R"},
+    {sp:"후엔",text:"편의점도 근처에 있어요?",eng:"Is there a convenience store nearby too?",side:"L"},
+    {sp:"안젤라",text:"네, 기숙사 앞에 편의점이 있어요.",eng:"Yes, there's a store in front of the dorm.",side:"R"},
+    {sp:"후엔",text:"은행은요? 은행도 있어요?",eng:"What about a bank? Is there one?",side:"L"},
+    {sp:"안젤라",text:"은행은 여기에 없어요. 버스 타고 거제 시내에 가야 해요.",eng:"There's no bank here. You need to take a bus to Geoje city.",side:"R"},
+  ]},
+];
+
+const QUIZ = [
+  {q:"\"Where is the restroom?\" in Korean:",o:["화장실은 뭐예요?","화장실은 어디예요?","화장실에 가요","화장실이 좋아요"],a:1},
+  {q:"'여기___ 교육장이에요.' Fill:",o:["은","는","가","에"],a:2},
+  {q:"\"over there\" in Korean:",o:["여기","거기","저기","어디"],a:2},
+  {q:"'구내식당은 2층___ 있어요.' Fill:",o:["에","은","가","을"],a:0},
+  {q:"\"infirmary\" in Korean:",o:["교육장","의무실","사무실","휴게실"],a:1},
+  {q:"'기숙사___ 어디예요?' Fill:",o:["은","는","이","가"],a:1},
+  {q:"Near the speaker, use:",o:["여기","거기","저기","어디"],a:0},
+  {q:"'편의점이 기숙사 ___에 있어요.' Fill:",o:["위","아래","앞","사이"],a:2},
+  {q:"\"emergency exit\" in Korean:",o:["출입구","비상구","입구","출구"],a:1},
+  {q:"'여기___ ATM이 없어요.' Fill:",o:["에","은","가","를"],a:0},
+  {q:"\"break room\" in Korean:",o:["탈의실","흡연실","휴게실","회의실"],a:2},
+  {q:"'사무실은 3___에 있어요.' (floor):",o:["번","개","층","시"],a:2},
+  {q:"\"left\" in Korean:",o:["오른쪽","왼쪽","위","아래"],a:1},
+  {q:"'비상구는 저기 ___이에요.' (beside):",o:["앞","뒤","옆","안"],a:2},
+  {q:"\"parking lot\" in Korean:",o:["흡연실","주차장","경비실","세척장"],a:1},
+
+  // 한국의 성장 원동력 퀴즈
+  {q:"이순신 장군의 첫 승리는 어디에서?",o:["거제 옥포","부산","서울","인천"],a:0},
+  {q:"거북선은 어떤 배예요?",o:["세계 최초 철갑선","어선","상선","유람선"],a:0},
+  {q:"한국의 조선 산업은 세계 몇 위?",o:["1위","2위","3위","5위"],a:0},
+];
+
+const CULTURE = [
+  {icon:"🏢",t:"층수 세기",eng:"Counting Floors",d:"한국에서는 1층이 ground floor입니다. '2층'은 second floor입니다. 조선소 건물도 같은 방식으로 층수를 셉니다.",de:"In Korea, 1층 (1st floor) is the ground floor. The shipyard uses the same numbering system."},
+  {icon:"🚻",t:"화장실 문화",eng:"Restroom Culture",d:"한국의 화장실은 대부분 깨끗합니다. 조선소에서는 작업장 근처에 이동식 화장실이 있습니다. '화장실이 어디예요?'는 가장 유용한 표현입니다.",de:"Korean restrooms are mostly clean. Shipyards have portable restrooms near work areas. 'Where is the restroom?' is the most useful phrase."},
+  {icon:"🗺️",t:"방향 표현",eng:"Giving Directions",d:"한국에서는 '왼쪽', '오른쪽'보다 건물이나 상점 이름으로 길을 알려줍니다. 조선소에서는 구역 번호를 사용합니다.",de:"Koreans often give directions using building/shop names rather than left/right. Shipyards use zone numbers."},
+  {icon:"🚪",t:"비상구 위치",eng:"Emergency Exit Location",d:"한국 법률로 모든 건물에 비상구 표시가 있어야 합니다. 조선소에서는 초록색 비상구 표시를 항상 확인하세요. 안전 교육에서 비상구 위치를 꼭 외워야 합니다.",de:"Korean law requires emergency exit signs in all buildings. Always check for green exit signs at the shipyard."},
+  {icon:"🍽️",t:"구내식당 이용",eng:"Using the Cafeteria",d:"조선소 구내식당은 보통 정해진 시간에 운영합니다. 점심시간은 보통 11:30~13:00입니다. 식판을 사용하고, 줄을 서서 기다립니다.",de:"Shipyard cafeterias operate at set times. Lunch is usually 11:30-13:00. Use a tray and wait in line."},
+  {icon:"🏥",t:"의무실 이용",eng:"Using the Infirmary",d:"조선소 의무실에서는 간단한 치료를 받을 수 있습니다. 아프면 반장님께 말씀하고 의무실에 가세요. 심한 경우 근처 병원으로 이송됩니다.",de:"The shipyard infirmary provides basic treatment. If sick, tell your foreman and go to the infirmary. Severe cases are transferred to nearby hospitals."},
+];
+
+const LOCAL_INFO = {
+  title: "한국의 성장 원동력: 해양 강국",
+  eng: "Korea's Growth Engine: Maritime Power",
+  facts: [
+    {label:"이순신 장군 Admiral Yi",val:"세계 4대 해전 영웅, 거제 옥포 첫 승리"},
+    {label:"거북선 Turtle Ship",val:"세계 최초 철갑선, 조선 해군의 자부심"},
+    {label:"한산도대첩 Battle of Hansan",val:"학익진 전술, 일본 해군 대파"},
+    {label:"조선 산업 Shipbuilding",val:"이순신 정신 → 세계 1위 조선 강국"},
+    {label:"해운 Shipping",val:"HMM(현대상선), 글로벌 해운 Top 10"},
+    {label:"수산업 Fishery",val:"원양어업 세계 5위, 양식 기술 선도"},
+    {label:"해양 영토 Maritime Territory",val:"EEZ 세계 22위, 풍부한 해양 자원"},
+  ],
+  desc: "한국은 해양 강국이에요! 이순신 장군은 거제도 옥포에서 첫 승리를 거뒀어요. 그 정신이 오늘날 세계 1위 조선 산업으로 이어졌어요. 여러분이 일하는 한화오션도 이순신 장군의 해양 정신을 이어받은 거예요! 한국은 해운, 수산업, 해양 기술에서도 세계적인 강국이에요.",
+  descEng: "Korea is a maritime powerhouse! Admiral Yi won his first victory at Okpo in Geoje. That spirit lives on in today's world #1 shipbuilding industry. Hanwha Ocean, where you work, inherits Admiral Yi's maritime spirit! Korea is also a global leader in shipping, fisheries, and marine technology."
+};
+
+// HANGUL DATA (Level 0 — 3과: 음절 조합 기초)
+const HANGUL_CONSONANTS = [
+  {char:"가",rom:"ga",name:"ㄱ+ㅏ"},{char:"나",rom:"na",name:"ㄴ+ㅏ"},{char:"다",rom:"da",name:"ㄷ+ㅏ"},
+  {char:"라",rom:"ra",name:"ㄹ+ㅏ"},{char:"마",rom:"ma",name:"ㅁ+ㅏ"},{char:"바",rom:"ba",name:"ㅂ+ㅏ"},
+  {char:"사",rom:"sa",name:"ㅅ+ㅏ"},{char:"아",rom:"a",name:"ㅇ+ㅏ"},{char:"자",rom:"ja",name:"ㅈ+ㅏ"},
+  {char:"차",rom:"cha",name:"ㅊ+ㅏ"},{char:"카",rom:"ka",name:"ㅋ+ㅏ"},{char:"타",rom:"ta",name:"ㅌ+ㅏ"},
+  {char:"파",rom:"pa",name:"ㅍ+ㅏ"},{char:"하",rom:"ha",name:"ㅎ+ㅏ"},
+];
+const HANGUL_VOWELS = [
+  {char:"고",rom:"go",name:"ㄱ+ㅗ"},{char:"노",rom:"no",name:"ㄴ+ㅗ"},{char:"도",rom:"do",name:"ㄷ+ㅗ"},
+  {char:"로",rom:"ro",name:"ㄹ+ㅗ"},{char:"모",rom:"mo",name:"ㅁ+ㅗ"},{char:"보",rom:"bo",name:"ㅂ+ㅗ"},
+  {char:"구",rom:"gu",name:"ㄱ+ㅜ"},{char:"누",rom:"nu",name:"ㄴ+ㅜ"},{char:"두",rom:"du",name:"ㄷ+ㅜ"},
+  {char:"루",rom:"ru",name:"ㄹ+ㅜ"},{char:"무",rom:"mu",name:"ㅁ+ㅜ"},{char:"부",rom:"bu",name:"ㅂ+ㅜ"},
+];
+const HANGUL_PRACTICE = [
+  {char:"거",rom:"geo",name:"ㄱ+ㅓ"},{char:"너",rom:"neo",name:"ㄴ+ㅓ"},
+  {char:"기",rom:"gi",name:"ㄱ+ㅣ"},{char:"니",rom:"ni",name:"ㄴ+ㅣ"},
+  {char:"서",rom:"seo",name:"ㅅ+ㅓ"},{char:"여",rom:"yeo",name:"ㅇ+ㅕ"},
+  {char:"저",rom:"jeo",name:"ㅈ+ㅓ"},{char:"허",rom:"heo",name:"ㅎ+ㅓ"},
+  {char:"수",rom:"su",name:"ㅅ+ㅜ"},{char:"주",rom:"ju",name:"ㅈ+ㅜ"},
+];
+const SAFETY_WORDS = [
+  {kor:"위험",eng:"Danger",rom:"wi-heom"},{kor:"주의",eng:"Caution",rom:"ju-ui"},
+  {kor:"금지",eng:"Prohibited",rom:"geum-ji"},{kor:"착용",eng:"Wear/Put on",rom:"chag-yong"},
+  {kor:"대피",eng:"Evacuate",rom:"dae-pi"},{kor:"출입금지",eng:"No Entry",rom:"chul-ip-geum-ji"},
+  {kor:"흡연금지",eng:"No Smoking",rom:"heub-yeon-geum-ji"},{kor:"안전모 착용",eng:"Wear Helmet",rom:"an-jeon-mo chag-yong"},
+  {kor:"비상구",eng:"Emergency Exit",rom:"bi-sang-gu"},{kor:"소화기",eng:"Fire Extinguisher",rom:"so-hwa-gi"},
+  {kor:"응급처치",eng:"First Aid",rom:"eung-geup-cheo-chi"},{kor:"보호구 착용",eng:"Wear PPE",rom:"bo-ho-gu chag-yong"},
+];
+const HANGUL_TABS = ['자음+ㅏ Syllables','자음+ㅗ/ㅜ Syllables','연습 Practice','안전 단어 Safety'];
+const HANGUL_SUBTITLE = "Learn Hangul · 음절 조합 기초";
+
+
+
+
+
+// ===== FOLKTALE DATA (40 sentences) =====
+const FOLKTALE = {
+  title: "콩쥐팥쥐",
+  eng: "Kongjwi and Patjwi — Korean Cinderella",
+  desc: "착한 콩쥐와 못된 팥쥐의 이야기입니다. 한국판 신데렐라!",
+  descEng: "The story of kind Kongjwi and mean Patjwi. The Korean Cinderella!",
+  sentences: [
+    {kor:"옛날에 콩쥐라는 착한 소녀가 살았어요.",eng:"Once upon a time, there lived a kind girl named Kongjwi."},
+    {kor:"콩쥐의 어머니는 콩쥐가 어릴 때 돌아가셨어요.",eng:"Kongjwi's mother passed away when she was young."},
+    {kor:"아버지는 새어머니와 결혼했어요.",eng:"Her father married a stepmother."},
+    {kor:"새어머니에게는 팥쥐라는 딸이 있었어요.",eng:"The stepmother had a daughter named Patjwi."},
+    {kor:"새어머니와 팥쥐는 콩쥐를 미워했어요.",eng:"The stepmother and Patjwi hated Kongjwi."},
+    {kor:"콩쥐는 매일 힘든 일을 해야 했어요.",eng:"Kongjwi had to do hard work every day."},
+    {kor:"팥쥐는 놀기만 했어요.",eng:"Patjwi only played around."},
+    {kor:"어느 날 새어머니가 콩쥐에게 말했어요.",eng:"One day, the stepmother told Kongjwi:"},
+    {kor:"\"이 큰 항아리에 물을 가득 채워라.\"",eng:"\"Fill this big jar with water.\""},
+    {kor:"그런데 항아리에 구멍이 있었어요.",eng:"But the jar had a hole in it."},
+    {kor:"콩쥐는 물을 넣어도 계속 빠졌어요.",eng:"No matter how much water Kongjwi poured, it kept leaking."},
+    {kor:"콩쥐는 슬퍼서 울었어요.",eng:"Kongjwi cried sadly."},
+    {kor:"그때 두꺼비 한 마리가 나타났어요.",eng:"Just then, a toad appeared."},
+    {kor:"두꺼비가 항아리의 구멍을 막아 주었어요.",eng:"The toad blocked the hole in the jar."},
+    {kor:"콩쥐는 물을 가득 채울 수 있었어요.",eng:"Kongjwi was able to fill the jar with water."},
+    {kor:"또 새어머니가 말했어요. \"논에 가서 김을 매라.\"",eng:"The stepmother said again: \"Go weed the rice paddy.\""},
+    {kor:"논이 너무 넓어서 혼자 할 수 없었어요.",eng:"The paddy was too large to do alone."},
+    {kor:"이번에는 소 한 마리가 나타나서 도와주었어요.",eng:"This time, a cow appeared and helped."},
+    {kor:"새어머니는 더 힘든 일을 시켰어요.",eng:"The stepmother gave even harder tasks."},
+    {kor:"\"이 깨진 독에 쌀을 가득 채워라.\"",eng:"\"Fill this cracked pot with rice.\""},
+    {kor:"참새들이 날아와서 쌀을 독에 넣어 주었어요.",eng:"Sparrows flew in and put rice into the pot."},
+    {kor:"하늘이 착한 콩쥐를 도와준 거예요.",eng:"Heaven was helping kind Kongjwi."},
+    {kor:"어느 날 마을에 큰 잔치가 열렸어요.",eng:"One day, a grand feast was held in the village."},
+    {kor:"새어머니는 콩쥐에게 가지 못하게 했어요.",eng:"The stepmother wouldn't let Kongjwi go."},
+    {kor:"팥쥐만 예쁜 옷을 입고 잔치에 갔어요.",eng:"Only Patjwi went to the feast in pretty clothes."},
+    {kor:"콩쥐가 울고 있을 때 선녀가 나타났어요.",eng:"When Kongjwi was crying, a fairy appeared."},
+    {kor:"선녀가 콩쥐에게 아름다운 옷과 꽃신을 주었어요.",eng:"The fairy gave Kongjwi beautiful clothes and flower shoes."},
+    {kor:"콩쥐는 잔치에 갔어요.",eng:"Kongjwi went to the feast."},
+    {kor:"잔치에서 원님이 콩쥐를 보고 반했어요.",eng:"At the feast, the magistrate saw Kongjwi and fell in love."},
+    {kor:"콩쥐는 서둘러 집에 돌아왔어요.",eng:"Kongjwi hurried back home."},
+    {kor:"그런데 꽃신 한 짝을 잃어버렸어요.",eng:"But she lost one of her flower shoes."},
+    {kor:"원님은 꽃신의 주인을 찾기 시작했어요.",eng:"The magistrate began searching for the shoe's owner."},
+    {kor:"마을의 모든 여자가 신어 봤지만 맞지 않았어요.",eng:"Every woman in the village tried it on, but it didn't fit."},
+    {kor:"마침내 콩쥐가 신어 보니 딱 맞았어요!",eng:"Finally, Kongjwi tried it on and it fit perfectly!"},
+    {kor:"원님은 콩쥐와 결혼하고 싶다고 했어요.",eng:"The magistrate said he wanted to marry Kongjwi."},
+    {kor:"콩쥐는 원님과 결혼해서 행복하게 살았어요.",eng:"Kongjwi married the magistrate and lived happily."},
+    {kor:"팥쥐는 착한 사람이 되려고 노력했어요.",eng:"Patjwi tried to become a good person."},
+    {kor:"새어머니도 자신의 잘못을 뉘우쳤어요.",eng:"The stepmother also repented for her wrongs."},
+    {kor:"착하게 살면 하늘이 도와줍니다.",eng:"If you live kindly, heaven will help you."},
+    {kor:"이것이 콩쥐와 팥쥐의 이야기예요.",eng:"This is the story of Kongjwi and Patjwi."},
+  ],
+};
+
+const FOLKTALE_QUIZ = [
+  {q:"콩쥐는 어떤 사람이에요?",o:["못된 사람","착한 사람","부자","게으른 사람"],a:1},
+  {q:"콩쥐의 어머니는 어떻게 됐어요?",o:["떠났어요","돌아가셨어요","결혼했어요","일했어요"],a:1},
+  {q:"팥쥐는 누구예요?",o:["콩쥐의 친구","콩쥐의 언니","새어머니의 딸","이웃집 아이"],a:2},
+  {q:"항아리의 문제가 뭐였어요?",o:["너무 컸어요","구멍이 있었어요","무거웠어요","없었어요"],a:1},
+  {q:"항아리를 도와준 동물은?",o:["소","참새","두꺼비","고양이"],a:2},
+  {q:"논의 김매기를 도와준 동물은?",o:["두꺼비","소","참새","개"],a:1},
+  {q:"쌀을 도와준 동물은?",o:["소","두꺼비","참새","제비"],a:2},
+  {q:"콩쥐에게 옷을 준 사람은?",o:["새어머니","팥쥐","선녀","아버지"],a:2},
+  {q:"콩쥐가 잃어버린 것은?",o:["반지","꽃신","목걸이","옷"],a:1},
+  {q:"꽃신의 주인을 찾은 사람은?",o:["아버지","팥쥐","원님","선녀"],a:2},
+  {q:"꽃신이 맞는 사람은 누구예요?",o:["팥쥐","새어머니","콩쥐","선녀"],a:2},
+  {q:"콩쥐는 누구와 결혼했어요?",o:["왕자","원님","선비","장군"],a:1},
+  {q:"이 이야기는 어느 나라 이야기와 비슷해요?",o:["백설공주","신데렐라","잠자는 숲속의 공주","인어공주"],a:1},
+  {q:"팥쥐는 나중에 어떻게 됐어요?",o:["도망갔어요","착한 사람이 되려고 했어요","벌을 받았어요","떠났어요"],a:1},
+  {q:"이야기의 교훈은 뭐예요?",o:["돈이 중요해요","착하게 살면 하늘이 도와줘요","공부가 중요해요","빨리 가야 해요"],a:1},
+];
+
+const REVIEW_DATA = {
+  preview: {
+    title: "예습 · Preview",
+    desc: "다음에 배울 내용을 미리 살펴보세요.",
+    descEng: "Preview what you will learn next.",
+    items: [
+      {label:"4과 주제",val:"가족이 몇 명이에요? · How many family members?",detail:"가족 구성원을 소개하는 표현을 배웁니다."},
+      {label:"핵심 어휘",val:"아버지, 어머니, 형, 누나, 동생, 아들, 딸",detail:"father, mother, brother, sister, son, daughter"},
+      {label:"핵심 문법",val:"몇 + 명/개, 명사 + 이/가 있어요",detail:"How many, There is/are"},
+      {label:"조선소 어휘",val:"팀원, 동료, 반장, 조장, 관리자",detail:"team member, colleague, foreman, team leader, supervisor"},
+    ]
+  },
+  review: {
+    title: "복습 · Review",
+    desc: "3과에서 배운 내용을 확인하세요.",
+    descEng: "Check what you learned in Lesson 3.",
+    sections: [
+      {title:"핵심 장소 표현",icon:"📍",items:["여기 (here)","거기 (there)","저기 (over there)","어디 (where)","화장실은 어디예요?"]},
+      {title:"핵심 문법 공식",icon:"📐",items:["여기/거기/저기 + 이에요/예요","명사 + 은/는 어디예요?","장소 + 에 있어요/없어요","위/아래/앞/뒤/옆/안/밖"]},
+      {title:"장소 묻고 답하기 패턴",icon:"🎤",items:["___은/는 어디예요?","___에 있어요.","여기서 가까워요/멀어요.","___층에 있어요.","___옆/앞/뒤에 있어요."]},
+      {title:"조선소 필수 시설",icon:"🏗️",items:["도크 dock","구내식당 cafeteria","의무실 infirmary","교육장 training room","비상구 emergency exit","기숙사 dormitory","휴게실 break room"]},
+    ]
+  },
+  dictation: ["화장실은 어디예요?","구내식당은 2층에 있어요.","여기가 교육장이에요.","의무실은 1층에 있어요.","기숙사는 조선소 밖에 있어요.","편의점이 앞에 있어요.","비상구는 저기예요.","여기서 가까워요.","사무실은 3층에 있어요.","화장실은 왼쪽에 있어요."],
+};
+
+const READING_PASSAGES = [
+  {title:"조선소 시설 안내",eng:"Shipyard Facility Guide",
+   text:"한화오션 조선소에는 여러 시설이 있어요.\n구내식당은 2층에 있어요.\n화장실은 1층에 있어요.\n의무실은 1층 비상구 옆에 있어요.\n교육장은 3층에 있어요.\n휴게실은 각 작업장에 있어요.\n비상구 위치를 꼭 확인하세요.",
+   textEng:"Hanwha Ocean shipyard has many facilities.\nThe cafeteria is on the 2nd floor.\nThe restroom is on the 1st floor.\nThe infirmary is on the 1st floor, next to the exit.\nThe training room is on the 3rd floor.\nBreak rooms are in each workshop.\nAlways check emergency exit locations.",
+   questions:[
+     {q:"구내식당은 몇 층에 있어요?",a:"2층",ae:"2nd floor"},
+     {q:"의무실은 어디에 있어요?",a:"1층 비상구 옆",ae:"1st floor, next to the exit"},
+     {q:"교육장은 몇 층에 있어요?",a:"3층",ae:"3rd floor"},
+   ]},
+  {title:"라민의 출근길",eng:"Ramin's Way to Work",
+   text:"라민 씨는 기숙사에서 출발해요.\n기숙사는 조선소 밖에 있어요.\n기숙사 앞에 편의점이 있어요.\n라민 씨는 편의점에서 물을 사요.\n버스를 타고 조선소에 가요.\n출입구에서 출입증을 보여줘요.\n작업장은 도크 근처에 있어요.\n라민 씨는 매일 같은 길로 가요.",
+   textEng:"Ramin leaves from the dormitory.\nThe dorm is outside the shipyard.\nThere is a convenience store in front of the dorm.\nRamin buys water at the store.\nHe takes a bus to the shipyard.\nHe shows his ID badge at the entrance.\nThe workshop is near the dock.\nRamin takes the same route every day.",
+   questions:[
+     {q:"기숙사는 어디에 있어요?",a:"조선소 밖",ae:"Outside the shipyard"},
+     {q:"편의점은 어디에 있어요?",a:"기숙사 앞",ae:"In front of the dormitory"},
+     {q:"작업장은 어디 근처에 있어요?",a:"도크 근처",ae:"Near the dock"},
+   ]},
+];
+
+// ===== APP STATE =====
+let state = {
+  page: 'home',
+  menuOpen: false,
+  level: 1, // 0=입문, 1=초급1
+  // Vocab
+  vocabTab: 0,
+  vocabReveal: {},
+  // Grammar
+  gramIdx: 0,
+  // Dialogue
+  dlgIdx: 0, dlgLine: -1, dlgShowEng: false,
+  // Flashcard
+  fcIdx: 0, fcFlipped: false, fcKnown: 0,
+  // Quiz
+  qIdx: 0, qSel: null, qScore: 0, qDone: false,
+  // Reading
+  rdIdx: 0, rdShowEng: false, rdAnswers: {},
+  // Writing (self-intro)
+  wrName: '', wrCountry: '', wrJob: '', wrExtra: '',
+  // Hangul
+  hgTab: 0, hgSelected: null,
+  // Review (익힘)
+  rvTab: 0, rvDictIdx: 0, rvDictInput: '', rvDictResults: {},
+  // Folktale
+  ftSentIdx: 0, ftShowEng: false, ftAutoPlay: false,
+  // Folktale Quiz
+  fqIdx: 0, fqSel: null, fqScore: 0, fqDone: false,
+};
+
+function setState(updates) {
+  Object.assign(state, updates);
+  render();
+}
+
+// ===== RENDER ENGINE =====
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = renderNav() + renderPage() + renderBottomNav();
+  // Re-attach events
+  document.querySelectorAll('[data-click]').forEach(el => {
+    el.onclick = (e) => {
+      const fn = el.dataset.click;
+      if (fn) eval(fn);
+    };
+  });
+}
+
+function renderNav() {
+  const items = [
+    {id:'home',l:'홈',i:'🏠'},{id:'curriculum',l:'커리큘럼',i:'📋'},
+    {id:'hangul',l:'0급 한글',i:'🔤'},{id:'vocab',l:'어휘',i:'📖'},
+    {id:'grammar',l:'문법',i:'✏️'},{id:'dialogue',l:'대화',i:'💬'},
+    {id:'reading',l:'읽기',i:'📕'},{id:'writing',l:'쓰기',i:'✍️'},
+    {id:'review',l:'익힘(복습/예습)',i:'📝'},{id:'flashcard',l:'플래시카드',i:'🃏'},{id:'quiz',l:'퀴즈',i:'🎯'},
+    {id:'folktale',l:'전래동화',i:'📚'},{id:'ftquiz',l:'동화 퀴즈',i:'🧩'},
+    {id:'culture',l:'문화',i:'🏛️'},{id:'geoje',l:'이순신 장군',i:'⚔️'},{id:'ai',l:'AI실습',i:'🤖'},
+  ];
+  let menu = '';
+  if (state.menuOpen) {
+    menu = '<div class="menu">' + items.map(it =>
+      `<button class="${state.page===it.id?'active':''}" onclick="setState({page:'${it.id}',menuOpen:false})">${it.i} ${it.l}</button>`
+    ).join('') + '</div>';
+  }
+  return `<div class="nav">
+    <a href="HanwhaOcean_Level1_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+      <span style="font-size:18px">📋</span>
+      <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 1 목차 · Contents</div></div>
+    </a>
+    <button class="nav-btn" onclick="setState({menuOpen:!state.menuOpen})">${state.menuOpen?'✕':'☰'}</button>
+  </div>${menu}`;
+}
+
+function renderBottomNav() {
+  const items = [
+    {id:'home',i:'🏠',l:'홈'},{id:'vocab',i:'📖',l:'어휘'},
+    {id:'review',i:'📝',l:'익힘'},{id:'folktale',i:'📚',l:'동화'},
+    {id:'ai',i:'🤖',l:'AI'},{id:'quiz',i:'🎯',l:'퀴즈'},{id:'culture',i:'🏛️',l:'문화'},
+  ];
+  return `<div class="bottom-nav">${items.map(it =>
+    `<button class="${state.page===it.id?'active':''}" onclick="setState({page:'${it.id}',menuOpen:false})">
+      <span class="icon">${it.i}</span><span>${it.l}</span></button>`
+  ).join('')}</div>`;
+}
+
+function renderPage() {
+  const pages = {
+    home: renderHome, curriculum: renderCurriculum, hangul: renderHangul,
+    vocab: renderVocab, grammar: renderGrammar, dialogue: renderDialogue,
+    reading: renderReading, writing: renderWriting, review: renderReview,
+    flashcard: renderFlashcard, quiz: renderQuiz,
+    folktale: renderFolktale, ftquiz: renderFtQuiz,
+    culture: renderCulture, geoje: renderGeoje, ai: renderAI,
+  };
+  return `<div class="page">${(pages[state.page]||renderHome)()}</div>`;
+}
+
+// ===== PAGES =====
+function renderHome() {
+  return `
+  <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);border-radius:16px;padding:20px;margin-bottom:16px;color:#fff">
+    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 3과 · Beginner Lesson 3</div>
+    <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
+      <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ 0급 한글 입문 완료</span>
+      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
+    </div
+    <div style="font-size:26px;font-weight:800;margin-bottom:2px">여기가 어디예요?</div>
+    <div style="font-size:13px;color:#aabbdd">Where is this? — 장소와 위치 · Places & Location</div>
+    <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+      ${['장소 이름','위치 표현','조선소 시설','에 있어요'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+    ${[
+      {id:'hangul',i:'🔤',l:'0급 한글',c:'#22c55e'},
+      {id:'vocab',i:'📖',l:'어휘',c:'#3b82f6'},
+      {id:'grammar',i:'✏️',l:'문법',c:'#8b5cf6'},
+      {id:'dialogue',i:'💬',l:'대화',c:'#22c55e'},
+      {id:'reading',i:'📕',l:'읽기',c:'#ec4899'},
+      {id:'writing',i:'✍️',l:'쓰기',c:'#f59e0b'},
+      {id:'review',i:'📝',l:'익힘',c:'#14b8a6'},
+      {id:'flashcard',i:'🃏',l:'플래시카드',c:'#f59e0b'},
+      {id:'quiz',i:'🎯',l:'퀴즈',c:'#ef4444'},
+      {id:'folktale',i:'📚',l:'전래동화',c:'#a855f7'},
+      {id:'ftquiz',i:'🧩',l:'동화퀴즈',c:'#e11d48'},
+      {id:'culture',i:'🏛️',l:'문화',c:'#8b5cf6'},
+    ].map(it=>`<button onclick="setState({page:'${it.id}'})" style="background:#fff;border:2px solid ${it.c}20;border-radius:10px;padding:12px 6px;text-align:center">
+      <div style="font-size:26px;margin-bottom:4px">${it.i}</div>
+      <div style="font-weight:700;font-size:12px;color:#1E3A5F">${it.l}</div>
+    </button>`).join('')}
+  </div>
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">⚓ 이순신 장군 소개 보기</button>
+  <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson2.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2과 이것은 뭐예요?</a><a href="HanwhaOcean_Level1_Lesson4.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">4과 몇 시예요? →</a></div>`;
+}
+
+function renderCurriculum() {
+  const levels = [
+    {id:0,n:"0급 입문",e:"Pre-Beginner",c:"#22c55e",ls:10},
+    {id:1,n:"1급 초급1",e:"Beginner 1",c:"#3b82f6",ls:18},
+    {id:2,n:"2급 초급2",e:"Beginner 2",c:"#f59e0b",ls:18},
+    {id:3,n:"3급 중급1",e:"Intermediate 1",c:"#8b5cf6",ls:18},
+    {id:4,n:"4급 중급2",e:"Intermediate 2",c:"#ec4899",ls:18},
+    {id:5,n:"5급 고급",e:"Advanced",c:"#ef4444",ls:18},
+  ];
+  return `<h2>📋 전체 커리큘럼</h2><p class="sub">Full Curriculum · 0급~5급 (100과)</p>
+  ${levels.map(lv=>`<div class="card" style="border-left:4px solid ${lv.c}">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div><span class="badge" style="background:${lv.c}">${lv.id}급</span> <b style="color:#1E3A5F">${lv.n}</b></div>
+      <span style="color:#888;font-size:12px">${lv.ls}과</span>
+    </div>
+    <div style="color:#888;font-size:11px;margin:4px 0">${lv.e}</div>
+    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'5.5%':'0%'):'0%'};background:${lv.c}"></div></div>
+  </div>`).join('')}`;
+}
+
+function renderHangul() {
+  const tabs = HANGUL_TABS;
+  const datasets = [HANGUL_CONSONANTS, HANGUL_VOWELS, HANGUL_PRACTICE, SAFETY_WORDS];
+  const hTab = Math.min(state.hgTab, 3);
+  const data = datasets[hTab];
+  const isSafety = hTab === 3;
+  const progressPct = 15;
+  const progressLabel = "3/20";
+
+  return `<h2>🔤 0급 입문 · ${HANGUL_SUBTITLE}</h2><p class="sub">${HANGUL_SUBTITLE}</p>
+  <div style="margin-bottom:12px;background:#e5e7eb;border-radius:8px;overflow:hidden;position:relative;height:22px">
+    <div style="width:${progressPct}%;height:100%;background:linear-gradient(90deg,#3b82f6,#06b6d4);border-radius:8px;transition:width 0.5s"></div>
+    <div style="position:absolute;top:0;left:0;right:0;text-align:center;font-size:11px;font-weight:700;line-height:22px;color:${progressPct>50?'#fff':'#555'}">한글 마스터 ${progressLabel} (${progressPct}%)</div>
+  </div>
+  <div class="tabs">${tabs.map((t,i)=>`<button class="tab ${hTab===i?'active':''}" onclick="setState({hgTab:${i},hgSelected:null})">${t}</button>`).join('')}</div>
+  ${isSafety ? `<div class="grid2">${data.map((w,i)=>`
+    <div class="card ${i===state.hgSelected?'card-orange':'card-accent'}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${w.kor}')">
+      <div style="font-size:22px;font-weight:800;color:var(--navy)">${w.kor} ${ttsBtn(w.kor)}</div>
+      <div style="font-size:11px;color:var(--ocean)">[${w.rom}]</div>
+      <div style="font-size:13px;color:#555;margin-top:4px">${w.eng}</div>
+    </div>`).join('')}</div>` :
+  `<div class="${data.length>10?'grid3':'grid2'}" style="margin-bottom:12px">${data.map((h,i)=>`
+    <div class="hangul-cell ${i===state.hgSelected?'active':''}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${h.name||h.char}')">
+      <div class="char">${h.char}</div>
+      <div class="rom">${h.rom}</div>
+      ${h.name?`<div style="font-size:9px;color:#aaa">${h.name}</div>`:''}
+    </div>`).join('')}</div>`}
+  ${state.hgSelected !== null && !isSafety ? `<div class="card card-accent" style="text-align:center">
+    <div style="font-size:56px;font-weight:800;color:var(--navy)">${data[state.hgSelected].char}</div>
+    <div style="font-size:18px;color:var(--ocean);margin:8px 0">[${data[state.hgSelected].rom}]</div>
+    ${data[state.hgSelected].name?`<div style="font-size:14px;color:#555">${data[state.hgSelected].name}</div>`:''}
+    <button class="btn btn-primary" style="margin-top:12px;width:auto;padding:8px 24px" onclick="TTS.speak('${data[state.hgSelected].name||data[state.hgSelected].char}')">🔊 발음 듣기 Listen</button>
+  </div>`:''}`;
+}
+
+function renderVocab() {
+  const tabs = ['장소 Places','조선소 Shipyard','위치 Location','시설 Facilities'];
+  const t = state.vocabTab;
+  let content = '';
+  if (t===0) content = VOCAB_PLACES.map((v,i)=>`
+    <div class="card card-accent vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,[${i}]:!state.vocabReveal[${i}]}})">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><div class="kor">${v.kor} ${ttsBtn(v.kor)}</div><div class="pron">[${v.pron}]</div></div>
+      </div>
+      ${state.vocabReveal[i]?`<div style="margin-top:6px;padding:6px 10px;background:#f0f7ff;border-radius:6px;font-size:13px;color:var(--ocean);font-weight:600">${v.eng}</div>`
+      :`<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기 · Tap for English</div>`}
+    </div>`).join('');
+  else if (t===1) content = VOCAB_SHIPYARD.map((v,i)=>`
+    <div class="card card-orange vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,['s${i}']:!state.vocabReveal['s${i}']}})">
+      <div class="kor">${v.kor} ${ttsBtn(v.kor)}</div>
+      <div style="font-size:11px;color:#888">${v.sit}</div>
+      ${state.vocabReveal['s'+i]?`<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border-radius:6px;font-size:13px;color:var(--orange);font-weight:600">${v.eng}</div>`
+      :`<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기</div>`}
+    </div>`).join('');
+  else if (t===2) content = `<div class="grid2">${VOCAB_LOCATION.map(v=>`
+    <div class="vocab-item" style="background:#f0f7ff;border-radius:8px;padding:8px 10px" onclick="TTS.speak('${v.kor}')">
+      <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
+    </div>`).join('')}</div>`;
+  else content = `<div class="grid2">${VOCAB_SHIPYARD_NOUNS.map(v=>`
+    <div class="vocab-item" style="background:#fff7ed;border-radius:8px;padding:8px 10px" onclick="TTS.speak('${v.kor}')">
+      <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
+    </div>`).join('')}</div>`;
+
+  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">3과 핵심 어휘 (${VOCAB_PLACES.length+VOCAB_SHIPYARD.length+VOCAB_LOCATION.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
+  <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({vocabTab:${i},vocabReveal:{}})">${tb}</button>`).join('')}</div>
+  ${content}`;
+}
+
+function renderGrammar() {
+  const g = GRAMMAR[state.gramIdx];
+  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">3과 핵심 문법 ${GRAMMAR.length}개</p>
+  <div class="tabs">${GRAMMAR.map((gr,i)=>`<button class="tab ${state.gramIdx===i?'active':''}" onclick="setState({gramIdx:${i}})">${gr.title}</button>`).join('')}</div>
+  <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
+    <div style="font-size:18px;font-weight:800;color:var(--navy)">${g.title}</div>
+    <div style="font-size:12px;color:var(--ocean);margin-bottom:8px">${g.eng}</div>
+    <div style="font-size:13px;color:#333">${g.desc}</div>
+    <div style="font-size:12px;color:#888;margin-bottom:10px">${g.descEng}</div>
+    <div style="background:var(--ocean);color:#fff;border-radius:8px;padding:10px;text-align:center">
+      <div style="font-weight:700;font-size:15px">${g.rule}</div>
+      <div style="font-size:11px;margin-top:4px;opacity:.8">${g.ruleEng}</div>
+    </div>
+  </div>
+  <div style="font-weight:700;color:var(--navy);margin:12px 0 8px">예문 · Examples</div>
+  ${g.examples.map(ex=>`<div class="card card-accent">
+    ${ex.q?`<div style="font-size:13px;color:#555">가: ${ex.q}</div>`:''}
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${ex.q?'나: ':''}${ex.a} ${ttsBtn(ex.a)}</div>
+    <div style="font-size:11px;color:var(--orange);font-weight:600;margin-top:4px">${ex.note}</div>
+    <div style="font-size:11px;color:#888">${ex.eng}</div>
+  </div>`).join('')}`;
+}
+
+function renderDialogue() {
+  const d = DIALOGUES[state.dlgIdx];
+  return `<h2>💬 대화 · Dialogue</h2>
+  <div class="tabs">${DIALOGUES.map((dl,i)=>`<button class="tab ${state.dlgIdx===i?'active':''}" onclick="setState({dlgIdx:${i},dlgLine:-1})">${dl.title}</button>`).join('')}</div>
+  <p style="color:#888;font-size:12px;margin-bottom:10px">${d.eng}</p>
+  <div style="display:flex;gap:6px;margin-bottom:14px">
+    <button class="tab ${state.dlgShowEng?'active':''}" onclick="setState({dlgShowEng:!state.dlgShowEng})">${state.dlgShowEng?'영어 숨기기':'영어 보기'}</button>
+    <button class="tab active" style="background:var(--green)" onclick="setState({dlgLine:state.dlgLine<${d.lines.length-1}?state.dlgLine+1:-1})">
+      ${state.dlgLine<0?'▶ 시작':state.dlgLine>=d.lines.length-1?'↺ 다시':'▶ 다음'}</button>
+    <button class="tab" onclick="TTS.speak('${d.lines.map(l=>l.text).join('. ')}',undefined,0.7)">🔊 전체 듣기</button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px">
+    ${d.lines.map((l,i)=>{
+      if(state.dlgLine>=0 && i>state.dlgLine) return '';
+      const isL = l.side==='L';
+      return `<div style="display:flex;flex-direction:column;align-items:${isL?'flex-start':'flex-end'};opacity:${state.dlgLine>=0&&i===state.dlgLine?1:.65}">
+        <div style="font-size:10px;color:${isL?'var(--ocean)':'var(--orange)'};font-weight:700;margin-bottom:2px">${l.sp}${l.role?' ('+l.role+')':''}</div>
+        <div class="bubble ${isL?'bubble-left':'bubble-right'}">
+          <div style="font-size:15px;font-weight:600;color:var(--navy)">${l.text} ${ttsBtn(l.text)}</div>
+          ${state.dlgShowEng?`<div style="font-size:11px;color:#888;margin-top:4px">${l.eng}</div>`:''}
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function renderReading() {
+  const r = READING_PASSAGES[state.rdIdx];
+  return `<h2><span class="section-icon">📕</span>읽기 · Reading</h2><p class="sub">읽기 연습 · Reading Practice</p>
+  <div class="tabs">${READING_PASSAGES.map((p,i)=>`<button class="tab ${state.rdIdx===i?'active':''}" onclick="setState({rdIdx:${i},rdShowEng:false,rdAnswers:{}})">${p.title}</button>`).join('')}</div>
+  <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <b style="color:var(--ocean)">${r.title} · ${r.eng}</b>
+      <button class="tts-btn" onclick="TTS.speak(\`${r.text.replace(/\n/g,' ')}\`,undefined,0.7)">🔊</button>
+    </div>
+    ${r.text.split('\n').map(line=>`<div style="font-size:16px;color:var(--navy);font-weight:600;margin-bottom:4px;line-height:1.6">${line} ${ttsBtn(line)}</div>`).join('')}
+    ${state.rdShowEng?`<div style="margin-top:10px;padding-top:10px;border-top:1px dashed #ccc">${r.textEng.split('\n').map(l=>`<div style="font-size:13px;color:#888;line-height:1.5">${l}</div>`).join('')}</div>`:''}
+    <button class="tab ${state.rdShowEng?'active':''}" style="margin-top:10px" onclick="setState({rdShowEng:!state.rdShowEng})">${state.rdShowEng?'영어 숨기기':'영어 번역 보기'}</button>
+  </div>
+  <div style="font-weight:700;color:var(--navy);margin:12px 0 8px">📝 이해 확인 · Comprehension</div>
+  ${r.questions.map((q,i)=>`<div class="card card-accent">
+    <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">${i+1}) ${q.q}</div>
+    ${state.rdAnswers[i]?`<div style="padding:6px 10px;background:#dcfce7;border-radius:6px;font-size:14px;color:var(--green);font-weight:600">✓ ${q.a} (${q.ae})</div>`
+    :`<button class="tab active" onclick="setState({rdAnswers:{...state.rdAnswers,${i}:true}})">정답 보기 · Show Answer</button>`}
+  </div>`).join('')}`;
+}
+
+function renderWriting() {
+  const preview = state.wrName ? `안녕하세요? 저는 ${state.wrName}이에요/예요.
+나의 꿈은 ${state.wrCountry?state.wrCountry:'___'}이에요/예요.
+${state.wrJob?'왜냐하면 '+state.wrJob:''}
+${state.wrExtra?'한국에서 '+state.wrExtra:''}
+꿈을 위해 열심히 할 거예요!` : '';
+
+  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">나의 꿈 이야기 · Writing About My Dream</p>
+  <div class="card" style="background:#fff7ed;border:2px solid var(--orange)">
+    <b style="color:var(--orange)">📋 나의 꿈을 이야기해 보세요 · Tell us about your dream</b>
+  </div>
+  <div style="margin-top:12px">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">이름 Name</label>
+    <input class="input" placeholder="예: 라민 / Ramin" value="${state.wrName}" oninput="state.wrName=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">나의 꿈 My Dream</label>
+    <input class="input" placeholder="예: 한국어 선생님 / Korean teacher" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">꿈의 이유 Why</label>
+    <input class="input" placeholder="예: 사람들을 돕고 싶어요 / I want to help people" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">한국에서의 목표 Goal in Korea</label>
+    <input class="input" placeholder="예: 한국어를 잘하고 싶어요." value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
+  </div>
+  ${preview?`
+  <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📄 미리보기 · Preview</div>
+  <div class="card card-accent" style="background:#f0f7ff">
+    ${preview.split('\n').filter(l=>l.trim()).map(l=>`<div style="font-size:16px;color:var(--navy);font-weight:600;margin-bottom:4px">${l}</div>`).join('')}
+  </div>
+  <button class="btn btn-primary" style="margin-top:10px" onclick="TTS.speak(\`${preview.replace(/\n/g,' ').replace(/이에요\/예요/g,'이에요')}\`,undefined,0.8)">🔊 발표 연습 듣기 · Listen to Presentation</button>
+  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 나의 꿈 이야기가 만들어집니다.<br>Fill in the fields above to generate your dream story.</div>'}
+
+  <div style="margin-top:20px;font-weight:700;color:var(--navy);margin-bottom:8px">✍️ 자유 쓰기 · Free Writing</div>
+  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 안녕하세요? 저는 ___이에요.&#10;___에서 왔어요. 저는 ___이에요." id="freeWrite"></textarea>`;
+}
+
+function renderFlashcard() {
+  const all = [...VOCAB_PLACES.map(v=>({f:v.kor,b:v.eng})),...VOCAB_LOCATION.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
+  const card = all[state.fcIdx % all.length];
+  return `<h2>🃏 플래시카드 · Flashcards</h2>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">${(state.fcIdx%all.length)+1} / ${all.length}</span>
+    <span style="font-size:12px;color:var(--green);font-weight:600">✓ ${state.fcKnown}개 학습</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${((state.fcIdx%all.length)+1)/all.length*100}%;background:var(--orange)"></div></div>
+  <div onclick="setState({fcFlipped:!state.fcFlipped})"
+    style="background:${state.fcFlipped?'var(--navy)':'#fff'};border:2px solid var(--navy);border-radius:16px;padding:36px 20px;margin:18px 0;text-align:center;cursor:pointer;min-height:130px;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:all .3s">
+    <div style="font-size:10px;color:${state.fcFlipped?'#8899BB':'#aaa'};margin-bottom:8px">${state.fcFlipped?'ENGLISH':'한국어'}</div>
+    <div style="font-size:${state.fcFlipped?'20px':'30px'};font-weight:700;color:${state.fcFlipped?'#fff':'var(--navy)'}">${state.fcFlipped?card.b:card.f}</div>
+    ${!state.fcFlipped?'<div style="font-size:11px;color:#ccc;margin-top:10px">탭하여 뒤집기 · Tap to flip</div>':''}
+  </div>
+  <div style="display:flex;gap:8px">
+    <button onclick="TTS.speak('${card.f}')" style="padding:12px;border-radius:10px;background:#f0f7ff;color:var(--ocean);font-size:20px;flex-shrink:0">🔊</button>
+    <button onclick="setState({fcIdx:state.fcIdx+1,fcFlipped:false})" style="flex:1;padding:12px;border-radius:10px;background:#fee2e2;color:var(--red);font-size:14px;font-weight:700">✕ 모르겠어요</button>
+    <button onclick="setState({fcIdx:state.fcIdx+1,fcFlipped:false,fcKnown:state.fcKnown+1})" style="flex:1;padding:12px;border-radius:10px;background:#dcfce7;color:var(--green);font-size:14px;font-weight:700">✓ 알겠어요!</button>
+  </div>`;
+}
+
+function renderQuiz() {
+  if (state.qDone) {
+    const pct = Math.round(state.qScore/QUIZ.length*100);
+    return `<div style="text-align:center;padding:20px 0">
+      <div style="font-size:56px">${pct>=80?'🎉':pct>=50?'👍':'💪'}</div>
+      <h2>퀴즈 결과 · Quiz Result</h2>
+      <div style="font-size:44px;font-weight:800;color:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'};margin:14px 0">${state.qScore}/${QUIZ.length}</div>
+      <div style="font-size:15px;color:#888;margin-bottom:20px">${pct}% 정답 · Correct</div>
+      <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
+      <button onclick="setState({qIdx:0,qSel:null,qScore:0,qDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
+    </div>`;
+  }
+  const q = QUIZ[state.qIdx];
+  return `<h2>🎯 퀴즈 · Quiz</h2>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문제 ${state.qIdx+1}/${QUIZ.length}</span>
+    <span style="font-size:12px;color:var(--ocean);font-weight:600">점수: ${state.qScore}</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.qIdx+1)/QUIZ.length*100}%;background:var(--ocean)"></div></div>
+  <div class="card" style="background:#f0f7ff;text-align:center;margin:14px 0">
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${q.q}</div>
+  </div>
+  ${q.o.map((opt,i)=>{
+    let cls = 'quiz-opt';
+    if(state.qSel!==null){
+      if(i===q.a) cls+=' quiz-correct';
+      else if(i===state.qSel) cls+=' quiz-wrong';
+    }
+    return `<button class="${cls}" onclick="${state.qSel===null?`setState({qSel:${i},qScore:state.qScore+${i===q.a?1:0}})`:''}">${String.fromCharCode(65+i)}. ${opt}</button>`;
+  }).join('')}
+  ${state.qSel!==null?`<button onclick="${state.qIdx<QUIZ.length-1?`setState({qIdx:state.qIdx+1,qSel:null})`:`setState({qDone:true})`}" class="btn btn-primary" style="margin-top:8px">${state.qIdx<QUIZ.length-1?'다음 문제 → Next':'결과 보기 → Result'}</button>`:''}`;
+}
+
+function renderCulture() {
+  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 장소 문화 · Korean Place & Direction Culture</p>
+  ${CULTURE.map(c=>`<div class="card" style="display:flex;gap:12px;align-items:flex-start">
+    <div style="font-size:34px;flex-shrink:0">${c.icon}</div>
+    <div>
+      <div style="font-weight:700;font-size:15px;color:var(--navy)">${c.t}</div>
+      <div style="font-size:11px;color:var(--ocean);margin-bottom:4px">${c.eng}</div>
+      <div style="font-size:13px;color:#333;line-height:1.5">${c.d}</div>
+      <div style="font-size:12px;color:#888;margin-top:2px">${c.de}</div>
+    </div>
+  </div>`).join('')}
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">⚓ 이순신 장군 자세히 보기</button>`;
+}
+
+// ===== REVIEW (익힘) =====
+function renderReview() {
+  const tabs = ['복습 Review','예습 Preview','받아쓰기 Dictation'];
+  const t = state.rvTab;
+
+  if (t===0) { // 복습
+    const rv = REVIEW_DATA.review;
+    return `<h2><span class="section-icon">📝</span>익힘 · 복습</h2><p class="sub">${rv.desc} ${rv.descEng}</p>
+    <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+    ${rv.sections.map(s=>`
+      <div class="card card-accent">
+        <div style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px">${s.icon} ${s.title}</div>
+        ${s.items.map(item=>`<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+          <span style="color:var(--green);font-size:14px">✓</span>
+          <span style="font-size:14px;color:#333">${item}</span>
+          ${!item.includes(' ')&&item.length<15?ttsBtn(item):''}
+        </div>`).join('')}
+      </div>`).join('')}
+    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 인사 전체 듣기</button>`;
+  }
+  if (t===1) { // 예습
+    const pv = REVIEW_DATA.preview;
+    return `<h2><span class="section-icon">📝</span>익힘 · 예습</h2><p class="sub">${pv.desc} ${pv.descEng}</p>
+    <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+    <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean)">
+      <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px">📖 다음 수업 미리보기 · Next Lesson Preview</div>
+      <div style="font-size:12px;color:#888;margin-bottom:12px">2과를 미리 살펴보세요!</div>
+    </div>
+    ${pv.items.map((item,i)=>`
+      <div class="card ${i%2===0?'card-accent':'card-orange'}">
+        <div style="font-size:12px;font-weight:700;color:var(--ocean)">${item.label}</div>
+        <div style="font-size:16px;font-weight:700;color:var(--navy);margin:4px 0">${item.val}</div>
+        <div style="font-size:12px;color:#888">${item.detail}</div>
+      </div>`).join('')}
+    <div class="card card-green" style="background:var(--light-green)">
+      <div style="font-weight:700;color:var(--green);margin-bottom:6px">💡 예습 팁 · Preview Tips</div>
+      <div style="font-size:13px;color:#333;line-height:1.6">
+        1. 위의 새 어휘를 3번씩 소리 내어 읽어 보세요.<br>
+        2. '이것', '그것', '저것'을 주변 물건을 가리키며 말해 보세요.<br>
+        3. 조선소에서 사용하는 공구 이름을 미리 알아보세요.
+      </div>
+      <div style="font-size:12px;color:#888;margin-top:6px;line-height:1.5">
+        1. Read the new vocabulary aloud 3 times.<br>
+        2. Point at objects around you and say '이것', '그것', '저것'.<br>
+        3. Learn the tool names used at the shipyard in advance.
+      </div>
+    </div>`;
+  }
+  // t===2: 받아쓰기
+  const dict = REVIEW_DATA.dictation;
+  const d = dict[state.rvDictIdx];
+  const result = state.rvDictResults[state.rvDictIdx];
+  return `<h2><span class="section-icon">📝</span>익힘 · 받아쓰기</h2><p class="sub">Dictation Practice · 듣고 따라 쓰세요</p>
+  <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문장 ${state.rvDictIdx+1}/${dict.length}</span>
+    <span style="font-size:12px;color:var(--green);font-weight:600">✓ ${Object.values(state.rvDictResults).filter(r=>r==='correct').length}개 정답</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.rvDictIdx+1)/dict.length*100}%;background:var(--ocean)"></div></div>
+
+  <div class="card" style="text-align:center;margin:16px 0;background:#f0f7ff;border:2px solid var(--ocean)">
+    <div style="font-size:14px;color:#888;margin-bottom:8px">🔊 듣고 한국어로 쓰세요 · Listen and write in Korean</div>
+    <button onclick="TTS.speak('${d}',undefined,0.7)" style="background:var(--ocean);color:#fff;border-radius:50%;width:56px;height:56px;font-size:28px;margin:8px 0">🔊</button>
+    <div style="font-size:11px;color:#aaa;margin-top:4px">버튼을 눌러 들으세요 · Press to listen</div>
+  </div>
+
+  <input class="input" style="font-size:18px;text-align:center;padding:14px" placeholder="여기에 쓰세요 · Write here"
+    value="${state.rvDictInput||''}" oninput="state.rvDictInput=this.value" id="dictInput">
+
+  ${result ? `<div class="card ${result==='correct'?'card-green':'card-orange'}" style="background:${result==='correct'?'var(--light-green)':'#fee2e2'}">
+    <div style="font-size:16px;font-weight:700;color:${result==='correct'?'var(--green)':'var(--red)'}">${result==='correct'?'✓ 정답입니다! Correct!':'✕ 다시 해 보세요.'}</div>
+    <div style="font-size:18px;font-weight:700;color:var(--navy);margin-top:6px">정답: ${d}</div>
+  </div>`:
+  `<button class="btn btn-primary" onclick="
+    var input=document.getElementById('dictInput').value.trim().replace(/[.?!]/g,'');
+    var answer='${d}'.replace(/[.?!]/g,'');
+    var r=input===answer?'correct':'wrong';
+    setState({rvDictResults:{...state.rvDictResults,[state.rvDictIdx]:r}})
+  ">✓ 확인 · Check</button>`}
+
+  ${result?`<button class="btn btn-navy" style="margin-top:8px" onclick="setState({rvDictIdx:Math.min(state.rvDictIdx+1,${dict.length-1}),rvDictInput:'',rvDictResults:state.rvDictResults})">${state.rvDictIdx<dict.length-1?'다음 문장 → Next':'완료! Finished!'}</button>`:''}
+  <button onclick="TTS.speak('${d}',undefined,0.6)" class="btn" style="margin-top:6px;background:#e5e7eb;color:#555">🔊 천천히 듣기 · Listen Slowly</button>`;
+}
+
+// ===== FOLKTALE =====
+function renderFolktale() {
+  const ft = FOLKTALE;
+  const s = ft.sentences[state.ftSentIdx];
+  const total = ft.sentences.length;
+  return `<h2><span class="section-icon">📚</span>전래동화 · Korean Folktale</h2>
+  <div class="card" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;margin-bottom:14px">
+    <div style="font-size:22px;font-weight:800;margin-bottom:2px">${ft.title}</div>
+    <div style="font-size:13px;opacity:.8">${ft.eng}</div>
+    <div style="font-size:12px;opacity:.7;margin-top:6px">${ft.desc}</div>
+    <div style="font-size:11px;opacity:.6">${ft.descEng}</div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문장 ${state.ftSentIdx+1}/${total}</span>
+    <div style="display:flex;gap:6px">
+      <button class="tab ${state.ftShowEng?'active':''}" onclick="setState({ftShowEng:!state.ftShowEng})">${state.ftShowEng?'영어 숨기기':'영어 보기'}</button>
+    </div>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.ftSentIdx+1)/total*100}%;background:#a855f7"></div></div>
+
+  <div class="card" style="margin:14px 0;padding:20px;text-align:center;background:#faf5ff;border:2px solid #a855f7;min-height:120px;display:flex;flex-direction:column;justify-content:center">
+    <div style="font-size:20px;font-weight:700;color:var(--navy);line-height:1.6;margin-bottom:8px">${s.kor}</div>
+    ${state.ftShowEng?`<div style="font-size:14px;color:#888;line-height:1.4">${s.eng}</div>`:''}
+    <button onclick="TTS.speak('${s.kor.replace(/'/g,"\\'")}')" style="margin:12px auto 0;background:#a855f7;color:#fff;border-radius:50%;width:48px;height:48px;font-size:22px">🔊</button>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-bottom:12px">
+    <button onclick="setState({ftSentIdx:Math.max(0,state.ftSentIdx-1)})" class="btn" style="background:#e5e7eb;color:#555;flex:1">← 이전</button>
+    <button onclick="setState({ftSentIdx:Math.min(${total-1},state.ftSentIdx+1)})" class="btn" style="background:#a855f7;color:#fff;flex:1">다음 →</button>
+  </div>
+
+  <button onclick="var all=FOLKTALE.sentences.map(s=>s.kor).join('. ');TTS.speak(all,undefined,0.7)" class="btn btn-navy" style="margin-bottom:8px">🔊 전체 동화 듣기 · Listen to Full Story</button>
+  <button onclick="setState({page:'ftquiz'})" class="btn btn-orange">🧩 동화 퀴즈 풀기 · Take Folktale Quiz</button>
+
+  <div style="margin-top:16px;font-weight:700;color:var(--navy);margin-bottom:8px">📖 전체 문장 목록 · All Sentences</div>
+  <div style="max-height:300px;overflow-y:auto;border:1px solid #e5e7eb;border-radius:10px;padding:8px">
+    ${ft.sentences.map((sent,i)=>`
+      <div onclick="setState({ftSentIdx:${i}});TTS.speak('${sent.kor.replace(/'/g,"\\'")}')"
+        style="padding:8px 10px;border-radius:8px;margin-bottom:4px;cursor:pointer;background:${i===state.ftSentIdx?'#f3e8ff':'transparent'};border-left:${i===state.ftSentIdx?'3px solid #a855f7':'3px solid transparent'}">
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <span style="color:#a855f7;font-weight:700;font-size:12px;min-width:20px">${i+1}</span>
+          <div>
+            <div style="font-size:14px;color:var(--navy);font-weight:${i===state.ftSentIdx?700:400}">${sent.kor}</div>
+            ${state.ftShowEng?`<div style="font-size:11px;color:#888">${sent.eng}</div>`:''}
+          </div>
+        </div>
+      </div>
+    `).join('')}
+  </div>`;
+}
+
+// ===== FOLKTALE QUIZ =====
+function renderFtQuiz() {
+  if (state.fqDone) {
+    const pct = Math.round(state.fqScore/FOLKTALE_QUIZ.length*100);
+    return `<div style="text-align:center;padding:20px 0">
+      <div style="font-size:56px">${pct>=80?'🎉':pct>=50?'📖':'💪'}</div>
+      <h2>동화 퀴즈 결과 · Folktale Quiz Result</h2>
+      <div style="font-size:14px;color:#888;margin:6px 0">흥부와 놀부 · Heungbu and Nolbu</div>
+      <div style="font-size:44px;font-weight:800;color:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'};margin:14px 0">${state.fqScore}/${FOLKTALE_QUIZ.length}</div>
+      <div style="font-size:15px;color:#888;margin-bottom:20px">${pct}% 정답 · Correct</div>
+      <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
+      <button onclick="setState({fqIdx:0,fqSel:null,fqScore:0,fqDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
+      <button onclick="setState({page:'folktale'})" class="btn" style="margin-top:8px;background:#e5e7eb;color:#555">📚 동화 다시 읽기 · Read Story Again</button>
+    </div>`;
+  }
+  const q = FOLKTALE_QUIZ[state.fqIdx];
+  return `<h2><span class="section-icon">🧩</span>동화 퀴즈 · Folktale Quiz</h2>
+  <p class="sub">흥부와 놀부 · Heungbu and Nolbu</p>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문제 ${state.fqIdx+1}/${FOLKTALE_QUIZ.length}</span>
+    <span style="font-size:12px;color:#a855f7;font-weight:600">점수: ${state.fqScore}</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.fqIdx+1)/FOLKTALE_QUIZ.length*100}%;background:#a855f7"></div></div>
+
+  <div class="card" style="background:#faf5ff;text-align:center;margin:14px 0;border:2px solid #a855f7">
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${q.q}</div>
+    <button onclick="TTS.speak('${q.q.replace(/'/g,"\\'")}')" class="tts-btn" style="margin-top:8px;background:#a855f7">🔊</button>
+  </div>
+  ${q.o.map((opt,i)=>{
+    let cls='quiz-opt';
+    if(state.fqSel!==null){
+      if(i===q.a) cls+=' quiz-correct';
+      else if(i===state.fqSel) cls+=' quiz-wrong';
+    }
+    return `<button class="${cls}" onclick="${state.fqSel===null?`setState({fqSel:${i},fqScore:state.fqScore+${i===q.a?1:0}})`:''}">${String.fromCharCode(65+i)}. ${opt}</button>`;
+  }).join('')}
+  ${state.fqSel!==null?`<button onclick="${state.fqIdx<FOLKTALE_QUIZ.length-1?`setState({fqIdx:state.fqIdx+1,fqSel:null})`:`setState({fqDone:true})`}" class="btn" style="margin-top:8px;background:#a855f7;color:#fff">${state.fqIdx<FOLKTALE_QUIZ.length-1?'다음 문제 → Next':'결과 보기 → Result'}</button>`:''}`;
+}
+
+function renderGeoje() {
+  const g = LOCAL_INFO;
+  return `<h2>⚓ ${g.title}</h2><p class="sub">${g.eng}</p>
+  <div class="card" style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);color:#fff;border:none">
+    <div style="font-size:18px;font-weight:800;margin-bottom:10px">HANWHA OCEAN 한화오션</div>
+    <div style="font-size:13px;line-height:1.7;opacity:.9">${g.desc}</div>
+    <div style="font-size:12px;line-height:1.6;opacity:.7;margin-top:8px">${g.descEng}</div>
+  </div>
+  <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📊 기본 정보 · Basic Info</div>
+  ${g.facts.map((f,i)=>`<div class="card ${i%2===0?'card-accent':'card-orange'}">
+    <div style="font-size:12px;font-weight:700;color:var(--ocean)">${f.label}</div>
+    <div style="font-size:14px;color:var(--navy);font-weight:600">${f.val}</div>
+  </div>`).join('')}
+  <div class="card" style="background:var(--light-orange);border:2px solid var(--orange)">
+    <b style="color:var(--orange)">🚀 한국의 성장 원동력: 해양 강국 Korea's Growth Engine: Maritime Power</b>
+    <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      ${[
+        {item:'이순신 장군',price:'해전 영웅',emoji:'⚔️',eng:'Admiral Yi Sun-sin'},
+        {item:'거북선',price:'세계 최초',emoji:'🐢',eng:'Turtle Ship'},
+        {item:'조선 산업',price:'세계 1위',emoji:'🚢',eng:'Shipbuilding #1'},
+        {item:'해운',price:'글로벌 Top10',emoji:'🚢',eng:'HMM Shipping'},
+        {item:'수산업',price:'세계 5위',emoji:'🐟',eng:'Fishery'},
+        {item:'해양 기술',price:'미래 성장',emoji:'🌊',eng:'Marine Tech'},
+      ].map(p=>`
+        <div style="background:#fff;border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px">${p.emoji}</div>
+          <div style="font-size:13px;font-weight:700;color:var(--navy)">${p.item}</div>
+          <div style="font-size:14px;font-weight:800;color:var(--orange)">${p.price}</div>
+          <div style="font-size:10px;color:#aaa">${p.eng}</div>
+        </div>
+      `).join('')}
+    </div>
+  </div>`;
+}
+
+
+// ===== AI 에이전트 (조선소 특화) =====
+var AI_QUICK_BTNS = [
+  { emoji:'🏥', label:'의무실 어디예요?',
+    q:'조선소에서 다쳤어요. 의무실 찾는 대화를 연습해주세요. "의무실이 어디예요?", "2층에 있어요", "왼쪽으로 가세요" 같은 표현을 롤플레이로 연습시켜주세요.' },
+  { emoji:'📍', label:'장소 이름 알려줘',
+    q:'한화오션 조선소 안 주요 장소 이름을 한국어로 알려주세요: 도크, 기숙사, 구내식당, 화장실, 의무실, 정문, 주차장. 한국어+영어+위치 힌트 함께요.' },
+  { emoji:'🧭', label:'여기/거기/저기 차이',
+    q:'여기/거기/저기 차이를 조선소 상황으로 설명해주세요. 위치 표현 있어요/없어요도 함께요. 예: "화장실은 저기 오른쪽에 있어요." 영어로도 설명해주세요.' },
+  { emoji:'🚶', label:'길 안내 표현',
+    q:'조선소에서 길을 안내하는 한국어 표현 5가지를 알려주세요. 앞으로, 뒤로, 왼쪽, 오른쪽, 엘리베이터, 계단 등 방향 표현도 영어와 함께요.' },
+  { emoji:'🆘', label:'긴급 상황 위치',
+    q:'조선소 긴급 상황에서 쓰는 위치/장소 표현을 알려주세요. "비상구는 어디예요?", "구급함이 여기 있어요", "빨리 의무실로 가세요" 등을 영어와 함께요.' },
+]
+
+var AICHAT = {
+  msgs: [],
+  loading: false,
+  input: '',
+  addMsg: function(role, text) {
+    this.msgs.push({ role, text, time: new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'}) });
+    render();
+    setTimeout(function(){
+      var box = document.querySelector('.ai-msgbox');
+      if(box) box.scrollTop = box.scrollHeight;
+    }, 50);
+  },
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx];
+    if (!b || this.loading) return;
+    this.send(b.q, b.label);
+  },
+  send: async function(text, label) {
+    if (this.loading) return;
+    text = text || this.input.trim();
+    if (!text) return;
+    this.input = '';
+    this.loading = true;
+    var displayText = label || text;
+    this.addMsg('user', displayText);
+    try {
+      var sysP = 'You are a Korean location guide for Hanwha Ocean shipyard. Lesson 3 focus: location words 여기(here)/거기(there)/저기(over there), 에 있어요/없어요 (exists/doesn\'t exist at location), ~은/는 어디예요? (Where is...?), shipyard places: 도크(dock), 기숙사(dormitory), 의무실(infirmary), 구내식당(cafeteria), 화장실(restroom). Give SHORT answers with English.';
+      var url = '/api/chat';
+      var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
+      this.loading = false;
+      this.addMsg('assistant', reply);
+    } catch(e) {
+      this.loading = false;
+      this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');
+    }
+  }
+};
+
+// ===== RECORDER (발음 코치 — 브라우저 내장 API) =====
+var RECORDER = {
+  recorders: {}, chunks: {}, audioURLs: {}, isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    var resultEl = document.getElementById('stt-result-' + idx);
+    var playBtn  = document.getElementById('play-btn-' + idx);
+    var scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, recBtn); return; }
+    var stream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({audio: true});
+    } catch(e) {
+      var msg = '';
+      var n = e.name || '';
+      if (n === 'NotAllowedError' || n === 'PermissionDeniedError')
+        msg = '❌ <strong>마이크 차단됨</strong> — 주소창 🔒 → 마이크 → <strong>허용</strong> 후 F5<br><span style="color:#555">Microphone blocked — click 🔒 → Microphone → Allow → F5</span>';
+      else if (n === 'NotFoundError')
+        msg = '❌ 마이크를 찾을 수 없어요 — Microphone not found';
+      else if (location.protocol === 'file:')
+        msg = '❌ 보안 오류 — <a href="https://elimg.com" target="_blank" style="color:#1d4ed8">elimg.com</a>에서 열어주세요 (HTTPS 필요)';
+      else
+        msg = '❌ 오류: ' + e.name + ' — Chrome/Edge에서 다시 시도하세요';
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    var mr = new MediaRecorder(stream);
+    this.recorders[idx] = mr;
+    var self = this;
+    mr.ondataavailable = function(e) { if (e.data.size > 0) self.chunks[idx].push(e.data); };
+    mr.onstop = function() {
+      if (self.audioURLs[idx]) URL.revokeObjectURL(self.audioURLs[idx]);
+      var blob = new Blob(self.chunks[idx], {type:'audio/webm'});
+      self.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false; playBtn.style.opacity = '1';
+        playBtn.onclick = function() { new Audio(self.audioURLs[idx]).play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지'; recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중... / Recording...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      var rec = new SR(); rec.lang = 'ko-KR'; rec.continuous = false; rec.interimResults = false;
+      rec.onresult = function(e) {
+        var said = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        var target = targetText.replace(/[\s,.?!]/g,'');
+        var conf = e.results[0][0].confidence;
+        var match = 0;
+        for (var i = 0; i < Math.min(said.length, target.length); i++) { if (said[i] === target[i]) match++; }
+        var pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        var final = Math.round(pct * 0.7 + Math.round((conf||0.5)*100) * 0.3);
+        var color = final >= 80 ? '#22c55e' : final >= 50 ? '#f59e0b' : '#ef4444';
+        var msg = final >= 80 ? '✅ 완벽해요! Great!' : final >= 50 ? '🔄 조금 더 연습! Keep going!' : '❌ 다시 시도! Try again!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식 / Heard: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = final + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = function() {};
+      rec.start();
+    }
+  },
+
+  stop(idx, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') this.recorders[idx].stop();
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음'; recBtn.style.background = '#059669';
+  },
+
+  async autoDetect() {
+    var stateEl = document.getElementById('mic-perm-state');
+    var blockedEl = document.getElementById('mic-blocked-guide');
+    var allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        var result = await navigator.permissions.query({name:'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨 — 바로 녹음하세요! / Microphone allowed!</div>';
+          if (allowBtn) { allowBtn.style.background='#166534'; allowBtn.textContent='✅ 허용됨 — 녹음 시작 / Start Recording'; }
+          if (blockedEl) blockedEl.style.display = 'none';
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 / Blocked — 아래 버튼 클릭</div>';
+          if (blockedEl) blockedEl.style.display = 'block';
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아래 버튼을 눌러 마이크를 허용하세요</div>';
+        }
+        result.onchange = function() { RECORDER.autoDetect(); };
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼으로 마이크를 허용하세요</div>';
+      }
+    }
+  },
+
+  async checkPermission(btn) {
+    var statusEl = document.getElementById('mic-status');
+    var box = document.getElementById('mic-check-box');
+    var blockedEl = document.getElementById('mic-blocked-guide');
+    var stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → <a href="https://elimg.com" target="_blank" style="color:#1d4ed8;font-weight:700">elimg.com에서 열기</a></span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      var stream = await navigator.mediaDevices.getUserMedia({audio:true});
+      stream.getTracks().forEach(function(t){t.stop();});
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 허용됨! / Allowed!</span>';
+      if (box) { box.style.background='#dcfce7'; box.style.borderColor='#86efac'; }
+      if (blockedEl) blockedEl.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 녹음 시작 / Start Recording'; btn.style.background='#166534'; btn.disabled=false;
+    } catch(e) {
+      btn.disabled = false;
+      if (e.name==='NotAllowedError'||e.name==='PermissionDeniedError') {
+        if (blockedEl) blockedEl.style.display='block';
+        if (stateEl) stateEl.innerHTML='<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 차단됨 — 아래 순서대로 해결 후 다시 클릭</div>';
+        btn.textContent='🔄 허용 완료 후 다시 클릭'; btn.style.background='#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML='<span style="color:#ef4444">오류 (' + e.name + ') — Chrome/Edge로 시도</span>';
+        btn.textContent='🔄 다시 시도'; btn.style.background='#92400e';
+      }
+    }
+  }
+};
+
+function startSTT(idx, targetText, recBtn) { RECORDER.start(idx, targetText, recBtn); }
+
+// ===== AI 에이전틱 G스택 렌더 =====
+function renderAI() {
+  setTimeout(function(){ RECORDER.autoDetect(); }, 100);
+  return `
+  <h2>🤖 AI 실습</h2>
+  <p class="sub">글로컬 아카데미 × 에이전틱 G스택</p>
+
+  <!-- 헤더 배너 -->
+  <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+    <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+    <div style="font-size:15px;font-weight:800;margin-bottom:6px">🗺️ AI 조선소 길 안내</div>
+    <div style="font-size:11px;opacity:0.85;line-height:1.7">여기/거기/저기 · 위치 표현 실전 연습<br>
+    <span style="color:#93c5fd">🔵 Shipyard Navigator × Location Korean</span></div>
+  </div>
+
+  <!-- 앱 내 AI 채팅 — 로그인 불필요 -->
+  <div class="card" style="margin-bottom:10px;border:2px solid #2E75B6">
+    <div class="section-label" style="background:#1E3A5F">⚡ AI 채팅 · 로그인 불필요 · No Login Needed</div>
+    <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+      계정 없이 바로 AI에게 질문하세요<br>
+      <span style="font-size:11px;color:#2E75B6">Ask AI directly — no login needed · Free</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+      ${AI_QUICK_BTNS.map(function(b,i){return `
+        <button onclick="AICHAT.quickSend(${i})"
+          style="background:#f0f7ff;border:1px solid #2E75B6;color:#1E3A5F;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">
+          ${b.emoji} ${b.label}
+        </button>`;}).join('')}
+    </div>
+    <div class="ai-msgbox" style="background:#fff;border-radius:12px;border:1px solid #e8edf2;min-height:120px;max-height:300px;overflow-y:auto;padding:12px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px">
+      ${AICHAT.msgs.length === 0
+        ? `<div style="text-align:center;color:#aaa;padding:24px 16px;font-size:12px">
+            💡 버튼을 누르거나 아래에 입력하세요<br>
+            <span style="font-size:11px">Tap a button above or type below</span>
+          </div>`
+        : AICHAT.msgs.map(function(m){ return `
+          <div style="align-self:${m.role==='user'?'flex-end':'flex-start'};max-width:90%">
+            <div style="background:${m.role==='user'?'#2E75B6':'#f0f7ff'};color:${m.role==='user'?'#fff':'#1E3A5F'};border-radius:${m.role==='user'?'14px 14px 4px 14px':'14px 14px 14px 4px'};padding:10px 13px;font-size:13px;line-height:1.65;white-space:pre-wrap;word-break:break-word">${m.text}</div>
+            <div style="font-size:10px;color:#aaa;margin-top:3px;text-align:${m.role==='user'?'right':'left'}">${m.time}</div>
+          </div>`;}).join('')}
+      ${AICHAT.loading ? `<div style="align-self:flex-start;background:#f0f7ff;border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:13px;color:#2E75B6">⏳ AI가 답하는 중... / Generating...</div>` : ''}
+    </div>
+    <div style="display:flex;gap:8px">
+      <input id="ai-input" type="text" placeholder="한국어 질문 / Ask a question..."
+        style="flex:1;padding:12px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;outline:none"
+        onfocus="this.style.borderColor='#2E75B6'" onblur="this.style.borderColor='#e5e7eb'"
+        onkeydown="if(event.key==='Enter'){AICHAT.input=this.value;AICHAT.send();}">
+      <button onclick="AICHAT.input=document.getElementById('ai-input').value;AICHAT.send()"
+        style="background:#2E75B6;color:#fff;border-radius:10px;padding:0 18px;font-size:20px;min-width:52px;font-family:inherit;cursor:pointer;border:none">➤</button>
+    </div>
+    <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:center">Enter로 전송 · 🆓 완전 무료 · No account needed</div>
+  </div>
+
+  <!-- 외부 AI 가이드 — 선택사항 -->
+  <div class="card" style="margin-bottom:10px">
+    <div class="section-label" style="background:#6b7280">🌐 외부 AI · 선택사항 · Optional</div>
+    <div style="font-size:11px;color:#888;margin:6px 0 8px">더 강력한 AI로 깊이 있게 학습 (로그인 필요 / Login required)</div>
+
+    <details style="margin-bottom:8px">
+      <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+        🔵 Gemini AI — Google 계정 로그인 / Free with Google account
+      </summary>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+        <strong style="color:#1d4ed8">① 접속:</strong> gemini.google.com<br>
+        <strong style="color:#1d4ed8">② 조선소 롤플레이 연습:</strong>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+          <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 프롬프트 복사해서 붙여넣기</div>
+          <span style="font-family:monospace;background:#dbeafe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 한화오션 조선소 외국인 근로자예요. 조선소 안에서 길을 찾고 위치를 설명하는 한국어 연습을 도와주세요. 여기/거기/저기와 있어요/없어요 표현으로 롤플레이해 주세요. 영어로도 설명해 주세요."</span>
+          Copy &amp; paste to Gemini for shipyard roleplay practice
+        </div>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+          <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">📸 현장 사진 질문 (Gemini 특화)</div>
+          조선소 안전 표지판 사진 → 업로드 → "이게 무슨 뜻이에요?"<br>
+          <span style="color:#555">Photo of Korean safety signs → Upload → Ask what it means</span>
+        </div>
+        <a href="https://gemini.google.com" target="_blank" style="display:block;background:#1d4ed8;color:#fff;text-align:center;padding:8px;border-radius:8px;font-weight:700;margin-top:8px;font-size:13px">🔵 Gemini 열기 / Open Gemini →</a>
+      </div>
+    </details>
+
+    <details>
+      <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+        🟣 Claude AI — 이메일 가입 · Free with email
+      </summary>
+      <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+        <strong style="color:#7c3aed">① 접속:</strong> claude.ai (이메일로 무료 가입)<br>
+        <strong style="color:#7c3aed">② 내 한국어 첨삭:</strong>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">
+          <div style="font-weight:700;color:#7c3aed;margin-bottom:3px">✏️ 문장 고치기 (Claude 특화)</div>
+          <span style="font-family:monospace;background:#ede9fe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 조선소 외국인 근로자입니다. 제 한국어 문장을 고쳐주세요: [내 문장]. 영어로 설명해 주세요."</span>
+          Copy your sentence → paste to Claude → get corrections in English
+        </div>
+        <a href="https://claude.ai" target="_blank" style="display:block;background:#7c3aed;color:#fff;text-align:center;padding:8px;border-radius:8px;font-weight:700;margin-top:8px;font-size:13px">🟣 Claude 열기 / Open Claude →</a>
+      </div>
+    </details>
+  </div>
+
+  <!-- 발음 코치 -->
+  <div class="card" style="background:#f0fdf4;border:1px solid #86efac;margin-bottom:10px">
+    <div class="section-label" style="background:#059669">🎤 발음 코치 · Pronunciation Coach</div>
+    <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">
+      원어민 듣기 → 내가 녹음 → 정확도 비교<br>
+      <span style="font-size:11px;color:#059669">Listen → Record → Compare accuracy</span>
+    </div>
+    <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#166534">
+      🆓 브라우저 내장 API · 완전 무료 · Chrome/Edge 권장
+    </div>
+
+    <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:12px;margin-bottom:10px">
+      <div id="mic-perm-state" style="margin-bottom:8px"></div>
+      <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:10px;margin-bottom:8px;font-size:12px;line-height:1.9;color:#1a202c">
+        🚫 <strong>마이크 차단됨 해결 / Microphone Blocked:</strong><br>
+        PC Chrome/Edge: 주소창 🔒 → 마이크 → <strong>허용</strong> → F5 새로고침<br>
+        Android: ⋮ → 사이트 설정 → 마이크 → 허용<br>
+        <span style="color:#555">PC: Click 🔒 in address bar → Microphone → Allow → press F5</span>
+      </div>
+      <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+        style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:700">
+        🎙️ 마이크 허용하기 / Allow Microphone
+      </button>
+      <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:14px"></div>
+    </div>
+
+    ${[
+      {sent:'화장실은 어디예요?', eng:'Where is the restroom?'},
+      {sent:'의무실은 2층에 있어요.', eng:'The infirmary is on the 2nd floor.'},
+      {sent:'저기 왼쪽으로 가세요.', eng:'Go to the left over there.'},
+      {sent:'기숙사는 조선소 밖에 있어요.', eng:'The dormitory is outside the shipyard.'},
+      {sent:'비상구는 여기 있어요.', eng:'The emergency exit is here.'},
+    ].map(function(item,i){ return `
+      <div style="background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+        <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>
+        <div style="font-size:10px;color:#059669;margin-bottom:8px">🇬🇧 ${item.eng}</div>
+        <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+          <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button onclick="var b=this;TTS.speak('${item.sent.replace(/'/g,"\\'")}');b.textContent='🔊 재생 중...';setTimeout(function(){b.textContent='🔊 원어민'},2000)"
+            style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🔊 원어민</button>
+          <button id="rec-btn-${i}" onclick="startSTT(${i},'${item.sent.replace(/'/g,"\\'")}',this)"
+            style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🎤 녹음</button>
+          <button id="play-btn-${i}" disabled
+            style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;opacity:0.4">▶ 내 발음</button>
+        </div>
+        <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:14px"></div>
+      </div>
+    `; }).join('')}
+
+    <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+      <strong>📖 사용법 / How to use:</strong><br>
+      1️⃣ <strong>🔊 원어민</strong> — 원어민 발음 먼저 들으세요 / Listen to native speaker<br>
+      2️⃣ <strong>🎤 녹음</strong> — 따라 말하고 다시 누르면 중지 / Speak then tap again to stop<br>
+      3️⃣ <strong>▶ 내 발음</strong> — 내 발음 들어보기 / Listen to yourself<br>
+      4️⃣ 점수: 🟢 80%+ 🟡 50~79% 🔴 50% 미만
+    </div>
+  </div>
+
+  <!-- G스택 학습법 -->
+  <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+    <div class="section-label" style="background:#059669">🌐 글로컬 G스택 학습법 · 4-Step AI Method</div>
+    <div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.9">
+      <strong>글로컬 아카데미 AI 에이전트 기반 4단계:</strong><br>
+      <span style="color:#555">① 어휘/표현 → 앱 내 AI 또는 Gemini 질문</span><br>
+      <span style="color:#555">② 대화 → Gemini 롤플레이 실습</span><br>
+      <span style="color:#555">③ 발음 → 위 발음 코치에서 녹음 비교</span><br>
+      <span style="color:#555">④ 첨삭 → Claude AI에 내 문장 보내기</span><br>
+      <br>
+      <span style="color:#2E75B6;font-size:11px"><strong>🇬🇧 Glocal Academy 4-Step AI Method:</strong><br>
+      ① Vocab/Expressions → Ask in-app AI or Gemini<br>
+      ② Conversation → Gemini roleplay practice<br>
+      ③ Pronunciation → Record &amp; compare above<br>
+      ④ Correction → Send your text to Claude AI</span>
+    </div>
+  </div>
+  `;
+}
+
+// ===== INIT =====
+render();

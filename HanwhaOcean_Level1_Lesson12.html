@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -521,7 +521,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level1_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level1_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 1 목차 · Contents</div></div>
     </a>
@@ -589,7 +589,7 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🏛️ 한국의 역사 & 민주화 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson11.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 11과 가족이 몇 명이에요?</a><a href="HanwhaOcean_Level1_Lesson13.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">13과 어떻게 가요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level1_Lesson11" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 11과 가족이 몇 명이에요?</a><a href="/HanwhaOcean_Level1_Lesson13" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">13과 어떻게 가요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -1065,18 +1065,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🕐', label:'어제 일과 말하기',
-    q:'조선소 외국인 근로자가 어제 일과를 한국어로 말하는 연습을 해주세요. "어제 8시에 출근했어요", "야근했어요", "12시에 잤어요" 과거형 문장을 영어와 함께 만들어주세요.' },
-  { emoji:'⚙️', label:'야근/잔업 표현',
-    q:'조선소에서 야근과 잔업에 관한 한국어 표현을 알려주세요. "어제 야근했어요", "오늘 잔업이 있어요", "너무 피곤해요" 같은 표현을 영어와 함께 5가지요.' },
-  { emoji:'🔄', label:'~았/었어요 변형',
-    q:'과거 시제 ~았/었어요를 조선소 일과 동사로 연습해주세요. 일하다→일했어요, 먹다→먹었어요, 자다→잤어요. 불규칙 변형도 5가지 영어 해석과 함께요.' },
-  { emoji:'📊', label:'작업 완료 보고',
-    q:'작업 완료를 상사에게 보고하는 한국어 과거형 문장을 알려주세요. "용접 작업을 완료했어요", "점검을 끝냈어요" 같은 보고 표현을 영어와 함께 5가지요.' },
-  { emoji:'🌙', label:'피로 표현하기',
-    q:'피로와 컨디션을 표현하는 한국어를 알려주세요. "어제 야근해서 피곤해요", "잠을 못 잤어요", "오늘 쉬고 싶어요" 같은 표현을 영어와 함께 알려주세요.' },
-]
-
+  {emoji:'⏪',label:'~았/었어요 만들기',
+   q:'았었어요만들기 past tense 과거형 았어요었어요를 알려주세요' },
+  {emoji:'⚡',label:'불규칙 동사',
+   q:'불규칙동사 irregular verb ㄷ불규칙 르불규칙을 알려주세요' },
+  {emoji:'📅',label:'어제/지난주',
+   q:'어제지난주 yesterday last week 과거시간 전에를 알려주세요' },
+  {emoji:'💼',label:'과거 경험',
+   q:'과거경험 past experience 해봤어요 본적있어요를 알려주세요' },
+  {emoji:'🎯',label:'과거 시제 연습',
+   q:'과거연습 past practice 어제뭐했어요 과거이야기를 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1103,13 +1102,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean past tense and daily routine coach for shipyard workers. Lesson focus: past tense ~았/었어요, work routine words 출근(start work), 퇴근(leave work), 야근(night shift/overtime), time expressions 어제(yesterday), 일했어요(worked). Help workers describe their daily work routines. SHORT answers with English.';
+      var sysP = 'You are a Korean past tense and daily routine coach for shipyard workers. Lesson focus: past tense ~았/었어요, work routine words 출근(start work), 퇴근(leave work), 야근(night shift/overtime), time expressions 어제(yesterday), 일했어요(worked). Help workers describe their daily work routines. SHORT answers with English. LESSON:L1L12';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -537,7 +537,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level1_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level1_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 1 목차 · Contents</div></div>
     </a>
@@ -605,7 +605,7 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🏗️ 한국의 인프라 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson1.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 1과 안녕하세요?</a><a href="HanwhaOcean_Level1_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">3과 여기가 어디예요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level1_Lesson1" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 1과 안녕하세요?</a><a href="/HanwhaOcean_Level1_Lesson3" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">3과 여기가 어디예요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -1083,18 +1083,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'❓', label:'이것 뭐예요? 퀴즈',
-    q:'조선소 도구 이름 맞히기 퀴즈를 해주세요. 도구의 특징을 설명하면 제가 한국어로 대답할게요. 예: "이것은 철을 자르는 도구예요. 이것은 뭐예요?" — 5개만 내주세요.' },
-  { emoji:'🔩', label:'조선소 도구 이름',
-    q:'한화오션 조선소에서 쓰는 도구/장비 이름을 한국어로 알려주세요: 그라인더, 용접기, 크레인, 안전모, 도면 등 10가지. 한국어 + 영어 + 발음을 함께요.' },
-  { emoji:'👆', label:'이/그/저 차이',
-    q:'이것/그것/저것 차이를 조선소 상황으로 설명해주세요. 예: 내 앞 도구=이것, 상대방 앞=그것, 멀리 보이는 크레인=저것. 쉽게 영어로도 설명해주세요.' },
-  { emoji:'🗣️', label:'도구 가리키며 말하기',
-    q:'조선소에서 도구를 가리키며 말하는 연습을 도와주세요. "이 용접기는 제 거예요", "저 크레인이 뭐예요?" 같은 표현 5가지를 알려주세요. 영어도 함께요.' },
-  { emoji:'✏️', label:'이에요/예요 복습',
-    q:'조선소 도구 이름으로 이에요/예요 복습을 해주세요. 그라인더예요, 용접기이에요, 크레인이에요 — 받침 규칙을 도구 예문으로 5개 만들어주세요.' },
-]
-
+  {emoji:'👆',label:'이것/그것/저것',
+   q:'이것그것저것 this that those 이거뭐예요 물건가리키기를 알려주세요' },
+  {emoji:'🔧',label:'도구 이름 알기',
+   q:'도구이름 공구이름 tool name 조선소도구를 알려주세요' },
+  {emoji:'❓',label:'~이 뭐예요?',
+   q:'이 뭐예요 뭐예요 what is this 이름묻기를 알려주세요' },
+  {emoji:'🗣️',label:'의문문 만들기',
+   q:'의문문만들기 question form 한국어질문 어떻게질문을 알려주세요' },
+  {emoji:'🚢',label:'조선소 어휘',
+   q:'조선소어휘 shipyard vocabulary 현장단어 작업장용어를 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1121,13 +1120,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean vocabulary coach for shipyard tool identification. Lesson 2 focus: demonstratives 이것/그것/저것 (this/that/that over there), 이/그/저+noun, and tool names like 용접기(welder), 그라인더(grinder), 크레인(crane), 도면(blueprint), 안전모(hard hat). Keep answers SHORT with English. Use quiz-style when asked.';
+      var sysP = 'You are a Korean vocabulary coach for shipyard tool identification. Lesson 2 focus: demonstratives 이것/그것/저것 (this/that/that over there), 이/그/저+noun, and tool names like 용접기(welder), 그라인더(grinder), 크레인(crane), 도면(blueprint), 안전모(hard hat). Keep answers SHORT with English. Use quiz-style when asked. LESSON:L1L2';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

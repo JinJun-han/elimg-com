@@ -1,0 +1,1111 @@
+
+// ===== TTS =====
+const TTS = {
+  speak(text, lang='ko-KR', rate=0.8) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang; u.rate = rate; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const koVoice = voices.find(v => v.lang.startsWith('ko')) || voices.find(v => v.lang.includes('ko'));
+    if (koVoice) u.voice = koVoice;
+    window.speechSynthesis.speak(u);
+  },
+  init() { if (window.speechSynthesis) window.speechSynthesis.getVoices(); }
+};
+window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
+
+function ttsBtn(text) {
+  return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'").replace(/"/g,"&quot;")}')" title="발음 듣기">🔊</button>`;
+}
+
+// ===== STATE =====
+const STATE = {
+  section: 0,
+  vocabFlipped: {},
+  vocabShowEng: true,
+  listenRevealed: false,
+  listenAnswers: {},
+  gramPracticeShown: {},
+  readAnswers: {},
+  writingText: '',
+  sampleShown: false,
+  quizAnswers: {},
+  quizDone: false,
+  lang: localStorage.getItem('kiip_lang') || 'ko',
+};
+
+function setState(newState) {
+  Object.assign(STATE, newState);
+  render();
+}
+
+// ===== DATA =====
+const SECTIONS = [
+  {id:0, label:'도입', icon:'🏠'},
+  {id:1, label:'어휘', icon:'📝'},
+  {id:2, label:'문법', icon:'📐'},
+  {id:3, label:'말하기', icon:'💬'},
+  {id:4, label:'듣기', icon:'👂'},
+  {id:5, label:'발음', icon:'🔊'},
+  {id:6, label:'읽기', icon:'📖'},
+  {id:7, label:'쓰기', icon:'✏️'},
+  {id:8, label:'문화', icon:'🎎'},
+  {id:9, label:'퀴즈', icon:'✅'},
+  {id:10, label:'AI실습', icon:'🤖'},
+];
+
+// ===== VOCAB =====
+const VOCAB = [
+  // 운동·신체
+  {kor:'운동하다', pron:'un-dong-ha-da', eng:'to exercise', vi:'Tập thể dục', cat:'운동·신체'},
+  {kor:'스트레칭', pron:'seu-teu-re-ching', eng:'stretching', vi:'Khởi động, căng cơ', cat:'운동·신체'},
+  {kor:'체력', pron:'che-ryeok', eng:'physical strength / stamina', vi:'Thể lực, sức khỏe', cat:'운동·신체'},
+  {kor:'유산소 운동', pron:'yu-san-so un-dong', eng:'aerobic exercise', vi:'Bài tập aerobic, tim mạch', cat:'운동·신체'},
+  {kor:'근력 운동', pron:'geun-ryeok un-dong', eng:'strength / muscle training', vi:'Tập tạ, tăng cơ bắp', cat:'운동·신체'},
+  {kor:'땀을 흘리다', pron:'tta-meul heul-li-da', eng:'to sweat', vi:'Đổ mồ hôi', cat:'운동·신체'},
+  // 음식·식습관
+  {kor:'균형 잡힌 식사', pron:'gyun-hyeong jab-hin sik-sa', eng:'balanced diet', vi:'Bữa ăn cân bằng dinh dưỡng', cat:'음식·식습관'},
+  {kor:'영양소', pron:'yeong-yang-so', eng:'nutrient', vi:'Chất dinh dưỡng', cat:'음식·식습관'},
+  {kor:'식이요법', pron:'sig-i-yo-beop', eng:'dietary therapy / diet control', vi:'Chế độ ăn kiêng', cat:'음식·식습관'},
+  {kor:'과식하다', pron:'gwa-sik-ha-da', eng:'to overeat', vi:'Ăn quá nhiều', cat:'음식·식습관'},
+  {kor:'절식하다', pron:'jeol-sik-ha-da', eng:'to fast / restrict eating', vi:'Nhịn ăn, ăn kiêng', cat:'음식·식습관'},
+  {kor:'소화가 잘 되다', pron:'so-hwa-ga jal doe-da', eng:'to digest well', vi:'Tiêu hóa tốt', cat:'음식·식습관'},
+  // 건강 상태
+  {kor:'피로하다', pron:'pi-ro-ha-da', eng:'to be fatigued / tired', vi:'Mệt mỏi, kiệt sức', cat:'건강 상태'},
+  {kor:'면역력', pron:'myeon-yeong-nyeok', eng:'immunity / immune strength', vi:'Sức đề kháng, miễn dịch', cat:'건강 상태'},
+  {kor:'스트레스를 받다', pron:'seu-teu-re-seu-reul bat-da', eng:'to be under stress', vi:'Bị căng thẳng', cat:'건강 상태'},
+  {kor:'건강을 유지하다', pron:'geon-gang-eul yu-ji-ha-da', eng:'to maintain health', vi:'Duy trì sức khỏe', cat:'건강 상태'},
+  {kor:'회복하다', pron:'hoe-bok-ha-da', eng:'to recover', vi:'Hồi phục', cat:'건강 상태'},
+  {kor:'증상', pron:'jeung-sang', eng:'symptom', vi:'Triệu chứng', cat:'건강 상태'},
+  // 생활 습관
+  {kor:'규칙적으로', pron:'gyu-chik-jeog-eu-ro', eng:'regularly', vi:'Đều đặn, có quy tắc', cat:'생활 습관'},
+  {kor:'숙면을 취하다', pron:'suk-myeon-eul chwi-ha-da', eng:'to get a good sleep', vi:'Ngủ ngon, ngủ đủ giấc', cat:'생활 습관'},
+  {kor:'생활 습관', pron:'saeng-hwal seub-gwan', eng:'lifestyle habits', vi:'Thói quen sinh hoạt', cat:'생활 습관'},
+  {kor:'절주하다', pron:'jeol-ju-ha-da', eng:'to drink in moderation', vi:'Uống rượu có chừng mực', cat:'생활 습관'},
+  {kor:'금연하다', pron:'geum-yeon-ha-da', eng:'to quit smoking', vi:'Bỏ thuốc lá', cat:'생활 습관'},
+];
+
+// 건강 관용 표현
+const HEALTH_EXPR = [
+  {expr:'건강이 최고다', meaning:'Health is everything (above all else)', vi:'Sức khỏe là trên hết', ex:'아무리 바빠도 건강이 최고예요.'},
+  {expr:'몸이 자본이다', meaning:'Your body is your capital / asset', vi:'Thân thể là tài sản quý giá nhất', ex:'열심히 일하는 것도 좋지만 몸이 자본이에요.'},
+  {expr:'무리하다', meaning:'to overdo it / push too hard', vi:'Làm quá sức, cố quá', ex:'운동을 너무 무리하면 오히려 몸에 안 좋아요.'},
+  {expr:'건강을 챙기다', meaning:'to take care of one\'s health', vi:'Chú ý, giữ gìn sức khỏe', ex:'바쁘더라도 건강을 꼭 챙기세요.'},
+  {expr:'몸 상태가 좋다/나쁘다', meaning:'to be in good/bad physical condition', vi:'Trạng thái cơ thể tốt/xấu', ex:'오늘 몸 상태가 좋아서 운동했어요.'},
+];
+
+// ===== GRAMMAR =====
+const GRAM1 = {
+  title: '-는 편이다',
+  eng: 'tend to / rather / somewhat',
+  desc: '어떤 경향이나 성향이 있음을 나타낼 때 사용. 단정적으로 말하기보다는 부드럽게 표현할 때 씀',
+  descEng: 'Expresses a tendency or general inclination. Softer than stating something as absolute fact.',
+  rule: '동사 현재: -는 편이다 / 형용사: -(으)ㄴ 편이다 / 과거: -은/ㄴ 편이다',
+  conj: [
+    {base:'먹다 (동사)', form:'먹는 편이다'},
+    {base:'크다 (형용사)', form:'큰 편이다'},
+    {base:'건강하다', form:'건강한 편이다'},
+    {base:'일찍 자다', form:'일찍 자는 편이다'},
+  ],
+  examples: [
+    {kor:'저는 채소를 많이 먹는 편이에요.', eng:'I tend to eat a lot of vegetables.', vi:'Tôi hay ăn nhiều rau.'},
+    {kor:'저는 운동을 규칙적으로 하는 편이에요.', eng:'I tend to exercise regularly.', vi:'Tôi khá đều đặn trong việc tập thể dục.'},
+    {kor:'아침을 꼭 먹는 편이에요.', eng:'I tend to always eat breakfast.', vi:'Tôi thường ăn sáng đầy đủ.'},
+    {kor:'우리 가족은 건강에 신경을 많이 쓰는 편이에요.', eng:'My family tends to pay a lot of attention to health.', vi:'Gia đình tôi khá chú trọng đến sức khỏe.'},
+    {kor:'저는 스트레스를 잘 푸는 편이에요.', eng:'I tend to handle stress well.', vi:'Tôi khá giỏi trong việc giải tỏa căng thẳng.'},
+  ],
+  practice: [
+    {q:'저는 물을 하루에 많이 _______ (마시다 + 는 편이다)', ans:'마시는 편이에요'},
+    {q:'그 사람은 체력이 _______ (좋다 + ㄴ 편이다)', ans:'좋은 편이에요'},
+    {q:'저는 저녁에 일찍 _______ (자다 + 는 편이다)', ans:'자는 편이에요'},
+    {q:'우리 아이는 편식을 _______ (하다 + 는 편이다)', ans:'하는 편이에요'},
+    {q:'이 음식은 맵지만 _______ (먹다 + 는 편이다)', ans:'먹는 편이에요'},
+  ],
+};
+
+const GRAM2 = {
+  title: '-(으)려고',
+  eng: 'in order to / intending to',
+  desc: '어떤 의도나 목적을 가지고 행동할 때 사용함. 주어가 같아야 하며 청유형·명령형과는 함께 쓸 수 없음',
+  descEng: 'Expresses intention or purpose. Subject must be the same in both clauses. Cannot be used with commands or suggestions.',
+  rule: '동사 어간 + -(으)려고',
+  conj: [
+    {base:'먹다', form:'먹으려고'},
+    {base:'운동하다', form:'운동하려고'},
+    {base:'자다', form:'자려고'},
+    {base:'건강해지다', form:'건강해지려고'},
+  ],
+  examples: [
+    {kor:'건강해지려고 매일 아침 운동을 해요.', eng:'I exercise every morning in order to get healthier.', vi:'Tôi tập thể dục mỗi sáng để trở nên khỏe mạnh hơn.'},
+    {kor:'살을 빼려고 식이요법을 시작했어요.', eng:'I started a diet in order to lose weight.', vi:'Tôi bắt đầu ăn kiêng để giảm cân.'},
+    {kor:'스트레스를 풀려고 산책을 해요.', eng:'I take walks in order to relieve stress.', vi:'Tôi đi dạo để giải tỏa căng thẳng.'},
+    {kor:'면역력을 높이려고 비타민을 먹어요.', eng:'I take vitamins in order to boost my immunity.', vi:'Tôi uống vitamin để tăng sức đề kháng.'},
+    {kor:'일찍 일어나려고 알람을 맞춰 놓았어요.', eng:'I set the alarm in order to wake up early.', vi:'Tôi đặt báo thức để dậy sớm.'},
+  ],
+  practice: [
+    {q:'건강을 유지 _______ 운동을 해요. (하다 + 으려고)', ans:'하려고'},
+    {q:'잠을 잘 _______ 커피를 끊었어요. (자다 + 려고)', ans:'자려고'},
+    {q:'체력을 기 _______ 수영을 배워요. (기르다 + 려고)', ans:'기르려고'},
+    {q:'스트레스를 _______ 음악을 들어요. (풀다 + 려고)', ans:'풀려고'},
+    {q:'일찍 일어나 _______ 일찍 자요. (다 + 려고)', ans:'려고'},
+  ],
+  note: '⚠️ 주의: -(으)려고 vs -기 위해서\n• -(으)려고: 구어체, 주어 같아야 함\n• -기 위해서: 문어체 가능, 주어 달라도 됨\n예: 건강해지려고 운동해요. (일상 대화)\n    건강을 위해서 운동이 필요해요. (글쓰기)',
+};
+
+// ===== DIALOGUES =====
+const DIALOGUES = [
+  {
+    title:'대화 1: 건강 검진 후',
+    situation:'상황: 직장 동료와 건강 검진 결과에 대해 이야기',
+    lines:[
+      {sp:'A', side:'L', text:'건강 검진 결과 나왔어요? 어떻게 됐어요?', eng:'Did your health checkup results come out? How did it go?', vi:'Kết quả kiểm tra sức khỏe ra chưa? Thế nào rồi?'},
+      {sp:'B', side:'R', text:'네, 나왔는데 콜레스테롤 수치가 좀 높은 편이래요.', eng:'Yes, it came out, and they said my cholesterol tends to be a bit high.', vi:'Có rồi, nhưng họ nói chỉ số cholesterol của tôi hơi cao.'},
+      {sp:'A', side:'L', text:'그래요? 그럼 식습관을 바꿔야겠네요.', eng:'Really? Then you\'ll need to change your eating habits.', vi:'Vậy hả? Vậy thì cần thay đổi thói quen ăn uống rồi.'},
+      {sp:'B', side:'R', text:'맞아요. 건강해지려고 기름진 음식을 줄이려고 해요.', eng:'That\'s right. In order to get healthier, I\'m trying to cut back on greasy food.', vi:'Đúng vậy. Để khỏe hơn tôi định giảm đồ ăn nhiều dầu mỡ.'},
+      {sp:'A', side:'L', text:'운동도 같이 시작하면 어때요? 저도 같이 하고 싶은데요.', eng:'How about starting exercise too? I\'d like to join you.', vi:'Bắt đầu tập thể dục luôn thì sao? Tôi cũng muốn tham gia cùng.'},
+      {sp:'B', side:'R', text:'좋아요! 같이 하면 꾸준히 할 수 있을 것 같아요.', eng:'Great! I think if we do it together, we can keep it up consistently.', vi:'Tốt đấy! Làm cùng nhau chắc sẽ duy trì được đều hơn.'},
+    ]
+  },
+  {
+    title:'대화 2: 운동 습관에 대해',
+    situation:'상황: 헬스장에서 처음 만난 사람과 대화',
+    lines:[
+      {sp:'A', side:'L', text:'운동 오래 하셨어요? 체력이 정말 좋은 편이시네요.', eng:'Have you been working out for a long time? You seem to have great stamina.', vi:'Bạn tập lâu chưa? Thể lực của bạn rất tốt đấy.'},
+      {sp:'B', side:'R', text:'3년 됐어요. 처음에는 30분도 힘들었는데 하다 보면 늘어요.', eng:'It\'s been 3 years. At first even 30 minutes was hard, but you improve as you keep at it.', vi:'Được 3 năm rồi. Lúc đầu 30 phút còn khó nhưng tập dần dần sẽ quen.'},
+      {sp:'A', side:'L', text:'저는 건강을 유지하려고 최근에 시작했는데 힘드네요.', eng:'I recently started in order to maintain my health, but it\'s tough.', vi:'Tôi mới bắt đầu gần đây để giữ sức khỏe nhưng thấy vất vả quá.'},
+      {sp:'B', side:'R', text:'처음에는 다들 힘든 편이에요. 무리하지 말고 조금씩 늘리세요.', eng:'Everyone tends to find it hard at first. Don\'t overdo it — increase gradually.', vi:'Ai lúc đầu cũng thấy khó cả. Đừng cố quá, tăng dần dần thôi.'},
+      {sp:'A', side:'L', text:'어떤 운동부터 하면 좋아요?', eng:'What exercise should I start with?', vi:'Nên bắt đầu từ bài tập nào?'},
+      {sp:'B', side:'R', text:'먼저 유산소 운동으로 체력을 키우려고 걷기부터 시작하는 게 좋아요.', eng:'It\'s good to start with walking to build stamina through aerobic exercise first.', vi:'Nên bắt đầu từ đi bộ để rèn thể lực qua bài tập aerobic trước.'},
+    ]
+  },
+  {
+    title:'대화 3: 건강 식습관',
+    situation:'상황: 식당에서 친구와 점심을 먹으며',
+    lines:[
+      {sp:'A', side:'L', text:'오늘도 샐러드예요? 다이어트 중이에요?', eng:'Salad again today? Are you on a diet?', vi:'Hôm nay lại salad à? Bạn đang ăn kiêng hả?'},
+      {sp:'B', side:'R', text:'살을 빼려는 게 아니라 건강을 위해서요. 저는 채소를 많이 먹는 편이에요.', eng:'It\'s not to lose weight, it\'s for health. I tend to eat a lot of vegetables.', vi:'Không phải để giảm cân đâu, mà là vì sức khỏe. Tôi hay ăn nhiều rau.'},
+      {sp:'A', side:'L', text:'부럽다. 저는 야채를 잘 안 먹는 편이라서 건강이 걱정돼요.', eng:'I\'m jealous. I tend not to eat vegetables much, so I\'m worried about my health.', vi:'Thèm quá. Tôi hay không ăn rau nên lo cho sức khỏe lắm.'},
+      {sp:'B', side:'R', text:'처음에는 맛이 없는 편인데 익숙해지면 괜찮아요.', eng:'It tends to be tasteless at first, but you get used to it and it\'s fine.', vi:'Lúc đầu thường thấy không ngon nhưng quen rồi thì ổn.'},
+      {sp:'A', side:'L', text:'면역력을 높이려고 비타민도 먹고 있어요?', eng:'Are you also taking vitamins in order to boost immunity?', vi:'Bạn có uống vitamin để tăng sức đề kháng không?'},
+      {sp:'B', side:'R', text:'네, 비타민 C를 꼭 챙겨 먹는 편이에요. 자주 감기에 걸리지 않게 되더라고요.', eng:'Yes, I tend to always take vitamin C. I\'ve found that I get colds less often.', vi:'Có, tôi thường xuyên uống vitamin C. Thấy ít bị cảm hơn.'},
+    ]
+  },
+];
+
+const FREE_SPEAKING = [
+  {q:'여러분은 건강을 위해 어떤 습관을 가지고 있어요?', eng:'What healthy habits do you have?', vi:'Bạn có thói quen gì để giữ gìn sức khỏe?'},
+  {q:'건강에 좋은 음식과 나쁜 음식에는 어떤 것들이 있을까요?', eng:'What are some foods that are good or bad for health?', vi:'Những thực phẩm nào tốt và xấu cho sức khỏe?'},
+  {q:'스트레스를 받을 때 어떻게 해소해요?', eng:'How do you relieve stress when you\'re under pressure?', vi:'Khi bị căng thẳng bạn thường làm gì để giải tỏa?'},
+];
+
+// ===== LISTENING =====
+const LISTENING_SCRIPT = `진행자: 오늘은 건강한 생활에 대해 이야기해 볼게요. 두 분이 건강을 위해 어떤 노력을 하고 있는지 말씀해 주세요.
+
+미나: 저는 건강을 유지하려고 매일 아침 30분씩 걷는 편이에요. 처음에는 귀찮았는데 이제는 습관이 됐어요.
+
+준서: 저는 식습관에 신경을 많이 쓰는 편이에요. 균형 잡힌 식사를 하려고 채소와 과일을 많이 먹으려고 노력해요.
+
+진행자: 스트레스 관리는 어떻게 하세요?
+
+미나: 저는 스트레스를 풀려고 요가를 배우기 시작했어요. 꾸준히 하다 보니까 몸도 가뿐하고 마음도 편안해졌어요.
+
+준서: 저는 잠을 충분히 자려고 밤 11시 전에는 자는 편이에요. 숙면을 취하면 다음 날 컨디션이 훨씬 좋더라고요.`;
+
+const LISTEN_QS = [
+  {q:'미나가 매일 하는 건강 운동은 무엇이에요?', opts:['수영','걷기','요가','달리기'], ans:1, exp:'미나는 매일 아침 30분씩 걷는 편이에요.'},
+  {q:'준서가 건강한 식사를 위해 주로 먹는 것은?', opts:['단백질 위주','패스트푸드','채소와 과일','고기와 생선'], ans:2, exp:'균형 잡힌 식사를 하려고 채소와 과일을 먹어요.'},
+  {q:'미나가 스트레스를 풀려고 시작한 것은?', opts:['명상','요가','수영','산책'], ans:1, exp:'스트레스를 풀려고 요가를 배우기 시작했어요.'},
+  {q:'준서가 몇 시 전에 자는 편이에요?', opts:['밤 10시','밤 11시','밤 12시','새벽 1시'], ans:1, exp:'밤 11시 전에는 자는 편이에요.'},
+];
+
+// ===== PRONUNCIATION =====
+const PRON_RULE = {
+  title: '연음법칙 (Liaison Rule)',
+  desc: '받침 뒤에 모음으로 시작하는 음절이 오면, 받침이 다음 음절의 초성으로 이어져 발음됨',
+  descEng: 'When a consonant at the end of a syllable (받침) is followed by a syllable starting with a vowel, the consonant moves to become the initial consonant of the next syllable.',
+};
+const PRON_WORDS = [
+  {kor:'운동이', phonetic:'[운동이] → [운동이]', note:'받침 없음'},
+  {kor:'건강을', phonetic:'[건강을] → [건가-글]', note:'ㅇ 받침 + 을'},
+  {kor:'식이요법', phonetic:'[식이요법] → [시기요뻡]', note:'ㄱ 받침 + 이'},
+  {kor:'면역력', phonetic:'[면역력] → [면영녁]', note:'ㄱ 받침 + ㄹ → ㅇ/ㄴ'},
+  {kor:'습관이', phonetic:'[습관이] → [습과니]', note:'ㄴ 받침 + 이'},
+  {kor:'영양소', phonetic:'[영양소] → [영양소]', note:'ㅇ 받침 (silent initial ㅇ)'},
+];
+
+// ===== READING =====
+const READING_TEXT = `한국 사람들은 건강에 관심이 많은 편입니다. 특히 나이가 들수록 건강 관리에 더 신경을 쓰는 것 같습니다.
+
+건강을 유지하려고 많은 사람들이 규칙적으로 운동을 합니다. 아침 일찍 공원에 가면 걷기나 달리기를 하는 사람들을 쉽게 볼 수 있습니다. 또한 헬스장에서 근력 운동을 하는 사람들도 늘고 있습니다.
+
+식습관도 건강에 중요한 역할을 합니다. 한국의 전통 음식은 채소를 많이 사용하는 편이라 영양 균형이 좋습니다. 그러나 최근에는 빠르고 편리한 음식을 즐기는 사람들도 많아졌습니다. 그래서 영양 불균형이 문제가 되기도 합니다.
+
+현대인들은 스트레스를 많이 받는 편입니다. 스트레스는 면역력을 약하게 만들기 때문에 스트레스를 잘 관리하는 것이 중요합니다. 충분한 수면을 취하고 취미 활동을 통해 스트레스를 해소하려고 노력하는 것이 좋습니다.
+
+건강한 생활을 위해서는 운동, 균형 잡힌 식사, 충분한 수면, 그리고 스트레스 관리가 모두 필요합니다.`;
+
+const READ_QS = [
+  {q:'이 글의 주제는 무엇이에요?', opts:['한국 음식의 역사','건강한 생활 방법','헬스장 이용법','병원 이용 방법'], ans:1, exp:'건강한 생활을 위한 운동, 식사, 수면, 스트레스 관리를 설명해요.'},
+  {q:'한국 전통 음식의 특징은?', opts:['기름진 음식이 많다','채소를 많이 사용한다','단 음식이 많다','고기 위주이다'], ans:1, exp:'한국의 전통 음식은 채소를 많이 사용하는 편이라 영양 균형이 좋습니다.'},
+  {q:'스트레스가 건강에 미치는 영향은?', opts:['체력이 늘어난다','식욕이 생긴다','면역력이 약해진다','수면이 좋아진다'], ans:2, exp:'스트레스는 면역력을 약하게 만들기 때문에 관리가 중요합니다.'},
+];
+
+// ===== WRITING =====
+const WRITING_PROMPT = {
+  title: '나의 건강 습관',
+  eng: 'Write about your personal health habits',
+  vi: 'Viết về thói quen sức khỏe của bạn',
+  guide: [
+    '매일 하는 건강 습관을 소개해 보세요',
+    '건강을 위해 어떤 음식을 먹는 편인지 쓰세요',
+    '건강을 위해 노력하는 점을 -(으)려고 문법으로 써 보세요',
+    '앞으로 바꾸고 싶은 습관이 있으면 쓰세요',
+    '150자 이상 써 보세요',
+  ],
+  sample: '저는 건강을 유지하려고 매일 저녁 30분씩 걷는 편이에요. 음식은 채소를 많이 먹으려고 노력하고 있어요. 아직 운동이 부족한 편인데, 앞으로는 주말에 수영도 배우려고 생각하고 있어요. 스트레스를 풀려고 음악도 자주 들어요. 건강이 최고라는 말처럼 몸 관리를 잘 해야겠어요.',
+};
+
+// ===== CULTURE =====
+const CULTURE = {
+  title: '한국의 건강 문화',
+  items: [
+    {icon:'💊', name:'건강기능식품', desc:'한국 사람들은 홍삼, 비타민, 오메가3 같은 건강기능식품을 많이 먹는 편이에요. 특히 홍삼은 면역력을 높인다고 알려져 있어요.', eng:'Koreans tend to consume many health supplements like red ginseng, vitamins, and omega-3. Red ginseng in particular is known for boosting immunity.', vi:'Người Hàn thường dùng thực phẩm chức năng như hồng sâm, vitamin, omega-3. Hồng sâm đặc biệt được biết đến với tác dụng tăng sức đề kháng.'},
+    {icon:'🛁', name:'찜질방 (Jjimjilbang)', desc:'찜질방은 한국의 전통 사우나로, 건강을 위해 즐겨 찾는 곳이에요. 땀을 흘려 피로를 풀려고 많은 사람들이 자주 가요.', eng:'Jjimjilbang is a traditional Korean sauna, popular for health purposes. Many people visit regularly to sweat out fatigue and relax.', vi:'Jjimjilbang là phòng xông hơi truyền thống Hàn Quốc, được yêu thích để giữ gìn sức khỏe. Nhiều người thường xuyên đến để đổ mồ hôi và giải tỏa mệt mỏi.'},
+    {icon:'🥗', name:'건강 식단 (삼시세끼)', desc:'한국에서는 하루 세 끼를 규칙적으로 먹는 편이에요. 밥, 국, 반찬으로 구성된 한식은 영양 균형이 좋아요.', eng:'In Korea, people tend to eat three regular meals a day. Korean food consisting of rice, soup, and side dishes has good nutritional balance.', vi:'Ở Hàn Quốc, người ta thường ăn ba bữa đều đặn mỗi ngày. Cơm Hàn gồm cơm, canh và các món phụ có dinh dưỡng cân bằng tốt.'},
+    {icon:'🏃', name:'걷기 운동 문화', desc:'한국에는 걷기 좋은 공원과 산책로가 많아요. 아침저녁으로 동네를 걷는 사람들을 쉽게 볼 수 있어요.', eng:'Korea has many parks and trails great for walking. You can easily see people walking in neighborhoods morning and evening.', vi:'Hàn Quốc có nhiều công viên và đường dạo bộ đẹp. Dễ dàng thấy người dân đi bộ trong khu phố vào sáng và tối.'},
+  ],
+  discussion: [
+    {q:'여러분 나라에는 어떤 건강 문화가 있어요?', eng:'What health culture traditions exist in your country?', vi:'Ở nước bạn có văn hóa giữ gìn sức khỏe gì?'},
+    {q:'한국의 건강 문화 중 배우고 싶은 것이 있어요?', eng:'Is there anything from Korean health culture you\'d like to adopt?', vi:'Có điều gì trong văn hóa sức khỏe của Hàn Quốc mà bạn muốn học theo không?'},
+  ],
+};
+
+// ===== QUIZ =====
+const QUIZ = [
+  {
+    q:'다음 중 "건강을 유지하다"의 뜻으로 알맞은 것은?',
+    opts:['건강이 나빠지다','건강 상태를 지키고 계속하다','병원에 자주 가다','건강에 신경을 안 쓰다'],
+    ans: 1,
+  },
+  {
+    q:'"저는 채소를 _____ 먹는 편이에요." 빈칸에 알맞은 것은?',
+    opts:['조금도','거의 안','많이','전혀'],
+    ans: 2,
+  },
+  {
+    q:'다음 중 "-는 편이다"를 올바르게 사용한 문장은?',
+    opts:['저는 운동을 하는 편입니다.','저는 운동을 할 편입니다.','저는 운동을 했는 편입니다.','저는 운동을 하편입니다.'],
+    ans: 0,
+  },
+  {
+    q:'"건강해지 _____ 운동을 시작했어요." 빈칸에 맞는 것은?',
+    opts:['려고','으려고','기 위한','위하여'],
+    ans: 0,
+  },
+  {
+    q:'다음 중 "면역력"의 뜻은?',
+    opts:['운동하는 능력','음식을 소화하는 능력','질병에 저항하는 신체 능력','스트레스를 받는 정도'],
+    ans: 2,
+  },
+  {
+    q:'"저는 스트레스를 풀_____ 요가를 해요." 빈칸에 맞는 것은?',
+    opts:['어서','기 위해','려고','는 편이'],
+    ans: 2,
+  },
+  {
+    q:'다음 중 건강한 생활 습관이 아닌 것은?',
+    opts:['규칙적인 운동','충분한 수면','균형 잡힌 식사','과식과 폭식'],
+    ans: 3,
+  },
+  {
+    q:'다음 대화의 빈칸에 알맞은 것은?\nA: 건강을 위해 뭘 하세요?\nB: 저는 아침에 걷기 운동을 _____ 편이에요.',
+    opts:['하는','하려는','했는','할'],
+    ans: 0,
+  },
+  {
+    q:'"금연하다"의 뜻은?',
+    opts:['담배를 더 많이 피우다','담배를 끊다','음주를 줄이다','음식을 절제하다'],
+    ans: 1,
+  },
+  {
+    q:'다음 문장에서 틀린 것은?\n"살을 빼려고 식이요법도 하고 운동도 하는 편이에요."',
+    opts:['문법 오류 없음','살을 빼려고 → 살을 빼서','식이요법 → 식이요법이','하는 편이에요 → 할 편이에요'],
+    ans: 0,
+  },
+];
+
+var AI_QUICK_BTNS = [
+  {emoji:'🥗', label:'건강 어휘 설명', q:'KIIP 3급 2과 어휘: 건강한 생활 관련 단어를 10개 알려주세요. 한국어, 발음, 영어, 베트남어 번역을 포함해 주세요.'},
+  {emoji:'💪', label:'문법 연습', q:'KIIP 3급 2과: "-는 편이다"와 "-(으)려고"를 사용해서 건강 습관에 대한 문장을 5개씩 만들어 주세요.'},
+  {emoji:'🏥', label:'병원 롤플레이', q:'병원에서 의사와 환자 대화 롤플레이를 해주세요. 저는 KIIP 3급 학습자입니다. 건강 검진 결과를 설명하는 표현을 연습하고 싶어요.'},
+  {emoji:'🇻🇳', label:'베트남어로 설명', q:'건강한 생활 관련 한국어 표현을 베트남어로 설명해 주세요. 운동, 식사, 수면 관련 단어와 문장을 알려주세요.'},
+];
+
+var AICHAT = {
+  history: [],
+  loading: false,
+
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx];
+    if (!b) return;
+    var inp = document.getElementById('ai-chat-input');
+    if (!inp) return;
+    inp.value = b.q;
+    inp.style.borderColor = '#f59e0b';
+    this.send();
+  },
+
+  addMsg: function(role, text) {
+    var box = document.getElementById('ai-chat-messages');
+    if (!box) return;
+    var ph = box.querySelector('.ai-placeholder');
+    if (ph) ph.remove();
+    var isUser = role === 'user';
+    var d = document.createElement('div');
+    d.style.cssText = 'display:flex;flex-direction:column;align-items:' + (isUser?'flex-end':'flex-start') + ';gap:2px;margin-bottom:6px';
+    var safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    d.innerHTML = '<div style="font-size:10px;color:#888;margin:0 4px">' + (isUser?'🙋 나':'🤖 AI') + '</div>'
+      + '<div style="max-width:90%;padding:10px 13px;border-radius:' + (isUser?'14px 14px 4px 14px':'14px 14px 14px 4px') + ';'
+      + 'background:' + (isUser?'#f59e0b':'#fff') + ';color:' + (isUser?'#fff':'#1a202c') + ';'
+      + 'font-size:13px;line-height:1.7;border:1px solid ' + (isUser?'#d97706':'#fde68a') + ';word-break:break-word">' + safe + '</div>';
+    box.appendChild(d);
+    box.scrollTop = box.scrollHeight;
+  },
+
+  setLoading: function(on) {
+    var box = document.getElementById('ai-chat-messages');
+    var el  = document.getElementById('ai-loading-dot');
+    var btn = document.getElementById('ai-send-btn');
+    if (on) {
+      if (box && !el) {
+        var ld = document.createElement('div');
+        ld.id = 'ai-loading-dot';
+        ld.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:6px';
+        ld.innerHTML = '<div style="display:flex;gap:4px">'
+          + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div>'
+          + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div>'
+          + '<div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div>'
+          + '</div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+        box.appendChild(ld);
+        box.scrollTop = box.scrollHeight;
+      }
+      if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+    } else {
+      if (el) el.remove();
+      if (btn) { btn.textContent = '➤'; btn.disabled = false; }
+    }
+  },
+
+  send: async function() {
+    if (this.loading) return;
+    var inp  = document.getElementById('ai-chat-input');
+    var text = inp ? inp.value.trim() : '';
+    if (!text) return;
+
+    this.history.push({role:'user', content:text});
+    this.addMsg('user', text);
+    if (inp) inp.value = '';
+    this.loading = true;
+    this.setLoading(true);
+
+    var sys = 'You are a Korean language tutor for KIIP Level 3, Lesson 2: 건강한 생활 (Healthy Life). The student is likely Vietnamese. Focus on health vocabulary, -는 편이다 and -(으)려고 grammar. Answer in Korean with Vietnamese translation when helpful. Be concise and encouraging.';
+
+    try {
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
+      if (!reply || reply.trim() === '') throw new Error('빈 응답');
+      this.history.push({role:'assistant', content:reply});
+      this.setLoading(false);
+      this.addMsg('assistant', reply);
+    } catch(e) {
+      this.setLoading(false);
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n잠시 후 다시 시도해 주세요.');
+    }
+    this.loading = false;
+  }
+};
+
+// ===== RENDER =====
+function setLang(lang) {
+  STATE.lang = lang;
+  localStorage.setItem('kiip_lang', lang);
+  render();
+}
+
+function renderNav() {
+  return `
+    <div class="nav">
+      <a href="/KIIP_Level3_Index" class="nav-back">← 3급 목차</a>
+      <div style="text-align:center">
+        <div class="nav-title">2과 · 건강한 생활</div>
+        <div class="nav-sub">KIIP 3급 중급 1</div>
+      </div>
+      <div style="width:60px;text-align:right;font-size:11px;color:#d97706">
+        ${STATE.section+1}/${SECTIONS.length}
+      </div>
+    </div>
+  `;
+}
+
+function renderLangBar() {
+  return `
+    <div class="lang-bar">
+      ${['ko','en','vi'].map(l=>`<button class="lang-btn-sm ${STATE.lang===l?'active':''}" onclick="setLang('${l}')">${l==='ko'?'🇰🇷 KO':l==='en'?'🇺🇸 EN':'🇻🇳 VI'}</button>`).join('')}
+    </div>
+  `;
+}
+
+function renderTabs() {
+  return `
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="stab ${STATE.section===s.id?'active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+  `;
+}
+
+function renderBottomNav() {
+  const prev = STATE.section > 0 ? `<button class="bnav-btn" onclick="setState({section:${STATE.section-1}})">◀ 이전</button>` : `<button class="bnav-btn" style="opacity:0.3" disabled>◀ 이전</button>`;
+  const next = STATE.section < SECTIONS.length-1 ? `<button class="bnav-btn" onclick="setState({section:${STATE.section+1}})">다음 ▶</button>` : `<button class="bnav-btn" style="opacity:0.3" disabled>다음 ▶</button>`;
+  return `
+    <div class="bottom-nav">
+      ${prev}
+      <button class="bnav-btn" onclick="setState({section:0})"><span class="bnav-icon">🏠</span><span>홈</span></button>
+      <button class="bnav-btn" onclick="setState({section:9})"><span class="bnav-icon">✅</span><span>퀴즈</span></button>
+      ${next}
+    </div>
+  `;
+}
+
+// SECTION 0: 도입
+function renderIntro() {
+  return `
+    <div class="page">
+      <div class="intro-header">
+        <div style="font-size:14px;opacity:0.8;margin-bottom:4px">KIIP 3급 · 중급 1</div>
+        <h3>2과 건강한 생활</h3>
+        <div style="font-size:14px;margin-top:4px;opacity:0.9">Healthy Life · Cuộc sống lành mạnh</div>
+        <div style="margin-top:12px;font-size:28px">🏃</div>
+      </div>
+
+      <div class="card card-accent">
+        <div class="section-label">학습 목표</div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>건강한 생활 관련 어휘를 이해하고 사용할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><strong>-는 편이다</strong>를 사용하여 경향을 표현할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span><strong>-(으)려고</strong>를 사용하여 목적과 의도를 말할 수 있다</span></div>
+        <div class="obj-item"><span class="obj-check">✅</span><span>건강 주제로 대화하고 글을 쓸 수 있다</span></div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">생각해 봅시다 💭</div>
+        <div class="think-q">
+          여러분은 건강을 위해 어떤 노력을 하고 있어요?
+          <div class="eng">What do you do to stay healthy?</div>
+        </div>
+        <div class="think-q">
+          한국에서 생활하면서 건강에 어떤 변화가 있었나요?
+          <div class="eng">Have there been any changes to your health since living in Korea?</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-label">단원 구성</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">
+          ${SECTIONS.slice(1).map(s=>`<div style="background:#fffbeb;border-radius:8px;padding:8px;text-align:center;font-size:12px;font-weight:600;color:#92400e;border:1px solid #fde68a">${s.icon} ${s.label}</div>`).join('')}
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-bottom:10px">
+        <a href="/KIIP_Level3_Lesson1" style="flex:1;background:var(--dark);color:#fff;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">← 1과 대인 관계</a>
+        <a href="/KIIP_Level3_Lesson3" style="flex:1;background:#e5e7eb;color:#555;border-radius:10px;padding:12px;text-align:center;text-decoration:none;font-size:13px;font-weight:700">3과 →</a>
+      </div>
+
+      <div style="background:#d1fae5;border-radius:8px;height:6px;overflow:hidden;margin-bottom:4px">
+        <div style="background:#22c55e;height:100%;width:10%;transition:width 0.5s"></div>
+      </div>
+      <div style="font-size:11px;color:#888;text-align:center;margin-bottom:10px">3급 전체 진도 10% · 2 / 20과</div>
+
+      <button onclick="setState({section:1})" style="width:100%;padding:14px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;font-size:16px;font-weight:700">
+        학습 시작하기 →
+      </button>
+    </div>
+  `;
+}
+
+// SECTION 1: 어휘
+function renderVocab() {
+  const cats = [...new Set(VOCAB.map(v=>v.cat))];
+  return `
+    <div class="page">
+      <h2>📝 어휘</h2>
+      <p class="sub">건강한 생활 어휘 · 23개 단어 · 클릭하면 뒤집혀요</p>
+
+      <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+        <button onclick="toggleAllVocab(true)" style="background:#f59e0b;color:#fff;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700">뜻 모두 보기</button>
+        <button onclick="toggleAllVocab(false)" style="background:#92400e;color:#fff;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700">뜻 숨기기</button>
+        <button onclick="TTS.speak('${VOCAB.map(v=>v.kor).join(', ')}')" style="background:#b45309;color:#fff;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700">🔊 전체 듣기</button>
+      </div>
+
+      ${cats.map(cat => `
+        <div class="vocab-cat">${cat}</div>
+        <div class="vocab-grid">
+          ${VOCAB.filter(v=>v.cat===cat).map((v) => {
+            const idx = VOCAB.indexOf(v);
+            const flipped = STATE.vocabFlipped[idx];
+            return `
+              <div class="vocab-card ${flipped?'flipped':''}" onclick="flipVocab(${idx})">
+                <div style="display:flex;align-items:center;gap:4px">
+                  <span class="vocab-kor">${v.kor}</span>
+                  ${ttsBtn(v.kor)}
+                </div>
+                <div class="vocab-pron">${v.pron}</div>
+                ${flipped || STATE.vocabShowEng ? `
+                  <div class="vocab-eng">${v.eng}</div>
+                  <div class="vocab-vi">${v.vi}</div>
+                ` : '<div class="vocab-eng" style="color:#fbbf24">탭하여 뜻 보기</div>'}
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `).join('')}
+
+      <div style="margin-top:16px">
+        <div class="vocab-cat">💡 건강 관용 표현</div>
+        ${HEALTH_EXPR.map(e=>`
+          <div class="card card-accent" style="margin-bottom:8px;padding:12px 14px">
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <span style="font-size:15px;font-weight:800;color:#92400e">${e.expr}</span>
+              ${ttsBtn(e.expr)}
+            </div>
+            <div style="font-size:12px;color:#555;margin-top:4px">${e.meaning}</div>
+            <div style="font-size:11px;color:#888;margin-top:2px">🇻🇳 ${e.vi}</div>
+            <div style="background:#fef3c7;border-radius:6px;padding:6px 10px;margin-top:6px;font-size:13px;color:#451a03">
+              ✏️ 예문: ${e.ex} ${ttsBtn(e.ex)}
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function flipVocab(i) {
+  const flipped = {...STATE.vocabFlipped, [i]: !STATE.vocabFlipped[i]};
+  setState({vocabFlipped: flipped});
+}
+
+function toggleAllVocab(show) {
+  const flipped = {};
+  VOCAB.forEach((v,i) => { flipped[i] = show; });
+  setState({vocabFlipped: flipped, vocabShowEng: show});
+}
+
+// SECTION 2: 문법
+function renderGrammar() {
+  function gramBlock(g, key) {
+    return `
+      <div class="gram-box">
+        <div class="gram-title">${g.title} ${ttsBtn(g.title)}</div>
+        <div class="gram-eng">${g.eng}</div>
+        <div class="gram-rule">📌 형태: ${g.rule}</div>
+        <div style="font-size:13px;color:#555;margin-bottom:8px;line-height:1.6">${g.desc}<br><span style="color:#888;font-size:11px">${g.descEng}</span></div>
+
+        <div class="section-label" style="margin-bottom:8px">활용</div>
+        <div class="gram-conj">
+          ${g.conj.map(c=>`<span class="conj-chip">${c.base} → ${c.form}</span>`).join('')}
+        </div>
+
+        <div class="section-label" style="margin-bottom:8px">예문</div>
+        ${g.examples.map(e=>`
+          <div class="example-item">
+            <div style="flex:1">
+              <div class="example-kor">${e.kor} ${ttsBtn(e.kor)}</div>
+              <div class="example-eng">${STATE.lang==='vi'&&e.vi ? '🇻🇳 '+e.vi : e.eng}</div>
+            </div>
+          </div>
+        `).join('')}
+
+        <div class="section-label" style="margin-top:10px;margin-bottom:8px">연습</div>
+        ${g.practice.map((p,pi)=>`
+          <div class="practice-item">
+            <div class="practice-q">${p.q}</div>
+            <input class="practice-input" type="text" placeholder="답을 입력하세요..." oninput="checkPractice(this,'${p.ans}')">
+            <div id="practice-${key}-${pi}" class="answer-box" style="display:none">정답: <strong>${p.ans}</strong> ${ttsBtn(p.ans)}</div>
+            <button class="answer-reveal" onclick="showPracticeAnswer('${key}',${pi})">정답 확인</button>
+          </div>
+        `).join('')}
+        ${g.note ? `<div style="background:#fef3c7;border-radius:8px;padding:10px 12px;margin-top:8px;font-size:12px;color:#92400e;white-space:pre-line">${g.note}</div>` : ''}
+      </div>
+    `;
+  }
+  return `
+    <div class="page">
+      <h2>📐 문법</h2>
+      <p class="sub">이 단원의 핵심 문법 2가지를 배워 보세요</p>
+      ${gramBlock(GRAM1, 'g1')}
+      ${gramBlock(GRAM2, 'g2')}
+    </div>
+  `;
+}
+
+function showPracticeAnswer(key, idx) {
+  const el = document.getElementById(`practice-${key}-${idx}`);
+  if (el) el.style.display = 'block';
+}
+
+function checkPractice(input, ans) {
+  if (input.value.trim() === ans) {
+    input.style.borderColor = '#22c55e';
+    input.style.background = '#dcfce7';
+  } else {
+    input.style.borderColor = '#fde68a';
+    input.style.background = '#fff';
+  }
+}
+
+// SECTION 3: 말하기
+function renderSpeaking() {
+  function renderDialogue(d) {
+    return `
+      <div class="card card-accent" style="margin-bottom:12px">
+        <div style="font-weight:700;color:#92400e;margin-bottom:4px">${d.title}</div>
+        <div style="font-size:11px;color:#888;margin-bottom:10px">${d.situation}</div>
+        <div class="dialogue-container">
+          ${d.lines.map(l=>`
+            <div class="bubble-wrap ${l.side==='R'?'right':''}">
+              <div class="avatar">${l.side==='L'?'👤':'🙂'}</div>
+              <div>
+                <div style="font-size:10px;font-weight:700;color:#f59e0b;margin-bottom:2px;${l.side==='R'?'text-align:right':''}">${l.sp}</div>
+                <div class="bubble ${l.side==='L'?'bubble-left':'bubble-right'}">
+                  <div class="bubble-text">${l.text} ${ttsBtn(l.text)}</div>
+                  <div class="bubble-eng">${STATE.lang==='vi'&&l.vi ? '🇻🇳 '+l.vi : l.eng}</div>
+                </div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div style="background:#fef3c7;border-radius:8px;padding:8px;margin-top:8px;font-size:12px;color:#92400e">
+          🎭 역할극: A와 B 역할을 나누어 대화를 연습해 보세요.
+        </div>
+      </div>
+    `;
+  }
+  return `
+    <div class="page">
+      <h2>💬 말하기</h2>
+      <p class="sub">건강한 생활에 대해 이야기하기</p>
+      ${DIALOGUES.map(d=>renderDialogue(d)).join('')}
+      <div class="card">
+        <div class="section-label">자유 말하기</div>
+        ${FREE_SPEAKING.map((q,i)=>`
+          <div class="discussion-q">
+            <span style="color:#f59e0b;font-weight:800">Q${i+1}. </span>${q.q}
+            <div style="font-size:11px;color:#888;margin-top:4px;font-style:italic">${STATE.lang==='vi'&&q.vi ? '🇻🇳 '+q.vi : q.eng}</div>
+          </div>
+        `).join('')}
+        <div style="background:#fffbeb;border-radius:8px;padding:10px;margin-top:4px;font-size:12px;color:#92400e">
+          💡 배운 문법 <strong>-는 편이다</strong>와 <strong>-(으)려고</strong>를 사용해서 말해 보세요.
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// SECTION 4: 듣기
+function answerListen(qi, oi) {
+  if (STATE.listenAnswers[qi] !== undefined) return;
+  setState({listenAnswers: {...STATE.listenAnswers, [qi]: oi}});
+}
+
+function renderListening() {
+  return `
+    <div class="page">
+      <h2>👂 듣기</h2>
+      <p class="sub">건강한 생활에 관한 대화 듣기</p>
+
+      <div class="listen-box">
+        <div class="section-label" style="margin-bottom:8px">듣기 전</div>
+        <div style="font-size:14px;color:#555;margin-bottom:8px">
+          <strong>생각해 보세요:</strong> 여러분은 건강을 위해 어떤 노력을 하고 있어요?
+        </div>
+        <div style="background:#fef3c7;border-radius:8px;padding:10px;font-size:13px">
+          <strong>핵심 어휘 미리 보기:</strong><br>
+          건강 검진 · 콜레스테롤 · 식습관 · 유산소 운동 · 숙면 · 컨디션
+        </div>
+      </div>
+
+      <div class="listen-box">
+        <div class="section-label" style="margin-bottom:8px">듣기 내용</div>
+        <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+          <button onclick="TTS.speak('${LISTENING_SCRIPT.replace(/'/g,"\\'")}', 'ko-KR', 0.75)" style="background:#f59e0b;color:#fff;border-radius:20px;padding:8px 18px;font-size:13px;font-weight:700">🔊 전체 듣기</button>
+          <button onclick="setState({listenRevealed:!STATE.listenRevealed})" style="background:#92400e;color:#fff;border-radius:20px;padding:8px 18px;font-size:13px;font-weight:700">
+            ${STATE.listenRevealed ? '📄 스크립트 숨기기' : '📄 스크립트 보기'}
+          </button>
+        </div>
+        ${STATE.listenRevealed ? `<div class="script-box" style="white-space:pre-line">${LISTENING_SCRIPT}</div>` : ''}
+      </div>
+
+      <div class="listen-box">
+        <div class="section-label" style="margin-bottom:8px">듣기 문제</div>
+        ${LISTEN_QS.map((q,qi)=>{
+          const chosen = STATE.listenAnswers[qi];
+          return `
+            <div style="margin-bottom:14px">
+              <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:8px">${qi+1}. ${q.q}</div>
+              ${q.opts.map((o,oi)=>{
+                let cls = 'mcq-option';
+                if (chosen !== undefined) {
+                  if (oi === q.ans) cls += ' mcq-correct';
+                  else if (oi === chosen) cls += ' mcq-wrong';
+                }
+                return `<button class="${cls}" onclick="answerListen(${qi},${oi})">${o}</button>`;
+              }).join('')}
+              ${chosen !== undefined ? `<div style="background:#fffbeb;border-radius:8px;padding:8px 10px;font-size:12px;color:#92400e;margin-top:4px">💡 ${q.exp}</div>` : ''}
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// SECTION 5: 발음
+function renderPronunciation() {
+  return `
+    <div class="page">
+      <h2>🔊 발음</h2>
+      <p class="sub">연음법칙 — 건강 어휘 발음 연습</p>
+
+      <div class="pron-rule">
+        <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:6px">${PRON_RULE.title}</div>
+        <div style="font-size:13px;color:#555;line-height:1.7">${PRON_RULE.desc}</div>
+        <div style="font-size:12px;color:#888;margin-top:4px;font-style:italic">${PRON_RULE.descEng}</div>
+      </div>
+
+      ${PRON_WORDS.map(w=>`
+        <div class="pron-word">
+          <div>
+            <span class="pron-kor">${w.kor}</span>
+            <span class="pron-phonetic">${w.phonetic}</span>
+            <div style="font-size:11px;color:#888;margin-top:2px">${w.note}</div>
+          </div>
+          ${ttsBtn(w.kor)}
+        </div>
+      `).join('')}
+
+      <div class="card card-accent" style="margin-top:12px">
+        <div class="section-label">발음 연습 문장</div>
+        ${[
+          '건강을 유지하려고 매일 운동을 해요.',
+          '식이요법으로 영양소를 균형 있게 섭취해요.',
+          '면역력을 높이는 음식을 먹는 편이에요.',
+          '규칙적으로 운동하면 체력이 좋아져요.',
+        ].map(s=>`
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid #fde68a">
+            <span style="font-size:14px;color:var(--text);flex:1;font-weight:500">${s}</span>
+            ${ttsBtn(s)}
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// SECTION 6: 읽기
+function answerRead(qi, oi) {
+  if (STATE.readAnswers[qi] !== undefined) return;
+  setState({readAnswers: {...STATE.readAnswers, [qi]: oi}});
+}
+
+function renderReading() {
+  return `
+    <div class="page">
+      <h2>📖 읽기</h2>
+      <p class="sub">건강한 생활 · 읽고 이해하기</p>
+
+      <div class="card card-accent">
+        <div class="section-label">읽기 전</div>
+        <div style="font-size:13px;color:#555;margin-top:4px;line-height:1.7">
+          💭 건강한 생활을 위해 한국 사람들은 어떤 노력을 할까요?<br>
+          <span style="color:#888;font-size:11px">What do Koreans do to maintain a healthy lifestyle?</span>
+        </div>
+      </div>
+
+      <div class="reading-text" style="white-space:pre-line">${READING_TEXT}</div>
+
+      <div style="margin-bottom:12px">
+        <div class="section-label">읽기 문제</div>
+        ${READ_QS.map((q,qi)=>{
+          const chosen = STATE.readAnswers[qi];
+          return `
+            <div class="card" style="margin-top:8px">
+              <div style="font-size:14px;font-weight:700;color:#92400e;margin-bottom:8px">${qi+1}. ${q.q}</div>
+              ${q.opts.map((o,oi)=>{
+                let cls = 'mcq-option';
+                if (chosen !== undefined) {
+                  if (oi === q.ans) cls += ' mcq-correct';
+                  else if (oi === chosen) cls += ' mcq-wrong';
+                }
+                return `<button class="${cls}" onclick="answerRead(${qi},${oi})">${o}</button>`;
+              }).join('')}
+              ${chosen !== undefined ? `<div style="background:#fffbeb;border-radius:8px;padding:8px 10px;font-size:12px;color:#92400e;margin-top:4px">💡 ${q.exp}</div>` : ''}
+            </div>
+          `;
+        }).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// SECTION 7: 쓰기
+function renderWriting() {
+  return `
+    <div class="page">
+      <h2>✏️ 쓰기</h2>
+      <p class="sub">${WRITING_PROMPT.title} · ${WRITING_PROMPT.eng}</p>
+
+      <div class="card card-accent">
+        <div class="section-label">쓰기 주제</div>
+        <div style="font-size:16px;font-weight:800;color:#92400e;margin:8px 0">
+          🏃 나의 건강 습관을 소개해 보세요.
+        </div>
+        <div style="font-size:13px;color:#888">🇻🇳 ${WRITING_PROMPT.vi}</div>
+      </div>
+
+      <div class="writing-guide">
+        <div class="section-label">쓰기 가이드</div>
+        <ul style="margin-top:6px;padding-left:4px;list-style:none">
+          ${WRITING_PROMPT.guide.map(g=>`<li class="writing-guide" style="border:none;padding:4px 0;margin:0">✅ ${g}</li>`).join('')}
+        </ul>
+        <div style="background:#fffbeb;border-radius:8px;padding:8px;margin-top:6px;font-size:12px;color:#92400e">
+          💡 <strong>-는 편이에요</strong>와 <strong>-(으)려고</strong>를 꼭 사용해 보세요!
+        </div>
+      </div>
+
+      <textarea
+        class="writing-area"
+        placeholder="예: 저는 건강을 유지하려고 매일 걷는 편이에요..."
+        oninput="setState({writingText:this.value})"
+      >${STATE.writingText}</textarea>
+      <div class="char-counter">${STATE.writingText.length}자 / 150자 이상 목표</div>
+
+      <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+        <button onclick="setState({sampleShown:!STATE.sampleShown})" style="flex:1;background:#92400e;color:#fff;border-radius:10px;padding:12px;font-size:13px;font-weight:700">
+          ${STATE.sampleShown ? '📄 예문 숨기기' : '📄 예문 보기'}
+        </button>
+        <button onclick="setState({section:10})" style="flex:1;background:linear-gradient(135deg,#7c3aed,#1d4ed8);color:#fff;border-radius:10px;padding:12px;font-size:13px;font-weight:700">
+          🤖 AI 피드백 받기
+        </button>
+      </div>
+
+      ${STATE.sampleShown ? `
+        <div class="card" style="margin-top:12px">
+          <div class="section-label">예문 답안</div>
+          <div class="sample-answer">${WRITING_PROMPT.sample}</div>
+        </div>
+      ` : ''}
+    </div>
+  `;
+}
+
+// SECTION 8: 문화
+function renderCulture() {
+  return `
+    <div class="page">
+      <h2>🎎 문화</h2>
+      <p class="sub">${CULTURE.title}</p>
+
+      ${CULTURE.items.map(item=>`
+        <div class="culture-text">
+          <div style="font-size:22px;margin-bottom:8px">${item.icon}</div>
+          <div style="font-size:15px;font-weight:800;color:#92400e;margin-bottom:6px">${item.name}</div>
+          <div>${item.desc}</div>
+          <div style="color:#888;font-size:12px;margin-top:6px;font-style:italic">
+            ${STATE.lang==='vi' ? '🇻🇳 '+item.vi : item.eng}
+          </div>
+        </div>
+      `).join('')}
+
+      <div class="card">
+        <div class="section-label">토론해 봅시다 💬</div>
+        ${CULTURE.discussion.map((q,i)=>`
+          <div class="discussion-q">
+            <span style="color:#f59e0b;font-weight:800">Q${i+1}. </span>${q.q}
+            <div style="font-size:11px;color:#888;margin-top:4px;font-style:italic">${STATE.lang==='vi'&&q.vi?'🇻🇳 '+q.vi:q.eng}</div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+// SECTION 9: 퀴즈
+function answerQuiz(qi, oi) {
+  if (STATE.quizDone || STATE.quizAnswers[qi] !== undefined) return;
+  setState({quizAnswers: {...STATE.quizAnswers, [qi]: oi}});
+}
+
+function finishQuiz() {
+  setState({quizDone: true});
+}
+
+function renderQuiz() {
+  const answered = Object.keys(STATE.quizAnswers).length;
+  const correct = QUIZ.filter((q,i) => STATE.quizAnswers[i] === q.ans).length;
+  const pct = Math.round(correct / QUIZ.length * 100);
+
+  if (STATE.quizDone) {
+    return `
+      <div class="page">
+        <h2>✅ 퀴즈 결과</h2>
+        <div class="quiz-result">
+          <div style="font-size:36px;margin-bottom:8px">${pct>=80?'🏆':pct>=60?'👍':'💪'}</div>
+          <div class="score-big">${correct}/${QUIZ.length}</div>
+          <div style="font-size:18px;font-weight:700;color:#92400e;margin-top:4px">${pct}점</div>
+          <div style="font-size:13px;color:#888;margin-bottom:16px">${pct>=80?'잘했어요! 다음 단원으로 이동하세요.':'틀린 문제를 다시 확인하고 복습하세요.'}</div>
+          <button onclick="setState({quizAnswers:{},quizDone:false})" style="background:#f59e0b;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;margin-bottom:8px;width:100%">다시 풀기</button>
+          <a href="/KIIP_Level3_Lesson3" style="display:block;background:#92400e;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-align:center;text-decoration:none">다음 과: 3과 →</a>
+        </div>
+
+        <div style="margin-top:16px">
+          ${QUIZ.map((q,i)=>{
+            const chosen = STATE.quizAnswers[i];
+            const ok = chosen === q.ans;
+            return `
+              <div class="quiz-card" style="border-left:4px solid ${ok?'var(--green)':'var(--red)'}">
+                <div class="quiz-num">Q${i+1} ${ok?'✅':'❌'}</div>
+                <div class="quiz-q">${q.q}</div>
+                <div style="font-size:13px;background:${ok?'#dcfce7':'#fee2e2'};border-radius:8px;padding:8px 10px;color:${ok?'#166534':'#991b1b'}">
+                  정답: ${q.opts[q.ans]}
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="page">
+      <h2>✅ 퀴즈</h2>
+      <p class="sub">2과 건강한 생활 · ${QUIZ.length}문제 · ${answered}/${QUIZ.length} 완료</p>
+
+      <div style="background:#d1fae5;border-radius:8px;height:6px;overflow:hidden;margin-bottom:12px">
+        <div style="background:#22c55e;height:100%;width:${answered/QUIZ.length*100}%;transition:width 0.3s"></div>
+      </div>
+
+      ${QUIZ.map((q,qi)=>{
+        const chosen = STATE.quizAnswers[qi];
+        return `
+          <div class="quiz-card">
+            <div class="quiz-num">Q${qi+1}</div>
+            <div class="quiz-q" style="white-space:pre-line">${q.q}</div>
+            ${q.opts.map((o,oi)=>{
+              let cls = 'quiz-opt';
+              if (chosen !== undefined) {
+                if (oi === q.ans) cls += ' quiz-correct';
+                else if (oi === chosen) cls += ' quiz-wrong';
+              }
+              return `<button class="${cls}" onclick="answerQuiz(${qi},${oi})" ${chosen!==undefined?'disabled':''}>${o}</button>`;
+            }).join('')}
+          </div>
+        `;
+      }).join('')}
+
+      ${answered === QUIZ.length ?
+        `<button onclick="finishQuiz()" style="width:100%;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border-radius:12px;padding:14px;font-size:16px;font-weight:700;margin-top:8px">결과 확인 →</button>` :
+        `<div style="text-align:center;padding:12px;font-size:13px;color:#888">모든 문제에 답한 후 결과를 확인할 수 있어요 (${answered}/${QUIZ.length})</div>`
+      }
+    </div>
+  `;
+}
+
+// SECTION 10: AI 실습
+function renderAI() {
+  return `
+    <div class="page">
+      <h2>🤖 AI 실습</h2>
+      <p class="sub">글로컬 아카데미 × AI 한국어 튜터 · 건강한 생활</p>
+
+      <div style="background:linear-gradient(135deg,#1e3a5f,#1d4ed8);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+        <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · KIIP 3급 2과</div>
+        <div style="font-size:15px;font-weight:800;margin-bottom:6px">건강한 생활 AI 튜터</div>
+        <div style="font-size:11px;opacity:0.85;line-height:1.7">
+          -는 편이다 / -(으)려고 문법 + 건강 어휘를 AI와 함께 연습하세요<br>
+          <span style="color:#93c5fd">🇻🇳 Luyện tập ngữ pháp và từ vựng sức khỏe cùng AI</span>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+        <div class="section-label" style="background:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin:10px 0">
+          ${AI_QUICK_BTNS.map((b,i)=>`
+            <button onclick="AICHAT.quickSend(${i})"
+              style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
+              ${b.emoji} ${b.label}
+            </button>
+          `).join('')}
+        </div>
+
+        <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+          <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">
+            💡 버튼을 누르면 AI가 바로 답해줘요<br>
+            <span style="color:#059669;font-size:11px">🇻🇳 Nhấn nút → AI trả lời ngay</span>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:6px;align-items:flex-end">
+          <textarea id="ai-chat-input"
+            placeholder="건강한 생활에 대해 질문하세요..."
+            style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
+            onfocus="this.style.borderColor='#f59e0b'"
+            onblur="this.style.borderColor='#fde68a'"
+            onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"
+          ></textarea>
+          <button onclick="AICHAT.send()" id="ai-send-btn"
+            style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>
+        </div>
+        <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+      </div>
+
+      <p style="font-size:11px;color:#9ca3af;text-align:center;margin-top:8px">🤖 AI Powered by Groq · 무료 · Free forever<br>© 글로컬 아카데미 · elimg.com</p>
+    </div>
+  `;
+}
+
+function renderSection() {
+  switch(STATE.section) {
+    case 0:  return renderIntro();
+    case 1:  return renderVocab();
+    case 2:  return renderGrammar();
+    case 3:  return renderSpeaking();
+    case 4:  return renderListening();
+    case 5:  return renderPronunciation();
+    case 6:  return renderReading();
+    case 7:  return renderWriting();
+    case 8:  return renderCulture();
+    case 9:  return renderQuiz();
+    case 10: return renderAI();
+    default: return renderIntro();
+  }
+}
+
+function render() {
+  document.getElementById('app').innerHTML =
+    renderNav() +
+    renderLangBar() +
+    renderTabs() +
+    renderSection() +
+    renderBottomNav();
+  window.scrollTo(0, 0);
+}
+
+render();
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch(()=>{});
+}

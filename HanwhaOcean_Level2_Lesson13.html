@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -450,7 +450,7 @@ function render() {
 }
 
 function renderNav() {
-  return `<div class="nav"><a href="HanwhaOcean_Level2_Index.html" style="text-decoration:none;color:inherit"><div><div class="nav-title">초급 2-13과</div><div class="nav-sub">← Level 2 목차 · Contents</div></div></a><button class="nav-btn" onclick="setState({menuOpen:!state.menuOpen})">☰</button></div>`;
+  return `<div class="nav"><a href="/HanwhaOcean_Level2_Index" style="text-decoration:none;color:inherit"><div><div class="nav-title">초급 2-13과</div><div class="nav-sub">← Level 2 목차 · Contents</div></div></a><button class="nav-btn" onclick="setState({menuOpen:!state.menuOpen})">☰</button></div>`;
 }
 
 function renderMenu() {
@@ -533,13 +533,13 @@ function renderHome() {
   </div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson12.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson12" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-12과 한국 음식을 설명해요</strong>
         <div style="font-size:11px;color:#888;margin-top:2px">Explaining Korean Food</div>
       </div>
-    </a><a href="HanwhaOcean_Level2_Lesson14.html" style="display:block;text-decoration:none;flex:1">
+    </a><a href="/HanwhaOcean_Level2_Lesson14" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-14과 교육 제도를 이해해요</strong>
@@ -899,7 +899,7 @@ function renderLiteratureQuiz() {
       <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
       <button onclick="setState({fqIdx:0,fqSel:null,fqScore:0,fqDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
       <button onclick="setState({page:'literature'})" class="btn" style="margin-top:8px;background:#e5e7eb;color:#555">📜 시 다시 읽기 · Read Poem Again</button>
-      <a href="HanwhaOcean_Level2_Lesson14.html" style="display:block;text-decoration:none;margin-top:16px">
+      <a href="/HanwhaOcean_Level2_Lesson14" style="display:block;text-decoration:none;margin-top:16px">
         <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
           ➡️ 다음 과: 2-14 교육 제도를 이해해요 · Next Lesson
         </button>
@@ -1044,7 +1044,7 @@ function renderGeoje() {
       `).join('')}
     </div>
   </div>
-  <a href="HanwhaOcean_Level2_Lesson14.html" style="display:block;text-decoration:none;margin-top:16px">
+  <a href="/HanwhaOcean_Level2_Lesson14" style="display:block;text-decoration:none;margin-top:16px">
     <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
       ➡️ 다음 과: 2-14 교육 제도를 이해해요 · Next Lesson
     </button>
@@ -1054,18 +1054,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🗑️', label:'분리수거 방법',
-    q:'한국 분리수거 방법을 한국어로 설명해주세요. 플라스틱, 종이, 유리, 캔, 음식물 쓰레기를 어떻게 버리는지, 쓰레기봉투 사는 방법을 영어와 함께 알려주세요.' },
-  { emoji:'🌿', label:'환경 어휘 이해',
-    q:'한국 환경 관련 한국어 어휘를 설명해주세요. 환경, 오염, 재활용, 분리수거, 탄소 배출이 영어로 뭔지, 조선소에서 환경 보호를 위해 하는 일도 알려주세요.' },
-  { emoji:'🏭', label:'조선소 환경 규칙',
-    q:'조선소에서 지켜야 하는 환경 관련 규칙을 한국어로 알려주세요. 폐기물 처리, 기름 유출 방지, 소음 규정 같은 환경 규칙 표현을 영어와 함께 알려주세요.' },
-  { emoji:'💧', label:'절약 표현 연습',
-    q:'에너지와 자원을 절약하는 한국어 표현을 알려주세요. "물을 아껴 써야 해요", "불을 꺼야 해요", "에너지를 절약합시다" 같은 표현을 영어와 함께 5가지요.' },
-  { emoji:'📋', label:'~해야 해요 연습',
-    q:'의무 표현 ~해야 해요를 환경 규칙 상황으로 연습해주세요. "분리수거해야 해요", "쓰레기를 함부로 버리면 안 돼요" 같은 규칙 문장 5개를 영어와 함께요.' },
-]
-
+  {emoji:'♻️',label:'분리수거 방법',
+   q:'분리수거 sorting recyclables 재활용분리 쓰레기분리를 알려주세요' },
+  {emoji:'🌱',label:'환경 보호',
+   q:'환경보호 environmental protection 환경지키기 친환경을 알려주세요' },
+  {emoji:'🔄',label:'재활용하기',
+   q:'재활용 recycling 재활용방법 재활용품을 알려주세요' },
+  {emoji:'📋',label:'환경 규정',
+   q:'환경규정 environmental regulation 환경법 규정을 알려주세요' },
+  {emoji:'📖',label:'환경 어휘',
+   q:'환경어휘 environmental vocabulary 환경단어 지구를 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1092,13 +1091,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean environmental practices coach for workers in Korea. Lesson focus: environment vocabulary 환경(environment), 오염(pollution), 쓰레기(garbage), 분리수거(waste sorting), 재활용(recycling), obligation ~해야 해요 (must/should). Help workers follow Korean recycling rules. SHORT answers with English.';
+      var sysP = 'You are a Korean environmental practices coach for workers in Korea. Lesson focus: environment vocabulary 환경(environment), 오염(pollution), 쓰레기(garbage), 분리수거(waste sorting), 재활용(recycling), obligation ~해야 해요 (must/should). Help workers follow Korean recycling rules. SHORT answers with English. LESSON:L2L13';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

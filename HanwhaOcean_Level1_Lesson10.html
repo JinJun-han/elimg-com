@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -505,7 +505,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level1_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level1_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 1 목차 · Contents</div></div>
     </a>
@@ -573,7 +573,7 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🚀 한국의 성장 원동력: IT 강국 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson9.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 9과 어디가 아파요?</a><a href="HanwhaOcean_Level1_Lesson11.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">11과 가족이 몇 명이에요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level1_Lesson9" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 9과 어디가 아파요?</a><a href="/HanwhaOcean_Level1_Lesson11" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">11과 가족이 몇 명이에요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -1049,18 +1049,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'📞', label:'전화번호 교환',
-    q:'한국어로 전화번호를 교환하는 대화를 연습해주세요. "전화번호가 몇 번이에요?", "공일공-~이에요", "카카오톡 있어요?" 같은 표현을 롤플레이로 해주세요. 영어도요.' },
-  { emoji:'💬', label:'카카오톡 표현',
-    q:'카카오톡으로 동료에게 보내는 한국어 문자 표현을 알려주세요. "내일 7시에 출근해요", "오늘 야근이에요", "지금 어디예요?" 같은 직장 문자 표현 5가지를 영어와 함께요.' },
-  { emoji:'🔢', label:'전화번호 읽기',
-    q:'한국 전화번호를 한국어로 읽는 연습을 해주세요. 0=영, 010-1234-5678을 한국어로 어떻게 읽는지, 숫자 읽기 규칙을 예문과 영어로 설명해주세요.' },
-  { emoji:'📵', label:'전화 못 받을 때',
-    q:'전화를 못 받을 때 보내는 한국어 문자를 알려주세요. "지금 작업 중이에요. 나중에 전화할게요", "회의 중이에요", "10분 후에 전화해요" 표현을 영어와 함께요.' },
-  { emoji:'🆘', label:'긴급 연락 표현',
-    q:'조선소 긴급 상황에서 문자/전화로 사용하는 한국어를 알려주세요. "사고 났어요. 빨리 와주세요", "119에 신고해주세요" 같은 표현을 영어와 함께 5가지요.' },
-]
-
+  {emoji:'📞',label:'전화 받기',
+   q:'전화받기 answering phone 여보세요 전화수신을 알려주세요' },
+  {emoji:'📱',label:'전화 걸기',
+   q:'전화걸기 making call 전화하기 연락하기를 알려주세요' },
+  {emoji:'💬',label:'카카오톡 사용',
+   q:'카카오톡 kakaotalk 카톡 메신저를 알려주세요' },
+  {emoji:'✉️',label:'문자 표현',
+   q:'문자표현 text message 문자보내기 sms를 알려주세요' },
+  {emoji:'💡',label:'전화 어려울 때',
+   q:'전화어려울때 phone difficult 한국어전화 전화팁을 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1087,13 +1086,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean digital communication coach for shipyard workers. Lesson focus: phone number expressions, 휴대폰(mobile phone), 문자(text message), 카카오톡(KakaoTalk), 전화하다(to call), ability expression ~(으)ㄹ 수 있다/없다. Help with practical phone/text communication. SHORT answers with English.';
+      var sysP = 'You are a Korean digital communication coach for shipyard workers. Lesson focus: phone number expressions, 휴대폰(mobile phone), 문자(text message), 카카오톡(KakaoTalk), 전화하다(to call), ability expression ~(으)ㄹ 수 있다/없다. Help with practical phone/text communication. SHORT answers with English. LESSON:L1L10';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

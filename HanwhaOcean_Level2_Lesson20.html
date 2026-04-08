@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -602,7 +602,7 @@ function renderHome() {
 
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson19.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson19" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-19과 발표를 해요</strong>
@@ -1042,18 +1042,17 @@ function render() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🏆', label:'수료 소감 말하기',
-    q:'한국어 수료 소감을 표현하는 연습을 해주세요. "한국어 공부가 보람 있었어요", "많이 성장했어요", "앞으로도 계속 공부하겠어요" 같은 성취 표현을 영어와 함께요.' },
-  { emoji:'🙏', label:'감사 표현',
-    q:'수료 소감에서 선생님과 동료에게 감사를 전하는 한국어 표현을 알려주세요. "가르쳐 주셔서 감사합니다", "덕분에 많이 배웠어요", "다음에 또 만나요" 표현을 영어와 함께요.' },
-  { emoji:'🌟', label:'성장/변화 표현',
-    q:'한국어 학습을 통한 성장과 변화를 표현하는 방법을 알려주세요. "처음보다 많이 늘었어요", "이제 조금씩 들려요", "자신감이 생겼어요" 표현을 영어와 함께요.' },
-  { emoji:'🚀', label:'미래 다짐',
-    q:'앞으로의 한국어 학습과 직업 계획을 다짐하는 표현을 알려주세요. "계속 열심히 하겠어요", "다음 단계를 공부하겠어요", "한국에서 성공하겠어요" 표현을 영어와 함께요.' },
-  { emoji:'💬', label:'배운 표현 복습',
-    q:'초급 2급에서 배운 가장 유용한 표현들을 복습해주세요. 은행, 병원, 전화, 약속, 쇼핑에서 쓰는 핵심 표현을 정리해서 영어와 함께 알려주세요.' },
-]
-
+  {emoji:'🎓',label:'졸업 소감',
+   q:'졸업소감 graduation thoughts 졸업후 과정완료를 알려주세요' },
+  {emoji:'🎯',label:'미래 목표',
+   q:'미래목표말하기 stating future goal 앞으로계획 목표를 알려주세요' },
+  {emoji:'🌟',label:'성취 표현',
+   q:'성취표현 expressing achievement 해냈어요 성과를 알려주세요' },
+  {emoji:'🙏',label:'감사 인사',
+   q:'감사인사 thank you expression 감사말 고마움표현을 알려주세요' },
+  {emoji:'🚀',label:'앞으로의 계획',
+   q:'앞으로계획 plans going forward 다음단계 미래다짐을 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1080,13 +1079,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean achievement and graduation coach for foreign workers completing their language course. Lesson focus: achievement vocabulary 꿈(dream), 목표(goal), 미래(future), 희망(hope), 성공(success), motivational and aspirational expressions. Help workers celebrate their Korean learning journey. SHORT answers with English.';
+      var sysP = 'You are a Korean achievement and graduation coach for foreign workers completing their language course. Lesson focus: achievement vocabulary 꿈(dream), 목표(goal), 미래(future), 희망(hope), 성공(success), motivational and aspirational expressions. Help workers celebrate their Korean learning journey. SHORT answers with English. LESSON:L2L20';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

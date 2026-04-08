@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 4급 3과 · 직장과 사회</title>
+<meta name="theme-color" content="#1d4ed8"/>
+<meta property="og:title" content="KIIP 4급 3과 · 직장과 사회"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level4_Lesson3.html"/>
+<meta property="og:description" content="KIIP 4급 3과 직장과 사회 - 어휘, 문법, 말하기, 듣기, 읽기, 쓰기, 문화, 퀴즈"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1d4ed8;--navy:#1e3a5f;--indigo:#1e40af;--green:#22c55e;--red:#ef4444;--gray:#f0f4ff;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(30,58,95,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #dbeafe;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:700}
+.tab-btn:hover{background:#eff6ff}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #dbeafe;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(30,58,95,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--blue)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(30,58,95,0.08);border:1px solid #dbeafe}
+.card-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--blue)}
+h3{font-size:16px;font-weight:700;color:var(--indigo);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 12px rgba(29,78,216,0.15)}
+.vocab-card.flipped{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--navy)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--blue);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue);margin:14px 0 8px;padding:4px 10px;background:#eff6ff;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.grammar-tabs{display:flex;gap:8px;margin-bottom:16px}
+.grammar-tab{padding:8px 18px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.grammar-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rule-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:6px}
+.example-list{list-style:none}
+.example-list li{padding:8px 12px;border-radius:8px;margin-bottom:6px;background:#f8faff;border:1px solid #dbeafe;font-size:14px;line-height:1.6}
+.example-list li .ko{color:var(--navy);font-weight:600}
+.example-list li .en{color:#475569;font-size:12px}
+.practice-item{background:#fff;border:2px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.practice-item input{border:1px solid #bfdbfe;border-radius:6px;padding:6px 10px;font-size:14px;width:140px;margin:0 4px}
+.practice-item input:focus{outline:none;border-color:var(--blue)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.check-btn:hover{background:var(--indigo)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.topik-card{background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #bfdbfe;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--blue);background:#eff6ff}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f8faff;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--blue);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--indigo)}
+.bubble{background:#eff6ff;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#dbeafe}
+.listen-script-box{background:#f0f4ff;border:2px dashed #bfdbfe;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--navy)}
+.listen-q{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.reveal-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--indigo)}
+.pron-rule{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #bfdbfe}
+.pron-word{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:6px 12px;margin:4px;font-size:14px}
+.pron-arrow{color:var(--blue);font-weight:700}
+.reading-text{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--blue);font-weight:700}
+.writing-guide{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--navy)}
+textarea{width:100%;border:2px solid #bfdbfe;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--blue)}
+.sample-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--navy);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--navy);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #dbeafe;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #dbeafe;background:#f8faff;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--blue);background:#eff6ff}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--navy);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#60a5fa}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #dbeafe}
+.pron-sent{background:#f0f4ff;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--navy);flex:1}
+.rec-btn{background:var(--blue);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--indigo)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #dbeafe;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.lang-toggle{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.lang-btn{padding:6px 14px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:12px;font-weight:600;color:#64748b;transition:all 0.2s}
+.lang-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tip-box{background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:#475569;margin-top:8px}
+.tip-box strong{color:var(--blue)}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#eff6ff;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--navy)}
+.intro-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--indigo) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--navy)}
+.objective-list li::before{content:'✓';color:var(--blue);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--navy)}
+.section-nav-btn:hover{border-color:var(--blue);background:#eff6ff;color:var(--blue)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},vocabShowEng:true,
+  listenRevealed:false,listenAnswers:{},
+  gramPracticeShown:{},readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  grammarTab:0,topikAnswers:{},
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'문법',icon:'📐'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'발음',icon:'🔊'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'취업하다',hanja:'취업(就業)',en:'to get a job',vi:'Xin việc làm',cat:'직장생활'},
+  {ko:'퇴직하다',hanja:'퇴직(退職)',en:'to retire',vi:'Nghỉ hưu',cat:'직장생활'},
+  {ko:'승진하다',hanja:'승진(昇進)',en:'to get promoted',vi:'Được thăng chức',cat:'직장생활'},
+  {ko:'야근하다',hanja:'야근(夜勤)',en:'to work overtime at night',vi:'Làm thêm giờ ban đêm',cat:'직장생활'},
+  {ko:'출근하다',hanja:'출근(出勤)',en:'to go to work',vi:'Đi làm',cat:'직장생활'},
+  {ko:'업무',hanja:'업무(業務)',en:'work / duties',vi:'Công việc',cat:'직장생활'},
+  {ko:'회의',hanja:'회의(會議)',en:'meeting',vi:'Cuộc họp',cat:'직장문화'},
+  {ko:'보고서',hanja:'보고서(報告書)',en:'report',vi:'Báo cáo',cat:'직장문화'},
+  {ko:'상사',hanja:'상사(上司)',en:'superior / boss',vi:'Cấp trên',cat:'직장문화'},
+  {ko:'동료',hanja:'동료(同僚)',en:'colleague',vi:'Đồng nghiệp',cat:'직장문화'},
+  {ko:'직위',hanja:'직위(職位)',en:'position / rank',vi:'Chức vụ',cat:'직장문화'},
+  {ko:'급여',hanja:'급여(給與)',en:'salary / wages',vi:'Lương',cat:'근로조건'},
+  {ko:'복리후생',hanja:'복리후생(福利厚生)',en:'employee benefits',vi:'Phúc lợi nhân viên',cat:'근로조건'},
+  {ko:'연차',hanja:'연차(年次)',en:'annual leave',vi:'Phép năm',cat:'근로조건'},
+  {ko:'계약직',hanja:'계약직(契約職)',en:'contract worker',vi:'Nhân viên hợp đồng',cat:'근로조건'},
+  {ko:'정규직',hanja:'정규직(正規職)',en:'permanent employee',vi:'Nhân viên chính thức',cat:'근로조건'},
+  {ko:'사회보험',hanja:'사회보험(社會保險)',en:'social insurance',vi:'Bảo hiểm xã hội',cat:'사회제도'},
+  {ko:'노동법',hanja:'노동법(勞動法)',en:'labor law',vi:'Luật lao động',cat:'사회제도'},
+  {ko:'최저임금',hanja:'최저임금(最低賃金)',en:'minimum wage',vi:'Lương tối thiểu',cat:'사회제도'},
+  {ko:'실업급여',hanja:'실업급여(失業給與)',en:'unemployment benefits',vi:'Trợ cấp thất nghiệp',cat:'사회제도'},
+];
+
+const GRAM1={
+  title:'-기 마련이다',
+  meaning:'당연히 그렇게 되거나 그런 속성이 있음을 나타냄. "당연히 ~이다, 으레 ~한다"의 뜻.',
+  en:'It is natural that / It is bound to / One naturally does',
+  rule:'동사/형용사 어간 + -기 마련이다',
+  examples:[
+    {ko:'열심히 노력하면 좋은 결과가 나오기 마련이다.',en:'If you work hard, good results are bound to come.'},
+    {ko:'직장 생활을 하다 보면 어려움이 생기기 마련이다.',en:'It is natural that difficulties arise when working.'},
+    {ko:'사람은 실수를 하기 마련이다.',en:'People are bound to make mistakes.'},
+    {ko:'오래 일하다 보면 승진 기회가 오기 마련이다.',en:'If you work for a long time, promotion opportunities are bound to come.'},
+    {ko:'처음에는 새 직장이 낯설기 마련이다.',en:'It is natural that a new job feels unfamiliar at first.'},
+  ],
+  practice:[
+    {q:'노력하면 결과가 나오___ ___.',answer:'기 마련이다'},
+    {q:'직장 생활이 쉽지 않___ ___.',answer:'기 마련이다'},
+    {q:'사람은 누구나 실수하___ ___.',answer:'기 마련이다'},
+    {q:'오래 근무하면 경험이 쌓이___ ___.',answer:'기 마련이다'},
+    {q:'새 직장에서는 처음에 긴장되___ ___.',answer:'기 마련이다'},
+  ],
+  topik:[
+    {q:'다음 중 "-기 마련이다"를 자연스럽게 쓴 문장은?',opts:['일을 하면 피곤하기 마련이다.','일을 하면 피곤기 마련이다.','일을 하면 피곤는 마련이다.','일을 하면 피곤으로 마련이다.'],answer:0},
+    {q:'빈칸에 알맞은 것: "직장 생활에는 어려움이 ___ ."',opts:['있기 마련이다','있으기 마련이다','있어서 마련이다','있기로 마련이다'],answer:0},
+  ]
+};
+
+const GRAM2={
+  title:'-고 보면',
+  meaning:'어떤 일을 하고 나서 생각해 보거나 따지고 보면 그렇다는 것을 나타냄.',
+  en:'When you think about it / Come to think of it / Looking at it',
+  rule:'동사 어간 + -고 보면',
+  examples:[
+    {ko:'따지고 보면 이 일이 나에게 더 유리하다.',en:'Come to think of it, this job is more advantageous for me.'},
+    {ko:'오래 다니고 보면 직장이 점점 편해진다.',en:'When you think about it, the workplace becomes more comfortable over time.'},
+    {ko:'알고 보면 그 상사가 실은 좋은 사람이다.',en:'When you get to know him, that boss is actually a good person.'},
+    {ko:'비교해 보면 우리 회사 복리후생이 더 낫다.',en:'When you compare, our company\'s benefits are better.'},
+    {ko:'경험해 보면 야근이 생각보다 힘들지 않다.',en:'When you experience it, overtime is not as hard as you think.'},
+  ],
+  practice:[
+    {q:'자세히 알___ ___ 그 사람이 좋은 사람이에요.',answer:'고 보면'},
+    {q:'비교하___ ___ 우리 회사가 더 낫습니다.',answer:'고 보면'},
+    {q:'경험하___ ___ 어렵지 않아요.',answer:'고 보면'},
+    {q:'따지___ ___ 내가 맞아요.',answer:'고 보면'},
+    {q:'오래 일하___ ___ 재미가 생깁니다.',answer:'고 보면'},
+  ],
+  topik:[
+    {q:'"-고 보면"의 의미로 가장 알맞은 것은?',opts:['~해서 다행이다','~하고 나서 생각해 보면','~하기 위해서','~임에도 불구하고'],answer:1},
+    {q:'빈칸: "비교하___ 우리 회사가 더 좋습니다."',opts:['고 보면','기 마련이다','아/어서','도록'],answer:0},
+  ]
+};
+
+const QUIZ=[
+  {q:'"취업하다"의 뜻으로 알맞은 것은?',opts:['to resign','to get promoted','to get a job','to retire'],answer:2},
+  {q:'"열심히 노력하면 결과가 나오기 마련이다."에서 "-기 마련이다"의 의미는?',opts:['~했으면 좋겠다','당연히 그렇게 된다','~하는 중이다','~하면 안 된다'],answer:1},
+  {q:'"알고 보면"의 의미는?',opts:['모르는 척하면','알게 된 후 생각해 보면','알고 싶어서','알기 전에'],answer:1},
+  {q:'"최저임금"의 영어 번역은?',opts:['maximum wage','employee benefits','minimum wage','annual leave'],answer:2},
+  {q:'다음 중 근로 조건에 해당하지 않는 것은?',opts:['급여','연차','복리후생','보고서'],answer:3},
+  {q:'"정규직"의 반대말은?',opts:['상사','계약직','동료','직위'],answer:1},
+  {q:'"사람은 실수하기 마련이다."와 가장 비슷한 의미는?',opts:['사람은 실수해서는 안 된다.','사람은 당연히 실수를 한다.','사람은 실수한 적이 없다.','사람은 실수하면 벌 받는다.'],answer:1},
+  {q:'"야근하다"의 뜻은?',opts:['go to work early','work overtime at night','take a day off','get promoted'],answer:1},
+  {q:'"따지고 보면 이 회사가 더 좋다."에서 주로 전달하는 내용은?',opts:['이 회사가 나쁘다','이 회사가 맞지 않는다','생각해 보니 이 회사가 더 좋다','이 회사를 그만둔다'],answer:2},
+  {q:'다음 빈칸에 알맞은 것: "오래 일하다 보면 경험이 쌓이___ ___."',opts:['기 마련이다','고 보면','아/어서','는 탓에'],answer:0},
+];
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level4_Lesson2">← 2과</a>
+      <span class="nav-title">4급 3과 · 직장과 사회</span>
+      <a href="/KIIP_Level4_Lesson4">4과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level4_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level4_Lesson4"><span class="icon">➡️</span>4과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let gramHtml;
+      if(STATE.grammarTab===0){gramHtml=renderGramBlock(GRAM1,'gram1');}
+      else{gramHtml=renderGramBlock(GRAM2,'gram2');}
+      return `<h2>📐 문법</h2>
+        <div class="grammar-tabs">
+          <button class="grammar-tab${STATE.grammarTab===0?' active':''}" onclick="setState({grammarTab:0})">1. -기 마련이다</button>
+          <button class="grammar-tab${STATE.grammarTab===1?' active':''}" onclick="setState({grammarTab:1})">2. -고 보면</button>
+        </div>${gramHtml}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderPronunciation();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10:{
+      setTimeout(()=>RECORDER.autoDetect(),100);
+      const PRON_SENTS=[
+        '열심히 노력하면 좋은 결과가 나오기 마련입니다.',
+        '알고 보면 직장 생활이 그렇게 어렵지 않아요.',
+        '정규직으로 취업하는 것이 요즘은 쉽지 않습니다.',
+        '최저임금이 오르면 노동자 생활이 나아지기 마련입니다.',
+      ];
+      return `<h2>🤖 AI 발음 실습</h2>
+        <div class="ai-section">
+          <h3>발음 연습</h3>
+          <p style="font-size:13px;color:#64748b;margin-bottom:12px">문장을 따라 말하고 AI가 발음을 분석합니다.</p>
+          <div id="rec-status"><p style="color:#94a3b8;font-size:13px">마이크 상태 확인 중...</p></div>
+          ${PRON_SENTS.map((s,i)=>`
+            <div class="pron-sent" id="pron-sent-${i}">
+              <span class="sent-text">${s} ${ttsBtn(s)}</span>
+              <div id="score-badge-${i}" class="score-badge">-</div>
+              <button class="rec-btn" id="rec-btn-${i}" onclick="RECORDER.toggle(${i},PRON_SENTS_10)">🎤 녹음</button>
+            </div>`).join('')}
+          <div id="stt-result" style="min-height:32px;margin-top:8px;font-size:13px;color:#475569"></div>
+        </div>
+        <script>var PRON_SENTS_10=${JSON.stringify(PRON_SENTS)};<\/script>
+        <div class="card">
+          <div class="card-title">💡 AI 활용 연습 주제</div>
+          <div class="speaking-topics">
+            <div class="speaking-topic">AI에게 "한국 직장 생활에서 자주 쓰는 표현 10개를 베트남어 번역과 함께 알려줘"라고 물어보세요.</div>
+            <div class="speaking-topic">"-기 마련이다"와 "-고 보면"을 각각 3문장씩 만들어 AI에게 첨삭 요청해 보세요.</div>
+            <div class="speaking-topic">AI와 함께 한국 회사에서 면접 보는 롤플레이를 해 보세요.</div>
+          </div>
+        </div>`;
+    }
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 4급 · 3과</div>
+      <h1 style="margin-top:12px">직장과 사회</h1>
+      <p class="subtitle">Work &amp; Society · Công việc và Xã hội</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>직장, 근로 조건, 사회제도 관련 어휘 20개를 익힌다.</li>
+        <li>-기 마련이다를 사용하여 당연한 결과를 표현할 수 있다.</li>
+        <li>-고 보면을 사용하여 재고·재평가를 표현할 수 있다.</li>
+        <li>직장 생활과 사회 문제에 대해 말하고 쓸 수 있다.</li>
+        <li>한국의 직장 문화와 노동 제도를 이해한다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🔑 핵심 표현</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          <strong>열심히 노력하면 결과가 나오기 마련입니다.</strong> ${ttsBtn('열심히 노력하면 결과가 나오기 마련입니다.')}
+        </div>
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          <strong>알고 보면</strong> 직장 생활이 재미있습니다. ${ttsBtn('알고 보면 직장 생활이 재미있습니다.')}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 학습 섹션</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.filter(s=>s.id>0).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `
+    <h2>📝 어휘</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div class="lang-toggle">
+        <button class="lang-btn${STATE.lang==='ko'?' active':''}" onclick="setState({lang:'ko',vocabFlipped:{}})">한국어</button>
+        <button class="lang-btn${STATE.lang==='en'?' active':''}" onclick="setState({lang:'en',vocabFlipped:{}})">English</button>
+        <button class="lang-btn${STATE.lang==='vi'?' active':''}" onclick="setState({lang:'vi',vocabFlipped:{}})">Tiếng Việt</button>
+      </div>
+      <button class="check-btn" onclick="setState({vocabFlipped:{}})">초기화</button>
+    </div>
+    <div class="tip-box" style="margin-bottom:14px"><strong>💡 Tip:</strong> 카드를 클릭하면 뒤집어집니다!</div>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map(v=>{
+          const idx=VOCAB.indexOf(v);
+          const flipped=STATE.vocabFlipped[idx];
+          const meaning=STATE.lang==='vi'?v.vi:v.en;
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="STATE.vocabFlipped[${idx}]=!STATE.vocabFlipped[${idx}];render()">
+            ${!flipped
+              ?`<span class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</span><span class="vocab-hanja">${v.hanja}</span>`
+              :`<span class="vocab-ko">${meaning}</span><span class="vocab-eng">${v.ko}</span>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderGramBlock(gram,prefix){
+  const practiceHtml=gram.practice.map((p,i)=>{
+    const shown=STATE.gramPracticeShown[prefix+'_'+i];
+    const q=p.q.replace('___',`<input id="${prefix}-inp-${i}" placeholder="___" style="width:140px"/>`).replace('___',`<input id="${prefix}-inp2-${i}" placeholder="___" style="width:80px"/>`);
+    return `<div class="practice-item">
+      <div style="font-size:14px;color:var(--navy);margin-bottom:8px;line-height:1.6">${q}</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" onclick="
+          var v=(document.getElementById('${prefix}-inp-${i}').value.trim()||'')+(document.getElementById('${prefix}-inp2-${i}')?document.getElementById('${prefix}-inp2-${i}').value.trim():'');
+          var full=document.getElementById('${prefix}-inp-${i}').value.trim()+(document.getElementById('${prefix}-inp2-${i}')?(' '+document.getElementById('${prefix}-inp2-${i}').value.trim()):'');
+          if(full.replace(/\\s/g,'')==='${p.answer}'.replace(/\\s/g,'')){document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=answer-reveal>✅ 정답!</span>';}
+          else{document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=wrong-reveal>❌ 다시 해보세요</span>';}
+        ">확인</button>
+        <button class="check-btn" style="background:#64748b" onclick="STATE.gramPracticeShown['${prefix}_${i}']=true;render()">정답 보기</button>
+      </div>
+      <div id="${prefix}-fb-${i}">${shown?`<span class="answer-reveal">정답: ${p.answer}</span>`:''}</div>
+    </div>`;
+  }).join('');
+  const topikHtml=gram.topik.map((t,i)=>{
+    const key=prefix+'_topik_'+i;
+    const chosen=STATE.topikAnswers[key];
+    return `<div class="topik-card">
+      <div class="q-text">${t.q}</div>
+      <div class="topik-options">
+        ${t.opts.map((opt,j)=>{
+          let cls='topik-opt';
+          if(chosen!==undefined){if(j===t.answer)cls+=' correct';else if(j===chosen)cls+=' wrong';}
+          return `<button class="${cls}" onclick="STATE.topikAnswers['${key}']=${j};render()" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+        }).join('')}
+      </div>
+      ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;color:${chosen===t.answer?'#166534':'#991b1b'};font-weight:700">${chosen===t.answer?'✅ 정답!':'❌ 오답 - 정답: '+(t.answer+1)+'번'}</div>`:''}
+    </div>`;
+  }).join('');
+  return `
+    <div class="card">
+      <div class="card-title">📌 ${gram.title}</div>
+      <div class="rule-box"><div class="rule-title">의미</div><div style="font-size:14px;color:var(--navy);margin-bottom:4px">${gram.meaning}</div><div style="font-size:13px;color:#475569">🇺🇸 ${gram.en}</div></div>
+      <div class="rule-box"><div class="rule-title">형태 규칙</div><div style="font-size:14px;color:var(--navy)">${gram.rule}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 예문</div>
+      <ul class="example-list">${gram.examples.map(e=>`<li><span class="ko">${e.ko} ${ttsBtn(e.ko)}</span><br><span class="en">${e.en}</span></li>`).join('')}</ul>
+    </div>
+    <div class="card"><div class="card-title">✏️ 빈칸 채우기 연습</div>${practiceHtml}</div>
+    <div class="card"><div class="card-title">📋 TOPIK 유형</div>${topikHtml}</div>`;
+}
+
+function renderSpeaking(){
+  const dialogues=[
+    {title:'대화 1: 취업 준비',lines:[
+      {speaker:'A',text:'요즘 취업 준비하느라 힘들죠?',side:'a'},
+      {speaker:'B',text:'네, 정규직 일자리를 찾기가 정말 어려워요.',side:'b'},
+      {speaker:'A',text:'알고 보면 계약직도 나쁘지 않아요. 경험을 쌓을 수 있거든요.',side:'a'},
+      {speaker:'B',text:'그렇긴 한데, 복리후생이 많이 달라서요.',side:'b'},
+      {speaker:'A',text:'취업하면 처음엔 다 힘들기 마련이에요.',side:'a'},
+      {speaker:'B',text:'맞아요. 일단 도전해 보는 게 중요하겠죠.',side:'b'},
+    ]},
+    {title:'대화 2: 직장 상사와의 관계',lines:[
+      {speaker:'A',text:'우리 팀장님이 너무 엄격하셔서 힘들어요.',side:'a'},
+      {speaker:'B',text:'처음엔 그렇게 느껴지기 마련이에요.',side:'b'},
+      {speaker:'A',text:'야근도 자주 시키시고 보고서도 꼼꼼하게 보세요.',side:'a'},
+      {speaker:'B',text:'알고 보면 그런 분들이 더 많이 가르쳐 주시더라고요.',side:'b'},
+      {speaker:'A',text:'그렇게 생각하니 좀 나은 것 같기도 해요.',side:'a'},
+      {speaker:'B',text:'오래 일하다 보면 좋은 상사라는 걸 알게 되기 마련이에요.',side:'b'},
+    ]},
+    {title:'대화 3: 급여와 근로 조건',lines:[
+      {speaker:'A',text:'이번에 연봉 협상을 해야 하는데 어렵네요.',side:'a'},
+      {speaker:'B',text:'최저임금 이상인지 먼저 확인해 보세요.',side:'b'},
+      {speaker:'A',text:'급여 외에 연차나 사회보험도 중요하더라고요.',side:'a'},
+      {speaker:'B',text:'노동법을 알고 보면 내 권리를 지킬 수 있어요.',side:'b'},
+      {speaker:'A',text:'사회보험에 대해서 자세히 알아봐야겠어요.',side:'a'},
+      {speaker:'B',text:'직장을 다니다 보면 이런 것들이 다 중요해지기 마련이에요.',side:'b'},
+    ]},
+  ];
+  const topics=['나의 직업 또는 희망 직업을 소개해 보세요. -기 마련이다를 사용해 보세요.','한국과 자신의 나라의 직장 문화 차이를 이야기해 보세요.','좋은 직장의 조건은 무엇인지 이야기해 보세요.'];
+  return `<h2>💬 말하기</h2>
+    ${dialogues.map(d=>`<div class="card"><div class="card-title">${d.title}</div><div class="dialogue">
+      ${d.lines.map(l=>`<div class="dialogue-line${l.side==='b'?' b':''}"><span class="speaker">${l.speaker}</span><div class="bubble">${l.text} ${ttsBtn(l.text)}</div></div>`).join('')}
+    </div></div>`).join('')}
+    <div class="card"><div class="card-title">🗣️ 자유 말하기 주제</div><div class="speaking-topics">
+      ${topics.map((t,i)=>`<div class="speaking-topic"><strong>${i+1}.</strong> ${t}</div>`).join('')}
+    </div></div>`;
+}
+
+function renderListening(){
+  const script='[라디오 시사 프로그램]\n\n진행자: 안녕하세요. 오늘은 한국 직장인들의 현실에 대해 이야기해 보겠습니다. 최근 조사에 따르면 한국 직장인의 약 60%가 야근을 경험한다고 합니다.\n\n전문가: 맞습니다. 한국 기업 문화에서는 야근이 당연시되기 마련이었습니다. 하지만 최근 주 52시간 근무제가 시행되면서 변화가 생기고 있습니다.\n\n진행자: 최저임금 문제도 중요한데요?\n\n전문가: 네. 알고 보면 많은 근로자들이 최저임금조차 받지 못하는 경우가 있습니다. 노동법을 제대로 알면 자신의 권리를 지킬 수 있습니다.\n\n진행자: 외국인 근로자들은 어떻습니까?\n\n전문가: 외국인 근로자들도 사회보험에 가입할 수 있습니다. 건강보험, 고용보험, 산재보험 등이 있고, 실업급여도 받을 수 있습니다. 본인의 권리를 꼭 알고 챙기는 것이 중요합니다.';
+  const questions=[
+    {q:'1. 이 프로그램의 주제는 무엇입니까?',opts:['한국 음식 문화','한국 직장인의 현실과 권리','한국 여행 정보','한국어 공부 방법'],answer:1},
+    {q:'2. 최근 시행된 근무제는 무엇입니까?',opts:['주 40시간 근무제','주 48시간 근무제','주 52시간 근무제','주 60시간 근무제'],answer:2},
+    {q:'3. 외국인 근로자가 받을 수 있는 보험으로 언급되지 않은 것은?',opts:['건강보험','고용보험','자동차보험','산재보험'],answer:2},
+  ];
+  return `<h2>👂 듣기</h2>
+    <div class="card">
+      <div class="card-title">📻 라디오 시사 프로그램</div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:!STATE.listenRevealed})">${STATE.listenRevealed?'📄 스크립트 숨기기':'📄 스크립트 보기'}</button>
+      ${STATE.listenRevealed?`<div class="listen-script-box">${script.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}</div>`:''}
+      <div style="text-align:center;margin-bottom:12px">
+        <button class="reveal-btn" onclick="TTS.speak(${JSON.stringify(script)})">🔊 전체 듣기</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 듣기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.listenAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.listenAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderPronunciation(){
+  const words=[{word:'직업',pron:'지겁'},{word:'업무를',pron:'엄무를'},{word:'출근이',pron:'출그니'},{word:'급여를',pron:'그뵤를'}];
+  const sents=[{text:'업무를 열심히 하면 승진하기 마련입니다.',note:'업무를[엄무를], 승진[승진]'},{text:'출근이 즐거워지려면 동료 관계가 중요합니다.',note:'출근이[출그니]'}];
+  return `<h2>🔊 발음</h2>
+    <div class="card">
+      <div class="card-title">📏 발음 규칙: 자음 동화 (비음화)</div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">받침 'ㅂ, ㄱ, ㄷ'이 뒤에 오는 'ㅁ, ㄴ' 앞에서 비음 [ㅁ, ㅇ, ㄴ]으로 바뀝니다.</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:8px">예: 직업 → [지겁], 업무 → [엄무], 출근이 → [출그니]</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">${words.map(w=>`<div class="pron-word"><span style="font-weight:700;color:var(--navy)">${w.word}</span><span class="pron-arrow">→</span><span style="color:var(--blue)">[${w.pron}]</span>${ttsBtn(w.word)}</div>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗣️ 문장 발음 연습</div>
+      ${sents.map(s=>`<div style="background:#eff6ff;border-radius:10px;padding:12px 14px;margin-bottom:10px"><div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">${s.text} ${ttsBtn(s.text)}</div><div style="font-size:12px;color:var(--blue)">${s.note}</div></div>`).join('')}
+    </div>`;
+}
+
+function renderReading(){
+  const rawText='한국 사회에서 직장은 단순히 돈을 버는 곳이 아닙니다. 직장은 사람들이 사회적 관계를 맺고, 자신의 역할을 찾는 중요한 공간입니다.\n\n한국의 직장 문화에서는 상사와 동료 간의 관계가 중요합니다. 처음에는 낯설기 마련이지만, 시간이 지나면 알고 보면 모두 서로를 배려하는 문화임을 알게 됩니다.\n\n최근에는 노동법이 강화되면서 근로 환경이 개선되고 있습니다. 최저임금 인상, 주 52시간 근무제 도입, 사회보험 확대 등은 노동자의 권리를 보호하기 위한 제도입니다. 계약직이든 정규직이든 모든 근로자는 자신의 권리를 알고 챙겨야 합니다.';
+  const questions=[
+    {q:'1. 이 글의 중심 내용은 무엇입니까?',opts:['한국 요리 문화','한국 직장 문화와 노동 권리','한국 여행 명소','한국 경제 역사'],answer:1},
+    {q:'2. 글에서 언급한 노동 환경 개선 내용이 아닌 것은?',opts:['최저임금 인상','주 52시간 근무제','사회보험 확대','퇴직금 폐지'],answer:3},
+    {q:'3. "알고 보면"이 쓰인 문장의 의미는?',opts:['직장 문화가 나쁘다는 것','시간이 지나니 서로 배려하는 문화임을 알게 됨','직장 문화를 모른다는 것','직장을 그만둬야 한다는 것'],answer:1},
+  ];
+  const highlighted=rawText.replace(/기 마련이/g,'<span class="highlight">기 마련이</span>').replace(/알고 보면/g,'<span class="highlight">알고 보면</span>').replace(/\n\n/g,'<br><br>');
+  return `<h2>📖 읽기</h2>
+    <div class="card"><div class="card-title">📰 한국의 직장 문화 ${ttsBtn(rawText)}</div><div class="reading-text">${highlighted}</div></div>
+    <div class="card"><div class="card-title">❓ 읽기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.readAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.readAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderWriting(){
+  const sample='저는 한국에서 계약직으로 일한 지 1년이 되었습니다. 처음에는 낯설기 마련이라 많이 힘들었습니다.\n\n하지만 알고 보면 동료들이 모두 친절하고 서로 도와주는 분위기였습니다. 야근이 많아서 힘들 때도 있었지만, 오래 일하다 보면 익숙해지기 마련입니다.\n\n앞으로는 정규직으로 전환될 수 있도록 더 열심히 노력할 것입니다. 노동법도 잘 공부해서 나의 권리를 지키겠습니다.';
+  return `<h2>✏️ 쓰기</h2>
+    <div class="card">
+      <div class="card-title">📌 쓰기 주제</div>
+      <div style="background:var(--indigo);color:#fff;border-radius:10px;padding:14px;font-size:16px;font-weight:700;text-align:center;margin-bottom:12px">나의 직장 생활 또는 취업 경험</div>
+      <div class="writing-guide"><h3>작성 가이드</h3><ul>
+        <li>나의 직장 또는 취업 준비 경험을 솔직하게 쓰세요.</li>
+        <li>-기 마련이다와 -고 보면을 각각 한 번 이상 사용하세요.</li>
+        <li>직장 생활에서 배운 점을 포함하세요.</li>
+        <li>앞으로의 직업 목표를 마무리 문장으로 쓰세요.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 내 글쓰기</div>
+      <textarea placeholder="여기에 글을 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <span style="font-size:12px;color:#94a3b8">${STATE.writingText.length}자</span>
+        <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'샘플 숨기기':'샘플 답안 보기'}</button>
+      </div>
+      ${STATE.sampleShown?`<div class="sample-box">${sample.replace(/\n\n/g,'<br><br>')}</div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  const sections=[
+    {title:'🏢 한국의 직장 문화',text:'한국 직장 문화는 위계질서를 중시합니다. 상사를 "부장님", "과장님"과 같이 직위로 부르며, 회의에서 상사의 의견을 존중하는 분위기가 있습니다.'},
+    {title:'🍻 회식 문화',text:'한국에서는 직장 동료들과 함께 저녁 식사를 하는 "회식"이 중요한 문화입니다. 팀워크를 다지는 자리로 여겨지지만, 최근에는 강제적인 회식 문화는 줄어들고 있습니다.'},
+    {title:'⏰ 주 52시간 근무제',text:'2018년부터 시행된 주 52시간 근무제는 과도한 야근을 줄이기 위한 제도입니다. 법정 근로시간(40시간)에 연장 근로(12시간)를 더한 것입니다.'},
+    {title:'🌍 외국인 근로자 권리',text:'한국에서 일하는 외국인 근로자도 최저임금, 사회보험, 실업급여 등 동일한 노동 권리를 가집니다. 고용센터나 외국인 지원센터에서 도움을 받을 수 있습니다.'},
+  ];
+  const topics=['한국의 직장 문화와 여러분 나라의 직장 문화를 비교해 보세요.','외국인 근로자로서 한국에서 권리를 지키려면 어떻게 해야 할까요?','이상적인 직장의 조건 3가지를 이야기해 보세요.'];
+  return `<h2>🎎 문화</h2>
+    <div class="card"><div class="card-title">🇰🇷 한국의 직장 문화와 노동 제도</div>
+      ${sections.map(s=>`<div class="culture-section"><h4>${s.title}</h4><p>${s.text}</p></div>`).join('')}
+    </div>
+    <div class="card"><div class="card-title">💬 토론 질문</div><div class="speaking-topics">
+      ${topics.map((t,i)=>`<div class="speaking-topic"><strong>${i+1}.</strong> ${t}</div>`).join('')}
+    </div></div>`;
+}
+
+function renderQuiz(){
+  const total=QUIZ.length;
+  const answered=Object.keys(STATE.quizAnswers).length;
+  const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+  return `<h2>✅ 퀴즈</h2>
+    <div class="card" style="background:var(--navy);color:#fff;text-align:center;padding:14px">
+      <div style="font-size:14px;opacity:0.8">진행: ${answered}/${total}</div>
+      ${STATE.quizDone?`<div style="font-size:28px;font-weight:900;color:#60a5fa;margin-top:4px">${correct}/${total}</div>`:''}
+    </div>
+    ${QUIZ.map((q,i)=>{
+      const chosen=STATE.quizAnswers[i];
+      const isCorrect=chosen===q.answer;
+      let cardCls='quiz-card';
+      if(chosen!==undefined)cardCls+=isCorrect?' answered-correct':' answered-wrong';
+      return `<div class="${cardCls}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>{
+            let cls='quiz-opt';
+            if(chosen!==undefined){if(j===q.answer)cls+=' selected-correct';else if(j===chosen)cls+=' selected-wrong';}
+            return `<button class="${cls}" onclick="if(STATE.quizAnswers[${i}]===undefined){STATE.quizAnswers[${i}]=${j};render();}" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>
+        ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${isCorrect?'#166534':'#991b1b'}">${isCorrect?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}
+      </div>`;
+    }).join('')}
+    ${answered===total&&!STATE.quizDone?`<div style="text-align:center;margin:12px 0"><button class="reveal-btn" onclick="setState({quizDone:true})">결과 보기</button></div>`:''}
+    ${STATE.quizDone?`<div class="quiz-score"><div>최종 점수</div><div class="score-num">${correct}/${total}</div><div style="margin-top:8px">${correct>=9?'🎉 우수!':correct>=7?'👍 잘 했어요!':correct>=5?'📚 복습해 보세요.':'💪 더 열심히!'}</div><button class="check-btn" style="margin-top:12px;background:rgba(255,255,255,0.2)" onclick="setState({quizAnswers:{},quizDone:false})">다시 풀기</button></div>`:''}`;
+}
+
+const RECORDER={
+  stream:null,mediaRecorder:null,chunks:[],isRecording:false,
+  recognition:null,sttActive:false,currentIdx:-1,scores:{},
+  autoDetect(){
+    if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+      navigator.mediaDevices.getUserMedia({audio:true})
+        .then(s=>{s.getTracks().forEach(t=>t.stop());this.showUI('ready');})
+        .catch(()=>this.showUI('denied'));
+    }else{this.showUI('denied');}
+  },
+  showUI(state){
+    const el=document.getElementById('rec-status');if(!el)return;
+    if(state==='ready')el.innerHTML='<p style="color:#059669;font-weight:700">✅ 마이크 준비 완료!</p>';
+    else el.innerHTML='<p style="color:#ef4444;font-weight:700">❌ 마이크를 사용할 수 없습니다.</p>';
+  },
+  toggle(idx,sents){
+    if(this.sttActive&&this.currentIdx===idx)this.stopSTT(idx);
+    else{if(this.sttActive)this.stopSTT(this.currentIdx);this.startSTT(idx,sents);}
+  },
+  startSTT(idx,sents){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){const el=document.getElementById('stt-result');if(el)el.innerHTML='<span style="color:#ef4444">음성 인식 미지원 브라우저입니다.</span>';return;}
+    this.recognition=new SR();
+    this.recognition.lang='ko-KR';this.recognition.interimResults=false;
+    this.sttActive=true;this.currentIdx=idx;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='⏹ 중지';btn.classList.add('recording');}
+    const rEl=document.getElementById('stt-result');
+    if(rEl)rEl.innerHTML='<span style="color:var(--blue)">🎤 듣는 중...</span>';
+    this.recognition.onresult=(e)=>{
+      const tr=e.results[0][0].transcript;
+      const score=this.calcScore(tr,sents[idx]);
+      this.scores[idx]=score;
+      const badge=document.getElementById('score-badge-'+idx);
+      if(badge){badge.className='score-badge '+(score>=80?'good':score>=50?'ok':'bad');badge.textContent=score+'%';}
+      if(rEl)rEl.innerHTML=`<span style="color:var(--navy)">인식: "${tr}"</span> <span style="font-weight:700;color:${score>=80?'#166534':score>=50?'#854d0e':'#991b1b'}">(${score}점)</span>`;
+      this.sttActive=false;
+      if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+    };
+    this.recognition.onerror=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.onend=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.start();
+  },
+  stopSTT(idx){
+    if(this.recognition){try{this.recognition.stop();}catch(e){}}
+    this.sttActive=false;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+  },
+  calcScore(transcript,target){
+    if(!transcript||!target)return 0;
+    const t=transcript.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    const g=target.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    if(t===g)return 100;
+    const tw=t.split(/\s+/),gw=g.split(/\s+/);
+    let m=0;gw.forEach(w=>{if(tw.includes(w))m++;});
+    return Math.round((m/Math.max(gw.length,1))*100);
+  }
+};
+
+render();
+</script>
+</body>
+</html>

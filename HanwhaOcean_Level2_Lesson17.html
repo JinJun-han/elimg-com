@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -469,7 +469,7 @@ function renderNav() {
     const active = state.page === id ? 'active' : '';
     return `<button class="${active}" onclick="setState({page:'${id}'})">${i} ${l}</button>`;
   };
-  return `<div class="nav"><div><div class="nav-title">초급 2-17과 · Beginner Level 2 Lesson 17</div><div class="nav-sub"><a href="HanwhaOcean_Level2_Index.html" style="color:#8899BB">← Level 2 목차 · Contents</a></div></div><button class="nav-btn" onclick="state.menuOpen=!state.menuOpen;render()">☰</button></div><div class="menu ${state.menuOpen?'':'hide'}">${items.map(({id,l,i})=>btn(id,l,i)).join('')}</div>`;
+  return `<div class="nav"><div><div class="nav-title">초급 2-17과 · Beginner Level 2 Lesson 17</div><div class="nav-sub"><a href="/HanwhaOcean_Level2_Index" style="color:#8899BB">← Level 2 목차 · Contents</a></div></div><button class="nav-btn" onclick="state.menuOpen=!state.menuOpen;render()">☰</button></div><div class="menu ${state.menuOpen?'':'hide'}">${items.map(({id,l,i})=>btn(id,l,i)).join('')}</div>`;
 }
 
 function renderBottomNav() {
@@ -524,20 +524,20 @@ function renderHome() {
     <div class="card card-orange">
       <strong>내비게이션 이동:</strong><br>
       <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
-        <a href="HanwhaOcean_Level2_Lesson16.html" style="padding:8px 12px; background:#1E3A5F; color:#fff; border-radius:6px; text-decoration:none; font-size:12px; font-weight:700;">← 16과 이전</a>
-        <a href="HanwhaOcean_Level2_Lesson18.html" style="padding:8px 12px; background:#2E75B6; color:#fff; border-radius:6px; text-decoration:none; font-size:12px; font-weight:700;">18과 다음 →</a>
+        <a href="/HanwhaOcean_Level2_Lesson16" style="padding:8px 12px; background:#1E3A5F; color:#fff; border-radius:6px; text-decoration:none; font-size:12px; font-weight:700;">← 16과 이전</a>
+        <a href="/HanwhaOcean_Level2_Lesson18" style="padding:8px 12px; background:#2E75B6; color:#fff; border-radius:6px; text-decoration:none; font-size:12px; font-weight:700;">18과 다음 →</a>
       </div>
     </div>
   </div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson16.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson16" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-16과 한국의 법을 알아요</strong>
         <div style="font-size:11px;color:#888;margin-top:2px">Understanding Korean Law</div>
       </div>
-    </a><a href="HanwhaOcean_Level2_Lesson18.html" style="display:block;text-decoration:none;flex:1">
+    </a><a href="/HanwhaOcean_Level2_Lesson18" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-18과 한국 사회를 이해해요</strong>
@@ -836,7 +836,7 @@ function renderLiteratureQuiz() {
         <div style="font-size:20px;color:#1E3A5F;margin-top:10px">${scorePercent}%</div>
       </div>
       <button class="btn btn-primary" onclick="setState({fqIdx:0,fqSel:null,fqScore:0,fqDone:false})">다시 풀기</button>
-      <a href="HanwhaOcean_Level2_Lesson18.html" style="display:block;text-decoration:none;margin-top:16px">
+      <a href="/HanwhaOcean_Level2_Lesson18" style="display:block;text-decoration:none;margin-top:16px">
         <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
           ➡️ 다음 과: 2-18 한국 사회를 이해해요 · Next Lesson
         </button>
@@ -898,7 +898,7 @@ function renderGeoje() {
       ✓ 아름다운 자연 환경<br>
       ✓ 해외 근로자들의 국제 커뮤니티
     </div>
-    <a href="HanwhaOcean_Level2_Lesson18.html" style="display:block;text-decoration:none;margin-top:16px">
+    <a href="/HanwhaOcean_Level2_Lesson18" style="display:block;text-decoration:none;margin-top:16px">
       <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
         ➡️ 다음 과: 2-18 한국 사회를 이해해요 · Next Lesson
       </button>
@@ -910,18 +910,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🎤', label:'면접 질문 연습',
-    q:'한국 조선소 면접에서 자주 나오는 질문에 답하는 연습을 해주세요. "자기소개해 주세요", "지원 동기가 뭐예요?", "경력이 어떻게 되세요?" 같은 면접 롤플레이를 해주세요.' },
-  { emoji:'📄', label:'이력서 표현',
-    q:'한국 이력서(자기소개서) 작성에 필요한 한국어 표현을 알려주세요. 이름, 생년월일, 학력, 경력, 자격증, 지원 동기를 쓰는 방법을 영어와 함께 설명해주세요.' },
-  { emoji:'👔', label:'강점 표현하기',
-    q:'면접에서 강점과 경력을 표현하는 한국어를 알려주세요. "저의 강점은 ~이에요", "~년의 경력이 있어요", "~을 잘 해요" 같은 자기 어필 표현을 영어와 함께 5가지요.' },
-  { emoji:'🏭', label:'조선소 재취업',
-    q:'같은 조선소나 다른 조선소에 재취업할 때 쓰는 한국어를 알려주세요. 계약 갱신, 직종 변경, 급여 협상 관련 표현을 영어와 함께 알려주세요.' },
-  { emoji:'🤔', label:'고용 조건 묻기',
-    q:'취업 시 고용 조건을 확인하는 한국어 표현을 알려주세요. "근무 시간이 어떻게 돼요?", "숙소 제공이 돼요?", "비자 지원이 가능해요?" 표현을 영어와 함께요.' },
-]
-
+  {emoji:'📄',label:'자기소개서 작성',
+   q:'자기소개서작성 writing resume 이력서 소개서를 알려주세요' },
+  {emoji:'❓',label:'면접 질문 준비',
+   q:'면접질문준비 interview prep 면접질문 인터뷰를 알려주세요' },
+  {emoji:'🗣️',label:'면접 답변 패턴',
+   q:'면접답변패턴 interview answer 답변패턴 면접잘하기를 알려주세요' },
+  {emoji:'📝',label:'이력서 작성',
+   q:'이력서작성 cv writing 영문이력서 이력서항목을 알려주세요' },
+  {emoji:'💼',label:'취업 표현',
+   q:'취업표현 job application 취업 채용을 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -948,13 +947,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean job interview and career coach for foreign workers. Lesson focus: employment vocabulary 면접(interview), 이력서(resume), 경력(career experience), 채용(hiring), 복지(benefits), experience expressions. Help workers succeed in Korean job interviews. SHORT answers with English.';
+      var sysP = 'You are a Korean job interview and career coach for foreign workers. Lesson focus: employment vocabulary 면접(interview), 이력서(resume), 경력(career experience), 채용(hiring), 복지(benefits), experience expressions. Help workers succeed in Korean job interviews. SHORT answers with English. LESSON:L2L17';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

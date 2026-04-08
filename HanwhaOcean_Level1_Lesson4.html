@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -497,7 +497,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level1_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level1_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 1 목차 · Contents</div></div>
     </a>
@@ -565,7 +565,7 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">⚡ 한국의 빨리빨리 문화 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과 여기가 어디예요?</a><a href="HanwhaOcean_Level1_Lesson5.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 얼마예요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level1_Lesson3" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과 여기가 어디예요?</a><a href="/HanwhaOcean_Level1_Lesson5" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 얼마예요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -1041,18 +1041,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'📅', label:'내 일과 말하기',
-    q:'조선소 외국인 근로자의 하루 일과를 한국어로 표현해주세요. 아침 7시 기상, 8시 출근, 12시 점심, 17시 퇴근, 22시 취침. 시간+동사 문장으로 만들어주세요. 영어도 함께요.' },
-  { emoji:'🕐', label:'시간 읽기 연습',
-    q:'한국어 시간 읽기를 연습시켜주세요. 고유어 숫자(하나=한 시, 둘=두 시)로 1시~12시를 어떻게 읽는지 알려주세요. 퀴즈 형식으로 5개 내주세요.' },
-  { emoji:'⚙️', label:'근무 시간 표현',
-    q:'조선소 근무 시간 관련 한국어 표현을 알려주세요. "출근", "퇴근", "점심시간", "야간 근무", "초과 근무". 각각 영어와 예문을 함께 알려주세요.' },
-  { emoji:'📐', label:'부터/까지 사용법',
-    q:'한국어 "~부터 ~까지" 표현을 조선소 일과 예문으로 설명해주세요. "아침 8시부터 5시까지 일해요" 같은 문장 5개를 만들어주세요. 영어도 함께요.' },
-  { emoji:'❓', label:'몇 시예요? 퀴즈',
-    q:'시간 읽기 퀴즈를 해주세요. "열두 시 삼십 분이에요" 같은 시간을 숫자로 쓰거나, 숫자를 한국어로 읽는 퀴즈 5개를 내주세요.' },
-]
-
+  {emoji:'⏰',label:'몇 시예요?',
+   q:'몇시예요 what time 시간묻기 지금몇시를 알려주세요' },
+  {emoji:'🌅',label:'오전/오후/밤',
+   q:'오전오후밤 am pm night 아침점심저녁 시간대를 알려주세요' },
+  {emoji:'📅',label:'요일 표현',
+   q:'요일표현 days of week 월화수목금 무슨요일을 알려주세요' },
+  {emoji:'🕐',label:'~에 (시간 표현)',
+   q:'에시간 time particle 시간에 언제에를 알려주세요' },
+  {emoji:'🏭',label:'근무 시간 표현',
+   q:'근무시간 work schedule 교대시간 몇시출근을 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1079,13 +1078,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean time expression tutor for shipyard workers. Lesson 4 focus: native Korean numbers for hours (한 시=1:00, 두 시=2:00, 세 시=3:00...), sino-Korean numbers for minutes (일 분, 이십 분...), time+에 particle (8시에 출근해요), ~부터 ~까지 (from ~ to ~), daily schedule words: 출근(start work), 퇴근(leave work), 점심(lunch). SHORT answers with English.';
+      var sysP = 'You are a Korean time expression tutor for shipyard workers. Lesson 4 focus: native Korean numbers for hours (한 시=1:00, 두 시=2:00, 세 시=3:00...), sino-Korean numbers for minutes (일 분, 이십 분...), time+에 particle (8시에 출근해요), ~부터 ~까지 (from ~ to ~), daily schedule words: 출근(start work), 퇴근(leave work), 점심(lunch). SHORT answers with English. LESSON:L1L4';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

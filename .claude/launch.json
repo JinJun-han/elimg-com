@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "elimg-local",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "3344"],
+      "port": 3344
+    }
+  ]
+}

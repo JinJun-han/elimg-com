@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>KIIP 1급 초급 1 · 한국어와 한국문화</title>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KIIP 한국어교육 · GlocalBridge">
+<meta property="og:title" content="KIIP 1급 초급 1 · 한국어와 한국문화">
+<meta property="og:description" content="법무부 사회통합프로그램 1급 초급 1 · 국립국어원 공식 교재 기반 · 20단원 완성 · 글로컬 아카데미 KIIP">
+<meta property="og:image" content="https://elimg.com/images/og-hanwha-level1.png">
+<meta property="og:url" content="https://elimg.com/KIIP_Level1_Index.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#10b981">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KIIP Korean">
+<script src="/i18n/translations.js"></script>
+<script>
+const TRANSLATIONS = {
+  ko: {
+    progress_label: '전체 진도 · Overall Progress',
+    lessons_complete: '20단원 완성',
+    cert_title: '수료증 발급',
+    cert_desc: '전 과정 20단원 완료 후 수료증을 발급받으세요',
+    cert_name_placeholder: '이름을 입력하세요',
+    cert_button: '수료증 발급 →',
+    prev_level: '이전 과정: 0급 기초',
+    next_level: '다음 과정: 2급 초급 2 →',
+    hub_link: '← 글로컬 아카데미 KIIP 전체 프로그램',
+  },
+  en: {
+    progress_label: 'Overall Progress',
+    lessons_complete: '20 Complete Units',
+    cert_title: 'Certificate',
+    cert_desc: 'Issue your certificate after completing all 20 units',
+    cert_name_placeholder: 'Enter your name',
+    cert_button: 'Get Certificate →',
+    prev_level: 'Previous: Level 0 Foundation',
+    next_level: 'Next: Level 2 Beginner 2 →',
+    hub_link: '← Glocal Academy KIIP Full Program',
+  },
+  vi: {
+    progress_label: 'Tien do tong the',
+    lessons_complete: 'Hoan thanh 20 don vi',
+    cert_title: 'Cap chung chi',
+    cert_desc: 'Nhan chung chi sau khi hoan thanh toan bo 20 bai',
+    cert_name_placeholder: 'Nhap ten cua ban',
+    cert_button: 'Nhan chung chi →',
+    prev_level: 'Khoa truoc',
+    next_level: 'Khoa tiep →',
+    hub_link: '← Glocal Academy KIIP',
+  }
+};
+let currentLang = localStorage.getItem('kiip_lang') || 'ko';
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('kiip_lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) {
+      if (el.tagName === 'INPUT') el.placeholder = TRANSLATIONS[lang][key];
+      else el.textContent = TRANSLATIONS[lang][key];
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.style.opacity = btn.dataset.lang === lang ? '1' : '0.4';
+  });
+}
+document.addEventListener('DOMContentLoaded', () => setLang(currentLang));
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans KR',sans-serif;background:#d1fae5;color:#1a202c;min-height:100vh}
+.hub-link{display:block;text-align:center;padding:8px;font-size:12px;color:#047857;background:#d1fae5;text-decoration:none;border-bottom:1px solid #10b981}
+.hub-link:hover{background:#10b981;color:#fff}
+.header{background:linear-gradient(135deg,#047857,#10b981);color:#fff;padding:24px 16px;text-align:center}
+.header h1{font-size:22px;margin-bottom:4px}
+.header p{font-size:13px;opacity:0.85}
+.badges{display:flex;gap:6px;justify-content:center;margin-top:10px;flex-wrap:wrap}
+.badge{padding:4px 14px;border-radius:20px;font-size:11px;font-weight:700;color:#fff;background:rgba(255,255,255,0.2)}
+.container{max-width:480px;margin:0 auto;padding:16px}
+.section-title{font-size:16px;font-weight:800;color:#047857;margin:16px 0 8px;display:flex;align-items:center;gap:8px}
+.lesson-card{display:flex;align-items:center;background:#fff;border-radius:12px;padding:12px 14px;margin-bottom:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-decoration:none;color:inherit;transition:transform 0.15s,box-shadow 0.15s;border-left:4px solid #10b981}
+.lesson-card:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.12)}
+.lesson-num{font-size:13px;font-weight:800;color:#fff;background:#10b981;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lesson-info{margin-left:12px;flex:1}
+.lesson-title{font-size:14px;font-weight:700;color:#1a202c}
+.lesson-sub{font-size:11px;color:#888;margin-top:2px}
+.lesson-theme{font-size:10px;color:#047857;font-weight:600;margin-top:2px}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin:16px 0}
+.stat{background:#fff;border-radius:12px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.stat-num{font-size:20px;font-weight:800;color:#047857}
+.stat-label{font-size:10px;color:#888;margin-top:2px}
+.next-btn{border-radius:16px;padding:16px;text-align:center;margin-top:12px;cursor:pointer;text-decoration:none;display:block;font-weight:700;font-size:14px}
+.btn-main{background:linear-gradient(135deg,#047857,#10b981);color:#fff}
+.btn-alt{background:#fff;color:#047857;border:2px solid #10b981}
+.footer{text-align:center;padding:20px;font-size:11px;color:#aaa}
+.cert-section{background:linear-gradient(135deg,#047857,#10b981);padding:28px 20px;margin:28px 0;border-radius:16px;text-align:center;color:#fff}
+.level-tag{display:inline-block;background:#fef3c7;color:#92400e;padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700;margin:8px 0;}
+</style>
+</head>
+<body>
+
+<a href="/KIIP_Full_Program" class="hub-link" data-i18n="hub_link">← 글로컬 아카데미 KIIP 전체 프로그램</a>
+
+<div class="header">
+  <h1>📗 KIIP 1급 · 초급 1</h1>
+  <p>한국어와 한국문화 · Korean Language &amp; Culture Beginner 1</p>
+  <div class="level-tag">📚 글로컬 아카데미 KIIP · 법무부 사회통합프로그램 표준</div>
+  <div style="margin-top:8px;display:flex;justify-content:center;gap:8px;">
+    <button class="lang-btn" data-lang="ko" onclick="setLang('ko')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇰🇷 KO</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇺🇸 EN</button>
+    <button class="lang-btn" data-lang="vi" onclick="setLang('vi')" style="background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);color:#fff;padding:4px 12px;border-radius:20px;font-size:12px;cursor:pointer;">🇻🇳 VI</button>
+  </div>
+  <div class="badges">
+    <span class="badge">📚 국립국어원 공식 교재</span>
+    <span class="badge">⏱ 100시간</span>
+    <span class="badge">📖 20단원</span>
+    <span class="badge">🏛 법무부 KIIP</span>
+    <span class="badge">🎙️ AI 발음 녹음</span>
+    <span class="badge">🤖 AI 튜터 내장</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats">
+    <div class="stat"><div class="stat-num">20</div><div class="stat-label">단원</div></div>
+    <div class="stat"><div class="stat-num">100</div><div class="stat-label">시간</div></div>
+    <div class="stat"><div class="stat-num">40</div><div class="stat-label">핵심문법</div></div>
+    <div class="stat"><div class="stat-num">20</div><div class="stat-label">문화정보</div></div>
+  </div>
+
+  <div class="section-title">📗 1급 초급 1 · 한국어와 한국문화</div>
+
+  <a href="/KIIP_Level1_Lesson1" class="lesson-card">
+    <div class="lesson-num">1</div>
+    <div class="lesson-info">
+      <div class="lesson-title">안녕하세요 · Hello / Self Introduction</div>
+      <div class="lesson-sub">어휘: 인사·이름·국적 / 문법: 이에요/예요, 은/는</div>
+      <div class="lesson-theme">👋 첫 만남과 인사</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson2" class="lesson-card">
+    <div class="lesson-num">2</div>
+    <div class="lesson-info">
+      <div class="lesson-title">방에 침대가 있어요 · There is a Bed in the Room</div>
+      <div class="lesson-sub">어휘: 물건·위치 / 문법: 에 있다/없다, 하고</div>
+      <div class="lesson-theme">🛏️ 집과 물건</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson3" class="lesson-card">
+    <div class="lesson-num">3</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국어를 배워요 · I Learn Korean</div>
+      <div class="lesson-sub">어휘: 학습·언어 / 문법: 을/를, 아요/어요</div>
+      <div class="lesson-theme">📚 한국어 수업</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson4" class="lesson-card">
+    <div class="lesson-num">4</div>
+    <div class="lesson-info">
+      <div class="lesson-title">라면을 먹어요 · I Eat Ramen</div>
+      <div class="lesson-sub">어휘: 음식·식사 / 문법: 을/를 + 동사, 안</div>
+      <div class="lesson-theme">🍜 음식과 식사</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson5" class="lesson-card">
+    <div class="lesson-num">5</div>
+    <div class="lesson-info">
+      <div class="lesson-title">시장에서 과일을 사요 · I Buy Fruits at the Market</div>
+      <div class="lesson-sub">어휘: 시장·가격 / 문법: 에서, 고 싶다</div>
+      <div class="lesson-theme">🛒 시장과 쇼핑</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson6" class="lesson-card">
+    <div class="lesson-num">6</div>
+    <div class="lesson-info">
+      <div class="lesson-title">지금 몇 시예요 · What Time Is It Now</div>
+      <div class="lesson-sub">어휘: 시간·요일 / 문법: 몇, 에(시간)</div>
+      <div class="lesson-theme">⏰ 시간과 요일</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson7" class="lesson-card">
+    <div class="lesson-num">7</div>
+    <div class="lesson-info">
+      <div class="lesson-title">어제 도서관에 갔어요 · I Went to the Library Yesterday</div>
+      <div class="lesson-sub">어휘: 장소·활동 / 문법: 았/었어요, 에 가다</div>
+      <div class="lesson-theme">📖 과거와 장소</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson8" class="lesson-card">
+    <div class="lesson-num">8</div>
+    <div class="lesson-info">
+      <div class="lesson-title">오늘은 제 생일이에요 · Today Is My Birthday</div>
+      <div class="lesson-sub">어휘: 날짜·가족 / 문법: 에게, 께, 드리다</div>
+      <div class="lesson-theme">🎂 생일과 가족</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson9" class="lesson-card">
+    <div class="lesson-num">9</div>
+    <div class="lesson-info">
+      <div class="lesson-title">우리 가족은 4명이에요 · My Family Has 4 People</div>
+      <div class="lesson-sub">어휘: 가족·관계 / 문법: 수+명, 하고 같이</div>
+      <div class="lesson-theme">👨‍👩‍👧 가족과 관계</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson10" class="lesson-card">
+    <div class="lesson-num">10</div>
+    <div class="lesson-info">
+      <div class="lesson-title">어디에서 왔어요 · Where Did You Come From</div>
+      <div class="lesson-sub">어휘: 나라·고향 / 문법: 에서 오다, ㅂ니다/습니다</div>
+      <div class="lesson-theme">🌏 나라와 고향</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson11" class="lesson-card">
+    <div class="lesson-num">11</div>
+    <div class="lesson-info">
+      <div class="lesson-title">가방을 샀어요 · I Bought a Bag</div>
+      <div class="lesson-sub">어휘: 쇼핑·물건 / 문법: 으로(수단), 원 단위</div>
+      <div class="lesson-theme">🎒 쇼핑 경험</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson12" class="lesson-card">
+    <div class="lesson-num">12</div>
+    <div class="lesson-info">
+      <div class="lesson-title">공원에서 운동해요 · I Exercise at the Park</div>
+      <div class="lesson-sub">어휘: 운동·취미 / 문법: 에서 + 동사, 고</div>
+      <div class="lesson-theme">⚽ 운동과 취미</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson13" class="lesson-card">
+    <div class="lesson-num">13</div>
+    <div class="lesson-info">
+      <div class="lesson-title">지하철로 가요 · I Go by Subway</div>
+      <div class="lesson-sub">어휘: 교통·방향 / 문법: (으)로, 까지/부터</div>
+      <div class="lesson-theme">🚇 교통과 이동</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson14" class="lesson-card">
+    <div class="lesson-num">14</div>
+    <div class="lesson-info">
+      <div class="lesson-title">날씨가 좋아요 · The Weather Is Nice</div>
+      <div class="lesson-sub">어휘: 날씨·계절 / 문법: 형용사 기본, 지만</div>
+      <div class="lesson-theme">☀️ 날씨와 계절</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson15" class="lesson-card">
+    <div class="lesson-num">15</div>
+    <div class="lesson-info">
+      <div class="lesson-title">약속이 있어요 · I Have an Appointment</div>
+      <div class="lesson-sub">어휘: 약속·일정 / 문법: (으)ㄹ 거예요, 못</div>
+      <div class="lesson-theme">📅 약속과 계획</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson16" class="lesson-card">
+    <div class="lesson-num">16</div>
+    <div class="lesson-info">
+      <div class="lesson-title">머리가 아파요 · I Have a Headache</div>
+      <div class="lesson-sub">어휘: 병원·증상 / 문법: 는 것 같다, 아/어서</div>
+      <div class="lesson-theme">🏥 병원과 건강</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson17" class="lesson-card">
+    <div class="lesson-num">17</div>
+    <div class="lesson-info">
+      <div class="lesson-title">같이 영화 볼까요 · Shall We Watch a Movie Together</div>
+      <div class="lesson-sub">어휘: 여가·영화 / 문법: (으)ㄹ까요?, (으)ㅂ시다</div>
+      <div class="lesson-theme">🎬 여가와 초대</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson18" class="lesson-card">
+    <div class="lesson-num">18</div>
+    <div class="lesson-info">
+      <div class="lesson-title">비행기 표를 예약해요 · I Book an Airplane Ticket</div>
+      <div class="lesson-sub">어휘: 여행·예약 / 문법: (으)려고 하다, 기 전에</div>
+      <div class="lesson-theme">✈️ 여행 준비</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson19" class="lesson-card">
+    <div class="lesson-num">19</div>
+    <div class="lesson-info">
+      <div class="lesson-title">한국 생활이 어때요 · How Is Life in Korea</div>
+      <div class="lesson-sub">어휘: 생활·감정 / 문법: (으)ㄴ 후에, 게 되다</div>
+      <div class="lesson-theme">🏙️ 한국 생활</div>
+    </div>
+  </a>
+
+  <a href="/KIIP_Level1_Lesson20" class="lesson-card" style="border-left-color:#10b981;background:#fffbeb">
+    <div class="lesson-num" style="background:#10b981">20</div>
+    <div class="lesson-info">
+      <div class="lesson-title">🎓 1급 종합 복습 & 수료 · Final Review & Certificate</div>
+      <div class="lesson-sub">초급1 전 과정 문법·어휘 종합 복습 + 모의 시험</div>
+      <div class="lesson-theme">🏆 KIIP 1급 완성</div>
+    </div>
+  </a>
+
+  <div style="display:flex;gap:8px;margin-top:20px;">
+    <a href="/KIIP_Level0_Index.html" class="next-btn btn-alt" style="flex:1;font-size:13px;">
+      ← <span data-i18n="prev_level">이전 과정: 0급 기초</span>
+    </a>
+    <a href="/KIIP_Level2_Index.html" class="next-btn btn-main" style="flex:1;font-size:13px;">
+      <span data-i18n="next_level">다음 과정: 2급 초급 2 →</span>
+    </a>
+  </div>
+
+  <div class="cert-section">
+    <div style="font-size:32px;margin-bottom:8px;">🏆</div>
+    <h3 style="font-size:18px;font-weight:800;margin-bottom:8px;" data-i18n="cert_title">수료증 발급</h3>
+    <p style="font-size:13px;opacity:0.8;margin-bottom:16px;" data-i18n="cert_desc">전 과정 20단원 완료 후 수료증을 발급받으세요</p>
+    <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+      <input id="certName" type="text" data-i18n="cert_name_placeholder" placeholder="이름을 입력하세요" style="padding:10px 16px;border-radius:8px;border:none;font-size:14px;min-width:200px;">
+      <button onclick="issueCert(1)" style="background:#fff;color:#047857;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;" data-i18n="cert_button">수료증 발급 →</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    글로컬 아카데미 KIIP · 법무부 사회통합프로그램 1급 초급 1<br>
+    국립국어원 기획 · 하우출판사 교재 기반<br>
+    © 2026 GlocalBridge Korean Education
+  </div>
+</div>
+
+<script>
+function issueCert(level) {
+  const name = document.getElementById('certName').value.trim() || '학습자';
+  window.open('/HanwhaOcean_Certificate.html?level=' + level + '&name=' + encodeURIComponent(name), '_blank');
+}
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

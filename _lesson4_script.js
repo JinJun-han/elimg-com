@@ -1,0 +1,1315 @@
+﻿
+// ===== TTS ENGINE =====
+const TTS = {
+  speak(text, lang='ko-KR', rate=0.8) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang; u.rate = rate; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const koVoice = voices.find(v => v.lang.startsWith('ko')) || voices.find(v => v.lang.includes('ko'));
+    if (koVoice) u.voice = koVoice;
+    window.speechSynthesis.speak(u);
+  },
+  init() { if (window.speechSynthesis) window.speechSynthesis.getVoices(); }
+};
+window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
+
+function ttsBtn(text) {
+  return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'")}')" title="발음 듣기">🔊</button>`;
+}
+
+// ===== DATA =====
+const VOCAB_TIME = [
+  {kor:"한 시",pron:"han si",eng:"1 o'clock"},
+  {kor:"두 시",pron:"du si",eng:"2 o'clock"},
+  {kor:"세 시",pron:"se si",eng:"3 o'clock"},
+  {kor:"네 시",pron:"ne si",eng:"4 o'clock"},
+  {kor:"다섯 시",pron:"da-seot si",eng:"5 o'clock"},
+  {kor:"여섯 시",pron:"yeo-seot si",eng:"6 o'clock"},
+  {kor:"일곱 시",pron:"il-gop si",eng:"7 o'clock"},
+  {kor:"여덟 시",pron:"yeo-deol si",eng:"8 o'clock"},
+  {kor:"아홉 시",pron:"a-hop si",eng:"9 o'clock"},
+  {kor:"열 시",pron:"yeol si",eng:"10 o'clock"},
+  {kor:"열한 시",pron:"yeol-han si",eng:"11 o'clock"},
+  {kor:"열두 시",pron:"yeol-du si",eng:"12 o'clock"},
+  {kor:"몇 시예요?",pron:"myeot si-ye-yo",eng:"What time is it?"},
+  {kor:"지금",pron:"ji-geum",eng:"now"},
+  {kor:"오전",pron:"o-jeon",eng:"AM / morning"},
+  {kor:"오후",pron:"o-hu",eng:"PM / afternoon"},
+  {kor:"반",pron:"ban",eng:"half (30 min)"},
+  {kor:"정각",pron:"jeong-gak",eng:"exactly / sharp"},
+];
+
+const VOCAB_SHIPYARD = [
+  {kor:"출근 시간은 몇 시예요?",eng:"What time do you start work?",sit:"근무 시작 시간 물어보기"},
+  {kor:"퇴근 시간은 몇 시예요?",eng:"What time do you finish work?",sit:"근무 종료 시간 물어보기"},
+  {kor:"점심시간은 열두 시부터 한 시까지예요.",eng:"Lunch is from 12 to 1.",sit:"점심시간 안내"},
+  {kor:"회의는 세 시에 시작해요.",eng:"The meeting starts at 3.",sit:"회의 시간 안내"},
+  {kor:"버스는 아침 여섯 시에 출발해요.",eng:"The bus leaves at 6 AM.",sit:"통근 버스 시간"},
+  {kor:"작업은 오전 여덟 시에 시작해요.",eng:"Work starts at 8 AM.",sit:"작업 시작 시간"},
+  {kor:"안전 교육은 오후 두 시예요.",eng:"Safety training is at 2 PM.",sit:"교육 시간 안내"},
+  {kor:"야간 근무는 열 시부터예요.",eng:"Night shift starts from 10.",sit:"야간 근무 안내"},
+  {kor:"쉬는 시간은 세 시 반이에요.",eng:"Break time is at 3:30.",sit:"휴식 시간 안내"},
+  {kor:"내일 몇 시에 만날까요?",eng:"What time shall we meet tomorrow?",sit:"약속 시간 정하기"},
+  {kor:"지금 몇 시예요?",eng:"What time is it now?",sit:"시간 물어보기"},
+  {kor:"아직 일곱 시예요.",eng:"It's still 7 o'clock.",sit:"시간 알려주기"},
+  {kor:"벌써 다섯 시예요.",eng:"It's already 5 o'clock.",sit:"시간 확인"},
+  {kor:"늦었어요! 빨리 가요!",eng:"We're late! Let's hurry!",sit:"지각 상황"},
+  {kor:"시간이 있어요?",eng:"Do you have time?",sit:"시간 여부 확인"},
+  {kor:"잠깐만요, 금방 갈게요.",eng:"Just a moment, I'll be right there.",sit:"잠깐 기다리기"},
+];
+
+const VOCAB_SCHEDULE = [
+  {kor:"시",eng:"hour/o'clock"},{kor:"분",eng:"minute"},{kor:"초",eng:"second"},
+  {kor:"아침",eng:"morning"},{kor:"점심",eng:"lunch/noon"},{kor:"저녁",eng:"evening"},
+  {kor:"밤",eng:"night"},{kor:"새벽",eng:"dawn"},{kor:"출근",eng:"go to work"},
+  {kor:"퇴근",eng:"leave work"},{kor:"근무",eng:"work/duty"},{kor:"휴식",eng:"break/rest"},
+  {kor:"교대",eng:"shift change"},{kor:"야근",eng:"overtime"},{kor:"주간",eng:"daytime shift"},
+  {kor:"야간",eng:"night shift"},{kor:"일찍",eng:"early"},{kor:"늦게",eng:"late"},
+  {kor:"부터",eng:"from (time)"},{kor:"까지",eng:"until (time)"},{kor:"에",eng:"at (time)"},
+  {kor:"월요일",eng:"Monday"},{kor:"화요일",eng:"Tuesday"},{kor:"수요일",eng:"Wednesday"},
+  {kor:"목요일",eng:"Thursday"},{kor:"금요일",eng:"Friday"},{kor:"토요일",eng:"Saturday"},
+  {kor:"일요일",eng:"Sunday"},{kor:"오늘",eng:"today"},{kor:"내일",eng:"tomorrow"},
+  {kor:"어제",eng:"yesterday"},{kor:"매일",eng:"every day"},{kor:"주말",eng:"weekend"},
+  {kor:"평일",eng:"weekday"},{kor:"이번 주",eng:"this week"},{kor:"다음 주",eng:"next week"},
+];
+
+const VOCAB_SHIPYARD_NOUNS = [
+  {kor:"출입카드",eng:"access card"},{kor:"작업일지",eng:"work log"},
+  {kor:"근무표",eng:"work schedule"},{kor:"시간표",eng:"timetable"},
+  {kor:"알람",eng:"alarm"},{kor:"시계",eng:"clock/watch"},
+  {kor:"타임카드",eng:"time card"},{kor:"일정",eng:"schedule"},
+  {kor:"마감",eng:"deadline"},{kor:"교대 시간",eng:"shift change time"},
+  {kor:"조회",eng:"morning roll call"},{kor:"종례",eng:"evening roll call"},
+  {kor:"잔업",eng:"extra work"},{kor:"특근",eng:"special duty"},
+  {kor:"당직",eng:"duty/on call"},{kor:"비번",eng:"off duty"},
+  {kor:"연장 근무",eng:"extended work"},{kor:"정시 퇴근",eng:"leave on time"},
+  {kor:"지각",eng:"being late"},{kor:"결근",eng:"absence"},
+  {kor:"조퇴",eng:"early leave"},{kor:"출석",eng:"attendance"},
+  {kor:"일과표",eng:"daily schedule"},{kor:"주간 계획",eng:"weekly plan"},
+  {kor:"월간 일정",eng:"monthly schedule"},{kor:"분기",eng:"quarter (period)"},
+  {kor:"상반기",eng:"first half (year)"},{kor:"하반기",eng:"second half (year)"},
+  {kor:"공휴일",eng:"public holiday"},{kor:"연차",eng:"annual leave"},
+];
+
+const GRAMMAR = [
+  {title:"숫자 + 시 (고유어 수)",eng:"Native Korean Numbers + 시 (Hour)",
+   desc:"시간을 말할 때 '시'(hour) 앞에는 고유어 숫자를 써요.",descEng:"Use native Korean numbers before 시 (hour) to tell time.",
+   rule:"하나→한 시, 둘→두 시, 셋→세 시, 넷→네 시...",ruleEng:"하나→한 시 (1:00), 둘→두 시 (2:00), 셋→세 시 (3:00)...",
+   examples:[
+    {q:"지금 몇 시예요?",a:"두 시예요.",eng:"What time is it? - It's 2 o'clock.",note:"둘→두 시"},
+    {q:"회의가 몇 시예요?",a:"세 시예요.",eng:"What time is the meeting? - At 3.",note:"셋→세 시"},
+    {q:"점심이 몇 시예요?",a:"열두 시예요.",eng:"What time is lunch? - 12 o'clock.",note:"열둘→열두 시"},
+    {q:"지금 몇 시예요?",a:"아홉 시 반이에요.",eng:"What time is it? - 9:30.",note:"아홉 시 + 반"},
+    {q:"퇴근이 몇 시예요?",a:"여섯 시예요.",eng:"What time do you leave? - 6 o'clock.",note:"여섯 시"},
+   ]},
+  {title:"시간 + 에",eng:"Time + 에 (At a specific time)",
+   desc:"특정 시간을 말할 때 '에'를 붙여요.",descEng:"Use 에 after a time to indicate 'at' that time.",
+   rule:"시간 + 에 + 동사",ruleEng:"Time + 에 + Verb (e.g., 8시에 시작해요 = starts at 8)",
+   examples:[
+    {q:"몇 시에 출근해요?",a:"아침 일곱 시에 출근해요.",eng:"What time do you go to work? - At 7 AM.",note:"일곱 시+에"},
+    {q:"몇 시에 점심을 먹어요?",a:"열두 시에 먹어요.",eng:"When do you eat lunch? - At 12.",note:"열두 시+에"},
+    {q:"몇 시에 자요?",a:"밤 열한 시에 자요.",eng:"When do you sleep? - At 11 PM.",note:"열한 시+에"},
+    {q:"안전 교육이 몇 시에 있어요?",a:"오후 두 시에 있어요.",eng:"When is safety training? - At 2 PM.",note:"두 시+에"},
+    {q:"버스가 몇 시에 와요?",a:"여섯 시 반에 와요.",eng:"When does the bus come? - At 6:30.",note:"여섯 시 반+에"},
+   ]},
+  {title:"~부터 ~까지",eng:"From ~ To ~ (Time range)",
+   desc:"시작과 끝 시간을 말할 때 '부터(from)'와 '까지(to/until)'를 써요.",descEng:"Use 부터 for 'from' and 까지 for 'to/until' to express time ranges.",
+   rule:"시간1 + 부터 + 시간2 + 까지",ruleEng:"Time1 + 부터 (from) + Time2 + 까지 (until)",
+   examples:[
+    {q:"근무 시간이 어떻게 돼요?",a:"아침 여덟 시부터 저녁 다섯 시까지예요.",eng:"What are the work hours? - 8 AM to 5 PM.",note:"부터~까지"},
+    {q:"점심시간이 언제예요?",a:"열두 시부터 한 시까지예요.",eng:"When is lunch? - From 12 to 1.",note:"부터~까지"},
+    {q:"야간 근무는 언제예요?",a:"밤 열 시부터 아침 여섯 시까지예요.",eng:"When is night shift? - 10 PM to 6 AM.",note:"부터~까지"},
+    {q:"주말에도 일해요?",a:"토요일 아홉 시부터 한 시까지만 일해요.",eng:"Do you work weekends? - Only Sat 9 to 1.",note:"부터~까지+만"},
+    {q:"쉬는 시간은요?",a:"세 시부터 세 시 반까지예요.",eng:"Break time? - From 3 to 3:30.",note:"부터~까지"},
+   ]},
+];
+
+const DIALOGUES = [
+  {title:"출근 시간 물어보기",eng:"Asking About Work Hours",lines:[
+    {sp:"라민",role:"용접공",text:"민수 씨, 내일 출근 시간이 몇 시예요?",eng:"Minsu, what time do we start work tomorrow?",side:"R"},
+    {sp:"민수",role:"반장",text:"내일은 아침 일곱 시에 출근이에요.",eng:"Tomorrow we start at 7 AM.",side:"L"},
+    {sp:"라민",text:"일곱 시요? 오늘보다 일찍이네요.",eng:"7 o'clock? That's earlier than today.",side:"R"},
+    {sp:"민수",text:"네, 내일은 특근이에요. 점심은 열두 시부터 한 시까지예요.",eng:"Yes, it's a special duty day. Lunch is 12 to 1.",side:"L"},
+    {sp:"라민",text:"퇴근은 몇 시예요?",eng:"What time do we finish?",side:"R"},
+    {sp:"민수",text:"오후 네 시예요. 평소보다 일찍 끝나요.",eng:"4 PM. We finish earlier than usual.",side:"L"},
+  ]},
+  {title:"약속 시간 정하기",eng:"Making an Appointment",lines:[
+    {sp:"안젤라",role:"통역사",text:"후엔 씨, 내일 시간 있어요?",eng:"Huen, do you have time tomorrow?",side:"L"},
+    {sp:"후엔",role:"배관공",text:"내일이요? 퇴근 후에 시간 있어요.",eng:"Tomorrow? I have time after work.",side:"R"},
+    {sp:"안젤라",text:"그러면 저녁 여섯 시에 만날까요?",eng:"Then shall we meet at 6 PM?",side:"L"},
+    {sp:"후엔",text:"여섯 시요? 좀 늦을 것 같아요. 일곱 시는 어때요?",eng:"6? I might be late. How about 7?",side:"R"},
+    {sp:"안젤라",text:"좋아요! 일곱 시에 기숙사 앞에서 만나요.",eng:"OK! Let's meet at 7 in front of the dorm.",side:"L"},
+    {sp:"후엔",text:"네, 일곱 시에 봐요!",eng:"See you at 7!",side:"R"},
+  ]},
+];
+
+const QUIZ = [
+  {q:"'3시'를 한국어로 어떻게 말해요?",o:["세 시","삼 시","셋 시","석 시"],a:0},
+  {q:"지금 ___ 시예요? (빈칸에 알맞은 말은?)",o:["몇","무슨","어떤","얼마"],a:0},
+  {q:"'8시에 출근해요'에서 '에'의 의미는?",o:["~에서 (at/time)","~을/를 (object)","~이/가 (subject)","~도 (also)"],a:0},
+  {q:"점심시간은 12시___1시___예요.",o:["부터, 까지","에서, 까지","부터, 에","에, 부터"],a:0},
+  {q:"'두 시 반'은 몇 시 몇 분이에요?",o:["2시 30분","2시 50분","12시 30분","2시 15분"],a:0},
+  {q:"'오전'의 뜻은?",o:["AM / 아침","PM / 오후","밤","새벽"],a:0},
+  {q:"시간을 말할 때 '시' 앞에 쓰는 숫자는?",o:["고유어 수 (하나,둘,셋)","한자어 수 (일,이,삼)","영어 숫자","아라비아 숫자"],a:0},
+  {q:"'여섯 시'는 몇 시예요?",o:["6시","7시","5시","16시"],a:0},
+  {q:"'퇴근 시간'의 뜻은?",o:["leaving work time","start work time","lunch time","break time"],a:0},
+  {q:"'아홉 시'의 발음은?",o:["a-hop si","a-gup si","gu si","a-heop si"],a:0},
+  {q:"'밤 열 시부터 아침 여섯 시까지' — 이것은?",o:["야간 근무 시간","점심시간","쉬는 시간","회의 시간"],a:0},
+  {q:"'지각'의 뜻은?",o:["being late","being early","overtime","absence"],a:0},
+  {q:"'정각'의 뜻은?",o:["exactly / sharp","half","quarter","approximately"],a:0},
+  {q:"'내일 ___ 시에 만날까요?'에 알맞은 말은?",o:["몇","무슨","어떤","왜"],a:0},
+  {q:"'열두 시'는 몇 시예요?",o:["12시","2시","10시","20시"],a:0},
+
+  // 한국의 성장 원동력 퀴즈
+  {q:"'빨리빨리'는 무슨 뜻이에요?",o:["hurry hurry","slowly","carefully","quietly"],a:0},
+  {q:"한국 조선소는 몇 시간 가동해요?",o:["24시간","8시간","12시간","16시간"],a:0},
+  {q:"한국의 빠른 실행력은 뭘 만들었어요?",o:["경제 기적","전쟁","문제","실패"],a:0},
+];
+
+const CULTURE = [
+  {icon:"⏰",t:"시간 엄수",eng:"Punctuality Culture",d:"한국 직장에서 시간을 지키는 것은 매우 중요해요. 특히 조선소에서는 안전과 직결됩니다. 5분 전에 도착하는 것이 한국의 직장 예절입니다.",de:"Being on time is very important in Korean workplaces. In shipyards, it's directly tied to safety. Arriving 5 minutes early is standard workplace etiquette."},
+  {icon:"🔢",t:"고유어 수와 한자어 수",eng:"Native vs. Sino-Korean Numbers",d:"시간(시)은 고유어 수(하나,둘,셋)를 쓰고, 분은 한자어 수(일,이,삼)를 써요. 예: 세 시 삼십 분 (3시 30분). 처음에 헷갈리지만 자주 들으면 익숙해져요!",de:"Hours use native Korean numbers (하나,둘), minutes use Sino-Korean (일,이,삼). Example: 세 시 삼십 분 (3:30). It's confusing at first, but you'll get used to it!"},
+  {icon:"🔄",t:"교대 근무",eng:"Shift Work Culture",d:"조선소는 주간/야간 교대로 운영돼요. 교대 시 인수인계가 매우 중요합니다. '이상 없습니다'(All clear)는 인수인계 때 자주 쓰는 표현이에요.",de:"Shipyards run day/night shifts. Proper handover during shift change is critical. '이상 없습니다' (All clear) is a common handover expression."},
+  {icon:"📋",t:"조회와 종례",eng:"Morning & Evening Roll Call",d:"매일 아침 7시 50분에 조회가 있어요. 반장님이 안전 수칙과 당일 작업을 설명합니다. 조회에 늦으면 안 돼요!",de:"Every morning at 7:50, there's a roll call. The team leader explains safety rules and daily tasks. Don't be late for roll call!"},
+  {icon:"🍚",t:"식사 시간 문화",eng:"Meal Time Culture",d:"구내식당은 12시~1시에만 운영해요. 시간을 놓치면 다음 식사까지 기다려야 해요. 밥을 먹을 때 '잘 먹겠습니다'라고 인사하면 좋아요.",de:"The cafeteria runs only 12-1 PM. Miss it and you wait for the next meal. Saying '잘 먹겠습니다' (I'll eat well) before eating is polite."},
+  {icon:"🤝",t:"약속 문화",eng:"Appointment Culture",d:"한국에서는 약속 시간 5분 전에 도착하는 것이 예의예요. '늦어서 죄송합니다'(Sorry for being late)는 꼭 알아두세요.",de:"In Korea, arriving 5 minutes early is polite. Make sure to learn '늦어서 죄송합니다' (Sorry for being late) — you'll need it!"},
+];
+
+const LOCAL_INFO = {
+  title: "한국의 성장 원동력: 근면·빨리빨리",
+  eng: "Korea's Growth Engine: Diligence & Speed",
+  facts: [
+    {label:"빨리빨리 문화 Ppalli-ppalli",val:"한국인의 빠른 실행력, 성장의 원동력"},
+    {label:"근면·성실 Diligence",val:"세계 최장 근로 시간 → 경제 기적의 힘"},
+    {label:"교대 근무 Shift Work",val:"24시간 조선소 가동, 세계 납기 준수 1위"},
+    {label:"배달 문화 Delivery",val:"30분 배달, 세계에서 가장 빠른 서비스"},
+    {label:"건설 속도 Construction Speed",val:"63빌딩 3년, 인천대교 4년 완공"},
+    {label:"반도체 생산 Chip Production",val:"삼성 24시간 가동, 글로벌 수요 대응"},
+    {label:"디지털 전환 Digital Shift",val:"코로나 K-방역, 세계 최빠른 대응"},
+  ],
+  desc: "한국의 '빨리빨리' 문화는 세계적으로 유명해요! 이 빠른 실행력이 한국 경제 성장의 핵심이에요. 63빌딩을 3년 만에, 인천대교를 4년 만에 완공했어요. 조선소도 24시간 교대 근무로 세계 최고의 납기를 지켜요. 여러분이 일하는 한화오션의 빠른 생산 속도도 한국의 근면·성실 문화 덕분이에요!",
+  descEng: "Korea's 'ppalli-ppalli' (hurry-hurry) culture is world-famous! This fast execution power is the core of Korea's economic growth. The 63 Building was completed in 3 years, Incheon Bridge in 4 years. Shipyards operate 24/7 with shift work to meet the world's best delivery times. Hanwha Ocean's fast production speed is also thanks to Korea's culture of diligence!"
+};
+
+
+// HANGUL DATA (Level 0 — 4과: 받침 입문)
+const HANGUL_CONSONANTS = [
+  {char:"간",rom:"gan",name:"ㄱ+ㅏ+ㄴ"},{char:"날",rom:"nal",name:"ㄴ+ㅏ+ㄹ"},{char:"달",rom:"dal",name:"ㄷ+ㅏ+ㄹ"},
+  {char:"밤",rom:"bam",name:"ㅂ+ㅏ+ㅁ"},{char:"산",rom:"san",name:"ㅅ+ㅏ+ㄴ"},{char:"강",rom:"gang",name:"ㄱ+ㅏ+ㅇ"},
+  {char:"문",rom:"mun",name:"ㅁ+ㅜ+ㄴ"},{char:"집",rom:"jip",name:"ㅈ+ㅣ+ㅂ"},{char:"밥",rom:"bap",name:"ㅂ+ㅏ+ㅂ"},
+  {char:"손",rom:"son",name:"ㅅ+ㅗ+ㄴ"},{char:"돈",rom:"don",name:"ㄷ+ㅗ+ㄴ"},{char:"책",rom:"chaek",name:"ㅊ+ㅐ+ㄱ"},
+  {char:"물",rom:"mul",name:"ㅁ+ㅜ+ㄹ"},{char:"불",rom:"bul",name:"ㅂ+ㅜ+ㄹ"},
+];
+const HANGUL_VOWELS = [
+  {char:"ㄱ",rom:"k",name:"받침 기역"},{char:"ㄴ",rom:"n",name:"받침 니은"},
+  {char:"ㄷ",rom:"t",name:"받침 디귿"},{char:"ㄹ",rom:"l",name:"받침 리을"},
+  {char:"ㅁ",rom:"m",name:"받침 미음"},{char:"ㅂ",rom:"p",name:"받침 비읍"},
+  {char:"ㅇ",rom:"ng",name:"받침 이응"},{char:"ㅅ",rom:"t",name:"받침 시옷"},
+  {char:"ㅈ",rom:"t",name:"받침 지읒"},{char:"ㅊ",rom:"t",name:"받침 치읓"},
+  {char:"ㅋ",rom:"k",name:"받침 키읔"},{char:"ㅎ",rom:"t",name:"받침 히읗"},
+];
+const HANGUL_PRACTICE = [
+  {char:"한",rom:"han",name:"ㅎ+ㅏ+ㄴ"},{char:"국",rom:"guk",name:"ㄱ+ㅜ+ㄱ"},
+  {char:"일",rom:"il",name:"ㅇ+ㅣ+ㄹ"},{char:"월",rom:"wol",name:"ㅇ+ㅝ+ㄹ"},
+  {char:"금",rom:"geum",name:"ㄱ+ㅡ+ㅁ"},{char:"목",rom:"mok",name:"ㅁ+ㅗ+ㄱ"},
+  {char:"십",rom:"sip",name:"ㅅ+ㅣ+ㅂ"},{char:"백",rom:"baek",name:"ㅂ+ㅐ+ㄱ"},
+  {char:"천",rom:"cheon",name:"ㅊ+ㅓ+ㄴ"},{char:"만",rom:"man",name:"ㅁ+ㅏ+ㄴ"},
+];
+const SAFETY_WORDS = [
+  {kor:"위험",eng:"Danger",rom:"wi-heom"},{kor:"주의",eng:"Caution",rom:"ju-ui"},
+  {kor:"금지",eng:"Prohibited",rom:"geum-ji"},{kor:"착용",eng:"Wear/Put on",rom:"chag-yong"},
+  {kor:"대피",eng:"Evacuate",rom:"dae-pi"},{kor:"출입금지",eng:"No Entry",rom:"chul-ip-geum-ji"},
+  {kor:"흡연금지",eng:"No Smoking",rom:"heub-yeon-geum-ji"},{kor:"안전모 착용",eng:"Wear Helmet",rom:"an-jeon-mo chag-yong"},
+  {kor:"비상구",eng:"Emergency Exit",rom:"bi-sang-gu"},{kor:"소화기",eng:"Fire Extinguisher",rom:"so-hwa-gi"},
+  {kor:"응급처치",eng:"First Aid",rom:"eung-geup-cheo-chi"},{kor:"보호구 착용",eng:"Wear PPE",rom:"bo-ho-gu chag-yong"},
+];
+const HANGUL_TABS = ['받침 단어 Batchim','받침 종류 Types','연습 Practice','안전 단어 Safety'];
+const HANGUL_SUBTITLE = "Learn Hangul · 받침(종성) 입문";
+
+// ===== READING PASSAGES =====
+const READING_PASSAGES = [
+  {title:"라민의 하루 일과",eng:"Ramin's Daily Routine",
+   text:"라민 씨는 매일 아침 다섯 시 반에 일어나요.\n여섯 시에 씻고 옷을 입어요.\n여섯 시 반에 통근 버스를 타요.\n일곱 시 반에 조선소에 도착해요.\n일곱 시 오십 분에 조회가 있어요.\n여덟 시부터 작업을 시작해요.\n열두 시에 점심을 먹어요.\n오후 다섯 시에 퇴근해요.",
+   textEng:"Ramin wakes up at 5:30 every morning.\nAt 6 he washes up and gets dressed.\nAt 6:30 he takes the shuttle bus.\nHe arrives at the shipyard at 7:30.\nMorning roll call is at 7:50.\nWork starts from 8.\nHe eats lunch at 12.\nHe leaves work at 5 PM.",
+   questions:[
+     {q:"라민 씨는 몇 시에 일어나요?",a:"다섯 시 반",ae:"5:30 AM"},
+     {q:"통근 버스는 몇 시에 타요?",a:"여섯 시 반",ae:"6:30 AM"},
+     {q:"조회는 몇 시에 있어요?",a:"일곱 시 오십 분",ae:"7:50 AM"},
+   ]},
+  {title:"조선소의 하루",eng:"A Day at the Shipyard",
+   text:"한화오션 조선소의 하루는 아침 조회로 시작해요.\n조회는 일곱 시 오십 분이에요.\n반장님이 오늘의 안전 수칙을 말해요.\n여덟 시부터 작업이 시작돼요.\n열 시에 잠깐 쉬어요.\n열두 시부터 한 시까지 점심시간이에요.\n오후에도 열심히 일해요.\n세 시에 잠깐 쉬어요.\n다섯 시에 작업이 끝나요.\n종례 후 퇴근해요.",
+   textEng:"A day at Hanwha Ocean starts with morning roll call.\nRoll call is at 7:50.\nThe team leader reviews today's safety rules.\nWork begins at 8.\nThere's a short break at 10.\nLunch is from 12 to 1.\nWork continues hard in the afternoon.\nAnother break at 3.\nWork ends at 5.\nAfter evening roll call, everyone goes home.",
+   questions:[
+     {q:"조회에서 무엇을 확인해요?",a:"안전 수칙",ae:"Safety rules"},
+     {q:"오전 휴식은 몇 시예요?",a:"열 시",ae:"10 o'clock"},
+     {q:"작업은 몇 시에 끝나요?",a:"다섯 시",ae:"5 o'clock"},
+   ]},
+];
+
+// ===== FOLKTALE DATA (40 sentences) =====
+const FOLKTALE = {
+  title: "해와 달이 된 오누이",
+  eng: "The Brother and Sister Who Became the Sun and Moon",
+  desc: "호랑이에게 쫓긴 오누이가 하늘로 올라간 이야기입니다.",
+  descEng: "The story of siblings who escaped a tiger by rising to the sky.",
+  sentences: [
+    {kor:"옛날 옛적에 어머니와 오누이가 살았어요.",eng:"Once upon a time, a mother and her two children lived together."},
+    {kor:"어머니는 떡을 팔러 시장에 갔어요.",eng:"The mother went to the market to sell rice cakes."},
+    {kor:"시장에서 집으로 돌아오는 길이었어요.",eng:"She was on her way home from the market."},
+    {kor:"산길에서 큰 호랑이를 만났어요.",eng:"She met a big tiger on the mountain path."},
+    {kor:"호랑이가 말했어요. '떡 하나 주면 안 잡아먹지!'",eng:"The tiger said, 'Give me a rice cake and I won't eat you!'"},
+    {kor:"어머니는 떡을 하나 주었어요.",eng:"The mother gave one rice cake."},
+    {kor:"호랑이는 또 나타났어요.",eng:"The tiger appeared again."},
+    {kor:"'떡 하나 더 주면 안 잡아먹지!'",eng:"'Give me one more and I won't eat you!'"},
+    {kor:"어머니는 떡을 다 주었어요.",eng:"The mother gave all her rice cakes away."},
+    {kor:"떡이 없어지자 호랑이는 어머니를 잡아먹었어요.",eng:"When the cakes ran out, the tiger ate the mother."},
+    {kor:"호랑이는 어머니의 옷을 입었어요.",eng:"The tiger put on the mother's clothes."},
+    {kor:"호랑이는 아이들의 집으로 갔어요.",eng:"The tiger went to the children's house."},
+    {kor:"'얘들아, 엄마 왔다. 문 열어라!'",eng:"'Children, mommy's home. Open the door!'"},
+    {kor:"오빠가 말했어요. '우리 엄마 목소리가 아니에요.'",eng:"The brother said, 'That's not our mother's voice.'"},
+    {kor:"동생이 말했어요. '목소리가 이상해요.'",eng:"The sister said, 'The voice sounds strange.'"},
+    {kor:"호랑이는 목소리를 바꿔서 다시 말했어요.",eng:"The tiger changed its voice and spoke again."},
+    {kor:"'엄마가 감기에 걸려서 목소리가 변했어.'",eng:"'Mommy caught a cold so my voice changed.'"},
+    {kor:"'문틈으로 손을 보여 주세요.'",eng:"'Show us your hand through the crack in the door.'"},
+    {kor:"호랑이는 밀가루를 손에 묻혀서 보여줬어요.",eng:"The tiger covered its paw with flour and showed it."},
+    {kor:"아이들은 문을 열었어요.",eng:"The children opened the door."},
+    {kor:"호랑이의 모습을 보고 깜짝 놀랐어요!",eng:"They were shocked to see the tiger!"},
+    {kor:"오누이는 빨리 뒷문으로 도망갔어요.",eng:"The siblings quickly ran out the back door."},
+    {kor:"높은 나무 위로 올라갔어요.",eng:"They climbed up a tall tree."},
+    {kor:"호랑이가 쫓아왔어요.",eng:"The tiger chased after them."},
+    {kor:"'어떻게 올라갔니?' 호랑이가 물었어요.",eng:"'How did you climb up?' the tiger asked."},
+    {kor:"오빠가 거짓말을 했어요. '참기름을 바르면 올라갈 수 있어요.'",eng:"The brother lied, 'You can climb if you rub sesame oil on.'"},
+    {kor:"호랑이는 참기름을 바르고 올라가려 했어요.",eng:"The tiger rubbed sesame oil and tried to climb."},
+    {kor:"미끄러워서 올라갈 수 없었어요.",eng:"It was too slippery and couldn't climb."},
+    {kor:"호랑이가 다시 물었어요.",eng:"The tiger asked again."},
+    {kor:"동생이 실수로 말했어요. '도끼로 찍으면 돼요.'",eng:"The sister accidentally said, 'Use an axe to cut notches.'"},
+    {kor:"호랑이는 도끼로 나무를 찍으며 올라왔어요.",eng:"The tiger chopped the tree and climbed up."},
+    {kor:"오누이는 하늘에 기도했어요.",eng:"The siblings prayed to the sky."},
+    {kor:"'하느님, 살려 주시면 새 동아줄을 내려 주세요.'",eng:"'God, if you want to save us, send down a new rope.'"},
+    {kor:"하늘에서 튼튼한 동아줄이 내려왔어요.",eng:"A strong rope came down from the sky."},
+    {kor:"오누이는 동아줄을 잡고 하늘로 올라갔어요.",eng:"The siblings grabbed the rope and rose to the sky."},
+    {kor:"호랑이도 기도했어요.",eng:"The tiger also prayed."},
+    {kor:"하늘에서 썩은 동아줄이 내려왔어요.",eng:"A rotten rope came down from the sky."},
+    {kor:"호랑이는 올라가다가 줄이 끊어져 떨어졌어요.",eng:"The tiger climbed but the rope broke and it fell."},
+    {kor:"오빠는 해가 되었어요. 동생은 달이 되었어요.",eng:"The brother became the sun. The sister became the moon."},
+    {kor:"그래서 오늘날에도 해와 달이 하늘에서 빛나고 있어요.",eng:"And so to this day, the sun and moon shine in the sky."},
+  ]
+};
+
+const FOLKTALE_QUIZ = [
+  {q:"어머니는 시장에서 무엇을 팔았어요?",o:["떡","과일","생선","옷"],a:0},
+  {q:"산길에서 누구를 만났어요?",o:["호랑이","곰","토끼","여우"],a:0},
+  {q:"호랑이는 무엇을 달라고 했어요?",o:["떡","돈","옷","물"],a:0},
+  {q:"호랑이는 아이들 집에 가서 뭐라고 했어요?",o:["엄마 왔다","아빠 왔다","할머니 왔다","선생님 왔다"],a:0},
+  {q:"아이들은 왜 문을 열었어요?",o:["손이 하얘서","목소리가 같아서","떡을 줘서","무서워서"],a:0},
+  {q:"아이들은 어디로 도망갔어요?",o:["나무 위","산 위","강 건너","동굴 안"],a:0},
+  {q:"오빠가 호랑이에게 뭐라고 거짓말했어요?",o:["참기름을 바르라고","물을 뿌리라고","점프하라고","기다리라고"],a:0},
+  {q:"호랑이는 어떻게 나무에 올라왔어요?",o:["도끼로 찍으며","참기름을 바르며","사다리로","뛰어서"],a:0},
+  {q:"하늘에서 무엇이 내려왔어요?",o:["동아줄","사다리","구름","비행기"],a:0},
+  {q:"호랑이에게 내려온 동아줄은?",o:["썩은 동아줄","튼튼한 동아줄","금 동아줄","없었다"],a:0},
+  {q:"오빠는 무엇이 되었어요?",o:["해","달","별","구름"],a:0},
+  {q:"동생은 무엇이 되었어요?",o:["달","해","별","나무"],a:0},
+  {q:"이 이야기의 교훈은?",o:["착한 일을 하면 하늘이 도와준다","호랑이를 조심하라","시장에 가지 마라","나무에 올라가라"],a:0},
+  {q:"어머니는 왜 떡을 주었어요?",o:["잡아먹히지 않으려고","호랑이가 배고파서","친구여서","약속해서"],a:0},
+  {q:"아이들은 하늘에 무엇을 했어요?",o:["기도했어요","소리쳤어요","울었어요","노래했어요"],a:0},
+];
+
+const REVIEW_DATA = {
+  preview: {
+    title: "예습 · Preview",
+    desc: "다음에 배울 내용을 미리 살펴보세요.",
+    descEng: "Preview what you will learn next.",
+    items: [
+      {label:"5과 주제",val:"얼마예요? · How much is it?",detail:"숫자와 가격을 묻고 답하는 표현을 배웁니다."},
+      {label:"핵심 어휘",val:"일, 이, 삼, 백, 천, 만, 원, 얼마",detail:"one, two, three, hundred, thousand, ten-thousand, won, how much"},
+      {label:"핵심 문법",val:"한자어 수 + 원, 얼마예요?, ~주세요",detail:"Sino-Korean numbers + won, How much?, Please give me~"},
+      {label:"조선소 어휘",val:"편의점, 식당, 구내매점, 자판기, 가격",detail:"convenience store, restaurant, shop, vending machine, price"},
+    ]
+  },
+  review: {
+    title: "복습 · Review",
+    desc: "4과에서 배운 내용을 확인하세요.",
+    descEng: "Check what you learned in Lesson 4.",
+    sections: [
+      {title:"고유어 수 시간",icon:"🕐",items:["한 시 (1:00)","두 시 (2:00)","세 시 (3:00)","네 시 (4:00)","다섯 시 (5:00)","여섯 시 (6:00)","일곱 시 (7:00)","여덟 시 (8:00)","아홉 시 (9:00)","열 시 (10:00)","열한 시 (11:00)","열두 시 (12:00)"]},
+      {title:"핵심 문법 공식",icon:"📐",items:["시간 + 에 → 세 시에 (at 3)","시간1 부터 시간2 까지 → 8시부터 5시까지 (from 8 to 5)","오전/오후 + 시간 → 오후 두 시 (2 PM)","시간 + 반 → 여섯 시 반 (6:30)"]},
+      {title:"조선소 시간 표현",icon:"🏭",items:["출근 시간 (work start time)","퇴근 시간 (work end time)","점심시간 (lunch time)","쉬는 시간 (break time)","교대 시간 (shift change time)","야간 근무 (night shift)"]},
+      {title:"실용 표현",icon:"💬",items:["지금 몇 시예요? (What time is it now?)","몇 시에 출근해요? (What time do you start work?)","늦어서 죄송합니다. (Sorry for being late.)","시간이 있어요? (Do you have time?)"]},
+    ]
+  },
+  dictation: ["지금 몇 시예요?","두 시예요.","몇 시에 출근해요?","아침 일곱 시에 출근해요.","점심시간은 열두 시부터 한 시까지예요.","퇴근은 다섯 시예요.","내일 몇 시에 만날까요?","여섯 시 반에 만나요.","늦어서 죄송합니다.","시간이 있어요?"],
+};
+
+// ===== APP STATE =====
+let state = {
+  page: 'home',
+  menuOpen: false,
+  level: 1, // 0=입문, 1=초급1
+  // Vocab
+  vocabTab: 0,
+  vocabReveal: {},
+  // Grammar
+  gramIdx: 0,
+  // Dialogue
+  dlgIdx: 0, dlgLine: -1, dlgShowEng: false,
+  // Flashcard
+  fcIdx: 0, fcFlipped: false, fcKnown: 0,
+  // Quiz
+  qIdx: 0, qSel: null, qScore: 0, qDone: false,
+  // Reading
+  rdIdx: 0, rdShowEng: false, rdAnswers: {},
+  // Writing (self-intro)
+  wrName: '', wrCountry: '', wrJob: '', wrExtra: '',
+  // Hangul
+  hgTab: 0, hgSelected: null,
+  // Review (익힘)
+  rvTab: 0, rvDictIdx: 0, rvDictInput: '', rvDictResults: {},
+  // Folktale
+  ftSentIdx: 0, ftShowEng: false, ftAutoPlay: false,
+  // Folktale Quiz
+  fqIdx: 0, fqSel: null, fqScore: 0, fqDone: false,
+};
+
+function setState(updates) {
+  Object.assign(state, updates);
+  render();
+}
+
+// ===== RENDER ENGINE =====
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = renderNav() + renderPage() + renderBottomNav();
+  // Re-attach events
+  document.querySelectorAll('[data-click]').forEach(el => {
+    el.onclick = (e) => {
+      const fn = el.dataset.click;
+      if (fn) eval(fn);
+    };
+  });
+}
+
+function renderNav() {
+  const items = [
+    {id:'home',l:'홈',i:'🏠'},{id:'curriculum',l:'커리큘럼',i:'📋'},
+    {id:'hangul',l:'0급 한글',i:'🔤'},{id:'vocab',l:'어휘',i:'📖'},
+    {id:'grammar',l:'문법',i:'✏️'},{id:'dialogue',l:'대화',i:'💬'},
+    {id:'reading',l:'읽기',i:'📕'},{id:'writing',l:'쓰기',i:'✍️'},
+    {id:'review',l:'익힘(복습/예습)',i:'📝'},{id:'flashcard',l:'플래시카드',i:'🃏'},{id:'quiz',l:'퀴즈',i:'🎯'},
+    {id:'folktale',l:'전래동화',i:'📚'},{id:'ftquiz',l:'동화 퀴즈',i:'🧩'},
+    {id:'culture',l:'문화',i:'🏛️'},{id:'geoje',l:'성장 원동력',i:'🚀'},{id:'ai',l:'AI실습',i:'🤖'},
+  ];
+  let menu = '';
+  if (state.menuOpen) {
+    menu = '<div class="menu">' + items.map(it =>
+      `<button class="${state.page===it.id?'active':''}" onclick="setState({page:'${it.id}',menuOpen:false})">${it.i} ${it.l}</button>`
+    ).join('') + '</div>';
+  }
+  return `<div class="nav">
+    <a href="HanwhaOcean_Level1_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+      <span style="font-size:18px">📋</span>
+      <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 1 목차 · Contents</div></div>
+    </a>
+    <button class="nav-btn" onclick="setState({menuOpen:!state.menuOpen})">${state.menuOpen?'✕':'☰'}</button>
+  </div>${menu}`;
+}
+
+function renderBottomNav() {
+  const items = [
+    {id:'home',i:'🏠',l:'홈'},{id:'vocab',i:'📖',l:'어휘'},
+    {id:'review',i:'📝',l:'익힘'},{id:'folktale',i:'📚',l:'동화'},
+    {id:'ai',i:'🤖',l:'AI'},{id:'quiz',i:'🎯',l:'퀴즈'},{id:'culture',i:'🏛️',l:'문화'},
+  ];
+  return `<div class="bottom-nav">${items.map(it =>
+    `<button class="${state.page===it.id?'active':''}" onclick="setState({page:'${it.id}',menuOpen:false})">
+      <span class="icon">${it.i}</span><span>${it.l}</span></button>`
+  ).join('')}</div>`;
+}
+
+function renderPage() {
+  const pages = {
+    home: renderHome, curriculum: renderCurriculum, hangul: renderHangul,
+    vocab: renderVocab, grammar: renderGrammar, dialogue: renderDialogue,
+    reading: renderReading, writing: renderWriting, review: renderReview,
+    flashcard: renderFlashcard, quiz: renderQuiz,
+    folktale: renderFolktale, ftquiz: renderFtQuiz,
+    culture: renderCulture, geoje: renderGeoje, ai: renderAI,
+  };
+  return `<div class="page">${(pages[state.page]||renderHome)()}</div>`;
+}
+
+// ===== PAGES =====
+function renderHome() {
+  return `
+  <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);border-radius:16px;padding:20px;margin-bottom:16px;color:#fff">
+    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 4과 · Beginner Lesson 4</div>
+    <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
+      <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ 0급 한글 입문 완료</span>
+      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
+    </div>
+    <div style="font-size:26px;font-weight:800;margin-bottom:2px">몇 시예요?</div>
+    <div style="font-size:13px;color:#aabbdd">What time is it? — 시간 표현과 일과 · Time & Daily Schedule</div>
+    <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+      ${['시간 표현','고유어 수','부터~까지','거제 교통'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+    ${[
+      {id:'hangul',i:'🔤',l:'0급 한글',c:'#22c55e'},
+      {id:'vocab',i:'📖',l:'어휘',c:'#3b82f6'},
+      {id:'grammar',i:'✏️',l:'문법',c:'#8b5cf6'},
+      {id:'dialogue',i:'💬',l:'대화',c:'#22c55e'},
+      {id:'reading',i:'📕',l:'읽기',c:'#ec4899'},
+      {id:'writing',i:'✍️',l:'쓰기',c:'#f59e0b'},
+      {id:'review',i:'📝',l:'익힘',c:'#14b8a6'},
+      {id:'flashcard',i:'🃏',l:'플래시카드',c:'#f59e0b'},
+      {id:'quiz',i:'🎯',l:'퀴즈',c:'#ef4444'},
+      {id:'folktale',i:'📚',l:'전래동화',c:'#a855f7'},
+      {id:'ftquiz',i:'🧩',l:'동화퀴즈',c:'#e11d48'},
+      {id:'culture',i:'🏛️',l:'문화',c:'#8b5cf6'},
+    ].map(it=>`<button onclick="setState({page:'${it.id}'})" style="background:#fff;border:2px solid ${it.c}20;border-radius:10px;padding:12px 6px;text-align:center">
+      <div style="font-size:26px;margin-bottom:4px">${it.i}</div>
+      <div style="font-weight:700;font-size:12px;color:#1E3A5F">${it.l}</div>
+    </button>`).join('')}
+  </div>
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">⚡ 한국의 빨리빨리 문화 보기</button>
+  <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과 여기가 어디예요?</a><a href="HanwhaOcean_Level1_Lesson5.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 얼마예요? →</a></div>`;
+}
+
+function renderCurriculum() {
+  const levels = [
+    {id:0,n:"0급 입문",e:"Pre-Beginner",c:"#22c55e",ls:10},
+    {id:1,n:"1급 초급1",e:"Beginner 1",c:"#3b82f6",ls:18},
+    {id:2,n:"2급 초급2",e:"Beginner 2",c:"#f59e0b",ls:18},
+    {id:3,n:"3급 중급1",e:"Intermediate 1",c:"#8b5cf6",ls:18},
+    {id:4,n:"4급 중급2",e:"Intermediate 2",c:"#ec4899",ls:18},
+    {id:5,n:"5급 고급",e:"Advanced",c:"#ef4444",ls:18},
+  ];
+  return `<h2>📋 전체 커리큘럼</h2><p class="sub">Full Curriculum · 0급~5급 (100과)</p>
+  ${levels.map(lv=>`<div class="card" style="border-left:4px solid ${lv.c}">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div><span class="badge" style="background:${lv.c}">${lv.id}급</span> <b style="color:#1E3A5F">${lv.n}</b></div>
+      <span style="color:#888;font-size:12px">${lv.ls}과</span>
+    </div>
+    <div style="color:#888;font-size:11px;margin:4px 0">${lv.e}</div>
+    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'22%':'0%'):'0%'};background:${lv.c}"></div></div>
+  </div>`).join('')}`;
+}
+
+function renderHangul() {
+  const tabs = HANGUL_TABS;
+  const datasets = [HANGUL_CONSONANTS, HANGUL_VOWELS, HANGUL_PRACTICE, SAFETY_WORDS];
+  const hTab = Math.min(state.hgTab, 3);
+  const data = datasets[hTab];
+  const isSafety = hTab === 3;
+  const progressPct = 20;
+  const progressLabel = "4/20";
+
+  return `<h2>🔤 0급 입문 · ${HANGUL_SUBTITLE}</h2><p class="sub">${HANGUL_SUBTITLE}</p>
+  <div style="margin-bottom:12px;background:#e5e7eb;border-radius:8px;overflow:hidden;position:relative;height:22px">
+    <div style="width:${progressPct}%;height:100%;background:linear-gradient(90deg,#3b82f6,#06b6d4);border-radius:8px;transition:width 0.5s"></div>
+    <div style="position:absolute;top:0;left:0;right:0;text-align:center;font-size:11px;font-weight:700;line-height:22px;color:${progressPct>50?'#fff':'#555'}">한글 마스터 ${progressLabel} (${progressPct}%)</div>
+  </div>
+  <div class="tabs">${tabs.map((t,i)=>`<button class="tab ${hTab===i?'active':''}" onclick="setState({hgTab:${i},hgSelected:null})">${t}</button>`).join('')}</div>
+  ${isSafety ? `<div class="grid2">${data.map((w,i)=>`
+    <div class="card ${i===state.hgSelected?'card-orange':'card-accent'}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${w.kor}')">
+      <div style="font-size:22px;font-weight:800;color:var(--navy)">${w.kor} ${ttsBtn(w.kor)}</div>
+      <div style="font-size:11px;color:var(--ocean)">[${w.rom}]</div>
+      <div style="font-size:13px;color:#555;margin-top:4px">${w.eng}</div>
+    </div>`).join('')}</div>` :
+  `<div class="${data.length>10?'grid3':'grid2'}" style="margin-bottom:12px">${data.map((h,i)=>`
+    <div class="hangul-cell ${i===state.hgSelected?'active':''}" onclick="setState({hgSelected:${i===state.hgSelected?'null':i}});TTS.speak('${h.name||h.char}')">
+      <div class="char">${h.char}</div>
+      <div class="rom">${h.rom}</div>
+      ${h.name?`<div style="font-size:9px;color:#aaa">${h.name}</div>`:''}
+    </div>`).join('')}</div>`}
+  ${state.hgSelected !== null && !isSafety ? `<div class="card card-accent" style="text-align:center">
+    <div style="font-size:56px;font-weight:800;color:var(--navy)">${data[state.hgSelected].char}</div>
+    <div style="font-size:18px;color:var(--ocean);margin:8px 0">[${data[state.hgSelected].rom}]</div>
+    ${data[state.hgSelected].name?`<div style="font-size:14px;color:#555">${data[state.hgSelected].name}</div>`:''}
+    <button class="btn btn-primary" style="margin-top:12px;width:auto;padding:8px 24px" onclick="TTS.speak('${data[state.hgSelected].name||data[state.hgSelected].char}')">🔊 발음 듣기 Listen</button>
+  </div>`:''}`;
+}
+
+function renderVocab() {
+  const tabs = ['시간 Time','조선소 Shipyard','일정·요일 Schedule','도구·장비 Tools&Equip'];
+  const t = state.vocabTab;
+  let content = '';
+  if (t===0) content = VOCAB_TIME.map((v,i)=>`
+    <div class="card card-accent vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,[${i}]:!state.vocabReveal[${i}]}})">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><div class="kor">${v.kor} ${ttsBtn(v.kor)}</div><div class="pron">[${v.pron}]</div></div>
+      </div>
+      ${state.vocabReveal[i]?`<div style="margin-top:6px;padding:6px 10px;background:#f0f7ff;border-radius:6px;font-size:13px;color:var(--ocean);font-weight:600">${v.eng}</div>`
+      :`<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기 · Tap for English</div>`}
+    </div>`).join('');
+  else if (t===1) content = VOCAB_SHIPYARD.map((v,i)=>`
+    <div class="card card-orange vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,['s${i}']:!state.vocabReveal['s${i}']}})">
+      <div class="kor">${v.kor} ${ttsBtn(v.kor)}</div>
+      <div style="font-size:11px;color:#888">${v.sit}</div>
+      ${state.vocabReveal['s'+i]?`<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border-radius:6px;font-size:13px;color:var(--orange);font-weight:600">${v.eng}</div>`
+      :`<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기</div>`}
+    </div>`).join('');
+  else if (t===2) content = `<div class="grid2">${VOCAB_SCHEDULE.map(v=>`
+    <div class="vocab-item" style="background:#f0f7ff;border-radius:8px;padding:8px 10px" onclick="TTS.speak('${v.kor}')">
+      <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
+    </div>`).join('')}</div>`;
+  else content = `<div class="grid2">${VOCAB_SHIPYARD_NOUNS.map(v=>`
+    <div class="vocab-item" style="background:#fff7ed;border-radius:8px;padding:8px 10px" onclick="TTS.speak('${v.kor}')">
+      <div class="kor" style="font-size:14px">${v.kor} ${ttsBtn(v.kor)}</div><div class="eng">${v.eng}</div>
+    </div>`).join('')}</div>`;
+
+  return `<h2>📖 어휘 · Vocabulary</h2><p class="sub">4과 핵심 어휘 (${VOCAB_TIME.length+VOCAB_SHIPYARD.length+VOCAB_SCHEDULE.length+VOCAB_SHIPYARD_NOUNS.length}단어)</p>
+  <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({vocabTab:${i},vocabReveal:{}})">${tb}</button>`).join('')}</div>
+  ${content}`;
+}
+
+function renderGrammar() {
+  const g = GRAMMAR[state.gramIdx];
+  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">4과 핵심 문법 ${GRAMMAR.length}개</p>
+  <div class="tabs">${GRAMMAR.map((gr,i)=>`<button class="tab ${state.gramIdx===i?'active':''}" onclick="setState({gramIdx:${i}})">${gr.title}</button>`).join('')}</div>
+  <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
+    <div style="font-size:18px;font-weight:800;color:var(--navy)">${g.title}</div>
+    <div style="font-size:12px;color:var(--ocean);margin-bottom:8px">${g.eng}</div>
+    <div style="font-size:13px;color:#333">${g.desc}</div>
+    <div style="font-size:12px;color:#888;margin-bottom:10px">${g.descEng}</div>
+    <div style="background:var(--ocean);color:#fff;border-radius:8px;padding:10px;text-align:center">
+      <div style="font-weight:700;font-size:15px">${g.rule}</div>
+      <div style="font-size:11px;margin-top:4px;opacity:.8">${g.ruleEng}</div>
+    </div>
+  </div>
+  <div style="font-weight:700;color:var(--navy);margin:12px 0 8px">예문 · Examples</div>
+  ${g.examples.map(ex=>`<div class="card card-accent">
+    ${ex.q?`<div style="font-size:13px;color:#555">가: ${ex.q}</div>`:''}
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${ex.q?'나: ':''}${ex.a} ${ttsBtn(ex.a)}</div>
+    <div style="font-size:11px;color:var(--orange);font-weight:600;margin-top:4px">${ex.note}</div>
+    <div style="font-size:11px;color:#888">${ex.eng}</div>
+  </div>`).join('')}`;
+}
+
+function renderDialogue() {
+  const d = DIALOGUES[state.dlgIdx];
+  return `<h2>💬 대화 · Dialogue</h2>
+  <div class="tabs">${DIALOGUES.map((dl,i)=>`<button class="tab ${state.dlgIdx===i?'active':''}" onclick="setState({dlgIdx:${i},dlgLine:-1})">${dl.title}</button>`).join('')}</div>
+  <p style="color:#888;font-size:12px;margin-bottom:10px">${d.eng}</p>
+  <div style="display:flex;gap:6px;margin-bottom:14px">
+    <button class="tab ${state.dlgShowEng?'active':''}" onclick="setState({dlgShowEng:!state.dlgShowEng})">${state.dlgShowEng?'영어 숨기기':'영어 보기'}</button>
+    <button class="tab active" style="background:var(--green)" onclick="setState({dlgLine:state.dlgLine<${d.lines.length-1}?state.dlgLine+1:-1})">
+      ${state.dlgLine<0?'▶ 시작':state.dlgLine>=d.lines.length-1?'↺ 다시':'▶ 다음'}</button>
+    <button class="tab" onclick="TTS.speak('${d.lines.map(l=>l.text).join('. ')}',undefined,0.7)">🔊 전체 듣기</button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px">
+    ${d.lines.map((l,i)=>{
+      if(state.dlgLine>=0 && i>state.dlgLine) return '';
+      const isL = l.side==='L';
+      return `<div style="display:flex;flex-direction:column;align-items:${isL?'flex-start':'flex-end'};opacity:${state.dlgLine>=0&&i===state.dlgLine?1:.65}">
+        <div style="font-size:10px;color:${isL?'var(--ocean)':'var(--orange)'};font-weight:700;margin-bottom:2px">${l.sp}${l.role?' ('+l.role+')':''}</div>
+        <div class="bubble ${isL?'bubble-left':'bubble-right'}">
+          <div style="font-size:15px;font-weight:600;color:var(--navy)">${l.text} ${ttsBtn(l.text)}</div>
+          ${state.dlgShowEng?`<div style="font-size:11px;color:#888;margin-top:4px">${l.eng}</div>`:''}
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function renderReading() {
+  const r = READING_PASSAGES[state.rdIdx];
+  return `<h2><span class="section-icon">📕</span>읽기 · Reading</h2><p class="sub">읽기 연습 · Reading Practice</p>
+  <div class="tabs">${READING_PASSAGES.map((p,i)=>`<button class="tab ${state.rdIdx===i?'active':''}" onclick="setState({rdIdx:${i},rdShowEng:false,rdAnswers:{}})">${p.title}</button>`).join('')}</div>
+  <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <b style="color:var(--ocean)">${r.title} · ${r.eng}</b>
+      <button class="tts-btn" onclick="TTS.speak(\`${r.text.replace(/\n/g,' ')}\`,undefined,0.7)">🔊</button>
+    </div>
+    ${r.text.split('\n').map(line=>`<div style="font-size:16px;color:var(--navy);font-weight:600;margin-bottom:4px;line-height:1.6">${line} ${ttsBtn(line)}</div>`).join('')}
+    ${state.rdShowEng?`<div style="margin-top:10px;padding-top:10px;border-top:1px dashed #ccc">${r.textEng.split('\n').map(l=>`<div style="font-size:13px;color:#888;line-height:1.5">${l}</div>`).join('')}</div>`:''}
+    <button class="tab ${state.rdShowEng?'active':''}" style="margin-top:10px" onclick="setState({rdShowEng:!state.rdShowEng})">${state.rdShowEng?'영어 숨기기':'영어 번역 보기'}</button>
+  </div>
+  <div style="font-weight:700;color:var(--navy);margin:12px 0 8px">📝 이해 확인 · Comprehension</div>
+  ${r.questions.map((q,i)=>`<div class="card card-accent">
+    <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">${i+1}) ${q.q}</div>
+    ${state.rdAnswers[i]?`<div style="padding:6px 10px;background:#dcfce7;border-radius:6px;font-size:14px;color:var(--green);font-weight:600">✓ ${q.a} (${q.ae})</div>`
+    :`<button class="tab active" onclick="setState({rdAnswers:{...state.rdAnswers,${i}:true}})">정답 보기 · Show Answer</button>`}
+  </div>`).join('')}`;
+}
+
+function renderWriting() {
+  const preview = state.wrName ? `안녕하세요? 저는 ${state.wrName}이에요/예요.
+저는 매일 ${state.wrCountry?state.wrCountry:'___'}에 일어나요.
+${state.wrJob?state.wrJob+' 시에 출근해요.':''}
+${state.wrExtra?'퇴근 후에 '+state.wrExtra:''}
+내일도 열심히 할 거예요!` : '';
+
+  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">나의 하루 일과 · My Daily Routine</p>
+  <div class="card" style="background:#fff7ed;border:2px solid var(--orange)">
+    <b style="color:var(--orange)">📋 나의 하루 일과를 써 보세요 · Write about your daily routine</b>
+  </div>
+  <div style="margin-top:12px">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">이름 Name</label>
+    <input class="input" placeholder="예: 라민 / Ramin" value="${state.wrName}" oninput="state.wrName=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">기상 시간 Wake-up Time</label>
+    <input class="input" placeholder="예: 다섯 시 반 / 5:30" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">출근 시간 Work Start Time</label>
+    <input class="input" placeholder="예: 일곱 / 7" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">퇴근 후 활동 After Work Activity</label>
+    <input class="input" placeholder="예: 한국어를 공부해요. / study Korean" value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
+  </div>
+  ${preview?`
+  <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📄 미리보기 · Preview</div>
+  <div class="card card-accent" style="background:#f0f7ff">
+    ${preview.split('\n').filter(l=>l.trim()).map(l=>`<div style="font-size:16px;color:var(--navy);font-weight:600;margin-bottom:4px">${l}</div>`).join('')}
+  </div>
+  <button class="btn btn-primary" style="margin-top:10px" onclick="TTS.speak(\`${preview.replace(/\n/g,' ').replace(/이에요\/예요/g,'이에요')}\`,undefined,0.8)">🔊 발표 연습 듣기 · Listen to Presentation</button>
+  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 나의 하루 일과가 만들어집니다.<br>Fill in the fields above to generate your daily routine.</div>'}
+
+  <div style="margin-top:20px;font-weight:700;color:var(--navy);margin-bottom:8px">✍️ 자유 쓰기 · Free Writing</div>
+  <textarea placeholder="자유롭게 한국어로 써 보세요.&#10;Write freely in Korean.&#10;&#10;예: 저는 매일 다섯 시에 일어나요.&#10;여섯 시 반에 버스를 타요." id="freeWrite"></textarea>`;
+}
+
+function renderFlashcard() {
+  const all = [...VOCAB_TIME.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SCHEDULE.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
+  const card = all[state.fcIdx % all.length];
+  return `<h2>🃏 플래시카드 · Flashcards</h2>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">${(state.fcIdx%all.length)+1} / ${all.length}</span>
+    <span style="font-size:12px;color:var(--green);font-weight:600">✓ ${state.fcKnown}개 학습</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${((state.fcIdx%all.length)+1)/all.length*100}%;background:var(--orange)"></div></div>
+  <div onclick="setState({fcFlipped:!state.fcFlipped})"
+    style="background:${state.fcFlipped?'var(--navy)':'#fff'};border:2px solid var(--navy);border-radius:16px;padding:36px 20px;margin:18px 0;text-align:center;cursor:pointer;min-height:130px;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:all .3s">
+    <div style="font-size:10px;color:${state.fcFlipped?'#8899BB':'#aaa'};margin-bottom:8px">${state.fcFlipped?'ENGLISH':'한국어'}</div>
+    <div style="font-size:${state.fcFlipped?'20px':'30px'};font-weight:700;color:${state.fcFlipped?'#fff':'var(--navy)'}">${state.fcFlipped?card.b:card.f}</div>
+    ${!state.fcFlipped?'<div style="font-size:11px;color:#ccc;margin-top:10px">탭하여 뒤집기 · Tap to flip</div>':''}
+  </div>
+  <div style="display:flex;gap:8px">
+    <button onclick="TTS.speak('${card.f}')" style="padding:12px;border-radius:10px;background:#f0f7ff;color:var(--ocean);font-size:20px;flex-shrink:0">🔊</button>
+    <button onclick="setState({fcIdx:state.fcIdx+1,fcFlipped:false})" style="flex:1;padding:12px;border-radius:10px;background:#fee2e2;color:var(--red);font-size:14px;font-weight:700">✕ 모르겠어요</button>
+    <button onclick="setState({fcIdx:state.fcIdx+1,fcFlipped:false,fcKnown:state.fcKnown+1})" style="flex:1;padding:12px;border-radius:10px;background:#dcfce7;color:var(--green);font-size:14px;font-weight:700">✓ 알겠어요!</button>
+  </div>`;
+}
+
+function renderQuiz() {
+  if (state.qDone) {
+    const pct = Math.round(state.qScore/QUIZ.length*100);
+    return `<div style="text-align:center;padding:20px 0">
+      <div style="font-size:56px">${pct>=80?'🎉':pct>=50?'👍':'💪'}</div>
+      <h2>퀴즈 결과 · Quiz Result</h2>
+      <div style="font-size:44px;font-weight:800;color:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'};margin:14px 0">${state.qScore}/${QUIZ.length}</div>
+      <div style="font-size:15px;color:#888;margin-bottom:20px">${pct}% 정답 · Correct</div>
+      <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
+      <button onclick="setState({qIdx:0,qSel:null,qScore:0,qDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
+    </div>`;
+  }
+  const q = QUIZ[state.qIdx];
+  return `<h2>🎯 퀴즈 · Quiz</h2>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문제 ${state.qIdx+1}/${QUIZ.length}</span>
+    <span style="font-size:12px;color:var(--ocean);font-weight:600">점수: ${state.qScore}</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.qIdx+1)/QUIZ.length*100}%;background:var(--ocean)"></div></div>
+  <div class="card" style="background:#f0f7ff;text-align:center;margin:14px 0">
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${q.q}</div>
+  </div>
+  ${q.o.map((opt,i)=>{
+    let cls = 'quiz-opt';
+    if(state.qSel!==null){
+      if(i===q.a) cls+=' quiz-correct';
+      else if(i===state.qSel) cls+=' quiz-wrong';
+    }
+    return `<button class="${cls}" onclick="${state.qSel===null?`setState({qSel:${i},qScore:state.qScore+${i===q.a?1:0}})`:''}">${String.fromCharCode(65+i)}. ${opt}</button>`;
+  }).join('')}
+  ${state.qSel!==null?`<button onclick="${state.qIdx<QUIZ.length-1?`setState({qIdx:state.qIdx+1,qSel:null})`:`setState({qDone:true})`}" class="btn btn-primary" style="margin-top:8px">${state.qIdx<QUIZ.length-1?'다음 문제 → Next':'결과 보기 → Result'}</button>`:''}`;
+}
+
+function renderCulture() {
+  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 시간 문화 · Korean Time & Schedule Culture</p>
+  ${CULTURE.map(c=>`<div class="card" style="display:flex;gap:12px;align-items:flex-start">
+    <div style="font-size:34px;flex-shrink:0">${c.icon}</div>
+    <div>
+      <div style="font-weight:700;font-size:15px;color:var(--navy)">${c.t}</div>
+      <div style="font-size:11px;color:var(--ocean);margin-bottom:4px">${c.eng}</div>
+      <div style="font-size:13px;color:#333;line-height:1.5">${c.d}</div>
+      <div style="font-size:12px;color:#888;margin-top:2px">${c.de}</div>
+    </div>
+  </div>`).join('')}
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">⚡ 한국의 빨리빨리 문화 보기</button>`;
+}
+
+// ===== REVIEW (익힘) =====
+function renderReview() {
+  const tabs = ['복습 Review','예습 Preview','받아쓰기 Dictation'];
+  const t = state.rvTab;
+
+  if (t===0) { // 복습
+    const rv = REVIEW_DATA.review;
+    return `<h2><span class="section-icon">📝</span>익힘 · 복습</h2><p class="sub">${rv.desc} ${rv.descEng}</p>
+    <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+    ${rv.sections.map(s=>`
+      <div class="card card-accent">
+        <div style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px">${s.icon} ${s.title}</div>
+        ${s.items.map(item=>`<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+          <span style="color:var(--green);font-size:14px">✓</span>
+          <span style="font-size:14px;color:#333">${item}</span>
+          ${!item.includes(' ')&&item.length<15?ttsBtn(item):''}
+        </div>`).join('')}
+      </div>`).join('')}
+    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 시간 표현 전체 듣기</button>`;
+  }
+  if (t===1) { // 예습
+    const pv = REVIEW_DATA.preview;
+    return `<h2><span class="section-icon">📝</span>익힘 · 예습</h2><p class="sub">${pv.desc} ${pv.descEng}</p>
+    <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+    <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean)">
+      <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px">📖 다음 수업 미리보기 · Next Lesson Preview</div>
+      <div style="font-size:12px;color:#888;margin-bottom:12px">5과를 미리 살펴보세요!</div>
+    </div>
+    ${pv.items.map((item,i)=>`
+      <div class="card ${i%2===0?'card-accent':'card-orange'}">
+        <div style="font-size:12px;font-weight:700;color:var(--ocean)">${item.label}</div>
+        <div style="font-size:16px;font-weight:700;color:var(--navy);margin:4px 0">${item.val}</div>
+        <div style="font-size:12px;color:#888">${item.detail}</div>
+      </div>`).join('')}
+    <div class="card card-green" style="background:var(--light-green)">
+      <div style="font-weight:700;color:var(--green);margin-bottom:6px">💡 예습 팁 · Preview Tips</div>
+      <div style="font-size:13px;color:#333;line-height:1.6">
+        1. 한자어 숫자(일,이,삼,사...)를 1부터 10까지 말해 보세요.<br>
+        2. 편의점에서 물건 가격을 한국어로 읽어 보세요.<br>
+        3. '얼마예요?'를 연습해 보세요.
+      </div>
+      <div style="font-size:12px;color:#888;margin-top:6px;line-height:1.5">
+        1. Practice Sino-Korean numbers (일,이,삼,사...) from 1 to 10.<br>
+        2. Try reading item prices in Korean at the convenience store.<br>
+        3. Practice saying '얼마예요?' (How much is it?).
+      </div>
+    </div>`;
+  }
+  // t===2: 받아쓰기
+  const dict = REVIEW_DATA.dictation;
+  const d = dict[state.rvDictIdx];
+  const result = state.rvDictResults[state.rvDictIdx];
+  return `<h2><span class="section-icon">📝</span>익힘 · 받아쓰기</h2><p class="sub">Dictation Practice · 듣고 따라 쓰세요</p>
+  <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문장 ${state.rvDictIdx+1}/${dict.length}</span>
+    <span style="font-size:12px;color:var(--green);font-weight:600">✓ ${Object.values(state.rvDictResults).filter(r=>r==='correct').length}개 정답</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.rvDictIdx+1)/dict.length*100}%;background:var(--ocean)"></div></div>
+
+  <div class="card" style="text-align:center;margin:16px 0;background:#f0f7ff;border:2px solid var(--ocean)">
+    <div style="font-size:14px;color:#888;margin-bottom:8px">🔊 듣고 한국어로 쓰세요 · Listen and write in Korean</div>
+    <button onclick="TTS.speak('${d}',undefined,0.7)" style="background:var(--ocean);color:#fff;border-radius:50%;width:56px;height:56px;font-size:28px;margin:8px 0">🔊</button>
+    <div style="font-size:11px;color:#aaa;margin-top:4px">버튼을 눌러 들으세요 · Press to listen</div>
+  </div>
+
+  <input class="input" style="font-size:18px;text-align:center;padding:14px" placeholder="여기에 쓰세요 · Write here"
+    value="${state.rvDictInput||''}" oninput="state.rvDictInput=this.value" id="dictInput">
+
+  ${result ? `<div class="card ${result==='correct'?'card-green':'card-orange'}" style="background:${result==='correct'?'var(--light-green)':'#fee2e2'}">
+    <div style="font-size:16px;font-weight:700;color:${result==='correct'?'var(--green)':'var(--red)'}">${result==='correct'?'✓ 정답입니다! Correct!':'✕ 다시 해 보세요.'}</div>
+    <div style="font-size:18px;font-weight:700;color:var(--navy);margin-top:6px">정답: ${d}</div>
+  </div>`:
+  `<button class="btn btn-primary" onclick="
+    var input=document.getElementById('dictInput').value.trim().replace(/[.?!]/g,'');
+    var answer='${d}'.replace(/[.?!]/g,'');
+    var r=input===answer?'correct':'wrong';
+    setState({rvDictResults:{...state.rvDictResults,[state.rvDictIdx]:r}})
+  ">✓ 확인 · Check</button>`}
+
+  ${result?`<button class="btn btn-navy" style="margin-top:8px" onclick="setState({rvDictIdx:Math.min(state.rvDictIdx+1,${dict.length-1}),rvDictInput:'',rvDictResults:state.rvDictResults})">${state.rvDictIdx<dict.length-1?'다음 문장 → Next':'완료! Finished!'}</button>`:''}
+  <button onclick="TTS.speak('${d}',undefined,0.6)" class="btn" style="margin-top:6px;background:#e5e7eb;color:#555">🔊 천천히 듣기 · Listen Slowly</button>`;
+}
+
+// ===== FOLKTALE =====
+function renderFolktale() {
+  const ft = FOLKTALE;
+  const s = ft.sentences[state.ftSentIdx];
+  const total = ft.sentences.length;
+  return `<h2><span class="section-icon">📚</span>전래동화 · Korean Folktale</h2>
+  <div class="card" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;margin-bottom:14px">
+    <div style="font-size:22px;font-weight:800;margin-bottom:2px">${ft.title}</div>
+    <div style="font-size:13px;opacity:.8">${ft.eng}</div>
+    <div style="font-size:12px;opacity:.7;margin-top:6px">${ft.desc}</div>
+    <div style="font-size:11px;opacity:.6">${ft.descEng}</div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문장 ${state.ftSentIdx+1}/${total}</span>
+    <div style="display:flex;gap:6px">
+      <button class="tab ${state.ftShowEng?'active':''}" onclick="setState({ftShowEng:!state.ftShowEng})">${state.ftShowEng?'영어 숨기기':'영어 보기'}</button>
+    </div>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.ftSentIdx+1)/total*100}%;background:#a855f7"></div></div>
+
+  <div class="card" style="margin:14px 0;padding:20px;text-align:center;background:#faf5ff;border:2px solid #a855f7;min-height:120px;display:flex;flex-direction:column;justify-content:center">
+    <div style="font-size:20px;font-weight:700;color:var(--navy);line-height:1.6;margin-bottom:8px">${s.kor}</div>
+    ${state.ftShowEng?`<div style="font-size:14px;color:#888;line-height:1.4">${s.eng}</div>`:''}
+    <button onclick="TTS.speak('${s.kor.replace(/'/g,"\\'")}')" style="margin:12px auto 0;background:#a855f7;color:#fff;border-radius:50%;width:48px;height:48px;font-size:22px">🔊</button>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-bottom:12px">
+    <button onclick="setState({ftSentIdx:Math.max(0,state.ftSentIdx-1)})" class="btn" style="background:#e5e7eb;color:#555;flex:1">← 이전</button>
+    <button onclick="setState({ftSentIdx:Math.min(${total-1},state.ftSentIdx+1)})" class="btn" style="background:#a855f7;color:#fff;flex:1">다음 →</button>
+  </div>
+
+  <button onclick="var all=FOLKTALE.sentences.map(s=>s.kor).join('. ');TTS.speak(all,undefined,0.7)" class="btn btn-navy" style="margin-bottom:8px">🔊 전체 동화 듣기 · Listen to Full Story</button>
+  <button onclick="setState({page:'ftquiz'})" class="btn btn-orange">🧩 동화 퀴즈 풀기 · Take Folktale Quiz</button>
+
+  <div style="margin-top:16px;font-weight:700;color:var(--navy);margin-bottom:8px">📖 전체 문장 목록 · All Sentences</div>
+  <div style="max-height:300px;overflow-y:auto;border:1px solid #e5e7eb;border-radius:10px;padding:8px">
+    ${ft.sentences.map((sent,i)=>`
+      <div onclick="setState({ftSentIdx:${i}});TTS.speak('${sent.kor.replace(/'/g,"\\'")}')"
+        style="padding:8px 10px;border-radius:8px;margin-bottom:4px;cursor:pointer;background:${i===state.ftSentIdx?'#f3e8ff':'transparent'};border-left:${i===state.ftSentIdx?'3px solid #a855f7':'3px solid transparent'}">
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <span style="color:#a855f7;font-weight:700;font-size:12px;min-width:20px">${i+1}</span>
+          <div>
+            <div style="font-size:14px;color:var(--navy);font-weight:${i===state.ftSentIdx?700:400}">${sent.kor}</div>
+            ${state.ftShowEng?`<div style="font-size:11px;color:#888">${sent.eng}</div>`:''}
+          </div>
+        </div>
+      </div>
+    `).join('')}
+  </div>`;
+}
+
+// ===== FOLKTALE QUIZ =====
+function renderFtQuiz() {
+  if (state.fqDone) {
+    const pct = Math.round(state.fqScore/FOLKTALE_QUIZ.length*100);
+    return `<div style="text-align:center;padding:20px 0">
+      <div style="font-size:56px">${pct>=80?'🎉':pct>=50?'📖':'💪'}</div>
+      <h2>동화 퀴즈 결과 · Folktale Quiz Result</h2>
+      <div style="font-size:14px;color:#888;margin:6px 0">흥부와 놀부 · Heungbu and Nolbu</div>
+      <div style="font-size:44px;font-weight:800;color:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'};margin:14px 0">${state.fqScore}/${FOLKTALE_QUIZ.length}</div>
+      <div style="font-size:15px;color:#888;margin-bottom:20px">${pct}% 정답 · Correct</div>
+      <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
+      <button onclick="setState({fqIdx:0,fqSel:null,fqScore:0,fqDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
+      <button onclick="setState({page:'folktale'})" class="btn" style="margin-top:8px;background:#e5e7eb;color:#555">📚 동화 다시 읽기 · Read Story Again</button>
+    </div>`;
+  }
+  const q = FOLKTALE_QUIZ[state.fqIdx];
+  return `<h2><span class="section-icon">🧩</span>동화 퀴즈 · Folktale Quiz</h2>
+  <p class="sub">흥부와 놀부 · Heungbu and Nolbu</p>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문제 ${state.fqIdx+1}/${FOLKTALE_QUIZ.length}</span>
+    <span style="font-size:12px;color:#a855f7;font-weight:600">점수: ${state.fqScore}</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.fqIdx+1)/FOLKTALE_QUIZ.length*100}%;background:#a855f7"></div></div>
+
+  <div class="card" style="background:#faf5ff;text-align:center;margin:14px 0;border:2px solid #a855f7">
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${q.q}</div>
+    <button onclick="TTS.speak('${q.q.replace(/'/g,"\\'")}')" class="tts-btn" style="margin-top:8px;background:#a855f7">🔊</button>
+  </div>
+  ${q.o.map((opt,i)=>{
+    let cls='quiz-opt';
+    if(state.fqSel!==null){
+      if(i===q.a) cls+=' quiz-correct';
+      else if(i===state.fqSel) cls+=' quiz-wrong';
+    }
+    return `<button class="${cls}" onclick="${state.fqSel===null?`setState({fqSel:${i},fqScore:state.fqScore+${i===q.a?1:0}})`:''}">${String.fromCharCode(65+i)}. ${opt}</button>`;
+  }).join('')}
+  ${state.fqSel!==null?`<button onclick="${state.fqIdx<FOLKTALE_QUIZ.length-1?`setState({fqIdx:state.fqIdx+1,fqSel:null})`:`setState({fqDone:true})`}" class="btn" style="margin-top:8px;background:#a855f7;color:#fff">${state.fqIdx<FOLKTALE_QUIZ.length-1?'다음 문제 → Next':'결과 보기 → Result'}</button>`:''}`;
+}
+
+function renderGeoje() {
+  const g = LOCAL_INFO;
+  return `<h2>⚓ ${g.title}</h2><p class="sub">${g.eng}</p>
+  <div class="card" style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);color:#fff;border:none">
+    <div style="font-size:18px;font-weight:800;margin-bottom:10px">HANWHA OCEAN 한화오션</div>
+    <div style="font-size:13px;line-height:1.7;opacity:.9">${g.desc}</div>
+    <div style="font-size:12px;line-height:1.6;opacity:.7;margin-top:8px">${g.descEng}</div>
+  </div>
+  <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📊 기본 정보 · Basic Info</div>
+  ${g.facts.map((f,i)=>`<div class="card ${i%2===0?'card-accent':'card-orange'}">
+    <div style="font-size:12px;font-weight:700;color:var(--ocean)">${f.label}</div>
+    <div style="font-size:14px;color:var(--navy);font-weight:600">${f.val}</div>
+  </div>`).join('')}
+  <div class="card" style="background:var(--light-orange);border:2px solid var(--orange)">
+    <b style="color:var(--orange)">🚀 한국의 성장 원동력: 근면·빨리빨리 Korea's Growth Engine: Diligence & Speed</b>
+    <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      ${[
+        {item:'빨리빨리',price:'빠른 실행력',emoji:'⚡',eng:'Ppalli-ppalli'},
+        {item:'근면·성실',price:'경제 기적',emoji:'💪',eng:'Diligence'},
+        {item:'24시간 가동',price:'교대 근무',emoji:'🏭',eng:'24/7 Operation'},
+        {item:'배달 문화',price:'30분 배달',emoji:'🛵',eng:'Fast Delivery'},
+        {item:'건설 속도',price:'세계 최빠른',emoji:'🏗️',eng:'Speed Building'},
+        {item:'K-방역',price:'빠른 대응',emoji:'🦠',eng:'K-Quarantine'},
+      ].map(p=>`
+        <div style="background:#fff;border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px">${p.emoji}</div>
+          <div style="font-size:13px;font-weight:700;color:var(--navy)">${p.item}</div>
+          <div style="font-size:14px;font-weight:800;color:var(--orange)">${p.price}</div>
+          <div style="font-size:10px;color:#aaa">${p.eng}</div>
+        </div>
+      `).join('')}
+    </div>
+  </div>`;
+}
+
+
+// ===== AI 에이전트 (조선소 특화) =====
+var AI_QUICK_BTNS = [
+  { emoji:'📅', label:'내 일과 말하기',
+    q:'조선소 외국인 근로자의 하루 일과를 한국어로 표현해주세요. 아침 7시 기상, 8시 출근, 12시 점심, 17시 퇴근, 22시 취침. 시간+동사 문장으로 만들어주세요. 영어도 함께요.' },
+  { emoji:'🕐', label:'시간 읽기 연습',
+    q:'한국어 시간 읽기를 연습시켜주세요. 고유어 숫자(하나=한 시, 둘=두 시)로 1시~12시를 어떻게 읽는지 알려주세요. 퀴즈 형식으로 5개 내주세요.' },
+  { emoji:'⚙️', label:'근무 시간 표현',
+    q:'조선소 근무 시간 관련 한국어 표현을 알려주세요. "출근", "퇴근", "점심시간", "야간 근무", "초과 근무". 각각 영어와 예문을 함께 알려주세요.' },
+  { emoji:'📐', label:'부터/까지 사용법',
+    q:'한국어 "~부터 ~까지" 표현을 조선소 일과 예문으로 설명해주세요. "아침 8시부터 5시까지 일해요" 같은 문장 5개를 만들어주세요. 영어도 함께요.' },
+  { emoji:'❓', label:'몇 시예요? 퀴즈',
+    q:'시간 읽기 퀴즈를 해주세요. "열두 시 삼십 분이에요" 같은 시간을 숫자로 쓰거나, 숫자를 한국어로 읽는 퀴즈 5개를 내주세요.' },
+]
+
+var AICHAT = {
+  msgs: [],
+  loading: false,
+  input: '',
+  addMsg: function(role, text) {
+    this.msgs.push({ role, text, time: new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'}) });
+    render();
+    setTimeout(function(){
+      var box = document.querySelector('.ai-msgbox');
+      if(box) box.scrollTop = box.scrollHeight;
+    }, 50);
+  },
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx];
+    if (!b || this.loading) return;
+    this.send(b.q, b.label);
+  },
+  send: async function(text, label) {
+    if (this.loading) return;
+    text = text || this.input.trim();
+    if (!text) return;
+    this.input = '';
+    this.loading = true;
+    var displayText = label || text;
+    this.addMsg('user', displayText);
+    try {
+      var sysP = 'You are a Korean time expression tutor for shipyard workers. Lesson 4 focus: native Korean numbers for hours (한 시=1:00, 두 시=2:00, 세 시=3:00...), sino-Korean numbers for minutes (일 분, 이십 분...), time+에 particle (8시에 출근해요), ~부터 ~까지 (from ~ to ~), daily schedule words: 출근(start work), 퇴근(leave work), 점심(lunch). SHORT answers with English.';
+      var url = '/api/chat';
+      var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
+      this.loading = false;
+      this.addMsg('assistant', reply);
+    } catch(e) {
+      this.loading = false;
+      this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');
+    }
+  }
+};
+
+// ===== RECORDER (발음 코치 — 브라우저 내장 API) =====
+var RECORDER = {
+  recorders: {}, chunks: {}, audioURLs: {}, isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    var resultEl = document.getElementById('stt-result-' + idx);
+    var playBtn  = document.getElementById('play-btn-' + idx);
+    var scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, recBtn); return; }
+    var stream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({audio: true});
+    } catch(e) {
+      var msg = '';
+      var n = e.name || '';
+      if (n === 'NotAllowedError' || n === 'PermissionDeniedError')
+        msg = '❌ <strong>마이크 차단됨</strong> — 주소창 🔒 → 마이크 → <strong>허용</strong> 후 F5<br><span style="color:#555">Microphone blocked — click 🔒 → Microphone → Allow → F5</span>';
+      else if (n === 'NotFoundError')
+        msg = '❌ 마이크를 찾을 수 없어요 — Microphone not found';
+      else if (location.protocol === 'file:')
+        msg = '❌ 보안 오류 — <a href="https://elimg.com" target="_blank" style="color:#1d4ed8">elimg.com</a>에서 열어주세요 (HTTPS 필요)';
+      else
+        msg = '❌ 오류: ' + e.name + ' — Chrome/Edge에서 다시 시도하세요';
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    var mr = new MediaRecorder(stream);
+    this.recorders[idx] = mr;
+    var self = this;
+    mr.ondataavailable = function(e) { if (e.data.size > 0) self.chunks[idx].push(e.data); };
+    mr.onstop = function() {
+      if (self.audioURLs[idx]) URL.revokeObjectURL(self.audioURLs[idx]);
+      var blob = new Blob(self.chunks[idx], {type:'audio/webm'});
+      self.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false; playBtn.style.opacity = '1';
+        playBtn.onclick = function() { new Audio(self.audioURLs[idx]).play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지'; recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중... / Recording...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      var rec = new SR(); rec.lang = 'ko-KR'; rec.continuous = false; rec.interimResults = false;
+      rec.onresult = function(e) {
+        var said = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        var target = targetText.replace(/[\s,.?!]/g,'');
+        var conf = e.results[0][0].confidence;
+        var match = 0;
+        for (var i = 0; i < Math.min(said.length, target.length); i++) { if (said[i] === target[i]) match++; }
+        var pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        var final = Math.round(pct * 0.7 + Math.round((conf||0.5)*100) * 0.3);
+        var color = final >= 80 ? '#22c55e' : final >= 50 ? '#f59e0b' : '#ef4444';
+        var msg = final >= 80 ? '✅ 완벽해요! Great!' : final >= 50 ? '🔄 조금 더 연습! Keep going!' : '❌ 다시 시도! Try again!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식 / Heard: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = final + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = function() {};
+      rec.start();
+    }
+  },
+
+  stop(idx, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') this.recorders[idx].stop();
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음'; recBtn.style.background = '#059669';
+  },
+
+  async autoDetect() {
+    var stateEl = document.getElementById('mic-perm-state');
+    var blockedEl = document.getElementById('mic-blocked-guide');
+    var allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        var result = await navigator.permissions.query({name:'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨 — 바로 녹음하세요! / Microphone allowed!</div>';
+          if (allowBtn) { allowBtn.style.background='#166534'; allowBtn.textContent='✅ 허용됨 — 녹음 시작 / Start Recording'; }
+          if (blockedEl) blockedEl.style.display = 'none';
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 / Blocked — 아래 버튼 클릭</div>';
+          if (blockedEl) blockedEl.style.display = 'block';
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아래 버튼을 눌러 마이크를 허용하세요</div>';
+        }
+        result.onchange = function() { RECORDER.autoDetect(); };
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼으로 마이크를 허용하세요</div>';
+      }
+    }
+  },
+
+  async checkPermission(btn) {
+    var statusEl = document.getElementById('mic-status');
+    var box = document.getElementById('mic-check-box');
+    var blockedEl = document.getElementById('mic-blocked-guide');
+    var stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → <a href="https://elimg.com" target="_blank" style="color:#1d4ed8;font-weight:700">elimg.com에서 열기</a></span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      var stream = await navigator.mediaDevices.getUserMedia({audio:true});
+      stream.getTracks().forEach(function(t){t.stop();});
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 허용됨! / Allowed!</span>';
+      if (box) { box.style.background='#dcfce7'; box.style.borderColor='#86efac'; }
+      if (blockedEl) blockedEl.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 녹음 시작 / Start Recording'; btn.style.background='#166534'; btn.disabled=false;
+    } catch(e) {
+      btn.disabled = false;
+      if (e.name==='NotAllowedError'||e.name==='PermissionDeniedError') {
+        if (blockedEl) blockedEl.style.display='block';
+        if (stateEl) stateEl.innerHTML='<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 차단됨 — 아래 순서대로 해결 후 다시 클릭</div>';
+        btn.textContent='🔄 허용 완료 후 다시 클릭'; btn.style.background='#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML='<span style="color:#ef4444">오류 (' + e.name + ') — Chrome/Edge로 시도</span>';
+        btn.textContent='🔄 다시 시도'; btn.style.background='#92400e';
+      }
+    }
+  }
+};
+
+function startSTT(idx, targetText, recBtn) { RECORDER.start(idx, targetText, recBtn); }
+
+// ===== AI 에이전틱 G스택 렌더 =====
+function renderAI() {
+  setTimeout(function(){ RECORDER.autoDetect(); }, 100);
+  return `
+  <h2>🤖 AI 실습</h2>
+  <p class="sub">글로컬 아카데미 × 에이전틱 G스택</p>
+
+  <!-- 헤더 배너 -->
+  <div style="background:linear-gradient(135deg,#1E3A5F,#2E75B6);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+    <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+    <div style="font-size:15px;font-weight:800;margin-bottom:6px">⏰ AI 일과표 코치</div>
+    <div style="font-size:11px;opacity:0.85;line-height:1.7">시간 표현 · 내 하루 일과를 한국어로 말해요<br>
+    <span style="color:#93c5fd">🔵 Daily Schedule Coach × Time Korean</span></div>
+  </div>
+
+  <!-- 앱 내 AI 채팅 — 로그인 불필요 -->
+  <div class="card" style="margin-bottom:10px;border:2px solid #2E75B6">
+    <div class="section-label" style="background:#1E3A5F">⚡ AI 채팅 · 로그인 불필요 · No Login Needed</div>
+    <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+      계정 없이 바로 AI에게 질문하세요<br>
+      <span style="font-size:11px;color:#2E75B6">Ask AI directly — no login needed · Free</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+      ${AI_QUICK_BTNS.map(function(b,i){return `
+        <button onclick="AICHAT.quickSend(${i})"
+          style="background:#f0f7ff;border:1px solid #2E75B6;color:#1E3A5F;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">
+          ${b.emoji} ${b.label}
+        </button>`;}).join('')}
+    </div>
+    <div class="ai-msgbox" style="background:#fff;border-radius:12px;border:1px solid #e8edf2;min-height:120px;max-height:300px;overflow-y:auto;padding:12px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px">
+      ${AICHAT.msgs.length === 0
+        ? `<div style="text-align:center;color:#aaa;padding:24px 16px;font-size:12px">
+            💡 버튼을 누르거나 아래에 입력하세요<br>
+            <span style="font-size:11px">Tap a button above or type below</span>
+          </div>`
+        : AICHAT.msgs.map(function(m){ return `
+          <div style="align-self:${m.role==='user'?'flex-end':'flex-start'};max-width:90%">
+            <div style="background:${m.role==='user'?'#2E75B6':'#f0f7ff'};color:${m.role==='user'?'#fff':'#1E3A5F'};border-radius:${m.role==='user'?'14px 14px 4px 14px':'14px 14px 14px 4px'};padding:10px 13px;font-size:13px;line-height:1.65;white-space:pre-wrap;word-break:break-word">${m.text}</div>
+            <div style="font-size:10px;color:#aaa;margin-top:3px;text-align:${m.role==='user'?'right':'left'}">${m.time}</div>
+          </div>`;}).join('')}
+      ${AICHAT.loading ? `<div style="align-self:flex-start;background:#f0f7ff;border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:13px;color:#2E75B6">⏳ AI가 답하는 중... / Generating...</div>` : ''}
+    </div>
+    <div style="display:flex;gap:8px">
+      <input id="ai-input" type="text" placeholder="한국어 질문 / Ask a question..."
+        style="flex:1;padding:12px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;outline:none"
+        onfocus="this.style.borderColor='#2E75B6'" onblur="this.style.borderColor='#e5e7eb'"
+        onkeydown="if(event.key==='Enter'){AICHAT.input=this.value;AICHAT.send();}">
+      <button onclick="AICHAT.input=document.getElementById('ai-input').value;AICHAT.send()"
+        style="background:#2E75B6;color:#fff;border-radius:10px;padding:0 18px;font-size:20px;min-width:52px;font-family:inherit;cursor:pointer;border:none">➤</button>
+    </div>
+    <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:center">Enter로 전송 · 🆓 완전 무료 · No account needed</div>
+  </div>
+
+  <!-- 외부 AI 가이드 — 선택사항 -->
+  <div class="card" style="margin-bottom:10px">
+    <div class="section-label" style="background:#6b7280">🌐 외부 AI · 선택사항 · Optional</div>
+    <div style="font-size:11px;color:#888;margin:6px 0 8px">더 강력한 AI로 깊이 있게 학습 (로그인 필요 / Login required)</div>
+
+    <details style="margin-bottom:8px">
+      <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+        🔵 Gemini AI — Google 계정 로그인 / Free with Google account
+      </summary>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+        <strong style="color:#1d4ed8">① 접속:</strong> gemini.google.com<br>
+        <strong style="color:#1d4ed8">② 조선소 롤플레이 연습:</strong>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+          <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 프롬프트 복사해서 붙여넣기</div>
+          <span style="font-family:monospace;background:#dbeafe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 한화오션 조선소 외국인 근로자예요. 하루 일과를 한국어로 표현하는 연습을 도와주세요. 출근 시간, 점심, 퇴근 시간을 한국어로 말하고 싶어요. 부터/까지와 시간+에 표현을 연습하고 싶어요. 영어로도 설명해 주세요."</span>
+          Copy &amp; paste to Gemini for shipyard roleplay practice
+        </div>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+          <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">📸 현장 사진 질문 (Gemini 특화)</div>
+          조선소 안전 표지판 사진 → 업로드 → "이게 무슨 뜻이에요?"<br>
+          <span style="color:#555">Photo of Korean safety signs → Upload → Ask what it means</span>
+        </div>
+        <a href="https://gemini.google.com" target="_blank" style="display:block;background:#1d4ed8;color:#fff;text-align:center;padding:8px;border-radius:8px;font-weight:700;margin-top:8px;font-size:13px">🔵 Gemini 열기 / Open Gemini →</a>
+      </div>
+    </details>
+
+    <details>
+      <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+        🟣 Claude AI — 이메일 가입 · Free with email
+      </summary>
+      <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+        <strong style="color:#7c3aed">① 접속:</strong> claude.ai (이메일로 무료 가입)<br>
+        <strong style="color:#7c3aed">② 내 한국어 첨삭:</strong>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">
+          <div style="font-weight:700;color:#7c3aed;margin-bottom:3px">✏️ 문장 고치기 (Claude 특화)</div>
+          <span style="font-family:monospace;background:#ede9fe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 조선소 외국인 근로자입니다. 제 한국어 문장을 고쳐주세요: [내 문장]. 영어로 설명해 주세요."</span>
+          Copy your sentence → paste to Claude → get corrections in English
+        </div>
+        <a href="https://claude.ai" target="_blank" style="display:block;background:#7c3aed;color:#fff;text-align:center;padding:8px;border-radius:8px;font-weight:700;margin-top:8px;font-size:13px">🟣 Claude 열기 / Open Claude →</a>
+      </div>
+    </details>
+  </div>
+
+  <!-- 발음 코치 -->
+  <div class="card" style="background:#f0fdf4;border:1px solid #86efac;margin-bottom:10px">
+    <div class="section-label" style="background:#059669">🎤 발음 코치 · Pronunciation Coach</div>
+    <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">
+      원어민 듣기 → 내가 녹음 → 정확도 비교<br>
+      <span style="font-size:11px;color:#059669">Listen → Record → Compare accuracy</span>
+    </div>
+    <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#166534">
+      🆓 브라우저 내장 API · 완전 무료 · Chrome/Edge 권장
+    </div>
+
+    <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:12px;margin-bottom:10px">
+      <div id="mic-perm-state" style="margin-bottom:8px"></div>
+      <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:10px;margin-bottom:8px;font-size:12px;line-height:1.9;color:#1a202c">
+        🚫 <strong>마이크 차단됨 해결 / Microphone Blocked:</strong><br>
+        PC Chrome/Edge: 주소창 🔒 → 마이크 → <strong>허용</strong> → F5 새로고침<br>
+        Android: ⋮ → 사이트 설정 → 마이크 → 허용<br>
+        <span style="color:#555">PC: Click 🔒 in address bar → Microphone → Allow → press F5</span>
+      </div>
+      <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+        style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:700">
+        🎙️ 마이크 허용하기 / Allow Microphone
+      </button>
+      <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:14px"></div>
+    </div>
+
+    ${[
+      {sent:'지금 몇 시예요?', eng:'What time is it now?'},
+      {sent:'아침 여덟 시에 출근해요.', eng:'I start work at 8 AM.'},
+      {sent:'점심시간은 열두 시예요.', eng:'Lunch time is at noon.'},
+      {sent:'다섯 시에 퇴근해요.', eng:'I finish work at 5 o\'clock.'},
+      {sent:'여덟 시부터 다섯 시까지 일해요.', eng:'I work from 8 AM to 5 PM.'},
+    ].map(function(item,i){ return `
+      <div style="background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+        <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>
+        <div style="font-size:10px;color:#059669;margin-bottom:8px">🇬🇧 ${item.eng}</div>
+        <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+          <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button onclick="var b=this;TTS.speak('${item.sent.replace(/'/g,"\\'")}');b.textContent='🔊 재생 중...';setTimeout(function(){b.textContent='🔊 원어민'},2000)"
+            style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🔊 원어민</button>
+          <button id="rec-btn-${i}" onclick="startSTT(${i},'${item.sent.replace(/'/g,"\\'")}',this)"
+            style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🎤 녹음</button>
+          <button id="play-btn-${i}" disabled
+            style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;opacity:0.4">▶ 내 발음</button>
+        </div>
+        <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:14px"></div>
+      </div>
+    `; }).join('')}
+
+    <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+      <strong>📖 사용법 / How to use:</strong><br>
+      1️⃣ <strong>🔊 원어민</strong> — 원어민 발음 먼저 들으세요 / Listen to native speaker<br>
+      2️⃣ <strong>🎤 녹음</strong> — 따라 말하고 다시 누르면 중지 / Speak then tap again to stop<br>
+      3️⃣ <strong>▶ 내 발음</strong> — 내 발음 들어보기 / Listen to yourself<br>
+      4️⃣ 점수: 🟢 80%+ 🟡 50~79% 🔴 50% 미만
+    </div>
+  </div>
+
+  <!-- G스택 학습법 -->
+  <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+    <div class="section-label" style="background:#059669">🌐 글로컬 G스택 학습법 · 4-Step AI Method</div>
+    <div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.9">
+      <strong>글로컬 아카데미 AI 에이전트 기반 4단계:</strong><br>
+      <span style="color:#555">① 어휘/표현 → 앱 내 AI 또는 Gemini 질문</span><br>
+      <span style="color:#555">② 대화 → Gemini 롤플레이 실습</span><br>
+      <span style="color:#555">③ 발음 → 위 발음 코치에서 녹음 비교</span><br>
+      <span style="color:#555">④ 첨삭 → Claude AI에 내 문장 보내기</span><br>
+      <br>
+      <span style="color:#2E75B6;font-size:11px"><strong>🇬🇧 Glocal Academy 4-Step AI Method:</strong><br>
+      ① Vocab/Expressions → Ask in-app AI or Gemini<br>
+      ② Conversation → Gemini roleplay practice<br>
+      ③ Pronunciation → Record &amp; compare above<br>
+      ④ Correction → Send your text to Claude AI</span>
+    </div>
+  </div>
+  `;
+}
+
+// ===== INIT =====
+render();

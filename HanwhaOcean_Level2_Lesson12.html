@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -509,7 +509,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level2_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level2_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 2 목차 · Contents</div></div>
     </a>
@@ -577,16 +577,16 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🍽️ 한국의 음식·식품 산업 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level2_Lesson11.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-11과 여행계획</a><a href="HanwhaOcean_Level2_Lesson13.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-13과 환경 →</a></div>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level2_Lesson11" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-11과 여행계획</a><a href="/HanwhaOcean_Level2_Lesson13" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-13과 환경 →</a></div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson11.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson11" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-11과 여행 계획을 세워요</strong>
         <div style="font-size:11px;color:#888;margin-top:2px">Making Travel Plans</div>
       </div>
-    </a><a href="HanwhaOcean_Level2_Lesson13.html" style="display:block;text-decoration:none;flex:1">
+    </a><a href="/HanwhaOcean_Level2_Lesson13" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-13과 환경을 생각해요</strong>
@@ -1036,7 +1036,7 @@ function renderLiteratureQuiz() {
       <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
       <button onclick="setState({fqIdx:0,fqSel:null,fqScore:0,fqDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기</button>
       <button onclick="setState({page:'literature'})" class="btn" style="margin-top:8px;background:#e5e7eb;color:#555">📜 시 다시 읽기</button>
-      <a href="HanwhaOcean_Level2_Lesson13.html" style="display:block;text-decoration:none;margin-top:16px">
+      <a href="/HanwhaOcean_Level2_Lesson13" style="display:block;text-decoration:none;margin-top:16px">
         <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
           ➡️ 다음 과: 2-13과 환경을 생각해요 · Next Lesson
         </button>
@@ -1099,7 +1099,7 @@ function renderGeoje() {
       `).join('')}
     </div>
   </div>
-  <a href="HanwhaOcean_Level2_Lesson13.html" style="display:block;text-decoration:none;margin-top:16px">
+  <a href="/HanwhaOcean_Level2_Lesson13" style="display:block;text-decoration:none;margin-top:16px">
     <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
       ➡️ 다음 과: 2-13과 환경을 생각해요 · Next Lesson
     </button>
@@ -1109,18 +1109,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'😋', label:'맛 표현하기',
-    q:'한국어로 음식 맛을 표현하는 연습을 해주세요. "맵지만 맛있어요", "짜요", "달아요", "고소해요" 같은 맛 형용사를 써서 음식 리뷰를 만드는 방법을 영어와 함께 알려주세요.' },
-  { emoji:'🍱', label:'한식 메뉴 이해',
-    q:'한국 식당 메뉴판에서 자주 보이는 음식을 한국어로 설명해주세요. 갈비탕, 순두부찌개, 삼겹살, 냉면을 영어로 설명하고 주문 방법도 알려주세요.' },
-  { emoji:'🌶️', label:'요청/조절 표현',
-    q:'음식을 주문할 때 요청사항을 말하는 한국어를 알려주세요. "덜 맵게 해주세요", "육수 빼주세요", "따뜻한 물 주세요" 같은 요청 표현을 영어와 함께 5가지요.' },
-  { emoji:'⭐', label:'식당 리뷰 작성',
-    q:'한국어로 식당 리뷰를 쓰는 연습을 해주세요. "음식이 신선해요", "서비스가 좋아요", "다음에 또 올 거예요" 같은 리뷰 표현을 영어와 함께 만들어주세요.' },
-  { emoji:'🍺', label:'회식 문화 이해',
-    q:'한국 회식 문화를 이해하는 데 필요한 한국어를 알려주세요. "건배!", "한 잔 더?", "제가 한 턱 낼게요" 같은 회식 표현과 문화 설명을 영어와 함께요.' },
-]
-
+  {emoji:'😋',label:'맛 표현하기',
+   q:'맛표현 taste expression 음식맛 맛어때요를 알려주세요' },
+  {emoji:'👨‍🍳',label:'조리 방법',
+   q:'조리방법 cooking method 요리법 어떻게요리를 알려주세요' },
+  {emoji:'🥬',label:'음식 재료',
+   q:'음식재료 ingredients 재료이름 식재료를 알려주세요' },
+  {emoji:'📖',label:'레시피 읽기',
+   q:'레시피읽기 reading recipe 레시피 요리순서를 알려주세요' },
+  {emoji:'🍱',label:'한국 음식 문화',
+   q:'한국음식문화 korean food culture 식문화 음식문화를 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1147,13 +1146,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean food and dining culture coach. Lesson focus: food taste vocabulary 음식(food), 맛(taste), 맵다(spicy), 김치(kimchi), 맛있다(delicious), adjective descriptions with 아/어요 forms. Help workers understand Korean cuisine and restaurant culture. SHORT answers with English.';
+      var sysP = 'You are a Korean food and dining culture coach. Lesson focus: food taste vocabulary 음식(food), 맛(taste), 맵다(spicy), 김치(kimchi), 맛있다(delicious), adjective descriptions with 아/어요 forms. Help workers understand Korean cuisine and restaurant culture. SHORT answers with English. LESSON:L2L12';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

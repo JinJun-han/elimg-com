@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>0급 4과 · 음절 만들기 · Building Syllables | 한화오션 한국어교육</title>
@@ -28,7 +28,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--level0);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -177,7 +177,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level0_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level0_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">0급 입문 4과 · 음절 만들기</div><div class="nav-sub">Building Syllables · 한화오션 한국어</div></div>
     </a>
@@ -250,9 +250,9 @@ function renderGrid() {
     </div>
   </div>
   <div style="display:flex;gap:8px;margin-top:12px">
-    <a href="HanwhaOcean_Level0_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과</a>
-    <a href="HanwhaOcean_Level0_Index.html" style="padding:12px 16px;border-radius:10px;background:var(--navy);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">목차</a>
-    <a href="HanwhaOcean_Level0_Lesson5.html" style="flex:1;padding:12px;border-radius:10px;background:var(--level0);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 →</a>
+    <a href="/HanwhaOcean_Level0_Lesson3" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과</a>
+    <a href="/HanwhaOcean_Level0_Index" style="padding:12px 16px;border-radius:10px;background:var(--navy);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">목차</a>
+    <a href="/HanwhaOcean_Level0_Lesson5" style="flex:1;padding:12px;border-radius:10px;background:var(--level0);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 →</a>
   </div>`;
 }
 
@@ -273,8 +273,8 @@ function renderWords() {
   </div>
   <button onclick="setState({wordReveal:{}})" style="background:#e5e7eb;color:#555;border-radius:10px;padding:10px;font-size:13px;font-weight:600;width:100%;margin-top:6px">↺ 다시 가리기 · Hide All</button>
   <div style="display:flex;gap:8px;margin-top:12px">
-    <a href="HanwhaOcean_Level0_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과</a>
-    <a href="HanwhaOcean_Level0_Lesson5.html" style="flex:1;padding:12px;border-radius:10px;background:var(--level0);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 →</a>
+    <a href="/HanwhaOcean_Level0_Lesson3" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과</a>
+    <a href="/HanwhaOcean_Level0_Lesson5" style="flex:1;padding:12px;border-radius:10px;background:var(--level0);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 →</a>
   </div>`;
 }
 
@@ -302,8 +302,8 @@ function renderTypes() {
     </div>
   </div>
   <div style="display:flex;gap:8px;margin-top:12px">
-    <a href="HanwhaOcean_Level0_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과</a>
-    <a href="HanwhaOcean_Level0_Lesson5.html" style="flex:1;padding:12px;border-radius:10px;background:var(--level0);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 받침 →</a>
+    <a href="/HanwhaOcean_Level0_Lesson3" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과</a>
+    <a href="/HanwhaOcean_Level0_Lesson5" style="flex:1;padding:12px;border-radius:10px;background:var(--level0);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 받침 →</a>
   </div>`;
 }
 
@@ -323,7 +323,7 @@ function renderQuiz() {
       <div style="font-size:15px;color:#888;margin-bottom:20px">${pct}% 정답 · Correct</div>
       <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--level0)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
       <button onclick="setState({qIdx:0,qSel:null,qScore:0,qDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
-      <a href="HanwhaOcean_Level0_Lesson5.html" class="btn btn-primary" style="display:block;margin-top:10px;text-decoration:none;text-align:center">5과 받침 →</a>
+      <a href="/HanwhaOcean_Level0_Lesson5" class="btn btn-primary" style="display:block;margin-top:10px;text-decoration:none;text-align:center">5과 받침 →</a>
     </div>`;
   }
   const q = QUIZ[state.qIdx];
@@ -360,8 +360,8 @@ function renderCulture() {
     </div>
   </div>`).join('')}
   <div style="display:flex;gap:8px;margin-top:12px">
-    <a href="HanwhaOcean_Level0_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과</a>
-    <a href="HanwhaOcean_Level0_Lesson5.html" style="flex:1;padding:12px;border-radius:10px;background:var(--level0);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 받침 →</a>
+    <a href="/HanwhaOcean_Level0_Lesson3" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 3과</a>
+    <a href="/HanwhaOcean_Level0_Lesson5" style="flex:1;padding:12px;border-radius:10px;background:var(--level0);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">5과 받침 →</a>
   </div>`;
 }
 
@@ -376,12 +376,19 @@ function renderAI() {
     <button class="btn btn-primary" style="width:auto;padding:10px 14px" onclick="sendAI()">전송</button>
   </div>
   <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap" id="ai-quick">
-    ${["이 모음/자음을 어떻게 발음해요?","이 단어가 무슨 뜻이에요?","예문을 만들어 주세요","음절 조합 더 알려줘"]
-      .map(q=>`<button onclick="document.getElementById('ai-input').value='${q}'" style="background:#f0fdf4;border:1px solid #15803d;color:#15803d;border-radius:20px;padding:5px 12px;font-size:11px">${q}</button>`).join('')}
+    ${["음절 구조란?","초성+중성 조합","받침 있는 음절","음절 읽기 연습","어려운 음절 팁"].map(q=>`<button onclick="document.getElementById('ai-input').value='${q}'" style="background:#f0fdf4;border:1px solid #15803d;color:#15803d;border-radius:20px;padding:5px 12px;font-size:11px">${q}</button>`).join('')}
   </div>
 </div>`;
 }
 
+
+function _typeText(el, text, speed) {
+  var i=0;
+  function _next(){
+    if(i<text.length){ el.textContent+=text[i++]; setTimeout(_next, speed); }
+  }
+  _next();
+}
 function sendAI() {
   const input = document.getElementById('ai-input');
   const chat = document.getElementById('ai-chat');
@@ -391,7 +398,8 @@ function sendAI() {
   chat.innerHTML += `<div class="bubble bubble-right" style="margin-left:auto;margin-bottom:8px"><b>나:</b> ${msg}</div>`;
   chat.innerHTML += `<div id="ai-loading" class="bubble bubble-left" style="margin-bottom:8px">⏳ 생각 중...</div>`;
   chat.scrollTop = chat.scrollHeight;
-  const systemPrompt = `You are a Korean language tutor for foreign workers at Hanwha Ocean shipyard. This is Level 0 (beginner), Lesson 4 on building Korean syllables (자음+모음 = 음절). Answer in Korean with English translation. Be encouraging, simple, and practical. Keep answers under 150 words.`;
+  const systemPrompt = `You are a Korean language tutor for foreign workers at Hanwha Ocean shipyard. This is Level 0 (beginner), Lesson 4 on building Korean syllables (자음+모음 = 음절). Answer in Korean with English translation. Be encouraging, simple, and practical. Keep answers under 150 words.
+LESSON:L0L4`;
   fetch('/api/chat', {
     method:'POST',
     headers:{'Content-Type':'application/json'},
@@ -401,8 +409,13 @@ function sendAI() {
   .then(d=>{
     document.getElementById('ai-loading')?.remove();
     const reply = d.choices?.[0]?.message?.content || '죄송합니다, 다시 시도해 주세요.';
-    chat.innerHTML += `<div class="bubble bubble-left" style="margin-bottom:8px"><b>AI 선생님:</b> ${reply}</div>`;
-    chat.scrollTop = chat.scrollHeight;
+    const _el=document.createElement('div');
+    _el.className='bubble bubble-left';_el.style.marginBottom='8px';
+    _el.innerHTML='<b>AI 선생님:</b> <span></span>';
+    chat.appendChild(_el);
+    const _sp=_el.querySelector('span');
+    _typeText(_sp, reply, 18);
+    chat.scrollTop=chat.scrollHeight;
   })
   .catch(()=>{
     document.getElementById('ai-loading')?.remove();

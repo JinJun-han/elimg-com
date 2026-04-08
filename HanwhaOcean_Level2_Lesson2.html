@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -527,7 +527,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level2_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level2_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 2 목차 · Contents</div></div>
     </a>
@@ -566,7 +566,7 @@ function renderHome() {
     <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 2-2과 · Beginner Level 2 Lesson 2</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ 0급 한글 입문 완료</span>
-      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
+      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 2급 초급 2 진행 중</span>
     </div
     <div style="font-size:26px;font-weight:800;margin-bottom:2px">회사에서 전화해요</div>
     <div style="font-size:13px;color:#aabbdd">Making Phone Calls at Work — 전화와 의사소통 · Phone Calls & Communication</div>
@@ -596,16 +596,16 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">📱 한국의 IT·통신 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Index.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-1과 안녕하세요?</a><a href="HanwhaOcean_Level2_Lesson3.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">3과 여기가 어디예요? →</a></div>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level2_Index" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-1과 안녕하세요?</a><a href="/HanwhaOcean_Level2_Lesson3" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">3과 여기가 어디예요? →</a></div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson1.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson1" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-1과 자기소개를 잘해요</strong>
         <div style="font-size:11px;color:#888;margin-top:2px">Self-Introduction</div>
       </div>
-    </a><a href="HanwhaOcean_Level2_Lesson3.html" style="display:block;text-decoration:none;flex:1">
+    </a><a href="/HanwhaOcean_Level2_Lesson3" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-3과 약속을 변경해요</strong>
@@ -1291,18 +1291,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'📲', label:'전화 받기 연습',
-    q:'조선소 회사에서 전화를 받는 한국어 연습을 해주세요. "여보세요", "잠깐만요", "전화 바꿔드릴게요" 같은 표현을 롤플레이로 연습시켜주세요. 영어도 함께요.' },
-  { emoji:'💬', label:'메시지 전달하기',
-    q:'부재중에 메시지를 전달하는 한국어 표현을 알려주세요. "지금 자리에 없어요", "메모 남겨드릴까요?", "다시 전화해 주세요" 같은 표현 5가지를 영어와 함께요.' },
-  { emoji:'🏭', label:'부서/이름 연결',
-    q:'회사 전화에서 부서와 사람을 연결하는 한국어를 연습해주세요. "용접팀 연결해 주세요", "김 팀장님 계세요?" 같은 표현을 조선소 상황으로 5가지 알려주세요.' },
-  { emoji:'🚨', label:'긴급 전화 표현',
-    q:'조선소 긴급 상황에서 쓰는 전화 표현을 알려주세요. "사고가 났어요!", "빨리 와주세요", "의무실에 연락해주세요" 같은 긴급 표현을 영어와 함께 알려주세요.' },
-  { emoji:'✏️', label:'전화 표현 복습',
-    q:'회사 전화 관련 한국어 표현을 복습해주세요. 여보세요, 잠깐만요, 다시 전화할게요, 메시지, 부재중 — 이 단어들을 예문으로 영어와 함께 설명해주세요.' },
-]
-
+  {emoji:'📞',label:'전화 받기(직장)',
+   q:'직장전화받기 answering work call 여보세요직장 회사전화를 알려주세요' },
+  {emoji:'📋',label:'메모 남기기',
+   q:'메모남기기 taking message 메모전달 전언을 알려주세요' },
+  {emoji:'🔗',label:'전화 연결하기',
+   q:'전화연결 transferring call 연결해드릴게요 담당자연결을 알려주세요' },
+  {emoji:'✋',label:'잠깐만요 표현',
+   q:'잠깐만요 hold on 기다려주세요 잠시만요를 알려주세요' },
+  {emoji:'📱',label:'부재중 대응',
+   q:'부재중 missed call 자리비움 전화못받았어요를 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1329,13 +1328,20 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = "You are a Korean workplace phone call coach for shipyard workers. Lesson focus: phone expressions like 여보세요(hello on phone), 잠깐만요(hold on), 전화 바꿔드릴게요(I'll transfer the call), 메시지 남기기(leave a message), 부재중(absent). Also demonstratives 이것/그것/저것 for identifying objects on the job. SHORT answers with English.";
+      var sysP = "You are a Korean workplace phone call coach for shipyard workers. Lesson focus: phone expressions like 여보세요(hello on phone), 잠깐만요(hold on), 전화 바꿔드릴게요(I'll transfer the call), 메시지 남기기(leave a message), 부재중(absent). Also demonstratives 이것/그것/저것 for identifying objects on the job. SHORT answers with English.
+LESSON:L2L2";
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

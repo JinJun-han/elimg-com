@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -509,7 +509,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level1_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level1_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 1 목차 · Contents</div></div>
     </a>
@@ -577,7 +577,7 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🎵 한국의 K-Culture 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson5.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 5과 얼마예요?</a><a href="HanwhaOcean_Level1_Lesson7.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">7과 주말에 뭐 해요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level1_Lesson5" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 5과 얼마예요?</a><a href="/HanwhaOcean_Level1_Lesson7" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">7과 주말에 뭐 해요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -1053,18 +1053,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🍽️', label:'구내식당 주문',
-    q:'조선소 구내식당에서 밥을 주문하는 한국어 대화를 연습해주세요. "불고기 주세요", "국 없이 주세요", "밥 더 주세요" 같은 표현을 롤플레이로 해주세요. 영어도 함께요.' },
-  { emoji:'🥘', label:'음식 이름 알려줘',
-    q:'한국 음식 이름을 알려주세요: 밥, 국, 반찬, 불고기, 김치찌개, 된장찌개, 비빔밥. 각 음식의 특징을 영어로 설명해주세요. 조선소 식당에서 자주 나오는 메뉴로요.' },
-  { emoji:'🌶️', label:'맵기/알레르기 표현',
-    q:'음식 알레르기나 맵기 조절을 요청하는 한국어를 알려주세요. "안 맵게 해주세요", "돼지고기 빼주세요", "이것 뭐예요?" 같은 표현을 영어와 함께 5가지요.' },
-  { emoji:'🥢', label:'식사 예절 표현',
-    q:'한국 식사 예절과 관련 표현을 알려주세요. "잘 먹겠습니다", "잘 먹었습니다", "맛있어요", "배불러요" 같은 식사 표현을 영어와 함께 알려주세요.' },
-  { emoji:'📋', label:'오늘 메뉴 묻기',
-    q:'조선소 구내식당에서 오늘 메뉴를 묻는 대화를 연습해주세요. "오늘 메뉴가 뭐예요?", "채식 메뉴 있어요?", "언제 식사 시간이에요?" 표현을 영어와 함께요.' },
-]
-
+  {emoji:'🍽️',label:'메뉴 주문하기',
+   q:'메뉴주문 ordering food 음식주문 주문하기를 알려주세요' },
+  {emoji:'😋',label:'맛 표현',
+   q:'맛표현 taste expression 맛있어요 맵다달다를 알려주세요' },
+  {emoji:'🍜',label:'음식 이름',
+   q:'음식이름 korean food 한국음식 식당메뉴를 알려주세요' },
+  {emoji:'🚫',label:'알레르기 말하기',
+   q:'알레르기 allergy 못먹어요 먹을수없어요를 알려주세요' },
+  {emoji:'🙇',label:'식당 예절',
+   q:'식당예절 restaurant manner 식사예절 밥먹을때를 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1091,13 +1090,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean food and dining coach for shipyard workers. Lesson focus: food vocabulary 밥(rice), 국(soup), 반찬(side dishes), 불고기(bulgogi), 김치찌개(kimchi stew), ordering with ~주세요, 을/를 먹어요 object marker. Keep answers SHORT with English.';
+      var sysP = 'You are a Korean food and dining coach for shipyard workers. Lesson focus: food vocabulary 밥(rice), 국(soup), 반찬(side dishes), 불고기(bulgogi), 김치찌개(kimchi stew), ordering with ~주세요, 을/를 먹어요 object marker. Keep answers SHORT with English. LESSON:L1L6';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

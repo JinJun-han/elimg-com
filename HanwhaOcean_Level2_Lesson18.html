@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -473,7 +473,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level2_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level2_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 2 목차 · Contents</div></div>
     </a>
@@ -542,16 +542,16 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🌍 한국의 다문화 사회 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level2_Lesson17.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-17과 면접을준비해요</a><a href="HanwhaOcean_Level2_Lesson19.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-19과 발표를해요 →</a></div>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level2_Lesson17" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-17과 면접을준비해요</a><a href="/HanwhaOcean_Level2_Lesson19" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-19과 발표를해요 →</a></div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson17.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson17" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-17과 면접을 준비해요</strong>
         <div style="font-size:11px;color:#888;margin-top:2px">Preparing for Interview</div>
       </div>
-    </a><a href="HanwhaOcean_Level2_Lesson19.html" style="display:block;text-decoration:none;flex:1">
+    </a><a href="/HanwhaOcean_Level2_Lesson19" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-19과 발표를 해요</strong>
@@ -794,7 +794,7 @@ function renderGeoje() {
     <div style="font-size:12px;font-weight:700;color:${i%2===0?'var(--ocean)':'var(--orange)'}">${f.label}</div>
     <div style="font-size:15px;font-weight:700;color:var(--navy);margin:6px 0">${f.val}</div>
   </div>`).join('')}
-  <a href="HanwhaOcean_Level2_Lesson19.html" style="display:block;text-decoration:none;margin-top:16px">
+  <a href="/HanwhaOcean_Level2_Lesson19" style="display:block;text-decoration:none;margin-top:16px">
     <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
       ➡️ 다음 과: 2-19 발표를 해요 · Next Lesson
     </button>
@@ -949,7 +949,7 @@ function renderLiteratureQuiz() {
       <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
       <button onclick="setState({fqIdx:0,fqSel:null,fqScore:0,fqDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
       <button onclick="setState({page:'folktale'})" class="btn" style="margin-top:8px;background:#e5e7eb;color:#555">📜 시 다시 읽기 · Read Poem Again</button>
-      <a href="HanwhaOcean_Level2_Lesson19.html" style="display:block;text-decoration:none;margin-top:16px">
+      <a href="/HanwhaOcean_Level2_Lesson19" style="display:block;text-decoration:none;margin-top:16px">
         <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
           ➡️ 다음 과: 2-19 발표를 해요 · Next Lesson
         </button>
@@ -1064,18 +1064,17 @@ function renderTopikPractice() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🤝', label:'다문화 존중 표현',
-    q:'다양한 나라 사람들과 함께 일할 때 쓰는 한국어 표현을 알려주세요. "서로 존중해요", "문화 차이를 이해해요", "다같이 협력해요" 같은 표현을 영어와 함께 5가지요.' },
-  { emoji:'🏢', label:'한국 조직 문화',
-    q:'한국 직장 조직 문화를 이해하는 데 도움이 되는 표현을 알려주세요. 상하 관계, 존댓말, 집단주의 문화를 외국인이 이해하고 적응할 수 있는 팁을 영어와 함께요.' },
-  { emoji:'🎌', label:'차별 대응 표현',
-    q:'직장에서 차별을 경험했을 때 한국어로 대응하는 방법을 알려주세요. "그 말은 차별적이에요", "불편해요", "공정하게 대우해 주세요" 표현을 영어와 함께요.' },
-  { emoji:'💬', label:'갈등 해결 표현',
-    q:'동료와 갈등이 생겼을 때 한국어로 해결하는 표현을 알려주세요. "제 말을 오해한 것 같아요", "솔직하게 이야기해요", "타협합시다" 표현을 영어와 함께요.' },
-  { emoji:'🌍', label:'내 나라 문화 소개',
-    q:'내 나라 문화를 한국어로 소개하는 연습을 해주세요. 음식, 명절, 인사 방법, 종교를 한국어로 소개하는 표현을 영어와 함께 만드는 방법을 알려주세요.' },
-]
-
+  {emoji:'🌍',label:'다문화 사회 이해',
+   q:'다문화사회이해 multicultural society 다문화 외국인근로자를 알려주세요' },
+  {emoji:'🤝',label:'문화 차이 표현',
+   q:'문화차이 cultural difference 문화충격 한국vs우리나라를 알려주세요' },
+  {emoji:'✊',label:'차별 대응',
+   q:'차별대응 responding to discrimination 차별 부당대우를 알려주세요' },
+  {emoji:'📋',label:'다문화 정책',
+   q:'다문화정책 multicultural policy 외국인정책 지원정책을 알려주세요' },
+  {emoji:'🌈',label:'문화 교류',
+   q:'문화교류 cultural exchange 문화나누기 다양성을 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1102,13 +1101,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean multicultural society coach for foreign workers. Lesson focus: social vocabulary 사회(society), 문화(culture), 전통(tradition), 차별(discrimination), 존중(respect), normative expressions ~어야 해요. Help workers navigate Korean workplace culture respectfully. SHORT answers with English.';
+      var sysP = 'You are a Korean multicultural society coach for foreign workers. Lesson focus: social vocabulary 사회(society), 문화(culture), 전통(tradition), 차별(discrimination), 존중(respect), normative expressions ~어야 해요. Help workers navigate Korean workplace culture respectfully. SHORT answers with English. LESSON:L2L18';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

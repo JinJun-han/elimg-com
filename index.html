@@ -494,7 +494,7 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
 .hw-title{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,36px);color:#fff;font-weight:900;line-height:1.35;margin-bottom:10px;}
 .hw-title em{color:#E8C05A;}
 .hw-sub{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:40px;line-height:1.8;}
-.hw-levels{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:18px;}
+.hw-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px;}
 .hw-level-card{border-radius:16px;padding:28px 16px 22px;text-align:center;text-decoration:none;transition:.25s;border:2px solid transparent;position:relative;overflow:hidden;}
 .hw-level-card.active{background:linear-gradient(135deg,#fff 0%,#EEF6FF 100%);border-color:rgba(255,255,255,.4);cursor:pointer;}
 .hw-level-card.active:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,.3);border-color:#E8C05A;}
@@ -514,6 +514,16 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
 .hw-note{font-size:12px;color:rgba(255,255,255,.4);margin-top:6px;}
 @media(max-width:700px){.hw-levels{grid-template-columns:repeat(2,1fr);}
 .hw-level-card{padding:20px 12px 16px;}.hw-level-num{font-size:28px;}}
+/* ── SECTION IDENTITY MARKERS ── */
+.kiip-sec{border-top:6px solid #C49A22;position:relative;}
+.kiip-sec::before{content:"🏛️ 법무부 사회통합프로그램 표준";position:absolute;top:0;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#C49A22,#E8C05A);color:#1a365d;padding:6px 22px;border-radius:0 0 14px 14px;font-size:11px;font-weight:800;letter-spacing:1px;box-shadow:0 4px 14px rgba(196,154,34,.3);z-index:5;}
+.hw-sec{border-top:6px solid #0EA5E9;position:relative;}
+.hw-sec::before{content:"⚓ 한화오션 조선소 맞춤형 KIIP";position:absolute;top:0;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#0EA5E9,#0284C7);color:#fff;padding:6px 22px;border-radius:0 0 14px 14px;font-size:11px;font-weight:800;letter-spacing:1px;box-shadow:0 4px 14px rgba(14,165,233,.4);z-index:5;}
+.hw-kiip-stage{display:inline-block;margin-top:6px;background:#0EA5E9;color:#fff;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:800;letter-spacing:.5px;}
+.hw-level-card.coming .hw-kiip-stage{background:rgba(255,255,255,.15);color:rgba(255,255,255,.4);}
+.kiip-level{position:relative;}
+.kiip-level .kiip-stage-tag{display:block;font-size:9px;color:#C49A22;font-weight:700;margin-top:2px;letter-spacing:.3px;}
+.kiip-level.active .kiip-stage-tag{color:#E8C05A;}
 /* ── BACK TO TOP ── */
 #backTop{position:fixed;bottom:24px;right:24px;z-index:500;width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--gold));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:#fff;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 4px 16px rgba(196,154,34,.35);}
 #backTop.vis{opacity:1;pointer-events:auto;}
@@ -1029,15 +1039,15 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
       <div class="kiip-demo reveal">
         <div class="kiip-demo-top">
           <div class="kiip-demo-icon">📚</div>
-          <div><div class="kiip-demo-name">글로컬 아카데미 KIIP</div><div class="kiip-demo-sub">Glocal Academy Korean Program</div></div>
+          <div><div class="kiip-demo-name">글로컬 아카데미 KIIP</div><div class="kiip-demo-sub">Glocal Academy KIIP · 법무부 사회통합프로그램 표준</div></div>
         </div>
         <div class="kiip-levels">
-          <div class="kiip-level"><div class="kl-num">0</div><div class="kl-name">기초</div></div>
-          <div class="kiip-level"><div class="kl-num">1</div><div class="kl-name">초급①</div></div>
-          <div class="kiip-level"><div class="kl-num">2</div><div class="kl-name">초급②</div></div>
-          <div class="kiip-level active"><div class="kl-num">3</div><div class="kl-name">중급①</div></div>
-          <div class="kiip-level"><div class="kl-num">4</div><div class="kl-name">중급②</div></div>
-          <div class="kiip-level"><div class="kl-num">5</div><div class="kl-name">고급</div></div>
+          <a href="/KIIP_Level0_Index.html" class="kiip-level" style="text-decoration:none;color:inherit;"><div class="kl-num">0</div><div class="kl-name">기초</div><span class="kiip-stage-tag">KIIP 0단계</span></a>
+          <a href="/KIIP_Level1_Index.html" class="kiip-level" style="text-decoration:none;color:inherit;"><div class="kl-num">1</div><div class="kl-name">초급1</div><span class="kiip-stage-tag">KIIP 1단계</span></a>
+          <a href="/KIIP_Level2_Index.html" class="kiip-level" style="text-decoration:none;color:inherit;"><div class="kl-num">2</div><div class="kl-name">초급2</div><span class="kiip-stage-tag">KIIP 2단계</span></a>
+          <a href="/KIIP_Level3_Index.html" class="kiip-level active" style="text-decoration:none;color:inherit;"><div class="kl-num">3</div><div class="kl-name">중급1</div><span class="kiip-stage-tag">KIIP 3단계</span></a>
+          <a href="/KIIP_Level4_Index.html" class="kiip-level" style="text-decoration:none;color:inherit;"><div class="kl-num">4</div><div class="kl-name">중급2</div><span class="kiip-stage-tag">KIIP 4단계</span></a>
+          <a href="/KIIP_Level5_Index.html" class="kiip-level" style="text-decoration:none;color:inherit;"><div class="kl-num">5</div><div class="kl-name">고급</div><span class="kiip-stage-tag">KIIP 5단계</span></a>
         </div>
         <div class="kiip-feature-list">
           <div class="kiip-feature"><span class="kf-icon">🎙️</span>AI 발음 녹음 · 즉시 재생 비교</div>
@@ -1083,47 +1093,54 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
   </div>
 </section>
 
-<!-- HANWHA OCEAN KOREAN EDUCATION -->
+<!-- HANWHA OCEAN 해외근로자 사회통합프로그램 KIIP -->
 <section class="hw-sec" id="hanwha">
   <div class="hw-inner">
-    <span class="hw-badge">⚓ 한화오션 × 글로컬아카데미 · Hanwha Ocean Korean Education</span>
-    <h2 class="hw-title">한화오션 해외근로자<br><em>한국어 교육 과정</em></h2>
-    <p class="hw-sub">거제 한화오션 조선소 외국인 근로자를 위한 맞춤 한국어 교육<br>AI 실습 · 어휘 · 문법 · 회화 · 퀴즈 · 베트남어 지원</p>
+    <span class="hw-badge">⚓ 한화오션 해외근로자 사회통합프로그램 KIIP · Hanwha Ocean KIIP</span>
+    <h2 class="hw-title">한화오션 해외근로자<br><em>사회통합프로그램 KIIP</em></h2>
+    <p class="hw-sub">거제 한화오션 조선소 특수 환경(용접·도장·안전·교대근무·산재·외국인 등록) 맞춤형 KIIP 교육<br>법무부 사회통합프로그램 0~5급 + 조선소 실무 어휘·회화·문법·퀴즈 · 베트남어 지원</p>
     <div class="hw-levels">
-      <a href="/HanwhaOcean_Level0_Index" class="hw-level-card active" style="border-top:3px solid #22c55e;">
+      <a href="/HanwhaOcean_Level0_Index.html" class="hw-level-card active" style="border-top:3px solid #22c55e;">
         <div class="hw-level-num" style="color:#15803d;">⓪</div>
         <div class="hw-level-name">입문</div>
         <div class="hw-level-sub">Foundation · KIIP 0단계</div>
         <div class="hw-level-count" style="color:#15803d;">📗 10과 · 15h</div>
       </a>
-      <a href="/HanwhaOcean_Level1_Index" class="hw-level-card active">
+      <a href="/HanwhaOcean_Level1_Index.html" class="hw-level-card active">
         <div class="hw-level-num">①</div>
-        <div class="hw-level-name">초급 1</div>
+        <div class="hw-level-name">초급1</div>
         <div class="hw-level-sub">Beginner 1 · KIIP 1단계</div>
         <div class="hw-level-count">📚 20과 완성</div>
       </a>
-      <a href="/HanwhaOcean_Level2_Index" class="hw-level-card active">
+      <a href="/HanwhaOcean_Level2_Index.html" class="hw-level-card active">
         <div class="hw-level-num">②</div>
-        <div class="hw-level-name">초급 2</div>
+        <div class="hw-level-name">초급2</div>
         <div class="hw-level-sub">Beginner 2 · KIIP 2단계</div>
         <div class="hw-level-count">📚 20과 완성</div>
       </a>
       <div class="hw-level-card coming">
         <span class="hw-lock">🔒</span>
         <div class="hw-level-num">③</div>
-        <div class="hw-level-name">중급</div>
-        <div class="hw-level-sub">Intermediate · KIIP 3단계</div>
+        <div class="hw-level-name">중급1</div>
+        <div class="hw-level-sub">Intermediate 1 · KIIP 3단계</div>
         <div class="hw-level-count">🔧 준비 중</div>
       </div>
       <div class="hw-level-card coming">
         <span class="hw-lock">🔒</span>
         <div class="hw-level-num">④</div>
+        <div class="hw-level-name">중급2</div>
+        <div class="hw-level-sub">Intermediate 2 · KIIP 4단계</div>
+        <div class="hw-level-count">🔧 준비 중</div>
+      </div>
+      <div class="hw-level-card coming">
+        <span class="hw-lock">🔒</span>
+        <div class="hw-level-num">⑤</div>
         <div class="hw-level-name">고급</div>
         <div class="hw-level-sub">Advanced · KIIP 5단계</div>
         <div class="hw-level-count">🔧 준비 중</div>
       </div>
     </div>
-    <p class="hw-note">⓪ ① ② 과정 학습 가능 · KIIP 0~2단계 연계 · ③ ④ 순차 오픈 예정</p>
+    <p class="hw-note">⓪ ① ② 과정 학습 가능 (KIIP 0~2단계 연계) · ③ ④ ⑤ 순차 오픈 예정 (KIIP 3~5단계)</p>
   </div>
 </section>
 

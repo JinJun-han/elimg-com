@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -484,7 +484,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level2_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level2_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 2 목차 · Contents</div></div>
     </a>
@@ -536,7 +536,7 @@ function renderHome() {
     <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 2-9과 · Beginner Level 2 Lesson 9</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ TOPIK 준비 시작</span>
-      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
+      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 2급 초급 2 진행 중</span>
     </div>
     <div style="font-size:26px;font-weight:800;margin-bottom:2px">고장을 신고해요</div>
     <div style="font-size:13px;color:#aabbdd">Report Malfunctions — 고장 신고 및 안전 · Malfunction Reports & Safety</div>
@@ -565,16 +565,16 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🛡️ 한국의 안전 시스템 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level2_Lesson8.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-8과 계약서를 확인해요</a><a href="HanwhaOcean_Level2_Lesson10.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-10과 한국역사를 배워요 →</a></div>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level2_Lesson8" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-8과 계약서를 확인해요</a><a href="/HanwhaOcean_Level2_Lesson10" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-10과 한국역사를 배워요 →</a></div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson8.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson8" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-8과 계약서를 확인해요</strong>
         <div style="font-size:11px;color:#888;margin-top:2px">Checking Contracts</div>
       </div>
-    </a><a href="HanwhaOcean_Level2_Lesson10.html" style="display:block;text-decoration:none;flex:1">
+    </a><a href="/HanwhaOcean_Level2_Lesson10" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-10과 한국 역사를 배워요</strong>
@@ -1168,18 +1168,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🚨', label:'고장 신고하기',
-    q:'조선소 장비가 고장났을 때 한국어로 신고하는 연습을 해주세요. "용접기가 고장났어요", "크레인이 작동 안 해요", "수리가 필요해요" 표현을 롤플레이로 해주세요.' },
-  { emoji:'⚠️', label:'안전 위험 보고',
-    q:'작업 현장 안전 위험을 보고하는 한국어 표현을 알려주세요. "가스가 새요", "바닥이 미끄러워요", "전기 스파크가 있어요" 같은 위험 신고 표현을 영어와 함께요.' },
-  { emoji:'🔩', label:'부품/도구 요청',
-    q:'부품이나 도구 교체를 요청하는 한국어 표현을 알려주세요. "새 부품이 필요해요", "이 부분을 교체해야 해요", "예비 부품 있어요?" 표현을 영어와 함께 5가지요.' },
-  { emoji:'📋', label:'작업 중단 요청',
-    q:'안전을 이유로 작업 중단을 요청하는 한국어를 알려주세요. "지금 작업하면 위험해요", "작업을 잠깐 멈춰야 해요", "안전 점검이 필요해요" 표현을 영어와 함께요.' },
-  { emoji:'📝', label:'~아/어 놓다 표현',
-    q:'완료 상태 유지 표현 ~아/어 놓다를 작업 상황으로 연습해주세요. "부품을 교체해 놓았어요", "점검해 놓았어요", "준비해 놓았어요" 문장 5개를 영어와 함께요.' },
-]
-
+  {emoji:'🔔',label:'고장 신고하기',
+   q:'고장신고 equipment failure report 장비고장 기계고장을 알려주세요' },
+  {emoji:'🔍',label:'문제 설명하기',
+   q:'문제설명 describing problem 어디이상 고장증상을 알려주세요' },
+  {emoji:'🔧',label:'수리 요청하기',
+   q:'수리요청 repair request 수리해주세요 AS요청을 알려주세요' },
+  {emoji:'⛑️',label:'안전 조치',
+   q:'안전조치 safety measures 작업중지 위험구역을 알려주세요' },
+  {emoji:'📖',label:'장비 어휘',
+   q:'장비어휘 equipment vocabulary 기계용어 공구이름을 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1206,13 +1205,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean equipment maintenance and safety reporting coach for shipyard workers. Lesson focus: malfunction vocabulary 고장(breakdown), 신고(report), 결함(defect), 수리(repair), 안전(safety), leave-in-state expression ~아/어 놓다. Help workers report equipment issues. SHORT answers with English.';
+      var sysP = 'You are a Korean equipment maintenance and safety reporting coach for shipyard workers. Lesson focus: malfunction vocabulary 고장(breakdown), 신고(report), 결함(defect), 수리(repair), 안전(safety), leave-in-state expression ~아/어 놓다. Help workers report equipment issues. SHORT answers with English. LESSON:L2L9';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -495,7 +495,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level2_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level2_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 2 목차 · Contents</div></div>
     </a>
@@ -534,7 +534,7 @@ function renderHome() {
     <div style="font-size:12px;color:#8899BB;margin-bottom:2px">초급 2-7과 · Beginner Level 2 Lesson 7</div>
     <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
       <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ TOPIK 준비 입문 완료</span>
-      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 1급 초급 1 진행 중</span>
+      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 2급 초급 2 진행 중</span>
     </div
     <div style="font-size:26px;font-weight:800;margin-bottom:2px">회의에 참석해요</div>
     <div style="font-size:13px;color:#aabbdd">Attending Meetings — 회의와 기업 소통 · Meetings & Corporate Communication</div>
@@ -563,16 +563,16 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🏢 한국 기업 문화 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level2_Lesson6.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-6과 뉴스를 이해해요</a><a href="HanwhaOcean_Level2_Lesson8.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-8과 계약서를 확인해요 →</a></div>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level2_Lesson6" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-6과 뉴스를 이해해요</a><a href="/HanwhaOcean_Level2_Lesson8" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-8과 계약서를 확인해요 →</a></div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson6.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson6" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-6과 뉴스를 이해해요</strong>
         <div style="font-size:11px;color:#888;margin-top:2px">Understanding News</div>
       </div>
-    </a><a href="HanwhaOcean_Level2_Lesson8.html" style="display:block;text-decoration:none;flex:1">
+    </a><a href="/HanwhaOcean_Level2_Lesson8" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-8과 계약서를 확인해요</strong>
@@ -1181,18 +1181,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'💼', label:'회의 참여 표현',
-    q:'조선소 작업 회의에서 참여하는 한국어 표현을 알려주세요. "저도 의견이 있어요", "잘 모르겠어요", "동의해요" 같은 회의 참여 표현을 영어와 함께 5가지요.' },
-  { emoji:'🗣️', label:'의견 말하기',
-    q:'한국어로 의견을 표현하는 방법을 알려주세요. "제 생각에는 ~인 것 같아요", "~뿐만 아니라 ~도 있어요", "저는 ~라고 생각해요" 같은 표현을 영어와 함께요.' },
-  { emoji:'❓', label:'모를 때 표현',
-    q:'회의에서 이해 못 했을 때 쓰는 한국어를 알려주세요. "다시 한번 말씀해 주세요", "이 부분이 잘 이해가 안 돼요", "제가 맞게 이해한 건가요?" 표현을 영어와 함께요.' },
-  { emoji:'⏰', label:'회의 시작/종료',
-    q:'작업 회의 시작과 종료 표현을 한국어로 알려주세요. "회의 시작하겠습니다", "오늘 안건은 ~입니다", "회의를 마치겠습니다" 같은 공식 표현을 영어와 함께요.' },
-  { emoji:'📋', label:'작업 보고하기',
-    q:'작업 현황을 회의에서 보고하는 한국어 표현을 알려주세요. "어제 작업은 완료했습니다", "문제가 있어요", "내일까지 마칠 예정이에요" 표현을 영어와 함께요.' },
-]
-
+  {emoji:'🎤',label:'회의 시작',
+   q:'회의시작 starting meeting 회의시작하기 회의개회를 알려주세요' },
+  {emoji:'💡',label:'의견 제시',
+   q:'의견제시 presenting opinion 의견말하기 회의발언을 알려주세요' },
+  {emoji:'👍',label:'동의/반대',
+   q:'동의반대 agree disagree 동의해요 반대해요를 알려주세요' },
+  {emoji:'📋',label:'회의록 작성',
+   q:'회의록 meeting minutes 회의기록 안건을 알려주세요' },
+  {emoji:'✅',label:'회의 마무리',
+   q:'회의마무리 closing meeting 회의끝내기 마무리를 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1219,13 +1218,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean workplace meeting coach for shipyard workers. Lesson focus: meeting vocabulary 회의(meeting), 참석(attendance), 발언(speak up), 의견(opinion), 조직(organization), complex pattern ~(으)ㄹ 뿐만 아니라 (not only...but also). Help workers participate in Korean workplace meetings. SHORT answers with English.';
+      var sysP = 'You are a Korean workplace meeting coach for shipyard workers. Lesson focus: meeting vocabulary 회의(meeting), 참석(attendance), 발언(speak up), 의견(opinion), 조직(organization), complex pattern ~(으)ㄹ 뿐만 아니라 (not only...but also). Help workers participate in Korean workplace meetings. SHORT answers with English. LESSON:L2L7';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

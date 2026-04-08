@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -520,7 +520,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level1_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level1_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 1 목차 · Contents</div></div>
     </a>
@@ -588,7 +588,7 @@ function renderHome() {
   </div>
   <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🤝 기업 문화 & 글로벌 경쟁력 보기</button>
   <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
-  <div style="display:flex;gap:8px;margin-top:12px"><a href="HanwhaOcean_Level1_Lesson14.html" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 14과 쇼핑하러 갈까요?</a><a href="HanwhaOcean_Level1_Lesson16.html" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">16과 어디에 살아요? →</a></div>`;
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/HanwhaOcean_Level1_Lesson14" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 14과 쇼핑하러 갈까요?</a><a href="/HanwhaOcean_Level1_Lesson16" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">16과 어디에 살아요? →</a></div>`;
 }
 
 function renderCurriculum() {
@@ -1065,18 +1065,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🤝', label:'약속 잡기',
-    q:'한국어로 동료와 약속을 잡는 대화를 연습해주세요. "이번 주말에 만날까요?", "몇 시에 어디서 만나요?", "알겠어요. 그때 봐요" 같은 표현을 롤플레이로 해주세요.' },
-  { emoji:'🎯', label:'주말 계획 말하기',
-    q:'~(으)ㄹ 거예요 표현으로 주말 계획을 말하는 연습을 해주세요. "내일 운동할 거예요", "주말에 부산에 갈 거예요" 같은 미래 계획 문장 5개를 영어와 함께요.' },
-  { emoji:'📍', label:'만날 장소 정하기',
-    q:'약속 장소를 정하는 한국어 표현을 알려주세요. "어디서 만날까요?", "정문 앞에서 만나요", "버스 정류장에서 기다릴게요" 같은 위치+약속 표현을 영어와 함께요.' },
-  { emoji:'⏰', label:'약속 시간 표현',
-    q:'약속 시간을 한국어로 정하는 표현을 알려주세요. "몇 시가 좋아요?", "오후 3시 어때요?", "조금 늦을 것 같아요" 같은 시간+약속 표현을 영어와 함께 5가지요.' },
-  { emoji:'❌', label:'약속 취소하기',
-    q:'불가피하게 약속을 취소해야 할 때 한국어 표현을 알려주세요. "갑자기 일이 생겼어요", "미안해요. 다음에 만나요", "다음 주에 다시 약속해요" 표현을 영어와 함께요.' },
-]
-
+  {emoji:'🤝',label:'약속 잡기',
+   q:'약속잡기 making appointment 언제만나요 약속정하기를 알려주세요' },
+  {emoji:'📝',label:'(으)ㄹ게요 문법',
+   q:'으ㄹ게요 으ㄹ게요문법 ㄹ게요 promise form을 알려주세요' },
+  {emoji:'📍',label:'시간/장소 정하기',
+   q:'시간장소정하기 setting time place 몇시에 어디서를 알려주세요' },
+  {emoji:'✅',label:'약속 확인',
+   q:'약속확인 confirm appointment 약속확인하기 맞죠를 알려주세요' },
+  {emoji:'🔄',label:'약속 변경/취소',
+   q:'약속변경취소 change cancel appointment 못가요 일정변경을 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1103,13 +1102,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean appointment and future plans coach for shipyard workers. Lesson focus: appointment vocab 약속(appointment), 계획(plan), 만나다(meet), 시간(time), 장소(place), future tense ~(으)ㄹ 거예요 (will/going to). Help workers make and manage social plans. SHORT answers with English.';
+      var sysP = 'You are a Korean appointment and future plans coach for shipyard workers. Lesson focus: appointment vocab 약속(appointment), 계획(plan), 만나다(meet), 시간(time), 장소(place), future tense ~(으)ㄹ 거예요 (will/going to). Help workers make and manage social plans. SHORT answers with English. LESSON:L1L15';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');

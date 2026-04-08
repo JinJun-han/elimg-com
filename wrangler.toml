@@ -6,9 +6,6 @@ compatibility_flags = ["nodejs_compat"]
 [assets]
 directory = "."
 
-[ai]
-binding = "AI"
-
 [[kv_namespaces]]
 binding = "FEEDBACK"
 id = "45ef8daace7b43aeb325f6aac26a358d"

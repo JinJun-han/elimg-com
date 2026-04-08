@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
-<head>
+<head><!-- cb1 -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <title>한화오션 해외근로자 한국어교육 | Hanwha Ocean Korean Education</title>
@@ -35,7 +35,7 @@ button{cursor:pointer;border:none;font-family:inherit}
 .bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
 .bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
 .bottom-nav .icon{font-size:18px}
-.page{padding:16px;padding-bottom:70px}
+.page{padding:16px;padding-bottom:180px}
 h2{color:var(--navy);font-size:19px;margin-bottom:4px}
 .sub{color:#888;font-size:11px;margin-bottom:14px}
 .card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
@@ -451,7 +451,7 @@ function renderNav() {
     ).join('') + '</div>';
   }
   return `<div class="nav">
-    <a href="HanwhaOcean_Level2_Index.html" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+    <a href="/HanwhaOcean_Level2_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
       <span style="font-size:18px">📋</span>
       <div><div class="nav-title">한화오션 한국어교육</div><div class="nav-sub">← Level 2 목차 · Contents</div></div>
     </a>
@@ -544,13 +544,13 @@ function renderCurriculum() {
   </div>
   <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
   <div style="display:flex;gap:8px">
-    <a href="HanwhaOcean_Level2_Lesson18.html" style="display:block;text-decoration:none;flex:1">
+    <a href="/HanwhaOcean_Level2_Lesson18" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
         <strong style="color:var(--navy)">2-18과 한국 사회를 이해해요</strong>
         <div style="font-size:11px;color:#888;margin-top:2px">Understanding Korean Society</div>
       </div>
-    </a><a href="HanwhaOcean_Level2_Lesson20.html" style="display:block;text-decoration:none;flex:1">
+    </a><a href="/HanwhaOcean_Level2_Lesson20" style="display:block;text-decoration:none;flex:1">
       <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
         <div style="font-size:11px;color:#888">다음 과 · Next →</div>
         <strong style="color:var(--navy)">2-20과 꿈을 이루어요</strong>
@@ -1006,7 +1006,7 @@ function renderLiteratureQuiz() {
       <div style="font-size:14px;opacity:0.9">${pct>=90?'문학 마스터! ⭐':pct>=70?'잘했어요! ✓':'다시 읽고 풀어봐요'}</div>
     </div>
     <button class="btn btn-primary" onclick="setState({fqIdx:0,fqSel:null,fqScore:0,fqDone:false})">다시 풀기</button>
-    <a href="HanwhaOcean_Level2_Lesson20.html" style="display:block;text-decoration:none;margin-top:16px">
+    <a href="/HanwhaOcean_Level2_Lesson20" style="display:block;text-decoration:none;margin-top:16px">
       <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
         ➡️ 다음 과: 2-20 꿈을 이루어요 · Next Lesson
       </button>
@@ -1079,7 +1079,7 @@ function renderGeoje() {
   <div class="card" style="margin-top:14px;background:#fff7ed;border-left:4px solid var(--orange)">
     <p style="color:#555;font-size:13px;line-height:1.6">${LOCAL_INFO.descEng}</p>
   </div>
-  <a href="HanwhaOcean_Level2_Lesson20.html" style="display:block;text-decoration:none;margin-top:16px">
+  <a href="/HanwhaOcean_Level2_Lesson20" style="display:block;text-decoration:none;margin-top:16px">
     <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
       ➡️ 다음 과: 2-20 꿈을 이루어요 · Next Lesson
     </button>
@@ -1090,18 +1090,17 @@ function renderGeoje() {
 
 // ===== AI 에이전트 (조선소 특화) =====
 var AI_QUICK_BTNS = [
-  { emoji:'🎙️', label:'발표 시작/마무리',
-    q:'한국어 발표를 시작하고 마무리하는 표현을 알려주세요. "발표를 시작하겠습니다", "주제는 ~입니다", "이상 발표를 마치겠습니다" 같은 표현을 영어와 함께 알려주세요.' },
-  { emoji:'📊', label:'작업 현황 발표',
-    q:'조선소 작업 현황을 발표하는 한국어 표현을 알려주세요. "이번 주 작업은 ~입니다", "진행 상황은 ~%입니다", "문제점은 ~이에요" 같은 보고 표현을 영어와 함께요.' },
-  { emoji:'❓', label:'질문에 답하기',
-    q:'발표 후 질문에 한국어로 답하는 연습을 해주세요. "좋은 질문이에요", "제 생각에는 ~인 것 같아요", "잘 모르겠지만 ~이라고 생각해요" 표현을 영어와 함께요.' },
-  { emoji:'📋', label:'중간 점검 표현',
-    q:'작업 중간 점검을 보고하는 한국어 표현을 알려주세요. "현재까지 ~을 완료했어요", "일정대로 진행 중이에요", "추가 작업이 필요해요" 표현을 영어와 함께 5가지요.' },
-  { emoji:'🗣️', label:'발표 자료 설명',
-    q:'발표 자료를 설명하는 한국어 표현을 알려주세요. "이 그래프는 ~을 보여줍니다", "이 수치를 보시면", "표를 참고해 주세요" 같은 발표용 표현을 영어와 함께요.' },
-]
-
+  {emoji:'🎤',label:'발표 시작',
+   q:'발표시작 starting presentation 발표시작하기 프레젠테이션시작을 알려주세요' },
+  {emoji:'🗣️',label:'발표 진행',
+   q:'발표진행 presenting 발표하기 내용설명을 알려주세요' },
+  {emoji:'📊',label:'시각자료 설명',
+   q:'시각자료설명 explaining visual 그래프표설명 슬라이드를 알려주세요' },
+  {emoji:'❓',label:'질의응답',
+   q:'질의응답 q and a 질문받기 답변하기를 알려주세요' },
+  {emoji:'✅',label:'발표 마무리',
+   q:'발표마무리 closing presentation 발표끝내기 마무리인사를 알려주세요' }
+];
 var AICHAT = {
   msgs: [],
   loading: false,
@@ -1128,13 +1127,19 @@ var AICHAT = {
     var displayText = label || text;
     this.addMsg('user', displayText);
     try {
-      var sysP = 'You are a Korean public speaking and presentation coach for shipyard workers. Lesson focus: presentation vocabulary 발표(presentation), 준비(preparation), 주제(topic), 자료(material), 질문(question), imperative/instructional Korean forms. Help workers give confident reports in Korean. SHORT answers with English.';
+      var sysP = 'You are a Korean public speaking and presentation coach for shipyard workers. Lesson focus: presentation vocabulary 발표(presentation), 준비(preparation), 주제(topic), 자료(material), 질문(question), imperative/instructional Korean forms. Help workers give confident reports in Korean. SHORT answers with English. LESSON:L2L19';
       var url = '/api/chat';
       var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-      var data = await res.json();
+                  var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
-      this.addMsg('assistant', reply);
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
     } catch(e) {
       this.loading = false;
       this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');
