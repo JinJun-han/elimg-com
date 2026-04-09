@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 4급 14과 · 직업과 진로</title>
+<meta name="theme-color" content="#1d4ed8"/>
+<meta property="og:title" content="KIIP 4급 14과 · 직업과 진로"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level4_Lesson14.html"/>
+<meta property="og:description" content="KIIP 4급 14과 직업과 진로 - 어휘, 문법, 말하기, 듣기, 읽기, 쓰기, 문화, 퀴즈"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1d4ed8;--navy:#1e3a5f;--indigo:#1e40af;--green:#22c55e;--red:#ef4444;--gray:#f0f4ff;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(30,58,95,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #dbeafe;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:700}
+.tab-btn:hover{background:#eff6ff}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #dbeafe;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(30,58,95,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--blue)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(30,58,95,0.08);border:1px solid #dbeafe}
+.card-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--blue)}
+h3{font-size:16px;font-weight:700;color:var(--indigo);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 12px rgba(29,78,216,0.15)}
+.vocab-card.flipped{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--navy)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--blue);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue);margin:14px 0 8px;padding:4px 10px;background:#eff6ff;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.grammar-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.grammar-tab{padding:8px 18px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.grammar-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rule-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:6px}
+.example-list{list-style:none}
+.example-list li{padding:8px 12px;border-radius:8px;margin-bottom:6px;background:#f8faff;border:1px solid #dbeafe;font-size:14px;line-height:1.6}
+.example-list li .ko{color:var(--navy);font-weight:600}
+.example-list li .en{color:#475569;font-size:12px}
+.practice-item{background:#fff;border:2px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.practice-item input{border:1px solid #bfdbfe;border-radius:6px;padding:6px 10px;font-size:14px;width:140px;margin:0 4px}
+.practice-item input:focus{outline:none;border-color:var(--blue)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.check-btn:hover{background:var(--indigo)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.topik-card{background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #bfdbfe;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--blue);background:#eff6ff}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f8faff;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--blue);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--indigo)}
+.bubble{background:#eff6ff;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#dbeafe}
+.listen-script-box{background:#f0f4ff;border:2px dashed #bfdbfe;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--navy)}
+.listen-q{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.reveal-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--indigo)}
+.pron-rule{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #bfdbfe}
+.pron-word{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:6px 12px;margin:4px;font-size:14px}
+.pron-arrow{color:var(--blue);font-weight:700}
+.reading-text{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--blue);font-weight:700}
+.writing-guide{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--navy)}
+textarea{width:100%;border:2px solid #bfdbfe;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--blue)}
+.sample-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--navy);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--navy);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #dbeafe;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #dbeafe;background:#f8faff;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--blue);background:#eff6ff}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--navy);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#60a5fa}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #dbeafe}
+.pron-sent{background:#f0f4ff;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--navy);flex:1}
+.rec-btn{background:var(--blue);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--indigo)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #dbeafe;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.lang-toggle{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.lang-btn{padding:6px 14px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:12px;font-weight:600;color:#64748b;transition:all 0.2s}
+.lang-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tip-box{background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:#475569;margin-top:8px}
+.tip-box strong{color:var(--blue)}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#eff6ff;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--navy)}
+.intro-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--indigo) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--navy)}
+.objective-list li::before{content:'✓';color:var(--blue);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--navy)}
+.section-nav-btn:hover{border-color:var(--blue);background:#eff6ff;color:var(--blue)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},vocabShowEng:true,
+  listenRevealed:false,listenAnswers:{},
+  gramPracticeShown:{},readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  grammarTab:0,topikAnswers:{},
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'문법',icon:'📐'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'발음',icon:'🔊'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'직업',hanja:'職業',en:'occupation/job',vi:'nghề nghiệp',cat:'직업 종류'},
+  {ko:'의사',hanja:'醫師',en:'doctor',vi:'bác sĩ',cat:'직업 종류'},
+  {ko:'교사',hanja:'敎師',en:'teacher',vi:'giáo viên',cat:'직업 종류'},
+  {ko:'엔지니어',hanja:'엔지니어',en:'engineer',vi:'kỹ sư',cat:'직업 종류'},
+  {ko:'공무원',hanja:'公務員',en:'public servant/government employee',vi:'công chức',cat:'직업 종류'},
+  {ko:'이력서',hanja:'履歷書',en:'resume/CV',vi:'hồ sơ xin việc',cat:'취업 활동'},
+  {ko:'면접',hanja:'面接',en:'interview',vi:'phỏng vấn',cat:'취업 활동'},
+  {ko:'자격증',hanja:'資格證',en:'certificate/qualification',vi:'chứng chỉ',cat:'취업 활동'},
+  {ko:'경력',hanja:'經歷',en:'work experience/career',vi:'kinh nghiệm làm việc',cat:'취업 활동'},
+  {ko:'지원하다',hanja:'支援하다',en:'to apply (for a job)',vi:'nộp đơn xin việc',cat:'취업 활동'},
+  {ko:'목표',hanja:'目標',en:'goal/objective',vi:'mục tiêu',cat:'진로 계획'},
+  {ko:'계획',hanja:'計劃',en:'plan',vi:'kế hoạch',cat:'진로 계획'},
+  {ko:'준비',hanja:'準備',en:'preparation',vi:'chuẩn bị',cat:'진로 계획'},
+  {ko:'도전',hanja:'挑戰',en:'challenge/attempt',vi:'thử thách',cat:'진로 계획'},
+  {ko:'성공',hanja:'成功',en:'success',vi:'thành công',cat:'진로 계획'},
+  {ko:'연봉',hanja:'年俸',en:'annual salary',vi:'lương năm',cat:'직장 생활'},
+  {ko:'복직',hanja:'復職',en:'return to work',vi:'trở lại làm việc',cat:'직장 생활'},
+  {ko:'승진',hanja:'昇進',en:'promotion',vi:'thăng chức',cat:'직장 생활'},
+  {ko:'퇴직',hanja:'退職',en:'retirement/resignation',vi:'nghỉ hưu',cat:'직장 생활'},
+  {ko:'전문성',hanja:'專門性',en:'expertise/specialization',vi:'chuyên môn',cat:'직장 생활'},
+];
+
+const GRAM1={
+  title:'-(으)ㄹ 따름이다',
+  meaning:'오직 그것만 할 수 있거나 그것뿐임을 나타냄. 다른 선택이 없이 그 방법뿐임을 표현.',
+  en:'Can only... / All one can do is... / That\'s all there is to it / Simply',
+  rule:'동사 어간 + -(으)ㄹ 따름이다 (자음: -을 따름이다, 모음/ㄹ: -ㄹ 따름이다)',
+  examples:[
+    {ko:'목표를 위해 열심히 노력할 따름이다.',en:'All I can do is work hard toward my goal.'},
+    {ko:'면접에서 최선을 다할 따름이에요.',en:'All I can do is give my best at the interview.'},
+    {ko:'결과를 기다릴 따름이에요.',en:'All I can do is wait for the results.'},
+    {ko:'합격을 믿고 준비할 따름이다.',en:'All I can do is believe in passing and prepare.'},
+    {ko:'지금은 자격증 취득을 위해 공부할 따름이에요.',en:'Right now, all I can do is study to get the certificate.'},
+  ],
+  practice:[
+    {q:'목표를 위해 최선을 다할___ ___.',answer:'따름이다'},
+    {q:'면접 결과를 기다릴___ ___.',answer:'따름이다'},
+    {q:'지금은 열심히 준비할___ ___.',answer:'따름이다'},
+    {q:'합격을 믿고 도전할___ ___.',answer:'따름이다'},
+    {q:'경험을 쌓을___ ___.',answer:'따름이다'},
+  ],
+  topik:[
+    {q:'"-(으)ㄹ 따름이다"의 의미는?',opts:['오직 그것만 할 수 있음','당연히 그렇게 됨','그 결과로 생긴 것','조건이 계속됨'],answer:0},
+    {q:'빈칸: "면접에서 최선을 다할___ ___."',opts:['따름이다','법이다','텐데','셈이다'],answer:0},
+  ]
+};
+
+const GRAM2={
+  title:'-고자',
+  meaning:'어떤 행동을 하려는 의도나 목적을 나타냄. "-려고"와 유사하나 더 격식적·문어적 표현.',
+  en:'Intending to / Wanting to / With the goal of / In order to (formal)',
+  rule:'동사 어간 + -고자 (어간 그대로 사용)',
+  examples:[
+    {ko:'좋은 직업을 갖고자 열심히 공부하고 있습니다.',en:'I am studying hard, intending to get a good job.'},
+    {ko:'한국어 능력을 키우고자 KIIP 과정에 등록했습니다.',en:'I enrolled in the KIIP program, wanting to improve my Korean.'},
+    {ko:'이력서를 제출하고자 방문했습니다.',en:'I came to submit my resume.'},
+    {ko:'자격증을 취득하고자 학원에 다니고 있습니다.',en:'I am attending a school, intending to get a certificate.'},
+    {ko:'목표를 달성하고자 매일 노력하고 있습니다.',en:'I strive every day, wanting to achieve my goals.'},
+  ],
+  practice:[
+    {q:'좋은 직업을 얻___ 공부합니다.',answer:'고자'},
+    {q:'한국어를 배우___ KIIP에 왔습니다.',answer:'고자'},
+    {q:'자격증을 따___ 열심히 준비 중입니다.',answer:'고자'},
+    {q:'면접에 합격하___ 최선을 다합니다.',answer:'고자'},
+    {q:'목표를 이루___ 매일 노력합니다.',answer:'고자'},
+  ],
+  topik:[
+    {q:'"-고자"의 의미와 가장 비슷한 표현은?',opts:['-려고','-는 한','-고서야','-다시피'],answer:0},
+    {q:'빈칸: "한국어 능력을 향상시키___ KIIP 과정에 등록했습니다."',opts:['고자','는 법이다','ㄹ 따름이다','거니와'],answer:0},
+  ]
+};
+
+const QUIZ=[
+  {q:'"이력서"의 영어는?',opts:['interview','resume/CV','certificate','career'],answer:1},
+  {q:'"목표를 위해 열심히 노력할 따름이다."에서 "따름이다"의 의미는?',opts:['노력할 수 없다','오직 노력하는 것뿐이다','노력하는 것이 당연하다','노력한 결과이다'],answer:1},
+  {q:'"좋은 직업을 얻고자 공부합니다."에서 "-고자"의 의미는?',opts:['공부한 결과','공부하는 것이 당연함','공부하려는 목적으로','공부한 후에야'],answer:2},
+  {q:'"공무원"의 영어는?',opts:['engineer','public servant','doctor','teacher'],answer:1},
+  {q:'"면접"에서 중요한 것이 아닌 것은?',opts:['자신감 있는 태도','준비된 답변','적절한 옷차림','면접관의 이름 외우기'],answer:3},
+  {q:'"전문성"의 뜻은?',opts:['일반적인 능력','특정 분야의 높은 능력과 지식','대인 관계','취미 활동'],answer:1},
+  {q:'빈칸: "결과를 기다릴___ ___."',opts:['따름이다','법이다','고자','텐데'],answer:0},
+  {q:'"자격증"이 필요한 직업이 아닌 것은?',opts:['의사','간호사','변호사','프리랜서 작가'],answer:3},
+  {q:'"도전"의 영어는?',opts:['success','preparation','challenge/attempt','goal'],answer:2},
+  {q:'빈칸: "성공하___ 매일 노력하고 있습니다."',opts:['고자','ㄹ 따름이다','거니와','뿐만 아니라'],answer:0},
+];
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level4_Lesson13">← 13과</a>
+      <span class="nav-title">4급 14과 · 직업과 진로</span>
+      <a href="/KIIP_Level4_Lesson15">15과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level4_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level4_Lesson15"><span class="icon">➡️</span>15과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let gramHtml;
+      if(STATE.grammarTab===0){gramHtml=renderGramBlock(GRAM1,'gram1');}
+      else{gramHtml=renderGramBlock(GRAM2,'gram2');}
+      return `<h2>📐 문법</h2>
+        <div class="grammar-tabs">
+          <button class="grammar-tab${STATE.grammarTab===0?' active':''}" onclick="setState({grammarTab:0})">1. -(으)ㄹ 따름이다</button>
+          <button class="grammar-tab${STATE.grammarTab===1?' active':''}" onclick="setState({grammarTab:1})">2. -고자</button>
+        </div>${gramHtml}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderPronunciation();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10:{
+      setTimeout(()=>RECORDER.autoDetect(),100);
+      const PRON_SENTS=[
+        '좋은 직업을 얻고자 한국어와 관련 자격증을 열심히 준비하고 있습니다.',
+        '지금 할 수 있는 것은 최선을 다해 준비할 따름입니다.',
+        '한국에서 취업하고자 이력서를 작성하고 면접을 준비하고 있습니다.',
+        '목표를 향해 꾸준히 노력하면 반드시 성공할 수 있습니다.',
+      ];
+      return `<h2>🤖 AI 발음 실습</h2>
+        <div class="ai-section">
+          <h3>발음 연습</h3>
+          <p style="font-size:13px;color:#64748b;margin-bottom:12px">문장을 따라 말하고 AI가 발음을 분석합니다.</p>
+          <div id="rec-status"><p style="color:#94a3b8;font-size:13px">마이크 상태 확인 중...</p></div>
+          ${PRON_SENTS.map((s,i)=>`
+            <div class="pron-sent" id="pron-sent-${i}">
+              <span class="sent-text">${s} ${ttsBtn(s)}</span>
+              <div id="score-badge-${i}" class="score-badge">-</div>
+              <button class="rec-btn" id="rec-btn-${i}" onclick="RECORDER.toggle(${i},PRON_SENTS_14)">🎤 녹음</button>
+            </div>`).join('')}
+          <div id="stt-result" style="min-height:32px;margin-top:8px;font-size:13px;color:#475569"></div>
+        </div>
+        <script>var PRON_SENTS_14=${JSON.stringify(PRON_SENTS)};<\/script>
+        <div class="card">
+          <div class="card-title">💡 AI 활용 연습 주제</div>
+          <div class="speaking-topics">
+            <div class="speaking-topic">AI에게 "한국에서 외국인이 취업하는 방법을 한국어로 설명해 줘"라고 질문해 보세요.</div>
+            <div class="speaking-topic">"-(으)ㄹ 따름이다"와 "-고자"를 사용하여 직업 목표에 대한 문장 5개를 만들어 달라고 해 보세요.</div>
+            <div class="speaking-topic">AI와 함께 "나의 직업 목표와 준비" 주제로 글쓰기 연습을 해 보세요.</div>
+          </div>
+        </div>`;
+    }
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 4급 · 14과</div>
+      <h1 style="margin-top:12px">직업과 진로</h1>
+      <p class="subtitle">Career &amp; Future Plans · Nghề nghiệp và Định hướng</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>직업 종류, 취업 활동, 진로 계획, 직장 생활 어휘 20개를 익힌다.</li>
+        <li>-(으)ㄹ 따름이다를 사용하여 오직 그것만 할 수 있음을 표현할 수 있다.</li>
+        <li>-고자를 사용하여 격식 있는 의도와 목적을 표현할 수 있다.</li>
+        <li>한국에서 취업 준비와 직업 목표에 대해 말하고 쓸 수 있다.</li>
+        <li>한국의 취업 문화, 외국인 취업 비자, 고용허가제, 자기계발 문화를 이해한다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🔑 핵심 표현</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          지금은 열심히 준비<strong>할 따름이에요</strong>. ${ttsBtn('지금은 열심히 준비할 따름이에요.')}
+        </div>
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          좋은 직업을 갖<strong>고자</strong> 열심히 공부하고 있습니다. ${ttsBtn('좋은 직업을 갖고자 열심히 공부하고 있습니다.')}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 학습 섹션</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.filter(s=>s.id>0).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `
+    <h2>📝 어휘</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div class="lang-toggle">
+        <button class="lang-btn${STATE.lang==='ko'?' active':''}" onclick="setState({lang:'ko',vocabFlipped:{}})">한국어</button>
+        <button class="lang-btn${STATE.lang==='en'?' active':''}" onclick="setState({lang:'en',vocabFlipped:{}})">English</button>
+        <button class="lang-btn${STATE.lang==='vi'?' active':''}" onclick="setState({lang:'vi',vocabFlipped:{}})">Tiếng Việt</button>
+      </div>
+      <button class="check-btn" onclick="setState({vocabFlipped:{}})">초기화</button>
+    </div>
+    <div class="tip-box" style="margin-bottom:14px"><strong>💡 Tip:</strong> 카드를 클릭하면 뒤집어집니다!</div>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map(v=>{
+          const idx=VOCAB.indexOf(v);
+          const flipped=STATE.vocabFlipped[idx];
+          const meaning=STATE.lang==='vi'?v.vi:v.en;
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="STATE.vocabFlipped[${idx}]=!STATE.vocabFlipped[${idx}];render()">
+            ${!flipped
+              ?`<span class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</span><span class="vocab-hanja">${v.hanja}</span>`
+              :`<span class="vocab-ko">${meaning}</span><span class="vocab-eng">${v.ko}</span>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderGramBlock(gram,prefix){
+  const practiceHtml=gram.practice.map((p,i)=>{
+    const shown=STATE.gramPracticeShown[prefix+'_'+i];
+    const q=p.q.replace('___',`<input id="${prefix}-inp-${i}" placeholder="___" style="width:110px"/>`);
+    return `<div class="practice-item">
+      <div style="font-size:14px;color:var(--navy);margin-bottom:8px;line-height:1.6">${q}</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" onclick="
+          var v=document.getElementById('${prefix}-inp-${i}').value.trim();
+          if(v==='${p.answer}'){document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=answer-reveal>✅ 정답!</span>';}
+          else{document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=wrong-reveal>❌ 다시 해보세요</span>';}
+        ">확인</button>
+        <button class="check-btn" style="background:#64748b" onclick="STATE.gramPracticeShown['${prefix}_${i}']=true;render()">정답 보기</button>
+      </div>
+      <div id="${prefix}-fb-${i}">${shown?`<span class="answer-reveal">정답: ${p.answer}</span>`:''}</div>
+    </div>`;
+  }).join('');
+  const topikHtml=gram.topik.map((t,i)=>{
+    const key=prefix+'_topik_'+i;
+    const chosen=STATE.topikAnswers[key];
+    return `<div class="topik-card">
+      <div class="q-text">${t.q}</div>
+      <div class="topik-options">
+        ${t.opts.map((opt,j)=>{
+          let cls='topik-opt';
+          if(chosen!==undefined){if(j===t.answer)cls+=' correct';else if(j===chosen)cls+=' wrong';}
+          return `<button class="${cls}" onclick="STATE.topikAnswers['${key}']=${j};render()" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+        }).join('')}
+      </div>
+      ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;color:${chosen===t.answer?'#166534':'#991b1b'};font-weight:700">${chosen===t.answer?'✅ 정답!':'❌ 오답 - 정답: '+(t.answer+1)+'번'}</div>`:''}
+    </div>`;
+  }).join('');
+  return `
+    <div class="card">
+      <div class="card-title">📌 ${gram.title}</div>
+      <div class="rule-box"><div class="rule-title">의미</div><div style="font-size:14px;color:var(--navy);margin-bottom:4px">${gram.meaning}</div><div style="font-size:13px;color:#475569">🇺🇸 ${gram.en}</div></div>
+      <div class="rule-box"><div class="rule-title">형태 규칙</div><div style="font-size:14px;color:var(--navy)">${gram.rule}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 예문</div>
+      <ul class="example-list">${gram.examples.map(e=>`<li><span class="ko">${e.ko} ${ttsBtn(e.ko)}</span><br><span class="en">${e.en}</span></li>`).join('')}</ul>
+    </div>
+    <div class="card"><div class="card-title">✏️ 빈칸 채우기 연습</div>${practiceHtml}</div>
+    <div class="card"><div class="card-title">📋 TOPIK 유형</div>${topikHtml}</div>`;
+}
+
+function renderSpeaking(){
+  const dialogues=[
+    {title:'대화 1: 직업 계획',lines:[
+      {speaker:'A',text:'한국에서 어떤 일을 하고 싶으세요?',side:'a'},
+      {speaker:'B',text:'통역사가 되고자 한국어를 열심히 공부하고 있어요.',side:'b'},
+      {speaker:'A',text:'통역사가 되려면 어떤 준비가 필요한가요?',side:'a'},
+      {speaker:'B',text:'한국어 자격증을 따야 하고, 실무 경험도 쌓아야 해요. 지금은 공부할 따름이에요.',side:'b'},
+      {speaker:'A',text:'응원할게요! 꼭 성공하실 거예요.',side:'a'},
+      {speaker:'B',text:'감사해요. 최선을 다할 따름입니다.',side:'b'},
+    ]},
+    {title:'대화 2: 취업 준비',lines:[
+      {speaker:'A',text:'요즘 취업 준비는 잘 되고 있어요?',side:'a'},
+      {speaker:'B',text:'이력서를 여러 군데 제출하고 면접도 봤는데 아직 연락이 없어요.',side:'b'},
+      {speaker:'A',text:'많이 힘드시겠어요.',side:'a'},
+      {speaker:'B',text:'포기하지 않고 계속 도전하고자 마음먹었어요.',side:'b'},
+      {speaker:'A',text:'어떤 회사에 지원했어요?',side:'a'},
+      {speaker:'B',text:'한국 회사에서 일하고자 중소기업 위주로 지원하고 있어요.',side:'b'},
+    ]},
+    {title:'대화 3: 커리어 상담',lines:[
+      {speaker:'A',text:'한국에서 직업을 바꾸고 싶은데 어떻게 해야 할까요?',side:'a'},
+      {speaker:'B',text:'먼저 원하는 분야의 자격증을 취득하고자 공부를 시작하는 것이 좋아요.',side:'b'},
+      {speaker:'A',text:'나이가 많으면 취업이 어렵지 않을까요?',side:'a'},
+      {speaker:'B',text:'경력과 전문성이 있으면 나이보다 실력을 봐요.',side:'b'},
+      {speaker:'A',text:'그렇군요. 일단 준비할 따름이군요.',side:'a'},
+      {speaker:'B',text:'맞아요. 꾸준히 노력하면 기회가 올 거예요.',side:'b'},
+    ]},
+  ];
+  const topics=[
+    '미래에 하고 싶은 직업과 그 이유를 이야기해 보세요.',
+    '취업을 위해 어떤 준비를 하고 있는지 말해보세요.',
+    '직업을 선택할 때 가장 중요하게 생각하는 것을 이야기해 보세요.',
+  ];
+  return `<h2>💬 말하기</h2>
+    ${dialogues.map(d=>`<div class="card"><div class="card-title">${d.title}</div><div class="dialogue">
+      ${d.lines.map(l=>`<div class="dialogue-line${l.side==='b'?' b':''}"><span class="speaker">${l.speaker}</span><div class="bubble">${l.text} ${ttsBtn(l.text)}</div></div>`).join('')}
+    </div></div>`).join('')}
+    <div class="card"><div class="card-title">🗣️ 자유 말하기 주제</div><div class="speaking-topics">
+      ${topics.map((t,i)=>`<div class="speaking-topic"><strong>${i+1}.</strong> ${t}</div>`).join('')}
+    </div></div>`;
+}
+
+function renderListening(){
+  const script='[취업 특강]\n\n안녕하세요. 오늘은 한국에서 취업 준비 방법에 대해 알아보겠습니다.\n\n한국에서 외국인으로 취업하고자 한다면 몇 가지 준비가 필요합니다. 첫째, 한국어 능력이 중요합니다. TOPIK 3급 이상이면 많은 회사에 지원할 수 있습니다. 둘째, 관련 분야의 자격증이나 경력이 있으면 도움이 됩니다.\n\n이력서 작성 시에는 한국식 이력서 형식을 따르는 것이 좋습니다. 사진, 개인 정보, 학력, 경력 순서로 작성합니다. 면접에서는 자신감 있게 자신의 강점을 표현할 따름입니다.\n\n취업 정보는 워크넷, 잡코리아 등 채용 사이트를 활용하세요. 외국인 고용 지원 센터에서도 취업 상담과 교육을 제공합니다.';
+  const questions=[
+    {q:'1. 한국 취업을 위해 필요한 한국어 수준은?',opts:['TOPIK 1급','TOPIK 2급','TOPIK 3급 이상','TOPIK 6급'],answer:2},
+    {q:'2. 한국식 이력서에 포함되지 않는 것은?',opts:['사진','학력','경력','취미와 특기 목록'],answer:3},
+    {q:'3. 취업 정보를 찾을 수 있는 곳이 아닌 것은?',opts:['워크넷','잡코리아','외국인 고용 지원 센터','비자 신청 센터'],answer:3},
+  ];
+  return `<h2>👂 듣기</h2>
+    <div class="card">
+      <div class="card-title">🎬 취업 특강</div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:!STATE.listenRevealed})">${STATE.listenRevealed?'📄 스크립트 숨기기':'📄 스크립트 보기'}</button>
+      ${STATE.listenRevealed?`<div class="listen-script-box">${script.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}</div>`:''}
+      <div style="text-align:center;margin-bottom:12px">
+        <button class="reveal-btn" onclick="TTS.speak(${JSON.stringify(script)})">🔊 전체 듣기</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 듣기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.listenAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.listenAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderPronunciation(){
+  const words=[
+    {word:'이력서',pron:'이력써'},
+    {word:'자격증',pron:'자격쯩'},
+    {word:'면접',pron:'면접'},
+    {word:'직업',pron:'지겁'},
+  ];
+  const sents=[
+    {text:'이력서를 잘 준비하고자 취업 상담을 받았습니다.',note:'이력서[이력써] - 경음화'},
+    {text:'자격증을 취득하고자 열심히 공부하고 있습니다.',note:'자격증[자격쯩] - 경음화'},
+  ];
+  return `<h2>🔊 발음</h2>
+    <div class="card">
+      <div class="card-title">📏 발음 규칙: 경음화 - 받침 뒤 자음의 된소리 발음</div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">받침 'ㄱ, ㄷ, ㅂ' 뒤에 'ㄱ, ㄷ, ㅂ, ㅅ, ㅈ'이 오면 된소리로 발음됩니다. 예: 이력서 → [이력써], 자격증 → [자격쯩]. 또한 연음 현상으로 직업 → [지겁]으로 발음됩니다.</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:8px">예: 이력서 → [이력써], 자격증 → [자격쯩], 직업 → [지겁]</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">${words.map(w=>`<div class="pron-word"><span style="font-weight:700;color:var(--navy)">${w.word}</span><span class="pron-arrow">→</span><span style="color:var(--blue)">[${w.pron}]</span>${ttsBtn(w.word)}</div>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗣️ 문장 발음 연습</div>
+      ${sents.map(s=>`<div style="background:#eff6ff;border-radius:10px;padding:12px 14px;margin-bottom:10px"><div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">${s.text} ${ttsBtn(s.text)}</div><div style="font-size:12px;color:var(--blue)">${s.note}</div></div>`).join('')}
+    </div>`;
+}
+
+function renderReading(){
+  const rawText='현대 사회에서 직업은 단순히 돈을 버는 수단이 아닙니다. 자신의 능력을 발휘하고 사회에 기여하는 방법이기도 합니다.\n\n한국에서 외국인으로 취업하고자 한다면 체계적인 준비가 필요합니다. 한국어 능력 향상, 관련 자격증 취득, 현지 취업 문화 이해 등이 중요합니다. 지금 할 수 있는 것은 성실하게 준비할 따름입니다.\n\n직업 선택 시에는 자신의 적성과 흥미, 그리고 시장의 수요를 함께 고려해야 합니다. 목표를 분명히 세우고자 하는 사람은 더 효율적으로 준비할 수 있습니다. 도전을 두려워하지 말고, 꾸준히 노력하면 기회는 반드시 옵니다.';
+  const questions=[
+    {q:'1. 이 글에서 직업의 의미로 언급된 것이 아닌 것은?',opts:['능력 발휘','사회 기여','돈 버는 수단만이 아님','빠른 승진'],answer:3},
+    {q:'2. "준비할 따름입니다"에서 "따름이다"의 의미는?',opts:['준비할 수 없다','오직 준비하는 것뿐이다','준비하는 것이 당연하다','준비가 끝났다'],answer:1},
+    {q:'3. 직업 선택 시 고려해야 할 사항으로 언급된 것은?',opts:['회사 브랜드','연봉만','적성·흥미·시장 수요','위치와 출퇴근 거리'],answer:2},
+  ];
+  const highlighted=rawText
+    .replace(/따름이/g,'<span class="highlight">따름이</span>')
+    .replace(/고자/g,'<span class="highlight">고자</span>')
+    .replace(/\n\n/g,'<br><br>');
+  return `<h2>📖 읽기</h2>
+    <div class="card"><div class="card-title">📰 직업과 진로 ${ttsBtn(rawText)}</div><div class="reading-text">${highlighted}</div></div>
+    <div class="card"><div class="card-title">❓ 읽기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.readAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.readAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderWriting(){
+  const sample='저는 한국에서 요리사로 일하고자 한국에 왔습니다. 한국 요리를 배우고 싶어서 요리 학원에도 다니고 있습니다.\n\n목표를 이루기 위해 지금 할 수 있는 것은 열심히 공부하고 연습할 따름입니다. 한국어도 배우고자 KIIP 과정에 등록했습니다. 한국어 능력이 좋아야 요리사로서의 의사소통도 원활해질 것이기 때문입니다.\n\n아직 가야 할 길이 멀지만 포기하지 않겠습니다. 꾸준히 노력하고자 매일 목표를 되새깁니다. 언젠가 한국에서 제 이름을 건 식당을 열고 싶습니다.';
+  return `<h2>✏️ 쓰기</h2>
+    <div class="card">
+      <div class="card-title">📌 쓰기 주제</div>
+      <div style="background:var(--indigo);color:#fff;border-radius:10px;padding:14px;font-size:16px;font-weight:700;text-align:center;margin-bottom:12px">나의 직업 목표와 준비</div>
+      <div class="writing-guide"><h3>작성 가이드</h3><ul>
+        <li>목표로 하는 직업이나 진로를 소개하세요.</li>
+        <li>-(으)ㄹ 따름이다를 한 번 이상 사용하세요.</li>
+        <li>-고자를 한 번 이상 사용하세요.</li>
+        <li>목표를 위해 지금 어떤 준비를 하고 있는지 쓰세요.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 내 글쓰기</div>
+      <textarea placeholder="여기에 글을 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <span style="font-size:12px;color:#94a3b8">${STATE.writingText.length}자</span>
+        <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'샘플 숨기기':'샘플 답안 보기'}</button>
+      </div>
+      ${STATE.sampleShown?`<div class="sample-box">${sample.replace(/\n\n/g,'<br><br>')}</div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  const sections=[
+    {title:'💼 한국의 취업 문화',text:'한국의 대기업 취업 경쟁은 매우 치열합니다. 삼성, 현대, LG 등 대기업은 서류 전형, 필기시험, 면접 등 여러 단계를 거칩니다. 공개 채용과 수시 채용이 있으며, 최근에는 수시 채용이 늘어나고 있습니다.'},
+    {title:'📋 외국인 취업 비자',text:'한국에서 취업하는 외국인은 종류에 따라 E-1(교수), E-3(연구), E-6(예술흥행), E-7(특정활동) 등의 비자가 필요합니다. 전문 인력은 F-2, F-5(영주권) 등을 통해 더 자유롭게 일할 수 있습니다.'},
+    {title:'🏢 고용허가제',text:'한국은 외국인 근로자를 공식적으로 고용하는 고용허가제(EPS)를 운영합니다. 16개국 이상의 나라에서 한국어 능력 시험을 통해 한국에 취업할 수 있습니다. 이 제도로 많은 외국인이 한국에서 합법적으로 일하고 있습니다.'},
+    {title:'📚 자기계발과 평생학습',text:'한국에서는 직장인들도 자기계발에 적극적입니다. 퇴근 후 학원을 다니거나 온라인 강의를 듣는 것이 일반적입니다. 정부에서도 국민내일배움카드 등을 통해 직업 훈련 비용을 지원합니다.'},
+  ];
+  return `<h2>🎎 문화</h2>
+    <div class="card"><div class="card-title">🇰🇷 한국의 직업과 취업 문화</div>
+      ${sections.map(s=>`<div class="culture-section"><h4>${s.title}</h4><p>${s.text}</p></div>`).join('')}
+    </div>`;
+}
+
+function renderQuiz(){
+  const total=QUIZ.length;
+  const answered=Object.keys(STATE.quizAnswers).length;
+  const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+  return `<h2>✅ 퀴즈</h2>
+    <div class="card" style="background:var(--navy);color:#fff;text-align:center;padding:14px">
+      <div style="font-size:14px;opacity:0.8">진행: ${answered}/${total}</div>
+      ${STATE.quizDone?`<div style="font-size:28px;font-weight:900;color:#60a5fa;margin-top:4px">${correct}/${total}</div>`:''}
+    </div>
+    ${QUIZ.map((q,i)=>{
+      const chosen=STATE.quizAnswers[i];
+      const isCorrect=chosen===q.answer;
+      let cardCls='quiz-card';
+      if(chosen!==undefined)cardCls+=isCorrect?' answered-correct':' answered-wrong';
+      return `<div class="${cardCls}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>{
+            let cls='quiz-opt';
+            if(chosen!==undefined){if(j===q.answer)cls+=' selected-correct';else if(j===chosen)cls+=' selected-wrong';}
+            return `<button class="${cls}" onclick="if(STATE.quizAnswers[${i}]===undefined){STATE.quizAnswers[${i}]=${j};render();}" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>
+        ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${isCorrect?'#166534':'#991b1b'}">${isCorrect?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}
+      </div>`;
+    }).join('')}
+    ${answered===total&&!STATE.quizDone?`<div style="text-align:center;margin:12px 0"><button class="reveal-btn" onclick="setState({quizDone:true})">결과 보기</button></div>`:''}
+    ${STATE.quizDone?`<div class="quiz-score"><div>최종 점수</div><div class="score-num">${correct}/${total}</div><div style="margin-top:8px">${correct>=9?'🎉 우수!':correct>=7?'👍 잘 했어요!':correct>=5?'📚 복습해 보세요.':'💪 더 열심히!'}</div><button class="check-btn" style="margin-top:12px;background:rgba(255,255,255,0.2)" onclick="setState({quizAnswers:{},quizDone:false})">다시 풀기</button></div>`:''}`;
+}
+
+const RECORDER={
+  stream:null,mediaRecorder:null,chunks:[],isRecording:false,
+  recognition:null,sttActive:false,currentIdx:-1,scores:{},
+  autoDetect(){
+    if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+      navigator.mediaDevices.getUserMedia({audio:true})
+        .then(s=>{s.getTracks().forEach(t=>t.stop());this.showUI('ready');})
+        .catch(()=>this.showUI('denied'));
+    }else{this.showUI('denied');}
+  },
+  showUI(state){
+    const el=document.getElementById('rec-status');if(!el)return;
+    if(state==='ready')el.innerHTML='<p style="color:#059669;font-weight:700">✅ 마이크 준비 완료!</p>';
+    else el.innerHTML='<p style="color:#ef4444;font-weight:700">❌ 마이크를 사용할 수 없습니다.</p>';
+  },
+  toggle(idx,sents){
+    if(this.sttActive&&this.currentIdx===idx)this.stopSTT(idx);
+    else{if(this.sttActive)this.stopSTT(this.currentIdx);this.startSTT(idx,sents);}
+  },
+  startSTT(idx,sents){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){const el=document.getElementById('stt-result');if(el)el.innerHTML='<span style="color:#ef4444">음성 인식 미지원 브라우저입니다.</span>';return;}
+    this.recognition=new SR();
+    this.recognition.lang='ko-KR';this.recognition.interimResults=false;
+    this.sttActive=true;this.currentIdx=idx;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='⏹ 중지';btn.classList.add('recording');}
+    const rEl=document.getElementById('stt-result');
+    if(rEl)rEl.innerHTML='<span style="color:var(--blue)">🎤 듣는 중...</span>';
+    this.recognition.onresult=(e)=>{
+      const tr=e.results[0][0].transcript;
+      const score=this.calcScore(tr,sents[idx]);
+      this.scores[idx]=score;
+      const badge=document.getElementById('score-badge-'+idx);
+      if(badge){badge.className='score-badge '+(score>=80?'good':score>=50?'ok':'bad');badge.textContent=score+'%';}
+      if(rEl)rEl.innerHTML=`<span style="color:var(--navy)">인식: "${tr}"</span> <span style="font-weight:700;color:${score>=80?'#166534':score>=50?'#854d0e':'#991b1b'}">(${score}점)</span>`;
+      this.sttActive=false;
+      if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+    };
+    this.recognition.onerror=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.onend=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.start();
+  },
+  stopSTT(idx){
+    if(this.recognition){try{this.recognition.stop();}catch(e){}}
+    this.sttActive=false;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+  },
+  calcScore(transcript,target){
+    if(!transcript||!target)return 0;
+    const t=transcript.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    const g=target.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    if(t===g)return 100;
+    const tw=t.split(/\s+/),gw=g.split(/\s+/);
+    let m=0;gw.forEach(w=>{if(tw.includes(w))m++;});
+    return Math.round((m/Math.max(gw.length,1))*100);
+  }
+};
+
+render();
+</script>
+</body>
+</html>

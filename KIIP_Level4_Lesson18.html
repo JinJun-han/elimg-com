@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 4급 18과 · 법과 권리</title>
+<meta name="theme-color" content="#1d4ed8"/>
+<meta property="og:title" content="KIIP 4급 18과 · 법과 권리"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level4_Lesson18.html"/>
+<meta property="og:description" content="KIIP 4급 18과 법과 권리 - 어휘, 문법, 말하기, 듣기, 읽기, 쓰기, 문화, 퀴즈"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1d4ed8;--navy:#1e3a5f;--indigo:#1e40af;--green:#22c55e;--red:#ef4444;--gray:#f0f4ff;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(30,58,95,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #dbeafe;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:700}
+.tab-btn:hover{background:#eff6ff}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #dbeafe;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(30,58,95,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--blue)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(30,58,95,0.08);border:1px solid #dbeafe}
+.card-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--blue)}
+h3{font-size:16px;font-weight:700;color:var(--indigo);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 12px rgba(29,78,216,0.15)}
+.vocab-card.flipped{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--navy)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--blue);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue);margin:14px 0 8px;padding:4px 10px;background:#eff6ff;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.grammar-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.grammar-tab{padding:8px 18px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.grammar-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rule-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:6px}
+.example-list{list-style:none}
+.example-list li{padding:8px 12px;border-radius:8px;margin-bottom:6px;background:#f8faff;border:1px solid #dbeafe;font-size:14px;line-height:1.6}
+.example-list li .ko{color:var(--navy);font-weight:600}
+.example-list li .en{color:#475569;font-size:12px}
+.practice-item{background:#fff;border:2px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.practice-item input{border:1px solid #bfdbfe;border-radius:6px;padding:6px 10px;font-size:14px;width:140px;margin:0 4px}
+.practice-item input:focus{outline:none;border-color:var(--blue)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.check-btn:hover{background:var(--indigo)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.topik-card{background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #bfdbfe;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--blue);background:#eff6ff}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f8faff;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--blue);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--indigo)}
+.bubble{background:#eff6ff;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#dbeafe}
+.listen-script-box{background:#f0f4ff;border:2px dashed #bfdbfe;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--navy)}
+.listen-q{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.reveal-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--indigo)}
+.pron-rule{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #bfdbfe}
+.pron-word{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:6px 12px;margin:4px;font-size:14px}
+.pron-arrow{color:var(--blue);font-weight:700}
+.reading-text{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--blue);font-weight:700}
+.writing-guide{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--navy)}
+textarea{width:100%;border:2px solid #bfdbfe;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--blue)}
+.sample-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--navy);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--navy);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #dbeafe;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #dbeafe;background:#f8faff;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--blue);background:#eff6ff}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--navy);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#60a5fa}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #dbeafe}
+.pron-sent{background:#f0f4ff;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--navy);flex:1}
+.rec-btn{background:var(--blue);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--indigo)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #dbeafe;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.lang-toggle{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.lang-btn{padding:6px 14px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:12px;font-weight:600;color:#64748b;transition:all 0.2s}
+.lang-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tip-box{background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:#475569;margin-top:8px}
+.tip-box strong{color:var(--blue)}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#eff6ff;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--navy)}
+.intro-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--indigo) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--navy)}
+.objective-list li::before{content:'✓';color:var(--blue);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--navy)}
+.section-nav-btn:hover{border-color:var(--blue);background:#eff6ff;color:var(--blue)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},vocabShowEng:true,
+  listenRevealed:false,listenAnswers:{},
+  gramPracticeShown:{},readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  grammarTab:0,topikAnswers:{},
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'문법',icon:'📐'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'발음',icon:'🔊'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'법',hanja:'法',en:'law',vi:'pháp luật',cat:'법률 기본'},
+  {ko:'헌법',hanja:'憲法',en:'constitution',vi:'hiến pháp',cat:'법률 기본'},
+  {ko:'법원',hanja:'法院',en:'court',vi:'tòa án',cat:'법률 기본'},
+  {ko:'판사',hanja:'判事',en:'judge',vi:'thẩm phán',cat:'법률 기본'},
+  {ko:'변호사',hanja:'辯護士',en:'lawyer/attorney',vi:'luật sư',cat:'법률 기본'},
+  {ko:'권리',hanja:'權利',en:'rights',vi:'quyền lợi',cat:'권리와 의무'},
+  {ko:'의무',hanja:'義務',en:'duty/obligation',vi:'nghĩa vụ',cat:'권리와 의무'},
+  {ko:'자유',hanja:'自由',en:'freedom',vi:'tự do',cat:'권리와 의무'},
+  {ko:'평등',hanja:'平等',en:'equality',vi:'bình đẳng',cat:'권리와 의무'},
+  {ko:'인권',hanja:'人權',en:'human rights',vi:'nhân quyền',cat:'권리와 의무'},
+  {ko:'신고',hanja:'申告',en:'report/declaration',vi:'khai báo',cat:'법적 절차'},
+  {ko:'고소',hanja:'告訴',en:'accusation/lawsuit',vi:'tố cáo',cat:'법적 절차'},
+  {ko:'재판',hanja:'裁判',en:'trial/judgment',vi:'xét xử',cat:'법적 절차'},
+  {ko:'판결',hanja:'判決',en:'verdict/ruling',vi:'phán quyết',cat:'법적 절차'},
+  {ko:'처벌',hanja:'處罰',en:'punishment',vi:'xử phạt',cat:'법적 절차'},
+  {ko:'체류',hanja:'滯留',en:'stay/residence',vi:'cư trú',cat:'외국인 관련 법'},
+  {ko:'비자',hanja:'비자',en:'visa',vi:'visa',cat:'외국인 관련 법'},
+  {ko:'귀화',hanja:'歸化',en:'naturalization',vi:'nhập tịch',cat:'외국인 관련 법'},
+  {ko:'영주권',hanja:'永住權',en:'permanent residency',vi:'quyền cư trú vĩnh viễn',cat:'외국인 관련 법'},
+  {ko:'출입국',hanja:'出入國',en:'immigration/entry and exit',vi:'xuất nhập cảnh',cat:'외국인 관련 법'},
+];
+
+const GRAM1={
+  title:'-(으)ㄹ 수밖에 없다',
+  meaning:'다른 선택의 여지가 없이 그렇게 할 수밖에 없음을 나타냄. 어쩔 수 없음의 강조.',
+  en:'Have no choice but to / Can\'t help but / Inevitably / There\'s no other option but to',
+  rule:'동사 어간 + -(으)ㄹ 수밖에 없다 (자음: -을 수밖에 없다, 모음/ㄹ: -ㄹ 수밖에 없다)',
+  examples:[
+    {ko:'법을 어기면 처벌받을 수밖에 없어요.',en:'If you break the law, you have no choice but to be punished.'},
+    {ko:'비자가 만료되면 출국할 수밖에 없습니다.',en:'If your visa expires, you have no choice but to leave the country.'},
+    {ko:'권리를 지키려면 법을 알 수밖에 없어요.',en:'To protect your rights, you have no choice but to know the law.'},
+    {ko:'계약을 위반하면 배상할 수밖에 없습니다.',en:'If you violate a contract, you inevitably have to compensate.'},
+    {ko:'증거가 있으면 인정할 수밖에 없어요.',en:'If there\'s evidence, you have no choice but to acknowledge it.'},
+  ],
+  practice:[
+    {q:'법을 어기면 처벌받___ ___.',answer:'을 수밖에 없다'},
+    {q:'비자가 만료되면 출국하___ ___.',answer:'ㄹ 수밖에 없다'},
+    {q:'증거가 있으면 인정하___ ___.',answer:'ㄹ 수밖에 없다'},
+    {q:'계약을 위반하면 배상하___ ___.',answer:'ㄹ 수밖에 없다'},
+    {q:'권리를 지키려면 법을 알___ ___.',answer:'수밖에 없다'},
+  ],
+  topik:[
+    {q:'"-(으)ㄹ 수밖에 없다"의 의미는?',opts:['다른 선택이 없이 어쩔 수 없음','선택하고 싶지 않음','선택의 결과','비교를 나타냄'],answer:0},
+    {q:'빈칸: "비자가 만료되면 출국하___ ___."',opts:['ㄹ 수밖에 없다','는 법이다','ㄹ 따름이다','고자'],answer:0},
+  ]
+};
+
+const GRAM2={
+  title:'-고서',
+  meaning:'앞의 행동이 완료된 후 뒤의 행동이 이루어짐을 나타냄. 순서와 함께 앞의 행동을 강조할 때 씀.',
+  en:'After doing / Having done / And then (sequential action with emphasis)',
+  rule:'동사 어간 + -고서 ("-고 나서"와 유사하나 행동 완료를 더 강조)',
+  examples:[
+    {ko:'계약서를 잘 읽고서 서명하세요.',en:'After reading the contract carefully, sign it.'},
+    {ko:'법을 확인하고서 행동하는 것이 좋습니다.',en:'It\'s better to check the law first and then act.'},
+    {ko:'신고를 하고서 결과를 기다렸습니다.',en:'After filing a report, I waited for the result.'},
+    {ko:'변호사와 상담하고서 재판에 임했습니다.',en:'After consulting with a lawyer, I attended the trial.'},
+    {ko:'권리를 알고서 적극적으로 주장했습니다.',en:'After learning about my rights, I actively asserted them.'},
+  ],
+  practice:[
+    {q:'계약서를 읽___ 서명하세요.',answer:'고서'},
+    {q:'법을 확인하___ 행동하세요.',answer:'고서'},
+    {q:'변호사와 상담하___ 결정했어요.',answer:'고서'},
+    {q:'신고를 하___ 기다렸어요.',answer:'고서'},
+    {q:'권리를 알___ 주장했습니다.',answer:'고서'},
+  ],
+  topik:[
+    {q:'"-고서"의 의미는?',opts:['앞 행동 완료 후 뒤 행동이 이어짐','앞 행동과 동시에','앞 행동 때문에','앞 행동에도 불구하고'],answer:0},
+    {q:'빈칸: "계약서를 잘 읽___ 서명하세요."',opts:['고서','다 못해','는 탓에','ㄹ 수밖에 없다'],answer:0},
+  ]
+};
+
+const QUIZ=[
+  {q:'"변호사"의 영어는?',opts:['judge','lawyer/attorney','police','prosecutor'],answer:1},
+  {q:'"법을 어기면 처벌받을 수밖에 없다."에서 "수밖에 없다"의 의미는?',opts:['처벌받고 싶다','처벌받는 것이 좋다','처벌받는 것이 불가피하다','처벌받지 않는다'],answer:2},
+  {q:'"계약서를 읽고서 서명하세요."에서 "-고서"의 의미는?',opts:['읽는 동시에','읽은 후에','읽기 위해서','읽어도'],answer:1},
+  {q:'"영주권"의 뜻은?',opts:['단기 체류 허가','장기 또는 영구 거주 허가','취업 비자','관광 비자'],answer:1},
+  {q:'"귀화"의 의미는?',opts:['비자 연장','다른 나라 국적을 취득하는 것','영주권 신청','출국 신고'],answer:1},
+  {q:'"재판"이 이루어지는 장소는?',opts:['경찰서','법원','시청','주민센터'],answer:1},
+  {q:'빈칸: "비자가 만료되면 출국하___ ___."',opts:['ㄹ 수밖에 없다','고서','는 탓에','거니와'],answer:0},
+  {q:'"신고"의 영어는?',opts:['report/declaration','verdict','punishment','trial'],answer:0},
+  {q:'"인권"의 뜻은?',opts:['경제적 권리','모든 사람이 태어나면서부터 갖는 기본 권리','투표권','재산권'],answer:1},
+  {q:'빈칸: "변호사와 상담하___ 최종 결정을 내렸습니다."',opts:['고서','다 못해','ㄹ 수밖에 없다','거니와'],answer:0},
+];
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level4_Lesson17">← 17과</a>
+      <span class="nav-title">4급 18과 · 법과 권리</span>
+      <a href="/KIIP_Level4_Lesson19">19과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level4_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level4_Lesson19"><span class="icon">➡️</span>19과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let gramHtml;
+      if(STATE.grammarTab===0){gramHtml=renderGramBlock(GRAM1,'gram1');}
+      else{gramHtml=renderGramBlock(GRAM2,'gram2');}
+      return `<h2>📐 문법</h2>
+        <div class="grammar-tabs">
+          <button class="grammar-tab${STATE.grammarTab===0?' active':''}" onclick="setState({grammarTab:0})">1. -(으)ㄹ 수밖에 없다</button>
+          <button class="grammar-tab${STATE.grammarTab===1?' active':''}" onclick="setState({grammarTab:1})">2. -고서</button>
+        </div>${gramHtml}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderPronunciation();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10:{
+      setTimeout(()=>RECORDER.autoDetect(),100);
+      const PRON_SENTS=[
+        '비자가 만료되면 연장 신청을 하거나 출국할 수밖에 없습니다.',
+        '계약서를 꼼꼼히 읽고서 서명하는 것이 매우 중요합니다.',
+        '한국에서 외국인도 기본적인 인권과 노동권을 보호받습니다.',
+        '부당한 일을 당했을 때는 외국인 지원 센터에서 도움을 받을 수 있습니다.',
+      ];
+      return `<h2>🤖 AI 발음 실습</h2>
+        <div class="ai-section">
+          <h3>발음 연습</h3>
+          <p style="font-size:13px;color:#64748b;margin-bottom:12px">문장을 따라 말하고 AI가 발음을 분석합니다.</p>
+          <div id="rec-status"><p style="color:#94a3b8;font-size:13px">마이크 상태 확인 중...</p></div>
+          ${PRON_SENTS.map((s,i)=>`
+            <div class="pron-sent" id="pron-sent-${i}">
+              <span class="sent-text">${s} ${ttsBtn(s)}</span>
+              <div id="score-badge-${i}" class="score-badge">-</div>
+              <button class="rec-btn" id="rec-btn-${i}" onclick="RECORDER.toggle(${i},PRON_SENTS_18)">🎤 녹음</button>
+            </div>`).join('')}
+          <div id="stt-result" style="min-height:32px;margin-top:8px;font-size:13px;color:#475569"></div>
+        </div>
+        <script>var PRON_SENTS_18=${JSON.stringify(PRON_SENTS)};<\/script>
+        <div class="card">
+          <div class="card-title">💡 AI 활용 연습 주제</div>
+          <div class="speaking-topics">
+            <div class="speaking-topic">AI에게 "한국에서 외국인이 알아야 할 법적 권리를 한국어로 설명해 줘"라고 질문해 보세요.</div>
+            <div class="speaking-topic">"-(으)ㄹ 수밖에 없다"와 "-고서"를 사용하여 법과 권리에 대한 문장 5개를 만들어 달라고 해 보세요.</div>
+            <div class="speaking-topic">AI와 함께 "나의 법 생활 경험" 주제로 글쓰기 연습을 해 보세요.</div>
+          </div>
+        </div>`;
+    }
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 4급 · 18과</div>
+      <h1 style="margin-top:12px">법과 권리</h1>
+      <p class="subtitle">Law &amp; Rights · Luật pháp và Quyền lợi</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>법률 기본, 권리와 의무, 법적 절차, 외국인 관련 법 어휘 20개를 익힌다.</li>
+        <li>-(으)ㄹ 수밖에 없다를 사용하여 어쩔 수 없는 상황을 표현할 수 있다.</li>
+        <li>-고서를 사용하여 앞 행동 완료 후 뒤 행동을 강조하여 표현할 수 있다.</li>
+        <li>법과 권리에 대해 말하고 쓸 수 있다.</li>
+        <li>한국의 사법 제도, 외국인 법률 지원, 외국인 등록, 노동권 보호를 이해한다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🔑 핵심 표현</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          비자가 만료되면 출국<strong>할 수밖에 없</strong>습니다. ${ttsBtn('비자가 만료되면 출국할 수밖에 없습니다.')}
+        </div>
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          계약서를 잘 읽<strong>고서</strong> 서명하세요. ${ttsBtn('계약서를 잘 읽고서 서명하세요.')}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 학습 섹션</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.filter(s=>s.id>0).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `
+    <h2>📝 어휘</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div class="lang-toggle">
+        <button class="lang-btn${STATE.lang==='ko'?' active':''}" onclick="setState({lang:'ko',vocabFlipped:{}})">한국어</button>
+        <button class="lang-btn${STATE.lang==='en'?' active':''}" onclick="setState({lang:'en',vocabFlipped:{}})">English</button>
+        <button class="lang-btn${STATE.lang==='vi'?' active':''}" onclick="setState({lang:'vi',vocabFlipped:{}})">Tiếng Việt</button>
+      </div>
+      <button class="check-btn" onclick="setState({vocabFlipped:{}})">초기화</button>
+    </div>
+    <div class="tip-box" style="margin-bottom:14px"><strong>💡 Tip:</strong> 카드를 클릭하면 뒤집어집니다!</div>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map(v=>{
+          const idx=VOCAB.indexOf(v);
+          const flipped=STATE.vocabFlipped[idx];
+          const meaning=STATE.lang==='vi'?v.vi:v.en;
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="STATE.vocabFlipped[${idx}]=!STATE.vocabFlipped[${idx}];render()">
+            ${!flipped
+              ?`<span class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</span><span class="vocab-hanja">${v.hanja}</span>`
+              :`<span class="vocab-ko">${meaning}</span><span class="vocab-eng">${v.ko}</span>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderGramBlock(gram,prefix){
+  const practiceHtml=gram.practice.map((p,i)=>{
+    const shown=STATE.gramPracticeShown[prefix+'_'+i];
+    const q=p.q.replace('___',`<input id="${prefix}-inp-${i}" placeholder="___" style="width:110px"/>`);
+    return `<div class="practice-item">
+      <div style="font-size:14px;color:var(--navy);margin-bottom:8px;line-height:1.6">${q}</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" onclick="
+          var v=document.getElementById('${prefix}-inp-${i}').value.trim();
+          if(v==='${p.answer}'){document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=answer-reveal>✅ 정답!</span>';}
+          else{document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=wrong-reveal>❌ 다시 해보세요</span>';}
+        ">확인</button>
+        <button class="check-btn" style="background:#64748b" onclick="STATE.gramPracticeShown['${prefix}_${i}']=true;render()">정답 보기</button>
+      </div>
+      <div id="${prefix}-fb-${i}">${shown?`<span class="answer-reveal">정답: ${p.answer}</span>`:''}</div>
+    </div>`;
+  }).join('');
+  const topikHtml=gram.topik.map((t,i)=>{
+    const key=prefix+'_topik_'+i;
+    const chosen=STATE.topikAnswers[key];
+    return `<div class="topik-card">
+      <div class="q-text">${t.q}</div>
+      <div class="topik-options">
+        ${t.opts.map((opt,j)=>{
+          let cls='topik-opt';
+          if(chosen!==undefined){if(j===t.answer)cls+=' correct';else if(j===chosen)cls+=' wrong';}
+          return `<button class="${cls}" onclick="STATE.topikAnswers['${key}']=${j};render()" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+        }).join('')}
+      </div>
+      ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;color:${chosen===t.answer?'#166534':'#991b1b'};font-weight:700">${chosen===t.answer?'✅ 정답!':'❌ 오답 - 정답: '+(t.answer+1)+'번'}</div>`:''}
+    </div>`;
+  }).join('');
+  return `
+    <div class="card">
+      <div class="card-title">📌 ${gram.title}</div>
+      <div class="rule-box"><div class="rule-title">의미</div><div style="font-size:14px;color:var(--navy);margin-bottom:4px">${gram.meaning}</div><div style="font-size:13px;color:#475569">🇺🇸 ${gram.en}</div></div>
+      <div class="rule-box"><div class="rule-title">형태 규칙</div><div style="font-size:14px;color:var(--navy)">${gram.rule}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 예문</div>
+      <ul class="example-list">${gram.examples.map(e=>`<li><span class="ko">${e.ko} ${ttsBtn(e.ko)}</span><br><span class="en">${e.en}</span></li>`).join('')}</ul>
+    </div>
+    <div class="card"><div class="card-title">✏️ 빈칸 채우기 연습</div>${practiceHtml}</div>
+    <div class="card"><div class="card-title">📋 TOPIK 유형</div>${topikHtml}</div>`;
+}
+
+function renderSpeaking(){
+  const dialogues=[
+    {title:'대화 1: 외국인의 법적 권리',lines:[
+      {speaker:'A',text:'한국에서 외국인도 법적으로 보호를 받을 수 있나요?',side:'a'},
+      {speaker:'B',text:'네, 체류 자격에 따라 다르지만 기본 인권은 보호받을 수 있어요.',side:'b'},
+      {speaker:'A',text:'부당한 일을 당하면 어떻게 해야 하나요?',side:'a'},
+      {speaker:'B',text:'먼저 법을 확인하고서 신고하거나 변호사와 상담하는 게 좋아요.',side:'b'},
+      {speaker:'A',text:'한국어가 서툴면 어떻게 하나요?',side:'a'},
+      {speaker:'B',text:'통역 서비스를 요청할 수밖에 없어요. 출입국관리사무소에서 도움을 받을 수 있어요.',side:'b'},
+    ]},
+    {title:'대화 2: 비자와 체류',lines:[
+      {speaker:'A',text:'비자가 곧 만료되는데 어떻게 해야 하나요?',side:'a'},
+      {speaker:'B',text:'연장 신청을 하거나 출국할 수밖에 없어요.',side:'b'},
+      {speaker:'A',text:'연장 신청은 어디서 하나요?',side:'a'},
+      {speaker:'B',text:'출입국관리사무소에 가야 해요. 서류를 준비하고서 방문하세요.',side:'b'},
+      {speaker:'A',text:'어떤 서류가 필요한가요?',side:'a'},
+      {speaker:'B',text:'여권, 외국인등록증, 신청서 등이 필요해요. 미리 확인하고서 준비하는 게 좋아요.',side:'b'},
+    ]},
+    {title:'대화 3: 근로 권리',lines:[
+      {speaker:'A',text:'직장에서 부당한 대우를 받으면 어떻게 해야 하나요?',side:'a'},
+      {speaker:'B',text:'노동법에 따라 권리를 주장할 수 있어요.',side:'b'},
+      {speaker:'A',text:'어디에 신고해야 하나요?',side:'a'},
+      {speaker:'B',text:'고용노동부나 노동청에 신고할 수밖에 없어요.',side:'b'},
+      {speaker:'A',text:'언어가 문제인데 통역이 가능한가요?',side:'a'},
+      {speaker:'B',text:'네, 외국인 근로자 지원 센터에서 통역과 법률 상담을 받고서 진행하면 됩니다.',side:'b'},
+    ]},
+  ];
+  const topics=[
+    '한국에서 외국인으로서 알아야 할 법적 권리를 이야기해 보세요.',
+    '부당한 일을 당했을 때 어떻게 해결할 수 있는지 말해보세요.',
+    '여러분 나라의 법 문화와 한국의 법 문화를 비교해 보세요.',
+  ];
+  return `<h2>💬 말하기</h2>
+    ${dialogues.map(d=>`<div class="card"><div class="card-title">${d.title}</div><div class="dialogue">
+      ${d.lines.map(l=>`<div class="dialogue-line${l.side==='b'?' b':''}"><span class="speaker">${l.speaker}</span><div class="bubble">${l.text} ${ttsBtn(l.text)}</div></div>`).join('')}
+    </div></div>`).join('')}
+    <div class="card"><div class="card-title">🗣️ 자유 말하기 주제</div><div class="speaking-topics">
+      ${topics.map((t,i)=>`<div class="speaking-topic"><strong>${i+1}.</strong> ${t}</div>`).join('')}
+    </div></div>`;
+}
+
+function renderListening(){
+  const script='[법률 정보 라디오]\n\n안녕하세요. 외국인을 위한 법률 정보를 알려드립니다.\n\n한국에서 생활하는 외국인도 한국 법의 보호를 받습니다. 체류 자격에 따라 할 수 있는 일이 다르지만, 기본적인 인권과 노동권은 보호됩니다.\n\n비자 관련 문제로 말하자면, 체류 기간을 초과하면 불법 체류가 되어 처벌받을 수밖에 없습니다. 비자 만료 전에 연장 신청을 하고서 합법적으로 생활하는 것이 중요합니다.\n\n부당한 대우를 받았다면 증거를 수집하고서 관계 기관에 신고하세요. 외국인 근로자 지원 센터, 법률 구조 공단 등에서 무료 법률 상담을 받을 수 있습니다.';
+  const questions=[
+    {q:'1. 외국인의 기본 인권과 노동권에 대해 이 프로그램은 뭐라고 합니까?',opts:['보호받지 못한다','보호된다','비자가 있어야만 보호된다','귀화 후에만 보호된다'],answer:1},
+    {q:'2. 체류 기간을 초과하면 어떻게 됩니까?',opts:['경고 후 귀가','불법 체류로 처벌','비자 자동 연장','영주권 취득'],answer:1},
+    {q:'3. 부당한 대우를 받았을 때 해야 할 일의 순서는?',opts:['신고→증거 수집','증거 수집→신고','귀화→신고','비자 연장→신고'],answer:1},
+  ];
+  return `<h2>👂 듣기</h2>
+    <div class="card">
+      <div class="card-title">🎬 법률 정보 라디오</div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:!STATE.listenRevealed})">${STATE.listenRevealed?'📄 스크립트 숨기기':'📄 스크립트 보기'}</button>
+      ${STATE.listenRevealed?`<div class="listen-script-box">${script.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}</div>`:''}
+      <div style="text-align:center;margin-bottom:12px">
+        <button class="reveal-btn" onclick="TTS.speak(${JSON.stringify(script)})">🔊 전체 듣기</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 듣기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.listenAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.listenAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderPronunciation(){
+  const words=[
+    {word:'법원',pron:'버붠'},
+    {word:'판결',pron:'판결'},
+    {word:'권리',pron:'궐리'},
+    {word:'변호사',pron:'변호사'},
+  ];
+  const sents=[
+    {text:'법을 어기면 처벌받을 수밖에 없습니다.',note:'법을[버블] - 연음'},
+    {text:'계약서를 잘 읽고서 서명하는 것이 중요합니다.',note:'읽고서[일꼬서] - 자음군 단순화'},
+  ];
+  return `<h2>🔊 발음</h2>
+    <div class="card">
+      <div class="card-title">📏 발음 규칙: 음절 끝소리 규칙 - 받침 'ㄻ'은 [ㄹ]로 발음 / 연음 규칙</div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">받침이 있는 글자 뒤에 모음이 오면 받침이 다음 음절 첫소리로 넘어가 발음됩니다(연음). 또한 자음이 두 개 겹친 경우(자음군) 하나의 자음이 탈락합니다.</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:8px">예: 법원 → [버붠] (연음), 읽고서 → [일꼬서] (자음군 단순화)</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">${words.map(w=>`<div class="pron-word"><span style="font-weight:700;color:var(--navy)">${w.word}</span><span class="pron-arrow">→</span><span style="color:var(--blue)">[${w.pron}]</span>${ttsBtn(w.word)}</div>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗣️ 문장 발음 연습</div>
+      ${sents.map(s=>`<div style="background:#eff6ff;border-radius:10px;padding:12px 14px;margin-bottom:10px"><div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">${s.text} ${ttsBtn(s.text)}</div><div style="font-size:12px;color:var(--blue)">${s.note}</div></div>`).join('')}
+    </div>`;
+}
+
+function renderReading(){
+  const rawText='모든 사람은 법 앞에 평등합니다. 한국 헌법도 국민의 기본 권리와 자유를 보장하고 있습니다. 외국인도 체류 기간 동안 기본적인 권리를 보호받을 수밖에 없는 상황에서 법을 아는 것이 중요합니다.\n\n한국에서 생활하는 외국인은 출입국 관련 법을 잘 알아야 합니다. 비자를 확인하고서 필요하다면 연장 신청을 미리 해야 합니다. 체류 기간을 어기면 처벌을 받을 수밖에 없기 때문입니다.\n\n부당한 일을 당했을 때는 증거를 수집하고서 관계 기관에 신고하는 것이 좋습니다. 외국인 지원 센터나 법률 구조 공단에서 무료 법률 상담을 받을 수 있습니다. 자신의 권리를 알고서 적극적으로 지키는 것이 중요합니다.';
+  const questions=[
+    {q:'1. 이 글에서 외국인이 알아야 할 중요한 법 분야는?',opts:['세금법','출입국 관련 법','상속법','특허법'],answer:1},
+    {q:'2. "처벌을 받을 수밖에 없다"에서 "수밖에 없다"의 의미는?',opts:['처벌을 원한다','처벌을 피할 수 없다','처벌을 기대한다','처벌이 좋다'],answer:1},
+    {q:'3. 부당한 대우를 받았을 때 도움받을 수 있는 곳은?',opts:['법원','외국인 지원 센터 및 법률 구조 공단','경찰청장','법무부 장관'],answer:1},
+  ];
+  const highlighted=rawText
+    .replace(/수밖에 없/g,'<span class="highlight">수밖에 없</span>')
+    .replace(/고서/g,'<span class="highlight">고서</span>')
+    .replace(/\n\n/g,'<br><br>');
+  return `<h2>📖 읽기</h2>
+    <div class="card"><div class="card-title">📰 법과 권리 ${ttsBtn(rawText)}</div><div class="reading-text">${highlighted}</div></div>
+    <div class="card"><div class="card-title">❓ 읽기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.readAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.readAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderWriting(){
+  const sample='저는 한국에 처음 왔을 때 법과 권리에 대해 잘 몰랐습니다. 시간이 지나면서 비자와 체류 관련 법을 공부할 수밖에 없었습니다. 비자가 만료되기 전에 연장 신청을 하고서 합법적으로 생활하고 있습니다.\n\n한번은 직장에서 급여를 제때 받지 못한 적이 있었습니다. 법을 확인하고서 외국인 근로자 지원 센터에 도움을 요청했습니다. 덕분에 문제를 잘 해결할 수 있었습니다.\n\n법을 알고 지키는 것이 중요하다는 것을 느꼈습니다. 앞으로도 법적 권리를 배우고서 적극적으로 활용하겠습니다.';
+  return `<h2>✏️ 쓰기</h2>
+    <div class="card">
+      <div class="card-title">📌 쓰기 주제</div>
+      <div style="background:var(--indigo);color:#fff;border-radius:10px;padding:14px;font-size:16px;font-weight:700;text-align:center;margin-bottom:12px">나의 권리와 법 생활</div>
+      <div class="writing-guide"><h3>작성 가이드</h3><ul>
+        <li>한국에서 외국인으로서 알게 된 법적 권리를 소개하세요.</li>
+        <li>-(으)ㄹ 수밖에 없다를 한 번 이상 사용하세요.</li>
+        <li>-고서를 한 번 이상 사용하세요.</li>
+        <li>법을 지키는 것의 중요성에 대한 의견을 쓰세요.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 내 글쓰기</div>
+      <textarea placeholder="여기에 글을 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <span style="font-size:12px;color:#94a3b8">${STATE.writingText.length}자</span>
+        <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'샘플 숨기기':'샘플 답안 보기'}</button>
+      </div>
+      ${STATE.sampleShown?`<div class="sample-box">${sample.replace(/\n\n/g,'<br><br>')}</div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  const sections=[
+    {title:'🏛️ 한국의 사법 제도',text:'한국의 법원은 대법원, 고등법원, 지방법원으로 구성됩니다. 헌법재판소는 헌법 관련 분쟁을 처리합니다. 법관은 독립적으로 재판하며, 3심 제도로 공정한 재판을 보장합니다.'},
+    {title:'🌏 외국인 법률 지원',text:'외국인 근로자 지원 센터, 법률 구조 공단, 대한법률구조공단에서 무료 법률 상담을 받을 수 있습니다. 영어, 중국어, 베트남어 등 다국어 상담 서비스도 제공합니다.'},
+    {title:'📋 외국인 등록',text:'한국에 90일 이상 체류하는 외국인은 외국인 등록을 해야 합니다. 출입국관리사무소에서 신청하며, 외국인등록증을 발급받습니다. 이 카드로 신분 확인, 은행 계좌 개설 등을 할 수 있습니다.'},
+    {title:'⚖️ 노동권 보호',text:'한국의 근로기준법은 외국인 근로자에게도 동등하게 적용됩니다. 최저임금, 초과근무수당, 유급휴가 등의 권리를 보장받습니다. 부당한 대우를 받으면 고용노동부에 신고할 수 있습니다.'},
+  ];
+  return `<h2>🎎 문화</h2>
+    <div class="card"><div class="card-title">🇰🇷 한국의 법과 외국인 생활</div>
+      ${sections.map(s=>`<div class="culture-section"><h4>${s.title}</h4><p>${s.text}</p></div>`).join('')}
+    </div>`;
+}
+
+function renderQuiz(){
+  const total=QUIZ.length;
+  const answered=Object.keys(STATE.quizAnswers).length;
+  const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+  return `<h2>✅ 퀴즈</h2>
+    <div class="card" style="background:var(--navy);color:#fff;text-align:center;padding:14px">
+      <div style="font-size:14px;opacity:0.8">진행: ${answered}/${total}</div>
+      ${STATE.quizDone?`<div style="font-size:28px;font-weight:900;color:#60a5fa;margin-top:4px">${correct}/${total}</div>`:''}
+    </div>
+    ${QUIZ.map((q,i)=>{
+      const chosen=STATE.quizAnswers[i];
+      const isCorrect=chosen===q.answer;
+      let cardCls='quiz-card';
+      if(chosen!==undefined)cardCls+=isCorrect?' answered-correct':' answered-wrong';
+      return `<div class="${cardCls}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>{
+            let cls='quiz-opt';
+            if(chosen!==undefined){if(j===q.answer)cls+=' selected-correct';else if(j===chosen)cls+=' selected-wrong';}
+            return `<button class="${cls}" onclick="if(STATE.quizAnswers[${i}]===undefined){STATE.quizAnswers[${i}]=${j};render();}" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>
+        ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${isCorrect?'#166534':'#991b1b'}">${isCorrect?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}
+      </div>`;
+    }).join('')}
+    ${answered===total&&!STATE.quizDone?`<div style="text-align:center;margin:12px 0"><button class="reveal-btn" onclick="setState({quizDone:true})">결과 보기</button></div>`:''}
+    ${STATE.quizDone?`<div class="quiz-score"><div>최종 점수</div><div class="score-num">${correct}/${total}</div><div style="margin-top:8px">${correct>=9?'🎉 우수!':correct>=7?'👍 잘 했어요!':correct>=5?'📚 복습해 보세요.':'💪 더 열심히!'}</div><button class="check-btn" style="margin-top:12px;background:rgba(255,255,255,0.2)" onclick="setState({quizAnswers:{},quizDone:false})">다시 풀기</button></div>`:''}`;
+}
+
+const RECORDER={
+  stream:null,mediaRecorder:null,chunks:[],isRecording:false,
+  recognition:null,sttActive:false,currentIdx:-1,scores:{},
+  autoDetect(){
+    if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+      navigator.mediaDevices.getUserMedia({audio:true})
+        .then(s=>{s.getTracks().forEach(t=>t.stop());this.showUI('ready');})
+        .catch(()=>this.showUI('denied'));
+    }else{this.showUI('denied');}
+  },
+  showUI(state){
+    const el=document.getElementById('rec-status');if(!el)return;
+    if(state==='ready')el.innerHTML='<p style="color:#059669;font-weight:700">✅ 마이크 준비 완료!</p>';
+    else el.innerHTML='<p style="color:#ef4444;font-weight:700">❌ 마이크를 사용할 수 없습니다.</p>';
+  },
+  toggle(idx,sents){
+    if(this.sttActive&&this.currentIdx===idx)this.stopSTT(idx);
+    else{if(this.sttActive)this.stopSTT(this.currentIdx);this.startSTT(idx,sents);}
+  },
+  startSTT(idx,sents){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){const el=document.getElementById('stt-result');if(el)el.innerHTML='<span style="color:#ef4444">음성 인식 미지원 브라우저입니다.</span>';return;}
+    this.recognition=new SR();
+    this.recognition.lang='ko-KR';this.recognition.interimResults=false;
+    this.sttActive=true;this.currentIdx=idx;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='⏹ 중지';btn.classList.add('recording');}
+    const rEl=document.getElementById('stt-result');
+    if(rEl)rEl.innerHTML='<span style="color:var(--blue)">🎤 듣는 중...</span>';
+    this.recognition.onresult=(e)=>{
+      const tr=e.results[0][0].transcript;
+      const score=this.calcScore(tr,sents[idx]);
+      this.scores[idx]=score;
+      const badge=document.getElementById('score-badge-'+idx);
+      if(badge){badge.className='score-badge '+(score>=80?'good':score>=50?'ok':'bad');badge.textContent=score+'%';}
+      if(rEl)rEl.innerHTML=`<span style="color:var(--navy)">인식: "${tr}"</span> <span style="font-weight:700;color:${score>=80?'#166534':score>=50?'#854d0e':'#991b1b'}">(${score}점)</span>`;
+      this.sttActive=false;
+      if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+    };
+    this.recognition.onerror=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.onend=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.start();
+  },
+  stopSTT(idx){
+    if(this.recognition){try{this.recognition.stop();}catch(e){}}
+    this.sttActive=false;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+  },
+  calcScore(transcript,target){
+    if(!transcript||!target)return 0;
+    const t=transcript.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    const g=target.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    if(t===g)return 100;
+    const tw=t.split(/\s+/),gw=g.split(/\s+/);
+    let m=0;gw.forEach(w=>{if(tw.includes(w))m++;});
+    return Math.round((m/Math.max(gw.length,1))*100);
+  }
+};
+
+render();
+</script>
+</body>
+</html>

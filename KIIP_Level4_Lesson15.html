@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 4급 15과 · 사회 문제</title>
+<meta name="theme-color" content="#1d4ed8"/>
+<meta property="og:title" content="KIIP 4급 15과 · 사회 문제"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level4_Lesson15.html"/>
+<meta property="og:description" content="KIIP 4급 15과 사회 문제 - 어휘, 문법, 말하기, 듣기, 읽기, 쓰기, 문화, 퀴즈"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1d4ed8;--navy:#1e3a5f;--indigo:#1e40af;--green:#22c55e;--red:#ef4444;--gray:#f0f4ff;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(30,58,95,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #dbeafe;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:700}
+.tab-btn:hover{background:#eff6ff}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #dbeafe;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(30,58,95,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--blue)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(30,58,95,0.08);border:1px solid #dbeafe}
+.card-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--blue)}
+h3{font-size:16px;font-weight:700;color:var(--indigo);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 12px rgba(29,78,216,0.15)}
+.vocab-card.flipped{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--navy)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--blue);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue);margin:14px 0 8px;padding:4px 10px;background:#eff6ff;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.grammar-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.grammar-tab{padding:8px 18px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.grammar-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rule-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:6px}
+.example-list{list-style:none}
+.example-list li{padding:8px 12px;border-radius:8px;margin-bottom:6px;background:#f8faff;border:1px solid #dbeafe;font-size:14px;line-height:1.6}
+.example-list li .ko{color:var(--navy);font-weight:600}
+.example-list li .en{color:#475569;font-size:12px}
+.practice-item{background:#fff;border:2px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.practice-item input{border:1px solid #bfdbfe;border-radius:6px;padding:6px 10px;font-size:14px;width:140px;margin:0 4px}
+.practice-item input:focus{outline:none;border-color:var(--blue)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.check-btn:hover{background:var(--indigo)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.topik-card{background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #bfdbfe;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--blue);background:#eff6ff}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f8faff;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--blue);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--indigo)}
+.bubble{background:#eff6ff;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#dbeafe}
+.listen-script-box{background:#f0f4ff;border:2px dashed #bfdbfe;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--navy)}
+.listen-q{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.reveal-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--indigo)}
+.pron-rule{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #bfdbfe}
+.pron-word{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:6px 12px;margin:4px;font-size:14px}
+.pron-arrow{color:var(--blue);font-weight:700}
+.reading-text{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--blue);font-weight:700}
+.writing-guide{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--navy)}
+textarea{width:100%;border:2px solid #bfdbfe;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--blue)}
+.sample-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--navy);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--navy);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #dbeafe;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #dbeafe;background:#f8faff;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--blue);background:#eff6ff}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--navy);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#60a5fa}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #dbeafe}
+.pron-sent{background:#f0f4ff;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--navy);flex:1}
+.rec-btn{background:var(--blue);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--indigo)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #dbeafe;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.lang-toggle{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.lang-btn{padding:6px 14px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:12px;font-weight:600;color:#64748b;transition:all 0.2s}
+.lang-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tip-box{background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:#475569;margin-top:8px}
+.tip-box strong{color:var(--blue)}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#eff6ff;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--navy)}
+.intro-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--indigo) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--navy)}
+.objective-list li::before{content:'✓';color:var(--blue);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--navy)}
+.section-nav-btn:hover{border-color:var(--blue);background:#eff6ff;color:var(--blue)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},vocabShowEng:true,
+  listenRevealed:false,listenAnswers:{},
+  gramPracticeShown:{},readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  grammarTab:0,topikAnswers:{},
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'문법',icon:'📐'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'발음',icon:'🔊'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'빈부격차',hanja:'貧富格差',en:'wealth gap/income inequality',vi:'khoảng cách giàu nghèo',cat:'사회 문제'},
+  {ko:'실업',hanja:'失業',en:'unemployment',vi:'thất nghiệp',cat:'사회 문제'},
+  {ko:'주거',hanja:'住居',en:'housing/residence',vi:'nhà ở',cat:'사회 문제'},
+  {ko:'고령화',hanja:'高齡化',en:'aging population',vi:'già hóa dân số',cat:'사회 문제'},
+  {ko:'저출산',hanja:'低出産',en:'low birth rate',vi:'tỷ lệ sinh thấp',cat:'사회 문제'},
+  {ko:'소음공해',hanja:'騷音公害',en:'noise pollution',vi:'ô nhiễm tiếng ồn',cat:'환경 사회 문제'},
+  {ko:'쓰레기',hanja:'쓰레기',en:'garbage/trash',vi:'rác thải',cat:'환경 사회 문제'},
+  {ko:'교통사고',hanja:'交通事故',en:'traffic accident',vi:'tai nạn giao thông',cat:'환경 사회 문제'},
+  {ko:'범죄',hanja:'犯罪',en:'crime',vi:'tội phạm',cat:'환경 사회 문제'},
+  {ko:'폭력',hanja:'暴力',en:'violence',vi:'bạo lực',cat:'환경 사회 문제'},
+  {ko:'노인',hanja:'老人',en:'elderly/senior',vi:'người cao tuổi',cat:'사회 약자'},
+  {ko:'장애인',hanja:'障碍人',en:'person with disability',vi:'người khuyết tật',cat:'사회 약자'},
+  {ko:'이주민',hanja:'移住民',en:'migrant/immigrant',vi:'người di cư',cat:'사회 약자'},
+  {ko:'취약계층',hanja:'脆弱階層',en:'vulnerable class/group',vi:'tầng lớp dễ bị tổn thương',cat:'사회 약자'},
+  {ko:'복지',hanja:'福祉',en:'welfare/well-being',vi:'phúc lợi',cat:'사회 약자'},
+  {ko:'정책',hanja:'政策',en:'policy',vi:'chính sách',cat:'사회 해결책'},
+  {ko:'지원',hanja:'支援',en:'support/assistance',vi:'hỗ trợ',cat:'사회 해결책'},
+  {ko:'캠페인',hanja:'캠페인',en:'campaign',vi:'chiến dịch',cat:'사회 해결책'},
+  {ko:'봉사',hanja:'奉仕',en:'volunteer service',vi:'tình nguyện',cat:'사회 해결책'},
+  {ko:'의식',hanja:'意識',en:'awareness/consciousness',vi:'ý thức',cat:'사회 해결책'},
+];
+
+const GRAM1={
+  title:'-(으)로 말하자면',
+  meaning:'어떤 주제나 대상에 대해 본격적으로 이야기를 시작할 때 쓰임. "~에 관해서 말하자면, ~의 경우를 들자면"의 뜻.',
+  en:'Speaking of / When it comes to / As for / If we\'re talking about',
+  rule:'명사 + (으)로 말하자면 / 이것으로 말하자면 / 한국의 문제로 말하자면',
+  examples:[
+    {ko:'한국의 사회 문제로 말하자면 저출산이 가장 심각합니다.',en:'Speaking of Korea\'s social problems, low birth rate is the most serious.'},
+    {ko:'빈부격차로 말하자면 소득 불평등이 점점 심해지고 있습니다.',en:'When it comes to the wealth gap, income inequality is getting worse.'},
+    {ko:'노인 복지로 말하자면 한국은 아직 개선할 점이 많습니다.',en:'As for elderly welfare, Korea still has much to improve.'},
+    {ko:'환경 문제로 말하자면 쓰레기 처리가 큰 과제입니다.',en:'Speaking of environmental issues, waste management is a major challenge.'},
+    {ko:'이주민 지원으로 말하자면 다양한 프로그램이 마련되어 있습니다.',en:'When it comes to support for migrants, various programs have been established.'},
+  ],
+  practice:[
+    {q:'저출산 문제___ 말하자면 심각한 상황입니다.',answer:'로'},
+    {q:'노인 복지___ 말하자면 더 많은 지원이 필요합니다.',answer:'로'},
+    {q:'주거 문제___ 말하자면 집값이 너무 비쌉니다.',answer:'로'},
+    {q:'범죄 예방___ 말하자면 지역사회의 협력이 중요합니다.',answer:'으로'},
+    {q:'환경 정책___ 말하자면 한국이 꾸준히 노력하고 있습니다.',answer:'으로'},
+  ],
+  topik:[
+    {q:'"-(으)로 말하자면"의 의미는?',opts:['어떤 주제에 대해 이야기를 시작함','원인을 설명함','결과를 나타냄','조건을 나타냄'],answer:0},
+    {q:'빈칸: "한국의 고령화 문제___ 말하자면 매우 빠르게 진행되고 있습니다."',opts:['로','가','에서','에'],answer:0},
+  ]
+};
+
+const GRAM2={
+  title:'-는 탓에',
+  meaning:'부정적인 결과의 원인을 나타냄. "-기 때문에"와 유사하나 부정적 결과에 주로 쓰임.',
+  en:'Because of / Due to / On account of (negative cause)',
+  rule:'동사 어간 + -는 탓에 / 형용사: -(으)ㄴ 탓에 / 명사: 탓에',
+  examples:[
+    {ko:'경기가 나쁜 탓에 실업자가 늘었습니다.',en:'Due to the poor economy, unemployment increased.'},
+    {ko:'집값이 오른 탓에 주거 문제가 심각해졌습니다.',en:'Because of rising housing prices, housing problems became serious.'},
+    {ko:'고령화가 진행되는 탓에 복지 비용이 증가했습니다.',en:'On account of an aging population, welfare costs have increased.'},
+    {ko:'소음공해가 심한 탓에 이웃 간 갈등이 생겼습니다.',en:'Due to serious noise pollution, conflicts between neighbors arose.'},
+    {ko:'저출산이 지속되는 탓에 인구 감소가 우려됩니다.',en:'Because of continuing low birth rates, population decline is a concern.'},
+  ],
+  practice:[
+    {q:'경기가 나쁜___ 실업자가 늘었어요.',answer:'탓에'},
+    {q:'집값이 비싼___ 주거 문제가 심각해요.',answer:'탓에'},
+    {q:'고령화가 심해지는___ 복지 비용이 늘었어요.',answer:'탓에'},
+    {q:'소음이 심한___ 이웃과 갈등이 생겼어요.',answer:'탓에'},
+    {q:'저출산이 계속되는___ 인구가 줄고 있어요.',answer:'탓에'},
+  ],
+  topik:[
+    {q:'"-는 탓에"의 의미는?',opts:['부정적 결과의 원인','긍정적 결과의 원인','조건을 나타냄','비교를 나타냄'],answer:0},
+    {q:'빈칸: "교통이 복잡한___ 출근 시간이 오래 걸립니다."',opts:['탓에','는 한','ㄹ 따름이다','고자'],answer:0},
+  ]
+};
+
+const QUIZ=[
+  {q:'"빈부격차"의 영어는?',opts:['unemployment','housing','wealth gap','crime'],answer:2},
+  {q:'"경기가 나쁜 탓에 실업자가 늘었다."에서 "-는 탓에"의 의미는?',opts:['~하기 위해서','~의 부정적 원인으로','~한 조건으로','~한 결과를 기대함'],answer:1},
+  {q:'"저출산 문제로 말하자면"에서 "-(으)로 말하자면"의 의미는?',opts:['저출산을 해결하기 위해','저출산 주제에 대해 이야기를 시작함','저출산이 원인이 되어','저출산 조건이면'],answer:1},
+  {q:'"취약계층"에 해당하지 않는 것은?',opts:['노인','장애인','저소득층','대기업 임원'],answer:3},
+  {q:'"봉사"의 영어는?',opts:['campaign','policy','volunteer service','support'],answer:2},
+  {q:'한국의 심각한 사회 문제가 아닌 것은?',opts:['저출산','고령화','빈부격차','높은 출산율'],answer:3},
+  {q:'빈칸: "집값이 오른___ 주거 문제가 심각해졌습니다."',opts:['탓에','만큼','뿐만 아니라','고서야'],answer:0},
+  {q:'"이주민"의 뜻은?',opts:['고령자','다른 곳으로 이동해 온 사람','장애인','실업자'],answer:1},
+  {q:'"정책"의 영어는?',opts:['welfare','campaign','awareness','policy'],answer:3},
+  {q:'빈칸: "사회 문제___ 말하자면 모두의 관심과 노력이 필요합니다."',opts:['로','가','을','의'],answer:0},
+];
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level4_Lesson14">← 14과</a>
+      <span class="nav-title">4급 15과 · 사회 문제</span>
+      <a href="/KIIP_Level4_Lesson16">16과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level4_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level4_Lesson16"><span class="icon">➡️</span>16과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let gramHtml;
+      if(STATE.grammarTab===0){gramHtml=renderGramBlock(GRAM1,'gram1');}
+      else{gramHtml=renderGramBlock(GRAM2,'gram2');}
+      return `<h2>📐 문법</h2>
+        <div class="grammar-tabs">
+          <button class="grammar-tab${STATE.grammarTab===0?' active':''}" onclick="setState({grammarTab:0})">1. -(으)로 말하자면</button>
+          <button class="grammar-tab${STATE.grammarTab===1?' active':''}" onclick="setState({grammarTab:1})">2. -는 탓에</button>
+        </div>${gramHtml}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderPronunciation();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10:{
+      setTimeout(()=>RECORDER.autoDetect(),100);
+      const PRON_SENTS=[
+        '저출산 문제로 말하자면 한국의 출산율이 세계 최저 수준입니다.',
+        '집값이 높은 탓에 청년들이 주거 문제로 어려움을 겪고 있습니다.',
+        '사회 문제를 해결하기 위해서는 정부와 시민 모두의 노력이 필요합니다.',
+        '이주민도 한국 사회의 중요한 구성원으로서 함께 살아가고 있습니다.',
+      ];
+      return `<h2>🤖 AI 발음 실습</h2>
+        <div class="ai-section">
+          <h3>발음 연습</h3>
+          <p style="font-size:13px;color:#64748b;margin-bottom:12px">문장을 따라 말하고 AI가 발음을 분석합니다.</p>
+          <div id="rec-status"><p style="color:#94a3b8;font-size:13px">마이크 상태 확인 중...</p></div>
+          ${PRON_SENTS.map((s,i)=>`
+            <div class="pron-sent" id="pron-sent-${i}">
+              <span class="sent-text">${s} ${ttsBtn(s)}</span>
+              <div id="score-badge-${i}" class="score-badge">-</div>
+              <button class="rec-btn" id="rec-btn-${i}" onclick="RECORDER.toggle(${i},PRON_SENTS_15)">🎤 녹음</button>
+            </div>`).join('')}
+          <div id="stt-result" style="min-height:32px;margin-top:8px;font-size:13px;color:#475569"></div>
+        </div>
+        <script>var PRON_SENTS_15=${JSON.stringify(PRON_SENTS)};<\/script>
+        <div class="card">
+          <div class="card-title">💡 AI 활용 연습 주제</div>
+          <div class="speaking-topics">
+            <div class="speaking-topic">AI에게 "한국의 주요 사회 문제를 한국어로 설명해 줘"라고 질문해 보세요.</div>
+            <div class="speaking-topic">"-(으)로 말하자면"과 "-는 탓에"를 사용하여 사회 문제에 대한 문장 5개를 만들어 달라고 해 보세요.</div>
+            <div class="speaking-topic">AI와 함께 "내가 생각하는 사회 문제와 해결 방법" 주제로 글쓰기 연습을 해 보세요.</div>
+          </div>
+        </div>`;
+    }
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 4급 · 15과</div>
+      <h1 style="margin-top:12px">사회 문제</h1>
+      <p class="subtitle">Social Issues · Vấn đề xã hội</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>사회 문제, 환경 사회 문제, 사회 약자, 사회 해결책 어휘 20개를 익힌다.</li>
+        <li>-(으)로 말하자면을 사용하여 어떤 주제에 대해 이야기를 시작할 수 있다.</li>
+        <li>-는 탓에를 사용하여 부정적 결과의 원인을 표현할 수 있다.</li>
+        <li>한국의 사회 문제와 해결 방법에 대해 말하고 쓸 수 있다.</li>
+        <li>한국의 고령화 사회, 주거 문제, 다문화 사회, 빈부격차 완화 정책을 이해한다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🔑 핵심 표현</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          저출산 문제<strong>로 말하자면</strong> 세계 최저 수준입니다. ${ttsBtn('저출산 문제로 말하자면 세계 최저 수준입니다.')}
+        </div>
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          경기가 나쁜 <strong>탓에</strong> 실업자가 늘었습니다. ${ttsBtn('경기가 나쁜 탓에 실업자가 늘었습니다.')}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 학습 섹션</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.filter(s=>s.id>0).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `
+    <h2>📝 어휘</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div class="lang-toggle">
+        <button class="lang-btn${STATE.lang==='ko'?' active':''}" onclick="setState({lang:'ko',vocabFlipped:{}})">한국어</button>
+        <button class="lang-btn${STATE.lang==='en'?' active':''}" onclick="setState({lang:'en',vocabFlipped:{}})">English</button>
+        <button class="lang-btn${STATE.lang==='vi'?' active':''}" onclick="setState({lang:'vi',vocabFlipped:{}})">Tiếng Việt</button>
+      </div>
+      <button class="check-btn" onclick="setState({vocabFlipped:{}})">초기화</button>
+    </div>
+    <div class="tip-box" style="margin-bottom:14px"><strong>💡 Tip:</strong> 카드를 클릭하면 뒤집어집니다!</div>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map(v=>{
+          const idx=VOCAB.indexOf(v);
+          const flipped=STATE.vocabFlipped[idx];
+          const meaning=STATE.lang==='vi'?v.vi:v.en;
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="STATE.vocabFlipped[${idx}]=!STATE.vocabFlipped[${idx}];render()">
+            ${!flipped
+              ?`<span class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</span><span class="vocab-hanja">${v.hanja}</span>`
+              :`<span class="vocab-ko">${meaning}</span><span class="vocab-eng">${v.ko}</span>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderGramBlock(gram,prefix){
+  const practiceHtml=gram.practice.map((p,i)=>{
+    const shown=STATE.gramPracticeShown[prefix+'_'+i];
+    const q=p.q.replace('___',`<input id="${prefix}-inp-${i}" placeholder="___" style="width:110px"/>`);
+    return `<div class="practice-item">
+      <div style="font-size:14px;color:var(--navy);margin-bottom:8px;line-height:1.6">${q}</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" onclick="
+          var v=document.getElementById('${prefix}-inp-${i}').value.trim();
+          if(v==='${p.answer}'){document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=answer-reveal>✅ 정답!</span>';}
+          else{document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=wrong-reveal>❌ 다시 해보세요</span>';}
+        ">확인</button>
+        <button class="check-btn" style="background:#64748b" onclick="STATE.gramPracticeShown['${prefix}_${i}']=true;render()">정답 보기</button>
+      </div>
+      <div id="${prefix}-fb-${i}">${shown?`<span class="answer-reveal">정답: ${p.answer}</span>`:''}</div>
+    </div>`;
+  }).join('');
+  const topikHtml=gram.topik.map((t,i)=>{
+    const key=prefix+'_topik_'+i;
+    const chosen=STATE.topikAnswers[key];
+    return `<div class="topik-card">
+      <div class="q-text">${t.q}</div>
+      <div class="topik-options">
+        ${t.opts.map((opt,j)=>{
+          let cls='topik-opt';
+          if(chosen!==undefined){if(j===t.answer)cls+=' correct';else if(j===chosen)cls+=' wrong';}
+          return `<button class="${cls}" onclick="STATE.topikAnswers['${key}']=${j};render()" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+        }).join('')}
+      </div>
+      ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;color:${chosen===t.answer?'#166534':'#991b1b'};font-weight:700">${chosen===t.answer?'✅ 정답!':'❌ 오답 - 정답: '+(t.answer+1)+'번'}</div>`:''}
+    </div>`;
+  }).join('');
+  return `
+    <div class="card">
+      <div class="card-title">📌 ${gram.title}</div>
+      <div class="rule-box"><div class="rule-title">의미</div><div style="font-size:14px;color:var(--navy);margin-bottom:4px">${gram.meaning}</div><div style="font-size:13px;color:#475569">🇺🇸 ${gram.en}</div></div>
+      <div class="rule-box"><div class="rule-title">형태 규칙</div><div style="font-size:14px;color:var(--navy)">${gram.rule}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 예문</div>
+      <ul class="example-list">${gram.examples.map(e=>`<li><span class="ko">${e.ko} ${ttsBtn(e.ko)}</span><br><span class="en">${e.en}</span></li>`).join('')}</ul>
+    </div>
+    <div class="card"><div class="card-title">✏️ 빈칸 채우기 연습</div>${practiceHtml}</div>
+    <div class="card"><div class="card-title">📋 TOPIK 유형</div>${topikHtml}</div>`;
+}
+
+function renderSpeaking(){
+  const dialogues=[
+    {title:'대화 1: 저출산 문제',lines:[
+      {speaker:'A',text:'한국의 저출산 문제가 정말 심각하죠?',side:'a'},
+      {speaker:'B',text:'네, 저출산 문제로 말하자면 세계에서 가장 낮은 수준이에요.',side:'b'},
+      {speaker:'A',text:'왜 이렇게 됐을까요?',side:'a'},
+      {speaker:'B',text:'양육비가 너무 많이 드는 탓에 아이를 낳기를 꺼리는 가정이 많아요.',side:'b'},
+      {speaker:'A',text:'정부에서 어떤 정책을 시행하고 있나요?',side:'a'},
+      {speaker:'B',text:'출산 장려금, 육아 휴직 확대 등 다양한 지원을 하고 있어요.',side:'b'},
+    ]},
+    {title:'대화 2: 주거 문제',lines:[
+      {speaker:'A',text:'서울에서 집 구하기가 많이 어렵죠?',side:'a'},
+      {speaker:'B',text:'주거 문제로 말하자면 서울의 집값이 너무 비싸요.',side:'b'},
+      {speaker:'A',text:'왜 그렇게 비싼가요?',side:'a'},
+      {speaker:'B',text:'인구가 수도권에 집중되는 탓에 수요가 공급보다 훨씬 많아요.',side:'b'},
+      {speaker:'A',text:'청년들이 많이 힘들겠네요.',side:'a'},
+      {speaker:'B',text:'맞아요. 정부에서 공공임대주택을 늘리는 정책을 추진하고 있어요.',side:'b'},
+    ]},
+    {title:'대화 3: 사회 봉사',lines:[
+      {speaker:'A',text:'한국에서 봉사 활동을 해본 적 있어요?',side:'a'},
+      {speaker:'B',text:'네, 지역 주민센터에서 이주민 한국어 교육을 돕는 봉사를 했어요.',side:'b'},
+      {speaker:'A',text:'그런 봉사 기회가 많나요?',side:'a'},
+      {speaker:'B',text:'네, 다양한 봉사 캠페인이 있어요. 사회 문제로 말하자면 우리 모두의 의식과 참여가 중요해요.',side:'b'},
+      {speaker:'A',text:'저도 참여하고 싶은데 어떻게 신청하면 되나요?',side:'a'},
+      {speaker:'B',text:'자원봉사포털 사이트에서 검색하면 돼요.',side:'b'},
+    ]},
+  ];
+  const topics=[
+    '한국 사회에서 가장 심각하다고 생각하는 문제를 이야기해 보세요.',
+    '여러분 나라의 사회 문제와 한국의 사회 문제를 비교해 보세요.',
+    '사회 문제 해결을 위해 개인이 할 수 있는 일을 말해보세요.',
+  ];
+  return `<h2>💬 말하기</h2>
+    ${dialogues.map(d=>`<div class="card"><div class="card-title">${d.title}</div><div class="dialogue">
+      ${d.lines.map(l=>`<div class="dialogue-line${l.side==='b'?' b':''}"><span class="speaker">${l.speaker}</span><div class="bubble">${l.text} ${ttsBtn(l.text)}</div></div>`).join('')}
+    </div></div>`).join('')}
+    <div class="card"><div class="card-title">🗣️ 자유 말하기 주제</div><div class="speaking-topics">
+      ${topics.map((t,i)=>`<div class="speaking-topic"><strong>${i+1}.</strong> ${t}</div>`).join('')}
+    </div></div>`;
+}
+
+function renderListening(){
+  const script='[사회 이슈 토론]\n\n오늘은 한국의 주요 사회 문제에 대해 이야기해 보겠습니다.\n\n먼저 저출산과 고령화 문제입니다. 저출산 문제로 말하자면 한국의 합계출산율이 0.78명으로 세계 최저 수준입니다. 양육비와 교육비가 높은 탓에 젊은 부부들이 아이 낳기를 꺼리고 있습니다.\n\n두 번째로 주거 문제입니다. 특히 서울의 주택 가격이 높은 탓에 청년들이 내 집 마련을 포기하는 경우도 있습니다.\n\n세 번째로 이주민 사회 통합 문제입니다. 이주민 지원으로 말하자면 한국은 KIIP 같은 교육 프로그램을 운영합니다. 언어와 문화 차이가 있는 탓에 사회 적응에 어려움을 겪는 이주민도 있지만, 다양한 지원이 이루어지고 있습니다.';
+  const questions=[
+    {q:'1. 한국의 합계출산율은?',opts:['0.5명','0.78명','1.2명','1.5명'],answer:1},
+    {q:'2. 젊은 부부들이 아이 낳기를 꺼리는 이유는?',opts:['일자리 부족','양육비와 교육비가 높음','주택 공급 과잉','의료비 문제'],answer:1},
+    {q:'3. 이주민을 위한 한국의 교육 프로그램은?',opts:['TOPIK','KIIP','KSL','EPS'],answer:1},
+  ];
+  return `<h2>👂 듣기</h2>
+    <div class="card">
+      <div class="card-title">🎬 사회 이슈 토론</div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:!STATE.listenRevealed})">${STATE.listenRevealed?'📄 스크립트 숨기기':'📄 스크립트 보기'}</button>
+      ${STATE.listenRevealed?`<div class="listen-script-box">${script.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}</div>`:''}
+      <div style="text-align:center;margin-bottom:12px">
+        <button class="reveal-btn" onclick="TTS.speak(${JSON.stringify(script)})">🔊 전체 듣기</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 듣기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.listenAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.listenAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderPronunciation(){
+  const words=[
+    {word:'복지',pron:'복찌'},
+    {word:'정책',pron:'정책'},
+    {word:'범죄',pron:'범줴'},
+    {word:'빈부격차',pron:'빈부격차'},
+  ];
+  const sents=[
+    {text:'빈부격차와 실업 문제가 심각한 사회 문제입니다.',note:'빈부격차[빈부격차]'},
+    {text:'복지 정책을 강화해서 취약계층을 지원해야 합니다.',note:'복지[복찌]'},
+  ];
+  return `<h2>🔊 발음</h2>
+    <div class="card">
+      <div class="card-title">📏 발음 규칙: 된소리되기 - 받침 'ㅂ, ㄷ, ㄱ' 뒤 자음 경음화</div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">받침 'ㄱ, ㄷ, ㅂ' 뒤에 'ㄱ, ㄷ, ㅂ, ㅅ, ㅈ'이 오면 된소리로 발음됩니다. 예: 복지 → [복찌], 범죄 → [범줴].</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:8px">예: 복지 → [복찌], 범죄 → [범줴]</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">${words.map(w=>`<div class="pron-word"><span style="font-weight:700;color:var(--navy)">${w.word}</span><span class="pron-arrow">→</span><span style="color:var(--blue)">[${w.pron}]</span>${ttsBtn(w.word)}</div>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗣️ 문장 발음 연습</div>
+      ${sents.map(s=>`<div style="background:#eff6ff;border-radius:10px;padding:12px 14px;margin-bottom:10px"><div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">${s.text} ${ttsBtn(s.text)}</div><div style="font-size:12px;color:var(--blue)">${s.note}</div></div>`).join('')}
+    </div>`;
+}
+
+function renderReading(){
+  const rawText='한국 사회는 빠른 경제 성장과 함께 다양한 사회 문제를 안고 있습니다. 사회 문제로 말하자면 저출산, 고령화, 빈부격차, 주거 문제 등이 대표적입니다.\n\n고령화가 빠르게 진행되는 탓에 노인 복지 비용이 크게 늘고 있습니다. 반면 저출산이 지속되는 탓에 생산 인구는 줄어들고 있어 경제적 부담이 커지고 있습니다.\n\n이주민 문제로 말하자면 한국 사회에서 외국인의 역할이 점점 커지고 있습니다. 언어와 문화 차이가 있는 탓에 어려움을 겪기도 하지만, 정부와 시민 사회가 함께 지원 프로그램을 운영하고 있습니다. 모든 사회 구성원이 함께 노력할 때 사회 문제를 해결할 수 있습니다.';
+  const questions=[
+    {q:'1. 이 글에서 언급된 한국의 사회 문제가 아닌 것은?',opts:['저출산','고령화','빈부격차','높은 교육 수준'],answer:3},
+    {q:'2. "고령화가 진행되는 탓에 복지 비용이 늘었다"에서 "탓에"의 의미는?',opts:['고령화를 위해','고령화의 부정적 결과로','고령화 조건으로','고령화에도 불구하고'],answer:1},
+    {q:'3. 이주민 문제 해결을 위해 언급된 것은?',opts:['이주민 입국 제한','정부와 시민 사회의 지원 프로그램','언어 교육 금지','이주민 격리'],answer:1},
+  ];
+  const highlighted=rawText
+    .replace(/로 말하자면/g,'<span class="highlight">로 말하자면</span>')
+    .replace(/탓에/g,'<span class="highlight">탓에</span>')
+    .replace(/\n\n/g,'<br><br>');
+  return `<h2>📖 읽기</h2>
+    <div class="card"><div class="card-title">📰 한국의 사회 문제 ${ttsBtn(rawText)}</div><div class="reading-text">${highlighted}</div></div>
+    <div class="card"><div class="card-title">❓ 읽기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.readAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.readAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderWriting(){
+  const sample='저는 이주민으로서 한국 사회의 다문화 문제에 관심이 많습니다. 이주민 문제로 말하자면 언어 장벽이 가장 큰 어려움입니다.\n\n한국어가 서툰 탓에 일상생활에서 많은 불편함을 겪기도 합니다. 하지만 KIIP 같은 교육 프로그램 덕분에 한국어를 배울 기회가 생겼습니다.\n\n사회 통합을 위해서는 서로에 대한 이해와 배려가 중요합니다. 이주민도 한국 사회의 구성원으로서 의무를 다하고, 한국 사회도 이주민을 지원하는 정책을 강화해야 한다고 생각합니다.';
+  return `<h2>✏️ 쓰기</h2>
+    <div class="card">
+      <div class="card-title">📌 쓰기 주제</div>
+      <div style="background:var(--indigo);color:#fff;border-radius:10px;padding:14px;font-size:16px;font-weight:700;text-align:center;margin-bottom:12px">한국 사회 문제와 해결 방법</div>
+      <div class="writing-guide"><h3>작성 가이드</h3><ul>
+        <li>관심 있는 사회 문제를 선택하여 소개하세요.</li>
+        <li>-(으)로 말하자면을 한 번 이상 사용하세요.</li>
+        <li>-는 탓에를 한 번 이상 사용하세요.</li>
+        <li>문제의 원인과 해결 방법을 함께 쓰세요.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 내 글쓰기</div>
+      <textarea placeholder="여기에 글을 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <span style="font-size:12px;color:#94a3b8">${STATE.writingText.length}자</span>
+        <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'샘플 숨기기':'샘플 답안 보기'}</button>
+      </div>
+      ${STATE.sampleShown?`<div class="sample-box">${sample.replace(/\n\n/g,'<br><br>')}</div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  const sections=[
+    {title:'👵 고령화 사회',text:'한국은 2025년에 초고령 사회(65세 이상 인구가 20% 이상)에 진입할 것으로 예상됩니다. 정부는 노인 돌봄 서비스, 노인 일자리 프로그램 등을 확대하고 있습니다.'},
+    {title:'🏠 주거 문제',text:'서울의 아파트 가격은 세계적으로도 높은 수준입니다. 정부는 공공임대주택 공급, 청년 전세대출 지원, 신도시 개발 등으로 주거 안정을 위해 노력하고 있습니다.'},
+    {title:'🌏 다문화 사회',text:'한국에 거주하는 외국인은 250만 명을 넘었습니다. 다문화 가족, 외국인 노동자, 유학생 등 다양한 이주민이 한국 사회의 일원이 되고 있습니다. 다문화 가족 지원 센터, KIIP 등 다양한 지원 프로그램이 운영됩니다.'},
+    {title:'💰 빈부격차 완화',text:'한국 정부는 기초생활보장제도, 근로장려금, 아동수당 등 다양한 복지 제도를 운영합니다. 최저임금을 지속적으로 인상하여 저소득층의 생활 수준을 높이려 하고 있습니다.'},
+  ];
+  return `<h2>🎎 문화</h2>
+    <div class="card"><div class="card-title">🇰🇷 한국의 사회 문제와 정책</div>
+      ${sections.map(s=>`<div class="culture-section"><h4>${s.title}</h4><p>${s.text}</p></div>`).join('')}
+    </div>`;
+}
+
+function renderQuiz(){
+  const total=QUIZ.length;
+  const answered=Object.keys(STATE.quizAnswers).length;
+  const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+  return `<h2>✅ 퀴즈</h2>
+    <div class="card" style="background:var(--navy);color:#fff;text-align:center;padding:14px">
+      <div style="font-size:14px;opacity:0.8">진행: ${answered}/${total}</div>
+      ${STATE.quizDone?`<div style="font-size:28px;font-weight:900;color:#60a5fa;margin-top:4px">${correct}/${total}</div>`:''}
+    </div>
+    ${QUIZ.map((q,i)=>{
+      const chosen=STATE.quizAnswers[i];
+      const isCorrect=chosen===q.answer;
+      let cardCls='quiz-card';
+      if(chosen!==undefined)cardCls+=isCorrect?' answered-correct':' answered-wrong';
+      return `<div class="${cardCls}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>{
+            let cls='quiz-opt';
+            if(chosen!==undefined){if(j===q.answer)cls+=' selected-correct';else if(j===chosen)cls+=' selected-wrong';}
+            return `<button class="${cls}" onclick="if(STATE.quizAnswers[${i}]===undefined){STATE.quizAnswers[${i}]=${j};render();}" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>
+        ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${isCorrect?'#166534':'#991b1b'}">${isCorrect?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}
+      </div>`;
+    }).join('')}
+    ${answered===total&&!STATE.quizDone?`<div style="text-align:center;margin:12px 0"><button class="reveal-btn" onclick="setState({quizDone:true})">결과 보기</button></div>`:''}
+    ${STATE.quizDone?`<div class="quiz-score"><div>최종 점수</div><div class="score-num">${correct}/${total}</div><div style="margin-top:8px">${correct>=9?'🎉 우수!':correct>=7?'👍 잘 했어요!':correct>=5?'📚 복습해 보세요.':'💪 더 열심히!'}</div><button class="check-btn" style="margin-top:12px;background:rgba(255,255,255,0.2)" onclick="setState({quizAnswers:{},quizDone:false})">다시 풀기</button></div>`:''}`;
+}
+
+const RECORDER={
+  stream:null,mediaRecorder:null,chunks:[],isRecording:false,
+  recognition:null,sttActive:false,currentIdx:-1,scores:{},
+  autoDetect(){
+    if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+      navigator.mediaDevices.getUserMedia({audio:true})
+        .then(s=>{s.getTracks().forEach(t=>t.stop());this.showUI('ready');})
+        .catch(()=>this.showUI('denied'));
+    }else{this.showUI('denied');}
+  },
+  showUI(state){
+    const el=document.getElementById('rec-status');if(!el)return;
+    if(state==='ready')el.innerHTML='<p style="color:#059669;font-weight:700">✅ 마이크 준비 완료!</p>';
+    else el.innerHTML='<p style="color:#ef4444;font-weight:700">❌ 마이크를 사용할 수 없습니다.</p>';
+  },
+  toggle(idx,sents){
+    if(this.sttActive&&this.currentIdx===idx)this.stopSTT(idx);
+    else{if(this.sttActive)this.stopSTT(this.currentIdx);this.startSTT(idx,sents);}
+  },
+  startSTT(idx,sents){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){const el=document.getElementById('stt-result');if(el)el.innerHTML='<span style="color:#ef4444">음성 인식 미지원 브라우저입니다.</span>';return;}
+    this.recognition=new SR();
+    this.recognition.lang='ko-KR';this.recognition.interimResults=false;
+    this.sttActive=true;this.currentIdx=idx;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='⏹ 중지';btn.classList.add('recording');}
+    const rEl=document.getElementById('stt-result');
+    if(rEl)rEl.innerHTML='<span style="color:var(--blue)">🎤 듣는 중...</span>';
+    this.recognition.onresult=(e)=>{
+      const tr=e.results[0][0].transcript;
+      const score=this.calcScore(tr,sents[idx]);
+      this.scores[idx]=score;
+      const badge=document.getElementById('score-badge-'+idx);
+      if(badge){badge.className='score-badge '+(score>=80?'good':score>=50?'ok':'bad');badge.textContent=score+'%';}
+      if(rEl)rEl.innerHTML=`<span style="color:var(--navy)">인식: "${tr}"</span> <span style="font-weight:700;color:${score>=80?'#166534':score>=50?'#854d0e':'#991b1b'}">(${score}점)</span>`;
+      this.sttActive=false;
+      if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+    };
+    this.recognition.onerror=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.onend=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.start();
+  },
+  stopSTT(idx){
+    if(this.recognition){try{this.recognition.stop();}catch(e){}}
+    this.sttActive=false;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+  },
+  calcScore(transcript,target){
+    if(!transcript||!target)return 0;
+    const t=transcript.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    const g=target.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    if(t===g)return 100;
+    const tw=t.split(/\s+/),gw=g.split(/\s+/);
+    let m=0;gw.forEach(w=>{if(tw.includes(w))m++;});
+    return Math.round((m/Math.max(gw.length,1))*100);
+  }
+};
+
+render();
+</script>
+</body>
+</html>

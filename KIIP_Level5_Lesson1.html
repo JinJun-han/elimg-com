@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 5급 1과 · 한국의 역사 1</title>
+<meta name="theme-color" content="#059669"/>
+<meta property="og:title" content="KIIP 5급 1과 · 한국의 역사 1"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level5_Lesson1.html"/>
+<meta property="og:description" content="KIIP 5급 1과 한국의 역사 1 - 고조선, 삼국시대, 고려, 조선"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#059669;--dark:#065f46;--mid:#047857;--lgreen:#22c55e;--red:#ef4444;--gray:#f0fdf4;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--dark);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(6,79,70,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #a7f3d0;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green);font-weight:700}
+.tab-btn:hover{background:#ecfdf5}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #a7f3d0;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(6,79,70,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--green)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(6,79,70,0.08);border:1px solid #a7f3d0}
+.card-title{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--dark);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--green)}
+h3{font-size:16px;font-weight:700;color:var(--mid);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #a7f3d0;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 4px 12px rgba(5,150,105,0.15)}
+.vocab-card.flipped{background:var(--mid);color:#fff;border-color:var(--mid)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--dark)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--green);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--green);margin:14px 0 8px;padding:4px 10px;background:#ecfdf5;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.concept-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.concept-tab{padding:8px 18px;border-radius:20px;border:2px solid #a7f3d0;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.concept-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.rule-box{background:#ecfdf5;border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--mid);margin-bottom:6px}
+.example-list{list-style:none}
+.example-list li{padding:8px 12px;border-radius:8px;margin-bottom:6px;background:#f0fdf4;border:1px solid #a7f3d0;font-size:14px;line-height:1.6}
+.example-list li .ko{color:var(--dark);font-weight:600}
+.example-list li .en{color:#475569;font-size:12px}
+.timeline-item{background:#fff;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px;position:relative;padding-left:20px}
+.timeline-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--green);border-radius:4px 0 0 4px}
+.timeline-year{font-size:12px;font-weight:800;color:var(--green);margin-bottom:4px}
+.timeline-event{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.timeline-desc{font-size:13px;color:#475569;line-height:1.6}
+.topik-card{background:#ecfdf5;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #a7f3d0;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--green);background:#ecfdf5}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f0fdf4;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--green);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--mid)}
+.bubble{background:#ecfdf5;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#a7f3d0}
+.listen-script-box{background:#f0fdf4;border:2px dashed #a7f3d0;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--dark)}
+.listen-q{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px}
+.reveal-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--mid)}
+.reading-text{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--green);font-weight:700}
+.writing-guide{background:#ecfdf5;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--dark)}
+textarea{width:100%;border:2px solid #a7f3d0;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--green)}
+.sample-box{background:#ecfdf5;border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--dark);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--dark);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #a7f3d0;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #a7f3d0;background:#f0fdf4;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--green);background:#ecfdf5}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--dark);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#6ee7b7}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #a7f3d0}
+.pron-sent{background:#f0fdf4;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--dark);flex:1}
+.rec-btn{background:var(--green);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--mid)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #a7f3d0;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#ecfdf5;border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--dark)}
+.intro-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--green) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--dark)}
+.objective-list li::before{content:'✓';color:var(--green);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #a7f3d0;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--dark)}
+.section-nav-btn:hover{border-color:var(--green);background:#ecfdf5;color:var(--green)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+.check-btn{background:var(--green);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer}
+.check-btn:hover{background:var(--mid)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.practice-item{background:#fff;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},
+  listenRevealed:false,listenAnswers:{},
+  conceptTab:0,topikAnswers:{},
+  readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'핵심',icon:'📜'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'연표',icon:'🗓️'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'고조선',hanja:'고조선(古朝鮮)',en:'Gojoseon (ancient Korea)',vi:'Gojoseon (Triều Tiên cổ đại)',cat:'고대 국가'},
+  {ko:'단군왕검',hanja:'단군왕검(檀君王儉)',en:'Dangun, founder of Gojoseon',vi:'Dangun, người lập quốc',cat:'고대 국가'},
+  {ko:'삼국시대',hanja:'삼국시대(三國時代)',en:'Three Kingdoms period',vi:'Thời kỳ Tam Quốc',cat:'삼국시대'},
+  {ko:'고구려',hanja:'고구려(高句麗)',en:'Goguryeo',vi:'Cao Câu Ly',cat:'삼국시대'},
+  {ko:'백제',hanja:'백제(百濟)',en:'Baekje',vi:'Bách Tế',cat:'삼국시대'},
+  {ko:'신라',hanja:'신라(新羅)',en:'Silla',vi:'Tân La',cat:'삼국시대'},
+  {ko:'통일신라',hanja:'통일신라(統一新羅)',en:'Unified Silla',vi:'Tân La thống nhất',cat:'삼국시대'},
+  {ko:'고려',hanja:'고려(高麗)',en:'Goryeo dynasty',vi:'Triều đại Goryeo',cat:'고려'},
+  {ko:'왕건',hanja:'왕건(王建)',en:'Wang Geon, founder of Goryeo',vi:'Vương Kiến, người lập Goryeo',cat:'고려'},
+  {ko:'불교',hanja:'불교(佛敎)',en:'Buddhism',vi:'Phật giáo',cat:'고려'},
+  {ko:'팔만대장경',hanja:'팔만대장경(八萬大藏經)',en:'Tripitaka Koreana (80,000 woodblocks)',vi:'Bát vạn Đại tạng kinh',cat:'고려'},
+  {ko:'조선',hanja:'조선(朝鮮)',en:'Joseon dynasty',vi:'Triều đại Joseon',cat:'조선'},
+  {ko:'이성계',hanja:'이성계(李成桂)',en:'Yi Seonggye, founder of Joseon',vi:'Lý Thành Quế, người lập Joseon',cat:'조선'},
+  {ko:'한글',hanja:'한글',en:'Hangeul (Korean alphabet)',vi:'Hangul (chữ viết Hàn Quốc)',cat:'조선'},
+  {ko:'세종대왕',hanja:'세종대왕(世宗大王)',en:'King Sejong the Great',vi:'Vua Sejong Đại đế',cat:'조선'},
+  {ko:'유교',hanja:'유교(儒敎)',en:'Confucianism',vi:'Nho giáo',cat:'조선'},
+  {ko:'임진왜란',hanja:'임진왜란(壬辰倭亂)',en:'Japanese invasion of 1592',vi:'Nhật xâm lược năm 1592',cat:'조선'},
+  {ko:'이순신',hanja:'이순신(李舜臣)',en:'Admiral Yi Sun-sin',vi:'Đô đốc Yi Sun-sin',cat:'조선'},
+  {ko:'왕조',hanja:'왕조(王朝)',en:'dynasty / royal lineage',vi:'Vương triều',cat:'역사 개념'},
+  {ko:'수도',hanja:'수도(首都)',en:'capital city',vi:'Thủ đô',cat:'역사 개념'},
+];
+
+const CONCEPT1={
+  title:'고조선과 삼국시대',
+  summary:'한국 최초의 국가 고조선부터 삼국시대(고구려·백제·신라)까지의 역사를 이해합니다.',
+  points:[
+    {title:'고조선 (BC 2333년~BC 108년)',desc:'단군왕검이 세운 한국 최초의 국가입니다. 도읍은 아사달(평양)이었으며, 홍익인간(弘益人間 — 인간 세계를 널리 이롭게 함)의 건국 이념을 가졌습니다. BC 108년 한나라에 의해 멸망했습니다.'},
+    {title:'삼국시대 (BC 57년~AD 668년)',desc:'고구려, 백제, 신라 세 나라가 한반도에서 경쟁하던 시기입니다. 고구려는 만주와 한반도 북부를 지배했고, 백제는 서남부, 신라는 동남부를 차지했습니다.'},
+    {title:'신라의 삼국 통일 (668년)',desc:'신라가 당나라와 동맹을 맺고 백제(660년)와 고구려(668년)를 차례로 멸망시켜 한반도를 통일했습니다. 통일신라는 경주를 수도로 번영하였습니다.'},
+    {title:'문화유산',desc:'고구려의 광개토대왕비, 백제의 미륵사지 석탑, 신라의 불국사·석굴암이 대표적인 문화유산입니다. 삼국 모두 불교를 국가 종교로 받아들였습니다.'},
+  ],
+  questions:[
+    {q:'고조선을 세운 사람은?',opts:['세종대왕','단군왕검','왕건','이성계'],answer:1},
+    {q:'삼국을 통일한 나라는?',opts:['고구려','백제','신라','고려'],answer:2},
+  ]
+};
+
+const CONCEPT2={
+  title:'고려와 조선',
+  summary:'고려왕조(918~1392)와 조선왕조(1392~1897)의 특징과 중요 사건을 이해합니다.',
+  points:[
+    {title:'고려 (918년~1392년)',desc:'왕건이 세운 왕조로 수도는 개성이었습니다. 불교를 국교로 삼았으며, 세계 최초의 금속활자와 팔만대장경을 만들었습니다. 고려청자는 세계적으로 유명한 문화재입니다. 몽골의 침략을 받았지만 문화적으로 발전했습니다.'},
+    {title:'조선 (1392년~1897년)',desc:'이성계가 세운 왕조로 수도는 한양(현재의 서울)이었습니다. 유교를 기본 이념으로 삼았습니다. 세종대왕(재위 1418~1450)이 한글을 창제하여 백성들이 글을 쉽게 읽고 쓸 수 있게 했습니다.'},
+    {title:'임진왜란 (1592~1598년)',desc:'일본의 침략으로 시작된 전쟁입니다. 이순신 장군이 거북선을 이용해 일본 해군을 격파했습니다. 7년간의 전쟁 끝에 일본이 물러났지만 나라는 큰 피해를 입었습니다.'},
+    {title:'조선의 문화',desc:'조선시대에는 한글 문학, 판소리, 탈춤, 민화 등 서민 문화가 발달했습니다. 또한 실학(實學)이 등장하여 실용적인 학문을 추구했습니다.'},
+  ],
+  questions:[
+    {q:'고려의 수도는?',opts:['서울','평양','개성','경주'],answer:2},
+    {q:'한글을 만든 왕은?',opts:['왕건','이성계','세종대왕','이순신'],answer:2},
+  ]
+};
+
+const QUIZ=[
+  {q:'한국 최초의 국가는?',opts:['고구려','고조선','고려','조선'],answer:1},
+  {q:'고조선을 세운 사람은?',opts:['왕건','이성계','단군왕검','세종대왕'],answer:2},
+  {q:'삼국시대의 세 나라가 아닌 것은?',opts:['고구려','백제','신라','고려'],answer:3},
+  {q:'삼국을 최종 통일한 나라는?',opts:['고구려','백제','신라','고려'],answer:2},
+  {q:'고려를 세운 사람은?',opts:['단군왕검','왕건','이성계','세종대왕'],answer:1},
+  {q:'고려의 국교(국가 종교)는?',opts:['유교','기독교','불교','이슬람교'],answer:2},
+  {q:'팔만대장경을 만든 나라는?',opts:['신라','고구려','조선','고려'],answer:3},
+  {q:'조선을 세운 사람은?',opts:['왕건','단군왕검','이성계','이순신'],answer:2},
+  {q:'한글을 창제한 왕은?',opts:['왕건','세종대왕','이성계','광개토대왕'],answer:1},
+  {q:'임진왜란에서 거북선으로 일본을 물리친 장군은?',opts:['이성계','왕건','세종대왕','이순신'],answer:3},
+];
+
+const RECORDER={
+  stream:null,mediaRecorder:null,chunks:[],isRecording:false,
+  recognition:null,sttActive:false,currentIdx:-1,scores:{},
+  autoDetect(){
+    const st=document.getElementById('rec-status');
+    if(!st)return;
+    if(!navigator.mediaDevices&&!window.SpeechRecognition&&!window.webkitSpeechRecognition){
+      st.innerHTML='<p style="color:#ef4444;font-size:13px">⚠️ 이 기기는 음성 인식을 지원하지 않습니다.</p>';return;
+    }
+    st.innerHTML='<p style="color:#059669;font-size:13px">✅ 마이크 준비 완료. 문장 옆 🎤 버튼을 누르세요.</p>';
+  },
+  toggle(idx,sents){
+    if(this.sttActive&&this.currentIdx===idx){this.stopSTT(idx);}
+    else{if(this.sttActive)this.stopSTT(this.currentIdx);this.startSTT(idx,sents);}
+  },
+  startSTT(idx,sents){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR)return;
+    this.recognition=new SR();
+    this.recognition.lang='ko-KR';
+    this.recognition.interimResults=false;
+    this.recognition.maxAlternatives=1;
+    this.sttActive=true;
+    this.currentIdx=idx;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='⏹ 중지';btn.classList.add('recording');}
+    this.recognition.onresult=(e)=>{
+      const transcript=e.results[0][0].transcript;
+      const score=this.calcScore(transcript,sents[idx]);
+      this.scores[idx]=score;
+      const badge=document.getElementById('score-badge-'+idx);
+      if(badge){
+        badge.textContent=score;
+        badge.className='score-badge '+(score>=80?'good':score>=50?'ok':'bad');
+      }
+      const res=document.getElementById('stt-result');
+      if(res)res.innerHTML=`<span style="color:#059669">인식: "${transcript}"</span>`;
+      this.stopSTT(idx);
+    };
+    this.recognition.onerror=()=>this.stopSTT(idx);
+    this.recognition.onend=()=>this.stopSTT(idx);
+    this.recognition.start();
+  },
+  stopSTT(idx){
+    if(this.recognition){try{this.recognition.stop();}catch(e){}}
+    this.sttActive=false;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+  },
+  calcScore(transcript,target){
+    const t=transcript.replace(/[.,?!]/g,'').toLowerCase();
+    const g=target.replace(/[.,?!]/g,'').toLowerCase();
+    const tw=t.split(' ');const gw=g.split(' ');
+    let match=0;
+    gw.forEach(w=>{if(tw.includes(w))match++;});
+    return Math.round((match/gw.length)*100);
+  }
+};
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level5_Index">← 목차</a>
+      <span class="nav-title">5급 1과 · 한국의 역사 1</span>
+      <a href="/KIIP_Level5_Lesson2">2과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level5_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level5_Lesson2"><span class="icon">➡️</span>2과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let html;
+      if(STATE.conceptTab===0){html=renderConceptBlock(CONCEPT1,'c1');}
+      else{html=renderConceptBlock(CONCEPT2,'c2');}
+      return `<h2>📜 핵심 내용</h2>
+        <div class="concept-tabs">
+          <button class="concept-tab${STATE.conceptTab===0?' active':''}" onclick="setState({conceptTab:0})">1. 고조선과 삼국</button>
+          <button class="concept-tab${STATE.conceptTab===1?' active':''}" onclick="setState({conceptTab:1})">2. 고려와 조선</button>
+        </div>${html}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderTimeline();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10:{
+      setTimeout(()=>RECORDER.autoDetect(),100);
+      const PRON_SENTS=[
+        '고조선은 단군왕검이 세운 한국 최초의 국가입니다.',
+        '신라가 삼국을 통일하여 통일신라 시대가 시작되었습니다.',
+        '고려는 세계 최초의 금속활자와 팔만대장경을 만들었습니다.',
+        '세종대왕은 한글을 창제하여 백성들이 글을 쉽게 배울 수 있게 했습니다.',
+      ];
+      return `<h2>🤖 AI 발음 실습</h2>
+        <div class="ai-section">
+          <h3>발음 연습</h3>
+          <p style="font-size:13px;color:#64748b;margin-bottom:12px">문장을 따라 말하고 AI가 발음을 분석합니다.</p>
+          <div id="rec-status"><p style="color:#94a3b8;font-size:13px">마이크 상태 확인 중...</p></div>
+          ${PRON_SENTS.map((s,i)=>`
+            <div class="pron-sent" id="pron-sent-${i}">
+              <span class="sent-text">${s} ${ttsBtn(s)}</span>
+              <div id="score-badge-${i}" class="score-badge">-</div>
+              <button class="rec-btn" id="rec-btn-${i}" onclick="RECORDER.toggle(${i},PRON_SENTS_10)">🎤 녹음</button>
+            </div>`).join('')}
+          <div id="stt-result" style="min-height:32px;margin-top:8px;font-size:13px;color:#475569"></div>
+        </div>
+        <script>var PRON_SENTS_10=${JSON.stringify(PRON_SENTS)};<\/script>
+        <div class="card">
+          <div class="card-title">💡 AI 활용 연습 주제</div>
+          <div class="speaking-topics">
+            <div class="speaking-topic">AI에게 "한국 고조선과 삼국시대에 대해 한국어로 설명해 줘"라고 질문해 보세요.</div>
+            <div class="speaking-topic">"고려와 조선의 차이점을 한국어로 설명해 줘"라고 AI에게 물어보세요.</div>
+            <div class="speaking-topic">AI와 함께 "한국 역사에서 가장 중요한 사건" 주제로 토론해 보세요.</div>
+          </div>
+        </div>`;
+    }
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 5급 · 1과</div>
+      <h1>🏯 한국의 역사 1</h1>
+      <div class="subtitle">고조선 · 삼국시대 · 고려 · 조선<br>Ancient & Medieval Korea</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>한국 최초의 국가 고조선과 단군왕검을 이해할 수 있다.</li>
+        <li>삼국시대(고구려·백제·신라)의 특징을 설명할 수 있다.</li>
+        <li>고려왕조의 주요 문화와 업적을 이해할 수 있다.</li>
+        <li>조선왕조와 세종대왕, 한글 창제의 의미를 설명할 수 있다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 단원 개요</div>
+      <p style="font-size:14px;line-height:1.8;color:#334155">
+        한국은 5,000년 이상의 긴 역사를 가진 나라입니다. 한국 최초의 국가인 고조선부터 삼국시대, 고려, 조선까지 다양한 왕조가 이어졌습니다. 각 시대마다 독특한 문화와 업적이 있었으며, 이것이 오늘날 한국 문화의 기초가 되었습니다.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-title">📚 학습 내용</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.slice(1).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `<h2>📝 핵심 어휘</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">카드를 클릭하면 뜻이 나타납니다. 🔊 버튼으로 발음을 들어보세요.</p>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">📌 ${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map((v,i)=>{
+          const key=v.ko;
+          const flipped=STATE.vocabFlipped[key];
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="setState({vocabFlipped:{...STATE.vocabFlipped,'${key}':${!flipped}}})">
+            ${flipped
+              ?`<div class="vocab-ko">${v.en}</div><div class="vocab-hanja">${v.vi}</div>`
+              :`<div class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</div>
+                <div class="vocab-hanja">${v.hanja}</div>
+                <div class="vocab-eng">${v.en}</div>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderConceptBlock(concept,prefix){
+  return `
+    <div class="card">
+      <div class="card-title">📜 ${concept.title}</div>
+      <p style="font-size:14px;color:#334155;margin-bottom:16px;line-height:1.7">${concept.summary}</p>
+      ${concept.points.map((p,i)=>`
+        <div class="rule-box">
+          <div class="rule-title">📌 ${p.title}</div>
+          <p style="font-size:14px;line-height:1.7;color:#334155">${p.desc}</p>
+        </div>`).join('')}
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 확인 문제</div>
+      ${concept.questions.map((q,i)=>`
+        <div class="topik-card">
+          <div class="q-text">${i+1}. ${q.q}</div>
+          <div class="topik-options">
+            ${q.opts.map((opt,j)=>`
+              <button class="topik-opt${STATE.topikAnswers[prefix+i]===j?(j===q.answer?' correct':' wrong'):''}"
+                onclick="setState({topikAnswers:{...STATE.topikAnswers,'${prefix+i}':${j}}})"
+                ${STATE.topikAnswers[prefix+i]!==undefined?'disabled':''}>
+                ${j+1}. ${opt}
+              </button>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderSpeaking(){
+  return `<h2>💬 말하기 연습</h2>
+    <div class="card">
+      <div class="card-title">🎯 주제 대화</div>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <span class="speaker">A</span>
+          <div class="bubble">한국 역사에서 가장 중요한 사건이 뭐라고 생각해요? ${ttsBtn('한국 역사에서 가장 중요한 사건이 뭐라고 생각해요?')}</div>
+        </div>
+        <div class="dialogue-line b">
+          <span class="speaker">B</span>
+          <div class="bubble">저는 신라의 삼국 통일이 중요하다고 생각해요. 분열된 세 나라가 하나로 합쳐졌으니까요. ${ttsBtn('저는 신라의 삼국 통일이 중요하다고 생각해요. 분열된 세 나라가 하나로 합쳐졌으니까요.')}</div>
+        </div>
+        <div class="dialogue-line">
+          <span class="speaker">A</span>
+          <div class="bubble">그렇군요. 저는 세종대왕의 한글 창제가 가장 의미 있다고 생각해요. ${ttsBtn('그렇군요. 저는 세종대왕의 한글 창제가 가장 의미 있다고 생각해요.')}</div>
+        </div>
+        <div class="dialogue-line b">
+          <span class="speaker">B</span>
+          <div class="bubble">맞아요! 한글 덕분에 많은 사람들이 글을 읽고 쓸 수 있게 되었죠. ${ttsBtn('맞아요! 한글 덕분에 많은 사람들이 글을 읽고 쓸 수 있게 되었죠.')}</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">💬 말하기 주제</div>
+      <div class="speaking-topics">
+        <div class="speaking-topic">여러분 나라의 역사에서 가장 중요한 사건은 무엇인가요? 한국어로 소개해 보세요.</div>
+        <div class="speaking-topic">한국 역사 중에서 가장 흥미롭거나 놀라운 것은 무엇인가요?</div>
+        <div class="speaking-topic">세종대왕처럼 여러분 나라에도 위대한 왕이나 지도자가 있나요? 소개해 보세요.</div>
+      </div>
+    </div>`;
+}
+
+function renderListening(){
+  return `<h2>👂 듣기 · 이해하기</h2>
+    <div class="card">
+      <div class="card-title">📻 역사 강의 내용</div>
+      <p style="font-size:13px;color:#64748b;margin-bottom:12px">아래 내용을 읽고 질문에 답하세요.</p>
+      <div class="listen-script-box">
+        한국은 약 5,000년의 긴 역사를 가지고 있습니다. 기원전 2333년 단군왕검이 고조선을 세운 것이 한국 역사의 시작입니다. 이후 한반도에는 고구려, 백제, 신라 세 나라가 등장하여 서로 경쟁하는 삼국시대가 펼쳐졌습니다. 668년 신라가 삼국을 통일하면서 통일신라 시대가 시작되었습니다. 10세기에는 왕건이 고려를 세우고 개성을 수도로 삼았습니다. 고려는 불교 문화가 발달하여 팔만대장경과 고려청자 같은 뛰어난 문화재를 남겼습니다. 1392년에는 이성계가 조선을 세우고 한양으로 수도를 옮겼습니다. 조선시대에는 유교가 국가 이념이 되었고, 세종대왕이 1443년 한글을 창제하여 한국 문화 발전에 크게 기여하였습니다.
+      </div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:true})">📖 내용 확인</button>
+    </div>
+    <div class="listen-q">
+      <div class="q-text">1. 고조선을 세운 사람과 연도는?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 단군왕검 / 기원전 2333년</div>`:''}
+    </div>
+    <div class="listen-q">
+      <div class="q-text">2. 고려의 수도는 어디였나요?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 개성</div>`:''}
+    </div>
+    <div class="listen-q">
+      <div class="q-text">3. 조선의 건국자와 수도는?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 이성계 / 한양</div>`:''}
+    </div>`;
+}
+
+function renderTimeline(){
+  const events=[
+    {year:'BC 2333년',event:'고조선 건국',desc:'단군왕검이 아사달(평양)을 수도로 한국 최초의 국가를 세웠습니다.'},
+    {year:'BC 57년~AD 668년',event:'삼국시대',desc:'고구려(BC 37), 백제(BC 18), 신라(BC 57)가 한반도에서 각각 건국되었습니다.'},
+    {year:'668년',event:'신라 삼국 통일',desc:'신라가 당나라와 동맹하여 백제와 고구려를 멸망시키고 한반도를 통일했습니다.'},
+    {year:'918년',event:'고려 건국',desc:'왕건이 고려를 세우고 개성을 수도로 정했습니다. 불교가 국교로 발전했습니다.'},
+    {year:'1234년',event:'세계 최초 금속활자',desc:'고려에서 세계 최초로 금속활자를 발명하여 책을 인쇄했습니다.'},
+    {year:'1251년',event:'팔만대장경 완성',desc:'고려가 몽골 침략을 부처님의 힘으로 막기 위해 팔만대장경을 완성했습니다.'},
+    {year:'1392년',event:'조선 건국',desc:'이성계가 조선을 세우고 유교를 기본 이념으로 채택했습니다. 수도는 한양(서울)입니다.'},
+    {year:'1443년',event:'한글 창제',desc:'세종대왕이 훈민정음(한글)을 창제하여 백성들이 쉽게 글을 배울 수 있게 했습니다.'},
+    {year:'1592~1598년',event:'임진왜란',desc:'일본의 침략에 이순신 장군이 거북선으로 맞서 싸워 나라를 지켰습니다.'},
+  ];
+  return `<h2>🗓️ 역사 연표</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">주요 역사적 사건을 순서대로 정리했습니다.</p>
+    ${events.map(e=>`
+      <div class="timeline-item">
+        <div class="timeline-year">📅 ${e.year}</div>
+        <div class="timeline-event">⭐ ${e.event}</div>
+        <div class="timeline-desc">${e.desc}</div>
+      </div>`).join('')}`;
+}
+
+function renderReading(){
+  return `<h2>📖 읽기</h2>
+    <div class="card">
+      <div class="card-title">📄 세종대왕과 한글</div>
+      <div class="reading-text">
+        조선의 제4대 왕 <span class="highlight">세종대왕</span>(1397~1450)은 한국 역사에서 가장 존경받는 왕입니다. 1443년, 세종대왕은 신하들과 함께 <span class="highlight">훈민정음</span>(訓民正音), 즉 오늘날의 한글을 창제했습니다.<br><br>
+        한글 창제 이전에는 한자를 사용했습니다. 한자는 배우기 어려워 많은 백성들이 글을 읽고 쓸 수 없었습니다. 세종대왕은 이를 안타깝게 여겨 <span class="highlight">"백성을 가르치는 바른 소리"</span>라는 뜻의 훈민정음을 만들었습니다.<br><br>
+        한글은 자음 14개와 모음 10개로 이루어진 과학적인 문자입니다. 하루 만에도 배울 수 있을 만큼 쉬운 것으로 유명합니다. 오늘날 한글은 유네스코에서 세계 최고의 문자 중 하나로 인정받고 있으며, 10월 9일은 한글날로 국경일입니다.
+      </div>
+      <div class="listen-q">
+        <div class="q-text">세종대왕이 한글을 만든 이유는?</div>
+        <button class="reveal-btn" onclick="setState({readAnswers:{...STATE.readAnswers,r1:true}})">정답 확인</button>
+        ${STATE.readAnswers.r1?`<div class="answer-reveal">✅ 한자를 배우기 어려워 글을 못 읽는 백성들을 위해 쉬운 글자를 만들었습니다.</div>`:''}
+      </div>
+    </div>`;
+}
+
+function renderWriting(){
+  return `<h2>✏️ 쓰기 연습</h2>
+    <div class="card">
+      <div class="card-title">📝 역사 정리 쓰기</div>
+      <div class="writing-guide">
+        <p style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:8px">📌 다음 내용을 포함하여 한국의 고대 역사를 150자 이상 써 보세요.</p>
+        <ul>
+          <li>고조선의 건국자와 건국 이념</li>
+          <li>삼국시대의 세 나라</li>
+          <li>고려 또는 조선의 특징</li>
+        </ul>
+      </div>
+      <textarea placeholder="여기에 한국어로 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="text-align:right;font-size:12px;color:#64748b;margin-top:4px">${STATE.writingText.length}자</div>
+      <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'예문 숨기기':'예문 보기'}</button>
+      ${STATE.sampleShown?`<div class="sample-box">
+        한국의 역사는 기원전 2333년 단군왕검이 세운 고조선에서 시작됩니다. 고조선의 건국 이념은 홍익인간, 즉 "인간 세계를 널리 이롭게 한다"는 뜻입니다. 이후 고구려, 백제, 신라의 삼국시대가 열렸고, 668년 신라가 삼국을 통일했습니다. 918년에는 왕건이 고려를 세웠고 불교 문화가 크게 발달했습니다. 1392년 이성계가 조선을 건국했으며, 세종대왕은 1443년 한글을 창제하여 모든 백성이 글을 배울 수 있게 하였습니다.
+      </div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  return `<h2>🎎 문화 알기</h2>
+    <div class="culture-section">
+      <h4>🏯 경복궁 — 조선의 으뜸 궁궐</h4>
+      <p>경복궁은 1395년 조선 태조 이성계가 한양에 세운 첫 번째 궁궐입니다. "경복(景福)"이란 "큰 복을 누린다"는 뜻입니다. 임진왜란 때 소실되었다가 1867년 흥선대원군 때 재건되었습니다. 현재 서울 북쪽에 있으며 매년 수많은 관광객이 방문합니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>📜 팔만대장경 — 세계 최고의 목판 인쇄물</h4>
+      <p>팔만대장경(八萬大藏經)은 고려시대(1236~1251년) 몽골의 침략을 부처님의 힘으로 막기 위해 만든 불교 경전 목판입니다. 약 8만 1,258장의 목판으로 이루어져 있으며, 800년이 지난 지금도 온전히 보존되어 있습니다. 경남 합천 해인사에 보관되어 있으며 유네스코 세계기록유산입니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>⚓ 거북선 — 이순신 장군의 전투선</h4>
+      <p>거북선은 조선 임진왜란(1592~1598년) 때 이순신 장군이 만든 전투선입니다. 배 위에 덮개를 씌워 적의 공격을 막고, 앞부분에 용머리 모양의 대포를 달았습니다. 거북선은 세계 최초의 철갑선으로 알려져 있으며, 이를 이용해 일본 해군을 여러 번 크게 물리쳤습니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>🏺 고려청자 — 천하 제일의 아름다움</h4>
+      <p>고려청자(高麗靑瓷)는 고려시대(918~1392년)에 만들어진 청색빛 도자기입니다. 독특한 비취색과 섬세한 상감 기법이 특징으로, 당시 중국에서도 "천하제일"이라고 극찬했습니다. 현재 국내외 박물관에서 귀한 문화재로 소장되어 있습니다.</p>
+    </div>`;
+}
+
+function renderQuiz(){
+  if(STATE.quizDone){
+    const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+    return `<h2>✅ 퀴즈 결과</h2>
+      <div class="quiz-score">
+        <div class="score-num">${correct}/${QUIZ.length}</div>
+        <div style="font-size:16px;margin-top:8px">${correct>=8?'🎉 훌륭해요!':correct>=5?'👍 잘했어요!':'📚 다시 복습해 보세요'}</div>
+      </div>
+      <button class="reveal-btn" style="margin-top:16px;width:100%" onclick="setState({quizDone:false,quizAnswers:{}})">🔄 다시 풀기</button>`;
+  }
+  return `<h2>✅ 이해도 퀴즈</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">한국의 역사 1에 대한 이해도를 확인하세요. (10문제)</p>
+    ${QUIZ.map((q,i)=>`
+      <div class="quiz-card${STATE.quizAnswers[i]!==undefined?(STATE.quizAnswers[i]===q.answer?' answered-correct':' answered-wrong'):''}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>`
+            <button class="quiz-opt${STATE.quizAnswers[i]===j?(j===q.answer?' selected-correct':' selected-wrong'):''}"
+              onclick="setState({quizAnswers:{...STATE.quizAnswers,${i}:${j}}})"
+              ${STATE.quizAnswers[i]!==undefined?'disabled':''}>
+              ${j+1}. ${opt}
+            </button>`).join('')}
+        </div>
+      </div>`).join('')}
+    ${Object.keys(STATE.quizAnswers).length===QUIZ.length
+      ?`<button class="reveal-btn" style="width:100%" onclick="setState({quizDone:true})">결과 보기 →</button>`:''}`;
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 4급 17과 · 미디어와 광고</title>
+<meta name="theme-color" content="#1d4ed8"/>
+<meta property="og:title" content="KIIP 4급 17과 · 미디어와 광고"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level4_Lesson17.html"/>
+<meta property="og:description" content="KIIP 4급 17과 미디어와 광고 - 어휘, 문법, 말하기, 듣기, 읽기, 쓰기, 문화, 퀴즈"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1d4ed8;--navy:#1e3a5f;--indigo:#1e40af;--green:#22c55e;--red:#ef4444;--gray:#f0f4ff;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(30,58,95,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #dbeafe;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:700}
+.tab-btn:hover{background:#eff6ff}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #dbeafe;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(30,58,95,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--blue)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(30,58,95,0.08);border:1px solid #dbeafe}
+.card-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--blue)}
+h3{font-size:16px;font-weight:700;color:var(--indigo);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 12px rgba(29,78,216,0.15)}
+.vocab-card.flipped{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--navy)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--blue);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue);margin:14px 0 8px;padding:4px 10px;background:#eff6ff;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.grammar-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.grammar-tab{padding:8px 18px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.grammar-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rule-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:6px}
+.example-list{list-style:none}
+.example-list li{padding:8px 12px;border-radius:8px;margin-bottom:6px;background:#f8faff;border:1px solid #dbeafe;font-size:14px;line-height:1.6}
+.example-list li .ko{color:var(--navy);font-weight:600}
+.example-list li .en{color:#475569;font-size:12px}
+.practice-item{background:#fff;border:2px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.practice-item input{border:1px solid #bfdbfe;border-radius:6px;padding:6px 10px;font-size:14px;width:140px;margin:0 4px}
+.practice-item input:focus{outline:none;border-color:var(--blue)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.check-btn:hover{background:var(--indigo)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.topik-card{background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #bfdbfe;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--blue);background:#eff6ff}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f8faff;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--blue);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--indigo)}
+.bubble{background:#eff6ff;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#dbeafe}
+.listen-script-box{background:#f0f4ff;border:2px dashed #bfdbfe;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--navy)}
+.listen-q{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.reveal-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--indigo)}
+.pron-rule{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #bfdbfe}
+.pron-word{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:6px 12px;margin:4px;font-size:14px}
+.pron-arrow{color:var(--blue);font-weight:700}
+.reading-text{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--blue);font-weight:700}
+.writing-guide{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--navy)}
+textarea{width:100%;border:2px solid #bfdbfe;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--blue)}
+.sample-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--navy);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--navy);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #dbeafe;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #dbeafe;background:#f8faff;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--blue);background:#eff6ff}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--navy);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#60a5fa}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #dbeafe}
+.pron-sent{background:#f0f4ff;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--navy);flex:1}
+.rec-btn{background:var(--blue);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--indigo)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #dbeafe;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.lang-toggle{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.lang-btn{padding:6px 14px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:12px;font-weight:600;color:#64748b;transition:all 0.2s}
+.lang-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tip-box{background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:#475569;margin-top:8px}
+.tip-box strong{color:var(--blue)}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#eff6ff;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--navy)}
+.intro-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--indigo) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--navy)}
+.objective-list li::before{content:'✓';color:var(--blue);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--navy)}
+.section-nav-btn:hover{border-color:var(--blue);background:#eff6ff;color:var(--blue)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},vocabShowEng:true,
+  listenRevealed:false,listenAnswers:{},
+  gramPracticeShown:{},readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  grammarTab:0,topikAnswers:{},
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'문법',icon:'📐'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'발음',icon:'🔊'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'신문',hanja:'新聞',en:'newspaper',vi:'báo',cat:'미디어 종류'},
+  {ko:'방송',hanja:'放送',en:'broadcast/TV',vi:'phát sóng',cat:'미디어 종류'},
+  {ko:'인터넷 뉴스',hanja:'인터넷 뉴스',en:'online news',vi:'tin tức trực tuyến',cat:'미디어 종류'},
+  {ko:'팟캐스트',hanja:'팟캐스트',en:'podcast',vi:'podcast',cat:'미디어 종류'},
+  {ko:'유튜브',hanja:'유튜브',en:'YouTube',vi:'YouTube',cat:'미디어 종류'},
+  {ko:'광고',hanja:'廣告',en:'advertisement',vi:'quảng cáo',cat:'광고 관련'},
+  {ko:'홍보',hanja:'弘報',en:'publicity/PR',vi:'quảng bá',cat:'광고 관련'},
+  {ko:'브랜드',hanja:'브랜드',en:'brand',vi:'thương hiệu',cat:'광고 관련'},
+  {ko:'마케팅',hanja:'마케팅',en:'marketing',vi:'tiếp thị',cat:'광고 관련'},
+  {ko:'소비자',hanja:'消費者',en:'consumer',vi:'người tiêu dùng',cat:'광고 관련'},
+  {ko:'여론',hanja:'輿論',en:'public opinion',vi:'dư luận',cat:'미디어 영향'},
+  {ko:'영향력',hanja:'影響力',en:'influence/impact',vi:'tầm ảnh hưởng',cat:'미디어 영향'},
+  {ko:'정보',hanja:'情報',en:'information',vi:'thông tin',cat:'미디어 영향'},
+  {ko:'편집',hanja:'編輯',en:'editing',vi:'biên tập',cat:'미디어 영향'},
+  {ko:'언론',hanja:'言論',en:'press/media',vi:'báo chí',cat:'미디어 영향'},
+  {ko:'인플루언서',hanja:'인플루언서',en:'influencer',vi:'người nổi tiếng mạng',cat:'디지털 미디어'},
+  {ko:'구독',hanja:'購讀',en:'subscription',vi:'đăng ký',cat:'디지털 미디어'},
+  {ko:'조회수',hanja:'照會數',en:'view count',vi:'lượt xem',cat:'디지털 미디어'},
+  {ko:'알림',hanja:'알림',en:'notification/alert',vi:'thông báo',cat:'디지털 미디어'},
+  {ko:'댓글',hanja:'댓글',en:'comment',vi:'bình luận',cat:'디지털 미디어'},
+];
+
+const GRAM1={
+  title:'-다 못해',
+  meaning:'어떤 행동이나 상태가 한계에 이르러서 더 이상 그것을 지속할 수 없을 정도가 됨을 나타냄.',
+  en:'Having reached the limit of / So much so that one can no longer / Unable to bear any longer / Overcome with',
+  rule:'동사 어간 + -다 못해',
+  examples:[
+    {ko:'광고가 너무 많다 못해 짜증이 날 지경이에요.',en:'There are so many ads I\'ve reached the point of being annoyed.'},
+    {ko:'기다리다 못해 그냥 나가 버렸어요.',en:'Unable to bear waiting any longer, I just left.'},
+    {ko:'웃다 못해 눈물이 났어요.',en:'I laughed so much that tears came.'},
+    {ko:'참다 못해 결국 항의했습니다.',en:'Having reached the limit of my patience, I finally complained.'},
+    {ko:'뉴스를 보다 못해 TV를 껐어요.',en:'Unable to keep watching the news, I turned off the TV.'},
+  ],
+  practice:[
+    {q:'기다리___ 못해 먼저 갔어요.',answer:'다'},
+    {q:'참___ 못해 결국 항의했습니다.',answer:'다'},
+    {q:'웃___ 못해 눈물이 났어요.',answer:'다'},
+    {q:'광고가 너무 많___ 못해 TV를 껐어요.',answer:'다'},
+    {q:'뉴스를 보___ 못해 채널을 바꿨어요.',answer:'다'},
+  ],
+  topik:[
+    {q:'"-다 못해"의 의미는?',opts:['어떤 행동의 한계에 이르러 더 이상 못 함','어떤 행동을 잘 못함','어떤 행동의 결과','어떤 행동의 조건'],answer:0},
+    {q:'빈칸: "기다리___ 못해 먼저 식당으로 갔습니다."',opts:['다','고','서','도'],answer:0},
+  ]
+};
+
+const GRAM2={
+  title:'-(으)ㄹ 지경이다',
+  meaning:'어떤 상황이 매우 심각하거나 극단적인 상태에 이르렀음을 나타냄. 주로 부정적인 상황에 쓰임.',
+  en:'To the point where / In a state where / It\'s come to the point that / On the verge of',
+  rule:'동사/형용사 어간 + -(으)ㄹ 지경이다 (자음: -을 지경이다, 모음/ㄹ: -ㄹ 지경이다)',
+  examples:[
+    {ko:'광고가 너무 많아서 뉴스를 못 볼 지경이에요.',en:'There are so many ads I\'ve reached the point where I can\'t watch the news.'},
+    {ko:'스마트폰을 너무 많이 봐서 눈이 빠질 지경이에요.',en:'I\'ve watched my smartphone so much my eyes are about to fall out.'},
+    {ko:'스트레스를 너무 받아서 쓰러질 지경이에요.',en:'I\'m under so much stress I\'m on the verge of collapsing.'},
+    {ko:'가짜뉴스가 너무 많아서 뭘 믿어야 할지 모를 지경이에요.',en:'There\'s so much fake news I\'ve reached the point where I don\'t know what to believe.'},
+    {ko:'알림이 너무 많아서 무시할 지경이에요.',en:'There are so many notifications I\'ve reached the point of ignoring them.'},
+  ],
+  practice:[
+    {q:'광고가 너무 많아서 볼 수 없___ ___.',answer:'을 지경이다'},
+    {q:'눈이 너무 아파서 뜰 수 없___ ___.',answer:'을 지경이다'},
+    {q:'스트레스를 너무 받아서 쓰러질___ ___.',answer:'지경이다'},
+    {q:'가짜뉴스가 많아서 믿기 어려울___ ___.',answer:'지경이다'},
+    {q:'알림이 너무 많아서 무시할___ ___.',answer:'지경이다'},
+  ],
+  topik:[
+    {q:'"-(으)ㄹ 지경이다"의 의미는?',opts:['상황이 극단적인 상태에 이름','상황이 좋아짐','조건이 이루어짐','행동의 목적'],answer:0},
+    {q:'빈칸: "광고가 너무 많아서 뉴스를 볼 수 없___ ___."',opts:['을 지경이다','는 법이다','ㄹ 따름이다','는 탓에'],answer:0},
+  ]
+};
+
+const QUIZ=[
+  {q:'"여론"의 영어는?',opts:['influence','public opinion','information','press'],answer:1},
+  {q:'"기다리다 못해 그냥 나갔다."에서 "-다 못해"의 의미는?',opts:['기다리기 위해','더 이상 기다릴 수 없어서','기다린 결과','기다리는 것이 당연하여'],answer:1},
+  {q:'"광고가 너무 많아서 볼 수 없을 지경이다."에서 "-(으)ㄹ 지경이다"의 의미는?',opts:['상황이 좋아졌다','극단적인 상태에 이르렀다','조건이 이루어졌다','당연한 결과이다'],answer:1},
+  {q:'"인플루언서"의 역할은?',opts:['뉴스 앵커','SNS에서 많은 팔로워에게 영향을 주는 사람','방송국 PD','광고 디자이너'],answer:1},
+  {q:'"구독"의 뜻은?',opts:['댓글 달기','좋아요 누르기','채널이나 서비스를 정기적으로 구매·팔로우함','영상 공유'],answer:2},
+  {q:'미디어의 부정적 영향이 아닌 것은?',opts:['가짜뉴스 확산','과도한 광고','개인정보 유출','다양한 정보 제공'],answer:3},
+  {q:'빈칸: "웃___ 못해 눈물이 났어요."',opts:['다','고','어서','서'],answer:0},
+  {q:'"편집"의 영어는?',opts:['editing','broadcasting','subscription','marketing'],answer:0},
+  {q:'"홍보"와 가장 가까운 의미는?',opts:['개인 정보','브랜드나 제품을 알리는 활동','뉴스 편집','댓글 관리'],answer:1},
+  {q:'빈칸: "스트레스를 너무 받아서 쓰러질___ ___."',opts:['지경이다','법이다','따름이다','셈이다'],answer:0},
+];
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level4_Lesson16">← 16과</a>
+      <span class="nav-title">4급 17과 · 미디어와 광고</span>
+      <a href="/KIIP_Level4_Lesson18">18과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level4_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level4_Lesson18"><span class="icon">➡️</span>18과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let gramHtml;
+      if(STATE.grammarTab===0){gramHtml=renderGramBlock(GRAM1,'gram1');}
+      else{gramHtml=renderGramBlock(GRAM2,'gram2');}
+      return `<h2>📐 문법</h2>
+        <div class="grammar-tabs">
+          <button class="grammar-tab${STATE.grammarTab===0?' active':''}" onclick="setState({grammarTab:0})">1. -다 못해</button>
+          <button class="grammar-tab${STATE.grammarTab===1?' active':''}" onclick="setState({grammarTab:1})">2. -(으)ㄹ 지경이다</button>
+        </div>${gramHtml}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderPronunciation();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10:{
+      setTimeout(()=>RECORDER.autoDetect(),100);
+      const PRON_SENTS=[
+        '광고가 너무 많다 못해 짜증날 지경입니다.',
+        '가짜뉴스가 많아서 무엇을 믿어야 할지 모를 지경입니다.',
+        '미디어 리터러시는 현대 사회에서 꼭 필요한 능력입니다.',
+        '인플루언서의 광고를 볼 때는 비판적으로 판단하는 것이 중요합니다.',
+      ];
+      return `<h2>🤖 AI 발음 실습</h2>
+        <div class="ai-section">
+          <h3>발음 연습</h3>
+          <p style="font-size:13px;color:#64748b;margin-bottom:12px">문장을 따라 말하고 AI가 발음을 분석합니다.</p>
+          <div id="rec-status"><p style="color:#94a3b8;font-size:13px">마이크 상태 확인 중...</p></div>
+          ${PRON_SENTS.map((s,i)=>`
+            <div class="pron-sent" id="pron-sent-${i}">
+              <span class="sent-text">${s} ${ttsBtn(s)}</span>
+              <div id="score-badge-${i}" class="score-badge">-</div>
+              <button class="rec-btn" id="rec-btn-${i}" onclick="RECORDER.toggle(${i},PRON_SENTS_17)">🎤 녹음</button>
+            </div>`).join('')}
+          <div id="stt-result" style="min-height:32px;margin-top:8px;font-size:13px;color:#475569"></div>
+        </div>
+        <script>var PRON_SENTS_17=${JSON.stringify(PRON_SENTS)};<\/script>
+        <div class="card">
+          <div class="card-title">💡 AI 활용 연습 주제</div>
+          <div class="speaking-topics">
+            <div class="speaking-topic">AI에게 "한국의 미디어 문화를 한국어로 설명해 줘"라고 질문해 보세요.</div>
+            <div class="speaking-topic">"-다 못해"와 "-(으)ㄹ 지경이다"를 사용하여 미디어에 대한 문장 5개를 만들어 달라고 해 보세요.</div>
+            <div class="speaking-topic">AI와 함께 "미디어와 나의 생활" 주제로 글쓰기 연습을 해 보세요.</div>
+          </div>
+        </div>`;
+    }
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 4급 · 17과</div>
+      <h1 style="margin-top:12px">미디어와 광고</h1>
+      <p class="subtitle">Media &amp; Advertising · Truyền thông và Quảng cáo</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>미디어 종류, 광고 관련, 미디어 영향, 디지털 미디어 어휘 20개를 익힌다.</li>
+        <li>-다 못해를 사용하여 어떤 행동이나 상태가 한계에 이르렀음을 표현할 수 있다.</li>
+        <li>-(으)ㄹ 지경이다를 사용하여 극단적인 상태에 이르렀음을 표현할 수 있다.</li>
+        <li>미디어와 광고에 대해 말하고 쓸 수 있다.</li>
+        <li>한국의 방송 문화, 언론, 유튜브와 한류, 광고 규제를 이해한다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🔑 핵심 표현</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          광고가 너무 많<strong>다 못해</strong> 짜증이 날 지경이에요. ${ttsBtn('광고가 너무 많다 못해 짜증이 날 지경이에요.')}
+        </div>
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          가짜뉴스가 너무 많아서 뭘 믿어야 할지 모<strong>를 지경이에요</strong>. ${ttsBtn('가짜뉴스가 너무 많아서 뭘 믿어야 할지 모를 지경이에요.')}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 학습 섹션</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.filter(s=>s.id>0).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `
+    <h2>📝 어휘</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div class="lang-toggle">
+        <button class="lang-btn${STATE.lang==='ko'?' active':''}" onclick="setState({lang:'ko',vocabFlipped:{}})">한국어</button>
+        <button class="lang-btn${STATE.lang==='en'?' active':''}" onclick="setState({lang:'en',vocabFlipped:{}})">English</button>
+        <button class="lang-btn${STATE.lang==='vi'?' active':''}" onclick="setState({lang:'vi',vocabFlipped:{}})">Tiếng Việt</button>
+      </div>
+      <button class="check-btn" onclick="setState({vocabFlipped:{}})">초기화</button>
+    </div>
+    <div class="tip-box" style="margin-bottom:14px"><strong>💡 Tip:</strong> 카드를 클릭하면 뒤집어집니다!</div>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map(v=>{
+          const idx=VOCAB.indexOf(v);
+          const flipped=STATE.vocabFlipped[idx];
+          const meaning=STATE.lang==='vi'?v.vi:v.en;
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="STATE.vocabFlipped[${idx}]=!STATE.vocabFlipped[${idx}];render()">
+            ${!flipped
+              ?`<span class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</span><span class="vocab-hanja">${v.hanja}</span>`
+              :`<span class="vocab-ko">${meaning}</span><span class="vocab-eng">${v.ko}</span>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderGramBlock(gram,prefix){
+  const practiceHtml=gram.practice.map((p,i)=>{
+    const shown=STATE.gramPracticeShown[prefix+'_'+i];
+    const q=p.q.replace('___',`<input id="${prefix}-inp-${i}" placeholder="___" style="width:110px"/>`);
+    return `<div class="practice-item">
+      <div style="font-size:14px;color:var(--navy);margin-bottom:8px;line-height:1.6">${q}</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" onclick="
+          var v=document.getElementById('${prefix}-inp-${i}').value.trim();
+          if(v==='${p.answer}'){document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=answer-reveal>✅ 정답!</span>';}
+          else{document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=wrong-reveal>❌ 다시 해보세요</span>';}
+        ">확인</button>
+        <button class="check-btn" style="background:#64748b" onclick="STATE.gramPracticeShown['${prefix}_${i}']=true;render()">정답 보기</button>
+      </div>
+      <div id="${prefix}-fb-${i}">${shown?`<span class="answer-reveal">정답: ${p.answer}</span>`:''}</div>
+    </div>`;
+  }).join('');
+  const topikHtml=gram.topik.map((t,i)=>{
+    const key=prefix+'_topik_'+i;
+    const chosen=STATE.topikAnswers[key];
+    return `<div class="topik-card">
+      <div class="q-text">${t.q}</div>
+      <div class="topik-options">
+        ${t.opts.map((opt,j)=>{
+          let cls='topik-opt';
+          if(chosen!==undefined){if(j===t.answer)cls+=' correct';else if(j===chosen)cls+=' wrong';}
+          return `<button class="${cls}" onclick="STATE.topikAnswers['${key}']=${j};render()" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+        }).join('')}
+      </div>
+      ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;color:${chosen===t.answer?'#166534':'#991b1b'};font-weight:700">${chosen===t.answer?'✅ 정답!':'❌ 오답 - 정답: '+(t.answer+1)+'번'}</div>`:''}
+    </div>`;
+  }).join('');
+  return `
+    <div class="card">
+      <div class="card-title">📌 ${gram.title}</div>
+      <div class="rule-box"><div class="rule-title">의미</div><div style="font-size:14px;color:var(--navy);margin-bottom:4px">${gram.meaning}</div><div style="font-size:13px;color:#475569">🇺🇸 ${gram.en}</div></div>
+      <div class="rule-box"><div class="rule-title">형태 규칙</div><div style="font-size:14px;color:var(--navy)">${gram.rule}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 예문</div>
+      <ul class="example-list">${gram.examples.map(e=>`<li><span class="ko">${e.ko} ${ttsBtn(e.ko)}</span><br><span class="en">${e.en}</span></li>`).join('')}</ul>
+    </div>
+    <div class="card"><div class="card-title">✏️ 빈칸 채우기 연습</div>${practiceHtml}</div>
+    <div class="card"><div class="card-title">📋 TOPIK 유형</div>${topikHtml}</div>`;
+}
+
+function renderSpeaking(){
+  const dialogues=[
+    {title:'대화 1: 광고의 영향',lines:[
+      {speaker:'A',text:'요즘 인터넷에 광고가 너무 많죠?',side:'a'},
+      {speaker:'B',text:'맞아요. 광고가 너무 많다 못해 짜증날 지경이에요.',side:'b'},
+      {speaker:'A',text:'광고 차단 프로그램을 쓰면 어떨까요?',side:'a'},
+      {speaker:'B',text:'저도 써봤는데 효과가 있어요. 광고를 보다 못해 설치했거든요.',side:'b'},
+      {speaker:'A',text:'광고가 무조건 나쁜 건 아니죠?',side:'a'},
+      {speaker:'B',text:'맞아요. 좋은 제품 정보를 주는 광고도 있으니까요.',side:'b'},
+    ]},
+    {title:'대화 2: 유튜브와 인플루언서',lines:[
+      {speaker:'A',text:'요즘 유튜브를 많이 보시나요?',side:'a'},
+      {speaker:'B',text:'네, 너무 많이 봐서 눈이 아플 지경이에요.',side:'b'},
+      {speaker:'A',text:'어떤 채널을 주로 보세요?',side:'a'},
+      {speaker:'B',text:'한국어 교육 채널과 요리 채널을 구독하고 있어요.',side:'b'},
+      {speaker:'A',text:'인플루언서가 추천하는 제품을 사본 적 있어요?',side:'a'},
+      {speaker:'B',text:'네, 참다 못해 한번 샀는데 생각보다 별로였어요.',side:'b'},
+    ]},
+    {title:'대화 3: 가짜뉴스 문제',lines:[
+      {speaker:'A',text:'SNS에서 가짜뉴스를 본 적 있나요?',side:'a'},
+      {speaker:'B',text:'자주 봐요. 뭘 믿어야 할지 모를 지경이에요.',side:'b'},
+      {speaker:'A',text:'어떻게 구별하면 좋을까요?',side:'a'},
+      {speaker:'B',text:'언론사의 공식 뉴스를 확인하고, 여러 매체를 비교하는 게 좋아요.',side:'b'},
+      {speaker:'A',text:'가짜뉴스를 보다 못해 SNS를 잠시 끊은 적도 있어요.',side:'a'},
+      {speaker:'B',text:'저도 그런 적 있어요. 디지털 디톡스도 필요한 것 같아요.',side:'b'},
+    ]},
+  ];
+  const topics=[
+    '미디어가 우리 생활에 미치는 영향을 이야기해 보세요.',
+    '좋아하는 미디어 채널이나 프로그램을 소개해 보세요.',
+    '가짜뉴스를 구별하는 방법에 대해 말해보세요.',
+  ];
+  return `<h2>💬 말하기</h2>
+    ${dialogues.map(d=>`<div class="card"><div class="card-title">${d.title}</div><div class="dialogue">
+      ${d.lines.map(l=>`<div class="dialogue-line${l.side==='b'?' b':''}"><span class="speaker">${l.speaker}</span><div class="bubble">${l.text} ${ttsBtn(l.text)}</div></div>`).join('')}
+    </div></div>`).join('')}
+    <div class="card"><div class="card-title">🗣️ 자유 말하기 주제</div><div class="speaking-topics">
+      ${topics.map((t,i)=>`<div class="speaking-topic"><strong>${i+1}.</strong> ${t}</div>`).join('')}
+    </div></div>`;
+}
+
+function renderListening(){
+  const script='[미디어 리터러시 강의]\n\n안녕하세요. 오늘은 미디어 리터러시에 대해 이야기하겠습니다.\n\n현대 사회에서 우리는 수많은 정보에 둘러싸여 있습니다. 뉴스, 광고, SNS 등에서 쏟아지는 정보를 보다 못해 포기하는 사람들도 있습니다.\n\n가짜뉴스 문제가 심각합니다. 가짜뉴스가 너무 많아서 뭐가 진실인지 모를 지경입니다. 정보를 접할 때는 반드시 출처를 확인하고, 여러 신뢰할 만한 언론사를 비교하는 습관이 필요합니다.\n\n광고도 비판적으로 봐야 합니다. 인플루언서가 광고한다고 무조건 좋은 제품이 아닐 수 있습니다. 소비자로서 현명하게 판단하는 능력이 중요합니다.';
+  const questions=[
+    {q:'1. 이 강의의 주제는?',opts:['미디어 리터러시','광고 제작 방법','인플루언서 되기','유튜브 운영'],answer:0},
+    {q:'2. 가짜뉴스를 구별하는 방법으로 언급된 것은?',opts:['모든 정보 무시','출처 확인과 언론사 비교','인플루언서 의견 따르기','SNS만 사용'],answer:1},
+    {q:'3. 인플루언서 광고에 대한 올바른 태도는?',opts:['무조건 신뢰','현명하게 비판적으로 판단','모두 구매','광고를 무시'],answer:1},
+  ];
+  return `<h2>👂 듣기</h2>
+    <div class="card">
+      <div class="card-title">🎬 미디어 리터러시 강의</div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:!STATE.listenRevealed})">${STATE.listenRevealed?'📄 스크립트 숨기기':'📄 스크립트 보기'}</button>
+      ${STATE.listenRevealed?`<div class="listen-script-box">${script.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}</div>`:''}
+      <div style="text-align:center;margin-bottom:12px">
+        <button class="reveal-btn" onclick="TTS.speak(${JSON.stringify(script)})">🔊 전체 듣기</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 듣기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.listenAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.listenAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderPronunciation(){
+  const words=[
+    {word:'광고',pron:'광고'},
+    {word:'방송',pron:'방송'},
+    {word:'신문을',pron:'신무늘'},
+    {word:'정보를',pron:'정보를'},
+  ];
+  const sents=[
+    {text:'광고가 너무 많다 못해 짜증날 지경이에요.',note:'많다[만타] - 받침 \'ㅎ\' 앞 경음화'},
+    {text:'미디어 정보를 비판적으로 분석하는 능력이 필요합니다.',note:'정보를[정보를]'},
+  ];
+  return `<h2>🔊 발음</h2>
+    <div class="card">
+      <div class="card-title">📏 발음 규칙: 'ㅎ' 축약 - 'ㅎ' 받침 + 모음 → ㅎ 탈락</div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">'ㅎ' 받침 뒤에 모음이 오면 ㅎ이 탈락하거나 축약됩니다. 또한 받침 뒤에 예사소리가 오면 경음화가 일어납니다. 예: 많다 → [만타], 신문을 → [신무늘].</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:8px">예: 많다 → [만타], 신문을 → [신무늘]</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">${words.map(w=>`<div class="pron-word"><span style="font-weight:700;color:var(--navy)">${w.word}</span><span class="pron-arrow">→</span><span style="color:var(--blue)">[${w.pron}]</span>${ttsBtn(w.word)}</div>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗣️ 문장 발음 연습</div>
+      ${sents.map(s=>`<div style="background:#eff6ff;border-radius:10px;padding:12px 14px;margin-bottom:10px"><div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">${s.text} ${ttsBtn(s.text)}</div><div style="font-size:12px;color:var(--blue)">${s.note}</div></div>`).join('')}
+    </div>`;
+}
+
+function renderReading(){
+  const rawText='현대 사회에서 미디어는 우리 생활에 큰 영향을 미칩니다. 신문, 방송, 인터넷, 소셜미디어 등 다양한 채널을 통해 정보가 전달됩니다.\n\n그러나 정보가 너무 많아서 무엇을 믿어야 할지 모를 지경입니다. 가짜뉴스와 편향된 정보가 넘치다 못해 여론을 왜곡시키기도 합니다. 미디어 리터러시, 즉 정보를 비판적으로 읽고 판단하는 능력이 필요합니다.\n\n광고도 중요한 미디어입니다. 소비자의 행동에 영향을 주는 광고는 기업의 핵심 마케팅 수단입니다. 인플루언서 마케팅이 급성장하다 못해 이제는 필수 홍보 방법이 되었습니다. 소비자로서 광고를 현명하게 판단하는 의식이 필요합니다.';
+  const questions=[
+    {q:'1. 이 글에서 언급된 미디어 종류가 아닌 것은?',opts:['신문','방송','소셜미디어','라디오 드라마'],answer:3},
+    {q:'2. "넘치다 못해 여론을 왜곡시킨다"에서 "다 못해"의 의미는?',opts:['넘치기 위해서','넘칠 정도로 한계에 이르러','넘쳤기 때문에','넘치는 조건으로'],answer:1},
+    {q:'3. 현대 미디어 사회에서 필요한 것으로 언급된 것은?',opts:['미디어 리터러시','모든 광고 무시','뉴스 금지','인플루언서 팔로우'],answer:0},
+  ];
+  const highlighted=rawText
+    .replace(/다 못해/g,'<span class="highlight">다 못해</span>')
+    .replace(/지경이/g,'<span class="highlight">지경이</span>')
+    .replace(/\n\n/g,'<br><br>');
+  return `<h2>📖 읽기</h2>
+    <div class="card"><div class="card-title">📰 미디어와 광고 ${ttsBtn(rawText)}</div><div class="reading-text">${highlighted}</div></div>
+    <div class="card"><div class="card-title">❓ 읽기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.readAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.readAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderWriting(){
+  const sample='저는 한국어 공부를 위해 유튜브를 자주 이용합니다. 한국어 교육 채널을 보다 보면 시간이 가는 줄 모를 지경입니다.\n\n그런데 광고가 너무 많다 못해 집중이 안 될 때도 있습니다. 그래서 광고 차단 프로그램을 설치했습니다. 또한 SNS를 너무 많이 보다 못해 하루에 사용 시간을 정하기도 했습니다.\n\n미디어는 정보를 얻고 언어를 배우는 데 매우 유용합니다. 하지만 가짜뉴스나 과도한 광고를 조심해야 합니다. 미디어를 현명하게 이용하는 능력을 키우겠습니다.';
+  return `<h2>✏️ 쓰기</h2>
+    <div class="card">
+      <div class="card-title">📌 쓰기 주제</div>
+      <div style="background:var(--indigo);color:#fff;border-radius:10px;padding:14px;font-size:16px;font-weight:700;text-align:center;margin-bottom:12px">미디어와 나의 생활</div>
+      <div class="writing-guide"><h3>작성 가이드</h3><ul>
+        <li>자주 이용하는 미디어를 소개하세요.</li>
+        <li>-다 못해를 한 번 이상 사용하세요.</li>
+        <li>-(으)ㄹ 지경이다를 한 번 이상 사용하세요.</li>
+        <li>미디어의 장점과 주의해야 할 점을 함께 쓰세요.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 내 글쓰기</div>
+      <textarea placeholder="여기에 글을 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <span style="font-size:12px;color:#94a3b8">${STATE.writingText.length}자</span>
+        <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'샘플 숨기기':'샘플 답안 보기'}</button>
+      </div>
+      ${STATE.sampleShown?`<div class="sample-box">${sample.replace(/\n\n/g,'<br><br>')}</div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  const sections=[
+    {title:'📺 한국 방송 문화',text:'한국의 TV 방송은 KBS, MBC, SBS 등 지상파 방송과 tvN, JTBC 등 케이블·종합편성채널이 있습니다. K-드라마, 예능 프로그램이 세계적인 인기를 얻고 있습니다.'},
+    {title:'📰 한국 언론',text:'한국에는 조선일보, 중앙일보, 동아일보 등 주요 신문사가 있습니다. 인터넷 뉴스와 포털 사이트(네이버, 카카오)를 통해 뉴스를 소비하는 사람이 많습니다.'},
+    {title:'📱 유튜브와 한류',text:'한국은 유튜브 사용률이 세계 최상위권입니다. K-팝 아이돌, 먹방(mukbang), 뷰티 채널 등 다양한 한국 콘텐츠가 전 세계에 공유됩니다. BTS의 유튜브 채널은 수천만 구독자를 보유하고 있습니다.'},
+    {title:'💡 광고 규제',text:'한국에서는 광고 표시 규정이 엄격합니다. 인플루언서가 유료 광고를 할 때는 반드시 "유료 광고", "협찬" 등을 표시해야 합니다. 허위·과장 광고는 법적으로 규제됩니다.'},
+  ];
+  return `<h2>🎎 문화</h2>
+    <div class="card"><div class="card-title">🇰🇷 한국의 미디어 문화</div>
+      ${sections.map(s=>`<div class="culture-section"><h4>${s.title}</h4><p>${s.text}</p></div>`).join('')}
+    </div>`;
+}
+
+function renderQuiz(){
+  const total=QUIZ.length;
+  const answered=Object.keys(STATE.quizAnswers).length;
+  const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+  return `<h2>✅ 퀴즈</h2>
+    <div class="card" style="background:var(--navy);color:#fff;text-align:center;padding:14px">
+      <div style="font-size:14px;opacity:0.8">진행: ${answered}/${total}</div>
+      ${STATE.quizDone?`<div style="font-size:28px;font-weight:900;color:#60a5fa;margin-top:4px">${correct}/${total}</div>`:''}
+    </div>
+    ${QUIZ.map((q,i)=>{
+      const chosen=STATE.quizAnswers[i];
+      const isCorrect=chosen===q.answer;
+      let cardCls='quiz-card';
+      if(chosen!==undefined)cardCls+=isCorrect?' answered-correct':' answered-wrong';
+      return `<div class="${cardCls}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>{
+            let cls='quiz-opt';
+            if(chosen!==undefined){if(j===q.answer)cls+=' selected-correct';else if(j===chosen)cls+=' selected-wrong';}
+            return `<button class="${cls}" onclick="if(STATE.quizAnswers[${i}]===undefined){STATE.quizAnswers[${i}]=${j};render();}" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>
+        ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${isCorrect?'#166534':'#991b1b'}">${isCorrect?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}
+      </div>`;
+    }).join('')}
+    ${answered===total&&!STATE.quizDone?`<div style="text-align:center;margin:12px 0"><button class="reveal-btn" onclick="setState({quizDone:true})">결과 보기</button></div>`:''}
+    ${STATE.quizDone?`<div class="quiz-score"><div>최종 점수</div><div class="score-num">${correct}/${total}</div><div style="margin-top:8px">${correct>=9?'🎉 우수!':correct>=7?'👍 잘 했어요!':correct>=5?'📚 복습해 보세요.':'💪 더 열심히!'}</div><button class="check-btn" style="margin-top:12px;background:rgba(255,255,255,0.2)" onclick="setState({quizAnswers:{},quizDone:false})">다시 풀기</button></div>`:''}`;
+}
+
+const RECORDER={
+  stream:null,mediaRecorder:null,chunks:[],isRecording:false,
+  recognition:null,sttActive:false,currentIdx:-1,scores:{},
+  autoDetect(){
+    if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+      navigator.mediaDevices.getUserMedia({audio:true})
+        .then(s=>{s.getTracks().forEach(t=>t.stop());this.showUI('ready');})
+        .catch(()=>this.showUI('denied'));
+    }else{this.showUI('denied');}
+  },
+  showUI(state){
+    const el=document.getElementById('rec-status');if(!el)return;
+    if(state==='ready')el.innerHTML='<p style="color:#059669;font-weight:700">✅ 마이크 준비 완료!</p>';
+    else el.innerHTML='<p style="color:#ef4444;font-weight:700">❌ 마이크를 사용할 수 없습니다.</p>';
+  },
+  toggle(idx,sents){
+    if(this.sttActive&&this.currentIdx===idx)this.stopSTT(idx);
+    else{if(this.sttActive)this.stopSTT(this.currentIdx);this.startSTT(idx,sents);}
+  },
+  startSTT(idx,sents){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){const el=document.getElementById('stt-result');if(el)el.innerHTML='<span style="color:#ef4444">음성 인식 미지원 브라우저입니다.</span>';return;}
+    this.recognition=new SR();
+    this.recognition.lang='ko-KR';this.recognition.interimResults=false;
+    this.sttActive=true;this.currentIdx=idx;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='⏹ 중지';btn.classList.add('recording');}
+    const rEl=document.getElementById('stt-result');
+    if(rEl)rEl.innerHTML='<span style="color:var(--blue)">🎤 듣는 중...</span>';
+    this.recognition.onresult=(e)=>{
+      const tr=e.results[0][0].transcript;
+      const score=this.calcScore(tr,sents[idx]);
+      this.scores[idx]=score;
+      const badge=document.getElementById('score-badge-'+idx);
+      if(badge){badge.className='score-badge '+(score>=80?'good':score>=50?'ok':'bad');badge.textContent=score+'%';}
+      if(rEl)rEl.innerHTML=`<span style="color:var(--navy)">인식: "${tr}"</span> <span style="font-weight:700;color:${score>=80?'#166534':score>=50?'#854d0e':'#991b1b'}">(${score}점)</span>`;
+      this.sttActive=false;
+      if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+    };
+    this.recognition.onerror=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.onend=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.start();
+  },
+  stopSTT(idx){
+    if(this.recognition){try{this.recognition.stop();}catch(e){}}
+    this.sttActive=false;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+  },
+  calcScore(transcript,target){
+    if(!transcript||!target)return 0;
+    const t=transcript.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    const g=target.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    if(t===g)return 100;
+    const tw=t.split(/\s+/),gw=g.split(/\s+/);
+    let m=0;gw.forEach(w=>{if(tw.includes(w))m++;});
+    return Math.round((m/Math.max(gw.length,1))*100);
+  }
+};
+
+render();
+</script>
+</body>
+</html>

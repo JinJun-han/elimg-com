@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 4급 20과 · 종합 복습 &amp; 4급 수료</title>
+<meta name="theme-color" content="#1d4ed8"/>
+<meta property="og:title" content="KIIP 4급 20과 · 종합 복습 &amp; 4급 수료"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level4_Lesson20.html"/>
+<meta property="og:description" content="KIIP 4급 20과 종합 복습 &amp; 4급 수료 - 4급 전체 어휘·문법 총복습, 퀴즈 20문항, 수료 축하"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1d4ed8;--navy:#1e3a5f;--indigo:#1e40af;--green:#22c55e;--red:#ef4444;--gray:#f0f4ff;--white:#fff;--text:#1a202c;--gold:#d97706}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(30,58,95,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #dbeafe;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:700}
+.tab-btn:hover{background:#eff6ff}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #dbeafe;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(30,58,95,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--blue)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(30,58,95,0.08);border:1px solid #dbeafe}
+.card-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--blue)}
+h3{font-size:16px;font-weight:700;color:var(--indigo);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 12px rgba(29,78,216,0.15)}
+.vocab-card.flipped{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--navy)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--blue);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue);margin:14px 0 8px;padding:4px 10px;background:#eff6ff;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.grammar-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.grammar-tab{padding:8px 18px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.grammar-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rule-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:6px}
+.example-list{list-style:none}
+.example-list li{padding:8px 12px;border-radius:8px;margin-bottom:6px;background:#f8faff;border:1px solid #dbeafe;font-size:14px;line-height:1.6}
+.example-list li .ko{color:var(--navy);font-weight:600}
+.example-list li .en{color:#475569;font-size:12px}
+.topik-card{background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #bfdbfe;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--blue);background:#eff6ff}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f8faff;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--blue);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--indigo)}
+.bubble{background:#eff6ff;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#dbeafe}
+.listen-script-box{background:#f0f4ff;border:2px dashed #bfdbfe;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--navy)}
+.listen-q{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.reveal-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--indigo)}
+.pron-rule{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #bfdbfe}
+.pron-word{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:6px 12px;margin:4px;font-size:14px}
+.pron-arrow{color:var(--blue);font-weight:700}
+.reading-text{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--blue);font-weight:700}
+.writing-guide{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--navy)}
+textarea{width:100%;border:2px solid #bfdbfe;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--blue)}
+.sample-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--navy);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--navy);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #dbeafe;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #dbeafe;background:#f8faff;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--blue);background:#eff6ff}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--navy);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#60a5fa}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#eff6ff;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--navy)}
+.intro-hero{background:linear-gradient(135deg,#92400e 0%,#b45309 50%,#d97706 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--navy)}
+.objective-list li::before{content:'✓';color:var(--blue);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--navy)}
+.section-nav-btn:hover{border-color:var(--blue);background:#eff6ff;color:var(--blue)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+.review-gram-card{background:#fff;border:2px solid #dbeafe;border-radius:12px;padding:16px;margin-bottom:12px;border-left:4px solid var(--gold)}
+.review-gram-title{font-size:15px;font-weight:800;color:#92400e;margin-bottom:6px}
+.review-gram-meaning{font-size:13px;color:#64748b;margin-bottom:8px}
+.review-gram-example{background:#fef3c7;border-radius:8px;padding:10px 12px;font-size:14px;color:var(--navy);font-weight:600}
+.lang-toggle{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.lang-btn{padding:6px 14px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:12px;font-weight:600;color:#64748b;transition:all 0.2s}
+.lang-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tip-box{background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:#475569;margin-top:8px}
+.tip-box strong{color:var(--blue)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},vocabShowEng:true,
+  listenRevealed:false,listenAnswers:{},
+  readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'문법복습',icon:'📐'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'발음',icon:'🔊'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'수료',icon:'🏆'},
+];
+
+const VOCAB=[
+  {ko:'경제',hanja:'經濟',en:'economy',vi:'kinh tế',cat:'1과 핵심어휘'},
+  {ko:'건강',hanja:'健康',en:'health',vi:'sức khỏe',cat:'2과 핵심어휘'},
+  {ko:'직업',hanja:'職業',en:'job',vi:'nghề nghiệp',cat:'3과 핵심어휘'},
+  {ko:'환경',hanja:'環境',en:'environment',vi:'môi trường',cat:'4과 핵심어휘'},
+  {ko:'민주주의',hanja:'民主主義',en:'democracy',vi:'dân chủ',cat:'5과 핵심어휘'},
+  {ko:'예술',hanja:'藝術',en:'art',vi:'nghệ thuật',cat:'6과 핵심어휘'},
+  {ko:'인공지능',hanja:'人工知能',en:'AI',vi:'trí tuệ nhân tạo',cat:'7과 핵심어휘'},
+  {ko:'가족',hanja:'家族',en:'family',vi:'gia đình',cat:'8과 핵심어휘'},
+  {ko:'대중교통',hanja:'大衆交通',en:'public transport',vi:'giao thông công cộng',cat:'9과 핵심어휘'},
+  {ko:'반도체',hanja:'半導體',en:'semiconductor',vi:'bán dẫn',cat:'10과 핵심어휘'},
+  {ko:'김치',hanja:'김치',en:'kimchi',vi:'kim chi',cat:'11과 핵심어휘'},
+  {ko:'태권도',hanja:'跆拳道',en:'taekwondo',vi:'taekwondo',cat:'12과 핵심어휘'},
+  {ko:'여권',hanja:'旅券',en:'passport',vi:'hộ chiếu',cat:'13과 핵심어휘'},
+  {ko:'이력서',hanja:'履歷書',en:'resume',vi:'hồ sơ xin việc',cat:'14과 핵심어휘'},
+  {ko:'저출산',hanja:'低出産',en:'low birth rate',vi:'tỷ lệ sinh thấp',cat:'15과 핵심어휘'},
+  {ko:'광복',hanja:'光復',en:'liberation',vi:'ngày giải phóng',cat:'16과 핵심어휘'},
+  {ko:'광고',hanja:'廣告',en:'advertisement',vi:'quảng cáo',cat:'17과 핵심어휘'},
+  {ko:'인권',hanja:'人權',en:'human rights',vi:'nhân quyền',cat:'18과 핵심어휘'},
+  {ko:'전통',hanja:'傳統',en:'tradition',vi:'truyền thống',cat:'19과 핵심어휘'},
+  {ko:'수료',hanja:'修了',en:'completion/graduation',vi:'hoàn thành khóa học',cat:'4급 핵심어휘'},
+];
+
+const REVIEW_GRAMMAR=[
+  {title:'-(으)로 인해 / -에 따라',meaning:'원인·기준을 나타냄',example:'경기 변화로 인해 취업이 어려워졌다.'},
+  {title:'-아/어 보이다 / -(으)ㄹ 것 같다',meaning:'외관 추측을 나타냄',example:'피곤해 보여요. 많이 힘들 것 같아요.'},
+  {title:'-기 마련이다 / -고 보면',meaning:'당연한 이치, 생각해 보면',example:'사람은 실수하기 마련이다.'},
+  {title:'-(으)ㄹ수록 / -게끔',meaning:'비례 관계, 목적 결과',example:'공부할수록 한국어가 늘어요.'},
+  {title:'-(으)ㄴ/는 셈이다 / -는 한',meaning:'마찬가지, 조건 지속',example:'매일 연습하는 셈이에요. 포기하지 않는 한 성공해요.'},
+  {title:'-(으)ㄹ 만큼 / -도록',meaning:'정도 비교, 목적/한계',example:'눈물이 날 만큼 감동적이었어요.'},
+  {title:'-다시피 / -(으)ㄴ/는 나머지',meaning:'이미 아는 사실, 지나친 결과',example:'아시다시피 AI가 중요해졌습니다.'},
+  {title:'-(으)ㄹ 텐데 / -는 법이다',meaning:'추측, 당연한 이치',example:'힘드실 텐데 수고하세요.'},
+  {title:'-느니 / -(으)ㄹ 바에야',meaning:'비교 선택, 싫은 것 대신',example:'혼자 하느니 같이 하는 게 낫다.'},
+  {title:'-(으)ㄹ 뿐이다 / -(으)ㄴ/는 반면',meaning:'단지 그것뿐, 대조',example:'한복은 아름다운 반면 입기 불편해요.'},
+];
+
+const QUIZ=[
+  {q:'"-(으)로 인해"의 의미는?',opts:['원인·이유를 나타냄','비교를 나타냄','조건을 나타냄','결과만 나타냄'],answer:0},
+  {q:'빈칸: "경기가 나쁜___ 실업자가 늘었습니다."',opts:['탓에','뿐이다','만큼','도록'],answer:0},
+  {q:'"사람은 실수를 하기 마련이다."의 의미는?',opts:['실수하면 안 된다','실수는 당연히 생기는 것이다','실수를 해도 괜찮다','실수를 자주 한다'],answer:1},
+  {q:'"아시다시피"에 들어간 문법은?',opts:['-다시피','-는 한','-고 보면','-기 마련이다'],answer:0},
+  {q:'"눈물이 날 만큼 감동적이다."에서 "만큼"의 의미는?',opts:['~하기 위해','그 정도로','~한 후에','~하는 조건'],answer:1},
+  {q:'"법을 지키는 한 처벌받지 않는다."에서 "-는 한"의 의미는?',opts:['~하는 동안 계속','~하기 때문에','~한 것 같다','~해도 괜찮다'],answer:0},
+  {q:'"광복한 이래 한국이 발전했다."에서 "이래"의 의미는?',opts:['~한 이후로 계속','~하기 위해','~한 결과','~할 때만'],answer:0},
+  {q:'"한복은 아름다운 반면 입기 불편하다."에서 "반면"의 의미는?',opts:['대조를 나타냄','원인을 나타냄','조건을 나타냄','시간을 나타냄'],answer:0},
+  {q:'"최선을 다할 따름이다."의 의미는?',opts:['최선을 다하는 것뿐','최선을 다하지 못한다','최선이 중요하지 않다','최선을 다한 결과'],answer:0},
+  {q:'"기다리다 못해 나갔다."의 의미는?',opts:['기다리기 위해','더 이상 기다릴 수 없어서','기다린 결과','기다리는 것이 당연하여'],answer:1},
+  {q:'"비자가 만료되면 출국할 수밖에 없다."의 의미는?',opts:['출국하고 싶다','출국하는 것이 불가피하다','출국하면 안 된다','출국할 수 있다'],answer:1},
+  {q:'"운동을 하고서야 건강이 좋아졌다."에서 "-고서야"의 의미는?',opts:['운동한 후에야 비로소','운동하는 동시에','운동하기 때문에','운동해도'],answer:0},
+  {q:'"전통을 지키고 싶을 뿐이다."에서 "뿐이다"의 의미는?',opts:['오직 그것만','그것 이상도 있다','조건이 되면','당연하다'],answer:0},
+  {q:'"혼자 하느니 같이 하는 게 낫다."에서 "-느니"의 의미는?',opts:['혼자 하는 것보다 같이가 낫다','혼자 하는 것이 좋다','혼자 해야 한다','혼자 할 수 없다'],answer:0},
+  {q:'"계약서를 읽고서 서명했다."에서 "-고서"의 의미는?',opts:['읽은 후에','읽는 동시에','읽기 위해','읽어도'],answer:0},
+  {q:'"한국 경제가 성장해 왔다."에서 "-아/어 오다"의 의미는?',opts:['과거부터 현재까지 계속','미래에 계속될','갑자기 성장','성장이 멈춤'],answer:0},
+  {q:'"저출산 탓에 인구가 줄고 있다."에서 "-는 탓에"의 의미는?',opts:['부정적 결과의 원인','긍정적 결과의 원인','조건','비교'],answer:0},
+  {q:'"스마트폰을 너무 봐서 눈이 빠질 지경이다."에서 "지경이다"의 의미는?',opts:['상황이 극단적 상태에 이름','상황이 좋아짐','조건이 이루어짐','목적을 나타냄'],answer:0},
+  {q:'"-(으)ㄹ 뿐만 아니라"와 같은 의미의 표현은?',opts:['-거니와','-는 한','-고서야','-(으)ㄹ 바에야'],answer:0},
+  {q:'"직업을 얻고자 공부한다."에서 "-고자"의 의미는?',opts:['얻으려는 목적으로','얻은 결과로','얻은 후에','얻어도 괜찮다'],answer:0},
+];
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level4_Lesson19">← 19과</a>
+      <span class="nav-title">4급 20과 · 종합 복습</span>
+      <a href="/KIIP_Level4_Index">4급 완성! →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level4_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🏆</span>수료</button>
+      <a href="/KIIP_Level5_Index"><span class="icon">📘</span>5급→</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2: return renderGrammarReview();
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderPronunciation();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10: return renderCompletion();
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero" style="background:linear-gradient(135deg,#92400e 0%,#b45309 50%,#d97706 100%)">
+      <div style="font-size:48px;margin-bottom:8px">🎓</div>
+      <div class="level-badge">KIIP 4급 · 20과</div>
+      <h1 style="margin-top:12px">4급 중급 2 완성!</h1>
+      <p class="subtitle">20단원을 모두 마쳤습니다!</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 이 단원의 목표</div>
+      <ul class="objective-list">
+        <li>4급 1-19과에서 배운 핵심 어휘 20개를 복습한다.</li>
+        <li>4급에서 배운 주요 문법 10개를 종합적으로 복습한다.</li>
+        <li>다양한 주제로 말하기·듣기·읽기·쓰기 능력을 종합적으로 점검한다.</li>
+        <li>20문항 종합 퀴즈로 4급 과정 전체를 최종 점검한다.</li>
+        <li>4급 수료를 축하하고 5급 과정을 준비한다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🔑 4급 대표 표현 복습</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#fef3c7;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">아시다시피 언어를 배우는 것은 쉽지 않습니다. ${ttsBtn('아시다시피 언어를 배우는 것은 쉽지 않습니다.')}</div>
+        <div style="background:#fef3c7;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">포기하지 않는 한 반드시 발전할 수 있습니다. ${ttsBtn('포기하지 않는 한 반드시 발전할 수 있습니다.')}</div>
+        <div style="background:#fef3c7;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">앞으로도 한국어 공부를 계속할 따름입니다. ${ttsBtn('앞으로도 한국어 공부를 계속할 따름입니다.')}</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 학습 섹션</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.filter(s=>s.id>0).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `
+    <h2>📝 어휘 - 4급 핵심어휘 총복습</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div class="lang-toggle">
+        <button class="lang-btn${STATE.lang==='ko'?' active':''}" onclick="setState({lang:'ko',vocabFlipped:{}})">한국어</button>
+        <button class="lang-btn${STATE.lang==='en'?' active':''}" onclick="setState({lang:'en',vocabFlipped:{}})">English</button>
+        <button class="lang-btn${STATE.lang==='vi'?' active':''}" onclick="setState({lang:'vi',vocabFlipped:{}})">Tiếng Việt</button>
+      </div>
+      <button class="check-btn" onclick="setState({vocabFlipped:{}})" style="background:var(--blue);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer">초기화</button>
+    </div>
+    <div class="tip-box" style="margin-bottom:14px"><strong>💡 Tip:</strong> 카드를 클릭하면 뒤집어집니다! 각 과의 핵심어휘를 확인하세요.</div>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map(v=>{
+          const idx=VOCAB.indexOf(v);
+          const flipped=STATE.vocabFlipped[idx];
+          const meaning=STATE.lang==='vi'?v.vi:v.en;
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="STATE.vocabFlipped[${idx}]=!STATE.vocabFlipped[${idx}];render()">
+            ${!flipped
+              ?`<span class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</span><span class="vocab-hanja">${v.hanja}</span>`
+              :`<span class="vocab-ko">${meaning}</span><span class="vocab-eng">${v.ko}</span>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderGrammarReview(){
+  return `<h2>📐 문법 총복습 - 4급 핵심 문법 10개</h2>
+    <div class="card" style="background:#fef3c7;border:2px solid #d97706">
+      <div class="card-title" style="color:#92400e">🏆 4급 문법 종합 정리</div>
+      <p style="font-size:14px;color:#78350f;line-height:1.7">4급에서 배운 핵심 문법 10개를 복습합니다. 각 문법의 의미와 대표 예문을 다시 확인하세요.</p>
+    </div>
+    ${REVIEW_GRAMMAR.map((g,i)=>`
+      <div class="review-gram-card">
+        <div class="review-gram-title">${i+1}. ${g.title}</div>
+        <div class="review-gram-meaning">📌 ${g.meaning}</div>
+        <div class="review-gram-example">${g.example} ${ttsBtn(g.example)}</div>
+      </div>`).join('')}`;
+}
+
+function renderSpeaking(){
+  const dialogues=[
+    {title:'대화 1: 자기소개',lines:[
+      {speaker:'A',text:'안녕하세요. 자기소개 부탁드립니다.',side:'a'},
+      {speaker:'B',text:'안녕하세요. 저는 베트남에서 온 응우옌입니다. 한국에 온 지 3년이 되었습니다.',side:'b'},
+      {speaker:'A',text:'한국어를 잘하시네요. 어떻게 배우셨어요?',side:'a'},
+      {speaker:'B',text:'KIIP 4급 과정을 통해 배웠습니다. 공부할수록 한국어 실력이 늘었어요.',side:'b'},
+      {speaker:'A',text:'앞으로의 계획은 어떻게 되세요?',side:'a'},
+      {speaker:'B',text:'5급 과정도 수료하고, 한국 사회의 좋은 구성원이 되고자 노력할 따름입니다.',side:'b'},
+    ]},
+    {title:'대화 2: 한국 생활 경험',lines:[
+      {speaker:'A',text:'한국 생활에서 어려운 점이 있었나요?',side:'a'},
+      {speaker:'B',text:'처음에는 언어 장벽이 있었는데, 아시다시피 한국어를 모르면 생활이 힘들었어요.',side:'b'},
+      {speaker:'A',text:'지금은 어떤가요?',side:'a'},
+      {speaker:'B',text:'KIIP 과정을 마친 반면 아직 부족한 부분도 있어요. 계속 공부할 생각입니다.',side:'b'},
+      {speaker:'A',text:'한국 문화에서 인상 깊은 것이 있나요?',side:'a'},
+      {speaker:'B',text:'광복한 이래 한국이 이렇게 발전했다는 것이 정말 놀라웠습니다.',side:'b'},
+    ]},
+  ];
+  const topics=[
+    '이름, 나라, 한국에 온 이유, 앞으로의 계획을 포함한 2분 자기소개 말하기',
+    '주제 토론: "한국 사회에서 외국인으로 살아가면서 느낀 점과 앞으로의 목표"를 말하기',
+  ];
+  return `<h2>💬 말하기 - 종합 말하기</h2>
+    ${dialogues.map(d=>`<div class="card"><div class="card-title">${d.title}</div><div class="dialogue">
+      ${d.lines.map(l=>`<div class="dialogue-line${l.side==='b'?' b':''}"><span class="speaker">${l.speaker}</span><div class="bubble">${l.text} ${ttsBtn(l.text)}</div></div>`).join('')}
+    </div></div>`).join('')}
+    <div class="card"><div class="card-title">🗣️ 종합 말하기 주제</div><div class="speaking-topics">
+      ${topics.map((t,i)=>`<div class="speaking-topic"><strong>${i+1}.</strong> ${t}</div>`).join('')}
+    </div></div>`;
+}
+
+function renderListening(){
+  const script='[4급 최종 듣기 평가]\n\n안녕하세요. 저는 베트남에서 온 응우옌 티 흐엉입니다. 한국에 온 지 3년이 되었습니다.\n\n처음에는 한국어를 몰라서 어려움이 많았습니다. 아시다시피 언어 장벽은 생활 전반에 영향을 미칩니다. 한국어를 배우면 배울수록 한국 생활이 편해졌습니다.\n\n저는 KIIP 과정을 통해 한국의 역사, 문화, 법, 사회 등 다양한 분야를 배웠습니다. 광복한 이래 한국이 얼마나 발전했는지, 전통 문화와 현대 문화가 어떻게 공존하는지 이해하게 되었습니다.\n\n앞으로는 한국 사회의 일원으로서 권리를 지키는 한 의무도 다하겠습니다. 한국 시민이 되고자 꾸준히 노력할 따름입니다.';
+  const questions=[
+    {q:'1. 이 사람은 어느 나라 출신입니까?',opts:['중국','베트남','필리핀','인도네시아'],answer:1},
+    {q:'2. 한국어를 배우면서 어떤 변화가 있었습니까?',opts:['어려움이 더 많아졌다','한국 생활이 편해졌다','친구가 없어졌다','일자리를 잃었다'],answer:1},
+    {q:'3. 이 사람의 앞으로 목표는?',opts:['한국을 떠나는 것','한국 시민이 되는 것','KIIP 과정 다시 듣기','관광하기'],answer:1},
+  ];
+  return `<h2>👂 듣기 - 4급 최종 듣기 평가</h2>
+    <div class="card">
+      <div class="card-title">🎙️ 4급 최종 듣기 평가</div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:!STATE.listenRevealed})">${STATE.listenRevealed?'📄 스크립트 숨기기':'📄 스크립트 보기'}</button>
+      ${STATE.listenRevealed?`<div class="listen-script-box">${script.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}</div>`:''}
+      <div style="text-align:center;margin-bottom:12px">
+        <button class="reveal-btn" onclick="TTS.speak(${JSON.stringify(script)})">🔊 전체 듣기</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 듣기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.listenAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.listenAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderPronunciation(){
+  const words=[
+    {word:'법원',pron:'버붠'},
+    {word:'한류',pron:'할류'},
+    {word:'국가',pron:'국까'},
+    {word:'굳이',pron:'구지'},
+  ];
+  const sents=[
+    {text:'한국의 전통 문화는 아름다울 뿐만 아니라 역사적 가치도 있습니다.',note:'연음·경음화 주의'},
+    {text:'광복한 이래 한국은 빠르게 성장해 왔습니다.',note:'이래[이래] 성장[성장]'},
+  ];
+  return `<h2>🔊 발음 - 4급 핵심 발음 규칙 총정리</h2>
+    <div class="card">
+      <div class="card-title">📏 4급에서 배운 주요 발음 규칙 총정리</div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);font-weight:700;margin-bottom:8px">연음</p>
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">받침 + 모음 → 연음</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:4px">예: 법원[버붠]</p>
+      </div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);font-weight:700;margin-bottom:8px">경음화</p>
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">받침 ㄱ, ㄷ, ㅂ + 자음 → 된소리</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:4px">예: 국가[국까]</p>
+      </div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);font-weight:700;margin-bottom:8px">유음화</p>
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">ㄴ+ㄹ, ㄹ+ㄴ → [ㄹㄹ]</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:4px">예: 한류[할류]</p>
+      </div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);font-weight:700;margin-bottom:8px">구개음화</p>
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">ㄷ, ㅌ + 이 → [ㅈ, ㅊ]</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:4px">예: 굳이[구지]</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">${words.map(w=>`<div class="pron-word"><span style="font-weight:700;color:var(--navy)">${w.word}</span><span class="pron-arrow">→</span><span style="color:var(--blue)">[${w.pron}]</span>${ttsBtn(w.word)}</div>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗣️ 문장 발음 연습</div>
+      ${sents.map(s=>`<div style="background:#eff6ff;border-radius:10px;padding:12px 14px;margin-bottom:10px"><div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">${s.text} ${ttsBtn(s.text)}</div><div style="font-size:12px;color:var(--blue)">${s.note}</div></div>`).join('')}
+    </div>`;
+}
+
+function renderReading(){
+  const rawText='4급 과정을 마치며 한국 사회를 더 깊이 이해하게 되었습니다. 경제, 건강, 직장, 환경, 정치, 문화, 기술, 가족, 교통, 사회 문제, 역사 등 다양한 주제를 배웠습니다.\n\n한국은 광복한 이래 놀라운 성장을 이루어 왔습니다. 전통을 지키는 반면 현대화도 빠르게 진행하고 있습니다. 저출산과 고령화 같은 어려운 문제도 있지만, 모든 사람이 함께 노력하는 한 해결할 수 있습니다.\n\n외국인으로서 한국 사회의 구성원이 되고자 KIIP 과정을 마쳤습니다. 앞으로도 한국어 공부를 계속하고, 한국 사회에 기여할 따름입니다. 4급 과정을 마친 여러분 모두를 축하합니다!';
+  const questions=[
+    {q:'1. 이 글에서 4급에서 배운 주제가 아닌 것은?',opts:['경제','건강','우주 개발','교통'],answer:2},
+    {q:'2. 한국의 특징으로 언급된 것은?',opts:['전통만 고집함','현대화만 추구함','전통 유지와 현대화를 함께 함','국제 교류 거부'],answer:2},
+    {q:'3. 이 글에서 외국인의 목표는?',opts:['한국을 떠남','KIIP 수료 후 한국 사회에 기여','관광만 즐기기','한국어 포기'],answer:1},
+  ];
+  const highlighted=rawText
+    .replace(/반면/g,'<span class="highlight">반면</span>')
+    .replace(/이래/g,'<span class="highlight">이래</span>')
+    .replace(/한/g,'<span class="highlight">한</span>')
+    .replace(/따름/g,'<span class="highlight">따름</span>')
+    .replace(/고자/g,'<span class="highlight">고자</span>')
+    .replace(/\n\n/g,'<br><br>');
+  return `<h2>📖 읽기 - 4급 최종 읽기</h2>
+    <div class="card"><div class="card-title">📰 4급을 마치며 ${ttsBtn(rawText)}</div><div class="reading-text">${highlighted}</div></div>
+    <div class="card"><div class="card-title">❓ 읽기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.readAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.readAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderWriting(){
+  const sample='4급 KIIP 과정을 마쳤습니다. 아시다시피 언어를 배우는 것은 쉽지 않습니다. 하지만 포기하지 않는 한 반드시 발전할 수 있다는 것을 알게 되었습니다.\n\n한국에서 생활하면서 많은 것을 경험했습니다. 한국의 역사, 문화, 법을 배우고서 한국 사회를 더 잘 이해하게 되었습니다. 저출산, 고령화 같은 사회 문제도 이해하게 된 반면, 한국의 놀라운 발전도 배웠습니다.\n\n앞으로 한국 사회의 좋은 구성원이 되고자 계속 노력할 따름입니다. 5급 과정도 열심히 공부해서 한국 사회를 더 깊이 이해하고 싶습니다.';
+  return `<h2>✏️ 쓰기 - 최종 쓰기</h2>
+    <div class="card">
+      <div class="card-title">📌 쓰기 주제</div>
+      <div style="background:linear-gradient(135deg,#92400e,#d97706);color:#fff;border-radius:10px;padding:14px;font-size:16px;font-weight:700;text-align:center;margin-bottom:12px">4급을 마치며 - 나의 한국 생활과 앞으로의 계획</div>
+      <div class="writing-guide"><h3>작성 가이드</h3><ul>
+        <li>한국에서의 경험과 배운 점을 쓰세요.</li>
+        <li>4급에서 배운 문법을 2개 이상 사용하세요.</li>
+        <li>앞으로의 목표와 계획을 쓰세요.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 내 글쓰기</div>
+      <textarea placeholder="여기에 글을 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <span style="font-size:12px;color:#94a3b8">${STATE.writingText.length}자</span>
+        <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'샘플 숨기기':'샘플 답안 보기'}</button>
+      </div>
+      ${STATE.sampleShown?`<div class="sample-box">${sample.replace(/\n\n/g,'<br><br>')}</div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  const sections=[
+    {title:'🇰🇷 한국 문화 총정리',text:'한국은 5천 년 역사의 전통 문화와 빠른 현대화가 공존하는 나라입니다. K-팝, K-드라마, K-푸드가 세계를 사로잡고 있으며, 반도체·자동차·조선 등 제조업에서도 세계 최강입니다.'},
+    {title:'🌏 다문화 한국',text:'현재 한국에는 250만 명 이상의 외국인이 생활합니다. KIIP 과정은 이들이 한국 사회에 적응하고 기여할 수 있도록 돕는 중요한 프로그램입니다.'},
+    {title:'📚 5급으로 가는 길',text:'4급 과정을 마친 후 5급(한국사회이해) 과정으로 진학할 수 있습니다. 5급에서는 한국의 정치, 경제, 사회, 문화를 더 깊이 배웁니다. 5급 수료 후 귀화 시험 준비에도 도움이 됩니다.'},
+    {title:'🏆 KIIP 수료의 의미',text:'KIIP 4급 수료는 중급 한국어 능력을 인정받는 것입니다. 영주권 및 귀화 신청 시 가점을 받을 수 있습니다. 여러분의 노력과 열정이 빛나는 순간입니다!'},
+  ];
+  return `<h2>🎎 문화 - 한국 문화 총정리</h2>
+    <div class="card"><div class="card-title">🇰🇷 4급 문화 종합</div>
+      ${sections.map(s=>`<div class="culture-section"><h4>${s.title}</h4><p>${s.text}</p></div>`).join('')}
+    </div>`;
+}
+
+function renderQuiz(){
+  const total=QUIZ.length;
+  const answered=Object.keys(STATE.quizAnswers).length;
+  const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+  return `<h2>✅ 퀴즈 - 4급 종합 20문항</h2>
+    <div class="card" style="background:var(--navy);color:#fff;text-align:center;padding:14px">
+      <div style="font-size:14px;opacity:0.8">진행: ${answered}/${total}</div>
+      ${STATE.quizDone?`<div style="font-size:28px;font-weight:900;color:#60a5fa;margin-top:4px">${correct}/${total}</div>`:''}
+    </div>
+    ${QUIZ.map((q,i)=>{
+      const chosen=STATE.quizAnswers[i];
+      const isCorrect=chosen===q.answer;
+      let cardCls='quiz-card';
+      if(chosen!==undefined)cardCls+=isCorrect?' answered-correct':' answered-wrong';
+      return `<div class="${cardCls}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>{
+            let cls='quiz-opt';
+            if(chosen!==undefined){if(j===q.answer)cls+=' selected-correct';else if(j===chosen)cls+=' selected-wrong';}
+            return `<button class="${cls}" onclick="if(STATE.quizAnswers[${i}]===undefined){STATE.quizAnswers[${i}]=${j};render();}" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>
+        ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${isCorrect?'#166534':'#991b1b'}">${isCorrect?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}
+      </div>`;
+    }).join('')}
+    ${answered===total&&!STATE.quizDone?`<div style="text-align:center;margin:12px 0"><button class="reveal-btn" onclick="setState({quizDone:true})">결과 보기</button></div>`:''}
+    ${STATE.quizDone?`<div class="quiz-score"><div>최종 점수</div><div class="score-num">${correct}/${total}</div><div style="margin-top:8px">${correct>=18?'🎉 완벽! 4급 수료 준비 완료!':correct>=15?'🏆 우수! 잘 하셨습니다!':correct>=12?'👍 합격! 복습도 해보세요.':correct>=10?'📚 합격권. 더 복습하세요.':'💪 다시 한번 복습하세요!'}</div><button class="check-btn" style="margin-top:12px;background:rgba(255,255,255,0.2);color:#fff;border:none;border-radius:6px;padding:8px 16px;font-size:13px;cursor:pointer" onclick="setState({quizAnswers:{},quizDone:false})">다시 풀기</button></div>`:''}`;
+}
+
+function renderCompletion(){
+  return `<h2>🏆 4급 수료 축하!</h2>
+    <div class="intro-hero" style="background:linear-gradient(135deg,#92400e,#d97706)">
+      <div style="font-size:60px;margin-bottom:12px">🏆</div>
+      <h1>축하합니다!</h1>
+      <p class="subtitle">KIIP 4급 중급 2 · 20단원 완성</p>
+      <div class="level-badge">수료 완료</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📋 4급에서 배운 내용 요약</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        ${['1-4과: 경제, 건강, 직장, 환경','5-8과: 정치, 문화, 인터넷, 가족','9-12과: 교통, 과학, 음식, 스포츠','13-16과: 여행, 직업, 사회 문제, 역사','17-20과: 미디어, 법, 전통, 종합 복습'].map(s=>`<div style="background:#eff6ff;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--navy)">${s}</div>`).join('')}
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🚀 다음 단계: 5급 한국사회이해</div>
+      <p style="font-size:14px;color:#334155;margin-bottom:16px;line-height:1.7">4급을 마친 여러분! 이제 5급 한국사회이해 과정에 도전하세요. 한국의 정치, 경제, 사회, 문화를 더 깊이 배울 수 있습니다.</p>
+      <a href="/KIIP_Level5_Index" style="display:block;background:linear-gradient(135deg,#1d4ed8,#1e40af);color:#fff;text-align:center;padding:16px;border-radius:12px;text-decoration:none;font-weight:700;font-size:16px">📘 5급 한국사회이해 시작하기 →</a>
+    </div>
+    <div class="card">
+      <div class="card-title">🏅 수료증 발급</div>
+      <p style="font-size:14px;color:#334155;margin-bottom:12px">4급 과정을 모두 완료하셨습니다. 수료증을 발급받으세요!</p>
+      <a href="/KIIP_Level4_Index" style="display:block;background:linear-gradient(135deg,#92400e,#d97706);color:#fff;text-align:center;padding:14px;border-radius:12px;text-decoration:none;font-weight:700">🎓 4급 목차 &amp; 수료증 →</a>
+    </div>`;
+}
+
+render();
+</script>
+</body>
+</html>

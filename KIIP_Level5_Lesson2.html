@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 5급 2과 · 한국의 역사 2</title>
+<meta name="theme-color" content="#059669"/>
+<meta property="og:title" content="KIIP 5급 2과 · 한국의 역사 2"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level5_Lesson2.html"/>
+<meta property="og:description" content="KIIP 5급 2과 한국의 역사 2 - 일제강점기, 광복, 6.25전쟁, 경제 발전"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#059669;--dark:#065f46;--mid:#047857;--lgreen:#22c55e;--red:#ef4444;--gray:#f0fdf4;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--dark);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(6,79,70,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #a7f3d0;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green);font-weight:700}
+.tab-btn:hover{background:#ecfdf5}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #a7f3d0;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(6,79,70,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--green)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(6,79,70,0.08);border:1px solid #a7f3d0}
+.card-title{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--dark);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--green)}
+h3{font-size:16px;font-weight:700;color:var(--mid);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #a7f3d0;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 4px 12px rgba(5,150,105,0.15)}
+.vocab-card.flipped{background:var(--mid);color:#fff;border-color:var(--mid)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--dark)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--green);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--green);margin:14px 0 8px;padding:4px 10px;background:#ecfdf5;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.concept-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.concept-tab{padding:8px 18px;border-radius:20px;border:2px solid #a7f3d0;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.concept-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.rule-box{background:#ecfdf5;border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--mid);margin-bottom:6px}
+.timeline-item{background:#fff;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px;position:relative;padding-left:20px}
+.timeline-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--green);border-radius:4px 0 0 4px}
+.timeline-year{font-size:12px;font-weight:800;color:var(--green);margin-bottom:4px}
+.timeline-event{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.timeline-desc{font-size:13px;color:#475569;line-height:1.6}
+.topik-card{background:#ecfdf5;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #a7f3d0;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--green);background:#ecfdf5}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f0fdf4;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--green);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--mid)}
+.bubble{background:#ecfdf5;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#a7f3d0}
+.listen-script-box{background:#f0fdf4;border:2px dashed #a7f3d0;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--dark)}
+.listen-q{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px}
+.reveal-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--mid)}
+.reading-text{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--green);font-weight:700}
+.writing-guide{background:#ecfdf5;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--dark)}
+textarea{width:100%;border:2px solid #a7f3d0;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--green)}
+.sample-box{background:#ecfdf5;border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--dark);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--dark);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #a7f3d0;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #a7f3d0;background:#f0fdf4;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--green);background:#ecfdf5}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--dark);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#6ee7b7}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #a7f3d0}
+.pron-sent{background:#f0fdf4;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--dark);flex:1}
+.rec-btn{background:var(--green);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--mid)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #a7f3d0;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#ecfdf5;border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--dark)}
+.intro-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--green) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--dark)}
+.objective-list li::before{content:'✓';color:var(--green);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #a7f3d0;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--dark)}
+.section-nav-btn:hover{border-color:var(--green);background:#ecfdf5;color:var(--green)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+.check-btn{background:var(--green);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer}
+.check-btn:hover{background:var(--mid)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},
+  listenRevealed:false,listenAnswers:{},
+  conceptTab:0,topikAnswers:{},
+  readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'핵심',icon:'📜'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'연표',icon:'🗓️'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'일제강점기',hanja:'일제강점기(日帝強占期)',en:'Japanese colonial period (1910-1945)',vi:'Thời kỳ Nhật chiếm đóng',cat:'일제강점기'},
+  {ko:'독립운동',hanja:'독립운동(獨立運動)',en:'independence movement',vi:'Phong trào độc lập',cat:'일제강점기'},
+  {ko:'3·1운동',hanja:'삼일운동(三一運動)',en:'March First Independence Movement (1919)',vi:'Phong trào Độc lập 1/3',cat:'일제강점기'},
+  {ko:'안중근',hanja:'안중근(安重根)',en:'Ahn Jung-geun, independence activist',vi:'An Jung-geun, nhà hoạt động độc lập',cat:'일제강점기'},
+  {ko:'유관순',hanja:'유관순(柳寬順)',en:'Yu Gwan-sun, independence heroine',vi:'Yu Gwan-sun, nữ anh hùng độc lập',cat:'일제강점기'},
+  {ko:'광복',hanja:'광복(光復)',en:'Liberation (August 15, 1945)',vi:'Giải phóng (15/8/1945)',cat:'광복과 분단'},
+  {ko:'분단',hanja:'분단(分斷)',en:'division of Korea (38th parallel)',vi:'Chia cắt đất nước (vĩ tuyến 38)',cat:'광복과 분단'},
+  {ko:'대한민국',hanja:'대한민국(大韓民國)',en:'Republic of Korea (est. 1948)',vi:'Đại Hàn Dân Quốc (thành lập 1948)',cat:'광복과 분단'},
+  {ko:'6.25전쟁',hanja:'육이오전쟁(六二五戰爭)',en:'Korean War (1950-1953)',vi:'Chiến tranh Triều Tiên (1950-1953)',cat:'6.25전쟁'},
+  {ko:'휴전협정',hanja:'휴전협정(休戰協定)',en:'armistice agreement (1953)',vi:'Hiệp định đình chiến (1953)',cat:'6.25전쟁'},
+  {ko:'한강의 기적',hanja:'한강의 기적',en:'Miracle on the Han River (economic growth)',vi:'Kỳ tích sông Hàn (tăng trưởng kinh tế)',cat:'경제 발전'},
+  {ko:'산업화',hanja:'산업화(産業化)',en:'industrialization',vi:'Công nghiệp hóa',cat:'경제 발전'},
+  {ko:'민주화',hanja:'민주화(民主化)',en:'democratization',vi:'Dân chủ hóa',cat:'민주화'},
+  {ko:'6월 항쟁',hanja:'유월항쟁(六月抗爭)',en:'June Democracy Movement (1987)',vi:'Phong trào Dân chủ tháng 6 (1987)',cat:'민주화'},
+  {ko:'IMF 위기',hanja:'IMF 위기',en:'IMF financial crisis (1997)',vi:'Khủng hoảng tài chính IMF (1997)',cat:'경제 위기와 극복'},
+  {ko:'극복',hanja:'극복(克服)',en:'overcoming / recovery',vi:'Vượt qua / Phục hồi',cat:'경제 위기와 극복'},
+  {ko:'정전협정',hanja:'정전협정(停戰協定)',en:'ceasefire agreement',vi:'Hiệp định ngừng bắn',cat:'6.25전쟁'},
+  {ko:'수출',hanja:'수출(輸出)',en:'export',vi:'Xuất khẩu',cat:'경제 발전'},
+  {ko:'경제 성장',hanja:'경제성장(經濟成長)',en:'economic growth',vi:'Tăng trưởng kinh tế',cat:'경제 발전'},
+  {ko:'민주주의',hanja:'민주주의(民主主義)',en:'democracy',vi:'Dân chủ',cat:'민주화'},
+];
+
+const CONCEPT1={
+  title:'일제강점기와 광복 (1910~1945)',
+  summary:'1910년부터 1945년까지 일본의 지배를 받던 시기와 1945년 8월 15일 광복을 이해합니다.',
+  points:[
+    {title:'일제강점기 (1910~1945년)',desc:'1910년 일본에 의해 나라를 빼앗긴 후 35년간 일본의 지배를 받았습니다. 이 시기에 많은 한국인들이 독립운동을 벌였습니다. 일본은 한국어 사용을 금지하고 일본식 이름을 강요하는 등 문화 말살 정책을 폈습니다.'},
+    {title:'3·1운동 (1919년)',desc:'1919년 3월 1일, 전국 각지에서 "대한 독립 만세!"를 외치며 비폭력 독립운동이 일어났습니다. 유관순 열사 등 수많은 사람들이 참여했으며, 이 운동은 이후 독립운동의 기폭제가 되었습니다.'},
+    {title:'독립운동가들',desc:'안중근 의사는 1909년 하얼빈에서 이토 히로부미를 처단했습니다. 유관순 열사는 3·1운동을 이끌다 옥중에서 순국했습니다. 김구 선생은 상하이 임시정부를 이끌며 독립운동을 계속했습니다.'},
+    {title:'광복 (1945년 8월 15일)',desc:'1945년 8월 15일 일본이 제2차 세계대전에서 패망하면서 한국은 해방되었습니다. 이 날을 "광복절(光復節)"이라 하며 매년 국경일로 기념합니다. 광복 이후 한반도는 38선을 경계로 남북으로 분단되었습니다.'},
+  ],
+  questions:[
+    {q:'3·1운동이 일어난 해는?',opts:['1905년','1910년','1919년','1945년'],answer:2},
+    {q:'광복절은 언제인가요?',opts:['3월 1일','8월 15일','10월 3일','10월 9일'],answer:1},
+  ]
+};
+
+const CONCEPT2={
+  title:'6.25전쟁과 경제 발전 (1950~현재)',
+  summary:'한국전쟁(6.25전쟁)부터 한강의 기적이라 불리는 경제 발전과 민주화까지의 과정을 이해합니다.',
+  points:[
+    {title:'대한민국 정부 수립 (1948년)',desc:'1948년 8월 15일 이승만을 초대 대통령으로 하는 대한민국 정부가 수립되었습니다. 같은 해 북쪽에는 김일성이 이끄는 조선민주주의인민공화국이 세워졌습니다.'},
+    {title:'6.25전쟁 (1950~1953년)',desc:'1950년 6월 25일 북한의 기습 남침으로 전쟁이 시작되었습니다. 유엔군(미국 포함)이 한국을 도왔고, 3년간의 전쟁 끝에 1953년 7월 휴전협정이 체결되었습니다. 전쟁으로 수백만 명이 사망하고 국토가 폐허가 되었습니다.'},
+    {title:'한강의 기적 — 경제 성장 (1960~1990년대)',desc:'전쟁 이후 세계에서 가장 가난한 나라 중 하나였던 한국은 빠른 경제 성장을 이루었습니다. 수출 주도 산업화 정책으로 반도체, 자동차, 조선 분야에서 세계적인 강국이 되었습니다. 이를 "한강의 기적"이라고 부릅니다.'},
+    {title:'민주화와 현재',desc:'1987년 6월 항쟁을 통해 직선제 민주주의를 이루었습니다. 1997년 IMF 외환위기를 국민의 금 모으기 운동 등으로 극복했습니다. 2002년 월드컵을 공동 개최했고, K팝·드라마·영화 등 한류 문화를 세계에 알리고 있습니다.'},
+  ],
+  questions:[
+    {q:'6.25전쟁이 시작된 날은?',opts:['1948년 8월 15일','1950년 6월 25일','1953년 7월 27일','1987년 6월'],answer:1},
+    {q:'"한강의 기적"이 뜻하는 것은?',opts:['한강 다리 건설','한국의 빠른 경제 성장','한국의 전쟁 승리','한강의 홍수 극복'],answer:1},
+  ]
+};
+
+const QUIZ=[
+  {q:'일제강점기는 몇 년부터 몇 년까지인가요?',opts:['1895~1920','1905~1940','1910~1945','1920~1950'],answer:2},
+  {q:'3·1운동이 일어난 해는?',opts:['1910년','1915년','1919년','1945년'],answer:2},
+  {q:'광복절은 언제인가요?',opts:['3월 1일','6월 25일','8월 15일','10월 3일'],answer:2},
+  {q:'6.25전쟁은 언제 시작되었나요?',opts:['1945년','1948년','1950년','1953년'],answer:2},
+  {q:'6.25전쟁에서 한국을 도운 국제 기구는?',opts:['NATO','유엔(UN)','EU','WTO'],answer:1},
+  {q:'6.25전쟁 휴전협정이 체결된 해는?',opts:['1950년','1951년','1952년','1953년'],answer:3},
+  {q:'"한강의 기적"이 의미하는 것은?',opts:['한강 다리 건설','한국의 빠른 경제 성장','전쟁 승리','통일'],answer:1},
+  {q:'1987년 6월 항쟁의 결과는?',opts:['경제 성장','직선제 민주주의 실현','남북 통일','IMF 극복'],answer:1},
+  {q:'3·1운동의 대표적인 여성 독립운동가는?',opts:['안중근','김구','유관순','이봉창'],answer:2},
+  {q:'대한민국 정부가 수립된 해는?',opts:['1945년','1948년','1950년','1953년'],answer:1},
+];
+
+const RECORDER={
+  stream:null,mediaRecorder:null,chunks:[],isRecording:false,
+  recognition:null,sttActive:false,currentIdx:-1,scores:{},
+  autoDetect(){
+    const st=document.getElementById('rec-status');
+    if(!st)return;
+    if(!navigator.mediaDevices&&!window.SpeechRecognition&&!window.webkitSpeechRecognition){
+      st.innerHTML='<p style="color:#ef4444;font-size:13px">⚠️ 이 기기는 음성 인식을 지원하지 않습니다.</p>';return;
+    }
+    st.innerHTML='<p style="color:#059669;font-size:13px">✅ 마이크 준비 완료. 문장 옆 🎤 버튼을 누르세요.</p>';
+  },
+  toggle(idx,sents){
+    if(this.sttActive&&this.currentIdx===idx){this.stopSTT(idx);}
+    else{if(this.sttActive)this.stopSTT(this.currentIdx);this.startSTT(idx,sents);}
+  },
+  startSTT(idx,sents){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR)return;
+    this.recognition=new SR();
+    this.recognition.lang='ko-KR';
+    this.recognition.interimResults=false;
+    this.recognition.maxAlternatives=1;
+    this.sttActive=true;
+    this.currentIdx=idx;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='⏹ 중지';btn.classList.add('recording');}
+    this.recognition.onresult=(e)=>{
+      const transcript=e.results[0][0].transcript;
+      const score=this.calcScore(transcript,sents[idx]);
+      this.scores[idx]=score;
+      const badge=document.getElementById('score-badge-'+idx);
+      if(badge){
+        badge.textContent=score;
+        badge.className='score-badge '+(score>=80?'good':score>=50?'ok':'bad');
+      }
+      const res=document.getElementById('stt-result');
+      if(res)res.innerHTML=`<span style="color:#059669">인식: "${transcript}"</span>`;
+      this.stopSTT(idx);
+    };
+    this.recognition.onerror=()=>this.stopSTT(idx);
+    this.recognition.onend=()=>this.stopSTT(idx);
+    this.recognition.start();
+  },
+  stopSTT(idx){
+    if(this.recognition){try{this.recognition.stop();}catch(e){}}
+    this.sttActive=false;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+  },
+  calcScore(transcript,target){
+    const t=transcript.replace(/[.,?!]/g,'').toLowerCase();
+    const g=target.replace(/[.,?!]/g,'').toLowerCase();
+    const tw=t.split(' ');const gw=g.split(' ');
+    let match=0;
+    gw.forEach(w=>{if(tw.includes(w))match++;});
+    return Math.round((match/gw.length)*100);
+  }
+};
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level5_Lesson1">← 1과</a>
+      <span class="nav-title">5급 2과 · 한국의 역사 2</span>
+      <a href="/KIIP_Level5_Lesson3">3과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level5_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level5_Lesson3"><span class="icon">➡️</span>3과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let html;
+      if(STATE.conceptTab===0){html=renderConceptBlock(CONCEPT1,'c1');}
+      else{html=renderConceptBlock(CONCEPT2,'c2');}
+      return `<h2>📜 핵심 내용</h2>
+        <div class="concept-tabs">
+          <button class="concept-tab${STATE.conceptTab===0?' active':''}" onclick="setState({conceptTab:0})">1. 일제강점기·광복</button>
+          <button class="concept-tab${STATE.conceptTab===1?' active':''}" onclick="setState({conceptTab:1})">2. 6.25전쟁·경제발전</button>
+        </div>${html}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderTimeline();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10:{
+      setTimeout(()=>RECORDER.autoDetect(),100);
+      const PRON_SENTS=[
+        '1919년 3월 1일 전국에서 독립 만세 운동이 일어났습니다.',
+        '1945년 8월 15일 광복으로 일제강점기가 끝났습니다.',
+        '6.25전쟁은 1950년 6월 25일 북한의 남침으로 시작되었습니다.',
+        '한국은 빠른 경제 성장으로 한강의 기적을 이루었습니다.',
+      ];
+      return `<h2>🤖 AI 발음 실습</h2>
+        <div class="ai-section">
+          <h3>발음 연습</h3>
+          <p style="font-size:13px;color:#64748b;margin-bottom:12px">문장을 따라 말하고 AI가 발음을 분석합니다.</p>
+          <div id="rec-status"><p style="color:#94a3b8;font-size:13px">마이크 상태 확인 중...</p></div>
+          ${PRON_SENTS.map((s,i)=>`
+            <div class="pron-sent" id="pron-sent-${i}">
+              <span class="sent-text">${s} ${ttsBtn(s)}</span>
+              <div id="score-badge-${i}" class="score-badge">-</div>
+              <button class="rec-btn" id="rec-btn-${i}" onclick="RECORDER.toggle(${i},PRON_SENTS_10)">🎤 녹음</button>
+            </div>`).join('')}
+          <div id="stt-result" style="min-height:32px;margin-top:8px;font-size:13px;color:#475569"></div>
+        </div>
+        <script>var PRON_SENTS_10=${JSON.stringify(PRON_SENTS)};<\/script>
+        <div class="card">
+          <div class="card-title">💡 AI 활용 연습 주제</div>
+          <div class="speaking-topics">
+            <div class="speaking-topic">AI에게 "3·1운동과 한국 독립운동에 대해 한국어로 설명해 줘"라고 질문해 보세요.</div>
+            <div class="speaking-topic">"6.25전쟁의 원인과 결과를 한국어로 설명해 줘"라고 AI에게 물어보세요.</div>
+            <div class="speaking-topic">AI와 함께 "한국의 경제 발전 비결" 주제로 토론해 보세요.</div>
+          </div>
+        </div>`;
+    }
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 5급 · 2과</div>
+      <h1>📜 한국의 역사 2</h1>
+      <div class="subtitle">일제강점기 · 광복 · 6.25전쟁 · 경제 발전<br>Modern Korean History</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>일제강점기(1910~1945)와 3·1운동의 의미를 이해할 수 있다.</li>
+        <li>1945년 광복의 의미와 남북 분단의 배경을 설명할 수 있다.</li>
+        <li>6.25전쟁(1950~1953)의 경과와 영향을 이해할 수 있다.</li>
+        <li>한강의 기적(경제 성장)과 민주화 과정을 설명할 수 있다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 단원 개요</div>
+      <p style="font-size:14px;line-height:1.8;color:#334155">
+        20세기 한국은 격동의 역사를 경험했습니다. 35년간의 일제강점기, 1945년 광복, 6.25전쟁의 비극, 그리고 그 폐허 속에서 이룬 "한강의 기적"까지. 오늘날 한국이 선진국으로 발전할 수 있었던 역사적 배경을 배워봅니다.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-title">📚 학습 내용</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.slice(1).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `<h2>📝 핵심 어휘</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">카드를 클릭하면 뜻이 나타납니다. 🔊 버튼으로 발음을 들어보세요.</p>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">📌 ${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map((v,i)=>{
+          const key=v.ko;
+          const flipped=STATE.vocabFlipped[key];
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="setState({vocabFlipped:{...STATE.vocabFlipped,'${key}':${!flipped}}})">
+            ${flipped
+              ?`<div class="vocab-ko">${v.en}</div><div class="vocab-hanja">${v.vi}</div>`
+              :`<div class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</div>
+                <div class="vocab-hanja">${v.hanja}</div>
+                <div class="vocab-eng">${v.en}</div>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderConceptBlock(concept,prefix){
+  return `
+    <div class="card">
+      <div class="card-title">📜 ${concept.title}</div>
+      <p style="font-size:14px;color:#334155;margin-bottom:16px;line-height:1.7">${concept.summary}</p>
+      ${concept.points.map((p,i)=>`
+        <div class="rule-box">
+          <div class="rule-title">📌 ${p.title}</div>
+          <p style="font-size:14px;line-height:1.7;color:#334155">${p.desc}</p>
+        </div>`).join('')}
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 확인 문제</div>
+      ${concept.questions.map((q,i)=>`
+        <div class="topik-card">
+          <div class="q-text">${i+1}. ${q.q}</div>
+          <div class="topik-options">
+            ${q.opts.map((opt,j)=>`
+              <button class="topik-opt${STATE.topikAnswers[prefix+i]===j?(j===q.answer?' correct':' wrong'):''}"
+                onclick="setState({topikAnswers:{...STATE.topikAnswers,'${prefix+i}':${j}}})"
+                ${STATE.topikAnswers[prefix+i]!==undefined?'disabled':''}>
+                ${j+1}. ${opt}
+              </button>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderSpeaking(){
+  return `<h2>💬 말하기 연습</h2>
+    <div class="card">
+      <div class="card-title">🎯 주제 대화</div>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <span class="speaker">A</span>
+          <div class="bubble">한국의 광복절이 언제인지 알아요? ${ttsBtn('한국의 광복절이 언제인지 알아요?')}</div>
+        </div>
+        <div class="dialogue-line b">
+          <span class="speaker">B</span>
+          <div class="bubble">네, 8월 15일이에요. 1945년에 일본으로부터 해방된 날이죠. ${ttsBtn('네, 8월 15일이에요. 1945년에 일본으로부터 해방된 날이죠.')}</div>
+        </div>
+        <div class="dialogue-line">
+          <span class="speaker">A</span>
+          <div class="bubble">그렇군요. 한국은 전쟁 후에 정말 빨리 발전했네요. ${ttsBtn('그렇군요. 한국은 전쟁 후에 정말 빨리 발전했네요.')}</div>
+        </div>
+        <div class="dialogue-line b">
+          <span class="speaker">B</span>
+          <div class="bubble">맞아요. 그래서 "한강의 기적"이라고 불려요. 정말 놀라운 일이에요! ${ttsBtn('맞아요. 그래서 한강의 기적이라고 불려요. 정말 놀라운 일이에요!')}</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">💬 말하기 주제</div>
+      <div class="speaking-topics">
+        <div class="speaking-topic">여러분 나라에도 외국의 지배를 받거나 전쟁을 겪은 역사가 있나요? 한국어로 이야기해 보세요.</div>
+        <div class="speaking-topic">한국의 경제 발전에서 배울 수 있는 점은 무엇인가요?</div>
+        <div class="speaking-topic">독립운동가 중 가장 인상적인 사람은 누구인가요? 왜 그렇게 생각하나요?</div>
+      </div>
+    </div>`;
+}
+
+function renderListening(){
+  return `<h2>👂 듣기 · 이해하기</h2>
+    <div class="card">
+      <div class="card-title">📻 역사 강의 내용</div>
+      <p style="font-size:13px;color:#64748b;margin-bottom:12px">아래 내용을 읽고 질문에 답하세요.</p>
+      <div class="listen-script-box">
+        1910년 일본에 의해 한국이 강제로 병합되었습니다. 이후 35년간 일제강점기가 시작되었습니다. 1919년 3월 1일, 전국 각지에서 독립 만세 운동이 일어났습니다. 이것이 바로 3·1운동입니다. 1945년 8월 15일 일본이 제2차 세계대전에서 패망하면서 한국은 해방을 맞이했습니다. 그러나 해방 직후 한반도는 38선을 경계로 남북으로 나뉘었습니다. 1948년 남쪽에는 대한민국, 북쪽에는 조선민주주의인민공화국이 수립되었습니다. 1950년 6월 25일 북한의 기습 남침으로 한국전쟁이 시작되었으며, 3년간의 전쟁 끝에 1953년 휴전협정이 체결되었습니다. 전쟁 이후 한국은 빠른 경제 성장을 이루어 오늘날 선진국의 반열에 올랐습니다.
+      </div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:true})">📖 내용 확인</button>
+    </div>
+    <div class="listen-q">
+      <div class="q-text">1. 일제강점기는 몇 년부터 몇 년까지인가요?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 1910년~1945년 (35년간)</div>`:''}
+    </div>
+    <div class="listen-q">
+      <div class="q-text">2. 3·1운동은 언제 일어났나요?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 1919년 3월 1일</div>`:''}
+    </div>
+    <div class="listen-q">
+      <div class="q-text">3. 6.25전쟁 휴전협정은 언제 체결되었나요?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 1953년</div>`:''}
+    </div>`;
+}
+
+function renderTimeline(){
+  const events=[
+    {year:'1910년 8월 29일',event:'일제강점기 시작',desc:'일본이 대한제국을 강제 병합하여 35년간의 식민지 시대가 시작되었습니다.'},
+    {year:'1919년 3월 1일',event:'3·1 독립운동',desc:'전국에서 "대한 독립 만세!"를 외치며 비폭력 독립운동이 일어났습니다. 유관순 열사 등 수많은 사람이 참여했습니다.'},
+    {year:'1919년 4월 11일',event:'대한민국 임시정부 수립',desc:'상하이에서 대한민국 임시정부가 수립되어 독립운동을 이끌었습니다. 김구 선생이 주도했습니다.'},
+    {year:'1945년 8월 15일',event:'광복 (해방)',desc:'일본이 제2차 세계대전에서 패망하여 한국이 해방되었습니다. 광복절로 국경일이 되었습니다.'},
+    {year:'1948년 8월 15일',event:'대한민국 정부 수립',desc:'이승만 초대 대통령 취임. 대한민국 정부가 공식 수립되었습니다.'},
+    {year:'1950년 6월 25일',event:'6.25전쟁 발발',desc:'북한의 기습 남침으로 한국전쟁이 시작되었습니다. 유엔군이 한국을 지원했습니다.'},
+    {year:'1953년 7월 27일',event:'휴전협정 체결',desc:'3년간의 전쟁 끝에 휴전협정이 체결되었습니다. 38선 근처에 비무장지대(DMZ)가 설치되었습니다.'},
+    {year:'1960~1980년대',event:'한강의 기적 — 경제 성장',desc:'수출 주도 산업화로 빠른 경제 성장을 이루었습니다. 반도체, 자동차, 조선 등이 발전했습니다.'},
+    {year:'1987년 6월',event:'6월 민주화 항쟁',desc:'국민의 직선제 요구로 민주화가 이루어졌습니다. 이후 한국은 민주주의 국가로 발전했습니다.'},
+    {year:'1997년',event:'IMF 외환위기 극복',desc:'경제 위기를 국민의 금 모으기 운동 등으로 극복했습니다. 2001년 IMF 차관을 조기 상환했습니다.'},
+  ];
+  return `<h2>🗓️ 역사 연표</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">근현대사 주요 사건을 순서대로 정리했습니다.</p>
+    ${events.map(e=>`
+      <div class="timeline-item">
+        <div class="timeline-year">📅 ${e.year}</div>
+        <div class="timeline-event">⭐ ${e.event}</div>
+        <div class="timeline-desc">${e.desc}</div>
+      </div>`).join('')}`;
+}
+
+function renderReading(){
+  return `<h2>📖 읽기</h2>
+    <div class="card">
+      <div class="card-title">📄 한강의 기적 — 세계가 놀란 경제 성장</div>
+      <div class="reading-text">
+        6.25전쟁이 끝난 1953년, 한국은 세계에서 가장 가난한 나라 중 하나였습니다. 1인당 국민소득이 67달러에 불과했습니다. 그러나 1960년대부터 정부 주도의 <span class="highlight">수출 중심 경제 정책</span>을 추진하면서 빠른 성장이 시작되었습니다.<br><br>
+        한국은 <span class="highlight">반도체, 자동차, 조선, 전자제품</span> 등의 분야에서 세계적인 강국이 되었습니다. 삼성, 현대, LG 같은 대기업들이 세계 시장에서 활약하고 있습니다. 현재 한국의 국내총생산(GDP)은 세계 10위권이며, 1인당 소득은 3만 달러를 넘었습니다.<br><br>
+        이 놀라운 성장을 세계는 "<span class="highlight">한강의 기적</span>"이라고 부릅니다. 한강은 서울을 가로지르는 강이며, 이 강변에서 한국의 눈부신 발전을 상징적으로 표현한 것입니다.
+      </div>
+      <div class="listen-q">
+        <div class="q-text">6.25전쟁 직후 한국의 1인당 소득은 얼마였나요?</div>
+        <button class="reveal-btn" onclick="setState({readAnswers:{...STATE.readAnswers,r1:true}})">정답 확인</button>
+        ${STATE.readAnswers.r1?`<div class="answer-reveal">✅ 67달러 (세계 최빈국 중 하나)</div>`:''}
+      </div>
+    </div>`;
+}
+
+function renderWriting(){
+  return `<h2>✏️ 쓰기 연습</h2>
+    <div class="card">
+      <div class="card-title">📝 근현대사 정리 쓰기</div>
+      <div class="writing-guide">
+        <p style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:8px">📌 다음 내용을 포함하여 한국 근현대사를 150자 이상 써 보세요.</p>
+        <ul>
+          <li>일제강점기와 광복의 의미</li>
+          <li>6.25전쟁의 결과</li>
+          <li>한강의 기적(경제 발전)</li>
+        </ul>
+      </div>
+      <textarea placeholder="여기에 한국어로 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="text-align:right;font-size:12px;color:#64748b;margin-top:4px">${STATE.writingText.length}자</div>
+      <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'예문 숨기기':'예문 보기'}</button>
+      ${STATE.sampleShown?`<div class="sample-box">
+        한국은 1910년부터 1945년까지 일제강점기를 겪었습니다. 이 시기에 많은 독립운동가들이 나라의 독립을 위해 싸웠고, 1919년 3·1운동은 대표적인 독립운동입니다. 1945년 8월 15일 광복으로 일본의 지배에서 벗어났지만, 곧 남북이 분단되었고 1950년 6.25전쟁이 발발했습니다. 3년간의 전쟁으로 나라는 폐허가 되었지만, 한국인들은 포기하지 않고 열심히 일했습니다. 그 결과 오늘날 "한강의 기적"이라 불리는 놀라운 경제 발전을 이루었습니다.
+      </div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  return `<h2>🎎 문화 알기</h2>
+    <div class="culture-section">
+      <h4>🎗️ 광복절 — 8월 15일</h4>
+      <p>광복절(光復節)은 1945년 8월 15일 일제강점기에서 해방된 것을 기념하는 국경일입니다. "광복(光復)"은 "빛을 되찾았다"는 뜻입니다. 이 날 전국에서 태극기를 게양하고 다양한 기념행사가 열립니다. 또한 8월 15일은 1948년 대한민국 정부가 수립된 날이기도 합니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>🕊️ 현충일 — 6월 6일</h4>
+      <p>현충일(顯忠日)은 6월 6일로, 6.25전쟁을 비롯한 각종 전쟁에서 나라를 위해 희생된 군인과 순국선열을 추모하는 날입니다. 이 날 오전 10시에는 전국에서 1분간 사이렌이 울리며, 모든 국민이 순국선열을 위해 묵념을 합니다. 국립서울현충원에서는 대규모 추모식이 열립니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>🏅 금 모으기 운동 (1998년)</h4>
+      <p>1997년 IMF 외환위기 때 한국이 경제적으로 큰 어려움에 처하자, 전국의 시민들이 자발적으로 금반지, 돌 반지 등 집에 있는 금을 내놓는 운동이 벌어졌습니다. 350만 명이 참여하여 약 226톤의 금이 모였습니다. 이 운동은 국민의 단결심과 나라 사랑을 보여주는 대표적인 사례로 세계의 주목을 받았습니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>🚩 태극기 — 한국의 국기</h4>
+      <p>태극기는 대한민국의 국기입니다. 흰 바탕에 중앙의 태극 문양과 네 모서리의 괘(卦)로 이루어져 있습니다. 흰색은 순결과 평화, 태극 문양은 음양의 조화, 네 개의 괘는 하늘·땅·물·불을 나타냅니다. 광복절, 현충일, 삼일절 등 국경일에는 가정과 공공기관에 태극기를 게양합니다.</p>
+    </div>`;
+}
+
+function renderQuiz(){
+  if(STATE.quizDone){
+    const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+    return `<h2>✅ 퀴즈 결과</h2>
+      <div class="quiz-score">
+        <div class="score-num">${correct}/${QUIZ.length}</div>
+        <div style="font-size:16px;margin-top:8px">${correct>=8?'🎉 훌륭해요!':correct>=5?'👍 잘했어요!':'📚 다시 복습해 보세요'}</div>
+      </div>
+      <button class="reveal-btn" style="margin-top:16px;width:100%" onclick="setState({quizDone:false,quizAnswers:{}})">🔄 다시 풀기</button>`;
+  }
+  return `<h2>✅ 이해도 퀴즈</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">한국의 역사 2에 대한 이해도를 확인하세요. (10문제)</p>
+    ${QUIZ.map((q,i)=>`
+      <div class="quiz-card${STATE.quizAnswers[i]!==undefined?(STATE.quizAnswers[i]===q.answer?' answered-correct':' answered-wrong'):''}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>`
+            <button class="quiz-opt${STATE.quizAnswers[i]===j?(j===q.answer?' selected-correct':' selected-wrong'):''}"
+              onclick="setState({quizAnswers:{...STATE.quizAnswers,${i}:${j}}})"
+              ${STATE.quizAnswers[i]!==undefined?'disabled':''}>
+              ${j+1}. ${opt}
+            </button>`).join('')}
+        </div>
+      </div>`).join('')}
+    ${Object.keys(STATE.quizAnswers).length===QUIZ.length
+      ?`<button class="reveal-btn" style="width:100%" onclick="setState({quizDone:true})">결과 보기 →</button>`:''}`;
+}
+
+render();
+</script>
+</body>
+</html>

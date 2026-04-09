@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 4급 12과 · 스포츠와 건강</title>
+<meta name="theme-color" content="#1d4ed8"/>
+<meta property="og:title" content="KIIP 4급 12과 · 스포츠와 건강"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level4_Lesson12.html"/>
+<meta property="og:description" content="KIIP 4급 12과 스포츠와 건강 - 어휘, 문법, 말하기, 듣기, 읽기, 쓰기, 문화, 퀴즈"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1d4ed8;--navy:#1e3a5f;--indigo:#1e40af;--green:#22c55e;--red:#ef4444;--gray:#f0f4ff;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(30,58,95,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #dbeafe;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:700}
+.tab-btn:hover{background:#eff6ff}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #dbeafe;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(30,58,95,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--blue)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(30,58,95,0.08);border:1px solid #dbeafe}
+.card-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--blue)}
+h3{font-size:16px;font-weight:700;color:var(--indigo);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 12px rgba(29,78,216,0.15)}
+.vocab-card.flipped{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--navy)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--blue);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue);margin:14px 0 8px;padding:4px 10px;background:#eff6ff;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.grammar-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.grammar-tab{padding:8px 18px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.grammar-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rule-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:6px}
+.example-list{list-style:none}
+.example-list li{padding:8px 12px;border-radius:8px;margin-bottom:6px;background:#f8faff;border:1px solid #dbeafe;font-size:14px;line-height:1.6}
+.example-list li .ko{color:var(--navy);font-weight:600}
+.example-list li .en{color:#475569;font-size:12px}
+.practice-item{background:#fff;border:2px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.practice-item input{border:1px solid #bfdbfe;border-radius:6px;padding:6px 10px;font-size:14px;width:140px;margin:0 4px}
+.practice-item input:focus{outline:none;border-color:var(--blue)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.check-btn:hover{background:var(--indigo)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.topik-card{background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #bfdbfe;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--blue);background:#eff6ff}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f8faff;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--blue);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--indigo)}
+.bubble{background:#eff6ff;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#dbeafe}
+.listen-script-box{background:#f0f4ff;border:2px dashed #bfdbfe;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--navy)}
+.listen-q{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.reveal-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--indigo)}
+.pron-rule{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #bfdbfe}
+.pron-word{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:6px 12px;margin:4px;font-size:14px}
+.pron-arrow{color:var(--blue);font-weight:700}
+.reading-text{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--blue);font-weight:700}
+.writing-guide{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--navy)}
+textarea{width:100%;border:2px solid #bfdbfe;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--blue)}
+.sample-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--navy);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--navy);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #dbeafe;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #dbeafe;background:#f8faff;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--blue);background:#eff6ff}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--navy);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#60a5fa}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #dbeafe}
+.pron-sent{background:#f0f4ff;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--navy);flex:1}
+.rec-btn{background:var(--blue);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--indigo)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #dbeafe;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.lang-toggle{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.lang-btn{padding:6px 14px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:12px;font-weight:600;color:#64748b;transition:all 0.2s}
+.lang-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tip-box{background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:#475569;margin-top:8px}
+.tip-box strong{color:var(--blue)}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#eff6ff;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--navy)}
+.intro-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--indigo) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--navy)}
+.objective-list li::before{content:'✓';color:var(--blue);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--navy)}
+.section-nav-btn:hover{border-color:var(--blue);background:#eff6ff;color:var(--blue)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},vocabShowEng:true,
+  listenRevealed:false,listenAnswers:{},
+  gramPracticeShown:{},readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  grammarTab:0,topikAnswers:{},
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'문법',icon:'📐'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'발음',icon:'🔊'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'축구',hanja:'蹴球',en:'soccer/football',vi:'bóng đá',cat:'스포츠 종류'},
+  {ko:'야구',hanja:'野球',en:'baseball',vi:'bóng chày',cat:'스포츠 종류'},
+  {ko:'농구',hanja:'籠球',en:'basketball',vi:'bóng rổ',cat:'스포츠 종류'},
+  {ko:'수영',hanja:'水泳',en:'swimming',vi:'bơi lội',cat:'스포츠 종류'},
+  {ko:'태권도',hanja:'跆拳道',en:'taekwondo',vi:'taekwondo',cat:'스포츠 종류'},
+  {ko:'운동하다',hanja:'運動하다',en:'to exercise',vi:'tập thể dục',cat:'운동 관련'},
+  {ko:'체력',hanja:'體力',en:'physical strength/stamina',vi:'thể lực',cat:'운동 관련'},
+  {ko:'훈련',hanja:'訓練',en:'training',vi:'huấn luyện',cat:'운동 관련'},
+  {ko:'경기',hanja:'競技',en:'game/match',vi:'trận đấu',cat:'운동 관련'},
+  {ko:'선수',hanja:'選手',en:'athlete/player',vi:'vận động viên',cat:'운동 관련'},
+  {ko:'건강',hanja:'健康',en:'health',vi:'sức khỏe',cat:'건강 관리'},
+  {ko:'식단',hanja:'食單',en:'diet/meal plan',vi:'chế độ ăn',cat:'건강 관리'},
+  {ko:'스트레스',hanja:'스트레스',en:'stress',vi:'căng thẳng',cat:'건강 관리'},
+  {ko:'수면',hanja:'睡眠',en:'sleep',vi:'giấc ngủ',cat:'건강 관리'},
+  {ko:'체중',hanja:'體重',en:'body weight',vi:'cân nặng',cat:'건강 관리'},
+  {ko:'씨름',hanja:'씨름',en:'ssireum (Korean wrestling)',vi:'vật truyền thống Hàn Quốc',cat:'한국 스포츠'},
+  {ko:'한궁',hanja:'한궁',en:'hangung (Korean traditional archery game)',vi:'cung truyền thống',cat:'한국 스포츠'},
+  {ko:'프로야구',hanja:'프로야구',en:'professional baseball',vi:'bóng chày chuyên nghiệp',cat:'한국 스포츠'},
+  {ko:'국가대표',hanja:'國家代表',en:'national team/representative',vi:'đội tuyển quốc gia',cat:'한국 스포츠'},
+  {ko:'응원',hanja:'應援',en:'cheering/support',vi:'cổ vũ',cat:'한국 스포츠'},
+];
+
+const GRAM1={
+  title:'-고서야',
+  meaning:'앞의 행동을 하고 난 후에야 비로소 뒤의 상황이 이루어짐을 나타냄. 강조의 뜻.',
+  en:'Only after (doing) / Not until after / It was only after... that',
+  rule:'동사 어간 + -고서야 (과거 사실 기반, "-고 나서야"와 유사)',
+  examples:[
+    {ko:'운동을 꾸준히 하고서야 건강이 좋아졌어요.',en:'Only after exercising consistently did my health improve.'},
+    {ko:'병원에 가고서야 심각성을 알았어요.',en:'It was only after going to the hospital that I realized the seriousness.'},
+    {ko:'경기에서 지고서야 훈련의 중요성을 깨달았어요.',en:'Only after losing the match did I realize the importance of training.'},
+    {ko:'스트레스를 받고서야 수면의 소중함을 알게 됐어요.',en:'Only after experiencing stress did I appreciate the value of sleep.'},
+    {ko:'살을 빼고서야 건강의 중요성을 실감했어요.',en:'Only after losing weight did I truly feel the importance of health.'},
+  ],
+  practice:[
+    {q:'운동을 시작하___ 체력이 좋아졌어요.',answer:'고서야'},
+    {q:'경기를 보___ 축구의 재미를 알았어요.',answer:'고서야'},
+    {q:'다이어트를 해보___ 건강 관리의 어려움을 알았어요.',answer:'고서야'},
+    {q:'아프___ 수면이 얼마나 중요한지 알았어요.',answer:'고서야'},
+    {q:'훈련을 받___ 선수의 노력을 이해했어요.',answer:'고서야'},
+  ],
+  topik:[
+    {q:'"-고서야"의 의미는?',opts:['앞의 행동 후에야 비로소 뒤의 일이 이루어짐','앞의 행동 때문에 결과가 생김','앞의 행동과 동시에 일어남','앞의 행동이 조건이 됨'],answer:0},
+    {q:'빈칸: "병원에 가___ 병의 심각성을 알았습니다."',opts:['고서야','느니','ㄹ 바에야','는 법이다'],answer:0},
+  ]
+};
+
+const GRAM2={
+  title:'-(으)ㄹ 정도로',
+  meaning:'어떤 행동이나 상태의 정도를 나타냄. "~할 만큼, ~할 정도까지"의 뜻.',
+  en:'To the extent that / So much that / Enough to / To such a degree that',
+  rule:'동사/형용사 어간 + -(으)ㄹ 정도로 (자음: -을 정도로, 모음/ㄹ: -ㄹ 정도로)',
+  examples:[
+    {ko:'숨이 찰 정도로 열심히 달렸습니다.',en:'I ran so hard that I was out of breath.'},
+    {ko:'매일 연습할 정도로 운동을 좋아합니다.',en:'I love exercise so much that I practice every day.'},
+    {ko:'걷기 힘들 정도로 다리가 아팠어요.',en:'My legs hurt so much that it was hard to walk.'},
+    {ko:'눈물이 날 정도로 감동적인 경기였어요.',en:'It was a match so moving it brought me to tears.'},
+    {ko:'말할 수 없을 정도로 기쁜 순간이었어요.',en:'It was a moment of indescribable joy.'},
+  ],
+  practice:[
+    {q:'숨이 차___ 뛰었습니다.',answer:'ㄹ 정도로'},
+    {q:'다리가 아플___ 오래 걸었어요.',answer:'정도로'},
+    {q:'감동받을___ 훌륭한 경기였어요.',answer:'정도로'},
+    {q:'매일 하고 싶을___ 수영을 좋아해요.',answer:'정도로'},
+    {q:'기쁠___ 좋은 결과가 나왔습니다.',answer:'정도로'},
+  ],
+  topik:[
+    {q:'빈칸: "숨이 찰___ 열심히 운동했습니다."',opts:['정도로','느니','바에야','고서야'],answer:0},
+    {q:'"-(으)ㄹ 정도로"와 의미가 가장 비슷한 표현은?',opts:['-(으)ㄹ 만큼','-는 한','-고 말고','-는 법이다'],answer:0},
+  ]
+};
+
+const QUIZ=[
+  {q:'"태권도"는 어느 나라 전통 스포츠입니까?',opts:['중국','일본','한국','미국'],answer:2},
+  {q:'"운동을 꾸준히 하고서야 건강이 좋아졌다."에서 "-고서야"의 의미는?',opts:['운동하면서 동시에','운동한 후에야 비로소','운동하기 위해서','운동하는 것이 당연하여'],answer:1},
+  {q:'"숨이 찰 정도로 열심히 뛰었다."에서 "-(으)ㄹ 정도로"의 의미는?',opts:['숨이 차기 위해서','그만큼의 강도로','숨이 차는 것이 당연하여','숨이 차서 멈췄다'],answer:1},
+  {q:'"씨름"은 어떤 스포츠입니까?',opts:['한국 전통 씨름 격투기','태권도','활쏘기','공놀이'],answer:0},
+  {q:'"체력"의 뜻은?',opts:['팀워크','신체 힘과 지구력','경기 규칙','운동 종류'],answer:1},
+  {q:'건강 관리 방법이 아닌 것은?',opts:['규칙적인 운동','균형 잡힌 식단','충분한 수면','과도한 스트레스'],answer:3},
+  {q:'빈칸: "경기에서 지___ 훈련의 중요성을 깨달았어요."',opts:['고서야','ㄹ 정도로','느니','바에야'],answer:0},
+  {q:'"국가대표"의 영어는?',opts:['professional player','national team/representative','cheering','training'],answer:1},
+  {q:'"응원"의 뜻은?',opts:['경기 규칙','운동 훈련','선수나 팀을 지지하며 응원함','경기 심판'],answer:2},
+  {q:'빈칸: "다리가 아플___ 오래 달렸습니다."',opts:['정도로','고서야','느니','바에야'],answer:0},
+];
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level4_Lesson11">← 11과</a>
+      <span class="nav-title">4급 12과 · 스포츠와 건강</span>
+      <a href="/KIIP_Level4_Lesson13">13과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level4_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level4_Lesson13"><span class="icon">➡️</span>13과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let gramHtml;
+      if(STATE.grammarTab===0){gramHtml=renderGramBlock(GRAM1,'gram1');}
+      else{gramHtml=renderGramBlock(GRAM2,'gram2');}
+      return `<h2>📐 문법</h2>
+        <div class="grammar-tabs">
+          <button class="grammar-tab${STATE.grammarTab===0?' active':''}" onclick="setState({grammarTab:0})">1. -고서야</button>
+          <button class="grammar-tab${STATE.grammarTab===1?' active':''}" onclick="setState({grammarTab:1})">2. -(으)ㄹ 정도로</button>
+        </div>${gramHtml}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderPronunciation();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10:{
+      setTimeout(()=>RECORDER.autoDetect(),100);
+      const PRON_SENTS=[
+        '운동을 꾸준히 하고서야 건강의 소중함을 알게 되었습니다.',
+        '응원단의 함성이 귀가 멍멍할 정도로 뜨거웠습니다.',
+        '태권도는 한국의 전통 스포츠로 전 세계에서 인기입니다.',
+        '규칙적인 운동과 충분한 수면이 건강 관리의 기본입니다.',
+      ];
+      return `<h2>🤖 AI 발음 실습</h2>
+        <div class="ai-section">
+          <h3>발음 연습</h3>
+          <p style="font-size:13px;color:#64748b;margin-bottom:12px">문장을 따라 말하고 AI가 발음을 분석합니다.</p>
+          <div id="rec-status"><p style="color:#94a3b8;font-size:13px">마이크 상태 확인 중...</p></div>
+          ${PRON_SENTS.map((s,i)=>`
+            <div class="pron-sent" id="pron-sent-${i}">
+              <span class="sent-text">${s} ${ttsBtn(s)}</span>
+              <div id="score-badge-${i}" class="score-badge">-</div>
+              <button class="rec-btn" id="rec-btn-${i}" onclick="RECORDER.toggle(${i},PRON_SENTS_12)">🎤 녹음</button>
+            </div>`).join('')}
+          <div id="stt-result" style="min-height:32px;margin-top:8px;font-size:13px;color:#475569"></div>
+        </div>
+        <script>var PRON_SENTS_12=${JSON.stringify(PRON_SENTS)};<\/script>
+        <div class="card">
+          <div class="card-title">💡 AI 활용 연습 주제</div>
+          <div class="speaking-topics">
+            <div class="speaking-topic">AI에게 "한국의 스포츠 문화를 한국어로 소개해 줘"라고 질문해 보세요.</div>
+            <div class="speaking-topic">"-고서야"와 "-(으)ㄹ 정도로"를 사용하여 운동과 건강에 대한 문장 5개를 만들어 달라고 해 보세요.</div>
+            <div class="speaking-topic">AI와 함께 "내가 좋아하는 스포츠 소개" 주제로 글쓰기 연습을 해 보세요.</div>
+          </div>
+        </div>`;
+    }
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 4급 · 12과</div>
+      <h1 style="margin-top:12px">스포츠와 건강</h1>
+      <p class="subtitle">Sports &amp; Health · Thể thao và Sức khỏe</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>스포츠 종류, 운동 관련, 건강 관리, 한국 스포츠 어휘 20개를 익힌다.</li>
+        <li>-고서야를 사용하여 어떤 행동 후에야 비로소 결과가 나타남을 표현할 수 있다.</li>
+        <li>-(으)ㄹ 정도로를 사용하여 정도와 강도를 표현할 수 있다.</li>
+        <li>한국의 스포츠 문화와 건강 관리에 대해 말하고 쓸 수 있다.</li>
+        <li>한국 프로야구, 태권도, 헬스 문화, 올림픽 성과 등 한국 스포츠 문화를 이해한다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🔑 핵심 표현</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          운동을 꾸준히 하<strong>고서야</strong> 건강이 좋아졌어요. ${ttsBtn('운동을 꾸준히 하고서야 건강이 좋아졌어요.')}
+        </div>
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          숨이 찰<strong> 정도로</strong> 열심히 달렸습니다. ${ttsBtn('숨이 찰 정도로 열심히 달렸습니다.')}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 학습 섹션</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.filter(s=>s.id>0).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `
+    <h2>📝 어휘</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div class="lang-toggle">
+        <button class="lang-btn${STATE.lang==='ko'?' active':''}" onclick="setState({lang:'ko',vocabFlipped:{}})">한국어</button>
+        <button class="lang-btn${STATE.lang==='en'?' active':''}" onclick="setState({lang:'en',vocabFlipped:{}})">English</button>
+        <button class="lang-btn${STATE.lang==='vi'?' active':''}" onclick="setState({lang:'vi',vocabFlipped:{}})">Tiếng Việt</button>
+      </div>
+      <button class="check-btn" onclick="setState({vocabFlipped:{}})">초기화</button>
+    </div>
+    <div class="tip-box" style="margin-bottom:14px"><strong>💡 Tip:</strong> 카드를 클릭하면 뒤집어집니다!</div>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map(v=>{
+          const idx=VOCAB.indexOf(v);
+          const flipped=STATE.vocabFlipped[idx];
+          const meaning=STATE.lang==='vi'?v.vi:v.en;
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="STATE.vocabFlipped[${idx}]=!STATE.vocabFlipped[${idx}];render()">
+            ${!flipped
+              ?`<span class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</span><span class="vocab-hanja">${v.hanja}</span>`
+              :`<span class="vocab-ko">${meaning}</span><span class="vocab-eng">${v.ko}</span>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderGramBlock(gram,prefix){
+  const practiceHtml=gram.practice.map((p,i)=>{
+    const shown=STATE.gramPracticeShown[prefix+'_'+i];
+    const q=p.q.replace('___',`<input id="${prefix}-inp-${i}" placeholder="___" style="width:110px"/>`);
+    return `<div class="practice-item">
+      <div style="font-size:14px;color:var(--navy);margin-bottom:8px;line-height:1.6">${q}</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" onclick="
+          var v=document.getElementById('${prefix}-inp-${i}').value.trim();
+          if(v==='${p.answer}'){document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=answer-reveal>✅ 정답!</span>';}
+          else{document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=wrong-reveal>❌ 다시 해보세요</span>';}
+        ">확인</button>
+        <button class="check-btn" style="background:#64748b" onclick="STATE.gramPracticeShown['${prefix}_${i}']=true;render()">정답 보기</button>
+      </div>
+      <div id="${prefix}-fb-${i}">${shown?`<span class="answer-reveal">정답: ${p.answer}</span>`:''}</div>
+    </div>`;
+  }).join('');
+  const topikHtml=gram.topik.map((t,i)=>{
+    const key=prefix+'_topik_'+i;
+    const chosen=STATE.topikAnswers[key];
+    return `<div class="topik-card">
+      <div class="q-text">${t.q}</div>
+      <div class="topik-options">
+        ${t.opts.map((opt,j)=>{
+          let cls='topik-opt';
+          if(chosen!==undefined){if(j===t.answer)cls+=' correct';else if(j===chosen)cls+=' wrong';}
+          return `<button class="${cls}" onclick="STATE.topikAnswers['${key}']=${j};render()" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+        }).join('')}
+      </div>
+      ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;color:${chosen===t.answer?'#166534':'#991b1b'};font-weight:700">${chosen===t.answer?'✅ 정답!':'❌ 오답 - 정답: '+(t.answer+1)+'번'}</div>`:''}
+    </div>`;
+  }).join('');
+  return `
+    <div class="card">
+      <div class="card-title">📌 ${gram.title}</div>
+      <div class="rule-box"><div class="rule-title">의미</div><div style="font-size:14px;color:var(--navy);margin-bottom:4px">${gram.meaning}</div><div style="font-size:13px;color:#475569">🇺🇸 ${gram.en}</div></div>
+      <div class="rule-box"><div class="rule-title">형태 규칙</div><div style="font-size:14px;color:var(--navy)">${gram.rule}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 예문</div>
+      <ul class="example-list">${gram.examples.map(e=>`<li><span class="ko">${e.ko} ${ttsBtn(e.ko)}</span><br><span class="en">${e.en}</span></li>`).join('')}</ul>
+    </div>
+    <div class="card"><div class="card-title">✏️ 빈칸 채우기 연습</div>${practiceHtml}</div>
+    <div class="card"><div class="card-title">📋 TOPIK 유형</div>${topikHtml}</div>`;
+}
+
+function renderSpeaking(){
+  const dialogues=[
+    {title:'대화 1: 한국의 스포츠 문화',lines:[
+      {speaker:'A',text:'한국에서 가장 인기 있는 스포츠가 뭐예요?',side:'a'},
+      {speaker:'B',text:'축구와 야구가 가장 인기 있어요. 프로야구는 봄부터 가을까지 시즌이 있어요.',side:'b'},
+      {speaker:'A',text:'직접 경기장에 가서 응원하는 게 어때요?',side:'a'},
+      {speaker:'B',text:'응원단의 함성이 귀가 멍멍할 정도로 커요. 정말 신나요!',side:'b'},
+      {speaker:'A',text:'태권도도 한국 스포츠죠?',side:'a'},
+      {speaker:'B',text:'네, 태권도는 올림픽 정식 종목이 되고서야 더 세계적으로 유명해졌어요.',side:'b'},
+    ]},
+    {title:'대화 2: 건강 관리',lines:[
+      {speaker:'A',text:'요즘 건강 관리는 어떻게 하세요?',side:'a'},
+      {speaker:'B',text:'매일 아침 30분씩 걷고 있어요. 걷기 시작하고서야 몸이 가벼워진 것을 느꼈어요.',side:'b'},
+      {speaker:'A',text:'식단 관리도 하세요?',side:'a'},
+      {speaker:'B',text:'네, 채소를 더 많이 먹으려고 해요. 스트레스를 받을 정도로 엄격하게 하지는 않아요.',side:'b'},
+      {speaker:'A',text:'저도 운동을 시작하고 싶은데 어떻게 시작하면 좋을까요?',side:'a'},
+      {speaker:'B',text:'걷기부터 시작해서 조금씩 늘려가면 좋아요.',side:'b'},
+    ]},
+    {title:'대화 3: 한국 야구 관람',lines:[
+      {speaker:'A',text:'처음으로 한국 프로야구 경기를 봤어요.',side:'a'},
+      {speaker:'B',text:'어떠셨어요?',side:'b'},
+      {speaker:'A',text:'응원 문화가 정말 독특해요. 노래하고 춤출 정도로 열정적이에요.',side:'a'},
+      {speaker:'B',text:'맞아요! 야구장에서 치킨을 먹으며 응원하는 것도 한국 문화예요.',side:'b'},
+      {speaker:'A',text:'직접 보고서야 TV에서 보는 것과 얼마나 다른지 알았어요.',side:'a'},
+      {speaker:'B',text:'다음에 또 같이 가요!',side:'b'},
+    ]},
+  ];
+  const topics=[
+    '좋아하는 스포츠와 그 이유를 이야기해 보세요.',
+    '한국 스포츠 문화와 여러분 나라의 스포츠 문화를 비교해 보세요.',
+    '건강을 위해 일상에서 어떤 노력을 하는지 말해보세요.',
+  ];
+  return `<h2>💬 말하기</h2>
+    ${dialogues.map(d=>`<div class="card"><div class="card-title">${d.title}</div><div class="dialogue">
+      ${d.lines.map(l=>`<div class="dialogue-line${l.side==='b'?' b':''}"><span class="speaker">${l.speaker}</span><div class="bubble">${l.text} ${ttsBtn(l.text)}</div></div>`).join('')}
+    </div></div>`).join('')}
+    <div class="card"><div class="card-title">🗣️ 자유 말하기 주제</div><div class="speaking-topics">
+      ${topics.map((t,i)=>`<div class="speaking-topic"><strong>${i+1}.</strong> ${t}</div>`).join('')}
+    </div></div>`;
+}
+
+function renderListening(){
+  const script='[스포츠 건강 프로그램]\n\n안녕하세요. 오늘은 스포츠와 건강에 대해 이야기하겠습니다.\n\n규칙적인 운동은 건강의 기본입니다. 하지만 많은 사람들이 아프고서야 운동의 중요성을 깨닫습니다. 미리 꾸준히 운동하는 것이 중요합니다.\n\n한국의 스포츠 문화는 매우 열정적입니다. 프로야구와 K-리그 축구 경기장에서는 관중이 소리를 지를 정도로 응원이 뜨겁습니다. 씨름과 태권도는 한국의 전통 스포츠로 세계에 알려져 있습니다.\n\n건강 관리를 위해서는 규칙적인 운동과 함께 충분한 수면과 균형 잡힌 식단이 필요합니다. 스트레스 관리도 중요합니다. 운동을 시작하고서야 스트레스가 줄어드는 것을 느끼는 분들이 많습니다.';
+  const questions=[
+    {q:'1. 이 프로그램의 주제는?',opts:['프로스포츠 소개','스포츠와 건강','한국 전통 문화','식단 관리'],answer:1},
+    {q:'2. 한국의 전통 스포츠가 아닌 것은?',opts:['씨름','태권도','야구','한궁'],answer:2},
+    {q:'3. 건강 관리에 필요한 것으로 언급되지 않은 것은?',opts:['규칙적인 운동','충분한 수면','균형 잡힌 식단','비싼 헬스장 등록'],answer:3},
+  ];
+  return `<h2>👂 듣기</h2>
+    <div class="card">
+      <div class="card-title">🎬 스포츠 건강 프로그램</div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:!STATE.listenRevealed})">${STATE.listenRevealed?'📄 스크립트 숨기기':'📄 스크립트 보기'}</button>
+      ${STATE.listenRevealed?`<div class="listen-script-box">${script.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}</div>`:''}
+      <div style="text-align:center;margin-bottom:12px">
+        <button class="reveal-btn" onclick="TTS.speak(${JSON.stringify(script)})">🔊 전체 듣기</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 듣기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.listenAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.listenAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderPronunciation(){
+  const words=[
+    {word:'태권도',pron:'태권도'},
+    {word:'축구를',pron:'축꾸를'},
+    {word:'건강하다',pron:'건강하다'},
+    {word:'훈련',pron:'훌련'},
+  ];
+  const sents=[
+    {text:'태권도는 한국의 전통 스포츠로 올림픽 정식 종목입니다.',note:'태권도[태권도]'},
+    {text:'건강을 위해 규칙적인 운동과 충분한 수면이 필요합니다.',note:'규칙적인[규칙쩌긴]'},
+  ];
+  return `<h2>🔊 발음</h2>
+    <div class="card">
+      <div class="card-title">📏 발음 규칙: 격음화 - ㅎ + ㄱ, ㄷ, ㅂ, ㅈ → 격음</div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">자음 'ㅎ'이 'ㄱ, ㄷ, ㅂ, ㅈ' 앞이나 뒤에 오면 격음(거센소리)으로 바뀝니다. 또한 받침 'ㄹ' 뒤에서 'ㄴ'이 'ㄹ'로 바뀌는 유음화도 일어납니다. 예: 훈련 → [훌련]</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:8px">예: 축구를 → [축꾸를], 훈련 → [훌련]</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">${words.map(w=>`<div class="pron-word"><span style="font-weight:700;color:var(--navy)">${w.word}</span><span class="pron-arrow">→</span><span style="color:var(--blue)">[${w.pron}]</span>${ttsBtn(w.word)}</div>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗣️ 문장 발음 연습</div>
+      ${sents.map(s=>`<div style="background:#eff6ff;border-radius:10px;padding:12px 14px;margin-bottom:10px"><div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">${s.text} ${ttsBtn(s.text)}</div><div style="font-size:12px;color:var(--blue)">${s.note}</div></div>`).join('')}
+    </div>`;
+}
+
+function renderReading(){
+  const rawText='한국은 스포츠 강국입니다. 올림픽에서 태권도, 양궁, 쇼트트랙 등에서 많은 메달을 획득했습니다. 국가대표 선수들이 세계 대회에서 우승하고서야 그 스포츠의 인기가 더 높아지는 경우가 많습니다.\n\n일상에서도 한국인들은 건강에 관심이 많습니다. 공원, 한강 등에서 달리거나 자전거를 타는 사람들을 쉽게 볼 수 있습니다. 걷기 힘들 정도로 먼 거리도 대중교통 대신 걸어서 다니는 사람들도 있습니다.\n\n스포츠는 건강뿐만 아니라 사회적 연결에도 도움이 됩니다. 팀 스포츠를 통해 협동심을 배우고, 경기 응원을 통해 공동체 의식을 느낄 수 있습니다. 운동을 꾸준히 하고서야 이 모든 혜택을 느낄 수 있습니다.';
+  const questions=[
+    {q:'1. 한국이 올림픽에서 강한 종목이 아닌 것은?',opts:['태권도','양궁','쇼트트랙','수영'],answer:3},
+    {q:'2. "우승하고서야 인기가 높아진다"에서 "-고서야"의 의미는?',opts:['우승하는 동안','우승한 후에야 비로소','우승하기 위해서','우승해도'],answer:1},
+    {q:'3. 스포츠의 사회적 혜택으로 언급된 것은?',opts:['체중 감량','협동심과 공동체 의식','수면 개선','식단 관리'],answer:1},
+  ];
+  const highlighted=rawText
+    .replace(/고서야/g,'<span class="highlight">고서야</span>')
+    .replace(/정도로/g,'<span class="highlight">정도로</span>')
+    .replace(/\n\n/g,'<br><br>');
+  return `<h2>📖 읽기</h2>
+    <div class="card"><div class="card-title">📰 한국의 스포츠 문화 ${ttsBtn(rawText)}</div><div class="reading-text">${highlighted}</div></div>
+    <div class="card"><div class="card-title">❓ 읽기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.readAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.readAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderWriting(){
+  const sample='저는 한국에 와서 처음으로 한강에서 자전거를 탔습니다. 자전거를 타고서야 한강 공원이 얼마나 아름다운지 알게 되었습니다. 다리가 아플 정도로 오래 달렸지만 기분이 정말 상쾌했습니다.\n\n요즘은 매일 30분씩 걷기 운동을 하고 있습니다. 걷기를 시작하고서야 스트레스가 줄고 수면도 좋아졌습니다. 또한 식단도 관리해서 채소와 과일을 더 많이 먹으려고 노력합니다.\n\n앞으로는 태권도를 배워보고 싶습니다. 한국의 전통 스포츠를 경험할 정도로 한국 문화에 더 가까워지고 싶습니다.';
+  return `<h2>✏️ 쓰기</h2>
+    <div class="card">
+      <div class="card-title">📌 쓰기 주제</div>
+      <div style="background:var(--indigo);color:#fff;border-radius:10px;padding:14px;font-size:16px;font-weight:700;text-align:center;margin-bottom:12px">스포츠와 나의 건강 관리</div>
+      <div class="writing-guide"><h3>작성 가이드</h3><ul>
+        <li>좋아하거나 해본 스포츠를 소개하세요.</li>
+        <li>-고서야를 한 번 이상 사용하세요.</li>
+        <li>-(으)ㄹ 정도로를 한 번 이상 사용하세요.</li>
+        <li>건강 관리를 위해 노력하는 점을 쓰세요.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 내 글쓰기</div>
+      <textarea placeholder="여기에 글을 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <span style="font-size:12px;color:#94a3b8">${STATE.writingText.length}자</span>
+        <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'샘플 숨기기':'샘플 답안 보기'}</button>
+      </div>
+      ${STATE.sampleShown?`<div class="sample-box">${sample.replace(/\n\n/g,'<br><br>')}</div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  const sections=[
+    {title:'⚾ 한국 프로야구(KBO)',text:'한국 프로야구는 1982년에 시작하여 현재 10개 구단이 있습니다. 봄부터 가을까지 시즌이 열리며, 연간 600만 명 이상이 관람합니다. 야구장에서 치킨을 먹으며 응원하는 것이 한국만의 독특한 문화입니다.'},
+    {title:'🥋 태권도의 세계화',text:'태권도는 한국이 발상지인 무술로, 2000년 시드니 올림픽부터 정식 종목이 되었습니다. 현재 전 세계 200여 개국에서 수천만 명이 수련하고 있습니다.'},
+    {title:'🏋️ 헬스 문화',text:'한국에서는 헬스장(헬스클럽) 문화가 발달해 있습니다. 24시간 운영하는 헬스장도 많으며, PT(퍼스널 트레이닝)도 인기입니다. 건강에 대한 관심이 높아지면서 필라테스, 요가 등도 많이 이용합니다.'},
+    {title:'🏅 한국의 올림픽 성과',text:'한국은 1948년 런던 올림픽부터 참가하여 많은 메달을 획득해 왔습니다. 1988년 서울 올림픽을 개최했으며, 2002년 한일 월드컵에서 4강 진출이라는 역사적 성과를 이루었습니다.'},
+  ];
+  return `<h2>🎎 문화</h2>
+    <div class="card"><div class="card-title">🇰🇷 한국의 스포츠 문화</div>
+      ${sections.map(s=>`<div class="culture-section"><h4>${s.title}</h4><p>${s.text}</p></div>`).join('')}
+    </div>`;
+}
+
+function renderQuiz(){
+  const total=QUIZ.length;
+  const answered=Object.keys(STATE.quizAnswers).length;
+  const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+  return `<h2>✅ 퀴즈</h2>
+    <div class="card" style="background:var(--navy);color:#fff;text-align:center;padding:14px">
+      <div style="font-size:14px;opacity:0.8">진행: ${answered}/${total}</div>
+      ${STATE.quizDone?`<div style="font-size:28px;font-weight:900;color:#60a5fa;margin-top:4px">${correct}/${total}</div>`:''}
+    </div>
+    ${QUIZ.map((q,i)=>{
+      const chosen=STATE.quizAnswers[i];
+      const isCorrect=chosen===q.answer;
+      let cardCls='quiz-card';
+      if(chosen!==undefined)cardCls+=isCorrect?' answered-correct':' answered-wrong';
+      return `<div class="${cardCls}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>{
+            let cls='quiz-opt';
+            if(chosen!==undefined){if(j===q.answer)cls+=' selected-correct';else if(j===chosen)cls+=' selected-wrong';}
+            return `<button class="${cls}" onclick="if(STATE.quizAnswers[${i}]===undefined){STATE.quizAnswers[${i}]=${j};render();}" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>
+        ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${isCorrect?'#166534':'#991b1b'}">${isCorrect?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}
+      </div>`;
+    }).join('')}
+    ${answered===total&&!STATE.quizDone?`<div style="text-align:center;margin:12px 0"><button class="reveal-btn" onclick="setState({quizDone:true})">결과 보기</button></div>`:''}
+    ${STATE.quizDone?`<div class="quiz-score"><div>최종 점수</div><div class="score-num">${correct}/${total}</div><div style="margin-top:8px">${correct>=9?'🎉 우수!':correct>=7?'👍 잘 했어요!':correct>=5?'📚 복습해 보세요.':'💪 더 열심히!'}</div><button class="check-btn" style="margin-top:12px;background:rgba(255,255,255,0.2)" onclick="setState({quizAnswers:{},quizDone:false})">다시 풀기</button></div>`:''}`;
+}
+
+const RECORDER={
+  stream:null,mediaRecorder:null,chunks:[],isRecording:false,
+  recognition:null,sttActive:false,currentIdx:-1,scores:{},
+  autoDetect(){
+    if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+      navigator.mediaDevices.getUserMedia({audio:true})
+        .then(s=>{s.getTracks().forEach(t=>t.stop());this.showUI('ready');})
+        .catch(()=>this.showUI('denied'));
+    }else{this.showUI('denied');}
+  },
+  showUI(state){
+    const el=document.getElementById('rec-status');if(!el)return;
+    if(state==='ready')el.innerHTML='<p style="color:#059669;font-weight:700">✅ 마이크 준비 완료!</p>';
+    else el.innerHTML='<p style="color:#ef4444;font-weight:700">❌ 마이크를 사용할 수 없습니다.</p>';
+  },
+  toggle(idx,sents){
+    if(this.sttActive&&this.currentIdx===idx)this.stopSTT(idx);
+    else{if(this.sttActive)this.stopSTT(this.currentIdx);this.startSTT(idx,sents);}
+  },
+  startSTT(idx,sents){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){const el=document.getElementById('stt-result');if(el)el.innerHTML='<span style="color:#ef4444">음성 인식 미지원 브라우저입니다.</span>';return;}
+    this.recognition=new SR();
+    this.recognition.lang='ko-KR';this.recognition.interimResults=false;
+    this.sttActive=true;this.currentIdx=idx;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='⏹ 중지';btn.classList.add('recording');}
+    const rEl=document.getElementById('stt-result');
+    if(rEl)rEl.innerHTML='<span style="color:var(--blue)">🎤 듣는 중...</span>';
+    this.recognition.onresult=(e)=>{
+      const tr=e.results[0][0].transcript;
+      const score=this.calcScore(tr,sents[idx]);
+      this.scores[idx]=score;
+      const badge=document.getElementById('score-badge-'+idx);
+      if(badge){badge.className='score-badge '+(score>=80?'good':score>=50?'ok':'bad');badge.textContent=score+'%';}
+      if(rEl)rEl.innerHTML=`<span style="color:var(--navy)">인식: "${tr}"</span> <span style="font-weight:700;color:${score>=80?'#166534':score>=50?'#854d0e':'#991b1b'}">(${score}점)</span>`;
+      this.sttActive=false;
+      if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+    };
+    this.recognition.onerror=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.onend=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.start();
+  },
+  stopSTT(idx){
+    if(this.recognition){try{this.recognition.stop();}catch(e){}}
+    this.sttActive=false;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+  },
+  calcScore(transcript,target){
+    if(!transcript||!target)return 0;
+    const t=transcript.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    const g=target.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    if(t===g)return 100;
+    const tw=t.split(/\s+/),gw=g.split(/\s+/);
+    let m=0;gw.forEach(w=>{if(tw.includes(w))m++;});
+    return Math.round((m/Math.max(gw.length,1))*100);
+  }
+};
+
+render();
+</script>
+</body>
+</html>

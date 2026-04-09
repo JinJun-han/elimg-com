@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 4급 13과 · 여행과 세계</title>
+<meta name="theme-color" content="#1d4ed8"/>
+<meta property="og:title" content="KIIP 4급 13과 · 여행과 세계"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level4_Lesson13.html"/>
+<meta property="og:description" content="KIIP 4급 13과 여행과 세계 - 어휘, 문법, 말하기, 듣기, 읽기, 쓰기, 문화, 퀴즈"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1d4ed8;--navy:#1e3a5f;--indigo:#1e40af;--green:#22c55e;--red:#ef4444;--gray:#f0f4ff;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(30,58,95,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #dbeafe;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:700}
+.tab-btn:hover{background:#eff6ff}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #dbeafe;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(30,58,95,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--blue)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(30,58,95,0.08);border:1px solid #dbeafe}
+.card-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--blue)}
+h3{font-size:16px;font-weight:700;color:var(--indigo);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 12px rgba(29,78,216,0.15)}
+.vocab-card.flipped{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--navy)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--blue);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue);margin:14px 0 8px;padding:4px 10px;background:#eff6ff;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.grammar-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.grammar-tab{padding:8px 18px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.grammar-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rule-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:6px}
+.example-list{list-style:none}
+.example-list li{padding:8px 12px;border-radius:8px;margin-bottom:6px;background:#f8faff;border:1px solid #dbeafe;font-size:14px;line-height:1.6}
+.example-list li .ko{color:var(--navy);font-weight:600}
+.example-list li .en{color:#475569;font-size:12px}
+.practice-item{background:#fff;border:2px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.practice-item input{border:1px solid #bfdbfe;border-radius:6px;padding:6px 10px;font-size:14px;width:140px;margin:0 4px}
+.practice-item input:focus{outline:none;border-color:var(--blue)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.check-btn:hover{background:var(--indigo)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.topik-card{background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #bfdbfe;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--blue);background:#eff6ff}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f8faff;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--blue);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--indigo)}
+.bubble{background:#eff6ff;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#dbeafe}
+.listen-script-box{background:#f0f4ff;border:2px dashed #bfdbfe;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--navy)}
+.listen-q{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.reveal-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--indigo)}
+.pron-rule{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #bfdbfe}
+.pron-word{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:6px 12px;margin:4px;font-size:14px}
+.pron-arrow{color:var(--blue);font-weight:700}
+.reading-text{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--blue);font-weight:700}
+.writing-guide{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--navy)}
+textarea{width:100%;border:2px solid #bfdbfe;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--blue)}
+.sample-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--navy);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--navy);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #dbeafe;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #dbeafe;background:#f8faff;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--blue);background:#eff6ff}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--navy);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#60a5fa}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #dbeafe}
+.pron-sent{background:#f0f4ff;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--navy);flex:1}
+.rec-btn{background:var(--blue);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--indigo)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #dbeafe;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.lang-toggle{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.lang-btn{padding:6px 14px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:12px;font-weight:600;color:#64748b;transition:all 0.2s}
+.lang-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tip-box{background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:#475569;margin-top:8px}
+.tip-box strong{color:var(--blue)}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#eff6ff;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--navy)}
+.intro-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--indigo) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--navy)}
+.objective-list li::before{content:'✓';color:var(--blue);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--navy)}
+.section-nav-btn:hover{border-color:var(--blue);background:#eff6ff;color:var(--blue)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},vocabShowEng:true,
+  listenRevealed:false,listenAnswers:{},
+  gramPracticeShown:{},readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  grammarTab:0,topikAnswers:{},
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'문법',icon:'📐'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'발음',icon:'🔊'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'여권',hanja:'旅券',en:'passport',vi:'hộ chiếu',cat:'여행 준비'},
+  {ko:'비자',hanja:'비자',en:'visa',vi:'visa',cat:'여행 준비'},
+  {ko:'항공권',hanja:'航空券',en:'airplane ticket',vi:'vé máy bay',cat:'여행 준비'},
+  {ko:'숙박',hanja:'宿泊',en:'accommodation/lodging',vi:'chỗ ở',cat:'여행 준비'},
+  {ko:'환전',hanja:'換錢',en:'currency exchange',vi:'đổi tiền',cat:'여행 준비'},
+  {ko:'관광',hanja:'觀光',en:'sightseeing/tourism',vi:'du lịch',cat:'여행 활동'},
+  {ko:'명소',hanja:'名所',en:'famous place/attraction',vi:'địa điểm nổi tiếng',cat:'여행 활동'},
+  {ko:'여행사',hanja:'旅行社',en:'travel agency',vi:'công ty du lịch',cat:'여행 활동'},
+  {ko:'배낭여행',hanja:'背囊旅行',en:'backpacking',vi:'du lịch ba lô',cat:'여행 활동'},
+  {ko:'패키지여행',hanja:'패키지여행',en:'package tour',vi:'du lịch trọn gói',cat:'여행 활동'},
+  {ko:'문화교류',hanja:'文化交流',en:'cultural exchange',vi:'giao lưu văn hóa',cat:'세계 문화'},
+  {ko:'세계유산',hanja:'世界遺産',en:'world heritage',vi:'di sản thế giới',cat:'세계 문화'},
+  {ko:'다양성',hanja:'多樣性',en:'diversity',vi:'đa dạng',cat:'세계 문화'},
+  {ko:'글로벌',hanja:'글로벌',en:'global',vi:'toàn cầu',cat:'세계 문화'},
+  {ko:'교류',hanja:'交流',en:'exchange/interaction',vi:'trao đổi',cat:'세계 문화'},
+  {ko:'일정',hanja:'日程',en:'itinerary/schedule',vi:'lịch trình',cat:'여행 관련'},
+  {ko:'현지',hanja:'現地',en:'local/on-site',vi:'địa phương',cat:'여행 관련'},
+  {ko:'통역',hanja:'通譯',en:'interpretation',vi:'phiên dịch',cat:'여행 관련'},
+  {ko:'시차',hanja:'時差',en:'time difference/jet lag',vi:'chênh lệch múi giờ',cat:'여행 관련'},
+  {ko:'여행지',hanja:'旅行地',en:'travel destination',vi:'điểm đến du lịch',cat:'여행 관련'},
+];
+
+const GRAM1={
+  title:'-(으)ㄹ 뿐만 아니라',
+  meaning:'앞에서 말한 것에 더해 그것 이상의 내용이 있음을 나타냄.',
+  en:'Not only... but also / In addition to',
+  rule:'동사/형용사 어간 + -(으)ㄹ 뿐만 아니라 / 명사 + 뿐만 아니라',
+  examples:[
+    {ko:'한국 여행은 즐거울 뿐만 아니라 한국어도 배울 수 있어요.',en:'Korean travel is not only enjoyable but also lets you learn Korean.'},
+    {ko:'배낭여행은 저렴할 뿐만 아니라 자유롭게 다닐 수 있어요.',en:'Backpacking is not only cheap but also allows you to travel freely.'},
+    {ko:'서울은 관광지가 많을 뿐만 아니라 음식도 다양해요.',en:'Seoul not only has many tourist spots but also has diverse food.'},
+    {ko:'세계유산을 방문하면 역사를 배울 뿐만 아니라 감동도 받아요.',en:'Visiting world heritage sites lets you not only learn history but also be moved.'},
+    {ko:'문화교류는 언어를 배울 뿐만 아니라 친구도 사귈 수 있어요.',en:'Cultural exchange allows you not only to learn a language but also to make friends.'},
+  ],
+  practice:[
+    {q:'한국 여행은 즐거울___ ___ 한국어도 늘어요.',answer:'뿐만 아니라'},
+    {q:'패키지여행은 편리할___ ___ 안전해요.',answer:'뿐만 아니라'},
+    {q:'서울은 볼거리가 많을___ ___ 먹을거리도 다양해요.',answer:'뿐만 아니라'},
+    {q:'배낭여행은 자유로울___ ___ 경험이 쌓여요.',answer:'뿐만 아니라'},
+    {q:'세계유산은 아름다울___ ___ 역사적으로도 중요해요.',answer:'뿐만 아니라'},
+  ],
+  topik:[
+    {q:'빈칸: "여행은 즐거울___ ___ 새로운 것을 배울 수 있어요."',opts:['뿐만 아니라','는 법이다','고서야','정도로'],answer:0},
+    {q:'"-(으)ㄹ 뿐만 아니라"의 의미는?',opts:['앞의 내용에 더하여 추가 내용이 있음','앞의 내용보다 뒤가 더 낫다','앞의 내용의 결과','앞의 조건이 계속됨'],answer:0},
+  ]
+};
+
+const GRAM2={
+  title:'-거니와',
+  meaning:'앞의 사실을 인정하면서 뒤에 더 중요하거나 추가적인 내용을 말할 때 쓰임. "-(으)ㄹ 뿐만 아니라"보다 문어체에서 더 자주 쓰임.',
+  en:'Not only... but also (literary) / And moreover / Besides that',
+  rule:'동사/형용사 어간 + -거니와 (현재형 그대로 사용, 과거: -(으)ㄴ 것이거니와도 가능)',
+  examples:[
+    {ko:'한국은 경제가 발달했거니와 문화도 세계적으로 유명합니다.',en:'Korea\'s economy is developed, and moreover its culture is world-famous.'},
+    {ko:'서울은 관광지도 많거니와 쇼핑도 즐길 수 있습니다.',en:'Seoul has many tourist spots, and moreover you can enjoy shopping.'},
+    {ko:'그 여행지는 경치가 아름답거니와 음식도 맛있습니다.',en:'That destination has beautiful scenery, and moreover the food is delicious.'},
+    {ko:'배낭여행은 비용이 적게 들거니와 자유롭게 이동할 수 있습니다.',en:'Backpacking costs little, and moreover you can move freely.'},
+    {ko:'문화교류는 언어 능력을 키우거니와 시야도 넓혀 줍니다.',en:'Cultural exchange builds language skills, and moreover broadens one\'s perspective.'},
+  ],
+  practice:[
+    {q:'한국은 경제가 발달했___ 문화도 유명합니다.',answer:'거니와'},
+    {q:'그 명소는 아름답___ 역사도 깊습니다.',answer:'거니와'},
+    {q:'여행은 즐겁___ 교육적이기도 합니다.',answer:'거니와'},
+    {q:'서울은 볼거리가 많___ 교통도 편리합니다.',answer:'거니와'},
+    {q:'그 나라는 음식이 맛있___ 물가도 저렴합니다.',answer:'거니와'},
+  ],
+  topik:[
+    {q:'"-거니와"의 의미와 가장 비슷한 표현은?',opts:['-(으)ㄹ 뿐만 아니라','-는 한','-고서야','-(으)ㄹ 정도로'],answer:0},
+    {q:'빈칸: "그 여행지는 경치가 아름답___ 음식도 맛있습니다."',opts:['거니와','는 법이다','뿐만 아니라가 아니라','고서야'],answer:0},
+  ]
+};
+
+const QUIZ=[
+  {q:'"여권"의 영어는?',opts:['visa','passport','ticket','currency exchange'],answer:1},
+  {q:'"한국 여행은 즐거울 뿐만 아니라 배울 것도 많다."에서 "뿐만 아니라"의 의미는?',opts:['즐겁기 때문에','즐거운 것에 더해서','즐거운 것보다','즐거운 조건으로'],answer:1},
+  {q:'"-거니와"와 비슷한 의미의 표현은?',opts:['-(으)ㄹ 뿐만 아니라','-는 한','-고서야','-(으)ㄹ 정도로'],answer:0},
+  {q:'"배낭여행"의 특징은?',opts:['여행사가 모든 것을 준비해 줌','자유롭게 직접 계획함','고급 호텔에 묵음','단체로만 이동함'],answer:1},
+  {q:'"세계유산"이 의미하는 것은?',opts:['세계 경제 규모','유네스코가 지정한 중요 문화·자연 유산','세계 여행 지도','각국 음식 문화'],answer:1},
+  {q:'"시차"의 뜻은?',opts:['여행 일정','나라 간 시간의 차이','현지 날씨','항공 요금 차이'],answer:1},
+  {q:'빈칸: "서울은 관광지가 많을___ ___ 음식도 다양해요."',opts:['뿐만 아니라','거니와','고서야','정도로'],answer:0},
+  {q:'"환전"의 영어는?',opts:['accommodation','passport','currency exchange','visa'],answer:2},
+  {q:'"통역"의 뜻은?',opts:['여행 안내','언어를 다른 언어로 말로 전달하는 것','글로 번역하는 것','지도 안내'],answer:1},
+  {q:'빈칸: "그 여행지는 경치가 아름답___ 음식도 맛있습니다."',opts:['거니와','뿐만 아니라','고서야','는 법이다'],answer:0},
+];
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level4_Lesson12">← 12과</a>
+      <span class="nav-title">4급 13과 · 여행과 세계</span>
+      <a href="/KIIP_Level4_Lesson14">14과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level4_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level4_Lesson14"><span class="icon">➡️</span>14과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let gramHtml;
+      if(STATE.grammarTab===0){gramHtml=renderGramBlock(GRAM1,'gram1');}
+      else{gramHtml=renderGramBlock(GRAM2,'gram2');}
+      return `<h2>📐 문법</h2>
+        <div class="grammar-tabs">
+          <button class="grammar-tab${STATE.grammarTab===0?' active':''}" onclick="setState({grammarTab:0})">1. -(으)ㄹ 뿐만 아니라</button>
+          <button class="grammar-tab${STATE.grammarTab===1?' active':''}" onclick="setState({grammarTab:1})">2. -거니와</button>
+        </div>${gramHtml}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderPronunciation();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10:{
+      setTimeout(()=>RECORDER.autoDetect(),100);
+      const PRON_SENTS=[
+        '한국 여행은 즐거울 뿐만 아니라 한국 문화를 직접 체험할 수 있습니다.',
+        '서울은 관광지가 많거니와 음식도 다양하여 여행하기 좋습니다.',
+        '배낭여행은 자유롭게 이동할 뿐만 아니라 현지 문화를 깊이 경험할 수 있습니다.',
+        '한국의 세계유산은 역사적으로 중요할 뿐만 아니라 경관도 아름답습니다.',
+      ];
+      return `<h2>🤖 AI 발음 실습</h2>
+        <div class="ai-section">
+          <h3>발음 연습</h3>
+          <p style="font-size:13px;color:#64748b;margin-bottom:12px">문장을 따라 말하고 AI가 발음을 분석합니다.</p>
+          <div id="rec-status"><p style="color:#94a3b8;font-size:13px">마이크 상태 확인 중...</p></div>
+          ${PRON_SENTS.map((s,i)=>`
+            <div class="pron-sent" id="pron-sent-${i}">
+              <span class="sent-text">${s} ${ttsBtn(s)}</span>
+              <div id="score-badge-${i}" class="score-badge">-</div>
+              <button class="rec-btn" id="rec-btn-${i}" onclick="RECORDER.toggle(${i},PRON_SENTS_13)">🎤 녹음</button>
+            </div>`).join('')}
+          <div id="stt-result" style="min-height:32px;margin-top:8px;font-size:13px;color:#475569"></div>
+        </div>
+        <script>var PRON_SENTS_13=${JSON.stringify(PRON_SENTS)};<\/script>
+        <div class="card">
+          <div class="card-title">💡 AI 활용 연습 주제</div>
+          <div class="speaking-topics">
+            <div class="speaking-topic">AI에게 "한국의 유명 여행지를 한국어로 소개해 줘"라고 질문해 보세요.</div>
+            <div class="speaking-topic">"-(으)ㄹ 뿐만 아니라"와 "-거니와"를 사용하여 여행에 대한 문장 5개를 만들어 달라고 해 보세요.</div>
+            <div class="speaking-topic">AI와 함께 "내가 가고 싶은 여행지 소개" 주제로 글쓰기 연습을 해 보세요.</div>
+          </div>
+        </div>`;
+    }
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 4급 · 13과</div>
+      <h1 style="margin-top:12px">여행과 세계</h1>
+      <p class="subtitle">Travel &amp; the World · Du lịch và Thế giới</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>여행 준비, 여행 활동, 세계 문화, 여행 관련 어휘 20개를 익힌다.</li>
+        <li>-(으)ㄹ 뿐만 아니라를 사용하여 추가 정보를 덧붙여 표현할 수 있다.</li>
+        <li>-거니와를 사용하여 격식 있는 문어체로 추가 내용을 표현할 수 있다.</li>
+        <li>한국 여행과 세계 문화에 대해 말하고 쓸 수 있다.</li>
+        <li>한국의 유네스코 세계유산, 비자 제도, 제주도, 한류와 관광 등 문화를 이해한다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🔑 핵심 표현</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          한국 여행은 즐거울<strong> 뿐만 아니라</strong> 한국어도 배울 수 있어요. ${ttsBtn('한국 여행은 즐거울 뿐만 아니라 한국어도 배울 수 있어요.')}
+        </div>
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          서울은 관광지도 많<strong>거니와</strong> 쇼핑도 즐길 수 있습니다. ${ttsBtn('서울은 관광지도 많거니와 쇼핑도 즐길 수 있습니다.')}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 학습 섹션</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.filter(s=>s.id>0).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `
+    <h2>📝 어휘</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div class="lang-toggle">
+        <button class="lang-btn${STATE.lang==='ko'?' active':''}" onclick="setState({lang:'ko',vocabFlipped:{}})">한국어</button>
+        <button class="lang-btn${STATE.lang==='en'?' active':''}" onclick="setState({lang:'en',vocabFlipped:{}})">English</button>
+        <button class="lang-btn${STATE.lang==='vi'?' active':''}" onclick="setState({lang:'vi',vocabFlipped:{}})">Tiếng Việt</button>
+      </div>
+      <button class="check-btn" onclick="setState({vocabFlipped:{}})">초기화</button>
+    </div>
+    <div class="tip-box" style="margin-bottom:14px"><strong>💡 Tip:</strong> 카드를 클릭하면 뒤집어집니다!</div>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map(v=>{
+          const idx=VOCAB.indexOf(v);
+          const flipped=STATE.vocabFlipped[idx];
+          const meaning=STATE.lang==='vi'?v.vi:v.en;
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="STATE.vocabFlipped[${idx}]=!STATE.vocabFlipped[${idx}];render()">
+            ${!flipped
+              ?`<span class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</span><span class="vocab-hanja">${v.hanja}</span>`
+              :`<span class="vocab-ko">${meaning}</span><span class="vocab-eng">${v.ko}</span>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderGramBlock(gram,prefix){
+  const practiceHtml=gram.practice.map((p,i)=>{
+    const shown=STATE.gramPracticeShown[prefix+'_'+i];
+    const q=p.q.replace('___',`<input id="${prefix}-inp-${i}" placeholder="___" style="width:110px"/>`);
+    return `<div class="practice-item">
+      <div style="font-size:14px;color:var(--navy);margin-bottom:8px;line-height:1.6">${q}</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" onclick="
+          var v=document.getElementById('${prefix}-inp-${i}').value.trim();
+          if(v==='${p.answer}'){document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=answer-reveal>✅ 정답!</span>';}
+          else{document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=wrong-reveal>❌ 다시 해보세요</span>';}
+        ">확인</button>
+        <button class="check-btn" style="background:#64748b" onclick="STATE.gramPracticeShown['${prefix}_${i}']=true;render()">정답 보기</button>
+      </div>
+      <div id="${prefix}-fb-${i}">${shown?`<span class="answer-reveal">정답: ${p.answer}</span>`:''}</div>
+    </div>`;
+  }).join('');
+  const topikHtml=gram.topik.map((t,i)=>{
+    const key=prefix+'_topik_'+i;
+    const chosen=STATE.topikAnswers[key];
+    return `<div class="topik-card">
+      <div class="q-text">${t.q}</div>
+      <div class="topik-options">
+        ${t.opts.map((opt,j)=>{
+          let cls='topik-opt';
+          if(chosen!==undefined){if(j===t.answer)cls+=' correct';else if(j===chosen)cls+=' wrong';}
+          return `<button class="${cls}" onclick="STATE.topikAnswers['${key}']=${j};render()" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+        }).join('')}
+      </div>
+      ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;color:${chosen===t.answer?'#166534':'#991b1b'};font-weight:700">${chosen===t.answer?'✅ 정답!':'❌ 오답 - 정답: '+(t.answer+1)+'번'}</div>`:''}
+    </div>`;
+  }).join('');
+  return `
+    <div class="card">
+      <div class="card-title">📌 ${gram.title}</div>
+      <div class="rule-box"><div class="rule-title">의미</div><div style="font-size:14px;color:var(--navy);margin-bottom:4px">${gram.meaning}</div><div style="font-size:13px;color:#475569">🇺🇸 ${gram.en}</div></div>
+      <div class="rule-box"><div class="rule-title">형태 규칙</div><div style="font-size:14px;color:var(--navy)">${gram.rule}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 예문</div>
+      <ul class="example-list">${gram.examples.map(e=>`<li><span class="ko">${e.ko} ${ttsBtn(e.ko)}</span><br><span class="en">${e.en}</span></li>`).join('')}</ul>
+    </div>
+    <div class="card"><div class="card-title">✏️ 빈칸 채우기 연습</div>${practiceHtml}</div>
+    <div class="card"><div class="card-title">📋 TOPIK 유형</div>${topikHtml}</div>`;
+}
+
+function renderSpeaking(){
+  const dialogues=[
+    {title:'대화 1: 한국 여행 추천',lines:[
+      {speaker:'A',text:'한국에서 꼭 가봐야 할 곳이 어디예요?',side:'a'},
+      {speaker:'B',text:'경복궁은 역사적일 뿐만 아니라 사진 찍기도 정말 좋아요.',side:'b'},
+      {speaker:'A',text:'다른 곳도 추천해 주세요.',side:'a'},
+      {speaker:'B',text:'제주도는 경치가 아름답거니와 음식도 맛있어서 꼭 추천해요.',side:'b'},
+      {speaker:'A',text:'여행 준비는 어떻게 해야 하나요?',side:'a'},
+      {speaker:'B',text:'인터넷으로 항공권과 숙박을 미리 예약하는 것이 좋아요.',side:'b'},
+    ]},
+    {title:'대화 2: 배낭여행 vs 패키지여행',lines:[
+      {speaker:'A',text:'해외여행을 할 때 배낭여행이 좋아요, 패키지여행이 좋아요?',side:'a'},
+      {speaker:'B',text:'배낭여행은 자유로울 뿐만 아니라 현지 문화를 더 깊이 체험할 수 있어요.',side:'b'},
+      {speaker:'A',text:'하지만 준비가 복잡하지 않나요?',side:'a'},
+      {speaker:'B',text:'처음이라면 패키지여행이 편리하거니와 안전하기도 해요.',side:'b'},
+      {speaker:'A',text:'그렇군요. 저는 처음이라 패키지로 시작할게요.',side:'a'},
+      {speaker:'B',text:'좋은 선택이에요! 익숙해지면 배낭여행도 도전해 보세요.',side:'b'},
+    ]},
+    {title:'대화 3: 세계 문화 이야기',lines:[
+      {speaker:'A',text:'외국 여행에서 문화 차이를 경험한 적 있어요?',side:'a'},
+      {speaker:'B',text:'네, 처음에는 놀랐지만 그게 오히려 재미있었어요.',side:'b'},
+      {speaker:'A',text:'문화교류가 왜 중요할까요?',side:'a'},
+      {speaker:'B',text:'다른 문화를 이해할 뿐만 아니라 자신의 문화도 더 잘 알게 되거든요.',side:'b'},
+      {speaker:'A',text:'글로벌 시대에 다양성을 존중하는 게 중요하겠네요.',side:'a'},
+      {speaker:'B',text:'맞아요. 여행이 그런 기회를 주는 것 같아요.',side:'b'},
+    ]},
+  ];
+  const topics=[
+    '가장 기억에 남는 여행 경험을 이야기해 보세요.',
+    '한국에서 꼭 방문하고 싶은 여행지와 이유를 말해보세요.',
+    '배낭여행과 패키지여행의 장단점을 비교해 보세요.',
+  ];
+  return `<h2>💬 말하기</h2>
+    ${dialogues.map(d=>`<div class="card"><div class="card-title">${d.title}</div><div class="dialogue">
+      ${d.lines.map(l=>`<div class="dialogue-line${l.side==='b'?' b':''}"><span class="speaker">${l.speaker}</span><div class="bubble">${l.text} ${ttsBtn(l.text)}</div></div>`).join('')}
+    </div></div>`).join('')}
+    <div class="card"><div class="card-title">🗣️ 자유 말하기 주제</div><div class="speaking-topics">
+      ${topics.map((t,i)=>`<div class="speaking-topic"><strong>${i+1}.</strong> ${t}</div>`).join('')}
+    </div></div>`;
+}
+
+function renderListening(){
+  const script='[여행 정보 프로그램]\n\n안녕하세요. 오늘은 한국 여행 정보를 알려드리겠습니다.\n\n한국에는 유네스코 세계유산이 여러 곳 있습니다. 경주의 역사 유적지구, 제주 화산섬과 용암동굴, 조선왕릉 등이 지정되어 있습니다. 이곳들은 역사적 가치가 높을 뿐만 아니라 자연경관도 아름답습니다.\n\n한국 여행의 장점은 교통이 편리하거니와 숙박 시설도 다양하다는 점입니다. 지하철, KTX 등을 이용하면 전국 어디든 쉽게 이동할 수 있습니다.\n\n외국인 여행자를 위한 다양한 서비스도 있습니다. 공항에서 교통카드와 유심 카드를 구입할 수 있고, 많은 관광지에서 다국어 안내 서비스를 제공합니다.';
+  const questions=[
+    {q:'1. 한국의 유네스코 세계유산이 아닌 것은?',opts:['경주 역사 유적지구','제주 화산섬','조선왕릉','서울 남산타워'],answer:3},
+    {q:'2. 한국 여행의 장점으로 언급된 것은?',opts:['무료 입장','편리한 교통과 다양한 숙박','모든 것이 무료','비자 불필요'],answer:1},
+    {q:'3. 외국인 여행자를 위한 서비스로 언급된 것이 아닌 것은?',opts:['교통카드 구입','유심 카드 구입','다국어 안내','무료 통역 서비스'],answer:3},
+  ];
+  return `<h2>👂 듣기</h2>
+    <div class="card">
+      <div class="card-title">🎬 여행 정보 프로그램</div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:!STATE.listenRevealed})">${STATE.listenRevealed?'📄 스크립트 숨기기':'📄 스크립트 보기'}</button>
+      ${STATE.listenRevealed?`<div class="listen-script-box">${script.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}</div>`:''}
+      <div style="text-align:center;margin-bottom:12px">
+        <button class="reveal-btn" onclick="TTS.speak(${JSON.stringify(script)})">🔊 전체 듣기</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 듣기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.listenAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.listenAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderPronunciation(){
+  const words=[
+    {word:'여행지',pron:'여행지'},
+    {word:'관광객',pron:'관광객'},
+    {word:'항공권',pron:'항공꿘'},
+    {word:'세계유산',pron:'세계유산'},
+  ];
+  const sents=[
+    {text:'한국에는 유네스코 세계유산이 여러 곳 있습니다.',note:'세계유산[세계유산]'},
+    {text:'항공권을 미리 예약하면 더 저렴하게 구입할 수 있습니다.',note:'항공권[항공꿘]'},
+  ];
+  return `<h2>🔊 발음</h2>
+    <div class="card">
+      <div class="card-title">📏 발음 규칙: 사이시옷 현상 - 합성어에서 사이시옷 발음</div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">합성어에서 뒤 단어의 첫소리가 된소리로 발음될 수 있습니다. 예: 항공권 → [항공꿘]. 단어에 따라 된소리되기가 적용되거나 적용되지 않을 수 있으므로 개별 단어를 확인하는 것이 중요합니다.</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:8px">예: 항공권 → [항공꿘]</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">${words.map(w=>`<div class="pron-word"><span style="font-weight:700;color:var(--navy)">${w.word}</span><span class="pron-arrow">→</span><span style="color:var(--blue)">[${w.pron}]</span>${ttsBtn(w.word)}</div>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗣️ 문장 발음 연습</div>
+      ${sents.map(s=>`<div style="background:#eff6ff;border-radius:10px;padding:12px 14px;margin-bottom:10px"><div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">${s.text} ${ttsBtn(s.text)}</div><div style="font-size:12px;color:var(--blue)">${s.note}</div></div>`).join('')}
+    </div>`;
+}
+
+function renderReading(){
+  const rawText='한국은 매력적인 여행지입니다. 서울, 경주, 부산, 제주도 등 다양한 관광지가 있습니다. 한국 여행은 즐거울 뿐만 아니라 한국 역사와 문화를 직접 체험할 수 있는 기회입니다.\n\n특히 K-팝, K-드라마로 한국에 관심을 가진 외국인 관광객이 크게 늘었습니다. 한류의 영향으로 한국 여행이 인기를 끌거니와 한국어를 배우는 사람도 많아졌습니다.\n\n여행을 통한 문화교류는 매우 중요합니다. 다른 나라의 문화를 배울 뿐만 아니라 자신의 문화를 되돌아볼 수 있는 기회가 됩니다. 글로벌 시대에 여행은 세계 시민으로서의 시야를 넓혀 줍니다.';
+  const questions=[
+    {q:'1. 한국 여행에 외국인이 늘어난 이유는?',opts:['저렴한 항공료','한류의 영향','비자 면제','무료 숙박'],answer:1},
+    {q:'2. "즐거울 뿐만 아니라"에서 "뿐만 아니라"의 의미는?',opts:['즐거운 대신에','즐거운 것에 더하여','즐겁기 때문에','즐거울 때'],answer:1},
+    {q:'3. 여행을 통한 문화교류의 효과로 언급된 것이 아닌 것은?',opts:['다른 나라 문화 배우기','자신의 문화 돌아보기','세계 시민 시야 넓히기','언어 능력 시험 합격'],answer:3},
+  ];
+  const highlighted=rawText
+    .replace(/뿐만 아니라/g,'<span class="highlight">뿐만 아니라</span>')
+    .replace(/거니와/g,'<span class="highlight">거니와</span>')
+    .replace(/\n\n/g,'<br><br>');
+  return `<h2>📖 읽기</h2>
+    <div class="card"><div class="card-title">📰 한국 여행과 세계 문화 ${ttsBtn(rawText)}</div><div class="reading-text">${highlighted}</div></div>
+    <div class="card"><div class="card-title">❓ 읽기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.readAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.readAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderWriting(){
+  const sample='저는 한국에 오기 전에 여러 나라를 여행했습니다. 여행은 새로운 음식을 맛볼 뿐만 아니라 다양한 사람을 만날 수 있어서 좋습니다.\n\n한국에 와서 처음으로 경복궁을 방문했습니다. 경복궁은 역사적으로 중요하거니와 아름다운 한복을 입고 사진을 찍을 수 있어서 매우 좋았습니다. 한국의 역사를 직접 느낄 수 있는 경험이었습니다.\n\n앞으로 제주도도 꼭 가보고 싶습니다. 제주도는 자연경관이 아름다울 뿐만 아니라 독특한 문화도 있다고 들었습니다. 여행을 통해 더 넓은 세계를 경험하고 싶습니다.';
+  return `<h2>✏️ 쓰기</h2>
+    <div class="card">
+      <div class="card-title">📌 쓰기 주제</div>
+      <div style="background:var(--indigo);color:#fff;border-radius:10px;padding:14px;font-size:16px;font-weight:700;text-align:center;margin-bottom:12px">여행과 문화 경험</div>
+      <div class="writing-guide"><h3>작성 가이드</h3><ul>
+        <li>경험한 여행이나 가고 싶은 여행지를 소개하세요.</li>
+        <li>-(으)ㄹ 뿐만 아니라를 한 번 이상 사용하세요.</li>
+        <li>-거니와를 한 번 이상 사용하세요.</li>
+        <li>여행을 통해 배운 점이나 느낀 점을 쓰세요.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 내 글쓰기</div>
+      <textarea placeholder="여기에 글을 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <span style="font-size:12px;color:#94a3b8">${STATE.writingText.length}자</span>
+        <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'샘플 숨기기':'샘플 답안 보기'}</button>
+      </div>
+      ${STATE.sampleShown?`<div class="sample-box">${sample.replace(/\n\n/g,'<br><br>')}</div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  const sections=[
+    {title:'🏯 한국의 유네스코 세계유산',text:'한국에는 석굴암과 불국사, 해인사 장경판전, 종묘, 창덕궁, 수원화성, 경주역사유적지구, 고창·화순·강화 고인돌 유적, 제주 화산섬과 용암동굴, 조선왕릉, 한국의 역사마을 등 15개 이상의 유네스코 세계유산이 있습니다.'},
+    {title:'✈️ 한국 입국과 비자',text:'한국은 약 100개국 이상과 무비자 협정을 맺고 있습니다. 관광 목적으로는 대부분의 국가에서 무비자로 90일까지 체류할 수 있습니다. 취업이나 장기 체류는 별도 비자가 필요합니다.'},
+    {title:'🏝️ 제주도',text:'제주도는 한국 최남단의 섬으로, 아름다운 자연경관으로 유명합니다. 한라산, 성산일출봉, 만장굴 등이 세계자연유산으로 등재되어 있습니다. 제주 고유의 언어, 음식, 문화가 있습니다.'},
+    {title:'🌏 한류와 관광',text:'K-팝, K-드라마, K-푸드의 인기로 한국을 방문하는 외국인 관광객이 크게 늘었습니다. BTS 멤버들의 고향, 드라마 촬영지 등을 찾는 팬들의 성지순례 여행도 활발합니다.'},
+  ];
+  return `<h2>🎎 문화</h2>
+    <div class="card"><div class="card-title">🇰🇷 한국의 여행과 세계 문화</div>
+      ${sections.map(s=>`<div class="culture-section"><h4>${s.title}</h4><p>${s.text}</p></div>`).join('')}
+    </div>`;
+}
+
+function renderQuiz(){
+  const total=QUIZ.length;
+  const answered=Object.keys(STATE.quizAnswers).length;
+  const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+  return `<h2>✅ 퀴즈</h2>
+    <div class="card" style="background:var(--navy);color:#fff;text-align:center;padding:14px">
+      <div style="font-size:14px;opacity:0.8">진행: ${answered}/${total}</div>
+      ${STATE.quizDone?`<div style="font-size:28px;font-weight:900;color:#60a5fa;margin-top:4px">${correct}/${total}</div>`:''}
+    </div>
+    ${QUIZ.map((q,i)=>{
+      const chosen=STATE.quizAnswers[i];
+      const isCorrect=chosen===q.answer;
+      let cardCls='quiz-card';
+      if(chosen!==undefined)cardCls+=isCorrect?' answered-correct':' answered-wrong';
+      return `<div class="${cardCls}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>{
+            let cls='quiz-opt';
+            if(chosen!==undefined){if(j===q.answer)cls+=' selected-correct';else if(j===chosen)cls+=' selected-wrong';}
+            return `<button class="${cls}" onclick="if(STATE.quizAnswers[${i}]===undefined){STATE.quizAnswers[${i}]=${j};render();}" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>
+        ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${isCorrect?'#166534':'#991b1b'}">${isCorrect?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}
+      </div>`;
+    }).join('')}
+    ${answered===total&&!STATE.quizDone?`<div style="text-align:center;margin:12px 0"><button class="reveal-btn" onclick="setState({quizDone:true})">결과 보기</button></div>`:''}
+    ${STATE.quizDone?`<div class="quiz-score"><div>최종 점수</div><div class="score-num">${correct}/${total}</div><div style="margin-top:8px">${correct>=9?'🎉 우수!':correct>=7?'👍 잘 했어요!':correct>=5?'📚 복습해 보세요.':'💪 더 열심히!'}</div><button class="check-btn" style="margin-top:12px;background:rgba(255,255,255,0.2)" onclick="setState({quizAnswers:{},quizDone:false})">다시 풀기</button></div>`:''}`;
+}
+
+const RECORDER={
+  stream:null,mediaRecorder:null,chunks:[],isRecording:false,
+  recognition:null,sttActive:false,currentIdx:-1,scores:{},
+  autoDetect(){
+    if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+      navigator.mediaDevices.getUserMedia({audio:true})
+        .then(s=>{s.getTracks().forEach(t=>t.stop());this.showUI('ready');})
+        .catch(()=>this.showUI('denied'));
+    }else{this.showUI('denied');}
+  },
+  showUI(state){
+    const el=document.getElementById('rec-status');if(!el)return;
+    if(state==='ready')el.innerHTML='<p style="color:#059669;font-weight:700">✅ 마이크 준비 완료!</p>';
+    else el.innerHTML='<p style="color:#ef4444;font-weight:700">❌ 마이크를 사용할 수 없습니다.</p>';
+  },
+  toggle(idx,sents){
+    if(this.sttActive&&this.currentIdx===idx)this.stopSTT(idx);
+    else{if(this.sttActive)this.stopSTT(this.currentIdx);this.startSTT(idx,sents);}
+  },
+  startSTT(idx,sents){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){const el=document.getElementById('stt-result');if(el)el.innerHTML='<span style="color:#ef4444">음성 인식 미지원 브라우저입니다.</span>';return;}
+    this.recognition=new SR();
+    this.recognition.lang='ko-KR';this.recognition.interimResults=false;
+    this.sttActive=true;this.currentIdx=idx;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='⏹ 중지';btn.classList.add('recording');}
+    const rEl=document.getElementById('stt-result');
+    if(rEl)rEl.innerHTML='<span style="color:var(--blue)">🎤 듣는 중...</span>';
+    this.recognition.onresult=(e)=>{
+      const tr=e.results[0][0].transcript;
+      const score=this.calcScore(tr,sents[idx]);
+      this.scores[idx]=score;
+      const badge=document.getElementById('score-badge-'+idx);
+      if(badge){badge.className='score-badge '+(score>=80?'good':score>=50?'ok':'bad');badge.textContent=score+'%';}
+      if(rEl)rEl.innerHTML=`<span style="color:var(--navy)">인식: "${tr}"</span> <span style="font-weight:700;color:${score>=80?'#166534':score>=50?'#854d0e':'#991b1b'}">(${score}점)</span>`;
+      this.sttActive=false;
+      if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+    };
+    this.recognition.onerror=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.onend=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.start();
+  },
+  stopSTT(idx){
+    if(this.recognition){try{this.recognition.stop();}catch(e){}}
+    this.sttActive=false;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+  },
+  calcScore(transcript,target){
+    if(!transcript||!target)return 0;
+    const t=transcript.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    const g=target.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    if(t===g)return 100;
+    const tw=t.split(/\s+/),gw=g.split(/\s+/);
+    let m=0;gw.forEach(w=>{if(tw.includes(w))m++;});
+    return Math.round((m/Math.max(gw.length,1))*100);
+  }
+};
+
+render();
+</script>
+</body>
+</html>

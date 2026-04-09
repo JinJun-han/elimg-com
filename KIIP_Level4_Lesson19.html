@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 4급 19과 · 전통과 현대</title>
+<meta name="theme-color" content="#1d4ed8"/>
+<meta property="og:title" content="KIIP 4급 19과 · 전통과 현대"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level4_Lesson19.html"/>
+<meta property="og:description" content="KIIP 4급 19과 전통과 현대 - 어휘, 문법, 말하기, 듣기, 읽기, 쓰기, 문화, 퀴즈"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1d4ed8;--navy:#1e3a5f;--indigo:#1e40af;--green:#22c55e;--red:#ef4444;--gray:#f0f4ff;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--navy);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(30,58,95,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #dbeafe;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:700}
+.tab-btn:hover{background:#eff6ff}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #dbeafe;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(30,58,95,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--blue)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(30,58,95,0.08);border:1px solid #dbeafe}
+.card-title{font-size:16px;font-weight:700;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--navy);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--blue)}
+h3{font-size:16px;font-weight:700;color:var(--indigo);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 4px 12px rgba(29,78,216,0.15)}
+.vocab-card.flipped{background:var(--indigo);color:#fff;border-color:var(--indigo)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--navy)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--blue);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue);margin:14px 0 8px;padding:4px 10px;background:#eff6ff;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.grammar-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.grammar-tab{padding:8px 18px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.grammar-tab.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.rule-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--indigo);margin-bottom:6px}
+.example-list{list-style:none}
+.example-list li{padding:8px 12px;border-radius:8px;margin-bottom:6px;background:#f8faff;border:1px solid #dbeafe;font-size:14px;line-height:1.6}
+.example-list li .ko{color:var(--navy);font-weight:600}
+.example-list li .en{color:#475569;font-size:12px}
+.practice-item{background:#fff;border:2px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.practice-item input{border:1px solid #bfdbfe;border-radius:6px;padding:6px 10px;font-size:14px;width:140px;margin:0 4px}
+.practice-item input:focus{outline:none;border-color:var(--blue)}
+.check-btn{background:var(--blue);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.check-btn:hover{background:var(--indigo)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.topik-card{background:#eff6ff;border:2px solid #bfdbfe;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #bfdbfe;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--blue);background:#eff6ff}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f8faff;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--blue);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--indigo)}
+.bubble{background:#eff6ff;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#dbeafe}
+.listen-script-box{background:#f0f4ff;border:2px dashed #bfdbfe;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--navy)}
+.listen-q{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:10px}
+.reveal-btn{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--indigo)}
+.pron-rule{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px;border:1px solid #bfdbfe}
+.pron-word{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:6px 12px;margin:4px;font-size:14px}
+.pron-arrow{color:var(--blue);font-weight:700}
+.reading-text{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--blue);font-weight:700}
+.writing-guide{background:#eff6ff;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--navy)}
+textarea{width:100%;border:2px solid #bfdbfe;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--blue)}
+.sample-box{background:#eff6ff;border-left:4px solid var(--blue);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--navy);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #dbeafe;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--navy);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #dbeafe;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #dbeafe;background:#f8faff;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--blue);background:#eff6ff}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--navy);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#60a5fa}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #dbeafe}
+.pron-sent{background:#f0f4ff;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--navy);flex:1}
+.rec-btn{background:var(--blue);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--indigo)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #dbeafe;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.lang-toggle{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.lang-btn{padding:6px 14px;border-radius:20px;border:2px solid #dbeafe;background:var(--white);cursor:pointer;font-size:12px;font-weight:600;color:#64748b;transition:all 0.2s}
+.lang-btn.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.tip-box{background:#fff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 14px;font-size:13px;color:#475569;margin-top:8px}
+.tip-box strong{color:var(--blue)}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#eff6ff;border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--navy)}
+.intro-hero{background:linear-gradient(135deg,var(--navy) 0%,var(--indigo) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--navy)}
+.objective-list li::before{content:'✓';color:var(--blue);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #dbeafe;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--navy)}
+.section-nav-btn:hover{border-color:var(--blue);background:#eff6ff;color:var(--blue)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},vocabShowEng:true,
+  listenRevealed:false,listenAnswers:{},
+  gramPracticeShown:{},readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  grammarTab:0,topikAnswers:{},
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'문법',icon:'📐'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'발음',icon:'🔊'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'전통',hanja:'傳統',en:'tradition',vi:'truyền thống',cat:'전통 문화'},
+  {ko:'민속',hanja:'民俗',en:'folk customs',vi:'phong tục dân gian',cat:'전통 문화'},
+  {ko:'풍습',hanja:'風習',en:'customs/practices',vi:'tập tục',cat:'전통 문화'},
+  {ko:'한옥',hanja:'韓屋',en:'traditional Korean house',vi:'nhà truyền thống Hàn Quốc',cat:'전통 문화'},
+  {ko:'명절',hanja:'名節',en:'traditional holiday',vi:'ngày lễ truyền thống',cat:'전통 문화'},
+  {ko:'한복',hanja:'韓服',en:'hanbok',vi:'hanbok',cat:'전통 예술'},
+  {ko:'장구',hanja:'杖鼓',en:'janggu (traditional drum)',vi:'trống janggu',cat:'전통 예술'},
+  {ko:'판소리',hanja:'판소리',en:'pansori',vi:'pansori',cat:'전통 예술'},
+  {ko:'서예',hanja:'書藝',en:'calligraphy',vi:'thư pháp',cat:'전통 예술'},
+  {ko:'도자기',hanja:'陶磁器',en:'ceramics/pottery',vi:'gốm sứ',cat:'전통 예술'},
+  {ko:'현대',hanja:'現代',en:'modern times/contemporary',vi:'hiện đại',cat:'현대 문화'},
+  {ko:'트렌드',hanja:'트렌드',en:'trend',vi:'xu hướng',cat:'현대 문화'},
+  {ko:'팝문화',hanja:'팝문화',en:'pop culture',vi:'văn hóa đại chúng',cat:'현대 문화'},
+  {ko:'세대',hanja:'世代',en:'generation',vi:'thế hệ',cat:'현대 문화'},
+  {ko:'변화',hanja:'變化',en:'change',vi:'thay đổi',cat:'현대 문화'},
+  {ko:'융합',hanja:'融合',en:'fusion/integration',vi:'hòa nhập',cat:'전통과 현대의 만남'},
+  {ko:'현대화',hanja:'現代化',en:'modernization',vi:'hiện đại hóa',cat:'전통과 현대의 만남'},
+  {ko:'계승',hanja:'繼承',en:'inheritance/succession',vi:'kế thừa',cat:'전통과 현대의 만남'},
+  {ko:'보존',hanja:'保存',en:'preservation',vi:'bảo tồn',cat:'전통과 현대의 만남'},
+  {ko:'발전',hanja:'發展',en:'development/progress',vi:'phát triển',cat:'전통과 현대의 만남'},
+];
+
+const GRAM1={
+  title:'-(으)ㄹ 뿐이다',
+  meaning:'오직 그것만이고 그 이상은 아님을 나타냄. "그것뿐, 더 이상은 없다"의 뜻.',
+  en:'Merely / Only / Just / That\'s all / Nothing more than',
+  rule:'동사 어간 + -(으)ㄹ 뿐이다 / 명사 + 뿐이다',
+  examples:[
+    {ko:'전통을 지키고 싶을 뿐이에요.',en:'I merely want to preserve tradition.'},
+    {ko:'한복을 예쁘다고 생각할 뿐입니다.',en:'I simply think hanbok is beautiful.'},
+    {ko:'한국 문화에 관심이 있을 뿐이에요.',en:'I\'m simply interested in Korean culture.'},
+    {ko:'최선을 다할 뿐이에요.',en:'All I can do is give my best.'},
+    {ko:'전통을 배우고 싶을 뿐입니다.',en:'I simply want to learn about tradition.'},
+  ],
+  practice:[
+    {q:'한국 문화에 관심이 있을___ ___.',answer:'뿐이다'},
+    {q:'전통을 지키고 싶을___ ___.',answer:'뿐이다'},
+    {q:'한복이 예쁘다고 생각할___ ___.',answer:'뿐이다'},
+    {q:'최선을 다할___ ___.',answer:'뿐이다'},
+    {q:'배우고 싶을___ ___.',answer:'뿐이다'},
+  ],
+  topik:[
+    {q:'"-(으)ㄹ 뿐이다"의 의미는?',opts:['오직 그것만이고 더 이상은 없음','그렇게 하는 것이 당연함','그 결과로 생긴 것','조건이 이루어지면'],answer:0},
+    {q:'빈칸: "저는 한국 문화를 배우고 싶___ ___."',opts:['을 뿐이다','는 법이다','ㄹ 따름이다','ㄹ 수밖에 없다'],answer:0},
+  ]
+};
+
+const GRAM2={
+  title:'-(으)ㄴ/는 반면',
+  meaning:'두 가지 상황이나 사실을 대조하여 나타냄. "~한 반면에 ~하다"의 뜻.',
+  en:'On the other hand / Whereas / While / In contrast / By contrast',
+  rule:'동사 과거/형용사: -(으)ㄴ 반면 / 동사 현재: -는 반면',
+  examples:[
+    {ko:'전통 한옥은 아름다운 반면 관리가 어렵습니다.',en:'Traditional hanok is beautiful, whereas it\'s difficult to maintain.'},
+    {ko:'현대 아파트는 편리한 반면 전통미가 없습니다.',en:'Modern apartments are convenient, whereas they lack traditional beauty.'},
+    {ko:'판소리는 감동적인 반면 배우기 어렵습니다.',en:'Pansori is moving, whereas it\'s difficult to learn.'},
+    {ko:'한복은 아름다운 반면 일상적으로 입기 불편합니다.',en:'Hanbok is beautiful, whereas it\'s inconvenient to wear daily.'},
+    {ko:'현대 음악은 인기 있는 반면 전통 음악은 소외되고 있습니다.',en:'Modern music is popular, whereas traditional music is being neglected.'},
+  ],
+  practice:[
+    {q:'한옥은 아름다운___ 관리하기 어렵습니다.',answer:'반면'},
+    {q:'현대 아파트는 편리한___ 전통미가 없어요.',answer:'반면'},
+    {q:'한복은 예쁜___ 입기 불편해요.',answer:'반면'},
+    {q:'판소리는 감동적인___ 배우기 힘들어요.',answer:'반면'},
+    {q:'K-팝은 세계적인___ 전통 음악은 알려지지 않았어요.',answer:'반면'},
+  ],
+  topik:[
+    {q:'"-(으)ㄴ/는 반면"의 의미는?',opts:['두 가지를 대조함','두 가지의 원인','두 가지의 결과','두 가지를 더함'],answer:0},
+    {q:'빈칸: "한복은 아름다운___ 일상에서 입기 불편합니다."',opts:['반면','탓에','이래','뿐이다'],answer:0},
+  ]
+};
+
+const QUIZ=[
+  {q:'"융합"의 영어는?',opts:['preservation','modernization','fusion/integration','succession'],answer:2},
+  {q:'"전통을 지키고 싶을 뿐이다."에서 "뿐이다"의 의미는?',opts:['지키는 것이 당연하다','오직 지키고 싶다는 것뿐','지켜야 한다는 조건','지킨 결과이다'],answer:1},
+  {q:'"현대 아파트는 편리한 반면 전통미가 없다."에서 "반면"의 의미는?',opts:['편리하기 때문에','편리함과 대조되는 면','편리한 결과','편리한 조건으로'],answer:1},
+  {q:'"판소리"는 어떤 예술입니까?',opts:['전통 무용','전통 음악 공연','서예','도자기 만들기'],answer:1},
+  {q:'"한옥"의 특징이 아닌 것은?',opts:['기와지붕','나무와 흙 재료','온돌 난방','콘크리트 구조'],answer:3},
+  {q:'"세대 차이"의 의미는?',opts:['나이 차이로 인한 사고방식의 차이','지역 차이','성별 차이','교육 수준 차이'],answer:0},
+  {q:'빈칸: "저는 한국 전통 문화를 배우고 싶___ ___."',opts:['을 뿐이다','는 반면','는 탓에','고서야'],answer:0},
+  {q:'"보존"의 영어는?',opts:['development','fusion','preservation','modernization'],answer:2},
+  {q:'"계승"의 뜻은?',opts:['새로운 것을 만들기','이전 것을 이어받아 발전시키기','전통을 없애기','현대화하기'],answer:1},
+  {q:'빈칸: "K-팝은 세계적인___ 전통 음악은 잘 알려지지 않았습니다."',opts:['반면','뿐이다','이래','고서'],answer:0},
+];
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level4_Lesson18">← 18과</a>
+      <span class="nav-title">4급 19과 · 전통과 현대</span>
+      <a href="/KIIP_Level4_Lesson20">20과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level4_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level4_Lesson20"><span class="icon">➡️</span>20과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let gramHtml;
+      if(STATE.grammarTab===0){gramHtml=renderGramBlock(GRAM1,'gram1');}
+      else{gramHtml=renderGramBlock(GRAM2,'gram2');}
+      return `<h2>📐 문법</h2>
+        <div class="grammar-tabs">
+          <button class="grammar-tab${STATE.grammarTab===0?' active':''}" onclick="setState({grammarTab:0})">1. -(으)ㄹ 뿐이다</button>
+          <button class="grammar-tab${STATE.grammarTab===1?' active':''}" onclick="setState({grammarTab:1})">2. -(으)ㄴ/는 반면</button>
+        </div>${gramHtml}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderPronunciation();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10:{
+      setTimeout(()=>RECORDER.autoDetect(),100);
+      const PRON_SENTS=[
+        '전통을 지키고 싶을 뿐 아니라 현대와 융합하는 노력도 필요합니다.',
+        '한복은 아름다운 반면 일상에서 입기 불편한 점이 있습니다.',
+        '한국의 전통 문화는 현대에도 계속 발전하고 계승되고 있습니다.',
+        '판소리, 탈춤, 도자기 등 한국의 전통 예술은 세계적으로 가치 있습니다.',
+      ];
+      return `<h2>🤖 AI 발음 실습</h2>
+        <div class="ai-section">
+          <h3>발음 연습</h3>
+          <p style="font-size:13px;color:#64748b;margin-bottom:12px">문장을 따라 말하고 AI가 발음을 분석합니다.</p>
+          <div id="rec-status"><p style="color:#94a3b8;font-size:13px">마이크 상태 확인 중...</p></div>
+          ${PRON_SENTS.map((s,i)=>`
+            <div class="pron-sent" id="pron-sent-${i}">
+              <span class="sent-text">${s} ${ttsBtn(s)}</span>
+              <div id="score-badge-${i}" class="score-badge">-</div>
+              <button class="rec-btn" id="rec-btn-${i}" onclick="RECORDER.toggle(${i},PRON_SENTS_19)">🎤 녹음</button>
+            </div>`).join('')}
+          <div id="stt-result" style="min-height:32px;margin-top:8px;font-size:13px;color:#475569"></div>
+        </div>
+        <script>var PRON_SENTS_19=${JSON.stringify(PRON_SENTS)};<\/script>
+        <div class="card">
+          <div class="card-title">💡 AI 활용 연습 주제</div>
+          <div class="speaking-topics">
+            <div class="speaking-topic">AI에게 "한국의 전통 문화와 현대 문화를 한국어로 비교해 줘"라고 질문해 보세요.</div>
+            <div class="speaking-topic">"-(으)ㄹ 뿐이다"와 "-(으)ㄴ/는 반면"을 사용하여 전통과 현대에 대한 문장 5개를 만들어 달라고 해 보세요.</div>
+            <div class="speaking-topic">AI와 함께 "내가 좋아하는 한국 전통 문화" 주제로 글쓰기 연습을 해 보세요.</div>
+          </div>
+        </div>`;
+    }
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 4급 · 19과</div>
+      <h1 style="margin-top:12px">전통과 현대</h1>
+      <p class="subtitle">Tradition &amp; Modernity · Truyền thống và Hiện đại</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>전통 문화, 전통 예술, 현대 문화, 전통과 현대의 만남 어휘 20개를 익힌다.</li>
+        <li>-(으)ㄹ 뿐이다를 사용하여 "오직 그것만"의 의미를 표현할 수 있다.</li>
+        <li>-(으)ㄴ/는 반면을 사용하여 두 가지 상황을 대조하여 표현할 수 있다.</li>
+        <li>전통과 현대에 대해 말하고 쓸 수 있다.</li>
+        <li>한국의 생활 한복, 한옥 스테이, 퓨전 국악, 현대 명절 문화를 이해한다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🔑 핵심 표현</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          전통을 지키고 싶<strong>을 뿐이</strong>에요. ${ttsBtn('전통을 지키고 싶을 뿐이에요.')}
+        </div>
+        <div style="background:#eff6ff;border-radius:8px;padding:10px 14px;font-size:14px;color:var(--navy)">
+          한복은 아름다운 <strong>반면</strong> 입기 불편합니다. ${ttsBtn('한복은 아름다운 반면 입기 불편합니다.')}
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 학습 섹션</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.filter(s=>s.id>0).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `
+    <h2>📝 어휘</h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;flex-wrap:wrap;gap:8px">
+      <div class="lang-toggle">
+        <button class="lang-btn${STATE.lang==='ko'?' active':''}" onclick="setState({lang:'ko',vocabFlipped:{}})">한국어</button>
+        <button class="lang-btn${STATE.lang==='en'?' active':''}" onclick="setState({lang:'en',vocabFlipped:{}})">English</button>
+        <button class="lang-btn${STATE.lang==='vi'?' active':''}" onclick="setState({lang:'vi',vocabFlipped:{}})">Tiếng Việt</button>
+      </div>
+      <button class="check-btn" onclick="setState({vocabFlipped:{}})">초기화</button>
+    </div>
+    <div class="tip-box" style="margin-bottom:14px"><strong>💡 Tip:</strong> 카드를 클릭하면 뒤집어집니다!</div>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map(v=>{
+          const idx=VOCAB.indexOf(v);
+          const flipped=STATE.vocabFlipped[idx];
+          const meaning=STATE.lang==='vi'?v.vi:v.en;
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="STATE.vocabFlipped[${idx}]=!STATE.vocabFlipped[${idx}];render()">
+            ${!flipped
+              ?`<span class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</span><span class="vocab-hanja">${v.hanja}</span>`
+              :`<span class="vocab-ko">${meaning}</span><span class="vocab-eng">${v.ko}</span>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderGramBlock(gram,prefix){
+  const practiceHtml=gram.practice.map((p,i)=>{
+    const shown=STATE.gramPracticeShown[prefix+'_'+i];
+    const q=p.q.replace('___',`<input id="${prefix}-inp-${i}" placeholder="___" style="width:110px"/>`);
+    return `<div class="practice-item">
+      <div style="font-size:14px;color:var(--navy);margin-bottom:8px;line-height:1.6">${q}</div>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+        <button class="check-btn" onclick="
+          var v=document.getElementById('${prefix}-inp-${i}').value.trim();
+          if(v==='${p.answer}'){document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=answer-reveal>✅ 정답!</span>';}
+          else{document.getElementById('${prefix}-fb-${i}').innerHTML='<span class=wrong-reveal>❌ 다시 해보세요</span>';}
+        ">확인</button>
+        <button class="check-btn" style="background:#64748b" onclick="STATE.gramPracticeShown['${prefix}_${i}']=true;render()">정답 보기</button>
+      </div>
+      <div id="${prefix}-fb-${i}">${shown?`<span class="answer-reveal">정답: ${p.answer}</span>`:''}</div>
+    </div>`;
+  }).join('');
+  const topikHtml=gram.topik.map((t,i)=>{
+    const key=prefix+'_topik_'+i;
+    const chosen=STATE.topikAnswers[key];
+    return `<div class="topik-card">
+      <div class="q-text">${t.q}</div>
+      <div class="topik-options">
+        ${t.opts.map((opt,j)=>{
+          let cls='topik-opt';
+          if(chosen!==undefined){if(j===t.answer)cls+=' correct';else if(j===chosen)cls+=' wrong';}
+          return `<button class="${cls}" onclick="STATE.topikAnswers['${key}']=${j};render()" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+        }).join('')}
+      </div>
+      ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;color:${chosen===t.answer?'#166534':'#991b1b'};font-weight:700">${chosen===t.answer?'✅ 정답!':'❌ 오답 - 정답: '+(t.answer+1)+'번'}</div>`:''}
+    </div>`;
+  }).join('');
+  return `
+    <div class="card">
+      <div class="card-title">📌 ${gram.title}</div>
+      <div class="rule-box"><div class="rule-title">의미</div><div style="font-size:14px;color:var(--navy);margin-bottom:4px">${gram.meaning}</div><div style="font-size:13px;color:#475569">🇺🇸 ${gram.en}</div></div>
+      <div class="rule-box"><div class="rule-title">형태 규칙</div><div style="font-size:14px;color:var(--navy)">${gram.rule}</div></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 예문</div>
+      <ul class="example-list">${gram.examples.map(e=>`<li><span class="ko">${e.ko} ${ttsBtn(e.ko)}</span><br><span class="en">${e.en}</span></li>`).join('')}</ul>
+    </div>
+    <div class="card"><div class="card-title">✏️ 빈칸 채우기 연습</div>${practiceHtml}</div>
+    <div class="card"><div class="card-title">📋 TOPIK 유형</div>${topikHtml}</div>`;
+}
+
+function renderSpeaking(){
+  const dialogues=[
+    {title:'대화 1: 한복 이야기',lines:[
+      {speaker:'A',text:'한복을 입어본 적 있어요?',side:'a'},
+      {speaker:'B',text:'네! 경복궁에서 한복을 입고 사진을 찍었어요.',side:'b'},
+      {speaker:'A',text:'어떠셨어요?',side:'a'},
+      {speaker:'B',text:'한복은 정말 아름다운 반면 오래 입으면 조금 불편하더라고요.',side:'b'},
+      {speaker:'A',text:'현대에도 한복을 입는 사람이 있나요?',side:'a'},
+      {speaker:'B',text:'명절이나 결혼식에서 주로 입어요. 일상에서 입기 편하게 개량한 생활 한복도 있어요.',side:'b'},
+    ]},
+    {title:'대화 2: 전통과 현대의 조화',lines:[
+      {speaker:'A',text:'한국에서 전통 문화를 보존하는 노력이 있나요?',side:'a'},
+      {speaker:'B',text:'네, 정부와 시민들이 전통 문화를 지키려고 노력하고 있어요.',side:'b'},
+      {speaker:'A',text:'젊은 세대는 전통 문화에 관심이 있나요?',side:'a'},
+      {speaker:'B',text:'일부 젊은이들은 관심이 있는 반면, 대부분은 현대 팝 문화를 더 좋아해요.',side:'b'},
+      {speaker:'A',text:'전통과 현대를 어떻게 조화시킬 수 있을까요?',side:'a'},
+      {speaker:'B',text:'전통을 현대적으로 재해석하는 것이 중요해요. 예를 들어 한복을 현대 패션과 융합하는 식으로요.',side:'b'},
+    ]},
+    {title:'대화 3: 명절 문화',lines:[
+      {speaker:'A',text:'한국의 명절은 어떻게 보내나요?',side:'a'},
+      {speaker:'B',text:'추석과 설날에는 가족이 모여서 차례를 지내고 전통 음식을 먹어요.',side:'b'},
+      {speaker:'A',text:'요즘도 전통 방식 그대로 지내나요?',side:'a'},
+      {speaker:'B',text:'전통을 지키려고 노력할 뿐이지만, 현대화되면서 간소화되기도 했어요.',side:'b'},
+      {speaker:'A',text:'명절 음식도 다르나요?',side:'a'},
+      {speaker:'B',text:'전통 음식은 만드는 데 시간이 많이 걸리는 반면 요즘은 간편식을 이용하기도 해요.',side:'b'},
+    ]},
+  ];
+  const topics=[
+    '한국의 전통 문화 중 가장 인상 깊은 것을 이야기해 보세요.',
+    '전통과 현대 중 어느 것이 더 중요하다고 생각하는지 말해보세요.',
+    '여러분 나라의 전통 문화와 한국의 전통 문화를 비교해 보세요.',
+  ];
+  return `<h2>💬 말하기</h2>
+    ${dialogues.map(d=>`<div class="card"><div class="card-title">${d.title}</div><div class="dialogue">
+      ${d.lines.map(l=>`<div class="dialogue-line${l.side==='b'?' b':''}"><span class="speaker">${l.speaker}</span><div class="bubble">${l.text} ${ttsBtn(l.text)}</div></div>`).join('')}
+    </div></div>`).join('')}
+    <div class="card"><div class="card-title">🗣️ 자유 말하기 주제</div><div class="speaking-topics">
+      ${topics.map((t,i)=>`<div class="speaking-topic"><strong>${i+1}.</strong> ${t}</div>`).join('')}
+    </div></div>`;
+}
+
+function renderListening(){
+  const script='[문화 다큐멘터리]\n\n한국은 오천 년의 역사 속에서 독특한 전통 문화를 발전시켜 왔습니다.\n\n한옥은 한국의 전통 건축 양식입니다. 나무와 흙, 돌로 지어진 한옥은 자연과 조화를 이루는 반면, 현대 건물에 비해 관리가 어렵습니다. 그래서 많은 한옥이 사라졌지만, 최근에는 보존과 복원 노력이 이루어지고 있습니다.\n\n한복도 마찬가지입니다. 한복은 아름답고 한국 정체성을 나타내는 반면 일상생활에서 입기 불편합니다. 이를 해결하고자 현대인의 생활에 맞게 개량한 생활 한복이 등장했습니다.\n\n전통 문화를 지키고 싶을 뿐 아니라 현대와 융합하는 노력도 필요합니다. 전통의 가치를 계승하면서 현대적으로 발전시키는 것이 중요합니다.';
+  const questions=[
+    {q:'1. 한옥의 특징으로 언급된 것은?',opts:['콘크리트 구조','나무·흙·돌로 자연과 조화','현대적 외관','관리가 쉬움'],answer:1},
+    {q:'2. 생활 한복이 등장한 이유는?',opts:['한복이 너무 비싸서','일상생활에서 입기 불편해서 개량','전통 한복이 없어져서','외국인 요청으로'],answer:1},
+    {q:'3. 전통 문화에 대한 이 다큐멘터리의 결론은?',opts:['전통을 완전히 버려야 한다','전통 보존과 현대 융합 모두 필요하다','현대 문화만 중요하다','전통은 변화시키면 안 된다'],answer:1},
+  ];
+  return `<h2>👂 듣기</h2>
+    <div class="card">
+      <div class="card-title">🎬 문화 다큐멘터리</div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:!STATE.listenRevealed})">${STATE.listenRevealed?'📄 스크립트 숨기기':'📄 스크립트 보기'}</button>
+      ${STATE.listenRevealed?`<div class="listen-script-box">${script.replace(/\n\n/g,'<br><br>').replace(/\n/g,'<br>')}</div>`:''}
+      <div style="text-align:center;margin-bottom:12px">
+        <button class="reveal-btn" onclick="TTS.speak(${JSON.stringify(script)})">🔊 전체 듣기</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 듣기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.listenAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.listenAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderPronunciation(){
+  const words=[
+    {word:'전통',pron:'전통'},
+    {word:'한류',pron:'할류 - 유음화'},
+    {word:'신라',pron:'실라 - 유음화'},
+    {word:'판소리',pron:'판소리'},
+  ];
+  const sents=[
+    {text:'한국의 전통 문화는 현대에도 계속 발전하고 있습니다.',note:'전통[전통]'},
+    {text:'한류 문화는 전 세계에서 인기를 얻고 있습니다.',note:'한류[할류] - 유음화'},
+  ];
+  return `<h2>🔊 발음</h2>
+    <div class="card">
+      <div class="card-title">📏 발음 규칙: 유음화 - 'ㄴ'이 'ㄹ' 앞이나 뒤에서 [ㄹ]로 발음</div>
+      <div class="pron-rule">
+        <p style="font-size:14px;color:var(--navy);line-height:1.7">'ㄴ'이 'ㄹ' 앞이나 뒤에 오면 'ㄴ'이 [ㄹ]로 발음됩니다. 이를 유음화라고 합니다.</p>
+        <p style="font-size:13px;color:var(--blue);margin-top:8px">예: 한류 → [할류], 신라 → [실라]</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">${words.map(w=>`<div class="pron-word"><span style="font-weight:700;color:var(--navy)">${w.word}</span><span class="pron-arrow">→</span><span style="color:var(--blue)">[${w.pron}]</span>${ttsBtn(w.word)}</div>`).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="card-title">🗣️ 문장 발음 연습</div>
+      ${sents.map(s=>`<div style="background:#eff6ff;border-radius:10px;padding:12px 14px;margin-bottom:10px"><div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">${s.text} ${ttsBtn(s.text)}</div><div style="font-size:12px;color:var(--blue)">${s.note}</div></div>`).join('')}
+    </div>`;
+}
+
+function renderReading(){
+  const rawText='한국은 오랜 역사와 풍부한 전통 문화를 보유한 나라입니다. 한복, 한옥, 판소리, 도자기 등은 수백 년의 역사를 가진 전통 문화입니다.\n\n그러나 현대화와 세계화로 인해 전통 문화가 점점 사라질 위기에 처해 있습니다. 전통을 보존하고 싶을 뿐 아니라 현대적으로 재해석하려는 노력도 필요합니다. K-팝과 K-드라마는 현대 한국 문화의 산물인 반면, 판소리와 탈춤 같은 전통 예술은 상대적으로 덜 알려져 있습니다.\n\n최근에는 젊은 세대가 전통 문화에 새로운 관심을 보이고 있습니다. 한복을 현대 패션으로 재해석하거나, 전통 악기를 현대 음악에 융합하는 시도가 늘고 있습니다. 전통과 현대의 조화로운 발전이 한국 문화의 미래를 만들어 갈 것입니다.';
+  const questions=[
+    {q:'1. 전통 문화가 위기에 처한 이유는?',opts:['정부의 무관심','현대화와 세계화','외국인의 반대','경제 성장'],answer:1},
+    {q:'2. "전통을 보존하고 싶을 뿐 아니라"에서 "뿐"의 의미와 가까운 것은?',opts:['오직 그것만','그것에 더하여 (뿐만 아니라)','그 결과로','그 조건으로'],answer:1},
+    {q:'3. 젊은 세대가 전통 문화에 새롭게 관심을 보이는 방법은?',opts:['전통 보존 반대','한복 현대화·전통 악기 융합','전통 완전 포기','외국 문화 수입'],answer:1},
+  ];
+  const highlighted=rawText
+    .replace(/뿐/g,'<span class="highlight">뿐</span>')
+    .replace(/반면/g,'<span class="highlight">반면</span>')
+    .replace(/\n\n/g,'<br><br>');
+  return `<h2>📖 읽기</h2>
+    <div class="card"><div class="card-title">📰 전통과 현대 ${ttsBtn(rawText)}</div><div class="reading-text">${highlighted}</div></div>
+    <div class="card"><div class="card-title">❓ 읽기 문제</div>
+      ${questions.map((q,i)=>{
+        const ans=STATE.readAnswers[i];
+        return `<div class="listen-q"><div class="q-text">${q.q}</div><div class="topik-options">
+          ${q.opts.map((opt,j)=>{
+            let cls='topik-opt';
+            if(ans!==undefined){if(j===q.answer)cls+=' correct';else if(j===ans)cls+=' wrong';}
+            return `<button class="${cls}" onclick="STATE.readAnswers[${i}]=${j};render()" ${ans!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>${ans!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${ans===q.answer?'#166534':'#991b1b'}">${ans===q.answer?'✅ 정답!':'❌ 오답'}</div>`:''}</div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderWriting(){
+  const sample='저는 한국의 판소리에 관심이 있을 뿐 아니라 실제로 배워보고 싶습니다. 처음에는 낯설게 느껴질 뿐이었지만, 들을수록 그 깊은 감동에 빠져들었습니다.\n\n판소리는 감동적이고 독특한 반면 배우기가 매우 어렵습니다. 그래서 많은 사람들이 관심을 갖는 반면 실제로 배우는 사람은 적습니다.\n\n전통 문화는 그 민족의 정체성과 역사를 담고 있습니다. 한국의 전통 문화를 보존하고 현대와 융합하여 더 많은 사람들에게 알리는 것이 중요하다고 생각합니다.';
+  return `<h2>✏️ 쓰기</h2>
+    <div class="card">
+      <div class="card-title">📌 쓰기 주제</div>
+      <div style="background:var(--indigo);color:#fff;border-radius:10px;padding:14px;font-size:16px;font-weight:700;text-align:center;margin-bottom:12px">전통과 현대의 조화</div>
+      <div class="writing-guide"><h3>작성 가이드</h3><ul>
+        <li>좋아하는 한국 전통 문화를 소개하세요.</li>
+        <li>-(으)ㄹ 뿐이다를 한 번 이상 사용하세요.</li>
+        <li>-(으)ㄴ/는 반면을 한 번 이상 사용하세요.</li>
+        <li>전통 문화가 현대에도 중요한 이유를 쓰세요.</li>
+      </ul></div>
+    </div>
+    <div class="card">
+      <div class="card-title">📝 내 글쓰기</div>
+      <textarea placeholder="여기에 글을 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+        <span style="font-size:12px;color:#94a3b8">${STATE.writingText.length}자</span>
+        <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'샘플 숨기기':'샘플 답안 보기'}</button>
+      </div>
+      ${STATE.sampleShown?`<div class="sample-box">${sample.replace(/\n\n/g,'<br><br>')}</div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  const sections=[
+    {title:'👘 생활 한복',text:'전통 한복은 아름답지만 입기 불편한 반면, 생활 한복은 현대인의 생활에 맞게 개량되었습니다. 젊은 세대를 중심으로 일상에서 생활 한복을 즐기는 문화가 생겨나고 있습니다.'},
+    {title:'🏯 한옥 스테이',text:'전통 한옥에서 숙박하는 "한옥 스테이"가 인기입니다. 외국인 관광객들이 한옥에서 한국 전통 생활을 직접 경험할 수 있습니다. 북촌, 전주 한옥마을 등이 유명합니다.'},
+    {title:'🥁 퓨전 국악',text:'전통 국악을 현대 음악과 융합한 퓨전 국악이 젊은 세대에게 인기를 얻고 있습니다. 난타(사물놀이 퍼포먼스), 이날치 밴드 등이 세계적으로 주목받고 있습니다.'},
+    {title:'🎊 현대의 명절',text:'추석과 설날은 여전히 한국의 가장 중요한 명절입니다. 전통 방식은 간소화된 반면, 가족이 함께하는 의미는 변하지 않았습니다. 최근에는 명절 선물 세트, 온라인 차례 등 새로운 문화도 생겨나고 있습니다.'},
+  ];
+  return `<h2>🎎 문화</h2>
+    <div class="card"><div class="card-title">🇰🇷 한국의 전통과 현대 문화</div>
+      ${sections.map(s=>`<div class="culture-section"><h4>${s.title}</h4><p>${s.text}</p></div>`).join('')}
+    </div>`;
+}
+
+function renderQuiz(){
+  const total=QUIZ.length;
+  const answered=Object.keys(STATE.quizAnswers).length;
+  const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+  return `<h2>✅ 퀴즈</h2>
+    <div class="card" style="background:var(--navy);color:#fff;text-align:center;padding:14px">
+      <div style="font-size:14px;opacity:0.8">진행: ${answered}/${total}</div>
+      ${STATE.quizDone?`<div style="font-size:28px;font-weight:900;color:#60a5fa;margin-top:4px">${correct}/${total}</div>`:''}
+    </div>
+    ${QUIZ.map((q,i)=>{
+      const chosen=STATE.quizAnswers[i];
+      const isCorrect=chosen===q.answer;
+      let cardCls='quiz-card';
+      if(chosen!==undefined)cardCls+=isCorrect?' answered-correct':' answered-wrong';
+      return `<div class="${cardCls}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>{
+            let cls='quiz-opt';
+            if(chosen!==undefined){if(j===q.answer)cls+=' selected-correct';else if(j===chosen)cls+=' selected-wrong';}
+            return `<button class="${cls}" onclick="if(STATE.quizAnswers[${i}]===undefined){STATE.quizAnswers[${i}]=${j};render();}" ${chosen!==undefined?'disabled':''}>${j+1}. ${opt}</button>`;
+          }).join('')}
+        </div>
+        ${chosen!==undefined?`<div style="margin-top:8px;font-size:13px;font-weight:700;color:${isCorrect?'#166534':'#991b1b'}">${isCorrect?'✅ 정답!':'❌ 오답 - 정답: '+(q.answer+1)+'번'}</div>`:''}
+      </div>`;
+    }).join('')}
+    ${answered===total&&!STATE.quizDone?`<div style="text-align:center;margin:12px 0"><button class="reveal-btn" onclick="setState({quizDone:true})">결과 보기</button></div>`:''}
+    ${STATE.quizDone?`<div class="quiz-score"><div>최종 점수</div><div class="score-num">${correct}/${total}</div><div style="margin-top:8px">${correct>=9?'🎉 우수!':correct>=7?'👍 잘 했어요!':correct>=5?'📚 복습해 보세요.':'💪 더 열심히!'}</div><button class="check-btn" style="margin-top:12px;background:rgba(255,255,255,0.2)" onclick="setState({quizAnswers:{},quizDone:false})">다시 풀기</button></div>`:''}`;
+}
+
+const RECORDER={
+  stream:null,mediaRecorder:null,chunks:[],isRecording:false,
+  recognition:null,sttActive:false,currentIdx:-1,scores:{},
+  autoDetect(){
+    if(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia){
+      navigator.mediaDevices.getUserMedia({audio:true})
+        .then(s=>{s.getTracks().forEach(t=>t.stop());this.showUI('ready');})
+        .catch(()=>this.showUI('denied'));
+    }else{this.showUI('denied');}
+  },
+  showUI(state){
+    const el=document.getElementById('rec-status');if(!el)return;
+    if(state==='ready')el.innerHTML='<p style="color:#059669;font-weight:700">✅ 마이크 준비 완료!</p>';
+    else el.innerHTML='<p style="color:#ef4444;font-weight:700">❌ 마이크를 사용할 수 없습니다.</p>';
+  },
+  toggle(idx,sents){
+    if(this.sttActive&&this.currentIdx===idx)this.stopSTT(idx);
+    else{if(this.sttActive)this.stopSTT(this.currentIdx);this.startSTT(idx,sents);}
+  },
+  startSTT(idx,sents){
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){const el=document.getElementById('stt-result');if(el)el.innerHTML='<span style="color:#ef4444">음성 인식 미지원 브라우저입니다.</span>';return;}
+    this.recognition=new SR();
+    this.recognition.lang='ko-KR';this.recognition.interimResults=false;
+    this.sttActive=true;this.currentIdx=idx;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='⏹ 중지';btn.classList.add('recording');}
+    const rEl=document.getElementById('stt-result');
+    if(rEl)rEl.innerHTML='<span style="color:var(--blue)">🎤 듣는 중...</span>';
+    this.recognition.onresult=(e)=>{
+      const tr=e.results[0][0].transcript;
+      const score=this.calcScore(tr,sents[idx]);
+      this.scores[idx]=score;
+      const badge=document.getElementById('score-badge-'+idx);
+      if(badge){badge.className='score-badge '+(score>=80?'good':score>=50?'ok':'bad');badge.textContent=score+'%';}
+      if(rEl)rEl.innerHTML=`<span style="color:var(--navy)">인식: "${tr}"</span> <span style="font-weight:700;color:${score>=80?'#166534':score>=50?'#854d0e':'#991b1b'}">(${score}점)</span>`;
+      this.sttActive=false;
+      if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+    };
+    this.recognition.onerror=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.onend=()=>{this.sttActive=false;if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}};
+    this.recognition.start();
+  },
+  stopSTT(idx){
+    if(this.recognition){try{this.recognition.stop();}catch(e){}}
+    this.sttActive=false;
+    const btn=document.getElementById('rec-btn-'+idx);
+    if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+  },
+  calcScore(transcript,target){
+    if(!transcript||!target)return 0;
+    const t=transcript.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    const g=target.trim().replace(/[^가-힣a-zA-Z0-9\s]/g,'').toLowerCase();
+    if(t===g)return 100;
+    const tw=t.split(/\s+/),gw=g.split(/\s+/);
+    let m=0;gw.forEach(w=>{if(tw.includes(w))m++;});
+    return Math.round((m/Math.max(gw.length,1))*100);
+  }
+};
+
+render();
+</script>
+</body>
+</html>
