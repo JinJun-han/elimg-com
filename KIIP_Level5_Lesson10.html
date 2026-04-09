@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 5급 10과 · 한국의 문화 2</title>
+<meta name="theme-color" content="#059669"/>
+<meta property="og:title" content="KIIP 5급 10과 · 한국의 문화 2"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level5_Lesson10.html"/>
+<meta property="og:description" content="KIIP 5급 10과 한국의 문화 2 - 한류, K팝, K드라마, K영화, 현대문화"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#059669;--dark:#065f46;--mid:#047857;--lgreen:#22c55e;--red:#ef4444;--gray:#f0fdf4;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--dark);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(6,79,70,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #a7f3d0;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green);font-weight:700}
+.tab-btn:hover{background:#ecfdf5}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #a7f3d0;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(6,79,70,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--green)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(6,79,70,0.08);border:1px solid #a7f3d0}
+.card-title{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--dark);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--green)}
+h3{font-size:16px;font-weight:700;color:var(--mid);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #a7f3d0;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 4px 12px rgba(5,150,105,0.15)}
+.vocab-card.flipped{background:var(--mid);color:#fff;border-color:var(--mid)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--dark)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--green);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--green);margin:14px 0 8px;padding:4px 10px;background:#ecfdf5;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.concept-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.concept-tab{padding:8px 18px;border-radius:20px;border:2px solid #a7f3d0;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.concept-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.rule-box{background:#ecfdf5;border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--mid);margin-bottom:6px}
+.timeline-item{background:#fff;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px;position:relative;padding-left:20px}
+.timeline-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--green);border-radius:4px 0 0 4px}
+.timeline-year{font-size:12px;font-weight:800;color:var(--green);margin-bottom:4px}
+.timeline-event{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.timeline-desc{font-size:13px;color:#475569;line-height:1.6}
+.topik-card{background:#ecfdf5;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #a7f3d0;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--green);background:#ecfdf5}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f0fdf4;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--green);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--mid)}
+.bubble{background:#ecfdf5;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#a7f3d0}
+.listen-script-box{background:#f0fdf4;border:2px dashed #a7f3d0;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--dark)}
+.listen-q{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px}
+.reveal-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--mid)}
+.reading-text{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--green);font-weight:700}
+.writing-guide{background:#ecfdf5;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--dark)}
+textarea{width:100%;border:2px solid #a7f3d0;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--green)}
+.sample-box{background:#ecfdf5;border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--dark);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--dark);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #a7f3d0;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #a7f3d0;background:#f0fdf4;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--green);background:#ecfdf5}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--dark);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#6ee7b7}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #a7f3d0}
+.pron-sent{background:#f0fdf4;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--dark);flex:1}
+.rec-btn{background:var(--green);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--mid)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #a7f3d0;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#ecfdf5;border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--dark)}
+.intro-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--green) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--dark)}
+.objective-list li::before{content:'✓';color:var(--green);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #a7f3d0;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--dark)}
+.section-nav-btn:hover{border-color:var(--green);background:#ecfdf5;color:var(--green)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+.check-btn{background:var(--green);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer}
+.check-btn:hover{background:var(--mid)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.return-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);z-index:999;background:#1e3a5f;color:#fff;border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px;max-width:calc(100vw - 32px);box-shadow:0 4px 20px rgba(0,0,0,0.3);opacity:0;transition:all 0.3s;pointer-events:none}
+.return-toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.return-toast-icon{font-size:24px;flex-shrink:0}
+.return-toast-body{flex:1;min-width:0}
+.return-toast-title{font-size:13px;font-weight:800;margin-bottom:2px}
+.return-toast-sub{font-size:11px;opacity:0.8;line-height:1.5}
+.return-toast-close{background:rgba(255,255,255,0.2);border:none;color:#fff;border-radius:50%;width:24px;height:24px;font-size:12px;cursor:pointer;flex-shrink:0}
+.return-toast-bar{position:absolute;bottom:0;left:0;height:3px;background:#f59e0b;border-radius:0 0 14px 14px;animation:toastTimer 8s linear forwards}
+@keyframes toastTimer{from{width:100%}to{width:0%}}
+@keyframes aiDot{0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},
+  listenRevealed:false,listenAnswers:{},
+  conceptTab:0,topikAnswers:{},
+  readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'핵심',icon:'📜'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'연표',icon:'🗓️'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'한류(韓流)',hanja:'한류(韓流)',en:'Korean Wave (Hallyu)',vi:'Làn sóng Hàn Quốc',cat:'한류'},
+  {ko:'K팝(K-pop)',hanja:'K팝(K-pop)',en:'Korean pop music',vi:'Nhạc pop Hàn Quốc',cat:'한류'},
+  {ko:'아이돌(idol)',hanja:'아이돌(idol)',en:'K-pop idol group',vi:'Nhóm nhạc thần tượng',cat:'한류'},
+  {ko:'팬덤(fandom)',hanja:'팬덤(fandom)',en:'Fandom',vi:'Cộng đồng người hâm mộ',cat:'한류'},
+  {ko:'한류 콘텐츠',hanja:'한류 콘텐츠',en:'Hallyu content',vi:'Nội dung làn sóng Hàn',cat:'한류'},
+  {ko:'드라마(drama)',hanja:'드라마(drama)',en:'TV drama series',vi:'Phim truyền hình',cat:'K드라마·영화'},
+  {ko:'OTT',hanja:'OTT',en:'Over-the-top streaming service',vi:'Dịch vụ phát trực tuyến',cat:'K드라마·영화'},
+  {ko:'넷플릭스(Netflix)',hanja:'넷플릭스(Netflix)',en:'Netflix',vi:'Netflix',cat:'K드라마·영화'},
+  {ko:'오스카(Oscar)',hanja:'오스카(Oscar)',en:'Oscar (Academy Award)',vi:'Giải Oscar',cat:'K드라마·영화'},
+  {ko:'칸영화제',hanja:'칸영화제',en:'Cannes Film Festival',vi:'Liên hoan phim Cannes',cat:'K드라마·영화'},
+  {ko:'웹툰(webtoon)',hanja:'웹툰(webtoon)',en:'Korean webtoon (digital comic)',vi:'Truyện tranh số Hàn Quốc',cat:'현대 문화'},
+  {ko:'게임(game)',hanja:'게임(game)',en:'Video game',vi:'Trò chơi điện tử',cat:'현대 문화'},
+  {ko:'e스포츠',hanja:'e스포츠',en:'e-sports',vi:'Thể thao điện tử',cat:'현대 문화'},
+  {ko:'SNS',hanja:'SNS',en:'Social Network Service',vi:'Mạng xã hội',cat:'현대 문화'},
+  {ko:'인플루언서',hanja:'인플루언서',en:'Influencer',vi:'Người có ảnh hưởng',cat:'현대 문화'},
+  {ko:'문화콘텐츠',hanja:'문화콘텐츠(文化콘텐츠)',en:'Cultural content',vi:'Nội dung văn hóa',cat:'문화 산업'},
+  {ko:'저작권',hanja:'저작권(著作權)',en:'Copyright',vi:'Bản quyền',cat:'문화 산업'},
+  {ko:'소프트파워',hanja:'소프트파워(soft power)',en:'Soft power',vi:'Quyền lực mềm',cat:'문화 산업'},
+  {ko:'한국어 열풍',hanja:'한국어 열풍',en:'Korean language craze',vi:'Cơn sốt tiếng Hàn',cat:'문화 산업'},
+  {ko:'관광',hanja:'관광(觀光)',en:'Tourism',vi:'Du lịch',cat:'문화 산업'},
+];
+
+const CONCEPT1={
+  title:'한류(韓流)의 역사와 성장',
+  summary:'1990년대 후반 아시아에서 시작된 한류는 이제 전 세계로 확산되어 K팝·드라마·영화·웹툰·게임 등 다양한 분야에서 세계인의 사랑을 받고 있습니다.',
+  points:[
+    {title:'한류의 시작',desc:'1997년 한국 드라마 "사랑이 뭐길래"가 중국에서 방영되며 큰 인기를 얻었습니다. 1999년 베이징 한류 콘서트를 시작으로 K팝이 아시아에 퍼졌습니다. "한류(韓流)"라는 단어는 중국 언론이 한국 문화 열풍을 표현하기 위해 만들었습니다.'},
+    {title:'K팝의 세계화',desc:'2012년 싸이의 "강남스타일"이 유튜브 최초 10억 뷰를 달성하며 세계적 주목을 받았습니다. BTS는 2018년부터 빌보드 Hot 100 1위를 여러 차례 달성했습니다. BLACKPINK, aespa, NewJeans 등 다양한 K팝 그룹이 세계 팬을 보유하고 있습니다.'},
+    {title:'K드라마의 세계화',desc:'2021년 넷플릭스 오리지널 "오징어 게임"이 94개국 1위를 달성하며 세계적 화제가 되었습니다. "이상한 변호사 우영우", "킹덤", "미스터 선샤인" 등도 전 세계에서 인기를 끌었습니다. OTT 플랫폼을 통해 한국 드라마가 실시간으로 전 세계에 공개됩니다.'},
+    {title:'한류의 경제적 효과',desc:'한류 콘텐츠 수출액은 연간 수십억 달러에 달합니다. 한류로 인한 화장품·식품·관광·패션 등 연관 산업의 성장도 큽니다. "한국어 열풍"으로 전 세계 한국어 학습자가 빠르게 늘고 있습니다.'},
+  ],
+  questions:[
+    {q:'BTS가 빌보드 Hot 100 1위를 처음 달성한 해는?',opts:['2016년','2017년','2018년','2020년'],answer:2},
+    {q:'"한류"라는 단어를 처음 만든 나라는?',opts:['한국','일본','중국','미국'],answer:2},
+  ]
+};
+
+const CONCEPT2={
+  title:'K영화·웹툰·게임과 현대 문화',
+  summary:'한국 영화가 세계 최고 권위의 영화제를 석권하고, 웹툰과 게임 산업도 세계 시장을 이끌고 있습니다. 현대 한국의 문화 소프트파워가 빠르게 성장하고 있습니다.',
+  points:[
+    {title:'K영화의 세계적 성공',desc:'봉준호 감독의 "기생충"(2019)이 칸 영화제 황금종려상, 아카데미(오스카) 작품상·감독상 등 4관왕을 달성했습니다. 이는 비영어권 영화 최초의 오스카 작품상 수상으로 역사적 사건입니다. "아가씨", "부산행", "범죄도시" 등도 세계적으로 주목받았습니다.'},
+    {title:'웹툰 — 한국의 디지털 만화',desc:'한국에서 시작된 웹툰(모바일·PC 세로 스크롤 만화)이 세계 표준이 되었습니다. 네이버웹툰·카카오웹툰은 세계 100개국 이상에서 서비스됩니다. "나 혼자만 레벨업", "유미의 세포들" 등이 드라마·영화로도 제작되었습니다.'},
+    {title:'한국 게임과 e스포츠',desc:'리그 오브 레전드(LoL) 등 세계적 게임의 프로게이머 중 한국인이 많습니다. 한국은 e스포츠 강국으로 세계 e스포츠 대회에서 최상위 성적을 거두고 있습니다. PC방 문화와 함께 게임 산업이 발달했습니다.'},
+    {title:'한국어 학습 열풍',desc:'한류 영향으로 전 세계 한국어 학습자가 2010년 약 300만 명에서 2023년 약 1,300만 명으로 급증했습니다. 한국어능력시험(TOPIK) 응시자도 매년 사상 최대를 기록하고 있습니다. 한국어는 국제적으로 중요한 언어로 부상하고 있습니다.'},
+  ],
+  questions:[
+    {q:'오스카(아카데미) 작품상을 받은 한국 영화는?',opts:['기생충','오징어 게임','부산행','아가씨'],answer:0},
+    {q:'세계 최초 오스카 작품상을 받은 비영어권 영화는?',opts:['기생충','올드보이','괴물','살인의 추억'],answer:0},
+  ]
+};
+
+const QUIZ=[
+  {q:'한류(Hallyu)가 처음 시작된 지역은?',opts:['미국','유럽','아시아','중동'],answer:2},
+  {q:'싸이의 "강남스타일"이 달성한 기록은?',opts:['빌보드 1위','유튜브 최초 10억 뷰','오스카 수상','칸 수상'],answer:1},
+  {q:'BTS가 속한 K팝 소속사는?',opts:['SM','JYP','YG','HYBE(Big Hit)'],answer:3},
+  {q:'"기생충"이 받은 오스카 상의 개수는?',opts:['1개','2개','3개','4개'],answer:3},
+  {q:'봉준호 감독의 영화는?',opts:['오징어 게임','기생충','부산행','범죄도시'],answer:1},
+  {q:'"오징어 게임"이 1위를 달성한 나라 수는?',opts:['50개국','70개국','94개국','120개국'],answer:2},
+  {q:'웹툰의 특징이 아닌 것은?',opts:['모바일 세로 스크롤','한국에서 시작','세계 100개국 서비스','종이 출판만 가능'],answer:3},
+  {q:'전 세계 한국어 학습자는 약 몇 명인가요?',opts:['300만 명','700만 명','1,000만 명','1,300만 명'],answer:3},
+  {q:'K팝의 세계화에 가장 크게 기여한 플랫폼은?',opts:['TV','라디오','유튜브/SNS','신문'],answer:2},
+  {q:'한국 화장품 산업을 일컫는 말은?',opts:['K-Food','K-Beauty','K-Style','K-Fashion'],answer:1},
+];
+
+const PRON_SENTS_DATA=[
+  {sent:'한류는 K팝·드라마·영화·웹툰이 전 세계로 퍼진 한국 문화 열풍입니다.'},
+  {sent:'기생충은 비영어권 영화 최초로 오스카 작품상을 받았습니다.'},
+  {sent:'오징어 게임은 넷플릭스에서 94개국 1위를 달성했습니다.'},
+  {sent:'한류 덕분에 전 세계 한국어 학습자가 1,300만 명으로 늘었습니다.'},
+];
+
+const RECORDER = {
+  streams: {},
+  recorders: {},
+  chunks: {},
+  audioURLs: {},
+  isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    const resultEl = document.getElementById('stt-result-' + idx);
+    const playBtn  = document.getElementById('play-btn-' + idx);
+    const scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, targetText, recBtn); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      this.streams[idx] = stream;
+    } catch(e) {
+      const name = e.name || '';
+      let msg = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg = '❌ <strong>마이크가 차단됨</strong> — 브라우저 주소창 🔒 → 마이크 → <strong>허용</strong> 후 새로고침';
+      } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
+        msg = '❌ <strong>마이크를 찾을 수 없어요</strong> — 마이크 연결을 확인하세요';
+      } else {
+        msg = '❌ <strong>오류: ' + name + '</strong> — Chrome/Edge에서 다시 시도하세요';
+      }
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    const mr = new MediaRecorder(this.streams[idx]);
+    this.recorders[idx] = mr;
+    mr.ondataavailable = e => { if (e.data.size > 0) this.chunks[idx].push(e.data); };
+    mr.onstop = () => {
+      if (this.audioURLs[idx]) URL.revokeObjectURL(this.audioURLs[idx]);
+      const blob = new Blob(this.chunks[idx], {type: 'audio/webm'});
+      this.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false;
+        playBtn.style.opacity = '1';
+        playBtn.onclick = () => { const a = new Audio(this.audioURLs[idx]); a.play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지';
+    recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      const rec = new SR();
+      rec.lang = 'ko-KR';
+      rec.continuous = false;
+      rec.interimResults = false;
+      rec.onresult = (e) => {
+        const said   = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        const target = targetText.replace(/[\s,.?!]/g,'');
+        const conf   = e.results[0][0].confidence;
+        let match = 0;
+        const minLen = Math.min(said.length, target.length);
+        for (let i = 0; i < minLen; i++) { if (said[i] === target[i]) match++; }
+        const pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        const confPct = Math.round((conf || 0.5) * 100);
+        const finalPct = Math.round((pct * 0.7) + (confPct * 0.3));
+        const color = finalPct >= 80 ? '#22c55e' : finalPct >= 50 ? '#f59e0b' : '#ef4444';
+        const msg   = finalPct >= 80 ? '✅ 완벽해요!' : finalPct >= 50 ? '🔄 조금 더 연습!' : '❌ 다시 시도!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = finalPct + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = () => {};
+      rec.start();
+    }
+  },
+
+  async autoDetect() {
+    const stateEl = document.getElementById('mic-perm-state');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        const result = await navigator.permissions.query({name: 'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 이미 허용됨 — 바로 녹음하세요!</div>';
+          if (allowBtn) { allowBtn.style.background = '#166534'; allowBtn.textContent = '✅ 허용됨 — 바로 녹음하세요'; }
+          if (blockedGuide) blockedGuide.style.display = 'none';
+          return;
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 아래 안내대로 해결하세요</div>';
+          if (blockedGuide) blockedGuide.style.display = 'block';
+          if (allowBtn) { allowBtn.style.background = '#ef4444'; allowBtn.textContent = '⚠️ 차단됨 — 위 단계 완료 후 여기 클릭'; }
+          return;
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아직 허용 안 됨 — 아래 버튼을 눌러 허용해 주세요</div>';
+        }
+        result.onchange = () => RECORDER.autoDetect();
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+      }
+    } else {
+      stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+    }
+  },
+
+  async checkPermission(btn) {
+    const statusEl = document.getElementById('mic-status');
+    const box = document.getElementById('mic-check-box');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → elimg.com에서 열기</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 미지원 브라우저 — Chrome 또는 Edge를 사용해 주세요</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      stream.getTracks().forEach(t => t.stop());
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 바로 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 성공!</span>';
+      if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
+      if (blockedGuide) blockedGuide.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 바로 녹음하세요!'; btn.style.background = '#166534'; btn.disabled = false;
+    } catch(e) {
+      const name = e.name || '';
+      btn.disabled = false;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        if (blockedGuide) blockedGuide.style.display = 'block';
+        if (stateEl) stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 안내대로 해결 후 다시 클릭</div>';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444;font-size:11px">🔒 허용 완료 후 이 버튼을 다시 눌러주세요</span>';
+        btn.textContent = '🔄 허용 완료 후 다시 클릭'; btn.style.background = '#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">오류 (' + name + ') — Chrome/Edge에서 다시 시도</span>';
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
+      }
+    }
+  },
+
+  stop(idx, targetText, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') {
+      this.recorders[idx].stop();
+    }
+    if (this.streams[idx]) {
+      this.streams[idx].getTracks().forEach(t => t.stop());
+    }
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음';
+    recBtn.style.background = '#059669';
+  }
+};
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
+}
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level5_Lesson9">← 9과</a>
+      <span class="nav-title">5급 10과 · 한국의 문화 2</span>
+      <a href="/KIIP_Level5_Lesson11">11과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level5_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level5_Lesson11"><span class="icon">➡️</span>11과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let html;
+      if(STATE.conceptTab===0){html=renderConceptBlock(CONCEPT1,'c1');}
+      else{html=renderConceptBlock(CONCEPT2,'c2');}
+      return `<h2>📜 핵심 내용</h2>
+        <div class="concept-tabs">
+          <button class="concept-tab${STATE.conceptTab===0?' active':''}" onclick="setState({conceptTab:0})">1. 한류의 역사와 성장</button>
+          <button class="concept-tab${STATE.conceptTab===1?' active':''}" onclick="setState({conceptTab:1})">2. K영화·웹툰·게임</button>
+        </div>${html}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderTimeline();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10: return renderAI();
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 5급 · 10과</div>
+      <h1>🎵 한국의 문화 2</h1>
+      <div class="subtitle">한류 · K팝 · K드라마 · K영화 · 현대 문화<br>Korean Wave · K-pop · K-drama · Korean Cinema · Contemporary Culture</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>한류의 역사와 발전 과정을 설명할 수 있다.</li>
+        <li>BTS·기생충·오징어 게임 등 세계적 성공 사례를 말할 수 있다.</li>
+        <li>한류가 한국 경제와 한국어 학습에 미친 영향을 설명할 수 있다.</li>
+        <li>K팝·웹툰·게임 등 현대 한국 문화의 다양성을 이해할 수 있다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 단원 개요</div>
+      <p style="font-size:14px;line-height:1.8;color:#334155">
+        BTS의 노래에 맞춰 춤추고, 기생충을 보며 감동받고, 오징어 게임에 열광하는 세계인들. 한류는 이제 단순한 문화 유행을 넘어 대한민국의 힘이 되었습니다. 어떻게 작은 나라 한국의 문화가 세계를 매료시켰는지 함께 알아봅니다.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-title">📚 학습 내용</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.slice(1).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `<h2>📝 핵심 어휘</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">카드를 클릭하면 뜻이 나타납니다. 🔊 버튼으로 발음을 들어보세요.</p>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">📌 ${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map((v,i)=>{
+          const key=v.ko;
+          const flipped=STATE.vocabFlipped[key];
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="setState({vocabFlipped:{...STATE.vocabFlipped,'${key}':${!flipped}}})">
+            ${flipped
+              ?`<div class="vocab-ko">${v.en}</div><div class="vocab-hanja">${v.vi}</div>`
+              :`<div class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</div>
+                <div class="vocab-hanja">${v.hanja}</div>
+                <div class="vocab-eng">${v.en}</div>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderConceptBlock(concept,prefix){
+  return `
+    <div class="card">
+      <div class="card-title">📜 ${concept.title}</div>
+      <p style="font-size:14px;color:#334155;margin-bottom:16px;line-height:1.7">${concept.summary}</p>
+      ${concept.points.map((p,i)=>`
+        <div class="rule-box">
+          <div class="rule-title">📌 ${p.title}</div>
+          <p style="font-size:14px;line-height:1.7;color:#334155">${p.desc}</p>
+        </div>`).join('')}
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 확인 문제</div>
+      ${concept.questions.map((q,i)=>`
+        <div class="topik-card">
+          <div class="q-text">${i+1}. ${q.q}</div>
+          <div class="topik-options">
+            ${q.opts.map((opt,j)=>`
+              <button class="topik-opt${STATE.topikAnswers[prefix+i]===j?(j===q.answer?' correct':' wrong'):''}"
+                onclick="setState({topikAnswers:{...STATE.topikAnswers,'${prefix+i}':${j}}})"
+                ${STATE.topikAnswers[prefix+i]!==undefined?'disabled':''}>
+                ${j+1}. ${opt}
+              </button>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderSpeaking(){
+  return `<h2>💬 말하기 연습</h2>
+    <div class="card">
+      <div class="card-title">🎯 주제 대화</div>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <span class="speaker">A</span>
+          <div class="bubble">K팝을 좋아해요? 어떤 그룹을 좋아해요? ${ttsBtn('K팝을 좋아해요? 어떤 그룹을 좋아해요?')}</div>
+        </div>
+        <div class="dialogue-line b">
+          <span class="speaker">B</span>
+          <div class="bubble">저는 BTS를 정말 좋아해요! 한국어 공부도 BTS 노래를 들으면서 시작했거든요. ${ttsBtn('저는 BTS를 정말 좋아해요! 한국어 공부도 BTS 노래를 들으면서 시작했거든요.')}</div>
+        </div>
+        <div class="dialogue-line">
+          <span class="speaker">A</span>
+          <div class="bubble">한류가 한국어 공부에 도움이 됐군요! ${ttsBtn('한류가 한국어 공부에 도움이 됐군요!')}</div>
+        </div>
+        <div class="dialogue-line b">
+          <span class="speaker">B</span>
+          <div class="bubble">네, 드라마도 많이 보면서 한국 문화를 자연스럽게 배울 수 있었어요. ${ttsBtn('네, 드라마도 많이 보면서 한국 문화를 자연스럽게 배울 수 있었어요.')}</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">💬 말하기 주제</div>
+      <div class="speaking-topics">
+        <div class="speaking-topic">여러분이 처음 한국 문화에 관심을 갖게 된 계기는 무엇인가요? K팝, 드라마, 영화 중 무엇인가요?</div>
+        <div class="speaking-topic">한류가 세계적으로 성공한 이유가 무엇이라고 생각하나요?</div>
+        <div class="speaking-topic">한국 드라마나 영화에서 배운 한국 문화가 있다면 이야기해 보세요.</div>
+      </div>
+    </div>`;
+}
+
+function renderListening(){
+  return `<h2>👂 듣기 · 이해하기</h2>
+    <div class="card">
+      <div class="card-title">📻 한류와 한국 문화의 세계화</div>
+      <p style="font-size:13px;color:#64748b;margin-bottom:12px">아래 내용을 읽고 질문에 답하세요.</p>
+      <div class="listen-script-box">
+        한류는 1990년대 후반 아시아에서 시작되어 현재 전 세계로 퍼진 한국 문화 열풍입니다. K팝 그룹 BTS는 2018년부터 빌보드 1위를 여러 차례 달성하며 세계적인 스타가 되었습니다. 2019년 봉준호 감독의 영화 "기생충"은 칸 영화제 황금종려상과 오스카 작품상을 받았습니다. 비영어권 영화가 오스카 작품상을 받은 것은 역대 처음이었습니다. 2021년 넷플릭스 드라마 "오징어 게임"은 94개국에서 1위를 달성했습니다. 한류 영향으로 전 세계 한국어 학습자도 크게 늘어 현재 약 1,300만 명에 달합니다.
+      </div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:true})">📖 내용 확인</button>
+    </div>
+    <div class="listen-q">
+      <div class="q-text">1. "기생충"이 받은 세계적인 영화상은?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 칸 영화제 황금종려상 + 오스카 작품상</div>`:''}
+    </div>
+    <div class="listen-q">
+      <div class="q-text">2. "오징어 게임"은 몇 개국에서 1위를 달성했나요?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 94개국</div>`:''}
+    </div>
+    <div class="listen-q">
+      <div class="q-text">3. 현재 전 세계 한국어 학습자는 약 몇 명인가요?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 약 1,300만 명</div>`:''}
+    </div>`;
+}
+
+function renderTimeline(){
+  const events=[
+    {year:'1997년',event:'한국 드라마 중국 방영 시작',desc:'"사랑이 뭐길래" 중국 방영으로 한류의 씨앗이 뿌려졌습니다.'},
+    {year:'2002년',event:'K팝 아시아 열풍',desc:'BOA, H.O.T. 등이 일본·중국에서 큰 인기를 얻었습니다.'},
+    {year:'2012년',event:'강남스타일',desc:'싸이의 강남스타일이 유튜브 최초 10억 뷰 달성. 한류가 서구권으로 확산되었습니다.'},
+    {year:'2018년',event:'BTS 빌보드 Hot 100 1위',desc:'한국 가수 최초. K팝이 서구 주류 음악 시장에 진입했습니다.'},
+    {year:'2019년',event:'기생충 오스카 4관왕',desc:'비영어권 최초 오스카 작품상. 한국 영화가 세계 정상에 올랐습니다.'},
+    {year:'2021년',event:'오징어 게임 94개국 1위',desc:'넷플릭스 역대 최고 시청 기록. K드라마의 글로벌 위상이 확인되었습니다.'},
+    {year:'현재',event:'한국어 학습자 1,300만 명',desc:'한류로 인한 한국어 열풍이 전 세계에서 계속되고 있습니다.'},
+  ];
+  return `<h2>🗓️ 한류 발전 연표</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">한류의 역사적 발전 과정을 순서대로 정리했습니다.</p>
+    ${events.map(e=>`
+      <div class="timeline-item">
+        <div class="timeline-year">📅 ${e.year}</div>
+        <div class="timeline-event">⭐ ${e.event}</div>
+        <div class="timeline-desc">${e.desc}</div>
+      </div>`).join('')}`;
+}
+
+function renderReading(){
+  return `<h2>📖 읽기</h2>
+    <div class="card">
+      <div class="card-title">📄 기생충 — 한국 영화의 세계 정복</div>
+      <div class="reading-text">
+        2019년 봉준호 감독의 영화 <span class="highlight">"기생충"</span>은 세계 영화사에 새로운 역사를 썼습니다. 칸 영화제 최고상인 <span class="highlight">황금종려상</span>을 수상했고, 2020년 아카데미(오스카) 시상식에서 작품상·감독상·각본상·국제영화상 등 <span class="highlight">4관왕</span>을 차지했습니다.<br><br>
+        비영어권 영화가 오스카 작품상을 받은 것은 <span class="highlight">92년 아카데미 역사상 최초</span>였습니다. 봉준호 감독은 수상 소감에서 "1인치의 장벽(자막)을 넘으면 더 많은 영화를 즐길 수 있다"고 말했습니다.<br><br>
+        "기생충"의 성공은 단순한 영화의 성공이 아니라 한국 문화 전체의 수준을 세계에 알린 사건이었습니다. 이후 한국 영화와 드라마에 대한 세계의 관심이 폭발적으로 증가했습니다.
+      </div>
+      <div class="listen-q">
+        <div class="q-text">"기생충"이 비영어권 영화 최초로 수상한 상은 무엇인가요?</div>
+        <button class="reveal-btn" onclick="setState({readAnswers:{...STATE.readAnswers,r1:true}})">정답 확인</button>
+        ${STATE.readAnswers.r1?`<div class="answer-reveal">✅ 오스카(아카데미) 작품상</div>`:''}
+      </div>
+    </div>`;
+}
+
+function renderWriting(){
+  return `<h2>✏️ 쓰기 연습</h2>
+    <div class="card">
+      <div class="card-title">📝 한류와 나의 한국어 공부 이야기 쓰기</div>
+      <div class="writing-guide">
+        <p style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:8px">📌 다음 내용을 포함하여 150자 이상 써 보세요.</p>
+        <ul>
+          <li>한국 문화에 관심을 갖게 된 계기</li>
+          <li>좋아하는 한류 콘텐츠</li>
+          <li>한국어를 배우면서 달라진 점</li>
+        </ul>
+      </div>
+      <textarea placeholder="여기에 한국어로 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="text-align:right;font-size:12px;color:#64748b;margin-top:4px">${STATE.writingText.length}자</div>
+      <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'예문 숨기기':'예문 보기'}</button>
+      ${STATE.sampleShown?`<div class="sample-box">
+        제가 처음 한국 문화에 관심을 가진 것은 한국 드라마를 보면서부터입니다. 처음에는 자막으로 봤지만 점점 한국어가 듣고 싶어서 KIIP에 등록했습니다. K팝도 좋아해서 BTS와 BLACKPINK의 노래를 따라 부르면서 자연스럽게 발음을 연습했습니다. 한류 덕분에 한국 음식·문화·역사에도 관심을 갖게 되었습니다. 한국어를 배우면서 한국 친구들과 더 깊이 대화할 수 있게 되었고, 귀화를 결심하게 된 것도 한국 문화를 이해하면서부터였습니다. 한류가 저의 인생을 바꿨다고 해도 과장이 아닙니다.
+      </div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  return `<h2>🎎 문화 알기</h2>
+    <div class="culture-section">
+      <h4>🎤 BTS와 아미(ARMY)</h4>
+      <p>BTS는 방탄소년단의 영어 이름으로 RM, 진, 슈가, 제이홉, 지민, 뷔, 정국 7명으로 구성되었습니다. 팬클럽 이름은 ARMY로 전 세계에 수천만 명의 팬이 있습니다. BTS는 음악 외에도 UN 연설을 통해 청소년 정신건강 메시지를 전달하기도 했습니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>📺 넷플릭스와 K콘텐츠</h4>
+      <p>넷플릭스는 한국 드라마·영화에 대규모 투자를 하고 있습니다. "오징어 게임" 시즌 2 등 한국 오리지널 콘텐츠가 계속 제작됩니다. 웨이브(Wavve), 왓챠 등 한국 OTT 서비스도 있습니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>💄 한국의 뷰티 — K-Beauty</h4>
+      <p>한국 화장품(K-Beauty)은 세계 뷰티 시장에서 큰 인기를 끌고 있습니다. BB크림, 에센스, 마스크 팩 등 한국 스킨케어 제품이 세계 트렌드를 이끌고 있습니다. K팝 아이돌의 화장법이 전 세계 팬들에게 영향을 주고 있습니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>🍜 한국 음식의 세계화 — K-Food</h4>
+      <p>한식당이 세계 주요 도시에 급증하고 있습니다. 삼겹살, 치킨, 떡볶이, 라면 등이 세계적으로 인기입니다. 농심 신라면은 세계 100개국 이상에 수출됩니다. K드라마에 등장하는 음식들이 "먹방" 문화와 함께 세계인의 관심을 끌고 있습니다.</p>
+    </div>`;
+}
+
+function renderQuiz(){
+  if(STATE.quizDone){
+    const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+    return `<h2>✅ 퀴즈 결과</h2>
+      <div class="quiz-score">
+        <div class="score-num">${correct}/${QUIZ.length}</div>
+        <div style="font-size:16px;margin-top:8px">${correct>=8?'🎉 훌륭해요!':correct>=5?'👍 잘했어요!':'📚 다시 복습해 보세요'}</div>
+      </div>
+      <button class="reveal-btn" style="margin-top:16px;width:100%" onclick="setState({quizDone:false,quizAnswers:{}})">🔄 다시 풀기</button>`;
+  }
+  return `<h2>✅ 이해도 퀴즈</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">한국의 문화 2(한류·K팝·K영화)에 대한 이해도를 확인하세요. (10문제)</p>
+    ${QUIZ.map((q,i)=>`
+      <div class="quiz-card${STATE.quizAnswers[i]!==undefined?(STATE.quizAnswers[i]===q.answer?' answered-correct':' answered-wrong'):''}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>`
+            <button class="quiz-opt${STATE.quizAnswers[i]===j?(j===q.answer?' selected-correct':' selected-wrong'):''}"
+              onclick="setState({quizAnswers:{...STATE.quizAnswers,${i}:${j}}})"
+              ${STATE.quizAnswers[i]!==undefined?'disabled':''}>
+              ${j+1}. ${opt}
+            </button>`).join('')}
+        </div>
+      </div>`).join('')}
+    ${Object.keys(STATE.quizAnswers).length===QUIZ.length
+      ?`<button class="reveal-btn" style="width:100%" onclick="setState({quizDone:true})">결과 보기 →</button>`:''}`;
+}
+
+var AI_QUICK_BTNS = [
+  { emoji:'📝', label:'이 단어 설명해줘', q:'KIIP 5급 10과 어휘: 한류, K팝, 팬덤, 웹툰, 소프트파워에 대해 쉽게 설명해 주세요.' },
+  { emoji:'🎵', label:'K팝 질문', q:'BTS와 K팝이 세계적으로 성공한 이유를 설명해 주세요.' },
+  { emoji:'🎬', label:'K영화·드라마', q:'기생충과 오징어 게임의 세계적 성공이 한국에 어떤 의미가 있는지 설명해 주세요.' },
+  { emoji:'✏️', label:'내 글 첨삭', q:'KIIP 5급 학습자의 글입니다. 한류·K팝·드라마 내용이 정확한지 확인하고 첨삭해 주세요: ' },
+  { emoji:'❓', label:'퀴즈 도움', q:'KIIP 5급 10과 퀴즈에서 틀렸어요. 기생충 오스카 수상과 한류 역사를 다시 설명해 주세요.' },
+  { emoji:'🏛', label:'귀화 시험 준비', q:'귀화 시험에 자주 나오는 한국 현대 문화(한류·K팝) 관련 문제 3개를 만들어 주세요.' },
+];
+var AICHAT = {
+  history: [],
+  loading: false,
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx]; if (!b) return;
+    var inp = document.getElementById('ai-chat-input'); if (!inp) return;
+    inp.value = b.q; inp.style.borderColor = '#f59e0b';
+    if (idx === 3) { inp.focus(); return; }
+    this.send();
+  },
+  addMsg: function(role, text) {
+    var box = document.getElementById('ai-chat-messages'); if (!box) return;
+    var ph = box.querySelector('.ai-placeholder'); if (ph) ph.remove();
+    var isUser = role === 'user';
+    var d = document.createElement('div');
+    d.style.cssText = 'display:flex;flex-direction:column;align-items:' + (isUser?'flex-end':'flex-start') + ';gap:2px;margin-bottom:6px';
+    var safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    d.innerHTML = '<div style="font-size:10px;color:#888;margin:0 4px">' + (isUser?'🙋 나':'🤖 AI') + '</div><div style="max-width:90%;padding:10px 13px;border-radius:' + (isUser?'14px 14px 4px 14px':'14px 14px 14px 4px') + ';background:' + (isUser?'#f59e0b':'#fff') + ';color:' + (isUser?'#fff':'#1a202c') + ';font-size:13px;line-height:1.7;border:1px solid ' + (isUser?'#d97706':'#fde68a') + ';word-break:break-word">' + safe + '</div>';
+    box.appendChild(d); box.scrollTop = box.scrollHeight;
+  },
+  setLoading: function(on) {
+    var box = document.getElementById('ai-chat-messages');
+    var el = document.getElementById('ai-loading-dot');
+    var btn = document.getElementById('ai-send-btn');
+    if (on) {
+      if (box && !el) {
+        var ld = document.createElement('div'); ld.id = 'ai-loading-dot';
+        ld.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:6px';
+        ld.innerHTML = '<div style="display:flex;gap:4px"><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div></div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+        box.appendChild(ld); box.scrollTop = box.scrollHeight;
+      }
+      if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+    } else {
+      if (el) el.remove();
+      if (btn) { btn.textContent = '➤'; btn.disabled = false; }
+    }
+  },
+  send: async function() {
+    if (this.loading) return;
+    var inp = document.getElementById('ai-chat-input');
+    var text = inp ? inp.value.trim() : ''; if (!text) return;
+    this.history.push({role:'user', content:text});
+    this.addMsg('user', text);
+    if (inp) inp.value = '';
+    this.loading = true; this.setLoading(true);
+    var sys = 'You are a Korean civics tutor for KIIP Level 5 (한국사회이해). The student is preparing for Korean naturalization. Focus on Korean Wave (Hallyu), K-pop (BTS), K-drama (Squid Game), K-cinema (Parasite), K-webtoon, and the global influence of Korean culture. Answer in Korean. Be concise and friendly.';
+    try {
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
+      if (!reply || reply.trim() === '') throw new Error('빈 응답');
+      this.history.push({role:'assistant', content:reply});
+      this.setLoading(false); this.addMsg('assistant', reply);
+    } catch(e) {
+      this.setLoading(false);
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결: 잠시 후 다시 시도해 주세요');
+    }
+    this.loading = false;
+  }
+};
+let _toastTimer = null;
+function showReturnToast(appName, icon) {
+  let toast = document.getElementById('return-toast');
+  if (!toast) { toast = document.createElement('div'); toast.id = 'return-toast'; toast.className = 'return-toast'; document.body.appendChild(toast); }
+  const shortcuts = /iPhone|iPad|iPod/i.test(navigator.userAgent) ? '하단 탭 버튼 → KIIP 탭 선택' : /Android/i.test(navigator.userAgent) ? '상단 탭 □ 버튼 → KIIP 탭 선택' : 'Ctrl+Tab 또는 탭 바에서 KIIP 탭 클릭';
+  toast.innerHTML = '<div class="return-toast-icon">' + icon + '</div><div class="return-toast-body"><div class="return-toast-title">📍 ' + appName + ' 새 탭에서 열렸어요</div><div class="return-toast-sub">돌아오려면: <strong>' + shortcuts + '</strong></div></div><button class="return-toast-close" onclick="hideReturnToast()">✕</button><div class="return-toast-bar"></div>';
+  requestAnimationFrame(() => { toast.classList.add('show'); });
+  clearTimeout(_toastTimer); _toastTimer = setTimeout(() => hideReturnToast(), 8000);
+}
+function hideReturnToast() {
+  const toast = document.getElementById('return-toast'); if (toast) toast.classList.remove('show'); clearTimeout(_toastTimer);
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') hideReturnToast(); });
+function openGemini() { window.open('https://gemini.google.com/app', '_blank'); showReturnToast('Gemini AI', '🔵'); }
+function openClaudeFeedback() {
+  const text = STATE.writingText || '(쓰기 섹션에 글을 먼저 작성해 주세요)';
+  const prompt = 'KIIP 5급 10과 학습자의 글입니다. 한국사회이해(한류·현대문화) 내용이 정확한지 확인하고 첨삭해 주세요:\n\n' + text;
+  window.open('https://claude.ai/new?q=' + encodeURIComponent(prompt), '_blank');
+  showReturnToast('Claude AI', '🟣');
+}
+function openNotebookLM() { window.open('https://notebooklm.google.com', '_blank'); showReturnToast('NotebookLM', '📓'); }
+function copyNotebookContent() {
+  const content = 'KIIP 5급 10과 · 한국의 문화 2 (한류·K팝·K드라마·K영화)\n\n=== 핵심 내용 ===\nK팝: BTS 빌보드 1위(2018), 강남스타일 유튜브 10억뷰(2012)\nK영화: 기생충 오스카 4관왕(2020) — 비영어권 최초\nK드라마: 오징어게임 94개국 1위(2021)\n한국어 학습자 1,300만 명\n\n=== 학습 목표 ===\n한류의 역사와 K팝·K영화·웹툰의 세계적 성공을 이해하고 설명할 수 있다';
+  navigator.clipboard.writeText(content).then(() => {
+    const el = document.getElementById('copy-ok');
+    if (el) { el.textContent = '✅ 복사 완료!'; setTimeout(() => el.textContent = '', 3000); }
+  }).catch(() => { const el = document.getElementById('copy-ok'); if (el) el.textContent = '❌ 직접 복사하세요'; });
+}
+
+function renderAI(){
+  setTimeout(()=>RECORDER.autoDetect(),100);
+  const done={
+    vocab:Object.keys(STATE.vocabFlipped).length>0,
+    concept:Object.keys(STATE.topikAnswers||{}).length>0,
+    quiz:STATE.quizDone,
+  };
+  const pct=Math.round(Object.values(done).filter(Boolean).length/3*100);
+  return `
+    <h2>🤖 AI 실습</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:12px">글로컬 아카데미 × 에이전틱 G스택 한국어 학습</p>
+
+    <div style="background:linear-gradient(135deg,#064e3b,#059669);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+      <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+      <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 한국사회이해 실습 플랫폼</div>
+      <div style="font-size:11px;opacity:0.85;line-height:1.7">Google Gemini · NotebookLM · Agent Harness 연계</div>
+    </div>
+
+    <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b">
+      <div class="card-title" style="color:#92400e">⚙️ Agent Harness · 학습 진도</div>
+      <div style="background:#fef3c7;border-radius:8px;padding:10px 12px;margin:8px 0">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:13px;font-weight:700;color:#92400e">진도율</span>
+          <span style="font-size:18px;font-weight:800;color:#f59e0b">${pct}%</span>
+        </div>
+        <div style="background:#fde68a;border-radius:8px;height:8px;overflow:hidden">
+          <div style="background:#f59e0b;height:100%;width:${pct}%;transition:width 0.5s"></div>
+        </div>
+      </div>
+      ${[
+        {label:'📝 어휘 학습 완료', done:done.vocab},
+        {label:'📜 핵심 내용 확인 완료', done:done.concept},
+        {label:'✅ 퀴즈 통과', done:done.quiz},
+      ].map(t=>`
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #fde68a">
+          <span style="font-size:15px">${t.done?'✅':'⬜'}</span>
+          <div style="font-size:13px;color:${t.done?'#166534':'#555'};font-weight:${t.done?'700':'400'}">${t.label}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+      <div class="card-title" style="color:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+      <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">계정 없이 바로 AI에게 질문하세요</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+        ${AI_QUICK_BTNS.map((b,i)=>`
+          <button onclick="AICHAT.quickSend(${i})"
+            style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
+            ${b.emoji} ${b.label}
+          </button>
+        `).join('')}
+      </div>
+      <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+        <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">💡 버튼을 누르면 AI가 바로 답해줘요</div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:flex-end">
+        <textarea id="ai-chat-input" placeholder="한국어로 질문하세요..."
+          style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
+          onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#fde68a'"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"></textarea>
+        <button onclick="AICHAT.send()" id="ai-send-btn"
+          style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>
+      </div>
+      <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+    </div>
+
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-title">🌐 외부 AI 서비스 가이드</div>
+      <details style="margin-bottom:8px">
+        <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">🔵 Gemini AI — Google 계정 필요</summary>
+        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          gemini.google.com에서 한류·K팝·K영화 내용 질문, 토론 연습에 활용하세요.<br>
+          <button onclick="openGemini()" style="background:#1d4ed8;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">🔵 Gemini 열기</button>
+        </div>
+      </details>
+      <details style="margin-bottom:8px">
+        <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">🟣 Claude AI — 이메일 계정 필요</summary>
+        <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          쓰기 첨삭 및 내용 검토에 특화. 쓰기 섹션 글을 자동 전송합니다.<br>
+          <button onclick="openClaudeFeedback()" style="background:#7c3aed;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">🟣 내 글 첨삭 요청하기</button>
+        </div>
+      </details>
+      <details>
+        <summary style="background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">📓 NotebookLM — Google 계정 필요</summary>
+        <div style="background:#fff8f0;border:1px solid #fed7aa;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          이 과 내용을 복사해서 NotebookLM에 넣고 Q&A 정리에 활용하세요.<br>
+          <button onclick="copyNotebookContent()" style="background:#ea4335;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">📋 이 과 학습 내용 복사하기</button>
+          <span id="copy-ok" style="font-size:11px;color:#059669;margin-left:6px"></span>
+        </div>
+      </details>
+    </div>
+
+    <div class="card" style="margin-bottom:10px;background:#f0fdf4;border:1px solid #86efac">
+      <div class="card-title" style="color:#059669">🎤 AI 발음 코치 · 녹음 & 재생</div>
+      <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">원어민 듣기 → 내가 녹음 → 다시 들으며 비교</div>
+      <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#166534">🆓 <strong>완전 무료</strong> — 브라우저 내장 API</div>
+
+      <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:14px;margin-bottom:10px">
+        <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px">🎙️ 마이크 허용 필요</div>
+        <div id="mic-perm-state" style="margin-bottom:10px"></div>
+        <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:8px">🚫 마이크 차단됨</div>
+          <div style="font-size:12px;line-height:2;color:#1a202c">
+            <strong>Chrome/Edge (PC):</strong> 🔒 → 마이크 → 허용 → F5<br>
+            <strong>Android:</strong> ⋮ → 사이트 설정 → 마이크 → 허용
+          </div>
+        </div>
+        <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+          style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:12px;font-size:14px;font-weight:800">
+          🎙️ 마이크 허용하기 (여기 클릭)
+        </button>
+        <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>
+      </div>
+
+      ${PRON_SENTS_DATA.map((item,i)=>`
+        <div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+          <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:8px">${item.sent}</div>
+          <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+            <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+            <button onclick="TTS.speak('${item.sent.replace(/'/g,"\\'")}'); this.textContent='🔊 재생 중...'; setTimeout(()=>this.textContent='🔊 원어민',2000)"
+              style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🔊 원어민</button>
+            <button id="rec-btn-${i}" onclick="RECORDER.start(${i},'${item.sent.replace(/'/g,"\\'")}',this)"
+              style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🎤 녹음</button>
+            <button id="play-btn-${i}" disabled
+              style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;opacity:0.4">▶ 내 발음 듣기</button>
+          </div>
+          <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:16px"></div>
+        </div>
+      `).join('')}
+
+      <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+        <strong>📖 사용법:</strong><br>
+        1️⃣ 🔊 원어민 — 먼저 들으세요 · 2️⃣ 🎤 녹음 — 말하기<br>
+        3️⃣ ▶ 내 발음 듣기 — 녹음 후 활성화 · 4️⃣ 🟢 80%+ · 🟡 50~79% · 🔴 50% 미만
+      </div>
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+      <div class="card-title" style="color:#059669">🌐 글로컬 G스택 학습법</div>
+      <div style="font-size:12px;color:#166634;margin:8px 0;line-height:1.8">
+        <strong>글로컬 아카데미 AI 에이전트 기반 4단계 학습법:</strong><br>
+        ① 어휘/핵심내용 → Gemini 설명 요청<br>
+        ② 말하기 → Gemini 토론 실습<br>
+        ③ 쓰기 → Claude AI 첨삭<br>
+        ④ 복습 → NotebookLM Q&A 정리
+      </div>
+    </div>
+  `;
+}
+
+render();
+</script>
+</body>
+</html>

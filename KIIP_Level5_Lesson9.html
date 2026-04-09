@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 5급 9과 · 한국의 문화 1</title>
+<meta name="theme-color" content="#059669"/>
+<meta property="og:title" content="KIIP 5급 9과 · 한국의 문화 1"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level5_Lesson9.html"/>
+<meta property="og:description" content="KIIP 5급 9과 한국의 문화 1 - 전통문화, 명절, 한복, 한식, 전통 의례"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#059669;--dark:#065f46;--mid:#047857;--lgreen:#22c55e;--red:#ef4444;--gray:#f0fdf4;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--dark);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(6,79,70,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #a7f3d0;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green);font-weight:700}
+.tab-btn:hover{background:#ecfdf5}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #a7f3d0;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(6,79,70,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--green)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(6,79,70,0.08);border:1px solid #a7f3d0}
+.card-title{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--dark);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--green)}
+h3{font-size:16px;font-weight:700;color:var(--mid);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #a7f3d0;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 4px 12px rgba(5,150,105,0.15)}
+.vocab-card.flipped{background:var(--mid);color:#fff;border-color:var(--mid)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--dark)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--green);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--green);margin:14px 0 8px;padding:4px 10px;background:#ecfdf5;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.concept-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.concept-tab{padding:8px 18px;border-radius:20px;border:2px solid #a7f3d0;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.concept-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.rule-box{background:#ecfdf5;border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--mid);margin-bottom:6px}
+.timeline-item{background:#fff;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px;position:relative;padding-left:20px}
+.timeline-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--green);border-radius:4px 0 0 4px}
+.timeline-year{font-size:12px;font-weight:800;color:var(--green);margin-bottom:4px}
+.timeline-event{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.timeline-desc{font-size:13px;color:#475569;line-height:1.6}
+.topik-card{background:#ecfdf5;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #a7f3d0;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--green);background:#ecfdf5}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f0fdf4;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--green);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--mid)}
+.bubble{background:#ecfdf5;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#a7f3d0}
+.listen-script-box{background:#f0fdf4;border:2px dashed #a7f3d0;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--dark)}
+.listen-q{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px}
+.reveal-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--mid)}
+.reading-text{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--green);font-weight:700}
+.writing-guide{background:#ecfdf5;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--dark)}
+textarea{width:100%;border:2px solid #a7f3d0;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--green)}
+.sample-box{background:#ecfdf5;border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--dark);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--dark);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #a7f3d0;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #a7f3d0;background:#f0fdf4;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--green);background:#ecfdf5}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--dark);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#6ee7b7}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #a7f3d0}
+.pron-sent{background:#f0fdf4;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--dark);flex:1}
+.rec-btn{background:var(--green);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--mid)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #a7f3d0;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#ecfdf5;border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--dark)}
+.intro-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--green) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--dark)}
+.objective-list li::before{content:'✓';color:var(--green);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #a7f3d0;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--dark)}
+.section-nav-btn:hover{border-color:var(--green);background:#ecfdf5;color:var(--green)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+.check-btn{background:var(--green);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer}
+.check-btn:hover{background:var(--mid)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.return-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);z-index:999;background:#1e3a5f;color:#fff;border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px;max-width:calc(100vw - 32px);box-shadow:0 4px 20px rgba(0,0,0,0.3);opacity:0;transition:all 0.3s;pointer-events:none}
+.return-toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.return-toast-icon{font-size:24px;flex-shrink:0}
+.return-toast-body{flex:1;min-width:0}
+.return-toast-title{font-size:13px;font-weight:800;margin-bottom:2px}
+.return-toast-sub{font-size:11px;opacity:0.8;line-height:1.5}
+.return-toast-close{background:rgba(255,255,255,0.2);border:none;color:#fff;border-radius:50%;width:24px;height:24px;font-size:12px;cursor:pointer;flex-shrink:0}
+.return-toast-bar{position:absolute;bottom:0;left:0;height:3px;background:#f59e0b;border-radius:0 0 14px 14px;animation:toastTimer 8s linear forwards}
+@keyframes toastTimer{from{width:100%}to{width:0%}}
+@keyframes aiDot{0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},
+  listenRevealed:false,listenAnswers:{},
+  conceptTab:0,topikAnswers:{},
+  readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'핵심',icon:'📜'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'연표',icon:'🗓️'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'명절',hanja:'명절(名節)',en:'National holiday',vi:'Ngày lễ truyền thống',cat:'명절'},
+  {ko:'설날',hanja:'설날',en:'Lunar New Year (January 1st of lunar calendar)',vi:'Tết Nguyên Đán',cat:'명절'},
+  {ko:'추석',hanja:'추석(秋夕)',en:'Korean Thanksgiving (August 15th lunar)',vi:'Tết Trung Thu Hàn Quốc',cat:'명절'},
+  {ko:'차례',hanja:'차례(茶禮)',en:'Ancestral rites ceremony',vi:'Lễ cúng tổ tiên',cat:'명절'},
+  {ko:'성묘',hanja:'성묘(省墓)',en:'Visiting ancestral graves',vi:'Thăm mộ tổ tiên',cat:'명절'},
+  {ko:'한복',hanja:'한복(韓服)',en:'Hanbok (traditional Korean clothing)',vi:'Trang phục truyền thống Hàn Quốc',cat:'전통 의례'},
+  {ko:'돌잔치',hanja:'돌잔치',en:'First birthday celebration',vi:'Tiệc thôi nôi',cat:'전통 의례'},
+  {ko:'결혼식',hanja:'결혼식(結婚式)',en:'Wedding ceremony',vi:'Lễ cưới',cat:'전통 의례'},
+  {ko:'제사',hanja:'제사(祭祀)',en:'Memorial rite for ancestors',vi:'Lễ giỗ',cat:'전통 의례'},
+  {ko:'회갑',hanja:'회갑(回甲)',en:'60th birthday celebration',vi:'Lễ mừng thọ 60 tuổi',cat:'전통 의례'},
+  {ko:'한식',hanja:'한식(韓食)',en:'Korean cuisine',vi:'Ẩm thực Hàn Quốc',cat:'한식'},
+  {ko:'김치',hanja:'김치(kimchi)',en:'Kimchi (fermented vegetables)',vi:'Kim chi',cat:'한식'},
+  {ko:'된장',hanja:'된장(doenjang)',en:'Fermented soybean paste',vi:'Tương đậu lên men',cat:'한식'},
+  {ko:'비빔밥',hanja:'비빔밥',en:'Bibimbap (mixed rice bowl)',vi:'Cơm trộn Hàn Quốc',cat:'한식'},
+  {ko:'불고기',hanja:'불고기',en:'Bulgogi (marinated grilled beef)',vi:'Thịt bò nướng ướp gia vị',cat:'한식'},
+  {ko:'태권도',hanja:'태권도(跆拳道)',en:'Taekwondo',vi:'Taekwondo',cat:'전통 문화'},
+  {ko:'한옥',hanja:'한옥(韓屋)',en:'Traditional Korean house',vi:'Nhà truyền thống Hàn Quốc',cat:'전통 문화'},
+  {ko:'온돌',hanja:'온돌(溫突)',en:'Korean underfloor heating',vi:'Sưởi sàn truyền thống',cat:'전통 문화'},
+  {ko:'사물놀이',hanja:'사물놀이',en:'Samulnori (traditional percussion music)',vi:'Nhạc gõ truyền thống',cat:'전통 문화'},
+  {ko:'판소리',hanja:'판소리',en:'Pansori (Korean epic singing)',vi:'Hát kể chuyện truyền thống',cat:'전통 문화'},
+];
+
+const CONCEPT1={
+  title:'한국의 명절과 전통 의례',
+  summary:'설날과 추석은 한국의 가장 큰 명절입니다. 조상을 공경하는 전통과 가족이 함께 모이는 문화가 현대에도 이어지고 있습니다.',
+  points:[
+    {title:'설날 (음력 1월 1일)',desc:'음력 새해 첫날로 한국 최대 명절 중 하나입니다. 가족이 모여 차례(조상에게 드리는 제사)를 지내고 어른들께 세배(큰절)를 드립니다. 어른들은 세뱃돈을 줍니다. 전통 음식: 떡국(새해 나이를 한 살 더 먹는 음식), 전, 나물.'},
+    {title:'추석 (음력 8월 15일)',desc:'한가위라고도 합니다. 가을 수확에 감사하는 명절로 차례를 지내고 성묘(조상 묘 방문)를 합니다. 전통 음식: 송편(반달 모양의 떡), 전, 나물, 햇과일. "더도 말고 덜도 말고 한가위만 같아라"는 속담이 있습니다.'},
+    {title:'돌잔치와 회갑',desc:'돌잔치: 아이의 첫 번째 생일을 축하하는 행사. 돌잡이(아이가 물건을 잡아 미래를 점침)가 유명합니다. 회갑(환갑): 61세 생일을 가족이 모여 크게 축하하는 행사. 요즘은 70세(칠순)를 더 크게 기념하기도 합니다.'},
+    {title:'제사와 차례',desc:'제사: 돌아가신 조상을 기리는 의례로 기일(기일)에 지냅니다. 차례: 설날·추석 등 명절에 조상에게 드리는 간단한 제사. 이러한 전통은 유교 문화에서 비롯된 조상 공경의 표현입니다. 최근에는 전통 방식이 간소화되거나 현대식으로 변화하고 있습니다.'},
+  ],
+  questions:[
+    {q:'추석의 전통 음식은?',opts:['떡국','송편','팥죽','식혜'],answer:1},
+    {q:'설날에 어른께 드리는 인사는?',opts:['제사','성묘','세배','차례'],answer:2},
+  ]
+};
+
+const CONCEPT2={
+  title:'한국의 음식 문화와 전통 예술',
+  summary:'한식은 세계가 주목하는 건강한 발효 음식 문화입니다. 태권도, 한옥, 온돌, 판소리 등 다양한 전통 문화가 유네스코에 등재되며 세계적 가치를 인정받고 있습니다.',
+  points:[
+    {title:'한식의 특징',desc:'발효 음식(김치·된장·간장·고추장)이 발달했습니다. 다양한 반찬과 국, 밥으로 구성된 한 상 차림이 특징입니다. 비빔밥, 불고기, 삼겹살, 냉면, 순두부찌개 등이 세계적으로 유명합니다. 2013년 김장 문화가 유네스코 인류무형문화유산에 등재되었습니다.'},
+    {title:'한복',desc:'한복은 한국의 전통 의상으로 설날·추석 등 명절에 입습니다. 저고리(상의)와 치마(여성)/바지(남성)로 구성됩니다. 색이 화려하고 선이 아름다운 것이 특징입니다. 최근에는 일상에서도 즐기는 "생활한복"이 유행합니다.'},
+    {title:'유네스코 등재 한국 문화',desc:'판소리(2003): 창(노래)과 고수(북)의 합주로 이야기를 전달하는 전통 공연. 강강술래(2009): 추석에 여성들이 원을 그리며 추는 전통 춤. 아리랑(2012): 한국의 대표 민요. 씨름(2018): 한국 전통 씨름. 한국의 유네스코 무형문화유산은 22개입니다.'},
+    {title:'전통 주거 — 한옥과 온돌',desc:'한옥은 자연과 조화를 이루는 전통 가옥입니다. 온돌(바닥 난방)은 한옥의 핵심 요소로 현대 아파트에도 이어졌습니다. 경복궁·창덕궁·북촌한옥마을 등에서 전통 건축을 체험할 수 있습니다.'},
+  ],
+  questions:[
+    {q:'유네스코에 등재된 한국의 전통 발효 음식 문화는?',opts:['비빔밥','김장 문화','불고기','삼겹살'],answer:1},
+    {q:'온돌이란 무엇인가요?',opts:['전통 음식','바닥 난방 시스템','전통 의상','전통 놀이'],answer:1},
+  ]
+};
+
+const QUIZ=[
+  {q:'설날의 전통 음식은?',opts:['송편','떡국','팥죽','약식'],answer:1},
+  {q:'추석의 전통 음식은?',opts:['떡국','팥죽','송편','식혜'],answer:2},
+  {q:'한국에서 아이의 첫 번째 생일 잔치를 무엇이라 하나요?',opts:['회갑','돌잔치','제사','차례'],answer:1},
+  {q:'김장 문화가 유네스코에 등재된 해는?',opts:['2003년','2009년','2012년','2013년'],answer:3},
+  {q:'한국 전통 바닥 난방 시스템은?',opts:['한복','온돌','한옥','판소리'],answer:1},
+  {q:'태권도가 올림픽 정식 종목이 된 해는?',opts:['1988년','1992년','1996년','2000년'],answer:3},
+  {q:'한국 전통 발효 음식이 아닌 것은?',opts:['김치','된장','비빔밥','고추장'],answer:2},
+  {q:'추석의 또 다른 이름은?',opts:['설날','한가위','제석','동지'],answer:1},
+  {q:'유네스코에 가장 먼저 등재된 한국 무형문화유산은?',opts:['아리랑','씨름','판소리','강강술래'],answer:2},
+  {q:'한국 전통 의상의 이름은?',opts:['기모노','아오자이','한복','치파오'],answer:2},
+];
+
+const PRON_SENTS_DATA=[
+  {sent:'설날에는 차례를 지내고 어른께 세배를 드립니다.'},
+  {sent:'추석은 음력 8월 15일로 송편을 만들어 먹는 명절입니다.'},
+  {sent:'김장 문화는 2013년 유네스코 인류무형문화유산에 등재되었습니다.'},
+  {sent:'태권도는 2000년 시드니 올림픽부터 정식 종목이 되었습니다.'},
+];
+
+const RECORDER = {
+  streams: {},
+  recorders: {},
+  chunks: {},
+  audioURLs: {},
+  isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    const resultEl = document.getElementById('stt-result-' + idx);
+    const playBtn  = document.getElementById('play-btn-' + idx);
+    const scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, targetText, recBtn); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      this.streams[idx] = stream;
+    } catch(e) {
+      const name = e.name || '';
+      let msg = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg = '❌ <strong>마이크가 차단됨</strong> — 브라우저 주소창 🔒 → 마이크 → <strong>허용</strong> 후 새로고침';
+      } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
+        msg = '❌ <strong>마이크를 찾을 수 없어요</strong> — 마이크 연결을 확인하세요';
+      } else {
+        msg = '❌ <strong>오류: ' + name + '</strong> — Chrome/Edge에서 다시 시도하세요';
+      }
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    const mr = new MediaRecorder(this.streams[idx]);
+    this.recorders[idx] = mr;
+    mr.ondataavailable = e => { if (e.data.size > 0) this.chunks[idx].push(e.data); };
+    mr.onstop = () => {
+      if (this.audioURLs[idx]) URL.revokeObjectURL(this.audioURLs[idx]);
+      const blob = new Blob(this.chunks[idx], {type: 'audio/webm'});
+      this.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false;
+        playBtn.style.opacity = '1';
+        playBtn.onclick = () => { const a = new Audio(this.audioURLs[idx]); a.play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지';
+    recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      const rec = new SR();
+      rec.lang = 'ko-KR';
+      rec.continuous = false;
+      rec.interimResults = false;
+      rec.onresult = (e) => {
+        const said   = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        const target = targetText.replace(/[\s,.?!]/g,'');
+        const conf   = e.results[0][0].confidence;
+        let match = 0;
+        const minLen = Math.min(said.length, target.length);
+        for (let i = 0; i < minLen; i++) { if (said[i] === target[i]) match++; }
+        const pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        const confPct = Math.round((conf || 0.5) * 100);
+        const finalPct = Math.round((pct * 0.7) + (confPct * 0.3));
+        const color = finalPct >= 80 ? '#22c55e' : finalPct >= 50 ? '#f59e0b' : '#ef4444';
+        const msg   = finalPct >= 80 ? '✅ 완벽해요!' : finalPct >= 50 ? '🔄 조금 더 연습!' : '❌ 다시 시도!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = finalPct + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = () => {};
+      rec.start();
+    }
+  },
+
+  async autoDetect() {
+    const stateEl = document.getElementById('mic-perm-state');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        const result = await navigator.permissions.query({name: 'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 이미 허용됨 — 바로 녹음하세요!</div>';
+          if (allowBtn) { allowBtn.style.background = '#166534'; allowBtn.textContent = '✅ 허용됨 — 바로 녹음하세요'; }
+          if (blockedGuide) blockedGuide.style.display = 'none';
+          return;
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 아래 안내대로 해결하세요</div>';
+          if (blockedGuide) blockedGuide.style.display = 'block';
+          if (allowBtn) { allowBtn.style.background = '#ef4444'; allowBtn.textContent = '⚠️ 차단됨 — 위 단계 완료 후 여기 클릭'; }
+          return;
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아직 허용 안 됨 — 아래 버튼을 눌러 허용해 주세요</div>';
+        }
+        result.onchange = () => RECORDER.autoDetect();
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+      }
+    } else {
+      stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+    }
+  },
+
+  async checkPermission(btn) {
+    const statusEl = document.getElementById('mic-status');
+    const box = document.getElementById('mic-check-box');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → elimg.com에서 열기</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 미지원 브라우저 — Chrome 또는 Edge를 사용해 주세요</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      stream.getTracks().forEach(t => t.stop());
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 바로 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 성공!</span>';
+      if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
+      if (blockedGuide) blockedGuide.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 바로 녹음하세요!'; btn.style.background = '#166534'; btn.disabled = false;
+    } catch(e) {
+      const name = e.name || '';
+      btn.disabled = false;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        if (blockedGuide) blockedGuide.style.display = 'block';
+        if (stateEl) stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 안내대로 해결 후 다시 클릭</div>';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444;font-size:11px">🔒 허용 완료 후 이 버튼을 다시 눌러주세요</span>';
+        btn.textContent = '🔄 허용 완료 후 다시 클릭'; btn.style.background = '#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">오류 (' + name + ') — Chrome/Edge에서 다시 시도</span>';
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
+      }
+    }
+  },
+
+  stop(idx, targetText, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') {
+      this.recorders[idx].stop();
+    }
+    if (this.streams[idx]) {
+      this.streams[idx].getTracks().forEach(t => t.stop());
+    }
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음';
+    recBtn.style.background = '#059669';
+  }
+};
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
+}
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level5_Lesson8">← 8과</a>
+      <span class="nav-title">5급 9과 · 한국의 문화 1</span>
+      <a href="/KIIP_Level5_Lesson10">10과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level5_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level5_Lesson10"><span class="icon">➡️</span>10과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let html;
+      if(STATE.conceptTab===0){html=renderConceptBlock(CONCEPT1,'c1');}
+      else{html=renderConceptBlock(CONCEPT2,'c2');}
+      return `<h2>📜 핵심 내용</h2>
+        <div class="concept-tabs">
+          <button class="concept-tab${STATE.conceptTab===0?' active':''}" onclick="setState({conceptTab:0})">1. 명절과 전통 의례</button>
+          <button class="concept-tab${STATE.conceptTab===1?' active':''}" onclick="setState({conceptTab:1})">2. 한식과 전통 문화</button>
+        </div>${html}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderTimeline();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10: return renderAI();
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 5급 · 9과</div>
+      <h1>🎎 한국의 문화 1</h1>
+      <div class="subtitle">전통문화 · 명절 · 한복 · 한식 · 전통 의례<br>Traditional Culture · Holidays · Hanbok · Korean Food · Ceremonies</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>설날과 추석의 풍습과 전통 음식을 설명할 수 있다.</li>
+        <li>돌잔치·제사·차례 등 한국 전통 의례를 이해할 수 있다.</li>
+        <li>김치·된장 등 한식의 특징과 건강 가치를 설명할 수 있다.</li>
+        <li>유네스코에 등재된 한국 전통문화(판소리·김장·아리랑 등)를 말할 수 있다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 단원 개요</div>
+      <p style="font-size:14px;line-height:1.8;color:#334155">
+        설날에 먹는 떡국, 추석에 빚는 송편, 온 가족이 함께하는 김장. 한국의 전통문화는 음식과 함께, 가족과 함께 살아 숨쉽니다. 명절 풍습부터 세계가 인정한 유네스코 문화유산까지, 한국 전통문화의 아름다움을 배워봅니다.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-title">📚 학습 내용</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.slice(1).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `<h2>📝 핵심 어휘</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">카드를 클릭하면 뜻이 나타납니다. 🔊 버튼으로 발음을 들어보세요.</p>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">📌 ${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map((v,i)=>{
+          const key=v.ko;
+          const flipped=STATE.vocabFlipped[key];
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="setState({vocabFlipped:{...STATE.vocabFlipped,'${key}':${!flipped}}})">
+            ${flipped
+              ?`<div class="vocab-ko">${v.en}</div><div class="vocab-hanja">${v.vi}</div>`
+              :`<div class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</div>
+                <div class="vocab-hanja">${v.hanja}</div>
+                <div class="vocab-eng">${v.en}</div>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderConceptBlock(concept,prefix){
+  return `
+    <div class="card">
+      <div class="card-title">📜 ${concept.title}</div>
+      <p style="font-size:14px;color:#334155;margin-bottom:16px;line-height:1.7">${concept.summary}</p>
+      ${concept.points.map((p,i)=>`
+        <div class="rule-box">
+          <div class="rule-title">📌 ${p.title}</div>
+          <p style="font-size:14px;line-height:1.7;color:#334155">${p.desc}</p>
+        </div>`).join('')}
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 확인 문제</div>
+      ${concept.questions.map((q,i)=>`
+        <div class="topik-card">
+          <div class="q-text">${i+1}. ${q.q}</div>
+          <div class="topik-options">
+            ${q.opts.map((opt,j)=>`
+              <button class="topik-opt${STATE.topikAnswers[prefix+i]===j?(j===q.answer?' correct':' wrong'):''}"
+                onclick="setState({topikAnswers:{...STATE.topikAnswers,'${prefix+i}':${j}}})"
+                ${STATE.topikAnswers[prefix+i]!==undefined?'disabled':''}>
+                ${j+1}. ${opt}
+              </button>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderSpeaking(){
+  return `<h2>💬 말하기 연습</h2>
+    <div class="card">
+      <div class="card-title">🎯 주제 대화</div>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <span class="speaker">A</span>
+          <div class="bubble">한국의 명절에 가족들이 무엇을 하나요? ${ttsBtn('한국의 명절에 가족들이 무엇을 하나요?')}</div>
+        </div>
+        <div class="dialogue-line b">
+          <span class="speaker">B</span>
+          <div class="bubble">설날에는 차례를 지내고 어른들께 세배를 드려요. 세뱃돈도 받고요! ${ttsBtn('설날에는 차례를 지내고 어른들께 세배를 드려요. 세뱃돈도 받고요!')}</div>
+        </div>
+        <div class="dialogue-line">
+          <span class="speaker">A</span>
+          <div class="bubble">추석에는요? ${ttsBtn('추석에는요?')}</div>
+        </div>
+        <div class="dialogue-line b">
+          <span class="speaker">B</span>
+          <div class="bubble">추석에는 성묘를 하고 송편을 만들어 먹어요. 가족이 모두 모이는 가장 큰 날 중 하나예요. ${ttsBtn('추석에는 성묘를 하고 송편을 만들어 먹어요. 가족이 모두 모이는 가장 큰 날 중 하나예요.')}</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">💬 말하기 주제</div>
+      <div class="speaking-topics">
+        <div class="speaking-topic">여러분 나라의 가장 중요한 명절은 무엇인가요? 한국의 설날·추석과 비교해 보세요.</div>
+        <div class="speaking-topic">한국 음식 중에서 가장 좋아하는 것은 무엇인가요? 이유를 말해 보세요.</div>
+        <div class="speaking-topic">여러분 나라의 전통 의상과 한복을 비교해 보세요.</div>
+      </div>
+    </div>`;
+}
+
+function renderListening(){
+  return `<h2>👂 듣기 · 이해하기</h2>
+    <div class="card">
+      <div class="card-title">📻 한국의 명절과 전통문화 강의 내용</div>
+      <p style="font-size:13px;color:#64748b;margin-bottom:12px">아래 내용을 읽고 질문에 답하세요.</p>
+      <div class="listen-script-box">
+        한국의 대표 명절은 설날과 추석입니다. 설날은 음력 1월 1일로 가족이 모여 차례를 지내고 어른께 세배를 드립니다. 떡국을 먹어야 나이를 한 살 더 먹는다고 합니다. 추석은 음력 8월 15일로 "한가위"라고도 합니다. 송편을 만들어 먹고 성묘를 합니다. 한식은 세계가 주목하는 건강 음식입니다. 김치, 된장, 고추장 같은 발효 음식이 특징입니다. 2013년 김장 문화가 유네스코 인류무형문화유산에 등재되었습니다. 판소리, 아리랑, 씨름, 강강술래 등 한국의 전통 문화 22개가 유네스코에 등재되어 있습니다.
+      </div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:true})">📖 내용 확인</button>
+    </div>
+    <div class="listen-q">
+      <div class="q-text">1. 설날의 전통 음식은 무엇인가요?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 떡국</div>`:''}
+    </div>
+    <div class="listen-q">
+      <div class="q-text">2. 추석의 또 다른 이름은?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 한가위</div>`:''}
+    </div>
+    <div class="listen-q">
+      <div class="q-text">3. 김장 문화가 유네스코에 등재된 해는?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 2013년</div>`:''}
+    </div>`;
+}
+
+function renderTimeline(){
+  const events=[
+    {year:'2003년',event:'판소리 유네스코 등재',desc:'한국 최초의 유네스코 인류무형문화유산 등재.'},
+    {year:'2008년',event:'한식 세계화 정책',desc:'정부가 한식을 세계 5대 음식으로 알리는 정책을 추진했습니다.'},
+    {year:'2009년',event:'강강술래·처용무·남사당놀이 등 유네스코 등재',desc:'한국 전통 공연 문화가 세계적으로 인정받았습니다.'},
+    {year:'2010년',event:'한국의 역사마을 유네스코 세계유산 등재',desc:'하회마을·양동마을이 등재되었습니다.'},
+    {year:'2012년',event:'아리랑 유네스코 등재',desc:'한국 대표 민요가 세계 유산이 되었습니다.'},
+    {year:'2013년',event:'김장 문화 유네스코 등재',desc:'한국의 발효 음식 문화가 세계적으로 인정받았습니다.'},
+    {year:'2018년',event:'씨름 유네스코 등재',desc:'한국 전통 씨름이 등재되었습니다. 현재 한국의 유네스코 무형문화유산은 22개.'},
+  ];
+  return `<h2>🗓️ 한국 전통문화 유네스코 등재 연표</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">한국 전통문화의 유네스코 등재 및 세계화 관련 주요 사건을 순서대로 정리했습니다.</p>
+    ${events.map(e=>`
+      <div class="timeline-item">
+        <div class="timeline-year">📅 ${e.year}</div>
+        <div class="timeline-event">⭐ ${e.event}</div>
+        <div class="timeline-desc">${e.desc}</div>
+      </div>`).join('')}`;
+}
+
+function renderReading(){
+  return `<h2>📖 읽기</h2>
+    <div class="card">
+      <div class="card-title">📄 김치 — 세계가 사랑하는 한국의 맛</div>
+      <div class="reading-text">
+        김치는 대한민국을 대표하는 <span class="highlight">발효 음식</span>입니다. 배추·무·오이 등 채소에 고춧가루·마늘·생강·젓갈 등을 넣고 발효시킨 음식으로, 한국인의 밥상에 빠질 수 없는 기본 반찬입니다.<br><br>
+        김치는 건강에도 매우 좋습니다. 발효 과정에서 생성되는 <span class="highlight">유산균</span>은 장 건강을 돕습니다. 비타민과 미네랄이 풍부하여 면역력 향상에도 좋습니다. 세계적인 건강 매체들이 김치를 <span class="highlight">"세계 5대 건강 음식"</span> 중 하나로 선정하기도 했습니다.<br><br>
+        겨울을 준비하며 많은 양의 김치를 담그는 <span class="highlight">"김장"</span> 문화는 2013년 유네스코 인류무형문화유산에 등재되었습니다. 이웃과 함께 김장을 하며 나누는 공동체 문화가 높이 평가받았습니다.
+      </div>
+      <div class="listen-q">
+        <div class="q-text">김장 문화가 유네스코에 등재된 이유는 무엇인가요?</div>
+        <button class="reveal-btn" onclick="setState({readAnswers:{...STATE.readAnswers,r1:true}})">정답 확인</button>
+        ${STATE.readAnswers.r1?`<div class="answer-reveal">✅ 이웃과 함께 김치를 담그고 나누는 공동체 문화적 가치 인정</div>`:''}
+      </div>
+    </div>`;
+}
+
+function renderWriting(){
+  return `<h2>✏️ 쓰기 연습</h2>
+    <div class="card">
+      <div class="card-title">📝 한국의 전통문화 중 가장 인상적인 것에 대해 쓰기</div>
+      <div class="writing-guide">
+        <p style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:8px">📌 다음 내용을 포함하여 150자 이상 써 보세요.</p>
+        <ul>
+          <li>어떤 전통문화를 선택했는지</li>
+          <li>그것이 인상적인 이유</li>
+          <li>자신의 나라 문화와 비교</li>
+        </ul>
+      </div>
+      <textarea placeholder="여기에 한국어로 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="text-align:right;font-size:12px;color:#64748b;margin-top:4px">${STATE.writingText.length}자</div>
+      <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'예문 숨기기':'예문 보기'}</button>
+      ${STATE.sampleShown?`<div class="sample-box">
+        한국의 전통문화 중 제가 가장 인상적으로 생각하는 것은 명절 문화입니다. 설날과 추석에 온 가족이 모여 차례를 지내고 음식을 함께 만드는 모습이 아름답습니다. 특히 어른께 세배를 드리고 세뱃돈을 받는 문화는 경로 사상이 반영된 따뜻한 전통이라고 생각합니다. 저의 나라도 가족이 함께 모이는 명절이 있지만, 조상에게 차례를 지내는 문화는 한국만의 특별한 전통 같습니다. 한국에서 살면서 이런 전통에 직접 참여해 볼 수 있어서 좋습니다.
+      </div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  return `<h2>🎎 문화 알기</h2>
+    <div class="culture-section">
+      <h4>🗓️ 한국의 국경일과 공휴일</h4>
+      <p>삼일절(3월 1일), 어린이날(5월 5일), 현충일(6월 6일), 광복절(8월 15일), 개천절(10월 3일), 한글날(10월 9일). 설날·추석 연휴는 앞뒤 이틀씩 포함하여 3일간 공휴일입니다. 한국의 공휴일은 연간 약 16일입니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>🥬 김장 문화</h4>
+      <p>김장은 보통 11~12월에 온 가족 또는 마을 사람들이 모여 함께 김치를 담그는 행사입니다. 100포기 이상의 배추를 한꺼번에 담그기도 합니다. 이웃과 나누는 문화가 있어 "김장 김치"를 나눠 먹는 풍습이 있습니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>🍵 한국의 차 문화</h4>
+      <p>한국에는 녹차(Green tea) 외에도 다양한 전통 차가 있습니다. 대추차, 생강차, 유자차, 인삼차 등이 계절에 따라 즐겨 마셔집니다. 전통 찻집(다방)에서 한옥 분위기와 함께 전통 차를 즐길 수 있습니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>🥋 태권도 — 세계로 간 한국 무술</h4>
+      <p>태권도는 한국의 전통 무술로 현재 세계 210여 개국에서 1억 명 이상이 수련합니다. 2000년 시드니 올림픽부터 정식 종목이 되었습니다. 태권도는 단순한 무술을 넘어 예절·인내·극기를 가르치는 정신 수련입니다.</p>
+    </div>`;
+}
+
+function renderQuiz(){
+  if(STATE.quizDone){
+    const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+    return `<h2>✅ 퀴즈 결과</h2>
+      <div class="quiz-score">
+        <div class="score-num">${correct}/${QUIZ.length}</div>
+        <div style="font-size:16px;margin-top:8px">${correct>=8?'🎉 훌륭해요!':correct>=5?'👍 잘했어요!':'📚 다시 복습해 보세요'}</div>
+      </div>
+      <button class="reveal-btn" style="margin-top:16px;width:100%" onclick="setState({quizDone:false,quizAnswers:{}})">🔄 다시 풀기</button>`;
+  }
+  return `<h2>✅ 이해도 퀴즈</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">한국의 문화 1에 대한 이해도를 확인하세요. (10문제)</p>
+    ${QUIZ.map((q,i)=>`
+      <div class="quiz-card${STATE.quizAnswers[i]!==undefined?(STATE.quizAnswers[i]===q.answer?' answered-correct':' answered-wrong'):''}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>`
+            <button class="quiz-opt${STATE.quizAnswers[i]===j?(j===q.answer?' selected-correct':' selected-wrong'):''}"
+              onclick="setState({quizAnswers:{...STATE.quizAnswers,${i}:${j}}})"
+              ${STATE.quizAnswers[i]!==undefined?'disabled':''}>
+              ${j+1}. ${opt}
+            </button>`).join('')}
+        </div>
+      </div>`).join('')}
+    ${Object.keys(STATE.quizAnswers).length===QUIZ.length
+      ?`<button class="reveal-btn" style="width:100%" onclick="setState({quizDone:true})">결과 보기 →</button>`:''}`;
+}
+
+var AI_QUICK_BTNS = [
+  { emoji:'📝', label:'이 단어 설명해줘', q:'KIIP 5급 9과 어휘: 명절, 차례, 세배, 온돌, 판소리에 대해 쉽게 설명해 주세요.' },
+  { emoji:'🎎', label:'명절 질문', q:'설날과 추석의 차이점, 전통 음식, 풍습을 비교해서 설명해 주세요.' },
+  { emoji:'🍜', label:'한식 이야기', q:'김치가 건강에 좋은 이유와 김장 문화의 의미를 설명해 주세요.' },
+  { emoji:'✏️', label:'내 글 첨삭', q:'KIIP 5급 학습자의 글입니다. 한국 전통문화 내용이 정확한지 확인하고 첨삭해 주세요: ' },
+  { emoji:'❓', label:'퀴즈 도움', q:'KIIP 5급 9과 퀴즈에서 틀렸어요. 설날과 추석의 전통 음식과 풍습을 다시 설명해 주세요.' },
+  { emoji:'🏛', label:'귀화 시험 준비', q:'귀화 시험에 자주 나오는 한국 전통문화(명절·한식) 문제 3개를 만들어 주세요.' },
+];
+var AICHAT = {
+  history: [],
+  loading: false,
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx]; if (!b) return;
+    var inp = document.getElementById('ai-chat-input'); if (!inp) return;
+    inp.value = b.q; inp.style.borderColor = '#f59e0b';
+    if (idx === 3) { inp.focus(); return; }
+    this.send();
+  },
+  addMsg: function(role, text) {
+    var box = document.getElementById('ai-chat-messages'); if (!box) return;
+    var ph = box.querySelector('.ai-placeholder'); if (ph) ph.remove();
+    var isUser = role === 'user';
+    var d = document.createElement('div');
+    d.style.cssText = 'display:flex;flex-direction:column;align-items:' + (isUser?'flex-end':'flex-start') + ';gap:2px;margin-bottom:6px';
+    var safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    d.innerHTML = '<div style="font-size:10px;color:#888;margin:0 4px">' + (isUser?'🙋 나':'🤖 AI') + '</div><div style="max-width:90%;padding:10px 13px;border-radius:' + (isUser?'14px 14px 4px 14px':'14px 14px 14px 4px') + ';background:' + (isUser?'#f59e0b':'#fff') + ';color:' + (isUser?'#fff':'#1a202c') + ';font-size:13px;line-height:1.7;border:1px solid ' + (isUser?'#d97706':'#fde68a') + ';word-break:break-word">' + safe + '</div>';
+    box.appendChild(d); box.scrollTop = box.scrollHeight;
+  },
+  setLoading: function(on) {
+    var box = document.getElementById('ai-chat-messages');
+    var el = document.getElementById('ai-loading-dot');
+    var btn = document.getElementById('ai-send-btn');
+    if (on) {
+      if (box && !el) {
+        var ld = document.createElement('div'); ld.id = 'ai-loading-dot';
+        ld.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:6px';
+        ld.innerHTML = '<div style="display:flex;gap:4px"><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div></div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+        box.appendChild(ld); box.scrollTop = box.scrollHeight;
+      }
+      if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+    } else {
+      if (el) el.remove();
+      if (btn) { btn.textContent = '➤'; btn.disabled = false; }
+    }
+  },
+  send: async function() {
+    if (this.loading) return;
+    var inp = document.getElementById('ai-chat-input');
+    var text = inp ? inp.value.trim() : ''; if (!text) return;
+    this.history.push({role:'user', content:text});
+    this.addMsg('user', text);
+    if (inp) inp.value = '';
+    this.loading = true; this.setLoading(true);
+    var sys = 'You are a Korean civics tutor for KIIP Level 5 (한국사회이해). The student is preparing for Korean naturalization. Focus on Korean traditional culture: Seollal, Chuseok, Hanbok, Korean food (kimchi, bulgogi), UNESCO intangible heritage, and traditional ceremonies. Answer in Korean. Be concise and friendly.';
+    try {
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
+      if (!reply || reply.trim() === '') throw new Error('빈 응답');
+      this.history.push({role:'assistant', content:reply});
+      this.setLoading(false); this.addMsg('assistant', reply);
+    } catch(e) {
+      this.setLoading(false);
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결: 잠시 후 다시 시도해 주세요');
+    }
+    this.loading = false;
+  }
+};
+let _toastTimer = null;
+function showReturnToast(appName, icon) {
+  let toast = document.getElementById('return-toast');
+  if (!toast) { toast = document.createElement('div'); toast.id = 'return-toast'; toast.className = 'return-toast'; document.body.appendChild(toast); }
+  const shortcuts = /iPhone|iPad|iPod/i.test(navigator.userAgent) ? '하단 탭 버튼 → KIIP 탭 선택' : /Android/i.test(navigator.userAgent) ? '상단 탭 □ 버튼 → KIIP 탭 선택' : 'Ctrl+Tab 또는 탭 바에서 KIIP 탭 클릭';
+  toast.innerHTML = '<div class="return-toast-icon">' + icon + '</div><div class="return-toast-body"><div class="return-toast-title">📍 ' + appName + ' 새 탭에서 열렸어요</div><div class="return-toast-sub">돌아오려면: <strong>' + shortcuts + '</strong></div></div><button class="return-toast-close" onclick="hideReturnToast()">✕</button><div class="return-toast-bar"></div>';
+  requestAnimationFrame(() => { toast.classList.add('show'); });
+  clearTimeout(_toastTimer); _toastTimer = setTimeout(() => hideReturnToast(), 8000);
+}
+function hideReturnToast() {
+  const toast = document.getElementById('return-toast'); if (toast) toast.classList.remove('show'); clearTimeout(_toastTimer);
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') hideReturnToast(); });
+function openGemini() { window.open('https://gemini.google.com/app', '_blank'); showReturnToast('Gemini AI', '🔵'); }
+function openClaudeFeedback() {
+  const text = STATE.writingText || '(쓰기 섹션에 글을 먼저 작성해 주세요)';
+  const prompt = 'KIIP 5급 9과 학습자의 글입니다. 한국사회이해(전통문화·명절) 내용이 정확한지 확인하고 첨삭해 주세요:\n\n' + text;
+  window.open('https://claude.ai/new?q=' + encodeURIComponent(prompt), '_blank');
+  showReturnToast('Claude AI', '🟣');
+}
+function openNotebookLM() { window.open('https://notebooklm.google.com', '_blank'); showReturnToast('NotebookLM', '📓'); }
+function copyNotebookContent() {
+  const content = 'KIIP 5급 9과 · 한국의 문화 1 (전통문화·명절·한복·한식)\n\n=== 핵심 내용 ===\n설날(음력 1/1): 차례·세배·떡국\n추석(음력 8/15, 한가위): 차례·성묘·송편\n김장문화 유네스코 등재(2013)\n유네스코 무형문화유산 22개\n\n=== 학습 목표 ===\n한국의 명절·전통문화·한식 문화를 이해하고 설명할 수 있다';
+  navigator.clipboard.writeText(content).then(() => {
+    const el = document.getElementById('copy-ok');
+    if (el) { el.textContent = '✅ 복사 완료!'; setTimeout(() => el.textContent = '', 3000); }
+  }).catch(() => { const el = document.getElementById('copy-ok'); if (el) el.textContent = '❌ 직접 복사하세요'; });
+}
+
+function renderAI(){
+  setTimeout(()=>RECORDER.autoDetect(),100);
+  const done={
+    vocab:Object.keys(STATE.vocabFlipped).length>0,
+    concept:Object.keys(STATE.topikAnswers||{}).length>0,
+    quiz:STATE.quizDone,
+  };
+  const pct=Math.round(Object.values(done).filter(Boolean).length/3*100);
+  return `
+    <h2>🤖 AI 실습</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:12px">글로컬 아카데미 × 에이전틱 G스택 한국어 학습</p>
+
+    <div style="background:linear-gradient(135deg,#064e3b,#059669);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+      <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+      <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 한국사회이해 실습 플랫폼</div>
+      <div style="font-size:11px;opacity:0.85;line-height:1.7">Google Gemini · NotebookLM · Agent Harness 연계</div>
+    </div>
+
+    <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b">
+      <div class="card-title" style="color:#92400e">⚙️ Agent Harness · 학습 진도</div>
+      <div style="background:#fef3c7;border-radius:8px;padding:10px 12px;margin:8px 0">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:13px;font-weight:700;color:#92400e">진도율</span>
+          <span style="font-size:18px;font-weight:800;color:#f59e0b">${pct}%</span>
+        </div>
+        <div style="background:#fde68a;border-radius:8px;height:8px;overflow:hidden">
+          <div style="background:#f59e0b;height:100%;width:${pct}%;transition:width 0.5s"></div>
+        </div>
+      </div>
+      ${[
+        {label:'📝 어휘 학습 완료', done:done.vocab},
+        {label:'📜 핵심 내용 확인 완료', done:done.concept},
+        {label:'✅ 퀴즈 통과', done:done.quiz},
+      ].map(t=>`
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #fde68a">
+          <span style="font-size:15px">${t.done?'✅':'⬜'}</span>
+          <div style="font-size:13px;color:${t.done?'#166534':'#555'};font-weight:${t.done?'700':'400'}">${t.label}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+      <div class="card-title" style="color:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+      <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">계정 없이 바로 AI에게 질문하세요</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+        ${AI_QUICK_BTNS.map((b,i)=>`
+          <button onclick="AICHAT.quickSend(${i})"
+            style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
+            ${b.emoji} ${b.label}
+          </button>
+        `).join('')}
+      </div>
+      <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+        <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">💡 버튼을 누르면 AI가 바로 답해줘요</div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:flex-end">
+        <textarea id="ai-chat-input" placeholder="한국어로 질문하세요..."
+          style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
+          onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#fde68a'"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"></textarea>
+        <button onclick="AICHAT.send()" id="ai-send-btn"
+          style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>
+      </div>
+      <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+    </div>
+
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-title">🌐 외부 AI 서비스 가이드</div>
+      <details style="margin-bottom:8px">
+        <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">🔵 Gemini AI — Google 계정 필요</summary>
+        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          gemini.google.com에서 명절·전통문화 내용 질문, 토론 연습에 활용하세요.<br>
+          <button onclick="openGemini()" style="background:#1d4ed8;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">🔵 Gemini 열기</button>
+        </div>
+      </details>
+      <details style="margin-bottom:8px">
+        <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">🟣 Claude AI — 이메일 계정 필요</summary>
+        <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          쓰기 첨삭 및 내용 검토에 특화. 쓰기 섹션 글을 자동 전송합니다.<br>
+          <button onclick="openClaudeFeedback()" style="background:#7c3aed;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">🟣 내 글 첨삭 요청하기</button>
+        </div>
+      </details>
+      <details>
+        <summary style="background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">📓 NotebookLM — Google 계정 필요</summary>
+        <div style="background:#fff8f0;border:1px solid #fed7aa;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          이 과 내용을 복사해서 NotebookLM에 넣고 Q&A 정리에 활용하세요.<br>
+          <button onclick="copyNotebookContent()" style="background:#ea4335;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">📋 이 과 학습 내용 복사하기</button>
+          <span id="copy-ok" style="font-size:11px;color:#059669;margin-left:6px"></span>
+        </div>
+      </details>
+    </div>
+
+    <div class="card" style="margin-bottom:10px;background:#f0fdf4;border:1px solid #86efac">
+      <div class="card-title" style="color:#059669">🎤 AI 발음 코치 · 녹음 & 재생</div>
+      <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">원어민 듣기 → 내가 녹음 → 다시 들으며 비교</div>
+      <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#166534">🆓 <strong>완전 무료</strong> — 브라우저 내장 API</div>
+
+      <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:14px;margin-bottom:10px">
+        <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px">🎙️ 마이크 허용 필요</div>
+        <div id="mic-perm-state" style="margin-bottom:10px"></div>
+        <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:8px">🚫 마이크 차단됨</div>
+          <div style="font-size:12px;line-height:2;color:#1a202c">
+            <strong>Chrome/Edge (PC):</strong> 🔒 → 마이크 → 허용 → F5<br>
+            <strong>Android:</strong> ⋮ → 사이트 설정 → 마이크 → 허용
+          </div>
+        </div>
+        <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+          style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:12px;font-size:14px;font-weight:800">
+          🎙️ 마이크 허용하기 (여기 클릭)
+        </button>
+        <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>
+      </div>
+
+      ${PRON_SENTS_DATA.map((item,i)=>`
+        <div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+          <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:8px">${item.sent}</div>
+          <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+            <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+            <button onclick="TTS.speak('${item.sent.replace(/'/g,"\\'")}'); this.textContent='🔊 재생 중...'; setTimeout(()=>this.textContent='🔊 원어민',2000)"
+              style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🔊 원어민</button>
+            <button id="rec-btn-${i}" onclick="RECORDER.start(${i},'${item.sent.replace(/'/g,"\\'")}',this)"
+              style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🎤 녹음</button>
+            <button id="play-btn-${i}" disabled
+              style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;opacity:0.4">▶ 내 발음 듣기</button>
+          </div>
+          <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:16px"></div>
+        </div>
+      `).join('')}
+
+      <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+        <strong>📖 사용법:</strong><br>
+        1️⃣ 🔊 원어민 — 먼저 들으세요 · 2️⃣ 🎤 녹음 — 말하기<br>
+        3️⃣ ▶ 내 발음 듣기 — 녹음 후 활성화 · 4️⃣ 🟢 80%+ · 🟡 50~79% · 🔴 50% 미만
+      </div>
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+      <div class="card-title" style="color:#059669">🌐 글로컬 G스택 학습법</div>
+      <div style="font-size:12px;color:#166634;margin:8px 0;line-height:1.8">
+        <strong>글로컬 아카데미 AI 에이전트 기반 4단계 학습법:</strong><br>
+        ① 어휘/핵심내용 → Gemini 설명 요청<br>
+        ② 말하기 → Gemini 토론 실습<br>
+        ③ 쓰기 → Claude AI 첨삭<br>
+        ④ 복습 → NotebookLM Q&A 정리
+      </div>
+    </div>
+  `;
+}
+
+render();
+</script>
+</body>
+</html>
