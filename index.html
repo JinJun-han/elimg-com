@@ -388,10 +388,17 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
 .kiip-demo-name{font-weight:700;color:var(--navy);font-size:15px;}
 .kiip-demo-sub{font-size:11px;color:var(--gray);}
 .kiip-levels{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;}
-.kiip-level{background:var(--gray-light);border-radius:10px;padding:12px;text-align:center;transition:.2s;cursor:default;}
-.kiip-level.active{background:linear-gradient(135deg,var(--navy),#2a52a0);color:#fff;}
-.kiip-level .kl-num{font-family:'Playfair Display',serif;font-size:22px;line-height:1;margin-bottom:4px;}
-.kiip-level .kl-name{font-size:10px;opacity:.75;}
+.kiip-level{background:var(--white);border-radius:12px;padding:14px 10px;text-align:center;transition:.22s;cursor:pointer;border:2px solid rgba(27,58,107,.12);text-decoration:none;color:inherit;display:block;position:relative;box-shadow:0 2px 8px rgba(27,58,107,.06);}
+.kiip-level:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:0 8px 24px rgba(27,58,107,.15);background:linear-gradient(135deg,#f0f4ff,#fff);}
+.kiip-level.active{background:linear-gradient(135deg,var(--navy),#2a52a0);color:#fff;border-color:var(--navy);}
+.kiip-level.active:hover{background:linear-gradient(135deg,#2a52a0,#1B3A6B);border-color:var(--gold);}
+.kiip-level.soon{background:var(--gray-light);border-color:rgba(27,58,107,.06);cursor:default;opacity:0.7;}
+.kiip-level.soon:hover{transform:none;box-shadow:none;border-color:rgba(27,58,107,.06);}
+.kiip-level .kl-num{font-family:'Playfair Display',serif;font-size:24px;line-height:1;margin-bottom:3px;}
+.kiip-level .kl-name{font-size:10px;opacity:.8;font-weight:600;}
+.kiip-level-badge{display:inline-block;font-size:8px;font-weight:800;padding:2px 6px;border-radius:8px;margin-top:4px;background:rgba(5,150,105,.15);color:#065f46;letter-spacing:.3px;}
+.kiip-level.active .kiip-level-badge{background:rgba(255,255,255,.2);color:#fff;}
+.kiip-level.soon .kiip-level-badge{background:rgba(0,0,0,.06);color:#999;}
 .kiip-feature-list{display:flex;flex-direction:column;gap:8px;}
 .kiip-feature{display:flex;align-items:center;gap:10px;font-size:13px;color:#4A5568;padding:8px 12px;background:rgba(27,58,107,.04);border-radius:8px;}
 .kiip-feature .kf-icon{font-size:16px;width:24px;text-align:center;flex-shrink:0;}
@@ -1042,12 +1049,12 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
           <div><div class="kiip-demo-name">글로컬 아카데미 KIIP</div><div class="kiip-demo-sub">Glocal Academy KIIP · 법무부 사회통합프로그램 표준</div></div>
         </div>
         <div class="kiip-levels">
-          <a href="/KIIP_Level0_Index.html" class="kiip-level" style="text-decoration:none;color:inherit;"><div class="kl-num">0</div><div class="kl-name">기초</div><span class="kiip-stage-tag">KIIP 0단계</span></a>
-          <a href="/KIIP_Level1_Index.html" class="kiip-level" style="text-decoration:none;color:inherit;"><div class="kl-num">1</div><div class="kl-name">초급1</div><span class="kiip-stage-tag">KIIP 1단계</span></a>
-          <a href="/KIIP_Level2_Index.html" class="kiip-level" style="text-decoration:none;color:inherit;"><div class="kl-num">2</div><div class="kl-name">초급2</div><span class="kiip-stage-tag">KIIP 2단계</span></a>
-          <a href="/KIIP_Level3_Index.html" class="kiip-level active" style="text-decoration:none;color:inherit;"><div class="kl-num">3</div><div class="kl-name">중급1</div><span class="kiip-stage-tag">KIIP 3단계</span></a>
-          <a href="/KIIP_Level4_Index.html" class="kiip-level" style="text-decoration:none;color:inherit;"><div class="kl-num">4</div><div class="kl-name">중급2</div><span class="kiip-stage-tag">KIIP 4단계</span></a>
-          <a href="/KIIP_Level5_Index.html" class="kiip-level" style="text-decoration:none;color:inherit;"><div class="kl-num">5</div><div class="kl-name">고급</div><span class="kiip-stage-tag">KIIP 5단계</span></a>
+          <a href="/KIIP_Level0_Index.html" class="kiip-level active"><div class="kl-num">0</div><div class="kl-name">기초</div><span class="kiip-level-badge">✅ 8과 완성</span></a>
+          <div class="kiip-level soon"><div class="kl-num">1</div><div class="kl-name">초급1</div><span class="kiip-level-badge">🔜 준비중</span></div>
+          <div class="kiip-level soon"><div class="kl-num">2</div><div class="kl-name">초급2</div><span class="kiip-level-badge">🔜 준비중</span></div>
+          <a href="/KIIP_Level3_Index.html" class="kiip-level active"><div class="kl-num">3</div><div class="kl-name">중급1</div><span class="kiip-level-badge">✅ 20과 완성</span></a>
+          <a href="/KIIP_Level4_Index.html" class="kiip-level active"><div class="kl-num">4</div><div class="kl-name">중급2</div><span class="kiip-level-badge">✅ 20과 완성</span></a>
+          <a href="/KIIP_Level5_Index.html" class="kiip-level active"><div class="kl-num">5</div><div class="kl-name">고급</div><span class="kiip-level-badge">✅ 20과 완성</span></a>
         </div>
         <div class="kiip-feature-list">
           <div class="kiip-feature"><span class="kf-icon">🎙️</span>AI 발음 녹음 · 즉시 재생 비교</div>
