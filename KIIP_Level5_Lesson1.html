@@ -128,6 +128,16 @@ textarea:focus{outline:none;border-color:var(--green)}
 .answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
 .wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
 .practice-item{background:#fff;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.return-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);z-index:999;background:#1e3a5f;color:#fff;border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px;max-width:calc(100vw - 32px);box-shadow:0 4px 20px rgba(0,0,0,0.3);opacity:0;transition:all 0.3s;pointer-events:none}
+.return-toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.return-toast-icon{font-size:24px;flex-shrink:0}
+.return-toast-body{flex:1;min-width:0}
+.return-toast-title{font-size:13px;font-weight:800;margin-bottom:2px}
+.return-toast-sub{font-size:11px;opacity:0.8;line-height:1.5}
+.return-toast-close{background:rgba(255,255,255,0.2);border:none;color:#fff;border-radius:50%;width:24px;height:24px;font-size:12px;cursor:pointer;flex-shrink:0}
+.return-toast-bar{position:absolute;bottom:0;left:0;height:3px;background:#f59e0b;border-radius:0 0 14px 14px;animation:toastTimer 8s linear forwards}
+@keyframes toastTimer{from{width:100%}to{width:0%}}
+@keyframes aiDot{0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1}}
 </style>
 </head>
 <body>
@@ -241,64 +251,170 @@ const QUIZ=[
   {q:'임진왜란에서 거북선으로 일본을 물리친 장군은?',opts:['이성계','왕건','세종대왕','이순신'],answer:3},
 ];
 
-const RECORDER={
-  stream:null,mediaRecorder:null,chunks:[],isRecording:false,
-  recognition:null,sttActive:false,currentIdx:-1,scores:{},
-  autoDetect(){
-    const st=document.getElementById('rec-status');
-    if(!st)return;
-    if(!navigator.mediaDevices&&!window.SpeechRecognition&&!window.webkitSpeechRecognition){
-      st.innerHTML='<p style="color:#ef4444;font-size:13px">⚠️ 이 기기는 음성 인식을 지원하지 않습니다.</p>';return;
-    }
-    st.innerHTML='<p style="color:#059669;font-size:13px">✅ 마이크 준비 완료. 문장 옆 🎤 버튼을 누르세요.</p>';
-  },
-  toggle(idx,sents){
-    if(this.sttActive&&this.currentIdx===idx){this.stopSTT(idx);}
-    else{if(this.sttActive)this.stopSTT(this.currentIdx);this.startSTT(idx,sents);}
-  },
-  startSTT(idx,sents){
-    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-    if(!SR)return;
-    this.recognition=new SR();
-    this.recognition.lang='ko-KR';
-    this.recognition.interimResults=false;
-    this.recognition.maxAlternatives=1;
-    this.sttActive=true;
-    this.currentIdx=idx;
-    const btn=document.getElementById('rec-btn-'+idx);
-    if(btn){btn.textContent='⏹ 중지';btn.classList.add('recording');}
-    this.recognition.onresult=(e)=>{
-      const transcript=e.results[0][0].transcript;
-      const score=this.calcScore(transcript,sents[idx]);
-      this.scores[idx]=score;
-      const badge=document.getElementById('score-badge-'+idx);
-      if(badge){
-        badge.textContent=score;
-        badge.className='score-badge '+(score>=80?'good':score>=50?'ok':'bad');
+const PRON_SENTS_DATA=[
+  {sent:'고조선은 단군왕검이 세운 한국 최초의 국가입니다.'},
+  {sent:'신라가 삼국을 통일하여 통일신라 시대가 시작되었습니다.'},
+  {sent:'고려는 세계 최초의 금속활자와 팔만대장경을 만들었습니다.'},
+  {sent:'세종대왕은 한글을 창제하여 백성들이 글을 쉽게 배울 수 있게 했습니다.'},
+];
+
+const RECORDER = {
+  streams: {},
+  recorders: {},
+  chunks: {},
+  audioURLs: {},
+  isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    const resultEl = document.getElementById('stt-result-' + idx);
+    const playBtn  = document.getElementById('play-btn-' + idx);
+    const scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, targetText, recBtn); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      this.streams[idx] = stream;
+    } catch(e) {
+      const name = e.name || '';
+      let msg = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg = '❌ <strong>마이크가 차단됨</strong> — 브라우저 주소창 🔒 → 마이크 → <strong>허용</strong> 후 새로고침';
+      } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
+        msg = '❌ <strong>마이크를 찾을 수 없어요</strong> — 마이크 연결을 확인하세요';
+      } else {
+        msg = '❌ <strong>오류: ' + name + '</strong> — Chrome/Edge에서 다시 시도하세요';
       }
-      const res=document.getElementById('stt-result');
-      if(res)res.innerHTML=`<span style="color:#059669">인식: "${transcript}"</span>`;
-      this.stopSTT(idx);
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    const mr = new MediaRecorder(this.streams[idx]);
+    this.recorders[idx] = mr;
+    mr.ondataavailable = e => { if (e.data.size > 0) this.chunks[idx].push(e.data); };
+    mr.onstop = () => {
+      if (this.audioURLs[idx]) URL.revokeObjectURL(this.audioURLs[idx]);
+      const blob = new Blob(this.chunks[idx], {type: 'audio/webm'});
+      this.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false;
+        playBtn.style.opacity = '1';
+        playBtn.onclick = () => { const a = new Audio(this.audioURLs[idx]); a.play(); };
+      }
     };
-    this.recognition.onerror=()=>this.stopSTT(idx);
-    this.recognition.onend=()=>this.stopSTT(idx);
-    this.recognition.start();
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지';
+    recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      const rec = new SR();
+      rec.lang = 'ko-KR';
+      rec.continuous = false;
+      rec.interimResults = false;
+      rec.onresult = (e) => {
+        const said   = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        const target = targetText.replace(/[\s,.?!]/g,'');
+        const conf   = e.results[0][0].confidence;
+        let match = 0;
+        const minLen = Math.min(said.length, target.length);
+        for (let i = 0; i < minLen; i++) { if (said[i] === target[i]) match++; }
+        const pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        const confPct = Math.round((conf || 0.5) * 100);
+        const finalPct = Math.round((pct * 0.7) + (confPct * 0.3));
+        const color = finalPct >= 80 ? '#22c55e' : finalPct >= 50 ? '#f59e0b' : '#ef4444';
+        const msg   = finalPct >= 80 ? '✅ 완벽해요!' : finalPct >= 50 ? '🔄 조금 더 연습!' : '❌ 다시 시도!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = finalPct + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = () => {};
+      rec.start();
+    }
   },
-  stopSTT(idx){
-    if(this.recognition){try{this.recognition.stop();}catch(e){}}
-    this.sttActive=false;
-    const btn=document.getElementById('rec-btn-'+idx);
-    if(btn){btn.textContent='🎤 녹음';btn.classList.remove('recording');}
+
+  async autoDetect() {
+    const stateEl = document.getElementById('mic-perm-state');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        const result = await navigator.permissions.query({name: 'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 이미 허용됨 — 바로 녹음하세요!</div>';
+          if (allowBtn) { allowBtn.style.background = '#166534'; allowBtn.textContent = '✅ 허용됨 — 바로 녹음하세요'; }
+          if (blockedGuide) blockedGuide.style.display = 'none';
+          return;
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 아래 안내대로 해결하세요</div>';
+          if (blockedGuide) blockedGuide.style.display = 'block';
+          if (allowBtn) { allowBtn.style.background = '#ef4444'; allowBtn.textContent = '⚠️ 차단됨 — 위 단계 완료 후 여기 클릭'; }
+          return;
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아직 허용 안 됨 — 아래 버튼을 눌러 허용해 주세요</div>';
+        }
+        result.onchange = () => RECORDER.autoDetect();
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+      }
+    } else {
+      stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+    }
   },
-  calcScore(transcript,target){
-    const t=transcript.replace(/[.,?!]/g,'').toLowerCase();
-    const g=target.replace(/[.,?!]/g,'').toLowerCase();
-    const tw=t.split(' ');const gw=g.split(' ');
-    let match=0;
-    gw.forEach(w=>{if(tw.includes(w))match++;});
-    return Math.round((match/gw.length)*100);
+
+  async checkPermission(btn) {
+    const statusEl = document.getElementById('mic-status');
+    const box = document.getElementById('mic-check-box');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → elimg.com에서 열기</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 미지원 브라우저 — Chrome 또는 Edge를 사용해 주세요</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      stream.getTracks().forEach(t => t.stop());
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 바로 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 성공!</span>';
+      if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
+      if (blockedGuide) blockedGuide.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 바로 녹음하세요!'; btn.style.background = '#166534'; btn.disabled = false;
+    } catch(e) {
+      const name = e.name || '';
+      btn.disabled = false;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        if (blockedGuide) blockedGuide.style.display = 'block';
+        if (stateEl) stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 안내대로 해결 후 다시 클릭</div>';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444;font-size:11px">🔒 허용 완료 후 이 버튼을 다시 눌러주세요</span>';
+        btn.textContent = '🔄 허용 완료 후 다시 클릭'; btn.style.background = '#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">오류 (' + name + ') — Chrome/Edge에서 다시 시도</span>';
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
+      }
+    }
+  },
+
+  stop(idx, targetText, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') {
+      this.recorders[idx].stop();
+    }
+    if (this.streams[idx]) {
+      this.streams[idx].getTracks().forEach(t => t.stop());
+    }
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음';
+    recBtn.style.background = '#059669';
   }
 };
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
+}
 
 function render(){
   document.getElementById('app').innerHTML=`
@@ -342,37 +458,7 @@ function renderSection(){
     case 7: return renderWriting();
     case 8: return renderCulture();
     case 9: return renderQuiz();
-    case 10:{
-      setTimeout(()=>RECORDER.autoDetect(),100);
-      const PRON_SENTS=[
-        '고조선은 단군왕검이 세운 한국 최초의 국가입니다.',
-        '신라가 삼국을 통일하여 통일신라 시대가 시작되었습니다.',
-        '고려는 세계 최초의 금속활자와 팔만대장경을 만들었습니다.',
-        '세종대왕은 한글을 창제하여 백성들이 글을 쉽게 배울 수 있게 했습니다.',
-      ];
-      return `<h2>🤖 AI 발음 실습</h2>
-        <div class="ai-section">
-          <h3>발음 연습</h3>
-          <p style="font-size:13px;color:#64748b;margin-bottom:12px">문장을 따라 말하고 AI가 발음을 분석합니다.</p>
-          <div id="rec-status"><p style="color:#94a3b8;font-size:13px">마이크 상태 확인 중...</p></div>
-          ${PRON_SENTS.map((s,i)=>`
-            <div class="pron-sent" id="pron-sent-${i}">
-              <span class="sent-text">${s} ${ttsBtn(s)}</span>
-              <div id="score-badge-${i}" class="score-badge">-</div>
-              <button class="rec-btn" id="rec-btn-${i}" onclick="RECORDER.toggle(${i},PRON_SENTS_10)">🎤 녹음</button>
-            </div>`).join('')}
-          <div id="stt-result" style="min-height:32px;margin-top:8px;font-size:13px;color:#475569"></div>
-        </div>
-        <script>var PRON_SENTS_10=${JSON.stringify(PRON_SENTS)};<\/script>
-        <div class="card">
-          <div class="card-title">💡 AI 활용 연습 주제</div>
-          <div class="speaking-topics">
-            <div class="speaking-topic">AI에게 "한국 고조선과 삼국시대에 대해 한국어로 설명해 줘"라고 질문해 보세요.</div>
-            <div class="speaking-topic">"고려와 조선의 차이점을 한국어로 설명해 줘"라고 AI에게 물어보세요.</div>
-            <div class="speaking-topic">AI와 함께 "한국 역사에서 가장 중요한 사건" 주제로 토론해 보세요.</div>
-          </div>
-        </div>`;
-    }
+    case 10: return renderAI();
     default: return '';
   }
 }
@@ -620,6 +706,260 @@ function renderQuiz(){
       </div>`).join('')}
     ${Object.keys(STATE.quizAnswers).length===QUIZ.length
       ?`<button class="reveal-btn" style="width:100%" onclick="setState({quizDone:true})">결과 보기 →</button>`:''}`;
+}
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
+}
+
+var AI_QUICK_BTNS = [
+  { emoji:'📝', label:'이 단어 설명해줘', q:'KIIP 5급 1과 어휘: 고조선, 삼국시대, 고려, 조선에 대해 쉽게 설명해 주세요.' },
+  { emoji:'📜', label:'역사 질문', q:'한국의 고대 역사(고조선→삼국→고려→조선)의 흐름을 간단히 설명해 주세요.' },
+  { emoji:'💬', label:'토론 주제', q:'세종대왕과 한글 창제가 한국 역사에서 중요한 이유를 설명해 주세요.' },
+  { emoji:'✏️', label:'내 글 첨삭', q:'KIIP 5급 학습자의 글입니다. 한국 역사 내용이 정확한지 확인하고 첨삭해 주세요: ' },
+  { emoji:'❓', label:'퀴즈 도움', q:'KIIP 5급 1과 한국 고대 역사 퀴즈에서 틀렸어요. 고려와 조선의 차이를 설명해 주세요.' },
+  { emoji:'🏛', label:'귀화 시험 준비', q:'귀화 시험에 자주 나오는 한국 고대 역사 문제 3개를 만들어 주세요. 정답도 포함해 주세요.' },
+];
+var AICHAT = {
+  history: [],
+  loading: false,
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx]; if (!b) return;
+    var inp = document.getElementById('ai-chat-input'); if (!inp) return;
+    inp.value = b.q; inp.style.borderColor = '#f59e0b';
+    if (idx === 3) { inp.focus(); return; }
+    this.send();
+  },
+  addMsg: function(role, text) {
+    var box = document.getElementById('ai-chat-messages'); if (!box) return;
+    var ph = box.querySelector('.ai-placeholder'); if (ph) ph.remove();
+    var isUser = role === 'user';
+    var d = document.createElement('div');
+    d.style.cssText = 'display:flex;flex-direction:column;align-items:' + (isUser?'flex-end':'flex-start') + ';gap:2px;margin-bottom:6px';
+    var safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    d.innerHTML = '<div style="font-size:10px;color:#888;margin:0 4px">' + (isUser?'🙋 나':'🤖 AI') + '</div><div style="max-width:90%;padding:10px 13px;border-radius:' + (isUser?'14px 14px 4px 14px':'14px 14px 14px 4px') + ';background:' + (isUser?'#f59e0b':'#fff') + ';color:' + (isUser?'#fff':'#1a202c') + ';font-size:13px;line-height:1.7;border:1px solid ' + (isUser?'#d97706':'#fde68a') + ';word-break:break-word">' + safe + '</div>';
+    box.appendChild(d); box.scrollTop = box.scrollHeight;
+  },
+  setLoading: function(on) {
+    var box = document.getElementById('ai-chat-messages');
+    var el = document.getElementById('ai-loading-dot');
+    var btn = document.getElementById('ai-send-btn');
+    if (on) {
+      if (box && !el) {
+        var ld = document.createElement('div'); ld.id = 'ai-loading-dot';
+        ld.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:6px';
+        ld.innerHTML = '<div style="display:flex;gap:4px"><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div></div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+        box.appendChild(ld); box.scrollTop = box.scrollHeight;
+      }
+      if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+    } else {
+      if (el) el.remove();
+      if (btn) { btn.textContent = '➤'; btn.disabled = false; }
+    }
+  },
+  send: async function() {
+    if (this.loading) return;
+    var inp = document.getElementById('ai-chat-input');
+    var text = inp ? inp.value.trim() : ''; if (!text) return;
+    this.history.push({role:'user', content:text});
+    this.addMsg('user', text);
+    if (inp) inp.value = '';
+    this.loading = true; this.setLoading(true);
+    var sys = 'You are a Korean civics tutor for KIIP Level 5 (한국사회이해). The student is preparing for Korean naturalization. Answer in Korean. Be concise and friendly.';
+    try {
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
+      if (!reply || reply.trim() === '') throw new Error('빈 응답');
+      this.history.push({role:'assistant', content:reply});
+      this.setLoading(false); this.addMsg('assistant', reply);
+    } catch(e) {
+      this.setLoading(false);
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결: 잠시 후 다시 시도해 주세요');
+    }
+    this.loading = false;
+  }
+};
+let _toastTimer = null;
+function showReturnToast(appName, icon) {
+  let toast = document.getElementById('return-toast');
+  if (!toast) { toast = document.createElement('div'); toast.id = 'return-toast'; toast.className = 'return-toast'; document.body.appendChild(toast); }
+  const shortcuts = /iPhone|iPad|iPod/i.test(navigator.userAgent) ? '하단 탭 버튼 → KIIP 탭 선택' : /Android/i.test(navigator.userAgent) ? '상단 탭 □ 버튼 → KIIP 탭 선택' : 'Ctrl+Tab 또는 탭 바에서 KIIP 탭 클릭';
+  toast.innerHTML = '<div class="return-toast-icon">' + icon + '</div><div class="return-toast-body"><div class="return-toast-title">📍 ' + appName + ' 새 탭에서 열렸어요</div><div class="return-toast-sub">돌아오려면: <strong>' + shortcuts + '</strong></div></div><button class="return-toast-close" onclick="hideReturnToast()">✕</button><div class="return-toast-bar"></div>';
+  requestAnimationFrame(() => { toast.classList.add('show'); });
+  clearTimeout(_toastTimer); _toastTimer = setTimeout(() => hideReturnToast(), 8000);
+}
+function hideReturnToast() {
+  const toast = document.getElementById('return-toast'); if (toast) toast.classList.remove('show'); clearTimeout(_toastTimer);
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') hideReturnToast(); });
+function openGemini() { window.open('https://gemini.google.com/app', '_blank'); showReturnToast('Gemini AI', '🔵'); }
+function openClaudeFeedback() {
+  const text = STATE.writingText || '(쓰기 섹션에 글을 먼저 작성해 주세요)';
+  const prompt = 'KIIP 5급 1과 학습자의 글입니다. 한국사회이해 내용이 정확한지 확인하고 첨삭해 주세요:\n\n' + text;
+  window.open('https://claude.ai/new?q=' + encodeURIComponent(prompt), '_blank');
+  showReturnToast('Claude AI', '🟣');
+}
+function openNotebookLM() { window.open('https://notebooklm.google.com', '_blank'); showReturnToast('NotebookLM', '📓'); }
+function copyNotebookContent() {
+  const content = 'KIIP 5급 1과 · 한국의 역사 1 (고조선·삼국·고려·조선)\n\n=== 핵심 내용 ===\n한국 고대 역사 관련 주요 내용과 학습 목표\n\n=== 학습 목표 ===\n한국의 고대 역사에 대해 이해하고 설명할 수 있다';
+  navigator.clipboard.writeText(content).then(() => {
+    const el = document.getElementById('copy-ok');
+    if (el) { el.textContent = '✅ 복사 완료!'; setTimeout(() => el.textContent = '', 3000); }
+  }).catch(() => { const el = document.getElementById('copy-ok'); if (el) el.textContent = '❌ 직접 복사하세요'; });
+}
+
+function renderAI(){
+  setTimeout(()=>RECORDER.autoDetect(),100);
+  const done={
+    vocab:Object.keys(STATE.vocabFlipped).length>0,
+    concept:Object.keys(STATE.topikAnswers||{}).length>0,
+    quiz:STATE.quizDone,
+  };
+  const pct=Math.round(Object.values(done).filter(Boolean).length/3*100);
+  return `
+    <h2>🤖 AI 실습</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:12px">글로컬 아카데미 × 에이전틱 G스택 한국어 학습</p>
+
+    <div style="background:linear-gradient(135deg,#064e3b,#059669);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+      <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+      <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 한국사회이해 실습 플랫폼</div>
+      <div style="font-size:11px;opacity:0.85;line-height:1.7">Google Gemini · NotebookLM · Agent Harness 연계</div>
+    </div>
+
+    <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b">
+      <div class="card-title" style="color:#92400e">⚙️ Agent Harness · 학습 진도</div>
+      <div style="background:#fef3c7;border-radius:8px;padding:10px 12px;margin:8px 0">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:13px;font-weight:700;color:#92400e">진도율</span>
+          <span style="font-size:18px;font-weight:800;color:#f59e0b">${pct}%</span>
+        </div>
+        <div style="background:#fde68a;border-radius:8px;height:8px;overflow:hidden">
+          <div style="background:#f59e0b;height:100%;width:${pct}%;transition:width 0.5s"></div>
+        </div>
+      </div>
+      ${[
+        {label:'📝 어휘 학습 완료', done:done.vocab},
+        {label:'📜 핵심 내용 확인 완료', done:done.concept},
+        {label:'✅ 퀴즈 통과', done:done.quiz},
+      ].map(t=>`
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #fde68a">
+          <span style="font-size:15px">${t.done?'✅':'⬜'}</span>
+          <div style="font-size:13px;color:${t.done?'#166534':'#555'};font-weight:${t.done?'700':'400'}">${t.label}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+      <div class="card-title" style="color:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+      <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">계정 없이 바로 AI에게 질문하세요</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+        ${AI_QUICK_BTNS.map((b,i)=>`
+          <button onclick="AICHAT.quickSend(${i})"
+            style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
+            ${b.emoji} ${b.label}
+          </button>
+        `).join('')}
+      </div>
+      <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+        <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">💡 버튼을 누르면 AI가 바로 답해줘요</div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:flex-end">
+        <textarea id="ai-chat-input" placeholder="한국어로 질문하세요..."
+          style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
+          onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#fde68a'"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"></textarea>
+        <button onclick="AICHAT.send()" id="ai-send-btn"
+          style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>
+      </div>
+      <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+    </div>
+
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-title">🌐 외부 AI 서비스 가이드</div>
+      <details style="margin-bottom:8px">
+        <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">🔵 Gemini AI — Google 계정 필요</summary>
+        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          gemini.google.com에서 역사 내용 질문, 토론 연습에 활용하세요.<br>
+          <button onclick="openGemini()" style="background:#1d4ed8;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">🔵 Gemini 열기</button>
+        </div>
+      </details>
+      <details style="margin-bottom:8px">
+        <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">🟣 Claude AI — 이메일 계정 필요</summary>
+        <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          쓰기 첨삭 및 내용 검토에 특화. 쓰기 섹션 글을 자동 전송합니다.<br>
+          <button onclick="openClaudeFeedback()" style="background:#7c3aed;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">🟣 내 글 첨삭 요청하기</button>
+        </div>
+      </details>
+      <details>
+        <summary style="background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">📓 NotebookLM — Google 계정 필요</summary>
+        <div style="background:#fff8f0;border:1px solid #fed7aa;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          이 과 내용을 복사해서 NotebookLM에 넣고 Q&A 정리에 활용하세요.<br>
+          <button onclick="copyNotebookContent()" style="background:#ea4335;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">📋 이 과 학습 내용 복사하기</button>
+          <span id="copy-ok" style="font-size:11px;color:#059669;margin-left:6px"></span>
+        </div>
+      </details>
+    </div>
+
+    <div class="card" style="margin-bottom:10px;background:#f0fdf4;border:1px solid #86efac">
+      <div class="card-title" style="color:#059669">🎤 AI 발음 코치 · 녹음 & 재생</div>
+      <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">원어민 듣기 → 내가 녹음 → 다시 들으며 비교</div>
+      <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#166534">🆓 <strong>완전 무료</strong> — 브라우저 내장 API</div>
+
+      <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:14px;margin-bottom:10px">
+        <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px">🎙️ 마이크 허용 필요</div>
+        <div id="mic-perm-state" style="margin-bottom:10px"></div>
+        <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:8px">🚫 마이크 차단됨</div>
+          <div style="font-size:12px;line-height:2;color:#1a202c">
+            <strong>Chrome/Edge (PC):</strong> 🔒 → 마이크 → 허용 → F5<br>
+            <strong>Android:</strong> ⋮ → 사이트 설정 → 마이크 → 허용
+          </div>
+        </div>
+        <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+          style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:12px;font-size:14px;font-weight:800">
+          🎙️ 마이크 허용하기 (여기 클릭)
+        </button>
+        <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>
+      </div>
+
+      ${PRON_SENTS_DATA.map((item,i)=>`
+        <div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+          <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:8px">${item.sent}</div>
+          <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+            <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+            <button onclick="TTS.speak('${item.sent.replace(/'/g,"\\'")}'); this.textContent='🔊 재생 중...'; setTimeout(()=>this.textContent='🔊 원어민',2000)"
+              style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🔊 원어민</button>
+            <button id="rec-btn-${i}" onclick="RECORDER.start(${i},'${item.sent.replace(/'/g,"\\'")}',this)"
+              style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🎤 녹음</button>
+            <button id="play-btn-${i}" disabled
+              style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;opacity:0.4">▶ 내 발음 듣기</button>
+          </div>
+          <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:16px"></div>
+        </div>
+      `).join('')}
+
+      <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+        <strong>📖 사용법:</strong><br>
+        1️⃣ 🔊 원어민 — 먼저 들으세요 · 2️⃣ 🎤 녹음 — 말하기<br>
+        3️⃣ ▶ 내 발음 듣기 — 녹음 후 활성화 · 4️⃣ 🟢 80%+ · 🟡 50~79% · 🔴 50% 미만
+      </div>
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+      <div class="card-title" style="color:#059669">🌐 글로컬 G스택 학습법</div>
+      <div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.8">
+        <strong>글로컬 아카데미 AI 에이전트 기반 4단계 학습법:</strong><br>
+        ① 어휘/핵심내용 → Gemini 설명 요청<br>
+        ② 말하기 → Gemini 토론 실습<br>
+        ③ 쓰기 → Claude AI 첨삭<br>
+        ④ 복습 → NotebookLM Q&A 정리
+      </div>
+    </div>
+  `;
 }
 
 render();
