@@ -1,0 +1,1561 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head><!-- cb1 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>KIIP 2급 5과 - 글로컬 아카데미</title>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="글로컬 아카데미 KIIP · GlocalBridge">
+    <meta property="og:title" content="KIIP 2급 5과 - 글로컬 아카데미">
+    <meta property="og:description" content="초급 2급 5과 · 글로컬 아카데미 KIIP · KIIP 사회통합프로그램">
+    <meta property="og:image" content="https://elimg.com/images/og-hanwha-level2.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://elimg.com/KIIP_Level2_Lesson5.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KIIP 2급 5과 - 글로컬 아카데미">
+    <meta name="twitter:description" content="초급 2급 5과 · 글로컬 아카데미 KIIP · KIIP 사회통합프로그램">
+    <meta name="twitter:image" content="https://elimg.com/images/og-hanwha-level2.png">
+<meta name="description" content="KIIP 사회통합프로그램 한국어교육 앱 - 글로컬 아카데미">
+<meta name="theme-color" content="#1e40af">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#1e40af;--ocean:#3b82f6;--orange:#ED7D31;--green:#22c55e;--red:#ef4444;--purple:#8b5cf6;--pink:#ec4899;--light-blue:#D6E4F0;--light-green:#E8F5E9;--light-orange:#FFF3E0;--gray:#f8fafc;--dark:#2D3436}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;background:var(--gray);max-width:520px;margin:0 auto;min-height:100vh;overflow-x:hidden}
+.hide{display:none!important}
+button{cursor:pointer;border:none;font-family:inherit}
+.nav{background:var(--navy);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-title{color:#fff;font-weight:700;font-size:14px}.nav-sub{color:#93c5fd;font-size:10px}
+.nav-btn{background:none;color:#fff;font-size:22px;padding:4px 8px}
+.menu{background:#1e3355;position:sticky;top:48px;z-index:99}
+.menu button{display:flex;align-items:center;gap:10px;width:100%;padding:11px 20px;background:transparent;color:#fff;font-size:13px;text-align:left}
+.menu button.active{background:var(--ocean)}
+.bottom-nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:6px 0;z-index:100}
+.bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
+.bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
+.bottom-nav .icon{font-size:18px}
+.page{padding:16px;padding-bottom:180px}
+h2{color:var(--navy);font-size:19px;margin-bottom:4px}
+.sub{color:#888;font-size:11px;margin-bottom:14px}
+.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
+.card-accent{border-left:4px solid var(--ocean)}
+.card-orange{border-left:4px solid var(--orange)}
+.card-green{border-left:4px solid var(--green)}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;color:#fff}
+.tabs{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:6px 13px;border-radius:20px;background:#e5e7eb;color:#555;font-size:12px;font-weight:600}
+.tab.active{background:var(--ocean);color:#fff}
+.progress{background:#e5e7eb;border-radius:8px;height:7px;width:100%;overflow:hidden}
+.progress-bar{height:100%;border-radius:8px;transition:width .5s}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.vocab-item{border-radius:8px;padding:8px 10px;cursor:pointer;transition:all .2s}
+.vocab-item:hover{transform:scale(1.02)}
+.vocab-item .kor{font-weight:700;color:var(--navy);font-size:15px}
+.vocab-item .eng{color:#888;font-size:11px;margin-top:2px}
+.vocab-item .pron{color:var(--ocean);font-size:10px}
+.tts-btn{background:var(--ocean);color:#fff;border-radius:50%;width:28px;height:28px;font-size:14px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:6px;vertical-align:middle}
+.tts-btn:hover{background:var(--navy)}
+.bubble{border-radius:12px;padding:10px 14px;max-width:85%;margin-bottom:6px}
+.bubble-left{background:#f0f7ff;border-top-left-radius:4px;align-self:flex-start}
+.bubble-right{background:#fff7ed;border-top-right-radius:4px;align-self:flex-end}
+.quiz-opt{padding:13px;border-radius:10px;border:2px solid #e5e7eb;background:#fff;font-size:15px;font-weight:600;text-align:left;width:100%;margin-bottom:7px;transition:all .2s}
+.quiz-opt:hover{border-color:var(--ocean)}
+.quiz-correct{background:#dcfce7;border-color:var(--green);color:#166534}
+.quiz-wrong{background:#fee2e2;border-color:var(--red);color:#991b1b}
+.input{width:100%;padding:10px 12px;border:2px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:8px}
+.input:focus{outline:none;border-color:var(--ocean)}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;width:100%}
+.btn-primary{background:var(--ocean);color:#fff}.btn-navy{background:var(--navy);color:#fff}
+.btn-green{background:var(--green);color:#fff}.btn-orange{background:var(--orange);color:#fff}
+.hangul-cell{background:#fff;border:2px solid #e5e7eb;border-radius:10px;padding:10px;text-align:center;cursor:pointer;transition:all .2s}
+.hangul-cell:hover,.hangul-cell.active{border-color:var(--ocean);background:#f0f7ff}
+.hangul-cell .char{font-size:28px;font-weight:800;color:var(--navy)}
+.hangul-cell .rom{font-size:10px;color:#888}
+.section-icon{font-size:20px;margin-right:6px;vertical-align:middle}
+textarea{width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;min-height:120px;resize:vertical}
+textarea:focus{outline:none;border-color:var(--ocean)}
+</style>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1e40af">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KIIP Korean">
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+// ===== TTS ENGINE =====
+const TTS = {
+  speak(text, lang='ko-KR', rate=0.8) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang; u.rate = rate; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const koVoice = voices.find(v => v.lang.startsWith('ko')) || voices.find(v => v.lang.includes('ko'));
+    if (koVoice) u.voice = koVoice;
+    window.speechSynthesis.speak(u);
+  },
+  init() { if (window.speechSynthesis) window.speechSynthesis.getVoices(); }
+};
+window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
+
+function ttsBtn(text) {
+  if(!text) return '';
+  return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'")}')" title="발음 듣기">🔊</button>`;
+}
+
+// ===== DATA =====
+const VOCAB_PHONE = [
+  {kor:"병원",pron:"byeong-won",eng:"hospital"},
+  {kor:"의사",pron:"ui-sa",eng:"doctor"},
+  {kor:"간호사",pron:"gan-ho-sa",eng:"nurse"},
+  {kor:"진료",pron:"jin-ryo",eng:"medical consultation"},
+  {kor:"처방",pron:"cheo-bang",eng:"prescription"},
+  {kor:"약",pron:"yak",eng:"medicine"},
+  {kor:"약국",pron:"yak-guk",eng:"pharmacy"},
+  {kor:"증상",pron:"jeung-sang",eng:"symptom"},
+  {kor:"두통",pron:"du-tong",eng:"headache"},
+  {kor:"복통",pron:"bok-tong",eng:"stomachache"},
+  {kor:"열",pron:"yeol",eng:"fever"},
+  {kor:"기침",pron:"gi-chim",eng:"cough"},
+  {kor:"감기",pron:"gam-gi",eng:"cold"},
+  {kor:"독감",pron:"dok-gam",eng:"flu"},
+  {kor:"검사",pron:"geom-sa",eng:"examination/test"},
+  {kor:"진단",pron:"jin-dan",eng:"diagnosis"},
+  {kor:"치료",pron:"chi-ryo",eng:"treatment"},
+  {kor:"수술",pron:"su-sul",eng:"surgery"},
+  {kor:"건강",pron:"geon-gang",eng:"health"},
+  {kor:"질병",pron:"jil-byeong",eng:"disease"},
+  {kor:"응급",pron:"eung-geup",eng:"emergency"},
+  {kor:"통증",pron:"tong-seung",eng:"pain"},
+  {kor:"피로",pron:"pi-ro",eng:"fatigue"},
+  {kor:"스트레스",pron:"seu-teu-re-seu",eng:"stress"},
+  {kor:"휴식",pron:"hyu-sik",eng:"rest"},
+];
+
+const VOCAB_SHIPYARD = [
+  {kor:"산업재해",eng:"occupational accident",sit:"산업 안전"},
+  {kor:"건강검진",eng:"health checkup",sit:"예방 의료"},
+  {kor:"응급처치",eng:"first aid",sit:"응급 대응"},
+  {kor:"보호장비",eng:"protective equipment",sit:"안전 장비"},
+  {kor:"안전 교육",eng:"safety training",sit:"근로자 교육"},
+  {kor:"업무상 부상",eng:"work-related injury",sit:"산재 보험"},
+  {kor:"작업 환경",eng:"working environment",sit:"작업 환경"},
+  {kor:"감염 예방",eng:"infection prevention",sit:"위생 관리"},
+  {kor:"의료 지원",eng:"medical support",sit:"기업 복지"},
+  {kor:"병가",eng:"sick leave",sit:"휴무 제도"},
+  {kor:"근로자 건강",eng:"worker health",sit:"보건 관리"},
+  {kor:"진찰료",eng:"consultation fee",sit:"의료비"},
+  {kor:"약값",eng:"medicine cost",sit:"의료비"},
+  {kor:"보험 청구",eng:"insurance claim",sit:"의료 보험"},
+  {kor:"병원 예약",eng:"hospital appointment",sit:"의료 절차"},
+];
+
+const VOCAB_ADVANCED = [
+  {kor:"간접화법",eng:"indirect speech"},{kor:"보고",eng:"reporting"},
+  {kor:"전달",eng:"conveyance"},{kor:"설명",eng:"explanation"},
+  {kor:"묘사",eng:"description"},{kor:"명확하게",eng:"clearly"},
+  {kor:"구체적으로",eng:"specifically"},{kor:"요약하다",eng:"to summarize"},
+  {kor:"~다고 하다",eng:"~says that"},{kor:"의뢰",eng:"request"},
+  {kor:"지시",eng:"instruction"},{kor:"명령",eng:"command"},
+  {kor:"조언",eng:"advice"},{kor:"제안",eng:"suggestion"},
+  {kor:"동의",eng:"agreement"},{kor:"반대",eng:"objection"},
+  {kor:"양해",eng:"understanding"},{kor:"합의",eng:"consensus"},
+  {kor:"보장",eng:"guarantee"},{kor:"보증",eng:"warranty"},
+  {kor:"신뢰",eng:"trust"},{kor:"확신",eng:"confidence"},
+  {kor:"의심",eng:"suspicion"},{kor:"불안",eng:"anxiety"},
+  {kor:"안도",eng:"relief"},{kor:"만족",eng:"satisfaction"},
+  {kor:"불만",eng:"dissatisfaction"},{kor:"감사",eng:"gratitude"},
+];
+
+const VOCAB_SHIPYARD_NOUNS = [
+  {kor:"산업 보건",eng:"occupational health"},{kor:"근로 환경",eng:"working environment"},
+  {kor:"안전 관리",eng:"safety management"},{kor:"위험 요소",eng:"risk factor"},
+  {kor:"사고 예방",eng:"accident prevention"},{kor:"응급실",eng:"emergency room"},
+  {kor:"의료팀",eng:"medical team"},{kor:"건강보험",eng:"health insurance"},
+  {kor:"산재보험",eng:"industrial accident insurance"},{kor:"의료 서비스",eng:"medical service"},
+  {kor:"근로자 복지",eng:"worker welfare"},{kor:"건강한 일터",eng:"healthy workplace"},
+  {kor:"조직 문화",eng:"organizational culture"},{kor:"팀 건강",eng:"team health"},
+  {kor:"감염 통제",eng:"infection control"},{kor:"위생",eng:"hygiene"},
+  {kor:"소독",eng:"disinfection"},{kor:"예방 접종",eng:"vaccination"},
+  {kor:"의료 기록",eng:"medical record"},{kor:"처방약",eng:"prescribed medicine"},
+];
+
+const GRAMMAR = [
+  {title:"~다고 하다 (Indirect Speech)",eng:"~다고 하다 (Indirect Speech)",
+   desc:"다른 사람의 말을 옮겨서 전할 때 '~다고 하다'를 써요.",descEng:"Use ~다고 하다 to report what someone said.",
+   rule:"(주장/진술) + 다고 하다",ruleEng:"(Claim/Statement) + 다고 하다",
+   examples:[
+    {q:"의사가 뭐라고 했어요?",a:"의사가 감기라고 했어요.",eng:"The doctor said it's a cold.",note:"감기라고 했어요"},
+    {q:"환자가 뭐라고 말했어요?",a:"환자가 두통이 있다고 했어요.",eng:"The patient said he has a headache.",note:"있다고 했어요"},
+    {q:"간호사가 뭐라고 했어요?",a:"간호사가 약을 먹으라고 했어요.",eng:"The nurse said to take medicine.",note:"먹으라고 했어요"},
+    {kor:"의사가 휴식이 필요하다고 했어요.",eng:"The doctor said rest is necessary.",note:"필요하다고 했어요"},
+    {q:"누가 뭐라고 했어요?",a:"부장이 병원에 가라고 했어요.",eng:"The manager said to go to the hospital.",note:"가라고 했어요"},
+   ]},
+  {title:"~(으)면 좋겠다 (Would Like/Hope)",eng:"~(으)면 좋겠다 (Would Like/Hope)",
+   desc:"소망이나 희망을 나타낼 때 '~(으)면 좋겠다'를 써요.",descEng:"Use ~(으)면 좋겠다 to express wishes or hopes.",
+   rule:"동사/형용사 + (으)면 좋겠다",ruleEng:"Verb/Adjective + (으)면 좋겠다",
+   examples:[
+    {q:"뭘 바라요?",a:"빨리 낫으면 좋겠어요.",eng:"I hope to get better soon.",note:"낫으면 좋겠어요"},
+    {q:"어떻게 되면 좋아요?",a:"건강하면 좋겠어요.",eng:"I wish I were healthy.",note:"건강하면 좋겠어요"},
+    {kor:"약을 먹고 증상이 사라지면 좋겠어요.",eng:"I hope the symptoms disappear after taking medicine.",note:"사라지면 좋겠어요"},
+    {q:"환자가 뭘 원해요?",a:"수술이 성공하면 좋겠어요.",eng:"The patient hopes the surgery will be successful.",note:"성공하면 좋겠어요"},
+    {q:"어떻게 되길 원해요?",a:"더 이상 통증이 없으면 좋겠어요.",eng:"I hope there will be no more pain.",note:"없으면 좋겠어요"},
+   ]},
+  {title:"~면서 (While/At the Same Time)",eng:"~면서 (While/At the Same Time)",
+   desc:"동시에 일어나는 두 가지 행동을 나타낼 때 '~면서'를 써요.",descEng:"Use ~면서 to show two actions happening at the same time.",
+   rule:"동사 + 면서",ruleEng:"Verb + 면서",
+   examples:[
+    {q:"병원에서 뭐 해요?",a:"기다리면서 책을 읽어요.",eng:"I wait while reading a book.",note:"기다리면서"},
+    {kor:"의사와 말하면서 증상을 설명했어요.",eng:"I explained my symptoms while talking to the doctor.",note:"말하면서"},
+    {q:"약을 먹으면서 뭐 해요?",a:"물을 마시면서 약을 삼켜요.",eng:"I drink water while swallowing the medicine.",note:"마시면서"},
+    {q:"통증이 있으면서 뭐 해요?",a:"일을 하면서 우리가 참고 있어요.",eng:"We endure while working despite the pain.",note:"하면서"},
+    {kor:"주사를 맞으면서 의사 말을 들었어요.",eng:"I listened to the doctor while getting an injection.",note:"맞으면서"},
+   ]},
+  {title:"~더니 (Contrary to One's Expectation)",eng:"~더니 (Contrary to One's Expectation)",
+   desc:"예상과 다른 상황을 나타낼 때 '~더니'를 써요.",descEng:"Use ~더니 to show unexpected situations.",
+   rule:"동사/형용사 + 더니",ruleEng:"Verb/Adjective + 더니",
+   examples:[
+    {q:"어제는 어땠어요?",a:"증상이 심하더니 오늘은 많이 나았어요.",eng:"The symptoms were bad yesterday, but it's much better today.",note:"심하더니"},
+    {kor:"처음에는 검사 결과가 안 좋더니 2차 검사에서 괜찮았어요.",eng:"The first test result was bad, but the second test was fine.",note:"안 좋더니"},
+    {q:"감기가 뭐라고 했어요?",a:"초기에는 감기더니 결국 독감이었어요.",eng:"It seemed like a cold at first, but it turned out to be the flu.",note:"감기더니"},
+    {q:"상태가 어떻게 변했어요?",a:"통증이 있더니 약을 먹고 없어졌어요.",eng:"There was pain, but it went away after taking medicine.",note:"있더니"},
+   ]},
+];
+
+const DIALOGUES = [
+  {title:"병원에서의 증상 설명",eng:"Explaining Symptoms at Hospital",lines:[
+    {sp:"환자",role:"patient",text:"안녕하세요. 어제부터 두통이 있어요.",eng:"Hello. I've had a headache since yesterday.",side:"R"},
+    {sp:"의사",role:"doctor",text:"그렇군요. 몇 시간 정도 지속되는 통증인가요?",eng:"I see. How long does the pain usually last?",side:"L"},
+    {sp:"환자",text:"하루종일 있어요. 약을 먹어도 안 좋아져요.",eng:"It's all day. It doesn't improve even with medicine.",side:"R"},
+    {sp:"의사",text:"다른 증상은 없으신가요? 열이나 기침은요?",eng:"Any other symptoms? Do you have fever or cough?",side:"L"},
+    {sp:"환자",text:"열은 없는데 감기 같은 기침이 있어요.",eng:"No fever, but I have a cold-like cough.",side:"R"},
+    {sp:"의사",text:"그렇다면 감기로 인한 두통이라고 할 수 있어요. 검사를 해 보겠어요.",eng:"Then it could be a headache due to a cold. Let me do an examination.",side:"L"},
+    {sp:"환자",text:"감기가 두통을 일으킬 수 있어요?",eng:"Can a cold cause a headache?",side:"R"},
+    {sp:"의사",text:"네, 감기는 여러 증상을 일으켜요. 약을 먹고 휴식하면 좋겠어요.",eng:"Yes, colds cause various symptoms. Take medicine and rest, please.",side:"L"},
+  ]},
+  {title:"처방과 의료 지시",eng:"Prescription and Medical Instruction",lines:[
+    {sp:"의사",role:"doctor",text:"검사 결과 감기예요. 처방약을 드릴 거예요.",eng:"The test shows it's a cold. I'll prescribe medicine for you.",side:"L"},
+    {sp:"환자",role:"patient",text:"얼마나 있으면 낫을까요?",eng:"How long will it take to get better?",side:"R"},
+    {sp:"의사",text:"보통 3일에서 1주일 정도 걸려요. 약을 매일 3번 먹으세요.",eng:"Usually 3 days to a week. Take the medicine 3 times a day.",side:"L"},
+    {sp:"환자",text:"약을 식사 전에 먹어야 해요? 식사 후에 먹어야 해요?",eng:"Should I take the medicine before or after meals?",side:"R"},
+    {sp:"의사",text:"식사 후에 먹으면 좋겠어요. 물과 함께 복용하세요.",eng:"Please take it after meals with water.",side:"L"},
+    {sp:"환자",text:"이 약의 부작용이 있어요?",eng:"Are there any side effects from this medicine?",side:"R"},
+    {sp:"의사",text:"부작용은 거의 없어요. 다만 졸음이 올 수 있어요.",eng:"There are few side effects. However, you might feel sleepy.",side:"L"},
+    {sp:"환자",text:"알겠어요. 감사합니다!",eng:"Understood. Thank you!",side:"R"},
+  ]},
+  {title:"응급 상황에서의 설명",eng:"Explanation in Emergency Situation",lines:[
+    {sp:"근로자",role:"worker",text:"아! 손가락이 아파요! 도와주세요!",eng:"Ow! My finger hurts! Help me!",side:"R"},
+    {sp:"간호사",role:"nurse",text:"진정하세요. 뭐가 일어났어요?",eng:"Calm down. What happened?",side:"L"},
+    {sp:"근로자",text:"기계에 손가락이 끼였어요. 매우 아파요.",eng:"My finger got caught in the machine. It hurts a lot.",side:"R"},
+    {sp:"간호사",text:"그렇군요. 손을 흐르는 물로 씻고 여기 앉으세요.",eng:"I see. Wash your hand with running water and sit here.",side:"L"},
+    {sp:"의사",role:"doctor",text:"응급처치를 하겠어요. 검사 결과 뼈가 부러졌어요.",eng:"I'll provide first aid. The test shows your bone is broken.",side:"L"},
+    {sp:"근로자",text:"뼈가 부러졌어요? 수술이 필요해요?",eng:"My bone is broken? Do I need surgery?",side:"R"},
+    {sp:"의사",text:"아니에요. 깁스를 하면 괜찮을 거예요. 4주 정도면 낫을 거 같아요.",eng:"No. A cast should be fine. It should heal in about 4 weeks.",side:"L"},
+    {sp:"근로자",text:"일을 언제부터 할 수 있어요?",eng:"When can I go back to work?",side:"R"},
+    {sp:"의사",text:"2주 후에 올 때 손가락 상태를 확인할 거예요. 그 때 일을 해도 된다고 할 수 있을 거예요.",eng:"When you come back in 2 weeks, I'll check your finger. Then I can tell you if you can work.",side:"L"},
+  ]},
+];
+
+const QUIZ = [
+  {q:"'병원'의 뜻은?",o:["hospital","school","market","home"],a:0},
+  {q:"'의사'의 뜻은?",o:["doctor","nurse","patient","teacher"],a:0},
+  {q:"'증상'의 뜻은?",o:["symptom","fever","pain","disease"],a:0},
+  {q:"'두통'의 뜻은?",o:["headache","stomachache","toothache","backache"],a:0},
+  {q:"'처방'의 뜻은?",o:["prescription","examination","surgery","treatment"],a:0},
+  {q:"'감기'의 뜻은?",o:["cold","flu","fever","cough"],a:0},
+  {q:"'독감'의 뜻은?",o:["flu","cold","cough","headache"],a:0},
+  {q:"'검사'의 뜻은?",o:["examination/test","diagnosis","surgery","treatment"],a:0},
+  {q:"'응급'의 뜻은?",o:["emergency","medical","urgent care","serious"],a:0},
+  {q:"'~다고 하다'는 언제 써요?",o:["다른 사람의 말을 옮겨서 전할 때","과거를 말할 때","미래를 말할 때","명령할 때"],a:0},
+  {q:"'~(으)면 좋겠다'는 언제 써요?",o:["소망이나 희망을 나타낼 때","과거를 말할 때","이유를 말할 때","장소를 말할 때"],a:0},
+  {q:"'~면서'는 언제 써요?",o:["동시에 일어나는 두 가지 행동을 나타낼 때","과거를 말할 때","미래를 말할 때","명령할 때"],a:0},
+  {q:"한국의 의료 시스템은?",o:["건강보험 + 산재보험","아메리카 시스템","일본 시스템","유럽 시스템"],a:0},
+  {q:"한국은 의료 관광으로 유명해요?",o:["네, 세계적으로 유명해요","아니요, 유명하지 않아요","거의 모르고 있어요","미래에 유명할 거예요"],a:0},
+  {q:"감기와 독감의 차이는?",o:["독감이 더 심각하고 위험해요","감기가 더 심각해요","차이가 없어요","구분할 수 없어요"],a:0},
+  {q:"'간호사'의 역할은?",o:["환자 돌보기","진단하기","약 만들기","수술하기"],a:0},
+];
+
+const CULTURE = [
+  {icon:"🏥",t:"한국의 의료 시스템",eng:"Korean Medical System",d:"한국의 의료는 건강보험과 산재보험으로 나뉘어요. 건강보험은 일반 의료 비용을 커버하고, 산재보험은 업무 중 부상을 보장해요. 의료비가 저렴하고 의료 수준이 높아요. 의사, 간호사, 약사가 협력해요.",de:"Korea's healthcare is divided into national health insurance and workers' compensation insurance. Health insurance covers general medical costs, and workers' compensation covers work-related injuries. Medical costs are affordable and medical standards are high. Doctors, nurses, and pharmacists work together."},
+  {icon:"💊",t:"한국의 약국 문화",eng:"Korean Pharmacy Culture",d:"한국은 의사의 처방전이 필요해요. 병원에서 진찰을 받은 후 약국에서 약을 받아요. 약국 약사가 약의 복용 방법을 설명해요. 약 복용이 매우 중요해요. 많은 약국이 편의점처럼 가깝게 있어요.",de:"Korea requires a doctor's prescription. After a hospital consultation, you get medicine at a pharmacy. The pharmacist explains how to take the medicine. Medicine compliance is very important. Many pharmacies are located conveniently."},
+  {icon:"🏢",t:"직장 건강 관리",eng:"Workplace Health Management",d:"한국의 회사들은 근로자 건강을 중요하게 생각해요. 정기 건강검진을 해요. 안전 교육을 매년 실시해요. 산업재해 예방이 매우 중요해요. 모든 근로자가 안전 장비를 착용해야 해요.",de:"Korean companies prioritize worker health. Regular health checkups are conducted. Safety training is held annually. Occupational accident prevention is very important. All workers must wear safety equipment."},
+  {icon:"🌡️",t:"감기·독감 구분",eng:"Cold vs Flu Distinction",d:"감기는 일반적인 바이러스로 3-7일이 걸려요. 독감은 더 심각하고 합병증이 생길 수 있어요. 두통, 근육통, 고열이 특징이에요. 예방 접종으로 독감을 예방할 수 있어요. 의사와 상담이 필요해요.",de:"Common cold takes 3-7 days. Flu is more serious and can cause complications. Headaches, muscle aches, high fever are characteristic. Flu can be prevented by vaccination. Consult a doctor."},
+  {icon:"🚑",t:"응급실 문화",eng:"Emergency Room Culture",d:"한국의 응급실은 24시간 열려 있어요. 응급한 상황에서는 응급실로 가요. 의료진이 신속하게 응급처치를 해요. 응급한 환자가 먼저 진료를 받아요. 응급차(ambulance) 호출이 가능해요. 119에 전화하면 응급차가 와요.",de:"Korean emergency rooms are open 24/7. In emergencies, go to the ER. Medical staff provide rapid first aid. Emergency patients receive treatment first. Ambulance calls are available. Call 119 for an ambulance."},
+  {icon:"💉",t:"예방 접종",eng:"Vaccination",d:"한국은 감기와 독감 예방 접종을 권장해요. 특히 겨울에 독감 백신을 많이 맞아요. 일부 백신은 무료예요. 직장에서 예방 접종 프로그램을 제공해요. 건강 유지가 최고의 예방이에요.",de:"Korea recommends vaccinations for colds and flu. Flu vaccines are especially common in winter. Some vaccines are free. Workplaces provide vaccination programs. Maintaining health is the best prevention."},
+];
+
+const LOCAL_INFO = {
+  title: "한국의 의료 시스템: K-의료 경쟁력",
+  eng: "Korea's Healthcare System: K-Healthcare Competitiveness",
+  facts: [
+    {label:"의료 보험 체계",val:"건강보험(일반) + 산재보험(직장)"},
+    {label:"의료비 수준",val:"낮은 의료비로 높은 수준의 의료 제공"},
+    {label:"응급 의료",val:"119 호출로 신속한 응급 대응"},
+    {label:"의료 관광",val:"성형·치과·정형외과로 유명"},
+    {label:"원격 진료",val:"발전된 원격 의료 기술"},
+    {label:"약국 문화",val:"의사 처방 후 약국에서 약 수령"},
+    {label:"예방 의료",val:"정기 건강검진 강조"},
+  ],
+  desc: "한국은 세계 최고 수준의 의료 시스템을 갖추고 있어요! 건강보험과 산재보험으로 나누어 의료를 보장하고 있어요. 의료비가 저렴하면서도 의료 수준이 매우 높아요. 응급 상황에서는 119에 전화해서 빠르게 대응할 수 있어요. K-의료는 의료 관광으로도 유명해요. 성형 수술, 치과, 정형외과 등에서 세계 수준의 기술을 제공해요. 한국의 의료진은 매우 전문적이고 친절해요. 건강을 최우선으로 생각하는 예방 의료를 강조해요. 정기 건강검진으로 질병을 조기에 발견할 수 있어요. 직장에서도 근로자 건강을 중요하게 생각해요. 한국의 의료 기술과 서비스는 계속 발전하고 있어요!",
+  descEng: "Korea has world-class healthcare! Medical care is guaranteed through national health insurance and workers' compensation insurance. Medical costs are affordable while standards are very high. In emergencies, call 119 for rapid response. K-Healthcare is famous for medical tourism. World-class technology in cosmetic surgery, dentistry, orthopedics, etc. Korean medical professionals are very professional and kind. Preventive medicine is emphasized. Regular health checkups can detect diseases early. Workplaces prioritize worker health. Korea's medical technology and services continue to advance!"
+};
+
+const KOREAN_LITERATURE = {
+  title: "천상병 · 귀뚜라미",
+  eng: "Cheon Sang-byeong · Cricket",
+  desc: "현대 한국 시인 천상병의 '귀뚜라미'입니다.",
+  descEng: "'Cricket' by modern Korean poet Cheon Sang-byeong.",
+  sentences: [
+    {kor:"귀뚜라미는 울어서 우리에게 산다는 것을 알려 준다.",eng:"The cricket teaches us what living is by singing."},
+    {kor:"귀뚜라미는 작지만 그 울음은 크다.",eng:"The cricket is small, but its song is loud."},
+    {kor:"작은 것도 가치가 있다는 것을 보여 준다.",eng:"It shows that even small things have value."},
+    {kor:"귀뚜라미처럼 우리도 작은 소리로 살아가자.",eng:"Like the cricket, let's live with a small voice."},
+    {kor:"천상병은 1930년에 태어났어요.",eng:"Cheon Sang-byeong was born in 1930."},
+    {kor:"불교와 자연을 사랑했어요.",eng:"He loved Buddhism and nature."},
+    {kor:"'귀뚜라미'는 작은 것의 가치를 보여 줘요.",eng:"'Cricket' shows the value of small things."},
+    {kor:"이 시는 단순하지만 깊은 뜻이 있어요.",eng:"This poem is simple but has deep meaning."},
+    {kor:"병원 환자처럼 우리도 약한 순간이 있어요.",eng:"Like hospital patients, we all have weak moments."},
+    {kor:"하지만 작은 힘이라도 중요해요.",eng:"But even small strength is important."},
+    {kor:"건강을 위해 항상 최선을 다해야 해요.",eng:"We must always do our best for health."},
+    {kor:"아프면 의사와 상담하는 것이 좋아요.",eng:"It's good to consult a doctor if you're ill."},
+    {kor:"증상을 말할 때 명확하게 표현해야 해요.",eng:"Be clear when explaining symptoms."},
+    {kor:"의료진을 신뢰하는 것이 중요해요.",eng:"It's important to trust healthcare professionals."},
+    {kor:"한국의 의료 시스템은 훌륭해요.",eng:"Korea's healthcare system is excellent."},
+    {kor:"의료비가 저렴하고 수준이 높아요.",eng:"Medical costs are affordable and standards are high."},
+    {kor:"병원에서는 정중하게 행동해야 해요.",eng:"Behave respectfully at the hospital."},
+    {kor:"의료진의 지시를 따라야 해요.",eng:"Follow the healthcare professionals' instructions."},
+    {kor:"약을 제대로 복용하는 것이 중요해요.",eng:"It's important to take medicine correctly."},
+    {kor:"휴식과 건강한 생활이 최고의 치료예요.",eng:"Rest and healthy living are the best medicine."},
+    {kor:"귀뚜라미처럼 작지만 강한 마음으로 살아가요.",eng:"Live with a small but strong heart like a cricket."},
+    {kor:"한국어로 증상을 설명하는 것도 배우고 있어요.",eng:"You're also learning to explain symptoms in Korean."},
+    {kor:"의료 어휘는 실무에서 중요해요.",eng:"Medical vocabulary is important in practice."},
+    {kor:"병원에서 자신감 있게 말해 보세요.",eng:"Speak confidently at the hospital."},
+    {kor:"건강한 삶이 가장 큰 행복이에요!",eng:"A healthy life is the greatest happiness!"},
+  ]
+};
+
+const LITERATURE_QUIZ = [
+  {q:"천상병이 언제 태어났어요?",o:["1930년","1920년","1940년","1950년"],a:0},
+  {q:"'귀뚜라미'는 뭘 보여 줘요?",o:["작은 것의 가치","슬픔과 외로움","분노와 불안","두려움"],a:0},
+  {q:"귀뚜라미는 어때요?",o:["작지만 울음이 커요","크고 조용해요","작고 조용해요","크고 시끄러워요"],a:0},
+  {q:"천상병이 사랑한 것은?",o:["불교와 자연","예술과 음악","도시와 현대","기계와 기술"],a:0},
+  {q:"이 시는 뭐에 대한 거예요?",o:["작은 것의 가치와 삶","의료 시스템","조선 산업","자기소개"],a:0},
+  {q:"귀뚜라미에게 배울 점은?",o:["작은 힘도 중요하다는 것","큰 것만 가치가 있다","작은 것은 중요하지 않다","아무것도 배울 게 없다"],a:0},
+  {q:"병원에서 어떻게 해야 해요?",o:["정중하게 행동하고 의료진을 신뢰해야 해요","의료진을 무시해야 해요","불평하며 지시를 무시해야 해요","자신의 방법만 따라야 해요"],a:0},
+  {q:"증상을 설명할 때는?",o:["명확하고 구체적으로","애매하게","빨리","천천히 반복"],a:0},
+  {q:"~다고 하다는 뭐에 쓰는 표현이에요?",o:["다른 사람의 말을 전할 때","과거를 말할 때","미래를 말할 때","명령할 때"],a:0},
+  {q:"한국의 의료 시스템은?",o:["건강하고 저렴해요","비싸고 느려요","선진적이고 신뢰할 수 있어요","어려워요"],a:0},
+];
+
+const TOPIK_PRACTICE = {
+  title: "TOPIK I 유형 2 · 설명문",
+  eng: "TOPIK I Type 2 · Explanatory Text",
+  desc: "한국어능력시험 TOPIK I의 읽기 유형 2를 연습해요.",
+  descEng: "Practice TOPIK I Reading Type 2 (Explanatory text).",
+  info: [
+    {label:"시험 유형",val:"설명문 이해하기",eng:"Understanding explanatory texts"},
+    {label:"문제 형식",val:"제목·주제·목적 파악 + 세부 정보 이해",eng:"Title/Topic/Purpose + Detail comprehension"},
+    {label:"시험 시간",val:"읽기 60분 중 약 20분",eng:"~20 minutes out of 60 total"},
+    {label:"핵심",val:"핵심 단어와 주요 문장 파악",eng:"Identify key words and main sentences"},
+  ],
+  reading: [
+    {q:"다음을 읽고 제목으로 알맞은 것을 고르세요.\n\n감기는 일반적인 바이러스로 3-7일이 걸려요. 두통, 기침, 콧물이 증상이에요. 독감은 감기보다 심각해요. 고열, 근육통, 극심한 피로가 있어요. 독감은 합병증이 생길 수 있어요.",o:["감기와 독감의 차이","병원 가는 방법","약 복용하는 법","의료 시스템"],a:0},
+    {q:"다음을 읽고 맞는 것을 고르세요.\n\n한국은 건강보험과 산재보험으로 의료를 보장해요. 건강보험은 일반 의료 비용을 커버해요. 산재보험은 업무 중 부상을 보장해요. 의료비가 저렴하고 의료 수준이 높아요.",o:["한국의 의료 시스템은 두 가지 보험으로 이루어져 있어요.","한국의 의료비는 비싸요.","한국의 의료 수준은 낮아요.","한국은 응급 의료만 제공해요."],a:0},
+    {q:"다음 빈칸에 알맞은 것을 고르세요.\n\n약을 먹을 때 중요한 것이 세 가지 있어요. 첫째, _____ 둘째, 정해진 시간에 먹어야 해요. 셋째, 의료진의 지시를 따라야 해요.",o:["용량(dose)을 정확히 지켜야 해요","빨리 먹어야 해요","천천히 먹어야 해요","다른 약과 섞어야 해요"],a:0},
+    {q:"다음을 읽고 질문에 대한 답을 고르세요.\n\n건강검진은 질병을 조기에 발견하는 데 도움이 돼요. 혈압, 혈당, 콜레스테롤 수치를 확인해요. 암 검사도 포함돼요. 정기적으로 건강검진을 받으면 건강을 유지할 수 있어요. 한국에서는 일 년에 한 번 건강검진을 권장해요.\n\n건강검진의 목적은 무엇이에요?",o:["질병을 치료하기","질병을 조기에 발견하기","암을 예방하기","혈압을 낮추기"],a:1},
+    {q:"다음을 읽고 산재보험에 대해 알맞은 것을 고르세요.\n\n산재보험은 일하는 중에 다친 경우를 보장하는 보험이에요. 의료비가 무료이고, 일하지 못한 기간의 임금도 보장해요. 사업주가 보험료를 내므로 근로자는 추가 비용이 없어요. 한국의 모든 직장은 산재보험에 가입해야 해요.",o:["근로자가 보험료를 내요.","의료비와 임금 손실을 보장해요.","산재보험은 선택사항이에요.","외국인 근로자는 대상이 아니에요."],a:1}
+  ],
+  listening: [
+    {q:"[듣기 유형] 대화를 듣고 환자의 증상을 고르세요.\n\n의사: 증상이 뭐예요?\n환자: 어제부터 두통과 기침이 있어요.\n의사: 열은 있어요?\n환자: 아니요, 열은 없어요.",o:["두통과 기침","고열","복통","피로"],a:0},
+    {q:"[듣기 유형] 대화를 듣고 의사의 지시를 고르세요.\n\n의사: 이 약을 하루에 3번 먹으세요.\n환자: 식사 전에 먹어야 해요?\n의사: 아니요, 식사 후에 먹으세요. 물과 함께 복용하세요.",o:["식사 후에 3번 먹어야 해요","식사 전에 1번 먹어야 해요","하루에 1번 먹어야 해요","물 없이 먹어야 해요"],a:0},
+    {q:"[듣기 유형] 다음을 듣고 맞는 것을 고르세요.\n\n환자: 몇 일 정도 있으면 나을까요?\n의사: 보통 3일에서 1주일 정도 걸려요.\n환자: 빨리 낫으면 좋겠어요.\n의사: 약을 먹고 충분한 휴식을 취하면 빨리 나을 거예요.",o:["약과 휴식이 중요해요","빨리 일을 해야 해요","병원에 자주 가야 해요","다른 약을 먹어야 해요"],a:0},
+    {q:"[듣기 유형] 대화를 듣고 처방약의 보관 방법을 고르세요.\n\n약사: 이 약은 실온에서 보관하세요.\n고객: 냉장고에 보관하면 안 돼요?\n약사: 아니요. 냉장고에 넣으면 약이 손상돼요. 햇빛이 안 드는 서늘한 곳에 보관하세요.",o:["냉장고에 보관해야 해요","실온에서 보관해야 해요","햇빛이 드는 곳에 보관해야 해요","냉동실에 보관해야 해요"],a:1},
+    {q:"[듣기 유형] 다음을 듣고 산재 신청 절차에 대해 맞는 것을 고르세요.\n\n직원: 일하다가 다쳤는데 어떻게 해야 해요?\n상담원: 먼저 병원에 가서 진단받으세요. 그리고 회사에 알리고 산재 신청 서류를 작성하세요. 회사가 보험회사에 신고하면 의료비가 무료가 돼요.",o:["회사 허락을 먼저 받아야 해요","병원 진단을 받고 산재 신청하면 돼요","의료비를 미리 내야 해요","산재 신청은 30일 뒤에 해야 해요"],a:1}
+  ],
+};
+
+const HANGUL_SUBTITLE = "TOPIK I 건강·병원 종합 · Comprehensive Health & Hospital";
+
+const READING_PASSAGES = [
+  {title:"감기와 독감의 차이",eng:"Difference between Cold and Flu",
+   text:"감기는 일반적인 바이러스예요.\n증상은 기침, 콧물, 재채기예요.\n보통 3-7일이 걸려요.\n독감은 감기보다 훨씬 심각해요.\n고열, 근육통, 피로가 주요 증상이에요.\n심한 경우에는 합병증이 생길 수 있어요.\n예방 접종으로 독감을 예방할 수 있어요.\n의사와 상담하면 더 정확한 진단을 받을 수 있어요.",
+   textEng:"The common cold is a typical virus.\nSymptoms are cough, runny nose, sneezing.\nIt usually takes 3-7 days.\nFlu is much more serious than a cold.\nHigh fever, muscle aches, fatigue are main symptoms.\nIn severe cases, complications can occur.\nFlu can be prevented by vaccination.\nConsulting a doctor can provide a more accurate diagnosis.",
+   questions:[
+     {q:"감기의 주요 증상은?",a:"기침, 콧물, 재채기",ae:"cough, runny nose, sneezing"},
+     {q:"독감이 감기보다 뭐가 달라요?",a:"훨씬 심각해요",ae:"It's much more serious"},
+     {q:"감기는 보통 며칠 걸려요?",a:"3-7일",ae:"3-7 days"},
+   ]},
+  {title:"한국의 의료 시스템",eng:"Korea's Healthcare System",
+   text:"한국은 건강보험과 산재보험으로 의료를 보장해요.\n건강보험은 일반 의료 비용을 커버해요.\n산재보험은 업무 중 부상을 보장해요.\n응급한 상황에서는 119에 전화하면 돼요.\n한국의 의료비는 저렴한 편이에요.\n의료 수준은 세계적으로 높아요.\n의사, 간호사, 약사가 협력해요.\n건강 유지가 가장 좋은 예방이에요.",
+   textEng:"Korea guarantees medical care through health insurance and workers' compensation.\nHealth insurance covers general medical costs.\nWorkers' compensation covers work-related injuries.\nIn emergencies, call 119.\nMedical costs in Korea are affordable.\nMedical standards are world-class.\nDoctors, nurses, and pharmacists work together.\nMaintaining health is the best prevention.",
+   questions:[
+     {q:"한국의 의료는 뭐로 나뉘어요?",a:"건강보험과 산재보험",ae:"health insurance and workers' compensation"},
+     {q:"응급한 상황에서는 누구에게 전화해요?",a:"119에 전화",ae:"call 119"},
+     {q:"한국의 의료비는?",a:"저렴한 편",ae:"affordable"},
+   ]},
+];
+
+const REVIEW_DATA = {
+  preview: {
+    title: "예습 · Preview",
+    desc: "다음에 배울 내용을 미리 살펴보세요.",
+    descEng: "Preview what you will learn next.",
+    items: [
+      {label:"2-6과 주제",val:"뉴스를 이해해요 · Understanding News",detail:"뉴스와 뉴스 기사 읽기를 배웁니다."},
+      {label:"핵심 어휘",val:"뉴스, 기사, 정보, 사건",detail:"news, article, information, event"},
+      {label:"핵심 문법",val:"~거나, ~든지, ~같다, ~처럼",detail:"or, or else, seems, like"},
+      {label:"직장 어휘",val:"산업 뉴스, 기술 발표, 경영 정보",detail:"industry news, tech announcement, business info"},
+    ]
+  },
+  review: {
+    title: "복습 · Review",
+    desc: "2-5과에서 배운 내용을 확인하세요.",
+    descEng: "Check what you learned in Lesson 2-5.",
+    sections: [
+      {title:"의료 어휘",icon:"🏥",items:["병원·의사·간호사","증상·두통·감기","처방·약·검사","응급·치료·건강"]},
+      {title:"의료 표현",icon:"💬",items:["두통이 있어요","약을 먹으세요","119에 전화하세요","의사를 만나고 싶어요"]},
+      {title:"~다고 하다·~(으)면 좋겠다",icon:"📝",items:["의사가 감기라고 했어요","약을 먹고 낫으면 좋겠어요","휴식이 필요하다고 했어요","빨리 회복되면 좋겠어요"]},
+      {title:"K-의료 지식",icon:"🏥",items:["건강보험·산재보험","119 응급 전화","예방 의료","의료 관광"]},
+    ]
+  },
+  dictation: ["병원에 가고 싶어요.","두통이 있어요.","약을 먹어야 해요.","의사를 만나세요.","증상을 말해 주세요.","검사를 받으세요.","휴식이 중요해요.","한국의 의료는 좋아요.","응급은 119에 전화하세요.","건강을 지켜요!"],
+};
+
+// ===== APP STATE =====
+let state = {
+  page: 'home',
+  menuOpen: false,
+  level: 1, // 0=입문, 1=초급1
+  // Vocab
+  vocabTab: 0,
+  vocabReveal: {},
+  // Grammar
+  gramIdx: 0,
+  // Dialogue
+  dlgIdx: 0, dlgLine: -1, dlgShowEng: false,
+  // Flashcard
+  fcIdx: 0, fcFlipped: false, fcKnown: 0,
+  // Quiz
+  qIdx: 0, qSel: null, qScore: 0, qDone: false,
+  // Reading
+  rdIdx: 0, rdShowEng: false, rdAnswers: {},
+  // Writing (self-intro)
+  wrName: '', wrCountry: '', wrJob: '', wrExtra: '',
+  // Hangul
+  hgTab: 0, hgSelected: null,
+  // Review (익힘)
+  rvTab: 0, rvDictIdx: 0, rvDictInput: '', rvDictResults: {},
+  // Folktale
+  ftSentIdx: 0, ftShowEng: false, ftAutoPlay: false,
+  // Folktale Quiz
+  fqIdx: 0, fqSel: null, fqScore: 0, fqDone: false,
+};
+
+function setState(updates) {
+  Object.assign(state, updates);
+  render();
+}
+
+// ===== RENDER ENGINE =====
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = renderNav() + renderPage() + renderBottomNav();
+  // Re-attach events
+  document.querySelectorAll('[data-click]').forEach(el => {
+    el.onclick = (e) => {
+      const fn = el.dataset.click;
+      if (fn) eval(fn);
+    };
+  });
+}
+
+function renderNav() {
+  const items = [
+    {id:'home',l:'홈',i:'🏠'},{id:'curriculum',l:'커리큘럼',i:'📋'},
+    {id:'hangul',l:'TOPIK 준비',i:'📊'},{id:'vocab',l:'어휘',i:'📖'},
+    {id:'grammar',l:'문법',i:'✏️'},{id:'dialogue',l:'대화',i:'💬'},
+    {id:'reading',l:'읽기',i:'📕'},{id:'writing',l:'쓰기',i:'✍️'},
+    {id:'review',l:'익힘(복습/예습)',i:'📝'},{id:'flashcard',l:'플래시카드',i:'🃏'},{id:'quiz',l:'퀴즈',i:'🎯'},
+    {id:'folktale',l:'한국 문학',i:'📚'},{id:'ftquiz',l:'문학 퀴즈',i:'🧩'},
+    {id:'culture',l:'문화',i:'🏛️'},{id:'geoje',l:'성장 원동력',i:'🚀'},{id:'ai',l:'AI실습',i:'🤖'},
+  ];
+  let menu = '';
+  if (state.menuOpen) {
+    menu = '<div class="menu">' + items.map(it =>
+      `<button class="${state.page===it.id?'active':''}" onclick="setState({page:'${it.id}',menuOpen:false})">${it.i} ${it.l}</button>`
+    ).join('') + '</div>';
+  }
+  return `<div class="nav">
+    <a href="/KIIP_Level2_Index" style="display:flex;align-items:center;gap:8px;text-decoration:none;color:inherit" title="목차로 돌아가기">
+      <span style="font-size:18px">📋</span>
+      <div><div class="nav-title">글로컬 아카데미 KIIP</div><div class="nav-sub">← Level 2 목차 · Contents</div></div>
+    </a>
+    <button class="nav-btn" onclick="setState({menuOpen:!state.menuOpen})">${state.menuOpen?'✕':'☰'}</button>
+  </div>${menu}`;
+}
+
+function renderBottomNav() {
+  const items = [
+    {id:'home',i:'🏠',l:'홈'},{id:'vocab',i:'📖',l:'어휘'},
+    {id:'review',i:'📝',l:'익힘'},{id:'folktale',i:'📚',l:'문학'},
+    {id:'ai',i:'🤖',l:'AI'},{id:'quiz',i:'🎯',l:'퀴즈'},{id:'culture',i:'🏛️',l:'문화'},
+  ];
+  return `<div class="bottom-nav">${items.map(it =>
+    `<button class="${state.page===it.id?'active':''}" onclick="setState({page:'${it.id}',menuOpen:false})">
+      <span class="icon">${it.i}</span><span>${it.l}</span></button>`
+  ).join('')}</div>`;
+}
+
+function renderPage() {
+  const pages = {
+    home: renderHome, curriculum: renderCurriculum, hangul: renderHangul,
+    vocab: renderVocab, grammar: renderGrammar, dialogue: renderDialogue,
+    reading: renderReading, writing: renderWriting, review: renderReview,
+    flashcard: renderFlashcard, quiz: renderQuiz,
+    folktale: renderFolktale, ftquiz: renderFtQuiz,
+    culture: renderCulture, geoje: renderGeoje, ai: renderAI,
+  };
+  return `<div class="page">${(pages[state.page]||renderHome)()}</div>`;
+}
+
+// ===== PAGES =====
+function renderHome() {
+  return `
+  <div style="background:linear-gradient(135deg,#1e40af,#3b82f6);border-radius:16px;padding:20px;margin-bottom:16px;color:#fff">
+    <div style="font-size:12px;color:#93c5fd;margin-bottom:2px">초급 2-5과 · Beginner Level 2 Lesson 5</div>
+    <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
+      <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ TOPIK I 준비 완료</span>
+      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 2급 초급 2 진행 중</span>
+    </div
+    <div style="font-size:26px;font-weight:800;margin-bottom:2px">병원에서 설명해요</div>
+    <div style="font-size:13px;color:#aabbdd">Explaining at the Hospital — 의료 시스템과 증상 · Healthcare System & Symptoms</div>
+    <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+      ${['~다고 하다','~(으)면 좋겠다','~면서','~더니'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+    ${[
+      {id:'hangul',i:'📊',l:'TOPIK 준비',c:'#22c55e'},
+      {id:'vocab',i:'📖',l:'어휘',c:'#3b82f6'},
+      {id:'grammar',i:'✏️',l:'문법',c:'#8b5cf6'},
+      {id:'dialogue',i:'💬',l:'대화',c:'#22c55e'},
+      {id:'reading',i:'📕',l:'읽기',c:'#ec4899'},
+      {id:'writing',i:'✍️',l:'쓰기',c:'#f59e0b'},
+      {id:'review',i:'📝',l:'익힘',c:'#14b8a6'},
+      {id:'flashcard',i:'🃏',l:'플래시카드',c:'#f59e0b'},
+      {id:'quiz',i:'🎯',l:'퀴즈',c:'#ef4444'},
+      {id:'folktale',i:'📚',l:'한국 문학',c:'#a855f7'},
+      {id:'ftquiz',i:'🧩',l:'문학퀴즈',c:'#e11d48'},
+      {id:'culture',i:'🏛️',l:'문화',c:'#8b5cf6'},
+    ].map(it=>`<button onclick="setState({page:'${it.id}'})" style="background:#fff;border:2px solid ${it.c}20;border-radius:10px;padding:12px 6px;text-align:center">
+      <div style="font-size:26px;margin-bottom:4px">${it.i}</div>
+      <div style="font-weight:700;font-size:12px;color:#1e40af">${it.l}</div>
+    </button>`).join('')}
+  </div>
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">🏥 K-의료 경쟁력 보기</button>
+  <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/KIIP_Level2_Lesson4" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-4과 은행에 가요</a><a href="/KIIP_Level2_Lesson6" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-6과 뉴스를 이해해요 →</a></div>
+  <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
+  <div style="display:flex;gap:8px">
+    <a href="/KIIP_Level2_Lesson4" style="display:block;text-decoration:none;flex:1">
+      <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
+        <strong style="color:var(--navy)">2-4과 은행에 가요</strong>
+        <div style="font-size:11px;color:#888;margin-top:2px">Going to the Bank</div>
+      </div>
+    </a><a href="/KIIP_Level2_Lesson6" style="display:block;text-decoration:none;flex:1">
+      <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:11px;color:#888">다음 과 · Next →</div>
+        <strong style="color:var(--navy)">2-6과 뉴스를 이해해요</strong>
+        <div style="font-size:11px;color:#888;margin-top:2px">Understanding News</div>
+      </div>
+    </a>
+  </div>
+  `;
+}
+
+function renderCurriculum() {
+  const levels = [
+    {id:0,n:"0급 입문",e:"Pre-Beginner",c:"#22c55e",ls:10},
+    {id:1,n:"1급 초급1",e:"Beginner 1",c:"#3b82f6",ls:18},
+    {id:2,n:"2급 초급2",e:"Beginner 2",c:"#f59e0b",ls:18},
+    {id:3,n:"3급 중급1",e:"Intermediate 1",c:"#8b5cf6",ls:18},
+    {id:4,n:"4급 중급2",e:"Intermediate 2",c:"#ec4899",ls:18},
+    {id:5,n:"5급 고급",e:"Advanced",c:"#ef4444",ls:18},
+  ];
+  return `<h2>📋 전체 커리큘럼</h2><p class="sub">Full Curriculum · 0급~5급 (100과)</p>
+  ${levels.map(lv=>`<div class="card" style="border-left:4px solid ${lv.c}">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div><span class="badge" style="background:${lv.c}">${lv.id}급</span> <b style="color:#1e40af">${lv.n}</b></div>
+      <span style="color:#888;font-size:12px">${lv.ls}과</span>
+    </div>
+    <div style="color:#888;font-size:11px;margin:4px 0">${lv.e}</div>
+    <div class="progress"><div class="progress-bar" style="width:${lv.id<=1?(lv.id===1?'25%':'0%'):'0%'};background:${lv.c}"></div></div>
+  </div>`).join('')}`;
+}
+
+function speakTopikListening(idx) {
+  var item = TOPIK_PRACTICE.listening[idx];
+  if(!item) return;
+  var text = item.q;
+  // Extract dialogue part after \n\n
+  var parts = text.split('\n\n');
+  if(parts.length > 1) {
+    text = parts.slice(1).join(' ');
+  }
+  // Clean up [듣기 유형] prefix
+  text = text.replace(/\[.*?\]/g, '').trim();
+  TTS.speak(text);
+}
+
+function renderHangul() {
+  const tp = TOPIK_PRACTICE;
+  const tabs = ['시험 정보 Exam Info','읽기 연습 Reading','듣기 연습 Listening','핵심 전략 Strategy'];
+  const hTab = Math.min(state.hgTab, 3);
+
+  let content = '';
+
+  if(hTab === 0) {
+    // Tab 0: Exam Info
+    content = `<div class="card" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;margin-bottom:14px">
+      <div style="font-size:20px;font-weight:800">${tp.title}</div>
+      <div style="font-size:13px;opacity:.8">${tp.eng}</div>
+      <div style="font-size:12px;opacity:.7;margin-top:6px">${tp.desc}</div>
+      <div style="font-size:11px;opacity:.6">${tp.descEng}</div>
+    </div>
+    ${tp.info.map(item=>`<div class="card card-accent" style="margin-bottom:8px">
+      <div style="font-size:11px;color:var(--ocean);font-weight:700">${item.label}</div>
+      <div style="font-size:16px;font-weight:700;color:var(--navy)">${item.val}</div>
+      <div style="font-size:11px;color:#888">${item.eng}</div>
+    </div>`).join('')}
+    <div class="card" style="background:#faf5ff;border:2px solid #a855f7;margin-top:12px">
+      <div style="font-size:14px;font-weight:700;color:#7c3aed;margin-bottom:8px">💡 합격 팁 · Tips for Success</div>
+      <div style="font-size:13px;color:#555;line-height:1.8">
+        ✅ 매일 30분씩 읽기 연습하세요.<br>
+        ✅ 듣기는 2번씩 반복해서 들으세요.<br>
+        ✅ 모르는 단어는 문맥으로 추측하세요.<br>
+        ✅ 시간 관리를 연습하세요.
+      </div>
+      <div style="font-size:11px;color:#888;margin-top:6px;line-height:1.8">
+        ✅ Practice reading 30 min daily.<br>
+        ✅ Listen twice for listening sections.<br>
+        ✅ Guess unknown words from context.<br>
+        ✅ Practice time management.
+      </div>
+    </div>`;
+  } else if(hTab === 1) {
+    // Tab 1: Reading Practice
+    content = tp.reading.map((item,idx)=>{
+      const sel = state['tpRead'+idx];
+      const answered = sel !== undefined && sel !== null;
+      const correct = answered && sel === item.a;
+      return `<div class="card" style="margin-bottom:12px;border:2px solid ${answered?(correct?'#22c55e':'#ef4444'):'#e5e7eb'}">
+        <div style="font-size:11px;color:var(--ocean);font-weight:700;margin-bottom:6px">읽기 ${idx+1} · Reading ${idx+1}</div>
+        <div style="font-size:14px;color:var(--navy);white-space:pre-line;line-height:1.7;margin-bottom:10px;background:#f8fafc;padding:10px;border-radius:8px">${item.q}</div>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          ${item.o.map((opt,oi)=>{
+            const isSelected = sel === oi;
+            const isCorrectOpt = oi === item.a;
+            let bg = '#fff'; let border = '#ddd'; let color = '#333';
+            if(answered && isCorrectOpt) { bg = '#dcfce7'; border = '#22c55e'; color = '#166534'; }
+            else if(answered && isSelected && !correct) { bg = '#fef2f2'; border = '#ef4444'; color = '#991b1b'; }
+            else if(!answered) { bg = '#fff'; border = '#ddd'; }
+            return `<button onclick="setState({'tpRead${idx}':${oi}})" style="text-align:left;padding:10px 12px;border-radius:8px;border:2px solid ${border};background:${bg};color:${color};font-size:13px;cursor:${answered?'default':'pointer'};font-weight:${isSelected||isCorrectOpt&&answered?'700':'400'}" ${answered?'disabled':''}>${'①②③④'[oi]} ${opt}</button>`;
+          }).join('')}
+        </div>
+        ${answered?`<div style="margin-top:8px;font-size:12px;font-weight:700;color:${correct?'#22c55e':'#ef4444'}">${correct?'✅ 정답입니다! Correct!':'❌ 오답입니다. 다시 확인하세요.'}</div>`:''}
+      </div>`;
+    }).join('');
+  } else if(hTab === 2) {
+    // Tab 2: Listening Practice
+    content = tp.listening.map((item,idx)=>{
+      const sel = state['tpListen'+idx];
+      const answered = sel !== undefined && sel !== null;
+      const correct = answered && sel === item.a;
+      return `<div class="card" style="margin-bottom:12px;border:2px solid ${answered?(correct?'#22c55e':'#ef4444'):'#e5e7eb'}">
+        <div style="font-size:11px;color:#a855f7;font-weight:700;margin-bottom:6px">듣기 ${idx+1} · Listening ${idx+1}</div>
+        <div style="font-size:14px;color:var(--navy);white-space:pre-line;line-height:1.7;margin-bottom:10px;background:#faf5ff;padding:10px;border-radius:8px">${item.q}</div>
+        <button class="btn btn-primary" style="margin-bottom:10px;width:auto;padding:6px 16px;font-size:12px" onclick="speakTopikListening(${idx})">🔊 듣기 Listen</button>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          ${item.o.map((opt,oi)=>{
+            const isSelected = sel === oi;
+            const isCorrectOpt = oi === item.a;
+            let bg = '#fff'; let border = '#ddd'; let color = '#333';
+            if(answered && isCorrectOpt) { bg = '#dcfce7'; border = '#22c55e'; color = '#166534'; }
+            else if(answered && isSelected && !correct) { bg = '#fef2f2'; border = '#ef4444'; color = '#991b1b'; }
+            return `<button onclick="setState({'tpListen${idx}':${oi}})" style="text-align:left;padding:10px 12px;border-radius:8px;border:2px solid ${border};background:${bg};color:${color};font-size:13px;cursor:${answered?'default':'pointer'};font-weight:${isSelected||isCorrectOpt&&answered?'700':'400'}" ${answered?'disabled':''}>${'①②③④'[oi]} ${opt}</button>`;
+          }).join('')}
+        </div>
+        ${answered?`<div style="margin-top:8px;font-size:12px;font-weight:700;color:${correct?'#22c55e':'#ef4444'}">${correct?'✅ 정답입니다! Correct!':'❌ 오답입니다. 정답을 확인하세요.'}</div>`:''}
+      </div>`;
+    }).join('');
+  } else {
+    // Tab 3: Strategy
+    content = `<div class="card" style="background:linear-gradient(135deg,#f59e0b,#f97316);color:#fff;border:none;margin-bottom:14px">
+      <div style="font-size:18px;font-weight:800">📋 TOPIK I 핵심 전략</div>
+      <div style="font-size:12px;opacity:.8">Key Strategies for TOPIK I</div>
+    </div>
+    <div class="card card-accent" style="margin-bottom:10px">
+      <div style="font-size:14px;font-weight:700;color:var(--ocean);margin-bottom:8px">📖 읽기 전략 · Reading Strategy</div>
+      <div style="font-size:13px;color:#333;line-height:1.8">
+        1️⃣ 먼저 질문을 읽고 핵심 단어를 파악하세요.<br>
+        2️⃣ 지문에서 질문의 답을 찾으세요.<br>
+        3️⃣ 모르는 단어는 앞뒤 문맥으로 추측하세요.<br>
+        4️⃣ 시간이 부족하면 쉬운 문제부터 푸세요.<br>
+        5️⃣ 답을 고른 후 다시 한번 확인하세요.
+      </div>
+      <div style="font-size:11px;color:#888;margin-top:8px;line-height:1.8">
+        1️⃣ Read questions first, identify key words.<br>
+        2️⃣ Find answers in the passage.<br>
+        3️⃣ Guess unknown words from context.<br>
+        4️⃣ Solve easy questions first if time is short.<br>
+        5️⃣ Double-check your answers.
+      </div>
+    </div>
+    <div class="card card-accent" style="margin-bottom:10px">
+      <div style="font-size:14px;font-weight:700;color:#a855f7;margin-bottom:8px">🎧 듣기 전략 · Listening Strategy</div>
+      <div style="font-size:13px;color:#333;line-height:1.8">
+        1️⃣ 듣기 전에 보기를 먼저 읽으세요.<br>
+        2️⃣ 핵심 단어와 숫자에 집중하세요.<br>
+        3️⃣ 대화의 상황(장소, 관계)을 파악하세요.<br>
+        4️⃣ 마지막 문장에 답이 있는 경우가 많아요.<br>
+        5️⃣ 놓쳤으면 다음 문제에 집중하세요.
+      </div>
+      <div style="font-size:11px;color:#888;margin-top:8px;line-height:1.8">
+        1️⃣ Read options before listening.<br>
+        2️⃣ Focus on key words and numbers.<br>
+        3️⃣ Identify the situation (place, relationship).<br>
+        4️⃣ Answers are often in the last sentence.<br>
+        5️⃣ If you miss one, focus on the next question.
+      </div>
+    </div>
+    <div class="card" style="background:#ecfdf5;border:2px solid #22c55e">
+      <div style="font-size:14px;font-weight:700;color:#166534;margin-bottom:8px">🎯 시간 관리 · Time Management</div>
+      <div style="font-size:13px;color:#333;line-height:1.8">
+        📌 읽기: 문제당 1.5분 (40문제 = 60분)<br>
+        📌 듣기: 자동 진행 (40분 고정)<br>
+        📌 쉬운 문제 먼저, 어려운 문제 나중에<br>
+        📌 마킹 시간 2~3분 확보
+      </div>
+    </div>`;
+  }
+
+  // Count answered questions for progress
+  let answered = 0;
+  let total = (tp.reading?tp.reading.length:0) + (tp.listening?tp.listening.length:0);
+  for(let i=0;i<(tp.reading?tp.reading.length:0);i++) if(state['tpRead'+i]!==undefined && state['tpRead'+i]!==null) answered++;
+  for(let i=0;i<(tp.listening?tp.listening.length:0);i++) if(state['tpListen'+i]!==undefined && state['tpListen'+i]!==null) answered++;
+  const pct = total>0?Math.round(answered/total*100):0;
+
+  return `<h2>📊 TOPIK I 준비 · Exam Preparation</h2><p class="sub">${HANGUL_SUBTITLE}</p>
+  <div style="margin-bottom:12px;background:#e5e7eb;border-radius:8px;overflow:hidden;position:relative;height:22px">
+    <div style="width:${pct}%;height:100%;background:linear-gradient(90deg,#a855f7,#ec4899);border-radius:8px;transition:width 0.5s"></div>
+    <div style="position:absolute;top:0;left:0;right:0;text-align:center;font-size:11px;font-weight:700;line-height:22px;color:${pct>50?'#fff':'#555'}">연습 진도 ${answered}/${total} (${pct}%)</div>
+  </div>
+  <div class="tabs">${tabs.map((t,i)=>`<button class="tab ${hTab===i?'active':''}" onclick="setState({hgTab:${i}})">${t}</button>`).join('')}</div>
+  ${content}
+  ${hTab===1||hTab===2?`<button class="btn btn-navy" style="margin-top:12px" onclick="${hTab===1?tp.reading.map((_,i)=>`setState({'tpRead${i}':undefined})`).join(';'):tp.listening.map((_,i)=>`setState({'tpListen${i}':undefined})`).join(';')}">↺ 다시 풀기 · Retry</button>`:''}`;
+}
+
+function renderVocab() {
+  const tabs = ['의료 어휘 Medical','실용 문장 Sentences','심화 어휘 Advanced','직장 도구 Tools'];
+  const t = state.vocabTab;
+  let content = '';
+  if (t===0) content = VOCAB_PHONE.map((v,i)=>`
+    <div class="card card-accent vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,[${i}]:!state.vocabReveal[${i}]}})">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><div class="kor">${v.kor} ${ttsBtn(v.kor)}</div><div class="pron">[${v.pron}]</div></div>
+      </div>
+      ${state.vocabReveal[i]?'<div style="margin-top:6px;padding:6px 10px;background:#f0f7ff;border-radius:6px;font-size:13px;color:var(--ocean);font-weight:600">'+v.eng+'</div>'
+      :'<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기 · Tap for English</div>'}
+    </div>`).join('');
+  else if (t===1) content = VOCAB_SHIPYARD.map((v,i)=>`
+    <div class="card card-orange vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,['s'+${i}]:!state.vocabReveal['s'+${i}]}})">
+      <div class="kor">${v.a} ${ttsBtn(v.a)}</div>
+      <div style="font-size:11px;color:#888">${v.sit}</div>
+      ${state.vocabReveal['s'+i]?'<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border-radius:6px;font-size:13px;color:var(--orange);font-weight:600">'+v.eng+'</div>'
+      :'<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기</div>'}
+    </div>`).join('');
+  else if (t===2) content = '<div class="grid2">'+VOCAB_ADVANCED.map(v=>'<div class="vocab-item" style="background:#f0fdf4;border-radius:8px;padding:8px 10px;border-left:4px solid #22c55e" onclick="TTS.speak(\''+v.a.replace(/'/g,"\\'")+'\')">'
+      +'<div class="kor" style="font-size:14px">'+v.a+' '+ttsBtn(v.a)+'</div><div class="eng">'+v.eng+'</div>'
+      +'</div>').join('')+'</div>';
+  else content = '<div class="grid2">'+VOCAB_SHIPYARD_NOUNS.map(v=>'<div class="vocab-item" style="background:#fff7ed;border-radius:8px;padding:8px 10px;border-left:4px solid #ED7D31" onclick="TTS.speak(\''+v.a.replace(/'/g,"\\'")+'\')">'
+      +'<div class="kor" style="font-size:14px">'+v.a+' '+ttsBtn(v.a)+'</div><div class="eng">'+v.eng+'</div>'
+      +'</div>').join('')+'</div>';
+
+  return '<h2><span class="section-icon">📖</span>어휘 · Vocabulary</h2><p class="sub">5과 · Lesson 5 · 병원 ('+(VOCAB_PHONE.length+VOCAB_SHIPYARD.length+VOCAB_ADVANCED.length+VOCAB_SHIPYARD_NOUNS.length)+'단어)</p>'
+  +'<div class="tabs">'+tabs.map((tb,i)=>'<button class="tab '+(t===i?'active':'')+'" onclick="setState({vocabTab:'+i+',vocabReveal:{}})">'+tb+'</button>').join('')+'</div>'
+  +content;
+}
+
+function renderGrammar() {
+  const g = GRAMMAR[state.gramIdx];
+  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">2-5과 핵심 문법 ${GRAMMAR.length}개</p>
+  <div class="tabs">${GRAMMAR.map((gr,i)=>`<button class="tab ${state.gramIdx===i?'active':''}" onclick="setState({gramIdx:${i}})">${gr.title}</button>`).join('')}</div>
+  <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
+    <div style="font-size:18px;font-weight:800;color:var(--navy)">${g.title}</div>
+    <div style="font-size:12px;color:var(--ocean);margin-bottom:8px">${g.eng}</div>
+    <div style="font-size:13px;color:#333">${g.desc}</div>
+    <div style="font-size:12px;color:#888;margin-bottom:10px">${g.descEng}</div>
+    <div style="background:var(--ocean);color:#fff;border-radius:8px;padding:10px;text-align:center">
+      <div style="font-weight:700;font-size:15px">${g.rule}</div>
+      <div style="font-size:11px;margin-top:4px;opacity:.8">${g.ruleEng}</div>
+    </div>
+  </div>
+  <div style="font-weight:700;color:var(--navy);margin:12px 0 8px">예문 · Examples</div>
+  ${g.examples.map(ex=>`<div class="card card-accent">
+    ${ex.q?`<div style="font-size:13px;color:#555">가: ${ex.q}</div>`:''}
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${ex.q?'나: ':''}${ex.a||ex.kor||''} ${ttsBtn(ex.a||ex.kor||'')}</div>
+    <div style="font-size:11px;color:var(--orange);font-weight:600;margin-top:4px">${ex.note}</div>
+    <div style="font-size:11px;color:#888">${ex.eng}</div>
+  </div>`).join('')}`;
+}
+
+function renderDialogue() {
+  const d = DIALOGUES[state.dlgIdx];
+  return `<h2>💬 대화 · Dialogue</h2>
+  <div class="tabs">${DIALOGUES.map((dl,i)=>`<button class="tab ${state.dlgIdx===i?'active':''}" onclick="setState({dlgIdx:${i},dlgLine:-1})">${dl.title}</button>`).join('')}</div>
+  <p style="color:#888;font-size:12px;margin-bottom:10px">${d.eng}</p>
+  <div style="display:flex;gap:6px;margin-bottom:14px">
+    <button class="tab ${state.dlgShowEng?'active':''}" onclick="setState({dlgShowEng:!state.dlgShowEng})">${state.dlgShowEng?'영어 숨기기':'영어 보기'}</button>
+    <button class="tab active" style="background:var(--green)" onclick="setState({dlgLine:state.dlgLine<${d.lines.length-1}?state.dlgLine+1:-1})">
+      ${state.dlgLine<0?'▶ 시작':state.dlgLine>=d.lines.length-1?'↺ 다시':'▶ 다음'}</button>
+    <button class="tab" onclick="TTS.speak('${d.lines.map(l=>l.text).join('. ')}',undefined,0.7)">🔊 전체 듣기</button>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:6px">
+    ${d.lines.map((l,i)=>{
+      if(state.dlgLine>=0 && i>state.dlgLine) return '';
+      const isL = l.side==='L';
+      return `<div style="display:flex;flex-direction:column;align-items:${isL?'flex-start':'flex-end'};opacity:${state.dlgLine>=0&&i===state.dlgLine?1:.65}">
+        <div style="font-size:10px;color:${isL?'var(--ocean)':'var(--orange)'};font-weight:700;margin-bottom:2px">${l.sp}${l.role?' ('+l.role+')':''}</div>
+        <div class="bubble ${isL?'bubble-left':'bubble-right'}">
+          <div style="font-size:15px;font-weight:600;color:var(--navy)">${l.text} ${ttsBtn(l.text)}</div>
+          ${state.dlgShowEng?`<div style="font-size:11px;color:#888;margin-top:4px">${l.eng}</div>`:''}
+        </div>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function renderReading() {
+  const r = READING_PASSAGES[state.rdIdx];
+  return `<h2><span class="section-icon">📕</span>읽기 · Reading</h2><p class="sub">읽기 연습 · Reading Practice</p>
+  <div class="tabs">${READING_PASSAGES.map((p,i)=>`<button class="tab ${state.rdIdx===i?'active':''}" onclick="setState({rdIdx:${i},rdShowEng:false,rdAnswers:{}})">${p.title}</button>`).join('')}</div>
+  <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <b style="color:var(--ocean)">${r.title} · ${r.eng}</b>
+      <button class="tts-btn" onclick="TTS.speak(\`${r.text.replace(/\n/g,' ')}\`,undefined,0.7)">🔊</button>
+    </div>
+    ${r.text.split('\n').map(line=>`<div style="font-size:16px;color:var(--navy);font-weight:600;margin-bottom:4px;line-height:1.6">${line} ${ttsBtn(line)}</div>`).join('')}
+    ${state.rdShowEng?`<div style="margin-top:10px;padding-top:10px;border-top:1px dashed #ccc">${r.textEng.split('\n').map(l=>`<div style="font-size:13px;color:#888;line-height:1.5">${l}</div>`).join('')}</div>`:''}
+    <button class="tab ${state.rdShowEng?'active':''}" style="margin-top:10px" onclick="setState({rdShowEng:!state.rdShowEng})">${state.rdShowEng?'영어 숨기기':'영어 번역 보기'}</button>
+  </div>
+  <div style="font-weight:700;color:var(--navy);margin:12px 0 8px">📝 이해 확인 · Comprehension</div>
+  ${r.questions.map((q,i)=>`<div class="card card-accent">
+    <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">${i+1}) ${q.q}</div>
+    ${state.rdAnswers[i]?`<div style="padding:6px 10px;background:#dcfce7;border-radius:6px;font-size:14px;color:var(--green);font-weight:600">✓ ${q.a} (${q.ae})</div>`
+    :`<button class="tab active" onclick="setState({rdAnswers:{...state.rdAnswers,${i}:true}})">정답 보기 · Show Answer</button>`}
+  </div>`).join('')}`;
+}
+
+function renderWriting() {
+  const preview = state.wrSymptom ? `의료 상담:\\n\\n저는 ${state.wrSymptom}이 있어요.\\n${state.wrDuration?'약 '+state.wrDuration+'부터 시작됐어요.':''}\\n${state.wrSeverity?'증상이 '+state.wrSeverity+'아요.':''}\\n${state.wrExtra?state.wrExtra:''}\\n\\n의료진에게 상담하고 싶어요.` : '';
+
+  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">나의 증상 설명 · Describing My Symptoms</p>
+  <div class="card" style="background:#fff7ed;border:2px solid var(--orange)">
+    <b style="color:var(--orange)">📋 증상을 설명해 보세요 · Describe Your Symptoms</b>
+  </div>
+  <div style="margin-top:12px">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">주요 증상 Main Symptom</label>
+    <input class="input" placeholder="예: 두통 / 기침 / 복통 / headache" value="${state.wrSymptom}" oninput="state.wrSymptom=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">증상 기간 Duration</label>
+    <input class="input" placeholder="예: 2일 / 어제 / 1주일 / 2 days" value="${state.wrDuration}" oninput="state.wrDuration=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">증상 정도 Severity</label>
+    <select class="input" oninput="state.wrSeverity=this.value;render()">
+      <option value="">-- 선택하세요 --</option>
+      <option value="약해요" ${state.wrSeverity==='약해요'?'selected':''}>약해요 (mild)</option>
+      <option value="중간이에요" ${state.wrSeverity==='중간이에요'?'selected':''}>중간이에요 (moderate)</option>
+      <option value="심해요" ${state.wrSeverity==='심해요'?'selected':''}>심해요 (severe)</option>
+    </select>
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">추가 정보 Extra Info</label>
+    <input class="input" placeholder="예: 약을 먹었어요 / 열은 없어요" value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
+  </div>
+  ${preview?`
+  <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📄 미리보기 · Preview</div>
+  <div class="card card-accent" style="background:#f0f7ff">
+    ${preview.split('\n').filter(l=>l.trim()).map(l=>`<div style="font-size:14px;color:var(--navy);font-weight:600;margin-bottom:6px;line-height:1.4">${l}</div>`).join('')}
+  </div>
+  <button class="btn btn-primary" style="margin-top:10px" onclick="TTS.speak(\`${preview.replace(/\n/g,' ').replace(/아요\./g,'아요')}\`,undefined,0.8)">🔊 의료 상담 연습 · Medical Consultation Practice</button>
+  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 증상을 입력하면 의료 상담이 만들어집니다.<br>Fill in the symptoms above to create a medical consultation.</div>'}
+
+  <div style="margin-top:20px;font-weight:700;color:var(--navy);margin-bottom:8px">✍️ 자유 쓰기 · Free Writing</div>
+  <textarea placeholder="자유롭게 한국어로 증상을 설명해 보세요.&#10;Describe your symptoms freely in Korean.&#10;&#10;예: 어제부터 두통이 있어요.&#10;약을 먹었지만 안 좋아져요.&#10;의사를 만나고 싶어요."></textarea>`;
+}
+
+function renderFlashcard() {
+  const all = [...VOCAB_PHONE.map(v=>({f:v.kor,b:v.eng})),...VOCAB_ADVANCED.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
+  const card = all[state.fcIdx % all.length];
+  return `<h2>🃏 플래시카드 · Flashcards</h2>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">${(state.fcIdx%all.length)+1} / ${all.length}</span>
+    <span style="font-size:12px;color:var(--green);font-weight:600">✓ ${state.fcKnown}개 학습</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${((state.fcIdx%all.length)+1)/all.length*100}%;background:var(--orange)"></div></div>
+  <div onclick="setState({fcFlipped:!state.fcFlipped})"
+    style="background:${state.fcFlipped?'var(--navy)':'#fff'};border:2px solid var(--navy);border-radius:16px;padding:36px 20px;margin:18px 0;text-align:center;cursor:pointer;min-height:130px;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:all .3s">
+    <div style="font-size:10px;color:${state.fcFlipped?'#93c5fd':'#aaa'};margin-bottom:8px">${state.fcFlipped?'ENGLISH':'한국어'}</div>
+    <div style="font-size:${state.fcFlipped?'20px':'30px'};font-weight:700;color:${state.fcFlipped?'#fff':'var(--navy)'}">${state.fcFlipped?card.b:card.f}</div>
+    ${!state.fcFlipped?'<div style="font-size:11px;color:#ccc;margin-top:10px">탭하여 뒤집기 · Tap to flip</div>':''}
+  </div>
+  <div style="display:flex;gap:8px">
+    <button onclick="TTS.speak('${card.f}')" style="padding:12px;border-radius:10px;background:#f0f7ff;color:var(--ocean);font-size:20px;flex-shrink:0">🔊</button>
+    <button onclick="setState({fcIdx:state.fcIdx+1,fcFlipped:false})" style="flex:1;padding:12px;border-radius:10px;background:#fee2e2;color:var(--red);font-size:14px;font-weight:700">✕ 모르겠어요</button>
+    <button onclick="setState({fcIdx:state.fcIdx+1,fcFlipped:false,fcKnown:state.fcKnown+1})" style="flex:1;padding:12px;border-radius:10px;background:#dcfce7;color:var(--green);font-size:14px;font-weight:700">✓ 알겠어요!</button>
+  </div>`;
+}
+
+function renderQuiz() {
+  if (state.qDone) {
+    const pct = Math.round(state.qScore/QUIZ.length*100);
+    return `<div style="text-align:center;padding:20px 0">
+      <div style="font-size:56px">${pct>=80?'🎉':pct>=50?'👍':'💪'}</div>
+      <h2>퀴즈 결과 · Quiz Result</h2>
+      <div style="font-size:44px;font-weight:800;color:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'};margin:14px 0">${state.qScore}/${QUIZ.length}</div>
+      <div style="font-size:15px;color:#888;margin-bottom:20px">${pct}% 정답 · Correct</div>
+      <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
+      <button onclick="setState({qIdx:0,qSel:null,qScore:0,qDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
+    </div>`;
+  }
+  const q = QUIZ[state.qIdx];
+  return `<h2>🎯 퀴즈 · Quiz</h2>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문제 ${state.qIdx+1}/${QUIZ.length}</span>
+    <span style="font-size:12px;color:var(--ocean);font-weight:600">점수: ${state.qScore}</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.qIdx+1)/QUIZ.length*100}%;background:var(--ocean)"></div></div>
+  <div class="card" style="background:#f0f7ff;text-align:center;margin:14px 0">
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${q.q}</div>
+  </div>
+  ${q.o.map((opt,i)=>{
+    let cls = 'quiz-opt';
+    if(state.qSel!==null){
+      if(i===q.a) cls+=' quiz-correct';
+      else if(i===state.qSel) cls+=' quiz-wrong';
+    }
+    return `<button class="${cls}" onclick="${state.qSel===null?`setState({qSel:${i},qScore:state.qScore+${i===q.a?1:0}})`:''}">${String.fromCharCode(65+i)}. ${opt}</button>`;
+  }).join('')}
+  ${state.qSel!==null?`<button onclick="${state.qIdx<QUIZ.length-1?`setState({qIdx:state.qIdx+1,qSel:null})`:`setState({qDone:true})`}" class="btn btn-primary" style="margin-top:8px">${state.qIdx<QUIZ.length-1?'다음 문제 → Next':'결과 보기 → Result'}</button>`:''}`;
+}
+
+function renderCulture() {
+  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 의료 시스템 · Korean Healthcare Culture</p>
+  ${CULTURE.map(c=>`<div class="card" style="display:flex;gap:12px;align-items:flex-start">
+    <div style="font-size:34px;flex-shrink:0">${c.icon}</div>
+    <div>
+      <div style="font-weight:700;font-size:15px;color:var(--navy)">${c.t}</div>
+      <div style="font-size:11px;color:var(--ocean);margin-bottom:4px">${c.eng}</div>
+      <div style="font-size:13px;color:#333;line-height:1.5">${c.d}</div>
+      <div style="font-size:12px;color:#888;margin-top:2px">${c.de}</div>
+    </div>
+  </div>`).join('')}
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">🏥 K-의료 경쟁력 보기</button>`;
+}
+
+// ===== REVIEW (익힘) =====
+function renderReview() {
+  const tabs = ['복습 Review','예습 Preview','받아쓰기 Dictation'];
+  const t = state.rvTab;
+
+  if (t===0) { // 복습
+    const rv = REVIEW_DATA.review;
+    return `<h2><span class="section-icon">📝</span>익힘 · 복습</h2><p class="sub">${rv.desc} ${rv.descEng}</p>
+    <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+    ${rv.sections.map(s=>`
+      <div class="card card-accent">
+        <div style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px">${s.icon} ${s.title}</div>
+        ${s.items.map(item=>`<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+          <span style="color:var(--green);font-size:14px">✓</span>
+          <span style="font-size:14px;color:#333">${item}</span>
+          ${!item.includes(' ')&&item.length<15?ttsBtn(item):''}
+        </div>`).join('')}
+      </div>`).join('')}
+    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 의료 표현 전체 듣기</button>`;
+  }
+  if (t===1) { // 예습
+    const pv = REVIEW_DATA.preview;
+    return `<h2><span class="section-icon">📝</span>익힘 · 예습</h2><p class="sub">${pv.desc} ${pv.descEng}</p>
+    <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+    <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean)">
+      <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px">📖 다음 수업 미리보기 · Next Lesson Preview</div>
+      <div style="font-size:12px;color:#888;margin-bottom:12px">2-5과를 미리 살펴보세요!</div>
+    </div>
+    ${pv.items.map((item,i)=>`
+      <div class="card ${i%2===0?'card-accent':'card-orange'}">
+        <div style="font-size:12px;font-weight:700;color:var(--ocean)">${item.label}</div>
+        <div style="font-size:16px;font-weight:700;color:var(--navy);margin:4px 0">${item.val}</div>
+        <div style="font-size:12px;color:#888">${item.detail}</div>
+      </div>`).join('')}
+    <div class="card card-green" style="background:var(--light-green)">
+      <div style="font-weight:700;color:var(--green);margin-bottom:6px">💡 예습 팁 · Preview Tips</div>
+      <div style="font-size:13px;color:#333;line-height:1.6">
+        1. 의료 어휘를 3번씩 소리 내어 읽어 보세요.<br>
+        2. 증상을 한국어로 설명하는 연습을 해 보세요.<br>
+        3. 간접화법과 소망 표현을 알아보세요.
+      </div>
+      <div style="font-size:12px;color:#888;margin-top:6px;line-height:1.5">
+        1. Read medical vocabulary aloud 3 times.<br>
+        2. Practice explaining symptoms in Korean.<br>
+        3. Learn indirect speech and expressing wishes.
+      </div>
+    </div>`;
+  }
+  // t===2: 받아쓰기
+  const dict = REVIEW_DATA.dictation;
+  const d = dict[state.rvDictIdx];
+  const result = state.rvDictResults[state.rvDictIdx];
+  return `<h2><span class="section-icon">📝</span>익힘 · 받아쓰기</h2><p class="sub">Dictation Practice · 듣고 따라 쓰세요</p>
+  <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문장 ${state.rvDictIdx+1}/${dict.length}</span>
+    <span style="font-size:12px;color:var(--green);font-weight:600">✓ ${Object.values(state.rvDictResults).filter(r=>r==='correct').length}개 정답</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.rvDictIdx+1)/dict.length*100}%;background:var(--ocean)"></div></div>
+
+  <div class="card" style="text-align:center;margin:16px 0;background:#f0f7ff;border:2px solid var(--ocean)">
+    <div style="font-size:14px;color:#888;margin-bottom:8px">🔊 듣고 한국어로 쓰세요 · Listen and write in Korean</div>
+    <button onclick="TTS.speak('${d}',undefined,0.7)" style="background:var(--ocean);color:#fff;border-radius:50%;width:56px;height:56px;font-size:28px;margin:8px 0">🔊</button>
+    <div style="font-size:11px;color:#aaa;margin-top:4px">버튼을 눌러 들으세요 · Press to listen</div>
+  </div>
+
+  <input class="input" style="font-size:18px;text-align:center;padding:14px" placeholder="여기에 쓰세요 · Write here"
+    value="${state.rvDictInput||''}" oninput="state.rvDictInput=this.value" id="dictInput">
+
+  ${result ? `<div class="card ${result==='correct'?'card-green':'card-orange'}" style="background:${result==='correct'?'var(--light-green)':'#fee2e2'}">
+    <div style="font-size:16px;font-weight:700;color:${result==='correct'?'var(--green)':'var(--red)'}">${result==='correct'?'✓ 정답입니다! Correct!':'✕ 다시 해 보세요.'}</div>
+    <div style="font-size:18px;font-weight:700;color:var(--navy);margin-top:6px">정답: ${d}</div>
+  </div>`:
+  `<button class="btn btn-primary" onclick="
+    var input=document.getElementById('dictInput').value.trim().replace(/[.?!]/g,'');
+    var answer='${d}'.replace(/[.?!]/g,'');
+    var r=input===answer?'correct':'wrong';
+    setState({rvDictResults:{...state.rvDictResults,[state.rvDictIdx]:r}})
+  ">✓ 확인 · Check</button>`}
+
+  ${result?`<button class="btn btn-navy" style="margin-top:8px" onclick="setState({rvDictIdx:Math.min(state.rvDictIdx+1,${dict.length-1}),rvDictInput:'',rvDictResults:state.rvDictResults})">${state.rvDictIdx<dict.length-1?'다음 문장 → Next':'완료! Finished!'}</button>`:''}
+  <button onclick="TTS.speak('${d}',undefined,0.6)" class="btn" style="margin-top:6px;background:#e5e7eb;color:#555">🔊 천천히 듣기 · Listen Slowly</button>`;
+}
+
+// ===== KOREAN LITERATURE =====
+function renderFolktale() {
+  const ft = KOREAN_LITERATURE;
+  const s = ft.sentences[state.ftSentIdx];
+  const total = ft.sentences.length;
+  return `<h2><span class="section-icon">📚</span>한국 문학 · Korean Literature</h2>
+  <div class="card" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;margin-bottom:14px">
+    <div style="font-size:22px;font-weight:800;margin-bottom:2px">${ft.title}</div>
+    <div style="font-size:13px;opacity:.8">${ft.eng}</div>
+    <div style="font-size:12px;opacity:.7;margin-top:6px">${ft.desc}</div>
+    <div style="font-size:11px;opacity:.6">${ft.descEng}</div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문장 ${state.ftSentIdx+1}/${total}</span>
+    <div style="display:flex;gap:6px">
+      <button class="tab ${state.ftShowEng?'active':''}" onclick="setState({ftShowEng:!state.ftShowEng})">${state.ftShowEng?'영어 숨기기':'영어 보기'}</button>
+    </div>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.ftSentIdx+1)/total*100}%;background:#a855f7"></div></div>
+
+  <div class="card" style="margin:14px 0;padding:20px;text-align:center;background:#faf5ff;border:2px solid #a855f7;min-height:120px;display:flex;flex-direction:column;justify-content:center">
+    <div style="font-size:20px;font-weight:700;color:var(--navy);line-height:1.6;margin-bottom:8px">${s.kor}</div>
+    ${state.ftShowEng?`<div style="font-size:14px;color:#888;line-height:1.4">${s.eng}</div>`:''}
+    <button onclick="TTS.speak('${s.kor.replace(/'/g,"\\'")}')" style="margin:12px auto 0;background:#a855f7;color:#fff;border-radius:50%;width:48px;height:48px;font-size:22px">🔊</button>
+  </div>
+
+  <div style="display:flex;gap:8px;margin-bottom:12px">
+    <button onclick="setState({ftSentIdx:Math.max(0,state.ftSentIdx-1)})" class="btn" style="background:#e5e7eb;color:#555;flex:1">← 이전</button>
+    <button onclick="setState({ftSentIdx:Math.min(${total-1},state.ftSentIdx+1)})" class="btn" style="background:#a855f7;color:#fff;flex:1">다음 →</button>
+  </div>
+
+  <button onclick="var all=KOREAN_LITERATURE.sentences.map(s=>s.kor).join('. ');TTS.speak(all,undefined,0.7)" class="btn btn-navy" style="margin-bottom:8px">🔊 전체 시 듣기 · Listen to Full Poem</button>
+  <button onclick="setState({page:'ftquiz'})" class="btn btn-orange">🧩 문학 퀴즈 풀기 · Take Literature Quiz</button>
+
+  <div style="margin-top:16px;font-weight:700;color:var(--navy);margin-bottom:8px">📖 전체 문장 목록 · All Sentences</div>
+  <div style="max-height:300px;overflow-y:auto;border:1px solid #e5e7eb;border-radius:10px;padding:8px">
+    ${ft.sentences.map((sent,i)=>`
+      <div onclick="setState({ftSentIdx:${i}});TTS.speak('${sent.kor.replace(/'/g,"\\'")}')"
+        style="padding:8px 10px;border-radius:8px;margin-bottom:4px;cursor:pointer;background:${i===state.ftSentIdx?'#f3e8ff':'transparent'};border-left:${i===state.ftSentIdx?'3px solid #a855f7':'3px solid transparent'}">
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <span style="color:#a855f7;font-weight:700;font-size:12px;min-width:20px">${i+1}</span>
+          <div>
+            <div style="font-size:14px;color:var(--navy);font-weight:${i===state.ftSentIdx?700:400}">${sent.kor}</div>
+            ${state.ftShowEng?`<div style="font-size:11px;color:#888">${sent.eng}</div>`:''}
+          </div>
+        </div>
+      </div>
+    `).join('')}
+  </div>`;
+}
+
+// ===== LITERATURE QUIZ =====
+function renderFtQuiz() {
+  if (state.fqDone) {
+    const pct = Math.round(state.fqScore/LITERATURE_QUIZ.length*100);
+    return `<div style="text-align:center;padding:20px 0">
+      <div style="font-size:56px">${pct>=80?'🎉':pct>=50?'📖':'💪'}</div>
+      <h2>문학 퀴즈 결과 · Literature Quiz Result</h2>
+      <div style="font-size:14px;color:#888;margin:6px 0">한국 현대시 · Korean Modern Poetry</div>
+      <div style="font-size:44px;font-weight:800;color:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'};margin:14px 0">${state.fqScore}/${LITERATURE_QUIZ.length}</div>
+      <div style="font-size:15px;color:#888;margin-bottom:20px">${pct}% 정답 · Correct</div>
+      <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
+      <button onclick="setState({fqIdx:0,fqSel:null,fqScore:0,fqDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
+      <button onclick="setState({page:'folktale'})" class="btn" style="margin-top:8px;background:#e5e7eb;color:#555">📚 문학 다시 읽기 · Read Literature Again</button>
+    </div>`;
+  }
+  const q = LITERATURE_QUIZ[state.fqIdx];
+  return `<h2><span class="section-icon">🧩</span>문학 퀴즈 · Literature Quiz</h2>
+  <p class="sub">한국 현대시 · Korean Modern Poetry</p>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문제 ${state.fqIdx+1}/${LITERATURE_QUIZ.length}</span>
+    <span style="font-size:12px;color:#a855f7;font-weight:600">점수: ${state.fqScore}</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.fqIdx+1)/LITERATURE_QUIZ.length*100}%;background:#a855f7"></div></div>
+
+  <div class="card" style="background:#faf5ff;text-align:center;margin:14px 0;border:2px solid #a855f7">
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${q.q}</div>
+    <button onclick="TTS.speak('${q.q.replace(/'/g,"\\'")}')" class="tts-btn" style="margin-top:8px;background:#a855f7">🔊</button>
+  </div>
+  ${q.o.map((opt,i)=>{
+    let cls='quiz-opt';
+    if(state.fqSel!==null){
+      if(i===q.a) cls+=' quiz-correct';
+      else if(i===state.fqSel) cls+=' quiz-wrong';
+    }
+    return `<button class="${cls}" onclick="${state.fqSel===null?`setState({fqSel:${i},fqScore:state.fqScore+${i===q.a?1:0}})`:''}">${String.fromCharCode(65+i)}. ${opt}</button>`;
+  }).join('')}
+  ${state.fqSel!==null?`<button onclick="${state.fqIdx<LITERATURE_QUIZ.length-1?`setState({fqIdx:state.fqIdx+1,fqSel:null})`:`setState({fqDone:true})`}" class="btn" style="margin-top:8px;background:#a855f7;color:#fff">${state.fqIdx<LITERATURE_QUIZ.length-1?'다음 문제 → Next':'결과 보기 → Result'}</button>`:''}`;
+}
+
+function renderGeoje() {
+  const g = LOCAL_INFO;
+  return `<h2>🏥 ${g.title}</h2><p class="sub">${g.eng}</p>
+  <div class="card" style="background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border:none">
+    <div style="font-size:18px;font-weight:800;margin-bottom:10px">GlocalBridge · 글로컬 아카데미</div>
+    <div style="font-size:13px;line-height:1.7;opacity:.9">${g.desc}</div>
+    <div style="font-size:12px;line-height:1.6;opacity:.7;margin-top:8px">${g.descEng}</div>
+  </div>
+  <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📊 기본 정보 · Basic Info</div>
+  ${g.facts.map((f,i)=>`<div class="card ${i%2===0?'card-accent':'card-orange'}">
+    <div style="font-size:12px;font-weight:700;color:var(--ocean)">${f.label}</div>
+    <div style="font-size:14px;color:var(--navy);font-weight:600">${f.val}</div>
+  </div>`).join('')}
+  <div class="card" style="background:var(--light-orange);border:2px solid var(--orange)">
+    <b style="color:var(--orange)">🏥 한국의 의료 시스템 · Korean Healthcare</b>
+    <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      ${[
+        {item:'건강보험',price:'일반 의료',emoji:'🏥',eng:'Health Insurance'},
+        {item:'산재보험',price:'직장 부상',emoji:'⚠️',eng:'Workers Comp'},
+        {item:'응급 119',price:'24시간 대응',emoji:'🚑',eng:'Emergency 119'},
+        {item:'의료비 저렴',price:'세계적 수준',emoji:'💊',eng:'Affordable Care'},
+        {item:'의료 관광',price:'성형·치과',emoji:'✨',eng:'Medical Tourism'},
+        {item:'예방 의료',price:'건강검진',emoji:'🩺',eng:'Preventive Care'},
+      ].map(p=>`
+        <div style="background:#fff;border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px">${p.emoji}</div>
+          <div style="font-size:13px;font-weight:700;color:var(--navy)">${p.item}</div>
+          <div style="font-size:14px;font-weight:800;color:var(--orange)">${p.price}</div>
+          <div style="font-size:10px;color:#aaa">${p.eng}</div>
+        </div>
+      `).join('')}
+    </div>
+  </div>`;
+}
+
+
+// ===== AI 에이전트 (직장 특화) =====
+var AI_QUICK_BTNS = [
+  {emoji:'🩺',label:'증상 설명하기',
+   q:'증상설명 symptom description 어디아파요 의사에게를 알려주세요' },
+  {emoji:'📄',label:'진단서/처방전',
+   q:'진단서처방전 diagnosis prescription 진단서 처방전을 알려주세요' },
+  {emoji:'💊',label:'약국에서',
+   q:'약국에서 at pharmacy 약사 약이름을 알려주세요' },
+  {emoji:'🏥',label:'의료보험',
+   q:'의료보험 health insurance 건강보험 보험카드를 알려주세요' },
+  {emoji:'🚨',label:'응급 상황',
+   q:'응급상황 emergency situation 응급실 119전화를 알려주세요' }
+];
+var AICHAT = {
+  msgs: [],
+  loading: false,
+  input: '',
+  addMsg: function(role, text) {
+    this.msgs.push({ role, text, time: new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'}) });
+    render();
+    setTimeout(function(){
+      var box = document.querySelector('.ai-msgbox');
+      if(box) box.scrollTop = box.scrollHeight;
+    }, 50);
+  },
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx];
+    if (!b || this.loading) return;
+    this.send(b.q, b.label);
+  },
+  send: async function(text, label) {
+    if (this.loading) return;
+    text = text || this.input.trim();
+    if (!text) return;
+    this.input = '';
+    this.loading = true;
+    var displayText = label || text;
+    this.addMsg('user', displayText);
+    try {
+      var sysP = 'You are a Korean medical guide for foreign workers in Korea. Lesson focus: hospital/medical vocabulary 병원(hospital), 의사(doctor), 처방(prescription), 약(medicine), 약국(pharmacy), 증상(symptom), indirect quotation ~다고 하다 (doctor said...), ~(으)면 좋겠다 (I hope...). Help describe symptoms and understand doctor instructions. SHORT answers with English. LESSON:L2L5';
+      var url = '/api/chat';
+      var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+                  var data = await res.json();
+      var reply = data.choices[0].message.content;
+      this.loading = false;
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
+    } catch(e) {
+      this.loading = false;
+      this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');
+    }
+  }
+};
+
+// ===== RECORDER (발음 코치 — 브라우저 내장 API) =====
+var RECORDER = {
+  recorders: {}, chunks: {}, audioURLs: {}, isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    var resultEl = document.getElementById('stt-result-' + idx);
+    var playBtn  = document.getElementById('play-btn-' + idx);
+    var scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, recBtn); return; }
+    var stream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({audio: true});
+    } catch(e) {
+      var msg = '';
+      var n = e.name || '';
+      if (n === 'NotAllowedError' || n === 'PermissionDeniedError')
+        msg = '❌ <strong>마이크 차단됨</strong> — 주소창 🔒 → 마이크 → <strong>허용</strong> 후 F5<br><span style="color:#555">Microphone blocked — click 🔒 → Microphone → Allow → F5</span>';
+      else if (n === 'NotFoundError')
+        msg = '❌ 마이크를 찾을 수 없어요 — Microphone not found';
+      else if (location.protocol === 'file:')
+        msg = '❌ 보안 오류 — <a href="https://elimg.com" target="_blank" style="color:#1d4ed8">elimg.com</a>에서 열어주세요 (HTTPS 필요)';
+      else
+        msg = '❌ 오류: ' + e.name + ' — Chrome/Edge에서 다시 시도하세요';
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    var mr = new MediaRecorder(stream);
+    this.recorders[idx] = mr;
+    var self = this;
+    mr.ondataavailable = function(e) { if (e.data.size > 0) self.chunks[idx].push(e.data); };
+    mr.onstop = function() {
+      if (self.audioURLs[idx]) URL.revokeObjectURL(self.audioURLs[idx]);
+      var blob = new Blob(self.chunks[idx], {type:'audio/webm'});
+      self.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false; playBtn.style.opacity = '1';
+        playBtn.onclick = function() { new Audio(self.audioURLs[idx]).play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지'; recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중... / Recording...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      var rec = new SR(); rec.lang = 'ko-KR'; rec.continuous = false; rec.interimResults = false;
+      rec.onresult = function(e) {
+        var said = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        var target = targetText.replace(/[\s,.?!]/g,'');
+        var conf = e.results[0][0].confidence;
+        var match = 0;
+        for (var i = 0; i < Math.min(said.length, target.length); i++) { if (said[i] === target[i]) match++; }
+        var pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        var final = Math.round(pct * 0.7 + Math.round((conf||0.5)*100) * 0.3);
+        var color = final >= 80 ? '#22c55e' : final >= 50 ? '#f59e0b' : '#ef4444';
+        var msg = final >= 80 ? '✅ 완벽해요! Great!' : final >= 50 ? '🔄 조금 더 연습! Keep going!' : '❌ 다시 시도! Try again!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식 / Heard: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = final + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = function() {};
+      rec.start();
+    }
+  },
+
+  stop(idx, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') this.recorders[idx].stop();
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음'; recBtn.style.background = '#059669';
+  },
+
+  async autoDetect() {
+    var stateEl = document.getElementById('mic-perm-state');
+    var blockedEl = document.getElementById('mic-blocked-guide');
+    var allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        var result = await navigator.permissions.query({name:'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨 — 바로 녹음하세요! / Microphone allowed!</div>';
+          if (allowBtn) { allowBtn.style.background='#166534'; allowBtn.textContent='✅ 허용됨 — 녹음 시작 / Start Recording'; }
+          if (blockedEl) blockedEl.style.display = 'none';
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 / Blocked — 아래 버튼 클릭</div>';
+          if (blockedEl) blockedEl.style.display = 'block';
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아래 버튼을 눌러 마이크를 허용하세요</div>';
+        }
+        result.onchange = function() { RECORDER.autoDetect(); };
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼으로 마이크를 허용하세요</div>';
+      }
+    }
+  },
+
+  async checkPermission(btn) {
+    var statusEl = document.getElementById('mic-status');
+    var box = document.getElementById('mic-check-box');
+    var blockedEl = document.getElementById('mic-blocked-guide');
+    var stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → <a href="https://elimg.com" target="_blank" style="color:#1d4ed8;font-weight:700">elimg.com에서 열기</a></span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      var stream = await navigator.mediaDevices.getUserMedia({audio:true});
+      stream.getTracks().forEach(function(t){t.stop();});
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 허용됨! / Allowed!</span>';
+      if (box) { box.style.background='#dcfce7'; box.style.borderColor='#86efac'; }
+      if (blockedEl) blockedEl.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 녹음 시작 / Start Recording'; btn.style.background='#166534'; btn.disabled=false;
+    } catch(e) {
+      btn.disabled = false;
+      if (e.name==='NotAllowedError'||e.name==='PermissionDeniedError') {
+        if (blockedEl) blockedEl.style.display='block';
+        if (stateEl) stateEl.innerHTML='<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 차단됨 — 아래 순서대로 해결 후 다시 클릭</div>';
+        btn.textContent='🔄 허용 완료 후 다시 클릭'; btn.style.background='#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML='<span style="color:#ef4444">오류 (' + e.name + ') — Chrome/Edge로 시도</span>';
+        btn.textContent='🔄 다시 시도'; btn.style.background='#92400e';
+      }
+    }
+  }
+};
+
+function startSTT(idx, targetText, recBtn) { RECORDER.start(idx, targetText, recBtn); }
+
+// ===== AI 에이전틱 G스택 렌더 =====
+function renderAI() {
+  setTimeout(function(){ RECORDER.autoDetect(); }, 100);
+  return `
+  <h2>🤖 AI 실습</h2>
+  <p class="sub">글로컬 아카데미 × 에이전틱 G스택</p>
+
+  <!-- 헤더 배너 -->
+  <div style="background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+    <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+    <div style="font-size:15px;font-weight:800;margin-bottom:6px">🏥 AI 병원 통역 도우미</div>
+    <div style="font-size:11px;opacity:0.85;line-height:1.7">증상 설명 · 처방 · 진단 표현 실전 연습<br>
+    <span style="color:#93c5fd">🔵 Hospital Guide × Medical Korean</span></div>
+  </div>
+
+  <!-- 앱 내 AI 채팅 — 로그인 불필요 -->
+  <div class="card" style="margin-bottom:10px;border:2px solid #3b82f6">
+    <div class="section-label" style="background:#1e40af">⚡ AI 채팅 · 로그인 불필요 · No Login Needed</div>
+    <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+      계정 없이 바로 AI에게 질문하세요<br>
+      <span style="font-size:11px;color:#3b82f6">Ask AI directly — no login needed · Free</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+      ${AI_QUICK_BTNS.map(function(b,i){return `
+        <button onclick="AICHAT.quickSend(${i})"
+          style="background:#f0f7ff;border:1px solid #3b82f6;color:#1e40af;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">
+          ${b.emoji} ${b.label}
+        </button>`;}).join('')}
+    </div>
+    <div class="ai-msgbox" style="background:#fff;border-radius:12px;border:1px solid #e8edf2;min-height:120px;max-height:300px;overflow-y:auto;padding:12px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px">
+      ${AICHAT.msgs.length === 0
+        ? `<div style="text-align:center;color:#aaa;padding:24px 16px;font-size:12px">
+            💡 버튼을 누르거나 아래에 입력하세요<br>
+            <span style="font-size:11px">Tap a button above or type below</span>
+          </div>`
+        : AICHAT.msgs.map(function(m){ return `
+          <div style="align-self:${m.role==='user'?'flex-end':'flex-start'};max-width:90%">
+            <div style="background:${m.role==='user'?'#3b82f6':'#f0f7ff'};color:${m.role==='user'?'#fff':'#1e40af'};border-radius:${m.role==='user'?'14px 14px 4px 14px':'14px 14px 14px 4px'};padding:10px 13px;font-size:13px;line-height:1.65;white-space:pre-wrap;word-break:break-word">${m.text}</div>
+            <div style="font-size:10px;color:#aaa;margin-top:3px;text-align:${m.role==='user'?'right':'left'}">${m.time}</div>
+          </div>`;}).join('')}
+      ${AICHAT.loading ? `<div style="align-self:flex-start;background:#f0f7ff;border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:13px;color:#3b82f6">⏳ AI가 답하는 중... / Generating...</div>` : ''}
+    </div>
+    <div style="display:flex;gap:8px">
+      <input id="ai-input" type="text" placeholder="한국어 질문 / Ask a question..."
+        style="flex:1;padding:12px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;outline:none"
+        onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e5e7eb'"
+        onkeydown="if(event.key==='Enter'){AICHAT.input=this.value;AICHAT.send();}">
+      <button onclick="AICHAT.input=document.getElementById('ai-input').value;AICHAT.send()"
+        style="background:#3b82f6;color:#fff;border-radius:10px;padding:0 18px;font-size:20px;min-width:52px;font-family:inherit;cursor:pointer;border:none">➤</button>
+    </div>
+    <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:center">Enter로 전송 · 🆓 완전 무료 · No account needed</div>
+  </div>
+
+  <!-- 외부 AI 가이드 — 선택사항 -->
+  <div class="card" style="margin-bottom:10px">
+    <div class="section-label" style="background:#6b7280">🌐 외부 AI · 선택사항 · Optional</div>
+    <div style="font-size:11px;color:#888;margin:6px 0 8px">더 강력한 AI로 깊이 있게 학습 (로그인 필요 / Login required)</div>
+
+    <details style="margin-bottom:8px">
+      <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+        🔵 Gemini AI — Google 계정 로그인 / Free with Google account
+      </summary>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+        <strong style="color:#1d4ed8">① 접속:</strong> gemini.google.com<br>
+        <strong style="color:#1d4ed8">② 병원/의료 롤플레이 연습:</strong>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+          <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 프롬프트 복사해서 붙여넣기</div>
+          <span style="font-family:monospace;background:#dbeafe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 한국에 사는 외국인이에요. 한국 병원에서 증상을 설명하고 의사 말을 이해하는 한국어 연습을 도와주세요. 아플 때 쓰는 표현과 처방전 읽는 방법을 알고 싶어요. 영어로도 설명해 주세요."</span>
+          Copy &amp; paste to Gemini for medical Korean roleplay practice
+        </div>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+          <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">📸 현장 사진 질문 (Gemini 특화)</div>
+          한국어 표지판이나 안내문 사진 → 업로드 → "이게 무슨 뜻이에요?"<br>
+          <span style="color:#555">Photo of Korean signs or notices → Upload → Ask what it means</span>
+        </div>
+        <a href="https://gemini.google.com" target="_blank" style="display:block;background:#1d4ed8;color:#fff;text-align:center;padding:8px;border-radius:8px;font-weight:700;margin-top:8px;font-size:13px">🔵 Gemini 열기 / Open Gemini →</a>
+      </div>
+    </details>
+
+    <details>
+      <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+        🟣 Claude AI — 이메일 가입 · Free with email
+      </summary>
+      <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+        <strong style="color:#7c3aed">① 접속:</strong> claude.ai (이메일로 무료 가입)<br>
+        <strong style="color:#7c3aed">② 내 한국어 첨삭:</strong>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">
+          <div style="font-weight:700;color:#7c3aed;margin-bottom:3px">✏️ 문장 고치기 (Claude 특화)</div>
+          <span style="font-family:monospace;background:#ede9fe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 한국에 사는 외국인입니다. 제 한국어 문장을 고쳐주세요: [내 문장]. 영어로 설명해 주세요."</span>
+          Copy your sentence → paste to Claude → get corrections in English
+        </div>
+        <a href="https://claude.ai" target="_blank" style="display:block;background:#7c3aed;color:#fff;text-align:center;padding:8px;border-radius:8px;font-weight:700;margin-top:8px;font-size:13px">🟣 Claude 열기 / Open Claude →</a>
+      </div>
+    </details>
+  </div>
+
+  <!-- 발음 코치 -->
+  <div class="card" style="background:#f0fdf4;border:1px solid #86efac;margin-bottom:10px">
+    <div class="section-label" style="background:#059669">🎤 발음 코치 · Pronunciation Coach</div>
+    <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">
+      원어민 듣기 → 내가 녹음 → 정확도 비교<br>
+      <span style="font-size:11px;color:#059669">Listen → Record → Compare accuracy</span>
+    </div>
+    <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#166534">
+      🆓 브라우저 내장 API · 완전 무료 · Chrome/Edge 권장
+    </div>
+
+    <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:12px;margin-bottom:10px">
+      <div id="mic-perm-state" style="margin-bottom:8px"></div>
+      <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:10px;margin-bottom:8px;font-size:12px;line-height:1.9;color:#1a202c">
+        🚫 <strong>마이크 차단됨 해결 / Microphone Blocked:</strong><br>
+        PC Chrome/Edge: 주소창 🔒 → 마이크 → <strong>허용</strong> → F5 새로고침<br>
+        Android: ⋮ → 사이트 설정 → 마이크 → 허용<br>
+        <span style="color:#555">PC: Click 🔒 in address bar → Microphone → Allow → press F5</span>
+      </div>
+      <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+        style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:700">
+        🎙️ 마이크 허용하기 / Allow Microphone
+      </button>
+      <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:14px"></div>
+    </div>
+
+    ${[
+      {sent:'여기가 많이 아파요.', eng:'It hurts a lot here.'},
+      {sent:'의사가 감기라고 했어요.', eng:'The doctor said it is a cold.'},
+      {sent:'약을 하루 세 번 먹으세요.', eng:'Take the medicine three times a day.'},
+      {sent:'119에 신고해 주세요.', eng:'Please call 119 (emergency).'},
+      {sent:'산재 처리를 해주세요.', eng:'Please process the industrial accident insurance.'},
+    ].map(function(item,i){ return `
+      <div style="background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+        <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>
+        <div style="font-size:10px;color:#059669;margin-bottom:8px">🇬🇧 ${item.eng}</div>
+        <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+          <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button onclick="var b=this;TTS.speak('${item.sent.replace(/'/g,"\\'")}');b.textContent='🔊 재생 중...';setTimeout(function(){b.textContent='🔊 원어민'},2000)"
+            style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🔊 원어민</button>
+          <button id="rec-btn-${i}" onclick="startSTT(${i},'${item.sent.replace(/'/g,"\\'")}',this)"
+            style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🎤 녹음</button>
+          <button id="play-btn-${i}" disabled
+            style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;opacity:0.4">▶ 내 발음</button>
+        </div>
+        <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:14px"></div>
+      </div>
+    `; }).join('')}
+
+    <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+      <strong>📖 사용법 / How to use:</strong><br>
+      1️⃣ <strong>🔊 원어민</strong> — 원어민 발음 먼저 들으세요 / Listen to native speaker<br>
+      2️⃣ <strong>🎤 녹음</strong> — 따라 말하고 다시 누르면 중지 / Speak then tap again to stop<br>
+      3️⃣ <strong>▶ 내 발음</strong> — 내 발음 들어보기 / Listen to yourself<br>
+      4️⃣ 점수: 🟢 80%+ 🟡 50~79% 🔴 50% 미만
+    </div>
+  </div>
+
+  <!-- G스택 학습법 -->
+  <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+    <div class="section-label" style="background:#059669">🌐 글로컬 G스택 학습법 · 4-Step AI Method</div>
+    <div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.9">
+      <strong>글로컬 아카데미 AI 에이전트 기반 4단계:</strong><br>
+      <span style="color:#555">① 어휘/표현 → 앱 내 AI 또는 Gemini 질문</span><br>
+      <span style="color:#555">② 대화 → Gemini 롤플레이 실습</span><br>
+      <span style="color:#555">③ 발음 → 위 발음 코치에서 녹음 비교</span><br>
+      <span style="color:#555">④ 첨삭 → Claude AI에 내 문장 보내기</span><br>
+      <br>
+      <span style="color:#3b82f6;font-size:11px"><strong>🇬🇧 Glocal Academy 4-Step AI Method:</strong><br>
+      ① Vocab/Expressions → Ask in-app AI or Gemini<br>
+      ② Conversation → Gemini roleplay practice<br>
+      ③ Pronunciation → Record &amp; compare above<br>
+      ④ Correction → Send your text to Claude AI</span>
+    </div>
+  </div>
+  `;
+}
+
+// ===== INIT =====
+render();
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  });
+}
+</script>
+<script src="/hw-shared.js"></script>
+</body>
+</html>
