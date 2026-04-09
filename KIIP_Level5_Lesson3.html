@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 5급 3과 · 한국의 정치 1</title>
+<meta name="theme-color" content="#059669"/>
+<meta property="og:title" content="KIIP 5급 3과 · 한국의 정치 1"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level5_Lesson3.html"/>
+<meta property="og:description" content="KIIP 5급 3과 한국의 정치 1 - 헌법, 3권 분립, 대통령과 행정부"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#059669;--dark:#065f46;--mid:#047857;--lgreen:#22c55e;--red:#ef4444;--gray:#f0fdf4;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--dark);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(6,79,70,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #a7f3d0;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green);font-weight:700}
+.tab-btn:hover{background:#ecfdf5}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #a7f3d0;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(6,79,70,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--green)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(6,79,70,0.08);border:1px solid #a7f3d0}
+.card-title{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--dark);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--green)}
+h3{font-size:16px;font-weight:700;color:var(--mid);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #a7f3d0;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 4px 12px rgba(5,150,105,0.15)}
+.vocab-card.flipped{background:var(--mid);color:#fff;border-color:var(--mid)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--dark)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--green);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--green);margin:14px 0 8px;padding:4px 10px;background:#ecfdf5;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.concept-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.concept-tab{padding:8px 18px;border-radius:20px;border:2px solid #a7f3d0;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.concept-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.rule-box{background:#ecfdf5;border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--mid);margin-bottom:6px}
+.timeline-item{background:#fff;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px;position:relative;padding-left:20px}
+.timeline-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--green);border-radius:4px 0 0 4px}
+.timeline-year{font-size:12px;font-weight:800;color:var(--green);margin-bottom:4px}
+.timeline-event{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.timeline-desc{font-size:13px;color:#475569;line-height:1.6}
+.topik-card{background:#ecfdf5;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #a7f3d0;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--green);background:#ecfdf5}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f0fdf4;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--green);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--mid)}
+.bubble{background:#ecfdf5;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#a7f3d0}
+.listen-script-box{background:#f0fdf4;border:2px dashed #a7f3d0;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--dark)}
+.listen-q{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px}
+.reveal-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--mid)}
+.reading-text{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--green);font-weight:700}
+.writing-guide{background:#ecfdf5;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--dark)}
+textarea{width:100%;border:2px solid #a7f3d0;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--green)}
+.sample-box{background:#ecfdf5;border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--dark);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--dark);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #a7f3d0;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #a7f3d0;background:#f0fdf4;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--green);background:#ecfdf5}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--dark);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#6ee7b7}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #a7f3d0}
+.pron-sent{background:#f0fdf4;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--dark);flex:1}
+.rec-btn{background:var(--green);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--mid)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #a7f3d0;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#ecfdf5;border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--dark)}
+.intro-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--green) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--dark)}
+.objective-list li::before{content:'✓';color:var(--green);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #a7f3d0;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--dark)}
+.section-nav-btn:hover{border-color:var(--green);background:#ecfdf5;color:var(--green)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+.check-btn{background:var(--green);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer}
+.check-btn:hover{background:var(--mid)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.return-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);z-index:999;background:#1e3a5f;color:#fff;border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px;max-width:calc(100vw - 32px);box-shadow:0 4px 20px rgba(0,0,0,0.3);opacity:0;transition:all 0.3s;pointer-events:none}
+.return-toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.return-toast-icon{font-size:24px;flex-shrink:0}
+.return-toast-body{flex:1;min-width:0}
+.return-toast-title{font-size:13px;font-weight:800;margin-bottom:2px}
+.return-toast-sub{font-size:11px;opacity:0.8;line-height:1.5}
+.return-toast-close{background:rgba(255,255,255,0.2);border:none;color:#fff;border-radius:50%;width:24px;height:24px;font-size:12px;cursor:pointer;flex-shrink:0}
+.return-toast-bar{position:absolute;bottom:0;left:0;height:3px;background:#f59e0b;border-radius:0 0 14px 14px;animation:toastTimer 8s linear forwards}
+@keyframes toastTimer{from{width:100%}to{width:0%}}
+@keyframes aiDot{0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},
+  listenRevealed:false,listenAnswers:{},
+  conceptTab:0,topikAnswers:{},
+  readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'핵심',icon:'📜'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'연표',icon:'🗓️'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const VOCAB=[
+  {ko:'헌법',hanja:'헌법(憲法)',en:'Constitution',vi:'Hiến pháp',cat:'헌법과 민주주의'},
+  {ko:'민주주의',hanja:'민주주의(民主主義)',en:'Democracy',vi:'Dân chủ',cat:'헌법과 민주주의'},
+  {ko:'주권',hanja:'주권(主權)',en:'Sovereignty',vi:'Chủ quyền',cat:'헌법과 민주주의'},
+  {ko:'국민',hanja:'국민(國民)',en:'Citizens/People',vi:'Công dân',cat:'헌법과 민주주의'},
+  {ko:'기본권',hanja:'기본권(基本權)',en:'Fundamental rights',vi:'Quyền cơ bản',cat:'헌법과 민주주의'},
+  {ko:'삼권분립',hanja:'삼권분립(三權分立)',en:'Separation of powers',vi:'Tam quyền phân lập',cat:'3권 분립'},
+  {ko:'입법부',hanja:'입법부(立法府)',en:'Legislature',vi:'Cơ quan lập pháp',cat:'3권 분립'},
+  {ko:'행정부',hanja:'행정부(行政府)',en:'Executive',vi:'Cơ quan hành pháp',cat:'3권 분립'},
+  {ko:'사법부',hanja:'사법부(司法府)',en:'Judiciary',vi:'Cơ quan tư pháp',cat:'3권 분립'},
+  {ko:'견제와 균형',hanja:'견제와 균형',en:'Checks and balances',vi:'Kiểm soát và cân bằng',cat:'3권 분립'},
+  {ko:'대통령',hanja:'대통령(大統領)',en:'President',vi:'Tổng thống',cat:'대통령과 행정부'},
+  {ko:'국무총리',hanja:'국무총리(國務總理)',en:'Prime Minister',vi:'Thủ tướng',cat:'대통령과 행정부'},
+  {ko:'국무회의',hanja:'국무회의(國務會議)',en:'Cabinet council',vi:'Hội đồng chính phủ',cat:'대통령과 행정부'},
+  {ko:'장관',hanja:'장관(長官)',en:'Minister',vi:'Bộ trưởng',cat:'대통령과 행정부'},
+  {ko:'임기',hanja:'임기(任期)',en:'Term of office',vi:'Nhiệm kỳ',cat:'대통령과 행정부'},
+  {ko:'헌법재판소',hanja:'헌법재판소(憲法裁判所)',en:'Constitutional Court',vi:'Tòa án Hiến pháp',cat:'헌법 기관'},
+  {ko:'감사원',hanja:'감사원(監査院)',en:'Board of Audit',vi:'Ủy ban kiểm toán',cat:'헌법 기관'},
+  {ko:'중앙선거관리위원회',hanja:'중앙선거관리위원회',en:'National Election Commission',vi:'Ủy ban bầu cử',cat:'헌법 기관'},
+  {ko:'국가인권위원회',hanja:'국가인권위원회',en:'National Human Rights Commission',vi:'Ủy ban nhân quyền',cat:'헌법 기관'},
+  {ko:'권리',hanja:'권리(權利)',en:'Rights',vi:'Quyền lợi',cat:'헌법 기관'},
+];
+
+const CONCEPT1={
+  title:'대한민국 헌법과 민주주의 원칙',
+  summary:'1948년 제정된 대한민국 헌법은 민주주의의 기본 원칙을 담고 있습니다. 헌법은 국가의 최고 법으로, 모든 법률은 헌법을 따라야 합니다.',
+  points:[
+    {title:'헌법의 기본 원칙',desc:'"대한민국은 민주공화국이다"(헌법 제1조 1항). "대한민국의 주권은 국민에게 있고, 모든 권력은 국민으로부터 나온다"(헌법 제1조 2항). 헌법은 국민의 기본권(자유권·평등권·참정권·사회권)을 보장합니다.'},
+    {title:'헌법의 역사',desc:'1948년 7월 17일 대한민국 최초의 헌법(제헌헌법)이 공포되었습니다. 이 날을 기념하여 7월 17일을 "제헌절(制憲節)"이라 합니다. 이후 9차례 개정되었으며, 현행 헌법은 1987년에 개정된 것입니다.'},
+    {title:'국민의 기본권',desc:'자유권(언론·집회·결사의 자유), 평등권(모든 국민은 법 앞에 평등), 참정권(선거권·피선거권), 사회권(교육·노동·사회보장). 기본권은 헌법으로 보장되어 있으며, 법률로도 침해할 수 없습니다.'},
+    {title:'헌법재판소',desc:'헌법재판소는 법률이 헌법에 위배되는지 심판하는 기관입니다. 대통령 탄핵 심판도 헌법재판소가 담당합니다. 9명의 재판관으로 구성되며, 임기는 6년입니다.'},
+  ],
+  questions:[
+    {q:'대한민국 헌법 제1조는 무엇을 선언하나요?',opts:['국가 영토','대한민국은 민주공화국이다','세금 납부 의무','병역 의무'],answer:1},
+    {q:'제헌절은 언제인가요?',opts:['3월 1일','5월 5일','7월 17일','8월 15일'],answer:2},
+  ]
+};
+
+const CONCEPT2={
+  title:'삼권분립과 대통령·행정부',
+  summary:'대한민국은 입법·행정·사법의 3권이 분립되어 서로를 견제하고 균형을 이루는 민주주의 체제를 운영합니다.',
+  points:[
+    {title:'삼권분립',desc:'국가 권력을 입법부(법률 제정), 행정부(법률 집행), 사법부(법률 해석·재판)로 나눕니다. 어느 한 기관이 독주하지 못하도록 서로 견제합니다. 대통령은 법률안 거부권, 국회는 대통령 탄핵소추권을 가집니다.'},
+    {title:'대통령의 역할과 임기',desc:'대통령은 국가원수이자 행정부 수반입니다. 임기는 5년이며 중임(연임)이 불가능합니다. 대통령은 국무총리·장관 임명, 법률안 거부권, 계엄령 선포권 등을 가집니다.'},
+    {title:'국무총리와 국무회의',desc:'국무총리는 대통령을 보좌하며, 국무위원(장관)을 지휘·감독합니다. 국무회의는 행정부 최고 심의 기관으로, 대통령·국무총리·장관들이 참여합니다. 국무회의에서 중요한 국정 사항을 심의합니다.'},
+    {title:'행정 각 부처',desc:'기획재정부(경제), 외교부, 국방부, 법무부, 교육부 등 18개 부처가 있습니다. 법무부는 외국인 체류·귀화 업무도 담당합니다. 각 부처는 장관이 이끕니다.'},
+  ],
+  questions:[
+    {q:'대통령의 임기는 몇 년인가요?',opts:['4년','5년','6년','7년'],answer:1},
+    {q:'삼권분립에서 법률을 만드는 기관은?',opts:['대통령','법원','국회(입법부)','검찰'],answer:2},
+  ]
+};
+
+const QUIZ=[
+  {q:'"대한민국은 ___이다." 헌법 제1조 빈칸은?',opts:['연방국가','군주국가','민주공화국','사회주의국가'],answer:2},
+  {q:'대한민국 헌법에서 주권은 누구에게 있나요?',opts:['대통령','국민','국회','법원'],answer:1},
+  {q:'제헌절은 언제인가요?',opts:['3월 1일','5월 5일','7월 17일','10월 3일'],answer:2},
+  {q:'삼권분립에서 법률을 만드는 기관은?',opts:['행정부','사법부','입법부(국회)','헌법재판소'],answer:2},
+  {q:'대통령의 임기는 몇 년인가요?',opts:['4년','5년','6년','7년'],answer:1},
+  {q:'대통령은 몇 번 연임할 수 있나요?',opts:['1번','2번','3번','연임 불가'],answer:3},
+  {q:'법률이 헌법에 위반되는지 심판하는 기관은?',opts:['대법원','헌법재판소','국회','감사원'],answer:1},
+  {q:'국무총리의 역할은 무엇인가요?',opts:['대통령 선출','대통령 보좌 및 장관 지휘','법률 심판','국회 의장'],answer:1},
+  {q:'현행 대한민국 헌법은 몇 차 개헌입니까?',opts:['7차','8차','9차','10차'],answer:2},
+  {q:'대한민국 정부가 수립된 해는?',opts:['1945년','1948년','1950년','1960년'],answer:1},
+];
+
+const PRON_SENTS_DATA=[
+  {sent:'대한민국은 민주공화국이며 국민이 주권을 가집니다.'},
+  {sent:'삼권분립은 입법·행정·사법이 서로 견제하는 제도입니다.'},
+  {sent:'대통령의 임기는 5년이고 중임은 불가능합니다.'},
+  {sent:'헌법재판소는 법률이 헌법에 위반되는지 심판합니다.'},
+];
+
+const RECORDER = {
+  streams: {},
+  recorders: {},
+  chunks: {},
+  audioURLs: {},
+  isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    const resultEl = document.getElementById('stt-result-' + idx);
+    const playBtn  = document.getElementById('play-btn-' + idx);
+    const scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, targetText, recBtn); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      this.streams[idx] = stream;
+    } catch(e) {
+      const name = e.name || '';
+      let msg = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg = '❌ <strong>마이크가 차단됨</strong> — 브라우저 주소창 🔒 → 마이크 → <strong>허용</strong> 후 새로고침';
+      } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
+        msg = '❌ <strong>마이크를 찾을 수 없어요</strong> — 마이크 연결을 확인하세요';
+      } else {
+        msg = '❌ <strong>오류: ' + name + '</strong> — Chrome/Edge에서 다시 시도하세요';
+      }
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    const mr = new MediaRecorder(this.streams[idx]);
+    this.recorders[idx] = mr;
+    mr.ondataavailable = e => { if (e.data.size > 0) this.chunks[idx].push(e.data); };
+    mr.onstop = () => {
+      if (this.audioURLs[idx]) URL.revokeObjectURL(this.audioURLs[idx]);
+      const blob = new Blob(this.chunks[idx], {type: 'audio/webm'});
+      this.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false;
+        playBtn.style.opacity = '1';
+        playBtn.onclick = () => { const a = new Audio(this.audioURLs[idx]); a.play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지';
+    recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      const rec = new SR();
+      rec.lang = 'ko-KR';
+      rec.continuous = false;
+      rec.interimResults = false;
+      rec.onresult = (e) => {
+        const said   = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        const target = targetText.replace(/[\s,.?!]/g,'');
+        const conf   = e.results[0][0].confidence;
+        let match = 0;
+        const minLen = Math.min(said.length, target.length);
+        for (let i = 0; i < minLen; i++) { if (said[i] === target[i]) match++; }
+        const pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        const confPct = Math.round((conf || 0.5) * 100);
+        const finalPct = Math.round((pct * 0.7) + (confPct * 0.3));
+        const color = finalPct >= 80 ? '#22c55e' : finalPct >= 50 ? '#f59e0b' : '#ef4444';
+        const msg   = finalPct >= 80 ? '✅ 완벽해요!' : finalPct >= 50 ? '🔄 조금 더 연습!' : '❌ 다시 시도!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = finalPct + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = () => {};
+      rec.start();
+    }
+  },
+
+  async autoDetect() {
+    const stateEl = document.getElementById('mic-perm-state');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        const result = await navigator.permissions.query({name: 'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 이미 허용됨 — 바로 녹음하세요!</div>';
+          if (allowBtn) { allowBtn.style.background = '#166534'; allowBtn.textContent = '✅ 허용됨 — 바로 녹음하세요'; }
+          if (blockedGuide) blockedGuide.style.display = 'none';
+          return;
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 아래 안내대로 해결하세요</div>';
+          if (blockedGuide) blockedGuide.style.display = 'block';
+          if (allowBtn) { allowBtn.style.background = '#ef4444'; allowBtn.textContent = '⚠️ 차단됨 — 위 단계 완료 후 여기 클릭'; }
+          return;
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아직 허용 안 됨 — 아래 버튼을 눌러 허용해 주세요</div>';
+        }
+        result.onchange = () => RECORDER.autoDetect();
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+      }
+    } else {
+      stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+    }
+  },
+
+  async checkPermission(btn) {
+    const statusEl = document.getElementById('mic-status');
+    const box = document.getElementById('mic-check-box');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → elimg.com에서 열기</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 미지원 브라우저 — Chrome 또는 Edge를 사용해 주세요</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      stream.getTracks().forEach(t => t.stop());
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 바로 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 성공!</span>';
+      if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
+      if (blockedGuide) blockedGuide.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 바로 녹음하세요!'; btn.style.background = '#166534'; btn.disabled = false;
+    } catch(e) {
+      const name = e.name || '';
+      btn.disabled = false;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        if (blockedGuide) blockedGuide.style.display = 'block';
+        if (stateEl) stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 안내대로 해결 후 다시 클릭</div>';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444;font-size:11px">🔒 허용 완료 후 이 버튼을 다시 눌러주세요</span>';
+        btn.textContent = '🔄 허용 완료 후 다시 클릭'; btn.style.background = '#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">오류 (' + name + ') — Chrome/Edge에서 다시 시도</span>';
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
+      }
+    }
+  },
+
+  stop(idx, targetText, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') {
+      this.recorders[idx].stop();
+    }
+    if (this.streams[idx]) {
+      this.streams[idx].getTracks().forEach(t => t.stop());
+    }
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음';
+    recBtn.style.background = '#059669';
+  }
+};
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
+}
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level5_Lesson2">← 2과</a>
+      <span class="nav-title">5급 3과 · 한국의 정치 1</span>
+      <a href="/KIIP_Level5_Lesson4">4과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level5_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level5_Lesson4"><span class="icon">➡️</span>4과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let html;
+      if(STATE.conceptTab===0){html=renderConceptBlock(CONCEPT1,'c1');}
+      else{html=renderConceptBlock(CONCEPT2,'c2');}
+      return `<h2>📜 핵심 내용</h2>
+        <div class="concept-tabs">
+          <button class="concept-tab${STATE.conceptTab===0?' active':''}" onclick="setState({conceptTab:0})">1. 헌법·민주주의</button>
+          <button class="concept-tab${STATE.conceptTab===1?' active':''}" onclick="setState({conceptTab:1})">2. 삼권분립·대통령</button>
+        </div>${html}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderTimeline();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10: return renderAI();
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 5급 · 3과</div>
+      <h1>🏛 한국의 정치 1</h1>
+      <div class="subtitle">대한민국 헌법 · 3권 분립 · 대통령과 행정부<br>Korean Constitution &amp; Government</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>대한민국 헌법의 기본 원칙과 국민주권의 의미를 이해할 수 있다.</li>
+        <li>삼권분립(입법·행정·사법)의 의미와 기능을 설명할 수 있다.</li>
+        <li>대통령의 임기(5년 단임)와 역할을 설명할 수 있다.</li>
+        <li>국무총리, 국무회의, 행정 각 부처의 역할을 이해할 수 있다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🗺️ 단원 개요</div>
+      <p style="font-size:14px;line-height:1.8;color:#334155">
+        대한민국은 헌법을 최고법으로 하는 민주공화국입니다. 헌법 제1조는 "대한민국은 민주공화국이며, 모든 권력은 국민으로부터 나온다"고 선언합니다. 국가 권력은 입법·행정·사법으로 나뉘어 서로 견제하며, 대통령은 5년 단임으로 행정부를 이끕니다. 귀화를 통해 대한민국 국민이 되면 이 민주주의 체제에 직접 참여할 수 있습니다.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-title">📚 학습 내용</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.slice(1).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  const cats=[...new Set(VOCAB.map(v=>v.cat))];
+  return `<h2>📝 핵심 어휘</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">카드를 클릭하면 뜻이 나타납니다. 🔊 버튼으로 발음을 들어보세요.</p>
+    ${cats.map(cat=>`
+      <div class="vocab-cat">📌 ${cat}</div>
+      <div class="vocab-grid">
+        ${VOCAB.filter(v=>v.cat===cat).map((v,i)=>{
+          const key=v.ko;
+          const flipped=STATE.vocabFlipped[key];
+          return `<div class="vocab-card${flipped?' flipped':''}" onclick="setState({vocabFlipped:{...STATE.vocabFlipped,'${key}':${!flipped}}})">
+            ${flipped
+              ?`<div class="vocab-ko">${v.en}</div><div class="vocab-hanja">${v.vi}</div>`
+              :`<div class="vocab-ko">${v.ko} ${ttsBtn(v.ko)}</div>
+                <div class="vocab-hanja">${v.hanja}</div>
+                <div class="vocab-eng">${v.en}</div>`
+            }
+          </div>`;
+        }).join('')}
+      </div>`).join('')}`;
+}
+
+function renderConceptBlock(concept,prefix){
+  return `
+    <div class="card">
+      <div class="card-title">📜 ${concept.title}</div>
+      <p style="font-size:14px;color:#334155;margin-bottom:16px;line-height:1.7">${concept.summary}</p>
+      ${concept.points.map((p,i)=>`
+        <div class="rule-box">
+          <div class="rule-title">📌 ${p.title}</div>
+          <p style="font-size:14px;line-height:1.7;color:#334155">${p.desc}</p>
+        </div>`).join('')}
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 확인 문제</div>
+      ${concept.questions.map((q,i)=>`
+        <div class="topik-card">
+          <div class="q-text">${i+1}. ${q.q}</div>
+          <div class="topik-options">
+            ${q.opts.map((opt,j)=>`
+              <button class="topik-opt${STATE.topikAnswers[prefix+i]===j?(j===q.answer?' correct':' wrong'):''}"
+                onclick="setState({topikAnswers:{...STATE.topikAnswers,'${prefix+i}':${j}}})"
+                ${STATE.topikAnswers[prefix+i]!==undefined?'disabled':''}>
+                ${j+1}. ${opt}
+              </button>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderSpeaking(){
+  return `<h2>💬 말하기 연습</h2>
+    <div class="card">
+      <div class="card-title">🎯 주제 대화</div>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <span class="speaker">A</span>
+          <div class="bubble">대한민국의 대통령 임기가 얼마나 돼요? ${ttsBtn('대한민국의 대통령 임기가 얼마나 돼요?')}</div>
+        </div>
+        <div class="dialogue-line b">
+          <span class="speaker">B</span>
+          <div class="bubble">5년이에요. 그리고 한 번만 할 수 있어요. 연임이 안 됩니다. ${ttsBtn('5년이에요. 그리고 한 번만 할 수 있어요. 연임이 안 됩니다.')}</div>
+        </div>
+        <div class="dialogue-line">
+          <span class="speaker">A</span>
+          <div class="bubble">그렇군요. 삼권분립은 왜 중요한가요? ${ttsBtn('그렇군요. 삼권분립은 왜 중요한가요?')}</div>
+        </div>
+        <div class="dialogue-line b">
+          <span class="speaker">B</span>
+          <div class="bubble">한 사람이나 기관이 너무 많은 권력을 갖지 못하도록 서로 견제하기 위해서예요. ${ttsBtn('한 사람이나 기관이 너무 많은 권력을 갖지 못하도록 서로 견제하기 위해서예요.')}</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">💬 말하기 주제</div>
+      <div class="speaking-topics">
+        <div class="speaking-topic">여러분 나라의 정치 체제는 어떤가요? 대통령제인가요, 의원내각제인가요?</div>
+        <div class="speaking-topic">대통령의 임기 제한이 왜 중요한지 한국어로 설명해 보세요.</div>
+        <div class="speaking-topic">여러분이 알고 싶은 대한민국의 정치 제도는 무엇인가요?</div>
+      </div>
+    </div>`;
+}
+
+function renderListening(){
+  return `<h2>👂 듣기 · 이해하기</h2>
+    <div class="card">
+      <div class="card-title">📻 정치 제도 강의 내용</div>
+      <p style="font-size:13px;color:#64748b;margin-bottom:12px">아래 내용을 읽고 질문에 답하세요.</p>
+      <div class="listen-script-box">
+        대한민국은 민주공화국입니다. 헌법 제1조는 "대한민국은 민주공화국이다. 대한민국의 주권은 국민에게 있고, 모든 권력은 국민으로부터 나온다"라고 선언합니다. 대한민국의 정치 체제는 삼권분립에 기초합니다. 입법부(국회)는 법률을 만들고, 행정부(대통령·정부)는 법률을 집행하며, 사법부(법원)는 법률에 따라 재판합니다. 대통령은 국민의 직접선거로 뽑히며 임기는 5년입니다. 중임은 불가능합니다. 대통령은 행정부를 이끌고 국무총리를 임명합니다. 국무총리는 국무회의를 통해 국정을 운영합니다.
+      </div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:true})">📖 내용 확인</button>
+    </div>
+    <div class="listen-q">
+      <div class="q-text">1. 대한민국 헌법 제1조에서 주권은 누구에게 있다고 했나요?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 국민</div>`:''}
+    </div>
+    <div class="listen-q">
+      <div class="q-text">2. 대통령의 임기는 몇 년인가요?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 5년 (중임 불가)</div>`:''}
+    </div>
+    <div class="listen-q">
+      <div class="q-text">3. 삼권분립에서 법률을 집행하는 기관은?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 행정부(대통령·정부)</div>`:''}
+    </div>`;
+}
+
+function renderTimeline(){
+  const events=[
+    {year:'1948년 7월 17일',event:'제헌헌법 공포',desc:'대한민국 최초의 헌법이 공포되었습니다. 이 날을 제헌절로 기념합니다.'},
+    {year:'1948년 8월 15일',event:'대한민국 정부 수립',desc:'이승만 초대 대통령 취임. 대한민국 정부가 공식 출범했습니다.'},
+    {year:'1960년 4·19 혁명',event:'민주화 운동',desc:'독재에 저항한 학생·시민 운동으로 이승만 대통령이 하야했습니다.'},
+    {year:'1987년 6월 항쟁',event:'직선제 개헌',desc:'국민의 저항으로 대통령 직선제가 도입되었고, 현행 헌법(제9차 개헌)이 만들어졌습니다.'},
+    {year:'2004년',event:'헌법재판소 탄핵 결정',desc:'국회의 탄핵소추에 대해 헌법재판소가 처음으로 결정을 내렸습니다.'},
+    {year:'2017년',event:'대통령 탄핵',desc:'헌법재판소가 대통령 탄핵을 인용하여 새 대통령 선거가 실시되었습니다.'},
+  ];
+  return `<h2>🗓️ 헌법·정치 연표</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">대한민국 헌법과 정치 제도 주요 사건을 순서대로 정리했습니다.</p>
+    ${events.map(e=>`
+      <div class="timeline-item">
+        <div class="timeline-year">📅 ${e.year}</div>
+        <div class="timeline-event">⭐ ${e.event}</div>
+        <div class="timeline-desc">${e.desc}</div>
+      </div>`).join('')}`;
+}
+
+function renderReading(){
+  return `<h2>📖 읽기</h2>
+    <div class="card">
+      <div class="card-title">📄 대한민국 헌법 제1조 — 민주공화국의 선언</div>
+      <div class="reading-text">
+        대한민국 헌법 제1조는 대한민국의 근본 가치를 담고 있습니다. <span class="highlight">"대한민국은 민주공화국이다"</span>라는 첫 번째 항은 대한민국이 민주주의와 공화정 원칙 위에 세워졌음을 선언합니다.<br><br>
+        <span class="highlight">"공화국(共和國)"</span>은 국민이 선출한 대표자들이 국가를 운영하는 정치 체제입니다. 왕이나 황제가 세습으로 다스리는 군주제와 다릅니다. 대한민국은 국민의 뜻을 반영하는 선거를 통해 대통령과 국회의원을 선출합니다.<br><br>
+        헌법 제1조 2항의 <span class="highlight">"모든 권력은 국민으로부터 나온다"</span>는 표현은 국민주권(國民主權) 원칙을 나타냅니다. 귀화를 통해 대한민국 국민이 되면, 선거권을 갖게 되어 직접 민주주의에 참여할 수 있습니다.
+      </div>
+      <div class="listen-q">
+        <div class="q-text">대한민국 헌법 제1조 2항에 따르면 모든 권력은 어디서 나오나요?</div>
+        <button class="reveal-btn" onclick="setState({readAnswers:{...STATE.readAnswers,r1:true}})">정답 확인</button>
+        ${STATE.readAnswers.r1?`<div class="answer-reveal">✅ 국민 (국민주권 원칙)</div>`:''}
+      </div>
+    </div>`;
+}
+
+function renderWriting(){
+  return `<h2>✏️ 쓰기 연습</h2>
+    <div class="card">
+      <div class="card-title">📝 대한민국의 정치 제도에 대해 쓰기</div>
+      <div class="writing-guide">
+        <p style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:8px">📌 다음 내용을 포함하여 대한민국의 정치 제도를 150자 이상 써 보세요.</p>
+        <ul>
+          <li>삼권분립의 의미 (입법·행정·사법)</li>
+          <li>대통령의 임기와 역할</li>
+          <li>자신의 나라 정치 제도와 비교</li>
+        </ul>
+      </div>
+      <textarea placeholder="여기에 한국어로 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="text-align:right;font-size:12px;color:#64748b;margin-top:4px">${STATE.writingText.length}자</div>
+      <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'예문 숨기기':'예문 보기'}</button>
+      ${STATE.sampleShown?`<div class="sample-box">
+        대한민국은 삼권분립을 기본으로 하는 민주공화국입니다. 국회(입법부)는 법률을 만들고, 대통령과 정부(행정부)는 법률을 집행하며, 법원(사법부)은 법률에 따라 재판합니다. 대통령은 국민의 직접선거로 선출되며, 임기는 5년이고 중임은 불가능합니다. 이는 한 사람이 장기간 권력을 유지하지 못하도록 하기 위해서입니다. 저의 나라도 민주주의 체제이지만, 대통령의 임기와 권한은 조금 다릅니다. 대한민국의 헌법과 삼권분립 제도는 국민의 기본권을 보호하는 중요한 장치라고 생각합니다.
+      </div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  return `<h2>🎎 문화 알기</h2>
+    <div class="culture-section">
+      <h4>🎗️ 제헌절 — 7월 17일</h4>
+      <p>1948년 7월 17일 대한민국 헌법이 공포된 것을 기념하는 국경일입니다. "제헌(制憲)"은 헌법을 만들었다는 뜻입니다. 현재는 공휴일에서 제외되었지만 여전히 국경일로 기념됩니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>🏛 청와대 — 대통령 관저</h4>
+      <p>청와대(靑瓦臺)는 서울 경복궁 북쪽에 위치한 대통령 관저입니다. 파란 기와로 덮인 건물이 특징입니다. 2022년 윤석열 대통령이 청와대를 일반에 개방하고 용산으로 집무실을 이전했습니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>📋 국무회의와 장관</h4>
+      <p>국무회의는 매주 열리며 대통령, 국무총리, 각 부처 장관들이 참여합니다. 장관(長官)은 각 부처의 최고 책임자로, 대통령이 임명합니다. 귀화 관련 업무는 법무부 장관이 담당합니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>📜 헌법 개정 절차</h4>
+      <p>헌법을 바꾸려면 국회 재적의원 3분의 2 이상의 찬성과 국민투표(과반수 찬성)가 필요합니다. 이처럼 어려운 절차가 있어서 헌법은 쉽게 바뀌지 않습니다.</p>
+    </div>`;
+}
+
+function renderQuiz(){
+  if(STATE.quizDone){
+    const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+    return `<h2>✅ 퀴즈 결과</h2>
+      <div class="quiz-score">
+        <div class="score-num">${correct}/${QUIZ.length}</div>
+        <div style="font-size:16px;margin-top:8px">${correct>=8?'🎉 훌륭해요!':correct>=5?'👍 잘했어요!':'📚 다시 복습해 보세요'}</div>
+      </div>
+      <button class="reveal-btn" style="margin-top:16px;width:100%" onclick="setState({quizDone:false,quizAnswers:{}})">🔄 다시 풀기</button>`;
+  }
+  return `<h2>✅ 이해도 퀴즈</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">한국의 정치 1에 대한 이해도를 확인하세요. (10문제)</p>
+    ${QUIZ.map((q,i)=>`
+      <div class="quiz-card${STATE.quizAnswers[i]!==undefined?(STATE.quizAnswers[i]===q.answer?' answered-correct':' answered-wrong'):''}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>`
+            <button class="quiz-opt${STATE.quizAnswers[i]===j?(j===q.answer?' selected-correct':' selected-wrong'):''}"
+              onclick="setState({quizAnswers:{...STATE.quizAnswers,${i}:${j}}})"
+              ${STATE.quizAnswers[i]!==undefined?'disabled':''}>
+              ${j+1}. ${opt}
+            </button>`).join('')}
+        </div>
+      </div>`).join('')}
+    ${Object.keys(STATE.quizAnswers).length===QUIZ.length
+      ?`<button class="reveal-btn" style="width:100%" onclick="setState({quizDone:true})">결과 보기 →</button>`:''}`;
+}
+
+var AI_QUICK_BTNS = [
+  { emoji:'📝', label:'이 단어 설명해줘', q:'KIIP 5급 3과 어휘: 헌법, 삼권분립, 주권, 기본권에 대해 쉽게 설명해 주세요.' },
+  { emoji:'🏛', label:'헌법 질문', q:'대한민국 헌법 제1조의 의미와 국민주권 원칙을 설명해 주세요.' },
+  { emoji:'💬', label:'토론 주제', q:'대통령 임기 5년 단임제의 장점과 단점에 대해 한국어로 설명해 주세요.' },
+  { emoji:'✏️', label:'내 글 첨삭', q:'KIIP 5급 학습자의 글입니다. 한국 정치 제도 내용이 정확한지 확인하고 첨삭해 주세요: ' },
+  { emoji:'❓', label:'퀴즈 도움', q:'KIIP 5급 3과 한국 정치 퀴즈에서 틀렸어요. 삼권분립과 대통령 임기에 대해 다시 설명해 주세요.' },
+  { emoji:'🏛', label:'귀화 시험 준비', q:'귀화 시험에 자주 나오는 대한민국 정치 제도 관련 문제 3개를 만들어 주세요. 정답도 포함해 주세요.' },
+];
+var AICHAT = {
+  history: [],
+  loading: false,
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx]; if (!b) return;
+    var inp = document.getElementById('ai-chat-input'); if (!inp) return;
+    inp.value = b.q; inp.style.borderColor = '#f59e0b';
+    if (idx === 3) { inp.focus(); return; }
+    this.send();
+  },
+  addMsg: function(role, text) {
+    var box = document.getElementById('ai-chat-messages'); if (!box) return;
+    var ph = box.querySelector('.ai-placeholder'); if (ph) ph.remove();
+    var isUser = role === 'user';
+    var d = document.createElement('div');
+    d.style.cssText = 'display:flex;flex-direction:column;align-items:' + (isUser?'flex-end':'flex-start') + ';gap:2px;margin-bottom:6px';
+    var safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    d.innerHTML = '<div style="font-size:10px;color:#888;margin:0 4px">' + (isUser?'🙋 나':'🤖 AI') + '</div><div style="max-width:90%;padding:10px 13px;border-radius:' + (isUser?'14px 14px 4px 14px':'14px 14px 14px 4px') + ';background:' + (isUser?'#f59e0b':'#fff') + ';color:' + (isUser?'#fff':'#1a202c') + ';font-size:13px;line-height:1.7;border:1px solid ' + (isUser?'#d97706':'#fde68a') + ';word-break:break-word">' + safe + '</div>';
+    box.appendChild(d); box.scrollTop = box.scrollHeight;
+  },
+  setLoading: function(on) {
+    var box = document.getElementById('ai-chat-messages');
+    var el = document.getElementById('ai-loading-dot');
+    var btn = document.getElementById('ai-send-btn');
+    if (on) {
+      if (box && !el) {
+        var ld = document.createElement('div'); ld.id = 'ai-loading-dot';
+        ld.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:6px';
+        ld.innerHTML = '<div style="display:flex;gap:4px"><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div></div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+        box.appendChild(ld); box.scrollTop = box.scrollHeight;
+      }
+      if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+    } else {
+      if (el) el.remove();
+      if (btn) { btn.textContent = '➤'; btn.disabled = false; }
+    }
+  },
+  send: async function() {
+    if (this.loading) return;
+    var inp = document.getElementById('ai-chat-input');
+    var text = inp ? inp.value.trim() : ''; if (!text) return;
+    this.history.push({role:'user', content:text});
+    this.addMsg('user', text);
+    if (inp) inp.value = '';
+    this.loading = true; this.setLoading(true);
+    var sys = 'You are a Korean civics tutor for KIIP Level 5 (한국사회이해). The student is preparing for Korean naturalization. Focus on Korean constitution, separation of powers, and democratic system. Answer in Korean. Be concise and friendly.';
+    try {
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
+      if (!reply || reply.trim() === '') throw new Error('빈 응답');
+      this.history.push({role:'assistant', content:reply});
+      this.setLoading(false); this.addMsg('assistant', reply);
+    } catch(e) {
+      this.setLoading(false);
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결: 잠시 후 다시 시도해 주세요');
+    }
+    this.loading = false;
+  }
+};
+let _toastTimer = null;
+function showReturnToast(appName, icon) {
+  let toast = document.getElementById('return-toast');
+  if (!toast) { toast = document.createElement('div'); toast.id = 'return-toast'; toast.className = 'return-toast'; document.body.appendChild(toast); }
+  const shortcuts = /iPhone|iPad|iPod/i.test(navigator.userAgent) ? '하단 탭 버튼 → KIIP 탭 선택' : /Android/i.test(navigator.userAgent) ? '상단 탭 □ 버튼 → KIIP 탭 선택' : 'Ctrl+Tab 또는 탭 바에서 KIIP 탭 클릭';
+  toast.innerHTML = '<div class="return-toast-icon">' + icon + '</div><div class="return-toast-body"><div class="return-toast-title">📍 ' + appName + ' 새 탭에서 열렸어요</div><div class="return-toast-sub">돌아오려면: <strong>' + shortcuts + '</strong></div></div><button class="return-toast-close" onclick="hideReturnToast()">✕</button><div class="return-toast-bar"></div>';
+  requestAnimationFrame(() => { toast.classList.add('show'); });
+  clearTimeout(_toastTimer); _toastTimer = setTimeout(() => hideReturnToast(), 8000);
+}
+function hideReturnToast() {
+  const toast = document.getElementById('return-toast'); if (toast) toast.classList.remove('show'); clearTimeout(_toastTimer);
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') hideReturnToast(); });
+function openGemini() { window.open('https://gemini.google.com/app', '_blank'); showReturnToast('Gemini AI', '🔵'); }
+function openClaudeFeedback() {
+  const text = STATE.writingText || '(쓰기 섹션에 글을 먼저 작성해 주세요)';
+  const prompt = 'KIIP 5급 3과 학습자의 글입니다. 한국사회이해(정치 제도) 내용이 정확한지 확인하고 첨삭해 주세요:\n\n' + text;
+  window.open('https://claude.ai/new?q=' + encodeURIComponent(prompt), '_blank');
+  showReturnToast('Claude AI', '🟣');
+}
+function openNotebookLM() { window.open('https://notebooklm.google.com', '_blank'); showReturnToast('NotebookLM', '📓'); }
+function copyNotebookContent() {
+  const content = 'KIIP 5급 3과 · 한국의 정치 1 (헌법·삼권분립·대통령)\n\n=== 핵심 내용 ===\n헌법 제1조: 대한민국은 민주공화국, 주권은 국민에게 있음\n삼권분립: 입법부(국회)·행정부(대통령)·사법부(법원)\n대통령 임기: 5년 단임\n\n=== 학습 목표 ===\n대한민국 헌법의 기본 원칙과 삼권분립을 이해하고 설명할 수 있다';
+  navigator.clipboard.writeText(content).then(() => {
+    const el = document.getElementById('copy-ok');
+    if (el) { el.textContent = '✅ 복사 완료!'; setTimeout(() => el.textContent = '', 3000); }
+  }).catch(() => { const el = document.getElementById('copy-ok'); if (el) el.textContent = '❌ 직접 복사하세요'; });
+}
+
+function renderAI(){
+  setTimeout(()=>RECORDER.autoDetect(),100);
+  const done={
+    vocab:Object.keys(STATE.vocabFlipped).length>0,
+    concept:Object.keys(STATE.topikAnswers||{}).length>0,
+    quiz:STATE.quizDone,
+  };
+  const pct=Math.round(Object.values(done).filter(Boolean).length/3*100);
+  return `
+    <h2>🤖 AI 실습</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:12px">글로컬 아카데미 × 에이전틱 G스택 한국어 학습</p>
+
+    <div style="background:linear-gradient(135deg,#064e3b,#059669);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+      <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+      <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 한국사회이해 실습 플랫폼</div>
+      <div style="font-size:11px;opacity:0.85;line-height:1.7">Google Gemini · NotebookLM · Agent Harness 연계</div>
+    </div>
+
+    <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b">
+      <div class="card-title" style="color:#92400e">⚙️ Agent Harness · 학습 진도</div>
+      <div style="background:#fef3c7;border-radius:8px;padding:10px 12px;margin:8px 0">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:13px;font-weight:700;color:#92400e">진도율</span>
+          <span style="font-size:18px;font-weight:800;color:#f59e0b">${pct}%</span>
+        </div>
+        <div style="background:#fde68a;border-radius:8px;height:8px;overflow:hidden">
+          <div style="background:#f59e0b;height:100%;width:${pct}%;transition:width 0.5s"></div>
+        </div>
+      </div>
+      ${[
+        {label:'📝 어휘 학습 완료', done:done.vocab},
+        {label:'📜 핵심 내용 확인 완료', done:done.concept},
+        {label:'✅ 퀴즈 통과', done:done.quiz},
+      ].map(t=>`
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #fde68a">
+          <span style="font-size:15px">${t.done?'✅':'⬜'}</span>
+          <div style="font-size:13px;color:${t.done?'#166534':'#555'};font-weight:${t.done?'700':'400'}">${t.label}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+      <div class="card-title" style="color:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+      <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">계정 없이 바로 AI에게 질문하세요</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+        ${AI_QUICK_BTNS.map((b,i)=>`
+          <button onclick="AICHAT.quickSend(${i})"
+            style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
+            ${b.emoji} ${b.label}
+          </button>
+        `).join('')}
+      </div>
+      <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+        <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">💡 버튼을 누르면 AI가 바로 답해줘요</div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:flex-end">
+        <textarea id="ai-chat-input" placeholder="한국어로 질문하세요..."
+          style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
+          onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#fde68a'"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"></textarea>
+        <button onclick="AICHAT.send()" id="ai-send-btn"
+          style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>
+      </div>
+      <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+    </div>
+
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-title">🌐 외부 AI 서비스 가이드</div>
+      <details style="margin-bottom:8px">
+        <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">🔵 Gemini AI — Google 계정 필요</summary>
+        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          gemini.google.com에서 정치·헌법 내용 질문, 토론 연습에 활용하세요.<br>
+          <button onclick="openGemini()" style="background:#1d4ed8;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">🔵 Gemini 열기</button>
+        </div>
+      </details>
+      <details style="margin-bottom:8px">
+        <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">🟣 Claude AI — 이메일 계정 필요</summary>
+        <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          쓰기 첨삭 및 내용 검토에 특화. 쓰기 섹션 글을 자동 전송합니다.<br>
+          <button onclick="openClaudeFeedback()" style="background:#7c3aed;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">🟣 내 글 첨삭 요청하기</button>
+        </div>
+      </details>
+      <details>
+        <summary style="background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">📓 NotebookLM — Google 계정 필요</summary>
+        <div style="background:#fff8f0;border:1px solid #fed7aa;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          이 과 내용을 복사해서 NotebookLM에 넣고 Q&amp;A 정리에 활용하세요.<br>
+          <button onclick="copyNotebookContent()" style="background:#ea4335;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">📋 이 과 학습 내용 복사하기</button>
+          <span id="copy-ok" style="font-size:11px;color:#059669;margin-left:6px"></span>
+        </div>
+      </details>
+    </div>
+
+    <div class="card" style="margin-bottom:10px;background:#f0fdf4;border:1px solid #86efac">
+      <div class="card-title" style="color:#059669">🎤 AI 발음 코치 · 녹음 &amp; 재생</div>
+      <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">원어민 듣기 → 내가 녹음 → 다시 들으며 비교</div>
+      <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#166534">🆓 <strong>완전 무료</strong> — 브라우저 내장 API</div>
+
+      <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:14px;margin-bottom:10px">
+        <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px">🎙️ 마이크 허용 필요</div>
+        <div id="mic-perm-state" style="margin-bottom:10px"></div>
+        <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:8px">🚫 마이크 차단됨</div>
+          <div style="font-size:12px;line-height:2;color:#1a202c">
+            <strong>Chrome/Edge (PC):</strong> 🔒 → 마이크 → 허용 → F5<br>
+            <strong>Android:</strong> ⋮ → 사이트 설정 → 마이크 → 허용
+          </div>
+        </div>
+        <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+          style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:12px;font-size:14px;font-weight:800">
+          🎙️ 마이크 허용하기 (여기 클릭)
+        </button>
+        <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>
+      </div>
+
+      ${PRON_SENTS_DATA.map((item,i)=>`
+        <div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+          <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:8px">${item.sent}</div>
+          <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+            <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+            <button onclick="TTS.speak('${item.sent.replace(/'/g,"\\'")}'); this.textContent='🔊 재생 중...'; setTimeout(()=>this.textContent='🔊 원어민',2000)"
+              style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🔊 원어민</button>
+            <button id="rec-btn-${i}" onclick="RECORDER.start(${i},'${item.sent.replace(/'/g,"\\'")}',this)"
+              style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🎤 녹음</button>
+            <button id="play-btn-${i}" disabled
+              style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;opacity:0.4">▶ 내 발음 듣기</button>
+          </div>
+          <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:16px"></div>
+        </div>
+      `).join('')}
+
+      <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+        <strong>📖 사용법:</strong><br>
+        1️⃣ 🔊 원어민 — 먼저 들으세요 · 2️⃣ 🎤 녹음 — 말하기<br>
+        3️⃣ ▶ 내 발음 듣기 — 녹음 후 활성화 · 4️⃣ 🟢 80%+ · 🟡 50~79% · 🔴 50% 미만
+      </div>
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+      <div class="card-title" style="color:#059669">🌐 글로컬 G스택 학습법</div>
+      <div style="font-size:12px;color:#166634;margin:8px 0;line-height:1.8">
+        <strong>글로컬 아카데미 AI 에이전트 기반 4단계 학습법:</strong><br>
+        ① 어휘/핵심내용 → Gemini 설명 요청<br>
+        ② 말하기 → Gemini 토론 실습<br>
+        ③ 쓰기 → Claude AI 첨삭<br>
+        ④ 복습 → NotebookLM Q&amp;A 정리
+      </div>
+    </div>
+  `;
+}
+
+render();
+</script>
+</body>
+</html>
