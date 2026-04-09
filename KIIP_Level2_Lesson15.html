@@ -1,0 +1,1213 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head><!-- cb1 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>KIIP 2급 15과 - 글로컬 아카데미</title>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="글로컬 아카데미 KIIP · GlocalBridge">
+    <meta property="og:title" content="KIIP 2급 15과 - 글로컬 아카데미">
+    <meta property="og:description" content="초급 2급 15과 · 글로컬 아카데미 KIIP · 사회통합프로그램">
+    <meta property="og:image" content="https://elimg.com/images/og-hanwha-level2.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://elimg.com/KIIP_Level2_Lesson15.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KIIP 2급 15과 - 글로컬 아카데미">
+    <meta name="twitter:description" content="초급 2급 15과 · 글로컬 아카데미 KIIP · 사회통합프로그램">
+    <meta name="twitter:image" content="https://elimg.com/images/og-hanwha-level2.png">
+<meta name="description" content="KIIP 사회통합프로그램 - 글로컬 아카데미 한국어 학습">
+<meta name="theme-color" content="#1e40af">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#1e40af;--ocean:#3b82f6;--orange:#ED7D31;--green:#22c55e;--red:#ef4444;--purple:#8b5cf6;--pink:#ec4899;--light-blue:#D6E4F0;--light-green:#E8F5E9;--light-orange:#FFF3E0;--gray:#f8fafc;--dark:#2D3436}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;background:var(--gray);max-width:520px;margin:0 auto;min-height:100vh;overflow-x:hidden}
+.hide{display:none!important}
+button{cursor:pointer;border:none;font-family:inherit}
+.nav{background:var(--navy);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-title{color:#fff;font-weight:700;font-size:14px}.nav-sub{color:#8899BB;font-size:10px}
+.nav-btn{background:none;color:#fff;font-size:22px;padding:4px 8px}
+.menu{background:#243447;position:sticky;top:48px;z-index:99}
+.menu button{display:flex;align-items:center;gap:10px;width:100%;padding:11px 20px;background:transparent;color:#fff;font-size:13px;text-align:left}
+.menu button.active{background:var(--ocean)}
+.bottom-nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:6px 0;z-index:100}
+.bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
+.bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
+.bottom-nav .icon{font-size:18px}
+.page{padding:16px;padding-bottom:180px}
+h2{color:var(--navy);font-size:19px;margin-bottom:4px}
+.sub{color:#888;font-size:11px;margin-bottom:14px}
+.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
+.card-accent{border-left:4px solid var(--ocean)}
+.card-orange{border-left:4px solid var(--orange)}
+.card-green{border-left:4px solid var(--green)}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;color:#fff}
+.tabs{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:6px 13px;border-radius:20px;background:#e5e7eb;color:#555;font-size:12px;font-weight:600}
+.tab.active{background:var(--ocean);color:#fff}
+.progress{background:#e5e7eb;border-radius:8px;height:7px;width:100%;overflow:hidden}
+.progress-bar{height:100%;border-radius:8px;transition:width .5s}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.vocab-item{border-radius:8px;padding:8px 10px;cursor:pointer;transition:all .2s}
+.vocab-item:hover{transform:scale(1.02)}
+.vocab-item .kor{font-weight:700;color:var(--navy);font-size:15px}
+.vocab-item .eng{color:#888;font-size:11px;margin-top:2px}
+.vocab-item .pron{color:var(--ocean);font-size:10px}
+.tts-btn{background:var(--ocean);color:#fff;border-radius:50%;width:28px;height:28px;font-size:14px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:6px;vertical-align:middle}
+.tts-btn:hover{background:var(--navy)}
+.bubble{border-radius:12px;padding:10px 14px;max-width:85%;margin-bottom:6px}
+.bubble-left{background:#f0f7ff;border-top-left-radius:4px;align-self:flex-start}
+.bubble-right{background:#fff7ed;border-top-right-radius:4px;align-self:flex-end}
+.quiz-opt{padding:13px;border-radius:10px;border:2px solid #e5e7eb;background:#fff;font-size:15px;font-weight:600;text-align:left;width:100%;margin-bottom:7px;transition:all .2s}
+.quiz-opt:hover{border-color:var(--ocean)}
+.quiz-correct{background:#dcfce7;border-color:var(--green);color:#166534}
+.quiz-wrong{background:#fee2e2;border-color:var(--red);color:#991b1b}
+.input{width:100%;padding:10px 12px;border:2px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:8px}
+.input:focus{outline:none;border-color:var(--ocean)}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;width:100%}
+.btn-primary{background:var(--ocean);color:#fff}.btn-navy{background:var(--navy);color:#fff}
+.btn-green{background:var(--green);color:#fff}.btn-orange{background:var(--orange);color:#fff}
+.hangul-cell{background:#fff;border:2px solid #e5e7eb;border-radius:10px;padding:10px;text-align:center;cursor:pointer;transition:all .2s}
+.hangul-cell:hover,.hangul-cell.active{border-color:var(--ocean);background:#f0f7ff}
+.hangul-cell .char{font-size:28px;font-weight:800;color:var(--navy)}
+.hangul-cell .rom{font-size:10px;color:#888}
+.section-icon{font-size:20px;margin-right:6px;vertical-align:middle}
+textarea{width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;min-height:120px;resize:vertical}
+textarea:focus{outline:none;border-color:var(--ocean)}
+</style>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1e40af">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KIIP Korean">
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+// ===== TTS ENGINE =====
+const TTS = {
+  speak(text, lang='ko-KR', rate=0.8) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang; u.rate = rate; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const koVoice = voices.find(v => v.lang.startsWith('ko')) || voices.find(v => v.lang.includes('ko'));
+    if (koVoice) u.voice = koVoice;
+    window.speechSynthesis.speak(u);
+  },
+  init() { if (window.speechSynthesis) window.speechSynthesis.getVoices(); }
+};
+window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
+
+function ttsBtn(text) {
+  if(!text) return '';
+  return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'")}')" title="발음 듣기">🔊</button>`;
+}
+
+// ===== DATA =====
+const HANGUL_TITLE = "초급 2-15과 · Beginner Level 2 Lesson 15";
+const HANGUL_SUBTITLE = "TOPIK I 읽기 · Economic Article Reading";
+
+const VOCAB_PHONE = [
+  {kor:"경제",pron:"gyeong-je",eng:"economy"},
+  {kor:"뉴스",pron:"nyu-seu",eng:"news"},
+  {kor:"무역",pron:"mu-yeok",eng:"trade"},
+  {kor:"수출",pron:"su-chul",eng:"export"},
+  {kor:"수입",pron:"su-ip",eng:"import"},
+  {kor:"환율",pron:"hwan-ryul",eng:"exchange rate"},
+  {kor:"주식",pron:"ju-sik",eng:"stock"},
+  {kor:"투자",pron:"tu-ja",eng:"investment"},
+  {kor:"성장",pron:"seong-jang",eng:"growth"},
+  {kor:"물가",pron:"mul-ga",eng:"price"},
+  {kor:"급여",pron:"geup-yeo",eng:"salary"},
+  {kor:"세금",pron:"se-geum",eng:"tax"},
+  {kor:"은행",pron:"eun-haeng",eng:"bank"},
+  {kor:"이자",pron:"i-ja",eng:"interest"},
+  {kor:"저축",pron:"jeo-chuk",eng:"savings"},
+  {kor:"소비",pron:"so-bi",eng:"consumption"},
+  {kor:"기업",pron:"gi-eop",eng:"company"},
+  {kor:"산업",pron:"san-eop",eng:"industry"},
+];
+
+const VOCAB_SHIPYARD = [
+  {kor:"수주",pron:"su-ju",eng:"order"},
+  {kor:"생산",pron:"saeng-san",eng:"production"},
+  {kor:"선박",pron:"seon-bak",eng:"ship"},
+  {kor:"매출",pron:"mae-chul",eng:"revenue"},
+  {kor:"비용",pron:"bi-yong",eng:"cost"},
+  {kor:"수익",pron:"su-ik",eng:"profit"},
+  {kor:"경쟁력",pron:"gyeong-jaeng-nyuk",eng:"competitiveness"},
+  {kor:"기술",pron:"gi-sul",eng:"technology"},
+  {kor:"품질",pron:"pum-jil",eng:"quality"},
+  {kor:"안정",pron:"an-jeong",eng:"stability"},
+  {kor:"성과",pron:"seong-gwa",eng:"performance"},
+  {kor:"목표",pron:"mok-pyo",eng:"target"},
+  {kor:"계획",pron:"gye-hoek",eng:"plan"},
+  {kor:"전략",pron:"jeon-ryak",eng:"strategy"},
+  {kor:"개선",pron:"gae-seon",eng:"improvement"},
+  {kor:"효율",pron:"hyo-yul",eng:"efficiency"},
+];
+
+const VOCAB_ADVANCED = [
+  {kor:"글로벌",pron:"geul-ro-bal",eng:"global"},
+  {kor:"시장",pron:"si-jang",eng:"market"},
+  {kor:"경향",pron:"gyeong-hyang",eng:"trend"},
+  {kor:"영향",pron:"yeong-hyang",eng:"impact"},
+  {kor:"관계",pron:"gwan-gye",eng:"relationship"},
+  {kor:"결과",pron:"gyeol-gwa",eng:"result"},
+  {kor:"원인",pron:"won-in",eng:"cause"},
+  {kor:"가능성",pron:"ga-neung-seong",eng:"possibility"},
+  {kor:"안전성",pron:"an-jeon-seong",eng:"safety"},
+  {kor:"적정",pron:"jeok-jeong",eng:"appropriate"},
+  {kor:"상황",pron:"sang-hwang",eng:"situation"},
+  {kor:"변화",pron:"byeon-hwa",eng:"change"},
+  {kor:"문제",pron:"mun-je",eng:"problem"},
+  {kor:"해결",pron:"hae-gyeol",eng:"solution"},
+  {kor:"발전",pron:"bal-jeon",eng:"development"},
+  {kor:"성공",pron:"seong-gong",eng:"success"},
+  {kor:"실패",pron:"sil-pae",eng:"failure"},
+  {kor:"노력",pron:"no-ryeok",eng:"effort"},
+  {kor:"결정",pron:"gyeol-jeong",eng:"decision"},
+  {kor:"사유",pron:"sa-yu",eng:"reason"},
+  {kor:"조건",pron:"jo-geon",eng:"condition"},
+  {kor:"필요",pron:"pil-yo",eng:"necessity"},
+  {kor:"충분",pron:"chung-bun",eng:"sufficiency"},
+  {kor:"과정",pron:"gwa-jeong",eng:"process"},
+  {kor:"시간",pron:"si-gan",eng:"time"},
+  {kor:"공간",pron:"gong-gan",eng:"space"},
+  {kor:"가격",pron:"ga-gyeok",eng:"price"},
+  {kor:"금액",pron:"geum-aek",eng:"amount"},
+  {kor:"통계",pron:"tong-gye",eng:"statistics"},
+  {kor:"자료",pron:"ja-ryo",eng:"data"},
+];
+
+const VOCAB_SHIPYARD_NOUNS = [
+  {kor:"조선",pron:"jo-seon",eng:"shipbuilding"},
+  {kor:"주민센터",pron:"ju-min-sen-teo",eng:"community center"},
+  {kor:"대형선",pron:"dae-hyeong-seon",eng:"large ship"},
+  {kor:"유조선",pron:"yu-jo-seon",eng:"tanker"},
+  {kor:"컨테이너선",pron:"keon-te-i-neo-seon",eng:"container ship"},
+  {kor:"반도체",pron:"ban-do-che",eng:"semiconductor"},
+  {kor:"전력",pron:"jeon-ryeok",eng:"power"},
+  {kor:"전기",pron:"jeon-gi",eng:"electricity"},
+  {kor:"용접",pron:"yong-jeop",eng:"welding"},
+  {kor:"도장",pron:"do-jang",eng:"painting"},
+  {kor:"절단",pron:"jeol-dan",eng:"cutting"},
+  {kor:"조립",pron:"jo-rip",eng:"assembly"},
+  {kor:"검사",pron:"geom-sa",eng:"inspection"},
+  {kor:"시운전",pron:"si-un-jeon",eng:"sea trial"},
+  {kor:"인수",pron:"in-su",eng:"handover"},
+  {kor:"배송",pron:"bae-song",eng:"delivery"},
+  {kor:"운송",pron:"un-song",eng:"transportation"},
+  {kor:"물류",pron:"mul-ryu",eng:"logistics"},
+  {kor:"항구",pron:"hang-gu",eng:"port"},
+  {kor:"해운",pron:"hae-un",eng:"maritime shipping"},
+  {kor:"선급",pron:"seon-geup",eng:"ship classification"},
+  {kor:"계약",pron:"gye-yak",eng:"contract"},
+  {kor:"예산",pron:"ye-san",eng:"budget"},
+  {kor:"결산",pron:"gyeol-san",eng:"settlement"},
+  {kor:"감가상각",pron:"gam-ga-sang-gak",eng:"depreciation"},
+  {kor:"이익잉여금",pron:"i-ik-ing-yeo-geum",eng:"retained earnings"},
+  {kor:"자산",pron:"ja-san",eng:"assets"},
+  {kor:"부채",pron:"bu-chae",eng:"debt"},
+  {kor:"자본",pron:"ja-bon",eng:"capital"},
+  {kor:"배당금",pron:"bae-dang-geum",eng:"dividend"},
+];
+
+const GRAMMAR = [
+  {title:"~에 따르면",eng:"according to / as per",
+   desc:"어떤 정보나 의견의 출처를 나타낼 때 사용해요.",descEng:"Used to indicate the source of information or opinion.",
+   rule:"~에 따르면 = according to, as per",ruleEng:"Indicates a reference, source, or basis for information",
+   examples:[
+    {q:"경제 뉴스에 따르면",a:"한국의 GDP가 성장했어요.",eng:"According to economic news - Korea's GDP grew.",note:"정보의 출처 제시"},
+    {q:"전문가에 따르면",a:"내년에 물가가 올라갈 거예요.",eng:"According to experts - Prices will rise next year.",note:"전문가의 의견"},
+    {q:"통계에 따르면",a:"수출이 20% 증가했어요.",eng:"According to statistics - Exports increased by 20%.",note:"통계 자료"},
+    {q:"정부 발표에 따르면",a:"기준금리가 인상될 예정이에요.",eng:"Per government announcement - The base rate will be raised.",note:"정부 공식 발표"},
+    {q:"최근 조사에 따르면",a:"소비자들이 더 많이 저축하고 있어요.",eng:"According to recent surveys - Consumers are saving more.",note:"최근 조사 결과"},
+   ]},
+  {title:"~(으)ㄴ/는 반면",eng:"while / on the other hand / whereas",
+   desc:"두 가지를 비교하여 대조할 때 사용해요.",descEng:"Used to contrast or compare two things.",
+   rule:"과거: ~(으)ㄴ 반면 / 현재·미래: ~는 반면",ruleEng:"Past: ~(으)ㄴ 반면, Present/Future: ~는 반면",
+   examples:[
+    {q:"작년에 수입이 감소한 반면",a:"올해는 수입이 증가했어요.",eng:"While imports decreased last year - this year imports increased.",note:"작년 vs 올해 비교"},
+    {q:"선진국의 성장률이 낮은 반면",a:"개발도상국의 성장률은 높아요.",eng:"Whereas developed countries have low growth - developing countries have high growth.",note:"선진국 vs 개발도상국"},
+    {q:"소비가 줄어든 반면",a:"저축이 늘어났어요.",eng:"While consumption declined - savings increased.",note:"소비 vs 저축"},
+    {q:"한국 이민자가 많이 증가한 반면",a:"농촌 지역의 인구는 줄어들고 있어요.",eng:"While immigrants to Korea increased - rural population is declining.",note:"이민자 증가 vs 농촌 인구"},
+    {q:"올해 매출이 증가한 반면",a:"비용도 함께 증가했어요.",eng:"While this year's revenue increased - costs also rose.",note:"매출 vs 비용"},
+   ]},
+  {title:"~기 마련이다",eng:"it's bound to / naturally / is sure to",
+   desc:"피할 수 없는 자연스러운 결과나 현상을 말할 때 사용해요.",descEng:"Used to express an inevitable or natural result.",
+   rule:"~기 마련이다 = it's sure to, is bound to, it's natural that",ruleEng:"Indicates an inevitable or natural consequence",
+   examples:[
+    {q:"경제가 성장하면",a:"물가도 올라가기 마련이에요.",eng:"If the economy grows - prices are bound to rise.",note:"경제 성장의 자연스러운 결과"},
+    {q:"열심히 공부하면",a:"성공하기 마련이에요.",eng:"If you study hard - you're sure to succeed.",note:"노력의 자연스러운 결과"},
+    {q:"새로운 기술이 도입되면",a:"초기에는 문제가 생기기 마련이에요.",eng:"When new technology is introduced - problems are bound to occur initially.",note:"기술 도입의 초기 현상"},
+    {q:"장시간 일하면",a:"피로해지기 마련이에요.",eng:"If you work long hours - you're sure to get tired.",note:"과로의 자연스러운 결과"},
+    {q:"시간이 지나면",a:"상황은 변하기 마련이에요.",eng:"As time passes - situations are bound to change.",note:"시간 경과의 자연스러운 결과"},
+   ]},
+];
+
+const DIALOGUES = [
+  {title:"급여 이야기",eng:"Talking about Salary",lines:[
+    {sp:"라민",role:"이민자",text:"민수 씨, 한국의 급여가 높아요?",eng:"Minsu, are salaries high in Korea?",side:"L"},
+    {sp:"민수",role:"회사원",text:"그래요. 전문가에 따르면 한국 근로자의 월급이 ASEAN 국가보다 높아요.",eng:"Yes. According to experts, Korean workers' salaries are higher than ASEAN countries.",side:"R"},
+    {sp:"라민",text:"정말요? 그럼 물가는요?",eng:"Really? What about prices then?",side:"L"},
+    {sp:"민수",text:"물가도 올라가기 마련이에요. 급여가 높은 반면 생활비도 높아요.",eng:"Prices tend to rise. While salaries are high, living costs are also high.",side:"R"},
+    {sp:"라민",text:"아, 그렇군요. 그래도 저축할 수 있어요?",eng:"I see. Can we still save money?",side:"L"},
+    {sp:"민수",text:"네, 충분히 저축할 수 있어요. 정부 지원도 있고요.",eng:"Yes, we can save enough. There's also government support.",side:"R"},
+  ]},
+  {title:"경제 뉴스 토론",eng:"Discussing Economic News",lines:[
+    {sp:"후엔",role:"학생",text:"요즘 경제 뉴스를 봤어요?",eng:"Did you see the recent economic news?",side:"L"},
+    {sp:"안젤라",role:"회사원",text:"네, 봤어요. 한국 경제가 계속 성장하고 있대요.",eng:"Yes. I heard that Korea's economy continues to grow.",side:"R"},
+    {sp:"후엔",text:"정말요? 그럼 이민자 취업도 잘될 것 같아요.",eng:"Really? Then job opportunities for immigrants will improve too.",side:"L"},
+    {sp:"안젤라",text:"맞아요. 전문가에 따르면 올해 취업 시장이 성장하기 마련이에요.",eng:"That's right. According to experts, the job market is bound to grow this year.",side:"R"},
+    {sp:"후엔",text:"그렇다면 일자리도 많아질 거 같아요.",eng:"Then I think there will be more jobs too.",side:"L"},
+    {sp:"안젤라",text:"네, 맞습니다. 경제가 성장하는 반면 고용도 증가할 거예요.",eng:"Yes, that's right. While the economy grows, employment will increase too.",side:"R"},
+  ]},
+];
+
+const QUIZ = [
+  {q:"경제 뉴스를 읽어요 (Reading Economic News) in Korean:",o:["경제 뉴스를 읽어요","경제 뉴스를 봤어요","경제 성장이 높아요","경제 뉴스가 무엇이에요?"],a:0},
+  {q:"'___ 에 따르면' (according to) Fill:",o:["전문가","전문가가","전문가를","전문가와"],a:0},
+  {q:"경제가 성장한 반면 물가는?",o:["내려갔어요","올라갔어요","유지됐어요","없어요"],a:1},
+  {q:"새로운 기술이 도입되면 초기에는 ___ 마련이에요.",o:["성공하기","문제가 생기기","좋아지기","편해지기"],a:1},
+  {q:"'수출'은 무엇이에요?",o:["물건을 들여오기 (import)","물건을 내보내기 (export)","물건을 만들기","물건을 팔기"],a:1},
+  {q:"'환율'은 무엇이에요?",o:["시간","돈의 가치 교환률","물건의 가격","집의 가치"],a:1},
+  {q:"KIIP 프로그램을 주관하는 곳은?",o:["법무부","교육부","노동부","외교부"],a:0},
+  {q:"\"stock\" in Korean:",o:["수출","주식","입장","제목"],a:1},
+  {q:"'성장'의 반대말은?",o:["감소","증가","유지","개선"],a:0},
+  {q:"'기업'은 무엇이에요?",o:["회사","직원","월급","일"],a:0},
+  {q:"~에 따르면 사용할 때, 정보의 ___ 를 나타낼 때 사용해요.",o:["결과","출처","목표","방법"],a:1},
+  {q:"올해 매출이 높은 반면 작년 매출은?",o:["올해 같아요","높았어요","낮았어요","알 수 없어요"],a:2},
+  {q:"열심히 일하면 ___ 기 마련이에요.",o:["실패하기","성공하기","쉬기","아프기"],a:1},
+  {q:"'글로벌'은 무엇을 의미해요?",o:["지역의 (local)","세계의 (global)","나라의 (national)","도시의 (urban)"],a:1},
+  {q:"한국 경제에서 중요한 것은?",o:["농업","무역","관광","광업"],a:1},
+  {q:"시장의 '경향'은?",o:["사람들의 행동","변화 추세","규칙","계획"],a:1},
+  {q:"'필요'한 것은?",o:["있어도 되는 것","꼭 있어야 하는 것","좋은 것","비싼 것"],a:1},
+  {q:"경제 뉴스를 이해하려면 ___ 이 필요해요.",o:["기술","단어 공부","물건","여행"],a:1},
+];
+
+const CULTURE = [
+  {icon:"💰",t:"한국 경제 성장률",eng:"Korea's Economic Growth Rate",d:"한국은 1962년 이후 평균 6% 이상의 경제 성장을 이루었습니다. 이를 '한강의 기적'이라고 부릅니다. IT, 반도체, 서비스업 등이 주요 산업입니다.",de:"Korea has achieved average economic growth of over 6% since 1962, called the 'Miracle of the Han River.' IT, semiconductors, and services are key industries."},
+  {icon:"📊",t:"KIIP 사회통합프로그램",eng:"KIIP Social Integration Program",d:"KIIP는 법무부가 주관하는 이민자 한국어 교육 프로그램입니다. 0급부터 5급까지 단계별로 배울 수 있습니다. 수료하면 귀화 신청에 도움이 됩니다.",de:"KIIP is an immigrant Korean language education program operated by the Ministry of Justice. It has levels 0 to 5. Completion helps with naturalization applications."},
+  {icon:"🏙️",t:"한국의 직장 문화",eng:"Korean Work Culture",d:"한국 직장은 팀워크를 중시합니다. 동료와의 관계가 중요하며 회식 문화가 있습니다. 회사원들은 명함을 두 손으로 주고받습니다.",de:"Korean workplaces value teamwork. Relationships with colleagues are important and there is a dining-out culture. Office workers exchange business cards with both hands."},
+  {icon:"📈",t:"글로벌 무역의 중요성",eng:"Importance of Global Trade",d:"한국은 무역 중심 국가입니다. 수출이 GDP의 40% 이상을 차지합니다. 주요 수출 품목은 반도체, 자동차, 조선입니다. 환율 변동은 한국 경제에 큰 영향을 미칩니다.",de:"Korea is a trade-oriented nation. Exports account for over 40% of GDP. Main export products are semiconductors, automobiles, and ships. Exchange rate fluctuations significantly impact Korea's economy."},
+  {icon:"💼",t:"기업 문화와 위계",eng:"Corporate Culture & Hierarchy",d:"한국 기업은 위계적 구조를 가지고 있습니다. 직급과 경험을 존중합니다. 나이가 많은 사람에게는 경어를 사용합니다. 회사의 목표 달성이 개인의 목표보다 중요하게 여겨집니다.",de:"Korean companies have hierarchical structures. Positions and experience are respected. Honorifics are used with older colleagues. Company goals are valued more than individual goals."},
+  {icon:"🎓",t:"경제 뉴스 읽기의 중요성",eng:"Importance of Reading Economic News",d:"한국에서 일할 때는 경제 뉴스를 이해하는 것이 도움이 됩니다. 회사의 경영 상황, 산업 동향, 고용 변화 등을 알 수 있습니다. 동료들과의 대화에서도 경제 뉴스 이야기가 자주 나옵니다.",de:"When working in Korea, understanding economic news is helpful. You can learn about company performance, industry trends, and employment changes. Economic news topics often come up in conversations with colleagues."},
+];
+
+const LOCAL_INFO = {
+  title: "한국의 경제 & KIIP 사회통합프로그램",
+  eng: "Korea's Economy & KIIP Integration Program",
+  facts: [
+    {label:"GDP",val:"세계 10대 경제 규모, 약 1.8조 달러"},
+    {label:"무역액",val:"세계 8위 무역국, 연간 1조 2,000억 달러"},
+    {label:"KIIP",val:"사회통합프로그램, 이민자 한국어 교육 의무화"},
+    {label:"반도체",val:"세계 2위 생산국, 삼성·SK하이닉스"},
+    {label:"자동차",val:"연간 400만 대 생산, 현대·기아 글로벌"},
+    {label:"5G 통신",val:"세계 최초 상용화, 글로벌 경쟁력"},
+  ]
+};
+
+const TOPIK_PRACTICE = {
+  title: "TOPIK I 읽기 경제 기사",
+  eng: "TOPIK I Reading - Economic Articles",
+  desc: "경제 기사를 읽고 질문에 답하는 유형을 연습합니다.",
+  descEng: "Practice reading economic articles and answering comprehension questions.",
+  info: [
+    {label:"시험 구성",val:"듣기 30문항 + 읽기 40문항",eng:"Listening 30Q + Reading 40Q"},
+    {label:"시험 시간",val:"듣기 40분 + 읽기 60분",eng:"Listening 40min + Reading 60min"},
+    {label:"등급 기준",val:"1급: 80점+, 2급: 140점+",eng:"Level 1: 80+, Level 2: 140+"},
+    {label:"총점",val:"200점 만점",eng:"200 points total"},
+  ],
+  reading: [
+    {q:"다음을 읽고 맞는 것을 고르세요.\n\n한국의 경제 성장이 계속되고 있습니다.\n지난 분기에 GDP가 3% 성장했습니다.\n수출도 20% 증가했습니다.\n전문가들은 내년도 더 좋을 것 같다고 말합니다.",o:["GDP가 감소했어요.","수출이 20% 증가했어요.","경제 성장이 멈췄어요.","전문가들이 내년을 부정적으로 봐요."],a:1},
+    {q:"다음을 읽고 맞는 것을 고르세요.\n\n한국의 이민자 수가 전년 대비 30% 증가했습니다.\n이는 KIIP 프로그램 참여 때문입니다.\n다양한 직업군에서 외국인 근로자가 많아졌습니다.\n정부는 올해 이민자 지원 목표를 초과할 것으로 예상합니다.",o:["이민자 수가 30% 감소했어요.","이민자 수가 전년 대비 30% 증가했어요.","KIIP 참여가 줄어들었어요.","정부가 목표를 못 할 것 같아요."],a:1},
+    {q:"다음을 읽고 맞는 것을 고르세요.\n\n최근 환율이 상승했습니다.\n원화 가치가 약해졌습니다.\n이는 수출 기업에 유리합니다.\n하지만 수입 기업에는 어렵습니다.",o:["환율이 하락했어요.","원화 가치가 강해졌어요.","수출 기업이 유리해요.","모든 기업이 같은 영향을 받아요."],a:2},
+    {q:"다음을 읽고 맞는 것을 고르세요.\n\n올해 물가가 5% 올랐습니다.\n주로 에너지 가격 인상 때문입니다.\n정부는 물가 안정화를 위해 노력 중입니다.\n내년에는 물가가 낮아질 것으로 예상됩니다.",o:["물가가 5% 내렸어요.","에너지 가격이 내려갔어요.","정부가 물가를 낮추려고 해요.","내년 물가가 높아질 거 같아요."],a:2},
+    {q:"다음을 읽고 맞는 것을 고르세요.\n\n한국에 사는 외국인 근로자의 급여가 지난 5년간 2배 증가했습니다.\n한국어 능력이 높기 때문입니다.\nKIIP 교육은 한국 생활에 매우 중요합니다.\n앞으로도 급여 상승이 계속될 것으로 예상됩니다.",o:["급여가 반으로 줄어들었어요.","한국어 능력이 낮아졌어요.","KIIP 교육은 중요하지 않아요.","앞으로 급여가 더 올라갈 거 같아요."],a:3},
+  ],
+  listening: [
+    {q:"[듣기 유형] 다음을 듣고 알맞은 대답을 고르세요.\n\n'경제 뉴스에 따르면 한국의 경제가 잘되고 있어요'",o:["경제가 안 좋아요.","경제가 잘되고 있어요.","경제가 변하지 않았어요.","뉴스를 모르겠어요."],a:1},
+    {q:"[듣기 유형] 다음을 듣고 알맞은 대답을 고르세요.\n\n'올해 수출이 많은 반면 수입은 적어요'",o:["수출과 수입이 같아요.","수출이 적고 수입이 많아요.","수출이 많고 수입이 적어요.","수출도 적고 수입도 적어요."],a:2},
+    {q:"[듣기 유형] 대화를 듣고 맞는 것을 고르세요.\n\n여자: 급여 얼마나 올랐어요?\n남자: 네, 급여가 10% 올랐어요.",o:["급여가 내려갔어요.","급여가 10% 올랐어요.","급여가 변하지 않았어요.","급여가 20% 올랐어요."],a:1},
+    {q:"[듣기 유형] 대화를 듣고 맞는 것을 고르세요.\n\n남자: 물가가 계속 올라가는 거 보셨어요?\n여자: 네, 물가가 올라가기 마련이에요.",o:["물가가 내려가고 있어요.","물가가 올라가는 것이 자연스러워요.","물가 문제가 없어요.","물가가 안 올라가요."],a:1},
+    {q:"[듣기 유형] 대화를 듣고 맞는 것을 고르세요.\n\n여자: KIIP 시험 결과 나왔대요?\n남자: 네, 많은 이민자가 합격했대요.",o:["시험이 취소됐어요.","결과가 아직 안 나왔어요.","많은 이민자가 합격했어요.","이민자들이 불합격했어요."],a:2},
+  ],
+};
+
+const READING_PASSAGES = [
+  {title:"경제 성장",eng:"Economic Growth",
+   text:"한국의 경제는 지속적으로 성장하고 있습니다.\n지난 20년 동안 많은 발전을 이루었습니다.\n조선, 반도체, 자동차 산업이 주요 성장 분야입니다.\n글로벌 경쟁에서 우위를 유지하고 있습니다.\n근로자들의 열심한 노력이 성공의 핵심입니다.\n앞으로도 경제 성장이 계속될 것으로 예상됩니다.",
+   textEng:"Korea's economy continues to grow.\nIt has made significant progress over the last 20 years.\nShipbuilding, semiconductors, and automobiles are key growth sectors.\nIt maintains an advantage in global competition.\nHard work by workers is key to success.\nEconomic growth is expected to continue in the future.",
+   questions:[
+     {q:"한국 경제가 어떻게 되고 있어요?",a:"지속적으로 성장하고 있어요",ae:"It's growing continuously"},
+     {q:"주요 성장 산업은?",a:"서비스업, IT, 제조업",ae:"Service, IT, manufacturing"},
+     {q:"경제 성공의 핵심은?",a:"근로자들의 열심한 노력",ae:"Hard work of workers"},
+   ]},
+  {title:"KIIP 이민자 생활",eng:"Immigrant Life in Korea",
+   text:"한국에 사는 외국인이 꾸준히 증가하고 있습니다.\n이민자들은 한국어 교육을 받고 있습니다.\nKIIP 사회통합프로그램이 큰 도움이 됩니다.\n회사원, 학생, 가족 이민자 모두 참여할 수 있습니다.\n한국어 능력이 높아지면 취업 기회가 많아집니다.\n앞으로도 이민자 지원이 계속될 것입니다.",
+   textEng:"The number of foreigners living in Korea is steadily increasing.\nImmigrants are receiving Korean language education.\nThe KIIP Social Integration Program is very helpful.\nOffice workers, students, and family immigrants can all participate.\nAs Korean proficiency increases, job opportunities increase.\nSupport for immigrants will continue in the future.",
+   questions:[
+     {q:"KIIP 프로그램은 누가 참여할 수 있어요?",a:"회사원, 학생, 가족 이민자 모두",ae:"Office workers, students, and family immigrants"},
+     {q:"한국어 능력이 높아지면 무엇이 좋아요?",a:"취업 기회가 많아져요",ae:"Job opportunities increase"},
+     {q:"KIIP 프로그램의 장점은?",a:"한국어 능력 향상과 취업 기회 증가",ae:"Improved Korean and more job opportunities"},
+   ]},
+];
+
+// ===== LITERATURE DATA =====
+const POEM_TITLE = "껍데기는 가라";
+const POEM_AUTHOR = "신동엽";
+
+const POEM_LINES = [
+  "껍데기는 가라",
+  "사월도 알맹이만 남고",
+  "껍데기는 가라",
+  "동학년 곰나루의",
+  "그 아우성만 살고",
+  "껍데기는 가라",
+  "그리하여 다시",
+  "껍데기는 가라",
+  "알맹이만 남으라",
+  "마침내 아사달과 아사녀가"
+];
+
+const LIT_QUIZ = [
+  {q:"이 시의 반복되는 말은?",o:["알맹이는 가라","껍데기는 가라","무엇을 가라","모두를 가라"],a:1},
+  {q:"시인의 이름은?",o:["신동엽","신경림","신석정","신광순"],a:0},
+  {q:"'알맹이'는 무엇을 의미해요?",o:["겉모양","물질","본질과 진정한 가치","껍데기"],a:2},
+  {q:"이 시에서 언급되는 역사는?",o:["삼국시대","동학","조선시대","근현대"],a:1},
+  {q:"이 시의 주제는?",o:["사랑","친구","본질 추구, 진정성 추구","자연"],a:2},
+];
+
+const KOREAN_LITERATURE = {
+  title: POEM_TITLE,
+  eng: "Shells, Be Gone",
+  author: POEM_AUTHOR,
+  authorEng: "Shin Dong-yeop",
+  desc: "신동엽 시인의 대표작으로, 껍데기(외형, 겉모양)를 버리고 알맹이(본질, 진정한 가치)만 남기라는 메시지를 담은 저항시입니다.",
+  descEng: "A representative work by Shin Dong-yeop expressing the message to discard shells (appearance) and keep only the essence (true value).",
+  sentences: POEM_LINES.map((line, i) => ({
+    q: "",
+    a: line,
+    eng: ["Shells, be gone", "April too, only the essence remains", "Shells, be gone", "The wild cry of Gom Stream", "in that same year", "Shall live on", "Shells, be gone", "Therefore again", "Shells, be gone", "Let only essence remain", "At last Asadal and Asanyeo"][i] || ""
+  }))
+};
+
+const LITERATURE_QUIZ = LIT_QUIZ;
+
+const REVIEW_DATA = {
+  title: "복습 & 예습 · Review & Preview",
+  preview: {
+    t: "다음 과: 한국의 법을 알아요",
+    eng: "Next: Understanding Korean Law",
+    desc: "한국의 법 시스템과 주요 법률에 대해 배워요."
+  },
+  review: {
+    t: "이번 과: 경제 뉴스를 읽어요",
+    eng: "This: Reading Economic News",
+    reading: "경제 기사를 읽고 이해하는 연습을 했어요. 한국의 주요 산업과 무역에 대해 배웠어요.",
+    dialogue: "경제 용어와 뉴스 표현을 사용한 대화를 연습했어요.",
+    grammar: "경제 관련 문법과 표현을 배웠어요."
+  },
+  dictation: {
+    t: "받아쓰기",
+    eng: "Dictation",
+    sentences: [
+      {kor:"한국의 경제는 세계적으로 중요한 역할을 해요.",eng:"Korea's economy plays an important global role."},
+      {kor:"한국어 공부는 취업과 생활에 큰 도움이 돼요.",eng:"Studying Korean greatly helps with employment and daily life."},
+      {kor:"무역은 한국의 경제 발전의 원동력이에요.",eng:"Trade is the driving force of Korea's economic development."}
+    ]
+  }
+};
+
+// ===== APP STATE =====
+let state = {
+  page: 'home',
+  menuOpen: false,
+  // Vocab
+  vocabTab: 0,
+  vocabReveal: {},
+  // Grammar
+  gramIdx: 0,
+  // Dialogue
+  dlgIdx: 0, dlgLine: -1, dlgShowEng: false,
+  // Flashcard
+  fcIdx: 0, fcFlipped: false, fcKnown: 0,
+  // Quiz
+  qIdx: 0, qSel: null, qScore: 0, qDone: false,
+  // Reading
+  rdIdx: 0, rdShowEng: false, rdAnswers: {},
+  // Hangul
+  hgTab: 0, hgSelected: null,
+  // Review
+  rvTab: 0, rvDictIdx: 0, rvDictInput: '', rvDictResults: {},
+  // Literature
+  ftSentIdx: 0, ftShowEng: false, ftAutoPlay: false,
+  // Lit Quiz
+  fqIdx: 0, fqSel: null, fqScore: 0, fqDone: false,
+};
+
+function setState(updates) {
+  Object.assign(state, updates);
+  render();
+}
+
+// ===== RENDER ENGINE =====
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = renderNav() + renderPage() + renderBottomNav();
+}
+
+function renderNav() {
+  const items = [
+    {id:'home',l:'홈',i:'🏠'},{id:'curriculum',l:'커리큘럼',i:'📋'},
+    {id:'hangul',l:'TOPIK 준비',i:'📊'},{id:'vocab',l:'어휘',i:'📖'},
+    {id:'grammar',l:'문법',i:'✏️'},{id:'dialogue',l:'대화',i:'💬'},
+    {id:'reading',l:'읽기',i:'📕'},{id:'writing',l:'쓰기',i:'✍️'},
+    {id:'review',i:'📝',l:'익힘'},{id:'literature',i:'📚',l:'문학'},
+  ];
+  return `<div class="nav"><a href="/KIIP_Level2_Index" style="text-decoration:none;color:inherit"><div><div class="nav-title">글로컬 아카데미 KIIP</div><div class="nav-sub">← Level 2 목차 · Contents</div></div></a><button class="nav-btn" onclick="setState({menuOpen:!state.menuOpen})">☰</button></div>
+    <div class="menu" style="max-height:${state.menuOpen?'500px':'0px'};transition:max-height .3s;overflow:hidden">
+      ${items.map(it=>`<button onclick="setState({page:'${it.id}',menuOpen:false})" class="${state.page===it.id?'active':''}">${it.i} ${it.l}</button>`).join('')}
+    </div>`;
+}
+
+function renderBottomNav() {
+  const items = [
+    {id:'home',i:'🏠',l:'홈'},{id:'vocab',i:'📖',l:'어휘'},{id:'grammar',i:'✏️',l:'문법'},
+    {id:'dialogue',i:'💬',l:'대화'},{id:'ai',i:'🤖',l:'AI'},{id:'quiz',i:'🎯',l:'퀴즈'},
+  ];
+  return `<div class="bottom-nav">${items.map(it=>`<button onclick="setState({page:'${it.id}'})" class="${state.page===it.id?'active':''}">${it.i}</button>`).join('')}</div>`;
+}
+
+function renderPage() {
+  const pages = {
+    home: renderHome, curriculum: renderCurriculum, hangul: renderHangul,
+    vocab: renderVocab, grammar: renderGrammar, dialogue: renderDialogue,
+    reading: renderReading, writing: renderWriting, review: renderReview,
+    flashcard: renderFlashcard, quiz: renderQuiz, topik: renderTopik,
+    literature: renderKoreanLiterature, litquiz: renderLiteratureQuiz,
+    folktale: renderKoreanLiterature, ftquiz: renderLiteratureQuiz,
+    culture: renderCulture, geoje: renderLocalInfo
+  };
+  return `<div class="page">${(pages[state.page]||renderHome)()}</div>`;
+}
+
+function renderHome() {
+  return `
+  <div style="background:linear-gradient(135deg,#1e40af,#3b82f6);border-radius:16px;padding:20px;margin-bottom:16px;color:#fff">
+    <div style="font-size:12px;color:#8899BB;margin-bottom:2px">${HANGUL_TITLE}</div>
+    <div style="display:flex;gap:6px;justify-content:center;margin-top:8px;flex-wrap:wrap">
+      <span style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">✅ 0급 한글 입문 완료</span>
+      <span style="background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700">📘 2급 초급2 진행중</span>
+    </div>
+    <div style="font-size:26px;font-weight:800;margin-bottom:2px">경제 뉴스를 읽어요</div>
+    <div style="font-size:13px;color:#aabbdd">Reading Economic News — 경제와 무역 · Economy & Trade</div>
+    <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+      ${['~에 따르면','~(으)ㄴ/는 반면','~기 마련이다','글로벌 경제'].map(o=>`<span style="background:rgba(255,255,255,0.12);border-radius:6px;padding:3px 10px;font-size:11px">✓ ${o}</span>`).join('')}
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px">
+    ${[
+      {id:'hangul',i:'📊',l:'TOPIK 준비',c:'#22c55e'},
+      {id:'vocab',i:'📖',l:'어휘',c:'#3b82f6'},
+      {id:'grammar',i:'✏️',l:'문법',c:'#8b5cf6'},
+      {id:'dialogue',i:'💬',l:'대화',c:'#22c55e'},
+      {id:'reading',i:'📕',l:'읽기',c:'#ec4899'},
+      {id:'writing',i:'✍️',l:'쓰기',c:'#f59e0b'},
+      {id:'review',i:'📝',l:'익힘',c:'#14b8a6'},
+      {id:'flashcard',i:'🃏',l:'플래시카드',c:'#f59e0b'},
+      {id:'quiz',i:'🎯',l:'퀴즈',c:'#ef4444'},
+      {id:'topik',i:'📊',l:'TOPIK',c:'#06b6d4'},
+      {id:'literature',i:'📚',l:'현대시',c:'#a855f7'},
+      {id:'litquiz',i:'🧩',l:'시퀴즈',c:'#e11d48'},
+      {id:'culture',i:'🏛️',l:'문화',c:'#8b5cf6'},
+    ].map(it=>`<button onclick="setState({page:'${it.id}'})" style="background:#fff;border:2px solid ${it.c}20;border-radius:10px;padding:12px 6px;text-align:center">
+      <div style="font-size:26px;margin-bottom:4px">${it.i}</div>
+      <div style="font-weight:700;font-size:12px;color:#1e40af">${it.l}</div>
+    </button>`).join('')}
+  </div>
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-bottom:8px">💹 한국 경제 & 글로벌 무역</button>
+  <button onclick="setState({page:'curriculum'})" class="btn" style="background:#e5e7eb;color:#555">📋 전체 커리큘럼 보기</button>
+  <div style="display:flex;gap:8px;margin-top:12px"><a href="/KIIP_Level2_Lesson14" style="flex:1;padding:12px;border-radius:10px;background:#e5e7eb;color:#555;font-size:13px;font-weight:700;text-align:center;text-decoration:none">← 2-14과 교육제도를알아요</a><a href="/KIIP_Level2_Lesson16" style="flex:1;padding:12px;border-radius:10px;background:var(--ocean);color:#fff;font-size:13px;font-weight:700;text-align:center;text-decoration:none">2-16과 한국의법을알아요 →</a></div>
+  <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
+  <div style="display:flex;gap:8px">
+    <a href="/KIIP_Level2_Lesson14" style="display:block;text-decoration:none;flex:1">
+      <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
+        <strong style="color:var(--navy)">2-14과 교육 제도를 이해해요</strong>
+        <div style="font-size:11px;color:#888;margin-top:2px">Understanding Education</div>
+      </div>
+    </a><a href="/KIIP_Level2_Lesson16" style="display:block;text-decoration:none;flex:1">
+      <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:11px;color:#888">다음 과 · Next →</div>
+        <strong style="color:var(--navy)">2-16과 한국의 법을 알아요</strong>
+        <div style="font-size:11px;color:#888;margin-top:2px">Understanding Korean Law</div>
+      </div>
+    </a>
+  </div>
+  `;
+}
+
+function renderCurriculum() {
+  const levels = [
+    {id:0,n:"0급 입문",e:"Pre-Beginner",c:"#22c55e",ls:10},
+    {id:1,n:"1급 초급1",e:"Beginner 1",c:"#3b82f6",ls:18},
+    {id:2,n:"2급 초급2",e:"Beginner 2",c:"#f59e0b",ls:18},
+    {id:3,n:"3급 중급1",e:"Intermediate 1",c:"#8b5cf6",ls:18},
+  ];
+  return `<h2>📋 전체 커리큘럼</h2><p class="sub">Full Curriculum · 0급~3급 (100과)</p>
+  ${levels.map(lv=>`<div class="card" style="border-left:4px solid ${lv.c}">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div><span class="badge" style="background:${lv.c}">${lv.id}급</span> <b style="color:#1e40af">${lv.n}</b></div>
+      <span style="color:#888;font-size:12px">${lv.ls}과</span>
+    </div>
+    <div style="color:#888;font-size:11px;margin:4px 0">${lv.e}</div>
+    <div class="progress"><div class="progress-bar" style="width:${lv.id===2?'75%':'0%'};background:${lv.c}"></div></div>
+  </div>`).join('')}`;
+}
+
+function speakTopikListening(idx) {
+  const item = TOPIK_PRACTICE.listening[idx];
+  if (!item) return;
+  TTS.speak(item.q.split('\n').slice(1).join(' '));
+}
+
+function renderHangul() {
+  const tp = TOPIK_PRACTICE;
+  return `<h2><span class="section-icon">📊</span>TOPIK I 준비 · Exam Preparation</h2><p class="sub">${HANGUL_SUBTITLE}</p>
+  ${tp.info.map(inf=>`<div class="card card-accent">
+    <div style="color:var(--navy);font-weight:700;font-size:12px">${inf.label}</div>
+    <div style="font-size:15px;color:#2D3436;margin-top:4px">${inf.val}</div>
+    <div style="font-size:11px;color:#888">${inf.eng}</div>
+  </div>`).join('')}
+  <h3 style="color:var(--navy);margin-top:20px;margin-bottom:10px;font-size:15px">💡 TOPIK I 핵심 전략</h3>
+  <div class="card">
+    <ul style="color:#555;font-size:13px;line-height:1.8;list-position:inside">
+      <li>자주 나오는 주제와 어휘를 파악하세요</li>
+      <li>본문을 빠르게 읽고 핵심을 찾으세요</li>
+      <li>선택지를 주의 깊게 비교하세요</li>
+      <li>오답은 왜 틀렸는지 분석하세요</li>
+      <li>매일 연습하여 읽기 속도를 높이세요</li>
+    </ul>
+  </div>`;
+}
+
+function renderVocab() {
+  const tabs = ['경제 어휘 Economy','실용 문장 Sentences','심화 어휘 Advanced','생활 어휘 Life'];
+  const t = state.vocabTab;
+  let content = '';
+  if (t===0) content = VOCAB_PHONE.map((v,i)=>`
+    <div class="card card-accent vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,[${i}]:!state.vocabReveal[${i}]}})">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><div class="kor">${v.kor} ${ttsBtn(v.kor)}</div><div class="pron">[${v.pron}]</div></div>
+      </div>
+      ${state.vocabReveal[i]?'<div style="margin-top:6px;padding:6px 10px;background:#f0f7ff;border-radius:6px;font-size:13px;color:var(--ocean);font-weight:600">'+v.eng+'</div>'
+      :'<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기 · Tap for English</div>'}
+    </div>`).join('');
+  else if (t===1) content = VOCAB_SHIPYARD.map((v,i)=>`
+    <div class="card card-orange vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,['s'+${i}]:!state.vocabReveal['s'+${i}]}})">
+      <div class="kor">${v.a} ${ttsBtn(v.a)}</div>
+      <div style="font-size:11px;color:#888">${v.sit}</div>
+      ${state.vocabReveal['s'+i]?'<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border-radius:6px;font-size:13px;color:var(--orange);font-weight:600">'+v.eng+'</div>'
+      :'<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기</div>'}
+    </div>`).join('');
+  else if (t===2) content = '<div class="grid2">'+VOCAB_ADVANCED.map(v=>'<div class="vocab-item" style="background:#f0fdf4;border-radius:8px;padding:8px 10px;border-left:4px solid #22c55e" onclick="TTS.speak(\''+v.a.replace(/'/g,"\\'")+'\')">'
+      +'<div class="kor" style="font-size:14px">'+v.a+' '+ttsBtn(v.a)+'</div><div class="eng">'+v.eng+'</div>'
+      +'</div>').join('')+'</div>';
+  else content = '<div class="grid2">'+VOCAB_SHIPYARD_NOUNS.map(v=>'<div class="vocab-item" style="background:#fff7ed;border-radius:8px;padding:8px 10px;border-left:4px solid #ED7D31" onclick="TTS.speak(\''+v.a.replace(/'/g,"\\'")+'\')">'
+      +'<div class="kor" style="font-size:14px">'+v.a+' '+ttsBtn(v.a)+'</div><div class="eng">'+v.eng+'</div>'
+      +'</div>').join('')+'</div>';
+
+  return '<h2><span class="section-icon">📖</span>어휘 · Vocabulary</h2><p class="sub">15과 · Lesson 15 · 경제뉴스 ('+(VOCAB_PHONE.length+VOCAB_SHIPYARD.length+VOCAB_ADVANCED.length+VOCAB_SHIPYARD_NOUNS.length)+'단어)</p>'
+  +'<div class="tabs">'+tabs.map((tb,i)=>'<button class="tab '+(t===i?'active':'')+'" onclick="setState({vocabTab:'+i+',vocabReveal:{}})">'+tb+'</button>').join('')+'</div>'
+  +content;
+}
+
+function renderGrammar() {
+  const g = GRAMMAR[state.gramIdx] || GRAMMAR[0];
+  return `<h2>✏️ 문법 · Grammar</h2><p class="sub">3가지 핵심 문법</p>
+  <div style="display:flex;gap:8px;margin-bottom:14px">
+    ${GRAMMAR.map((gr,i)=>`<button class="tab ${state.gramIdx===i?'active':''}" onclick="setState({gramIdx:${i}})" style="flex:1;padding:8px 4px;font-size:11px">${i+1}. ${gr.title}</button>`).join('')}
+  </div>
+  <div class="card card-accent" style="margin-bottom:14px">
+    <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px">${g.title}</div>
+    <div style="font-size:13px;color:var(--ocean);margin-bottom:8px">${g.eng}</div>
+    <div style="font-size:12px;color:#555;margin-bottom:8px">${g.desc}</div>
+    <div style="font-size:11px;color:#888;background:#f0f7ff;padding:8px;border-radius:8px">${g.descEng}</div>
+  </div>
+  <div class="card card-orange" style="margin-bottom:14px">
+    <div style="font-size:12px;color:var(--orange);font-weight:700;margin-bottom:6px">규칙 / Rule</div>
+    <div style="font-size:13px;color:var(--navy);margin-bottom:4px;font-weight:600">${g.rule}</div>
+    <div style="font-size:11px;color:#888">${g.ruleEng}</div>
+  </div>
+  <div style="margin-bottom:14px">
+    ${g.examples.map((ex,i)=>`<div class="card" style="margin-bottom:10px">
+      <div style="font-size:12px;color:var(--ocean);font-weight:700;margin-bottom:4px">예시 ${i+1}</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+        <span style="background:#e8f5e9;color:#22c55e;padding:4px 10px;border-radius:6px;font-size:12px;font-weight:600">${ex.q}</span>
+      </div>
+      <div style="font-size:13px;color:#1e40af;margin-bottom:4px">${ex.a}</div>
+      <div style="font-size:11px;color:#888;margin-bottom:4px">${ex.eng}</div>
+      <div style="font-size:10px;color:var(--orange);background:#fff3e0;padding:4px 8px;border-radius:4px">${ex.note}</div>
+    </div>`).join('')}
+  </div>`;
+}
+
+function renderDialogue() {
+  const d = DIALOGUES[state.dlgIdx] || DIALOGUES[0];
+  return `<h2>💬 대화 · Dialogue</h2><p class="sub">Situational Conversations</p>
+  <div style="display:flex;gap:6px;margin-bottom:14px">
+    ${DIALOGUES.map((dl,i)=>`<button class="tab ${state.dlgIdx===i?'active':''}" onclick="setState({dlgIdx:${i},dlgLine:-1})" style="flex:1">${dl.title}</button>`).join('')}
+  </div>
+  <div class="card card-accent" style="margin-bottom:14px">
+    <div style="font-size:14px;font-weight:800;color:var(--navy)">${d.title}</div>
+    <div style="font-size:12px;color:var(--ocean)">${d.eng}</div>
+  </div>
+  ${d.lines.map((ln,i)=>`<div class="card" style="margin-bottom:10px;padding:12px">
+    <div style="font-size:11px;color:var(--ocean);font-weight:700;margin-bottom:4px">${ln.sp} (${ln.role||''})</div>
+    <div style="font-size:14px;color:var(--navy);font-weight:600;margin-bottom:4px">${ln.text} ${ttsBtn(ln.text)}</div>
+    ${state.dlgShowEng?`<div style="font-size:12px;color:#888">${ln.eng}</div>`:''}
+  </div>`).join('')}
+  <button onclick="setState({dlgShowEng:!state.dlgShowEng})" class="btn btn-primary">${state.dlgShowEng?'🙈 영어 숨기기':'👀 영어 보기'}</button>`;
+}
+
+function renderReading() {
+  const r = READING_PASSAGES[state.rdIdx] || READING_PASSAGES[0];
+  return `<h2>📕 읽기 · Reading</h2><p class="sub">Comprehension Practice</p>
+  <div style="display:flex;gap:6px;margin-bottom:14px">
+    ${READING_PASSAGES.map((rd,i)=>`<button class="tab ${state.rdIdx===i?'active':''}" onclick="setState({rdIdx:${i}})">${rd.title}</button>`).join('')}
+  </div>
+  <div class="card card-green">
+    <div style="white-space:pre-wrap;font-size:14px;color:var(--navy);line-height:1.8;margin-bottom:12px">${r.text}</div>
+    <button onclick="TTS.speak(READING_PASSAGES[state.rdIdx].text.replace(/\\n/g,' '),undefined,0.7)" class="btn btn-primary" style="margin-top:10px;width:auto;padding:6px 16px;font-size:12px">🔊 지문 듣기 · Listen to Passage</button>
+    ${state.rdShowEng?`<div style="white-space:pre-wrap;font-size:12px;color:#888;line-height:1.8;background:#f0f7ff;padding:10px;border-radius:8px">${r.textEng}</div>`:''}
+  </div>
+  <button onclick="setState({rdShowEng:!state.rdShowEng})" class="btn btn-primary" style="margin:10px 0">${state.rdShowEng?'🙈 영어 숨기기':'👀 영어 보기'}</button>
+  <div style="margin-top:14px">
+    ${r.questions.map((qu,i)=>`<div class="card" style="margin-bottom:10px">
+      <div style="font-size:12px;color:var(--ocean);font-weight:700;margin-bottom:6px">Q${i+1}. ${qu.q}</div>
+      <div style="font-size:14px;color:var(--navy);font-weight:600">${qu.a}</div>
+      <div style="font-size:11px;color:#888;margin-top:4px">${qu.ae}</div>
+    </div>`).join('')}
+  </div>`;
+}
+
+function renderWriting() {
+  return `<h2>✍️ 쓰기 · Writing</h2><p class="sub">Write About Economic News</p>
+  <div class="card card-accent">
+    <label style="display:block;font-weight:700;color:var(--navy);margin-bottom:8px">최근 본 경제 뉴스를 소개하세요</label>
+    <textarea id="writingTextarea" placeholder="최근 경제 뉴스에 대해 써 보세요. 어떤 뉴스였나요? 왜 중요한가요?" style="margin-bottom:8px"></textarea>
+    <div style="display:flex;gap:8px">
+      <button onclick="const text = document.getElementById('writingTextarea').value; if(text.trim()) TTS.speak(text); else alert('내용을 입력하세요')" class="btn btn-primary" style="width:auto;padding:6px 16px;font-size:12px">🔊 발표 연습 · Practice Speaking</button>
+      <button class="btn btn-primary">✅ 제출하기</button>
+    </div>
+  </div>`;
+}
+
+function renderFlashcard() {
+  const vocabAll = [...VOCAB_PHONE, ...VOCAB_SHIPYARD];
+  const card = vocabAll[state.fcIdx] || vocabAll[0];
+  return `<h2>🃏 플래시카드 · Flashcards</h2><p class="sub">Vocabulary Practice</p>
+  <div style="perspective:1000px;margin:20px 0">
+    <div onclick="setState({fcFlipped:!state.fcFlipped})" style="background:linear-gradient(135deg,var(--navy),var(--ocean));border-radius:16px;padding:40px 20px;color:#fff;text-align:center;cursor:pointer;transition:transform .6s;transform:${state.fcFlipped?'rotateY(180deg)':''};min-height:200px;display:flex;flex-direction:column;justify-content:center">
+      <div style="font-size:13px;color:#aabbdd;margin-bottom:8px">${state.fcFlipped?'English':'Korean'}</div>
+      <div style="font-size:32px;font-weight:800">${state.fcFlipped?card.eng:card.kor}</div>
+      <div style="font-size:11px;color:#aabbdd;margin-top:12px">${state.fcFlipped?card.pron:card.eng}</div>
+    </div>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:14px">
+    <button onclick="setState({fcFlipped:false,fcIdx:Math.max(0,state.fcIdx-1)})" class="btn" style="flex:1;background:#e5e7eb;color:#555">← 이전</button>
+    <button onclick="setState({fcFlipped:false,fcIdx:Math.min(vocabAll.length-1,state.fcIdx+1)})" class="btn btn-primary" style="flex:1">다음 →</button>
+  </div>
+  <div style="text-align:center;color:#888;font-size:12px">${state.fcIdx+1} / ${vocabAll.length}</div>`;
+}
+
+function renderQuiz() {
+  const q = QUIZ[state.qIdx];
+  if (!q) return `<h2>🎯 퀴즈</h2><div class="card" style="text-align:center;padding:40px 20px"><div style="font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px">완료!</div><div style="font-size:14px;color:#888;margin-bottom:16px">점수: ${state.qScore} / ${QUIZ.length}</div><button onclick="setState({qIdx:0,qSel:null,qScore:0,qDone:false})" class="btn btn-primary">다시 시작</button></div>`;
+  return `<h2>🎯 퀴즈 · Quiz</h2><p class="sub">Test Your Knowledge</p>
+  <div style="margin-bottom:10px"><div class="progress"><div class="progress-bar" style="width:${(state.qIdx/QUIZ.length)*100}%;background:var(--ocean)"></div></div><div style="text-align:right;color:#888;font-size:11px">${state.qIdx+1}/${QUIZ.length}</div></div>
+  <div class="card card-accent" style="margin-bottom:14px"><div style="font-size:14px;color:var(--navy);font-weight:600">${q.q}</div></div>
+  ${q.o.map((opt,i)=>`<button onclick="setState({qSel:${i}})" class="quiz-opt ${state.qSel!==null?(i===q.a?'quiz-correct':(state.qSel===i?'quiz-wrong':'')):''}
+">${opt}</button>`).join('')}
+  ${state.qSel!==null?`<button onclick="setState({qIdx:state.qIdx+1,qSel:null,qScore:state.qScore+(state.qSel===q.a?1:0)})" class="btn btn-primary" style="margin-top:10px">다음 →</button>`:''}`;
+}
+
+function renderTopik() {
+  const tabs = [{id:'read',l:'읽기 (5문제)'},{id:'listen',l:'듣기 (5문제)'}];
+  const isReading = state.hgTab === 0;
+  const items = isReading ? TOPIK_PRACTICE.reading : TOPIK_PRACTICE.listening;
+  const idx = state.qIdx < items.length ? state.qIdx : 0;
+  const item = items[idx];
+  if (!item) return `<h2>📊 TOPIK</h2><div class="card" style="text-align:center;padding:40px 20px"><div style="font-size:18px;font-weight:700;color:var(--navy)">완료!</div><div style="font-size:14px;color:#888">점수: ${state.qScore} / ${items.length}</div></div>`;
+  return `<h2><span class="section-icon">${isReading?'📖':'🎧'}</span>TOPIK I ${isReading?'읽기':'듣기'} · ${isReading?'Reading':'Listening'} Practice</h2><p class="sub">${HANGUL_SUBTITLE}</p>
+  <div style="display:flex;gap:6px;margin-bottom:14px">${tabs.map((t,i)=>`<button class="tab ${state.hgTab===i?'active':''}" onclick="setState({hgTab:${i},qIdx:0,qSel:null,qScore:0})" style="flex:1">${t.l}</button>`).join('')}</div>
+  <div style="margin-bottom:10px"><div class="progress"><div class="progress-bar" style="width:${(idx/items.length)*100}%;background:var(--ocean)"></div></div><div style="text-align:right;color:#888;font-size:11px">${idx+1}/${items.length}</div></div>
+  <div class="card card-accent" style="margin-bottom:14px;white-space:pre-wrap"><div style="font-size:13px;color:var(--navy);font-weight:600">${item.q}</div></div>
+  ${!isReading?`<button class="btn btn-primary" style="margin-bottom:10px;width:auto;padding:6px 16px;font-size:12px" onclick="speakTopikListening(${idx})">🔊 듣기 Listen</button>`:''}
+  ${item.o.map((opt,i)=>`<button onclick="setState({qSel:${i}})" class="quiz-opt ${state.qSel!==null?(i===item.a?'quiz-correct':(state.qSel===i?'quiz-wrong':'')):''}
+">${opt}</button>`).join('')}
+  ${state.qSel!==null?`<button onclick="setState({qIdx:idx+1,qSel:null,qScore:state.qScore+(state.qSel===item.a?1:0)})" class="btn btn-primary" style="margin-top:10px">다음 →</button>`:''}`;
+}
+
+function renderKoreanLiterature() {
+  const fullPoemText = POEM_LINES.join(' ');
+  return `<h2>📚 한국 현대시 · Korean Contemporary Poetry</h2><p class="sub">신동엽 · 껍데기는 가라</p>
+  <div class="card card-orange" style="margin-bottom:14px">
+    <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px">${POEM_TITLE}</div>
+    <div style="font-size:13px;color:var(--orange);margin-bottom:12px">작가: ${POEM_AUTHOR}</div>
+    <button onclick="TTS.speak('${fullPoemText.replace(/'/g,"\\'")}')" class="btn btn-primary" style="margin-bottom:10px;width:auto;padding:6px 16px;font-size:12px">🔊 전체 시 읽기 · Read Full Poem</button>
+    <div style="white-space:pre-wrap;font-size:14px;color:var(--navy);line-height:1.8;font-weight:500">
+${POEM_LINES.map(line => `${line} ${ttsBtn(line)}`).join('\n')}
+    </div>
+  </div>
+  <div class="card">
+    <div style="font-size:12px;color:var(--navy);font-weight:700;margin-bottom:8px">시의 주제</div>
+    <div style="font-size:13px;color:#555;line-height:1.6">이 시는 본질을 추구하는 것의 중요성을 말합니다. 껍데기(겉모양, 형식)는 버리고 알맹이(진정한 가치, 본질)만 남아야 한다는 메시지를 담고 있습니다. 동학 운동의 역사적 배경을 바탕으로 합니다.</div>
+  </div>
+  <button onclick="setState({page:'litquiz'})" class="btn btn-orange" style="margin-top:10px">🧩 시 이해 퀴즈 풀기 · Take Poetry Quiz</button>`;
+}
+
+function renderLiteratureQuiz() {
+  const idx = state.fqIdx < LIT_QUIZ.length ? state.fqIdx : 0;
+  const q = LIT_QUIZ[idx];
+  if (!q) return `<h2>🧩 시 퀴즈 결과</h2><div class="card" style="text-align:center;padding:40px 20px"><div style="font-size:18px;font-weight:700;color:var(--navy);margin-bottom:8px">완료!</div><div style="font-size:14px;color:#888;margin-bottom:16px">점수: ${state.fqScore} / ${LIT_QUIZ.length}</div><button onclick="setState({fqIdx:0,fqSel:null,fqScore:0})" class="btn btn-orange">다시 풀기</button><a href="/KIIP_Level2_Lesson16" style="display:block;text-decoration:none;margin-top:16px"><button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">➡️ 다음 과: 2-16 한국의 법을 알아요 · Next Lesson</button></a></div>`;
+  return `<h2>🧩 시 이해 퀴즈 · Poetry Comprehension Quiz</h2><p class="sub">"${POEM_TITLE}" 작가: ${POEM_AUTHOR}</p>
+  <div style="margin-bottom:10px"><div class="progress"><div class="progress-bar" style="width:${(idx/LIT_QUIZ.length)*100}%;background:#a855f7"></div></div><div style="text-align:right;color:#888;font-size:11px">${idx+1}/${LIT_QUIZ.length}</div></div>
+  <div class="card card-accent" style="margin-bottom:14px"><div style="font-size:14px;color:var(--navy);font-weight:600">${q.q}</div></div>
+  ${q.o.map((opt,i)=>`<button onclick="setState({fqSel:${i}})" class="quiz-opt ${state.fqSel!==null?(i===q.a?'quiz-correct':(state.fqSel===i?'quiz-wrong':'')):''}
+">${opt}</button>`).join('')}
+  ${state.fqSel!==null?`<button onclick="setState({fqIdx:idx+1,fqSel:null,fqScore:state.fqScore+(state.fqSel===q.a?1:0)})" class="btn btn-primary" style="margin-top:10px">다음 →</button>`:''}`;
+}
+
+function renderCulture() {
+  return `<h2>🏛️ 한국 문화 · Korean Culture</h2><p class="sub">Economy & Society</p>
+  ${CULTURE.map(c=>`<div class="card" style="margin-bottom:10px">
+    <div style="font-size:20px;margin-bottom:8px">${c.icon}</div>
+    <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px">${c.t}</div>
+    <div style="font-size:12px;color:var(--ocean);margin-bottom:8px">${c.eng}</div>
+    <div style="font-size:13px;color:#555;line-height:1.6">${c.d}</div>
+  </div>`).join('')}`;
+}
+
+function renderLocalInfo() {
+  return `<h2>💹 ${LOCAL_INFO.title}</h2><p class="sub">${LOCAL_INFO.eng}</p>
+  ${LOCAL_INFO.facts.map(f=>`<div class="card card-accent">
+    <div style="font-size:12px;color:var(--ocean);font-weight:700">${f.label}</div>
+    <div style="font-size:14px;color:var(--navy);font-weight:600;margin-top:4px">${f.val}</div>
+  </div>`).join('')}
+  <a href="/KIIP_Level2_Lesson16" style="display:block;text-decoration:none;margin-top:16px">
+    <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
+      ➡️ 다음 과: 2-16 한국의 법을 알아요 · Next Lesson
+    </button>
+  </a>`;
+}
+
+function renderReview() {
+  return `<h2>📝 익힘 · Review & Practice</h2><p class="sub">종합 복습</p>
+  <div class="card card-accent" style="margin-bottom:10px">
+    <div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:8px">학습 내용 요약</div>
+    <div style="font-size:13px;color:#555;line-height:1.8">
+      <ul style="margin-left:20px">
+        <li><b>어휘:</b> 경제, 무역, 주식, 환율 등 18개 기본 용어</li>
+        <li><b>문법:</b> ~에 따르면, ~(으)ㄴ/는 반면, ~기 마련이다</li>
+        <li><b>대화:</b> 급여 이야기, 경제 뉴스 토론</li>
+        <li><b>읽기:</b> 경제 성장, KIIP 이민자 생활</li>
+        <li><b>문학:</b> 신동엽의 "껍데기는 가라"</li>
+      </ul>
+    </div>
+  </div>
+  <button onclick="setState({page:'quiz'})" class="btn btn-primary">🎯 퀴즈로 복습하기</button>`;
+}
+
+// ===== INITIALIZATION =====
+
+// ===== AI 에이전트 (KIIP 특화) =====
+var AI_QUICK_BTNS = [
+  {emoji:'📰',label:'경제 뉴스 읽기',
+   q:'경제뉴스읽기 reading economic news 경제뉴스 경제기사를 알려주세요' },
+  {emoji:'📊',label:'경제 용어',
+   q:'경제용어 economic term 경제단어 금융용어를 알려주세요' },
+  {emoji:'💹',label:'물가 표현',
+   q:'물가표현 price inflation 물가올랐어요 비싸졌어요를 알려주세요' },
+  {emoji:'📈',label:'경제 동향',
+   q:'경제동향 economic trend 경제상황 경제전망을 알려주세요' },
+  {emoji:'💰',label:'재정 표현',
+   q:'재정표현 financial expression 돈관리 저축을 알려주세요' }
+];
+var AICHAT = {
+  msgs: [],
+  loading: false,
+  input: '',
+  addMsg: function(role, text) {
+    this.msgs.push({ role, text, time: new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'}) });
+    render();
+    setTimeout(function(){
+      var box = document.querySelector('.ai-msgbox');
+      if(box) box.scrollTop = box.scrollHeight;
+    }, 50);
+  },
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx];
+    if (!b || this.loading) return;
+    this.send(b.q, b.label);
+  },
+  send: async function(text, label) {
+    if (this.loading) return;
+    text = text || this.input.trim();
+    if (!text) return;
+    this.input = '';
+    this.loading = true;
+    var displayText = label || text;
+    this.addMsg('user', displayText);
+    try {
+      var sysP = 'You are a Korean language coach for KIIP students (immigrants and foreign workers). Lesson focus: economic vocabulary 경제(economy), 뉴스(news), 무역(trade), 수출(export), 투자(investment), article reading patterns. Help students understand Korean economic news in daily life context. SHORT answers with English. LESSON:KIIP-L2L15';
+      var url = '/api/chat';
+      var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+                  var data = await res.json();
+      var reply = data.choices[0].message.content;
+      this.loading = false;
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
+    } catch(e) {
+      this.loading = false;
+      this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');
+    }
+  }
+};
+
+// ===== RECORDER (발음 코치 — 브라우저 내장 API) =====
+var RECORDER = {
+  recorders: {}, chunks: {}, audioURLs: {}, isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    var resultEl = document.getElementById('stt-result-' + idx);
+    var playBtn  = document.getElementById('play-btn-' + idx);
+    var scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, recBtn); return; }
+    var stream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({audio: true});
+    } catch(e) {
+      var msg = '';
+      var n = e.name || '';
+      if (n === 'NotAllowedError' || n === 'PermissionDeniedError')
+        msg = '❌ <strong>마이크 차단됨</strong> — 주소창 🔒 → 마이크 → <strong>허용</strong> 후 F5<br><span style="color:#555">Microphone blocked — click 🔒 → Microphone → Allow → F5</span>';
+      else if (n === 'NotFoundError')
+        msg = '❌ 마이크를 찾을 수 없어요 — Microphone not found';
+      else if (location.protocol === 'file:')
+        msg = '❌ 보안 오류 — <a href="https://elimg.com" target="_blank" style="color:#1d4ed8">elimg.com</a>에서 열어주세요 (HTTPS 필요)';
+      else
+        msg = '❌ 오류: ' + e.name + ' — Chrome/Edge에서 다시 시도하세요';
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    var mr = new MediaRecorder(stream);
+    this.recorders[idx] = mr;
+    var self = this;
+    mr.ondataavailable = function(e) { if (e.data.size > 0) self.chunks[idx].push(e.data); };
+    mr.onstop = function() {
+      if (self.audioURLs[idx]) URL.revokeObjectURL(self.audioURLs[idx]);
+      var blob = new Blob(self.chunks[idx], {type:'audio/webm'});
+      self.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false; playBtn.style.opacity = '1';
+        playBtn.onclick = function() { new Audio(self.audioURLs[idx]).play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지'; recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중... / Recording...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      var rec = new SR(); rec.lang = 'ko-KR'; rec.continuous = false; rec.interimResults = false;
+      rec.onresult = function(e) {
+        var said = e.results[0][0].transcript.replace(/[\\s,.?!]/g,'');
+        var target = targetText.replace(/[\\s,.?!]/g,'');
+        var conf = e.results[0][0].confidence;
+        var match = 0;
+        for (var i = 0; i < Math.min(said.length, target.length); i++) { if (said[i] === target[i]) match++; }
+        var pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        var final = Math.round(pct * 0.7 + Math.round((conf||0.5)*100) * 0.3);
+        var color = final >= 80 ? '#22c55e' : final >= 50 ? '#f59e0b' : '#ef4444';
+        var msg = final >= 80 ? '✅ 완벽해요! Great!' : final >= 50 ? '🔄 조금 더 연습! Keep going!' : '❌ 다시 시도! Try again!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식 / Heard: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = final + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = function() {};
+      rec.start();
+    }
+  },
+
+  stop(idx, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') this.recorders[idx].stop();
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음'; recBtn.style.background = '#059669';
+  },
+
+  async autoDetect() {
+    var stateEl = document.getElementById('mic-perm-state');
+    var blockedEl = document.getElementById('mic-blocked-guide');
+    var allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        var result = await navigator.permissions.query({name:'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨 — 바로 녹음하세요! / Microphone allowed!</div>';
+          if (allowBtn) { allowBtn.style.background='#166534'; allowBtn.textContent='✅ 허용됨 — 녹음 시작 / Start Recording'; }
+          if (blockedEl) blockedEl.style.display = 'none';
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 / Blocked — 아래 버튼 클릭</div>';
+          if (blockedEl) blockedEl.style.display = 'block';
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아래 버튼을 눌러 마이크를 허용하세요</div>';
+        }
+        result.onchange = function() { RECORDER.autoDetect(); };
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼으로 마이크를 허용하세요</div>';
+      }
+    }
+  },
+
+  async checkPermission(btn) {
+    var statusEl = document.getElementById('mic-status');
+    var box = document.getElementById('mic-check-box');
+    var blockedEl = document.getElementById('mic-blocked-guide');
+    var stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → <a href="https://elimg.com" target="_blank" style="color:#1d4ed8;font-weight:700">elimg.com에서 열기</a></span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      var stream = await navigator.mediaDevices.getUserMedia({audio:true});
+      stream.getTracks().forEach(function(t){t.stop();});
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 허용됨! / Allowed!</span>';
+      if (box) { box.style.background='#dcfce7'; box.style.borderColor='#86efac'; }
+      if (blockedEl) blockedEl.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 녹음 시작 / Start Recording'; btn.style.background='#166534'; btn.disabled=false;
+    } catch(e) {
+      btn.disabled = false;
+      if (e.name==='NotAllowedError'||e.name==='PermissionDeniedError') {
+        if (blockedEl) blockedEl.style.display='block';
+        if (stateEl) stateEl.innerHTML='<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 차단됨 — 아래 순서대로 해결 후 다시 클릭</div>';
+        btn.textContent='🔄 허용 완료 후 다시 클릭'; btn.style.background='#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML='<span style="color:#ef4444">오류 (' + e.name + ') — Chrome/Edge로 시도</span>';
+        btn.textContent='🔄 다시 시도'; btn.style.background='#92400e';
+      }
+    }
+  }
+};
+
+function startSTT(idx, targetText, recBtn) { RECORDER.start(idx, targetText, recBtn); }
+
+// ===== AI 에이전틱 G스택 렌더 =====
+function renderAI() {
+  setTimeout(function(){ RECORDER.autoDetect(); }, 100);
+  return `
+  <h2>🤖 AI 실습</h2>
+  <p class="sub">글로컬 아카데미 × 에이전틱 G스택</p>
+
+  <!-- 헤더 배너 -->
+  <div style="background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+    <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+    <div style="font-size:15px;font-weight:800;margin-bottom:6px">📈 AI 경제 뉴스 코치</div>
+    <div style="font-size:11px;opacity:0.85;line-height:1.7">한국 생활 · 무역 · 경제 뉴스 이해<br>
+    <span style="color:#93c5fd">🔵 Business News Coach × Economic Korean</span></div>
+  </div>
+
+  <!-- 앱 내 AI 채팅 — 로그인 불필요 -->
+  <div class="card" style="margin-bottom:10px;border:2px solid #3b82f6">
+    <div class="section-label" style="background:#1e40af">⚡ AI 채팅 · 로그인 불필요 · No Login Needed</div>
+    <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+      계정 없이 바로 AI에게 질문하세요<br>
+      <span style="font-size:11px;color:#3b82f6">Ask AI directly — no login needed · Free</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+      ${AI_QUICK_BTNS.map(function(b,i){return `
+        <button onclick="AICHAT.quickSend(${i})"
+          style="background:#f0f7ff;border:1px solid #3b82f6;color:#1e40af;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">
+          ${b.emoji} ${b.label}
+        </button>`;}).join('')}
+    </div>
+    <div class="ai-msgbox" style="background:#fff;border-radius:12px;border:1px solid #e8edf2;min-height:120px;max-height:300px;overflow-y:auto;padding:12px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px">
+      ${AICHAT.msgs.length === 0
+        ? `<div style="text-align:center;color:#aaa;padding:24px 16px;font-size:12px">
+            💡 버튼을 누르거나 아래에 입력하세요<br>
+            <span style="font-size:11px">Tap a button above or type below</span>
+          </div>`
+        : AICHAT.msgs.map(function(m){ return `
+          <div style="align-self:${m.role==='user'?'flex-end':'flex-start'};max-width:90%">
+            <div style="background:${m.role==='user'?'#3b82f6':'#f0f7ff'};color:${m.role==='user'?'#fff':'#1e40af'};border-radius:${m.role==='user'?'14px 14px 4px 14px':'14px 14px 14px 4px'};padding:10px 13px;font-size:13px;line-height:1.65;white-space:pre-wrap;word-break:break-word">${m.text}</div>
+            <div style="font-size:10px;color:#aaa;margin-top:3px;text-align:${m.role==='user'?'right':'left'}">${m.time}</div>
+          </div>`;}).join('')}
+      ${AICHAT.loading ? `<div style="align-self:flex-start;background:#f0f7ff;border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:13px;color:#3b82f6">⏳ AI가 답하는 중... / Generating...</div>` : ''}
+    </div>
+    <div style="display:flex;gap:8px">
+      <input id="ai-input" type="text" placeholder="한국어 질문 / Ask a question..."
+        style="flex:1;padding:12px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;outline:none"
+        onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e5e7eb'"
+        onkeydown="if(event.key==='Enter'){AICHAT.input=this.value;AICHAT.send();}">
+      <button onclick="AICHAT.input=document.getElementById('ai-input').value;AICHAT.send()"
+        style="background:#3b82f6;color:#fff;border-radius:10px;padding:0 18px;font-size:20px;min-width:52px;font-family:inherit;cursor:pointer;border:none">➤</button>
+    </div>
+    <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:center">Enter로 전송 · 🆓 완전 무료 · No account needed</div>
+  </div>
+
+  <!-- 외부 AI 가이드 — 선택사항 -->
+  <div class="card" style="margin-bottom:10px">
+    <div class="section-label" style="background:#6b7280">🌐 외부 AI · 선택사항 · Optional</div>
+    <div style="font-size:11px;color:#888;margin:6px 0 8px">더 강력한 AI로 깊이 있게 학습 (로그인 필요 / Login required)</div>
+
+    <details style="margin-bottom:8px">
+      <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+        🔵 Gemini AI — Google 계정 로그인 / Free with Google account
+      </summary>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+        <strong style="color:#1d4ed8">① 접속:</strong> gemini.google.com<br>
+        <strong style="color:#1d4ed8">② KIIP 한국 생활 롤플레이 연습:</strong>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+          <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 프롬프트 복사해서 붙여넣기</div>
+          <span style="font-family:monospace;background:#dbeafe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 KIIP 수강생 이민자예요. 한국 경제 뉴스를 이해하고 생활비와 취업 관련 한국어 표현을 배우고 싶어요. 경제 어휘를 영어로도 설명해 주세요."</span>
+          Copy &amp; paste to Gemini for KIIP daily life roleplay
+        </div>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+          <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">📸 현장 사진 질문 (Gemini 특화)</div>
+          한국 생활 안내문 사진 → 업로드 → "이게 무슨 뜻이에요?"<br>
+          <span style="color:#555">Photo of Korean notices/signs → Upload → Ask what it means</span>
+        </div>
+        <a href="https://gemini.google.com" target="_blank" style="display:block;background:#1d4ed8;color:#fff;text-align:center;padding:8px;border-radius:8px;font-weight:700;margin-top:8px;font-size:13px">🔵 Gemini 열기 / Open Gemini →</a>
+      </div>
+    </details>
+
+    <details>
+      <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+        🟣 Claude AI — 이메일 가입 · Free with email
+      </summary>
+      <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+        <strong style="color:#7c3aed">① 접속:</strong> claude.ai (이메일로 무료 가입)<br>
+        <strong style="color:#7c3aed">② 내 한국어 첨삭:</strong>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">
+          <div style="font-weight:700;color:#7c3aed;margin-bottom:3px">✏️ 문장 고치기 (Claude 특화)</div>
+          <span style="font-family:monospace;background:#ede9fe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 KIIP 수강생 이민자입니다. 제 한국어 문장을 고쳐주세요: [내 문장]. 영어로 설명해 주세요."</span>
+          Copy your sentence → paste to Claude → get corrections in English
+        </div>
+        <a href="https://claude.ai" target="_blank" style="display:block;background:#7c3aed;color:#fff;text-align:center;padding:8px;border-radius:8px;font-weight:700;margin-top:8px;font-size:13px">🟣 Claude 열기 / Open Claude →</a>
+      </div>
+    </details>
+  </div>
+
+  <!-- 발음 코치 -->
+  <div class="card" style="background:#f0fdf4;border:1px solid #86efac;margin-bottom:10px">
+    <div class="section-label" style="background:#059669">🎤 발음 코치 · Pronunciation Coach</div>
+    <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">
+      원어민 듣기 → 내가 녹음 → 정확도 비교<br>
+      <span style="font-size:11px;color:#059669">Listen → Record → Compare accuracy</span>
+    </div>
+    <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#166534">
+      🆓 브라우저 내장 API · 완전 무료 · Chrome/Edge 권장
+    </div>
+
+    <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:12px;margin-bottom:10px">
+      <div id="mic-perm-state" style="margin-bottom:8px"></div>
+      <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:10px;margin-bottom:8px;font-size:12px;line-height:1.9;color:#1a202c">
+        🚫 <strong>마이크 차단됨 해결 / Microphone Blocked:</strong><br>
+        PC Chrome/Edge: 주소창 🔒 → 마이크 → <strong>허용</strong> → F5 새로고침<br>
+        Android: ⋮ → 사이트 설정 → 마이크 → 허용<br>
+        <span style="color:#555">PC: Click 🔒 in address bar → Microphone → Allow → press F5</span>
+      </div>
+      <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+        style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:700">
+        🎙️ 마이크 허용하기 / Allow Microphone
+      </button>
+      <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:14px"></div>
+    </div>
+
+    ${[
+      {sent:'한국 경제가 계속 성장하고 있어요.', eng:'The Korean economy continues to grow.'},
+      {sent:'환율이 올라서 송금이 유리해요.', eng:'The exchange rate rose so remittance is favorable.'},
+      {sent:'올해 취업 시장이 좋아지고 있어요.', eng:'The job market is improving this year.'},
+      {sent:'최저임금이 인상되었어요.', eng:'The minimum wage has been raised.'},
+      {sent:'이번 달 월급 명세서예요.', eng:"This is this month's paycheck stub."},
+    ].map(function(item,i){ return `
+      <div style="background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+        <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>
+        <div style="font-size:10px;color:#059669;margin-bottom:8px">🇬🇧 ${item.eng}</div>
+        <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+          <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button onclick="var b=this;TTS.speak('${item.sent.replace(/'/g,"\\\\'")}');b.textContent='🔊 재생 중...';setTimeout(function(){b.textContent='🔊 원어민'},2000)"
+            style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🔊 원어민</button>
+          <button id="rec-btn-${i}" onclick="startSTT(${i},'${item.sent.replace(/'/g,"\\\\'")}',this)"
+            style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🎤 녹음</button>
+          <button id="play-btn-${i}" disabled
+            style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;opacity:0.4">▶ 내 발음</button>
+        </div>
+        <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:14px"></div>
+      </div>
+    `; }).join('')}
+
+    <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+      <strong>📖 사용법 / How to use:</strong><br>
+      1️⃣ <strong>🔊 원어민</strong> — 원어민 발음 먼저 들으세요 / Listen to native speaker<br>
+      2️⃣ <strong>🎤 녹음</strong> — 따라 말하고 다시 누르면 중지 / Speak then tap again to stop<br>
+      3️⃣ <strong>▶ 내 발음</strong> — 내 발음 들어보기 / Listen to yourself<br>
+      4️⃣ 점수: 🟢 80%+ 🟡 50~79% 🔴 50% 미만
+    </div>
+  </div>
+
+  <!-- G스택 학습법 -->
+  <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+    <div class="section-label" style="background:#059669">🌐 글로컬 G스택 학습법 · 4-Step AI Method</div>
+    <div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.9">
+      <strong>글로컬 아카데미 AI 에이전트 기반 4단계:</strong><br>
+      <span style="color:#555">① 어휘/표현 → 앱 내 AI 또는 Gemini 질문</span><br>
+      <span style="color:#555">② 대화 → Gemini 롤플레이 실습</span><br>
+      <span style="color:#555">③ 발음 → 위 발음 코치에서 녹음 비교</span><br>
+      <span style="color:#555">④ 첨삭 → Claude AI에 내 문장 보내기</span><br>
+      <br>
+      <span style="color:#3b82f6;font-size:11px"><strong>🇬🇧 Glocal Academy 4-Step AI Method:</strong><br>
+      ① Vocab/Expressions → Ask in-app AI or Gemini<br>
+      ② Conversation → Gemini roleplay practice<br>
+      ③ Pronunciation → Record &amp; compare above<br>
+      ④ Correction → Send your text to Claude AI</span>
+    </div>
+  </div>
+  `;
+}
+
+
+render();
+</script>
+
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  });
+}
+</script>
+<script src="/hw-shared.js"></script>
+</body>
+</html>
