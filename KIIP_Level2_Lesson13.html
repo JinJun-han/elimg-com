@@ -1,0 +1,1435 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head><!-- cb1 -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>KIIP 2급 13과 - 글로컬 아카데미</title>
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="글로컬 아카데미 KIIP · GlocalBridge">
+    <meta property="og:title" content="KIIP 학습자 한국어교육 | GlocalBridge · 글로컬 아카데미 Korean Education">
+    <meta property="og:description" content="초급 2급 13과 · 글로컬 아카데미 KIIP · KIIP 사회통합프로그램">
+    <meta property="og:image" content="https://elimg.com/images/og-kiip-level2.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://elimg.com/KIIP_Level2_Lesson13.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="KIIP 학습자 한국어교육 | GlocalBridge · 글로컬 아카데미 Korean Education">
+    <meta name="twitter:description" content="초급 2급 13과 · 글로컬 아카데미 KIIP · KIIP 사회통합프로그램">
+    <meta name="twitter:image" content="https://elimg.com/images/og-kiip-level2.png">
+<meta name="description" content="글로컬 아카데미 KIIP 학습 앱 - 초급/입문 과정">
+<meta name="theme-color" content="#1e40af">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#1e40af;--ocean:#3b82f6;--orange:#ED7D31;--green:#22c55e;--red:#ef4444;--purple:#8b5cf6;--pink:#ec4899;--light-blue:#D6E4F0;--light-green:#E8F5E9;--light-orange:#FFF3E0;--gray:#f8fafc;--dark:#2D3436}
+body{font-family:'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',sans-serif;background:var(--gray);max-width:520px;margin:0 auto;min-height:100vh;overflow-x:hidden}
+.hide{display:none!important}
+button{cursor:pointer;border:none;font-family:inherit}
+.nav{background:var(--navy);padding:10px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.nav-title{color:#fff;font-weight:700;font-size:14px}.nav-sub{color:#8899BB;font-size:10px}
+.nav-btn{background:none;color:#fff;font-size:22px;padding:4px 8px}
+.menu{background:#243447;position:sticky;top:48px;z-index:99}
+.menu button{display:flex;align-items:center;gap:10px;width:100%;padding:11px 20px;background:transparent;color:#fff;font-size:13px;text-align:left}
+.menu button.active{background:var(--ocean)}
+.bottom-nav{position:sticky;bottom:0;background:#fff;border-top:1px solid #e5e7eb;display:flex;justify-content:space-around;padding:6px 0;z-index:100}
+.bottom-nav button{background:none;display:flex;flex-direction:column;align-items:center;gap:1px;padding:2px 6px;opacity:0.45;font-size:9px;color:#888}
+.bottom-nav button.active{opacity:1;color:var(--ocean);font-weight:700}
+.bottom-nav .icon{font-size:18px}
+.page{padding:16px;padding-bottom:180px}
+h2{color:var(--navy);font-size:19px;margin-bottom:4px}
+.sub{color:#888;font-size:11px;margin-bottom:14px}
+.card{background:#fff;border-radius:12px;padding:14px;margin-bottom:10px;border:1px solid #e8edf2}
+.card-accent{border-left:4px solid var(--ocean)}
+.card-orange{border-left:4px solid var(--orange)}
+.card-green{border-left:4px solid var(--green)}
+.badge{display:inline-block;padding:2px 8px;border-radius:6px;font-size:11px;font-weight:700;color:#fff}
+.tabs{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
+.tab{padding:6px 13px;border-radius:20px;background:#e5e7eb;color:#555;font-size:12px;font-weight:600}
+.tab.active{background:var(--ocean);color:#fff}
+.progress{background:#e5e7eb;border-radius:8px;height:7px;width:100%;overflow:hidden}
+.progress-bar{height:100%;border-radius:8px;transition:width .5s}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.vocab-item{border-radius:8px;padding:8px 10px;cursor:pointer;transition:all .2s}
+.vocab-item:hover{transform:scale(1.02)}
+.vocab-item .kor{font-weight:700;color:var(--navy);font-size:15px}
+.vocab-item .eng{color:#888;font-size:11px;margin-top:2px}
+.vocab-item .pron{color:var(--ocean);font-size:10px}
+.tts-btn{background:var(--ocean);color:#fff;border-radius:50%;width:28px;height:28px;font-size:14px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;margin-left:6px;vertical-align:middle}
+.tts-btn:hover{background:var(--navy)}
+.bubble{border-radius:12px;padding:10px 14px;max-width:85%;margin-bottom:6px}
+.bubble-left{background:#f0f7ff;border-top-left-radius:4px;align-self:flex-start}
+.bubble-right{background:#fff7ed;border-top-right-radius:4px;align-self:flex-end}
+.quiz-opt{padding:13px;border-radius:10px;border:2px solid #e5e7eb;background:#fff;font-size:15px;font-weight:600;text-align:left;width:100%;margin-bottom:7px;transition:all .2s}
+.quiz-opt:hover{border-color:var(--ocean)}
+.quiz-correct{background:#dcfce7;border-color:var(--green);color:#166534}
+.quiz-wrong{background:#fee2e2;border-color:var(--red);color:#991b1b}
+.input{width:100%;padding:10px 12px;border:2px solid #e5e7eb;border-radius:8px;font-size:14px;font-family:inherit;margin-bottom:8px}
+.input:focus{outline:none;border-color:var(--ocean)}
+.btn{padding:12px 24px;border-radius:10px;font-size:14px;font-weight:700;width:100%}
+.btn-primary{background:var(--ocean);color:#fff}.btn-navy{background:var(--navy);color:#fff}
+.btn-green{background:var(--green);color:#fff}.btn-orange{background:var(--orange);color:#fff}
+.hangul-cell{background:#fff;border:2px solid #e5e7eb;border-radius:10px;padding:10px;text-align:center;cursor:pointer;transition:all .2s}
+.hangul-cell:hover,.hangul-cell.active{border-color:var(--ocean);background:#f0f7ff}
+.hangul-cell .char{font-size:28px;font-weight:800;color:var(--navy)}
+.hangul-cell .rom{font-size:10px;color:#888}
+.section-icon{font-size:20px;margin-right:6px;vertical-align:middle}
+textarea{width:100%;padding:12px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;min-height:120px;resize:vertical}
+textarea:focus{outline:none;border-color:var(--ocean)}
+</style>
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#1e40af">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KIIP Korean">
+</head>
+<body>
+
+<div id="app"></div>
+
+<script>
+// ===== TTS ENGINE =====
+const TTS = {
+  speak(text, lang='ko-KR', rate=0.8) {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang; u.rate = rate; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const koVoice = voices.find(v => v.lang.startsWith('ko')) || voices.find(v => v.lang.includes('ko'));
+    if (koVoice) u.voice = koVoice;
+    window.speechSynthesis.speak(u);
+  },
+  init() { if (window.speechSynthesis) window.speechSynthesis.getVoices(); }
+};
+window.addEventListener('load', () => { TTS.init(); setTimeout(TTS.init, 500); });
+
+function ttsBtn(text) {
+  if(!text) return '';
+  return `<button class="tts-btn" onclick="event.stopPropagation();TTS.speak('${text.replace(/'/g,"\\'")}')" title="발음 듣기">🔊</button>`;
+}
+
+// ===== DATA =====
+const VOCAB_PHONE = [
+  {kor:"환경",pron:"hwan-gyeong",eng:"environment"},
+  {kor:"오염",pron:"o-yeom",eng:"pollution"},
+  {kor:"쓰레기",pron:"sseu-re-gi",eng:"trash/garbage"},
+  {kor:"재활용",pron:"jae-hwal-yong",eng:"recycling"},
+  {kor:"분리수거",pron:"bun-ri-su-geo",eng:"sorting recyclables"},
+  {kor:"에너지",pron:"e-neo-ji",eng:"energy"},
+  {kor:"절약",pron:"jeol-yak",eng:"saving/conservation"},
+  {kor:"보호",pron:"bo-ho",eng:"protection"},
+  {kor:"자연",pron:"ja-yeon",eng:"nature"},
+  {kor:"공기",pron:"gong-gi",eng:"air"},
+  {kor:"물",pron:"mul",eng:"water"},
+  {kor:"숲",pron:"sup",eng:"forest"},
+  {kor:"지구",pron:"ji-gu",eng:"earth/planet"},
+  {kor:"기후",pron:"gi-hu",eng:"climate"},
+  {kor:"변화",pron:"byeon-hwa",eng:"change"},
+  {kor:"태양광",pron:"tae-yang-gwang",eng:"solar energy"},
+  {kor:"풍력",pron:"pung-ryeok",eng:"wind power"},
+  {kor:"친환경",pron:"chin-hwan-gyeong",eng:"eco-friendly"},
+];
+
+const VOCAB_SHIPYARD = [
+  {q:"",a:"환경을 보호해야 해요.",eng:"We must protect the environment.",sit:"친환경 정책을 말할 때 / When discussing eco-friendly policies"},
+  {q:"",a:"쓰레기를 분리수거하세요.",eng:"Please sort the trash.",sit:"폐기물 처리 시 / Disposal of waste"},
+  {q:"",a:"물을 절약하세요.",eng:"Please save water.",sit:"물 사용 안내 시 / Water usage guidance"},
+  {q:"",a:"에너지를 아껴야 합니다.",eng:"We must conserve energy.",sit:"에너지 절감 안내 / Energy saving notice"},
+  {q:"",a:"공기가 깨끗해야 합니다.",eng:"The air must be clean.",sit:"대기 질 개선 시 / Air quality improvement"},
+  {q:"",a:"이것은 재활용 표시예요.",eng:"This is a recycling mark.",sit:"폐기물 분류 시 / Waste classification"},
+  {q:"",a:"태양광을 사용해요.",eng:"We use solar power.",sit:"신재생 에너지 소개 / Renewable energy introduction"},
+  {q:"",a:"풍력 발전소가 있어요.",eng:"There is a wind power plant.",sit:"친환경 설비 설명 / Eco-friendly facility explanation"},
+  {q:"",a:"플라스틱을 줄여야 해요.",eng:"We must reduce plastic.",sit:"환경 정책 안내 / Environmental policy guidance"},
+  {q:"",a:"환경 교육을 받아야 합니다.",eng:"We must take environmental training.",sit:"필수 교육 안내 / Mandatory training notice"},
+  {q:"",a:"이것은 환경 기호예요.",eng:"This is an environmental symbol.",sit:"환경 표시 설명 / Environmental marking explanation"},
+  {q:"",a:"폐기물을 처리합니다.",eng:"We dispose of waste.",sit:"폐기물 관리 설명 / Waste management explanation"},
+  {q:"",a:"안전 환경이 중요해요.",eng:"Safe environment is important.",sit:"안전 문화 홍보 / Safety culture promotion"},
+  {q:"",a:"자연을 사랑해야 합니다.",eng:"We must love nature.",sit:"환경 인식 고취 / Raising environmental awareness"},
+  {q:"",a:"지구를 지킵시다.",eng:"Let's protect the earth.",sit:"환경 슬로건 / Environmental slogan"},
+  {q:"",a:"변화는 지금부터 시작됩니다.",eng:"Change starts now.",sit:"환경 운동 안내 / Environmental campaign"},
+];
+
+const VOCAB_ADVANCED = [
+  {q:"",a:"환경",eng:"environment"},
+  {q:"",a:"오염",eng:"pollution"},
+  {q:"",a:"쓰레기",eng:"garbage"},
+  {q:"",a:"재활용",eng:"recycling"},
+  {q:"",a:"분리수거",eng:"sorting"},
+  {q:"",a:"에너지",eng:"energy"},
+  {q:"",a:"절약",eng:"conservation"},
+  {q:"",a:"보호",eng:"protection"},
+  {q:"",a:"자연",eng:"nature"},
+  {q:"",a:"공기",eng:"air"},
+  {q:"",a:"물",eng:"water"},
+  {q:"",a:"숲",eng:"forest"},
+  {q:"",a:"지구",eng:"earth"},
+  {q:"",a:"기후",eng:"climate"},
+  {q:"",a:"변화",eng:"change"},
+  {q:"",a:"태양광",eng:"solar"},
+  {q:"",a:"풍력",eng:"wind"},
+  {q:"",a:"친환경",eng:"eco-friendly"},
+  {q:"",a:"플라스틱",eng:"plastic"},
+  {q:"",a:"종이",eng:"paper"},
+  {q:"",a:"유리",eng:"glass"},
+  {q:"",a:"금속",eng:"metal"},
+  {q:"",a:"생태",eng:"ecology"},
+  {q:"",a:"복원",eng:"restoration"},
+  {q:"",a:"지속",eng:"sustainability"},
+  {q:"",a:"발전",eng:"development"},
+  {q:"",a:"에코",eng:"eco"},
+  {q:"",a:"그린",eng:"green"},
+  {q:"",a:"카본",eng:"carbon"},
+  {q:"",a:"배출",eng:"emission"},
+];
+
+const VOCAB_SHIPYARD_NOUNS = [
+  {q:"",a:"종량제 봉투",eng:"volume-rate garbage bag"},
+  {q:"",a:"재활용 통",eng:"recycling bin"},
+  {q:"",a:"음식물 수거함",eng:"food waste bin"},
+  {q:"",a:"분리수거함",eng:"sorting bin"},
+  {q:"",a:"쓰레기봉투",eng:"garbage bag"},
+  {q:"",a:"마스크",eng:"mask"},
+  {q:"",a:"장갑",eng:"gloves"},
+  {q:"",a:"소독제",eng:"disinfectant"},
+  {q:"",a:"세제",eng:"detergent"},
+  {q:"",a:"비닐봉지",eng:"plastic bag"},
+  {q:"",a:"텀블러",eng:"tumbler/reusable cup"},
+  {q:"",a:"에코백",eng:"eco bag"},
+  {q:"",a:"건전지",eng:"battery"},
+  {q:"",a:"형광등",eng:"fluorescent light"},
+  {q:"",a:"절전 멀티탭",eng:"energy-saving power strip"},
+  {q:"",a:"태양광 패널",eng:"solar panel"},
+  {q:"",a:"풍력 발전기",eng:"wind turbine"},
+  {q:"",a:"전기차",eng:"electric vehicle"},
+  {q:"",a:"자전거",eng:"bicycle"},
+  {q:"",a:"대중교통",eng:"public transport"},
+  {q:"",a:"나무",eng:"tree"},
+  {q:"",a:"화단",eng:"flower bed"},
+  {q:"",a:"정원",eng:"garden"},
+  {q:"",a:"물통",eng:"water container"},
+  {q:"",a:"정수기",eng:"water purifier"},
+  {q:"",a:"에어컨",eng:"air conditioner"},
+  {q:"",a:"보일러",eng:"boiler/heater"},
+  {q:"",a:"LED 전구",eng:"LED bulb"},
+  {q:"",a:"창문",eng:"window"},
+  {q:"",a:"커튼",eng:"curtain"},
+];
+
+const GRAMMAR = [
+  {title:"~(으)ㄹ 뿐만 아니라",eng:"not only... but also",
+   desc:"어떤 것이 여러 개 있거나 여러 가지를 함께 나타낼 때 사용해요.",descEng:"Used when there are multiple things or to express multiple aspects together.",
+   rule:"동사/형용사 + (으)ㄹ 뿐만 아니라 + 다른 것도",ruleEng:"Verb/Adj + (으)ㄹ뿐만아니라 + other thing too",
+   examples:[
+    {q:"환경을 생각해요",a:"기후 변화는 공기를 오염시킬 뿐만 아니라 물도 오염시켜요.",eng:"Thinking About the Environment - Climate change not only pollutes air but also pollutes water.",note:"오염시키다 + (으)ㄹ뿐만아니라"},
+    {q:"태양광은 에너지를 만들 뿐만 아니라 환경도 보호해요.",a:"태양광은 에너지를 만들 뿐만 아니라 환경도 보호해요.",eng:"Solar not only generates energy but also protects the environment.",note:"만들다 + ㄹ뿐만아니라"},
+    {q:"환경을 생각해요",a:"쓰레기를 줄일 뿐만 아니라 재활용도 해야 합니다.",eng:"Thinking About the Environment - We must not only reduce trash but also recycle.",note:"줄이다 + ㄹ뿐만아니라"},
+    {q:"환경을 생각해요",a:"분리수거는 어렵지 않을 뿐만 아니라 중요합니다.",eng:"Thinking About the Environment - Sorting recyclables is not only not difficult but also important.",note:"어렵다 + (으)ㄹ뿐만아니라"},
+    {q:"풍력은 깨끗할 뿐만 아니라 계속 사용할 수 있어요.",a:"풍력은 깨끗할 뿐만 아니라 계속 사용할 수 있어요.",eng:"Wind power is not only clean but can also be used continuously.",note:"깨끗하다 + ㄹ뿐만아니라"},
+   ]},
+  {title:"~는 셈이다",eng:"it's practically / amounts to",
+   desc:"어떤 행동이나 상황이 결과적으로 어떤 의미를 갖는다는 뜻이에요.",descEng:"Used when an action or situation has a certain meaning as a result.",
+   rule:"동사 + 는 셈이다",ruleEng:"Verb + 는셈이다",
+   examples:[
+    {q:"환경을 생각해요",a:"에너지를 절약하는 것은 돈을 아끼는 셈이에요.",eng:"Thinking About the Environment - Saving energy amounts to saving money.",note:"절약하다 → 절약하는 셈"},
+    {q:"환경을 생각해요",a:"공기를 깨끗하게 하는 것은 건강을 지키는 셈이에요.",eng:"Thinking About the Environment - Keeping air clean amounts to protecting health.",note:"깨끗하게하다 → 깨끗하게하는 셈"},
+    {q:"환경을 생각해요",a:"플라스틱을 사용하지 않는 것은 자연을 보호하는 셈입니다.",eng:"Thinking About the Environment - Not using plastic amounts to protecting nature.",note:"사용하지않다 → 사용하지않는 셈"},
+    {q:"분리수거하는 것은 지구를 사랑하는 셈이에요.",a:"분리수거하는 것은 지구를 사랑하는 셈이에요.",eng:"Sorting recyclables amounts to loving the earth.",note:"분리수거하다 → 분리수거하는 셈"},
+    {q:"환경을 생각해요",a:"태양광을 사용하는 것은 깨끗한 에너지를 선택하는 셈입니다.",eng:"Thinking About the Environment - Using solar amounts to choosing clean energy.",note:"사용하다 → 사용하는 셈"},
+   ]},
+  {title:"~기는 하지만",eng:"although / it's true that... but",
+   desc:"앞의 내용이 맞지만 뒤의 내용이 더 중요한 의미를 갖는다는 뜻이에요.",descEng:"The first part is true but the second part has more important meaning.",
+   rule:"동사/형용사 + 기는 하지만 + 역시/그러나",ruleEng:"Verb/Adj + 기는하지만 + but/however",
+   examples:[
+    {q:"환경을 생각해요",a:"친환경 제품이 비싸기는 하지만 환경을 보호합니다.",eng:"Thinking About the Environment - Eco-friendly products are expensive, but they protect the environment.",note:"비싸다 + 기는하지만"},
+    {q:"태양광이 설치하기 어렵기는 하지만 장기적으로 이익이에요.",a:"태양광이 설치하기 어렵기는 하지만 장기적으로 이익이에요.",eng:"Solar is difficult to install, but in the long term it's beneficial.",note:"어렵다 + 기는하지만"},
+    {q:"환경을 생각해요",a:"분리수거가 번거롭기는 하지만 필요합니다.",eng:"Thinking About the Environment - Sorting recyclables is bothersome, but it's necessary.",note:"번거롭다 + 기는하지만"},
+    {q:"환경을 생각해요",a:"변화가 느리기는 하지만 진행되고 있습니다.",eng:"Thinking About the Environment - Change is slow, but it is progressing.",note:"느리다 + 기는하지만"},
+    {q:"기후 변화가 심각하기는 하지만 해결할 수 있습니다.",a:"기후 변화가 심각하기는 하지만 해결할 수 있습니다.",eng:"Climate change is serious, but we can solve it.",note:"심각하다 + 기는하지만"},
+   ]},
+];
+
+const DIALOGUES = [
+  {title:"분리수거하기",eng:"Sorting Recyclables",lines:[
+    {sp:"라민",role:"학습자",text:"민수 씨, 이것은 어디에 버려요?",eng:"Minsu, where should I throw this?",side:"R"},
+    {sp:"민수",role:"주민",text:"그것은 플라스틱이에요. 저 파란 통에 버리세요.",eng:"That is plastic. Throw it in that blue bin.",side:"L"},
+    {sp:"라민",text:"아, 알겠어요. 그럼 이것은요?",eng:"Ah, I understand. What about this?",side:"R"},
+    {sp:"민수",text:"그것은 종이예요. 노란 통에 버리세요.",eng:"That is paper. Throw it in the yellow bin.",side:"L"},
+    {sp:"라민",text:"분리수거가 중요하네요.",eng:"Sorting is important.",side:"R"},
+    {sp:"민수",text:"맞아요. 환경을 보호하려면 분리수거를 잘 해야 합니다.",eng:"That's right. To protect the environment, we must sort well.",side:"L"},
+  ]},
+  {title:"환경 교육",eng:"Environmental Training",lines:[
+    {sp:"교육자",role:"강사",text:"여러분, 안녕하세요? 오늘은 환경에 대해 배웁니다.",eng:"Hello everyone. Today we learn about the environment.",side:"L"},
+    {sp:"후엔",role:"학습자",text:"선생님, 환경을 왜 보호해야 해요?",eng:"Teacher, why must we protect the environment?",side:"R"},
+    {sp:"교육자",text:"좋은 질문이에요. 환경을 보호하는 것은 우리 건강을 지키는 셈이에요.",eng:"Good question. Protecting environment amounts to protecting our health.",side:"L"},
+    {sp:"안젤라",role:"학습자",text:"그렇군요. 저희가 무엇을 할 수 있어요?",eng:"I see. What can we do?",side:"R"},
+    {sp:"교육자",text:"에너지를 절약하고 쓰레기를 줄이세요. 그리고 재활용하세요.",eng:"Save energy and reduce garbage. And recycle.",side:"L"},
+    {sp:"후엔",text:"알겠습니다. 환경을 지키겠습니다!",eng:"I understand. I will protect the environment!",side:"R"},
+  ]},
+];
+
+const QUIZ = [
+  {q:"'환경을 보호해요' in English:",o:["Protecting the environment","Throwing garbage","Saving money","Working hard"],a:0},
+  {q:"'쓰레기'는 무엇이에요?",o:["음식","물","쓰레기 / garbage","에너지"],a:2},
+  {q:"분리수거는 무엇을 의미해요?",o:["쓰레기를 모으기","모든 쓰레기를 섞기","쓰레기를 종류별로 나누기","쓰레기를 태우기"],a:2},
+  {q:"태양광은 어떤 에너지예요?",o:["위험한 에너지","깨끗한 에너지","비싼 에너지","사용할 수 없는 에너지"],a:1},
+  {q:"'~(으)ㄹ 뿐만 아니라' means:",o:["only that","not only... but also","never","sometimes"],a:1},
+  {q:"'에너지를 절약한다' 은 어떤 의미예요?",o:["에너지를 더 쓴다","에너지 낭비한다","에너지를 아낀다","에너지 없이 산다"],a:2},
+  {q:"'~는 셈이다' expresses:",o:["exact meaning","practical meaning/amounts to","impossible","easy"],a:1},
+  {q:"'친환경'은 무엇이에요?",o:["환경에 해로운","환경에 좋은","환경 없음","환경 파괴"],a:1},
+  {q:"다음 중 재활용할 수 있는 것은?",o:["일회용품","음식물","종이와 플라스틱","유독 물질"],a:2},
+  {q:"기후 변화는 무엇이 원인이에요?",o:["자연 현상","인간의 활동","계절","우주"],a:1},
+  {q:"풍력 발전은 어떤 장점이 있어요?",o:["비싸다","깨끗하고 지속 가능하다","시끄럽다","위험하다"],a:1},
+  {q:"한 문장에서 '~기는 하지만'은:",o:["긍정만","부정만","긍정하지만 역시 부정이 중요","항상"],a:2},
+  {q:"우리는 물을 어떻게 해야 해요?",o:["낭비한다","오염시킨다","절약한다","버린다"],a:2},
+  {q:"지구를 지키려면 무엇을 해야 해요?",o:["모두 외출하기","에너지 절약하고 분리수거하기","더 많은 쓰레기 만들기","자연 파괴하기"],a:1},
+  {q:"환경 보호는 누구의 책임이에요?",o:["정부만","일부 시민","모두의 책임","책임 없음"],a:2},
+  {q:"'플라스틱'을 한국어로:",o:["종이","금속","플라스틱 / plastic","유리"],a:2},
+  {q:"한 문장에서 '~(으)ㄹ 뿐만 아니라' 다음에는:",o:["같은 주제","다른 주제도","반대","없음"],a:1},
+  {q:"친환경 제품이 환경에 좋은 이유는:",o:["비싸서","만드는 과정이 자연 친화적","새로워서","복잡해서"],a:1},
+];
+
+const CULTURE = [
+  {icon:"♻️",t:"분리수거 문화",eng:"Recycling Culture",d:"한국은 분리수거를 국민의 의무로 생각합니다. 쓰레기를 플라스틱, 종이, 금속, 유리 등으로 분류합니다. 한국 생활에서는 이 문화가 매우 중요합니다. 올바르게 분리수거하는 것이 환경 보호의 첫 단계입니다.",de:"Korea considers recycling a civic duty. Garbage is sorted into plastic, paper, metal, glass, etc. This culture is very important in daily Korean life. Proper sorting is the first step in environmental protection."},
+  {icon:"🌱",t:"ESG 경영",eng:"ESG Management",d:"한국의 대기업들은 ESG(환경·사회·지배구조)를 중요한 경영 목표로 삼습니다. 환경 보호, 사회 책임, 투명한 경영이 포함됩니다. 글로컬 아카데미도 ESG 경영으로 지구를 지키기 위해 노력합니다.",de:"Korean large companies prioritize ESG (Environment, Social, Governance) as key management goals. Environmental protection, social responsibility, and transparent management are included. GlocalBridge · 글로컬 아카데미 also works to protect the earth through ESG management."},
+  {icon:"⚡",t:"신재생 에너지",eng:"Renewable Energy",d:"한국은 태양광, 풍력, 수력 등 신재생 에너지에 투자하고 있습니다. 2030년까지 탄소 중립을 목표로 하고 있습니다. 일상에서도 태양광 발전 시설이 설치되어 있습니다.",de:"Korea is investing in renewable energy such as solar, wind, and hydropower. It aims for carbon neutrality by 2030. Solar power facilities are also installed at the shipyard."},
+  {icon:"🏘️",t:"한국의 생활 환경",eng:"Korean Daily Life Environment",d:"한국의 아파트와 주택에서는 생활 쓰레기 관리가 중요합니다. 음식물, 플라스틱, 종이, 유리 등을 올바르게 분류해야 합니다. 이민자와 외국인도 지역 규칙을 지켜야 합니다.",de:"In Korean apartments and homes, managing household waste is important. Food waste, plastic, paper, glass, etc. must be properly sorted. Immigrants and foreigners must also follow local rules."},
+  {icon:"🌍",t:"기후 변화와 우리",eng:"Climate Change & Us",d:"기후 변화는 전 지구적 문제입니다. 홍수, 가뭄, 폭염 등이 증가하고 있습니다. 각 개인의 작은 행동(에너지 절약, 분리수거)이 모여서 지구를 지킵니다. KIIP 학습자 모두가 함께 노력해야 합니다.",de:"Climate change is a global issue. Floods, droughts, and heat waves are increasing. Small individual actions (energy saving, recycling) together protect the earth. All KIIP learners must work together."},
+  {icon:"💚",t:"개인의 환경 책임",eng:"Personal Environmental Responsibility",d:"환경 보호는 거창한 일이 아닙니다. 물을 절약하고, 쓰레기를 줄이고, 분리수거를 잘하고, 에너지를 아끼는 것입니다. 한국 생활에서 이런 습관을 들이면 가정에서도, 지역에서도 실천할 수 있습니다.",de:"Environmental protection is not a grand act. It is saving water, reducing trash, sorting well, and saving energy. If you build these habits in Korean daily life, you can practice them at home and in your community."},
+];
+
+const LOCAL_INFO = {
+  title: "한국의 환경 정책: 그린 에너지 & ESG",
+  eng: "Korea's Environmental Policy: Green Energy & ESG",
+  desc: "한국은 친환경 생활을 국가 정책으로 추진합니다. 생활 쓰레기 분리수거를 의무화하고, 신재생 에너지를 사용하며, 국민의 환경 의식을 높이고 있습니다. 2030년 탄소 중립 달성을 위해 노력합니다.",
+  descEng: "Korea promotes eco-friendly living as national policy. It mandates household waste sorting, uses renewable energy, and raises citizens' environmental awareness. Working to achieve carbon neutrality by 2030.",
+  facts: [
+    {label:"한국 환경 목표 Korea Environment Goal",val:"2030 탄소 중립"},
+    {label:"신재생 에너지 Renewable Energy",val:"태양광 + 풍력"},
+    {label:"생활 폐기물 Household Waste",val:"99% 재활용"},
+    {label:"친환경 제품 Eco-friendly Products",val:"저탄소 인증"},
+    {label:"자연 환경 Natural Ecosystem",val:"생태계 보호 우선"},
+    {label:"시민 교육 Citizen Training",val:"월 1회 환경 교육"},
+  ],
+};
+
+const KOREAN_LITERATURE = {
+  title: "농무",
+  eng: "Farmers' Dance",
+  desc: "신경림 시인의 대표작. 농민의 어려운 삶과 자연, 땅에 대한 깊은 감정을 담은 현대시입니다.",
+  descEng: "Representative work by poet Shin Kyung-rim. A modern poem filled with the hard life of farmers and deep emotions about nature and land.",
+  sentences: [
+    {q:"",a:"징이 울린다 막이 내렸다",eng:"The gong sounds, the curtain falls"},
+    {q:"",a:"오동나무에 전등이 매달린",eng:"Under the electric light hanging on the paulownia tree"},
+    {q:"",a:"가설 무대",eng:"A makeshift stage"},
+    {q:"",a:"구경꾼이 돌아가고",eng:"The spectators leave"},
+    {q:"",a:"텅 빈 운동장",eng:"An empty playground"},
+    {q:"",a:"우리는 분이 얼룩진 얼굴로",eng:"With our paint-smeared faces"},
+    {q:"",a:"학교 앞 소주집에 몰려",eng:"We gather at the soju bar in front of the school"},
+    {q:"",a:"답답하고 고달프게 사는 것이 원통하다",eng:"It is agonizing to live so stifled and weary"},
+    {q:"",a:"꽃이여 봄을 버린 꽃이여",eng:"O flowers, flowers that abandoned spring"},
+    {q:"",a:"비료값도 안 나오는 농사",eng:"Farming that doesn't even cover fertilizer costs"},
+  ]
+};
+
+const LITERATURE_QUIZ = [
+  {q:"이 시의 제목은 무엇이에요?",o:["미래","농무","춤","여름"],a:1},
+  {q:"이 시를 쓴 시인의 이름은?",o:["박준","신경림","김춘수","조지훈"],a:1},
+  {q:"농무는 누가 추는 춤이에요?",o:["어린이","무용수","농민","배우"],a:2},
+  {q:"시에서 사람들이 모이는 곳은?",o:["극장","학교","소주집","집"],a:2},
+  {q:"이 시의 주제는?",o:["행복한 삶","농민의 어려운 삶","성공의 기쁨","도시의 발전"],a:1},
+  {q:"'비료값도 안 나오는 농사'는 무엇을 의미해요?",o:["농사가 쉽다","농사로 돈을 벌기 어렵다","농사가 재미있다","비료가 싸다"],a:1},
+];
+
+const REVIEW_DATA = {
+  preview: {
+    title: "예습 · Preview",
+    desc: "다음에 배울 내용을 미리 살펴보세요.",
+    descEng: "Preview what you will learn next.",
+    items: [
+      {label:"14과 주제",val:"교육 제도를 이해해요 · Understanding Education System",detail:"한국의 교육 제도와 학교 시스템을 배웁니다."},
+      {label:"핵심 어휘",val:"학교, 대학, 직업, 기술, 배우다, 가르치다",detail:"school, university, job, skill, study, teach"},
+      {label:"핵심 문법",val:"~(으)려면, ~아/어야 하다, ~을 통해서",detail:"in order to, must do, through"},
+      {label:"KIIP 맥락",val:"한국 생활, 사회통합, 시민 참여",detail:"Korean life, social integration, civic participation"},
+    ]
+  },
+  review: {
+    title: "복습 · Review",
+    desc: "13과에서 배운 내용을 확인하세요.",
+    descEng: "Check what you learned in Lesson 13.",
+    sections: [
+      {title:"핵심 환경 용어",icon:"🌱",items:["환경 environment","오염 pollution","쓰레기 garbage","재활용 recycling","분리수거 sorting","에너지 energy","절약 conservation","친환경 eco-friendly"]},
+      {title:"핵심 문법 공식",icon:"📐",items:["~(으)ㄹ 뿐만 아니라 + not only... but also","~는 셈이다 + it amounts to","~기는 하지만 + although/but","동사 + 아/어야 하다 + must do","형용사 + (으)ㄴ/은 + adjective + noun"]},
+      {title:"환경 행동 표현",icon:"♻️",items:["쓰레기를 분리수거하다 sort garbage","에너지를 절약하다 save energy","물을 아끼다 conserve water","환경을 보호하다 protect environment","자연을 사랑하다 love nature"]},
+      {title:"신재생 에너지",icon:"⚡",items:["태양광 solar energy","풍력 wind power","수력 hydropower","지열 geothermal","바이오 biomass"]},
+    ]
+  },
+  dictation: ["환경을 보호해요.","쓰레기를 분리수거하세요.","물을 절약합시다.","에너지가 중요합니다.","공기가 깨끗해야 해요.","태양광을 사용합니다.","플라스틱을 줄여야 합니다.","재활용이 필요합니다.","환경 교육을 받습니다.","지구를 지킵시다."],
+};
+
+const TOPIK_PRACTICE = {
+  title: "TOPIK I 읽기 · Environmental Article Reading",
+  subtitle: "TOPIK I 읽기 · Environmental Article Reading",
+  eng: "TOPIK I Reading Type 1",
+  desc: "환경 기사를 읽고 질문에 답하는 연습을 합니다.",
+  descEng: "Practice reading environmental articles and answering questions.",
+  examInfo: {
+    title: "TOPIK I 읽기",
+    desc: "환경 관련 기사와 뉘앙스 문제를 포함합니다.",
+    descEng: "Includes environmental articles and nuance questions.",
+    tips: [
+      "환경 관련 뉘앙스 단어(절약, 보호, 오염)를 주의해서 읽으세요.",
+      "기사의 주요 내용을 파악하는 것이 중요합니다.",
+      "숫자와 날짜 정보를 놓치지 마세요.",
+      "기사의 제목과 내용이 일치하는지 확인하세요.",
+    ]
+  },
+  reading: [
+    {title:"기후 변화",text:"기후 변화는 전 세계적인 문제입니다. 온난화로 인해 지구의 평균 기온이 상승하고 있습니다. 이는 해수면 상승, 생태계 파괴, 극단적 날씨 현상 등을 초래합니다. 전문가들은 탄소 배출을 줄이고 신재생 에너지를 사용할 것을 강조합니다.",textEng:"Climate change is a global issue. Global average temperature is rising due to warming. This causes rising sea levels, ecosystem destruction, and extreme weather phenomena. Experts emphasize reducing carbon emissions and using renewable energy.",q:"기후 변화의 원인은?",o:["지구 자전","인간의 탄소 배출","자연 현상","우주 방사선"],a:1},
+    {title:"환경 정책",text:"정부는 2030년까지 탄소 배출을 50% 감소할 계획입니다. 이를 위해 신재생 에너지 보급을 확대하고, 산업체의 환경 규제를 강화합니다. 또한 국민 개개인의 환경 의식 개선도 중요합니다. 분리수거, 에너지 절약 등의 생활 습관 변화가 필수적입니다.",textEng:"The government plans to reduce carbon emissions by 50% by 2030. For this, it will expand renewable energy supply and strengthen environmental regulations for industries. Individual environmental awareness improvement is also important. Changes in daily habits such as recycling and energy conservation are essential.",q:"정부의 환경 목표 기간은?",o:["2025년","2028년","2030년","2035년"],a:2},
+    {title:"도시 환경",text:"도시 환경 오염은 심각한 문제입니다. 플라스틱 쓰레기, 자동차 매연, 공장 폐수 등이 환경을 오염시킵니다. 동물들이 플라스틱을 먹고 피해를 입는 경우가 많아집니다. 시민 개개인의 환경 관리가 매우 중요합니다.",textEng:"Urban environmental pollution is a serious problem. Plastic waste, car exhaust, and factory wastewater pollute the environment. Animals often suffer from eating plastic. Individual citizen environmental management is very important.",q:"도시 환경 오염의 주요 원인은?",o:["자연 재해","플라스틱과 매연","기후 변화","새의 배설물"],a:1},
+    {title:"신재생 에너지",text:"신재생 에너지는 다시 채울 수 있는 에너지입니다. 태양광, 풍력, 수력 등이 있습니다. 이들은 환경을 오염시키지 않으면서도 에너지를 생산합니다. 한국도 신재생 에너지 비율을 높이기 위해 노력 중입니다.",textEng:"Renewable energy is energy that can be replenished. Examples include solar, wind, and hydropower. They generate energy without polluting the environment. Korea is also working to increase the proportion of renewable energy.",q:"신재생 에너지의 특징은?",o:["비싸다","한번 쓰면 없다","다시 채울 수 있다","오염을 일으킨다"],a:2},
+    {title:"분리수거",text:"분리수거는 환경 보호의 기본입니다. 플라스틱, 종이, 금속, 유리는 각각 다른 통에 버립니다. 이렇게 분류된 쓰레기는 재활용됩니다. 재활용은 새로운 자원을 채굴하는 것보다 환경 손상이 적습니다.",textEng:"Sorting is basic environmental protection. Plastic, paper, metal, and glass are thrown into separate bins. Sorted garbage is recycled. Recycling causes less environmental damage than mining new resources.",q:"분리수거의 장점은?",o:["쓰레기를 빨리 없앤다","재활용으로 자원을 절약한다","비싼 장비가 필요 없다","저장 공간이 많아진다"],a:1},
+  ],
+  listening: [
+    {title:"환경 뉴스",script:"안녕하세요. 환경 뉴스 시간입니다. 어제 정부에서 새로운 환경 정책을 발표했습니다. 2030년까지 탄소 배출을 50% 감소하겠다고 했습니다. 이를 위해 신재생 에너지 보급을 확대한다고 합니다. 국민 여러분의 적극적인 참여를 부탁드립니다.",q:"정부의 목표 탄소 감축량은?",o:["30%","40%","50%","60%"],a:2},
+    {title:"아파트 안내",script:"아파트 주민 여러분께 안내드립니다. 앞으로 모든 생활 쓰레기는 분류해서 처리해야 합니다. 음식물은 음식물 수거함에, 플라스틱은 재활용 통에 버리세요. 일반 쓰레기는 종량제 봉투에 담아 버립니다. 환경을 지키는 것은 우리 모두의 책임입니다.",q:"플라스틱은 어디에 버려야 해요?",o:["일반 쓰레기통","음식물 수거함","재활용 통","음식물 봉투"],a:2},
+    {title:"에너지 절약",script:"여러분, 에너지 절약에 참여해 주세요. 사무실을 나갈 때 전등을 꺼 주세요. 냉난방을 적절히 설정해 주세요. 컴퓨터를 사용하지 않을 때는 꺼 주세요. 작은 행동이 모여서 큰 변화를 만듭니다.",q:"컴퓨터는 언제 꺼야 해요?",o:["항상 켜두기","사용하지 않을 때","점심시간에만","작업 중에만"],a:1},
+    {title:"폐기물 처리",script:"폐기물 처리 담당자입니다. 어제 검사 결과 일부 폐기물이 잘못 분류되었습니다. 기름이 금속통에 버려져 있었습니다. 앞으로는 더 신중하게 분류해 주시기 바랍니다. 정확한 분류는 환경 오염을 줄이는 데 매우 중요합니다.",q:"검사 결과는?",o:["모든 폐기물이 올바르게 분류됨","일부 폐기물이 잘못 분류됨","새로운 폐기물 처리 방법 도입","환경 규제 강화"],a:1},
+    {title:"환경 교육",script:"여러분, 환경 교육 시간입니다. 오늘은 태양광 에너지에 대해 배웁니다. 태양광은 태양의 에너지를 전기로 변환합니다. 이는 무한한 에너지입니다. 환경을 오염시키지 않으면서도 에너지를 생산합니다. 앞으로 신재생 에너지 사용이 더욱 중요해질 것입니다.",q:"태양광의 특징은?",o:["비싼 에너지","무한한 에너지","위험한 에너지","사용할 수 없는 에너지"],a:1},
+  ],
+};
+
+const READING_PASSAGES = [
+  {title:"한국의 환경 생활",eng:"Korean Environmental Life",
+   text:"한국에서는 환경 보호를 중요하게 생각합니다.\n쓰레기를 플라스틱, 종이, 금속, 유리로 분류합니다.\n음식물 쓰레기는 따로 버려야 합니다.\n신재생 에너지 사용이 늘고 있습니다.\n2030년 탄소 중립을 목표로 합니다.\n모든 시민이 환경 교육을 받습니다.",
+   textEng:"Korea values environmental protection.\nGarbage is sorted into plastic, paper, metal, and glass.\nFood waste must be disposed of separately.\nThe use of renewable energy is increasing.\nThe goal is carbon neutrality by 2030.\nAll citizens receive environmental education.",
+   questions:[
+     {q:"한국의 환경 우선 목표는?",a:"환경 보호",ae:"Environmental protection"},
+     {q:"탄소 중립의 목표 연도는?",a:"2030년",ae:"2030"},
+     {q:"쓰레기를 어떻게 처리해요?",a:"분류해서 처리",ae:"Sort and dispose"},
+   ]},
+  {title:"개인의 환경 책임",eng:"Personal Environmental Responsibility",
+   text:"환경을 지키는 것은 거창한 일이 아닙니다.\n물을 절약하고, 쓰레기를 줄이세요.\n분리수거를 잘 하고, 에너지를 아끼세요.\n생활에서 이런 습관을 들이면,\n가정에서도, 지역에서도 실천할 수 있습니다.\n작은 행동이 모여서 큰 변화를 만듭니다.",
+   textEng:"Protecting the environment is not a grand act.\nSave water and reduce trash.\nSort well and save energy.\nIf you build these habits in Korean daily life,\nyou can practice them at home and in your community.\nSmall actions together create big changes.",
+   questions:[
+     {q:"환경을 지키려면 무엇을 해야 해요?",a:"물 절약, 쓰레기 감소, 분리수거, 에너지 절약",ae:"Save water, reduce trash, sort, save energy"},
+     {q:"한국 생활의 환경 습관은 어디에서도 도움이 돼요?",a:"가정과 지역에서",ae:"At home and in community"},
+     {q:"작은 행동의 결과는?",a:"큰 변화를 만든다",ae:"Creates big change"},
+   ]},
+];
+
+// ===== APP STATE =====
+let state = {
+  page: 'home',
+  menuOpen: false,
+  level: 1,
+  vocabTab: 0,
+  vocabReveal: {},
+  gramIdx: 0,
+  dlgIdx: 0, dlgLine: -1, dlgShowEng: false,
+  fcIdx: 0, fcFlipped: false, fcKnown: 0,
+  qIdx: 0, qSel: null, qScore: 0, qDone: false,
+  rdIdx: 0, rdShowEng: false, rdAnswers: {},
+  wrName: '', wrCountry: '', wrJob: '', wrExtra: '',
+  hgTab: 0, hgSelected: null,
+  rvTab: 0, rvDictIdx: 0, rvDictInput: '', rvDictResults: {},
+  ftSentIdx: 0, ftShowEng: false, ftAutoPlay: false,
+  fqIdx: 0, fqSel: null, fqScore: 0, fqDone: false,
+  topikTab: 'info', topikReadingIdx: 0, topikListeningIdx: 0,
+};
+
+function setState(updates) {
+  state = {...state, ...updates};
+  render();
+}
+
+function render() {
+  document.getElementById('app').innerHTML = renderNav() + renderMenu() + renderPage() + renderBottomNav();
+}
+
+function renderNav() {
+  return `<div class="nav"><a href="/KIIP_Level2_Index" style="text-decoration:none;color:inherit"><div><div class="nav-title">초급 2-13과</div><div class="nav-sub">← Level 2 목차 · Contents</div></div></a><button class="nav-btn" onclick="setState({menuOpen:!state.menuOpen})">☰</button></div>`;
+}
+
+function renderMenu() {
+  const items = [
+    {page:'home',label:'🏠 홈'},
+    {page:'curriculum',label:'📚 강의'},
+    {page:'vocab',label:'📝 어휘'},
+    {page:'grammar',label:'📐 문법'},
+    {page:'dialogue',label:'🎤 회화'},
+    {page:'reading',label:'📖 읽기'},
+    {page:'writing',label:'✍️ 쓰기'},
+    {page:'flashcard',label:'🃏 카드'},
+    {page:'quiz',label:'🎯 퀴즈'},
+    {page:'culture',label:'🏛️ 문화'},
+    {page:'review',label:'📝 익힘'},
+    {page:'literature',label:'📜 시'},
+    {page:'topik',label:'🎓 TOPIK'},
+    {page:'geoje',label:'🌿 환경정책'},
+    {page:'ai',label:'🤖 AI실습'},
+  ];
+  return `<div class="menu ${state.menuOpen?'':'hide'}">${items.map(it=>`<button class="${state.page===it.page?'active':''}" onclick="setState({page:'${it.page}',menuOpen:false})">${it.label}</button>`).join('')}</div>`;
+}
+
+function renderBottomNav() {
+  return `<div class="bottom-nav">${[
+    {icon:'🏠',p:'home',t:'홈'},
+    {icon:'📝',p:'vocab',t:'어휘'},
+    {icon:'📐',p:'grammar',t:'문법'},
+    {icon:'🎤',p:'dialogue',t:'회화'},
+    {icon:'📖',p:'reading',t:'읽기'},
+    {icon:'🎯',p:'quiz',t:'퀴즈'},
+    {icon:'📜',p:'literature',t:'시'},
+    {icon:'🎓',p:'topik',t:'TOPIK'},
+    {icon:'🤖',p:'ai',t:'AI'},
+  ].map(it=>`<button class="${state.page===it.p?'active':''}" onclick="setState({page:'${it.p}'})" title="${it.t}"><div class="icon">${it.icon}</div><div>${it.t}</div></button>`).join('')}</div>`;
+}
+
+function renderPage() {
+  const pages = {
+    home: renderHome,
+    curriculum: renderCurriculum,
+    vocab: renderVocab,
+    grammar: renderGrammar,
+    dialogue: renderDialogue,
+    reading: renderReading,
+    writing: renderWriting,
+    flashcard: renderFlashcard,
+    quiz: renderQuiz,
+    culture: renderCulture,
+    review: renderReview,
+    literature: renderKoreanLiterature, folktale: renderKoreanLiterature,
+    ftquiz: renderLiteratureQuiz, litquiz: renderLiteratureQuiz,
+    topik: renderTopikPractice,
+    geoje: renderGeoje, ai: renderAI,
+  };
+  return `<div class="page">${pages[state.page]()}</div>`;
+}
+
+function renderHome() {
+  return `<div style="text-align:center;padding:20px 0">
+    <div style="font-size:48px;margin-bottom:12px">🌱</div>
+    <h2>초급 2-13과</h2>
+    <div style="font-size:14px;color:#888;margin-bottom:20px">Beginner Level 2 Lesson 13</div>
+    <div style="font-size:18px;font-weight:700;color:var(--navy);margin-bottom:6px">환경을 생각해요</div>
+    <div style="font-size:12px;color:#666;margin-bottom:24px">Thinking About the Environment</div>
+    <div class="card" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);border:none">
+      <div style="font-weight:700;color:var(--green);margin-bottom:6px">그린 에너지 & ESG</div>
+      <div style="font-size:13px;color:#333">Green Energy & ESG Management</div>
+    </div>
+    <div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <button onclick="setState({page:'vocabulary'})" class="btn btn-green" style="padding:16px 8px">📝<br/>어휘</button>
+      <button onclick="setState({page:'grammar'})" class="btn btn-blue" style="background:var(--ocean);color:#fff;padding:16px 8px">📐<br/>문법</button>
+      <button onclick="setState({page:'dialogue'})" class="btn" style="background:var(--orange);color:#fff;padding:16px 8px">🎤<br/>회화</button>
+      <button onclick="setState({page:'quiz'})" class="btn btn-navy" style="padding:16px 8px">🎯<br/>퀴즈</button>
+    </div>
+    <div style="margin-top:20px;font-size:11px;color:#888">
+      <div>⏮ 이전: 2-12과 · 한국음식을설명해요</div>
+      <div>⏭ 다음: 2-14과 · 교육제도를이해해요</div>
+    </div>
+  </div>
+  <div style="margin-top:16px;font-weight:700;color:var(--navy);font-size:14px;margin-bottom:8px">🔗 과 이동 · Lesson Navigation</div>
+  <div style="display:flex;gap:8px">
+    <a href="/KIIP_Level2_Lesson12" style="display:block;text-decoration:none;flex:1">
+      <div class="card" style="border-left:4px solid var(--orange);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:11px;color:#888">← 이전 과 · Previous</div>
+        <strong style="color:var(--navy)">2-12과 한국 음식을 설명해요</strong>
+        <div style="font-size:11px;color:#888;margin-top:2px">Explaining Korean Food</div>
+      </div>
+    </a><a href="/KIIP_Level2_Lesson14" style="display:block;text-decoration:none;flex:1">
+      <div class="card" style="border-left:4px solid var(--green);cursor:pointer;transition:transform 0.2s" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+        <div style="font-size:11px;color:#888">다음 과 · Next →</div>
+        <strong style="color:var(--navy)">2-14과 교육 제도를 이해해요</strong>
+        <div style="font-size:11px;color:#888;margin-top:2px">Understanding Education</div>
+      </div>
+    </a>
+  </div>
+  `;
+}
+
+function renderCurriculum() {
+  return `<h2><span class="section-icon">📚</span>강의 소개 · Course Overview</h2><p class="sub">환경을 생각해요 · Thinking About the Environment</p>
+  <div class="card" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);border:none">
+    <div style="font-weight:700;color:var(--green);margin-bottom:8px">🌱 단원 주제</div>
+    <div style="font-size:14px;color:#333">그린 에너지 & ESG 경영<br/>환경 보호와 지속 가능한 발전</div>
+  </div>
+  <div class="card">
+    <div style="font-weight:700;color:var(--navy);margin-bottom:6px">📖 핵심 표현</div>
+    <div style="font-size:13px;color:#333;line-height:1.6">
+      • ~(으)ㄹ 뿐만 아니라 (not only... but also)<br/>
+      • ~는 셈이다 (it amounts to)<br/>
+      • ~기는 하지만 (although... but)<br/>
+      • 환경을 보호하다 (protect the environment)<br/>
+      • 에너지를 절약하다 (save energy)
+    </div>
+  </div>
+  <div class="card card-green" style="background:var(--light-green)">
+    <div style="font-weight:700;color:var(--green);margin-bottom:6px">🎯 학습 목표</div>
+    <div style="font-size:13px;color:#333;line-height:1.6">
+      ✓ 환경 관련 어휘 이해<br/>
+      ✓ 환경 문제와 해결책 표현<br/>
+      ✓ 신재생 에너지 이해<br/>
+      ✓ 한국 생활 환경 정책 이해<br/>
+      ✓ 농무 시 읽고 이해
+    </div>
+  </div>`;
+}
+
+function renderVocab() {
+  const tabs = ['환경 어휘 Environment','실용 문장 Sentences','심화 어휘 Advanced','생활 도구 Tools'];
+  const t = state.vocabTab;
+  let content = '';
+  if (t===0) content = VOCAB_PHONE.map((v,i)=>`
+    <div class="card card-accent vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,[${i}]:!state.vocabReveal[${i}]}})">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div><div class="kor">${v.kor} ${ttsBtn(v.kor)}</div><div class="pron">[${v.pron}]</div></div>
+      </div>
+      ${state.vocabReveal[i]?'<div style="margin-top:6px;padding:6px 10px;background:#f0f7ff;border-radius:6px;font-size:13px;color:var(--ocean);font-weight:600">'+v.eng+'</div>'
+      :'<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기 · Tap for English</div>'}
+    </div>`).join('');
+  else if (t===1) content = VOCAB_SHIPYARD.map((v,i)=>`
+    <div class="card card-orange vocab-item" onclick="setState({vocabReveal:{...state.vocabReveal,['s'+${i}]:!state.vocabReveal['s'+${i}]}})">
+      <div class="kor">${v.a} ${ttsBtn(v.a)}</div>
+      <div style="font-size:11px;color:#888">${v.sit}</div>
+      ${state.vocabReveal['s'+i]?'<div style="margin-top:6px;padding:6px 10px;background:#fff7ed;border-radius:6px;font-size:13px;color:var(--orange);font-weight:600">'+v.eng+'</div>'
+      :'<div style="font-size:10px;color:#ccc;margin-top:4px">탭하여 영어 보기</div>'}
+    </div>`).join('');
+  else if (t===2) content = '<div class="grid2">'+VOCAB_ADVANCED.map(v=>'<div class="vocab-item" style="background:#f0fdf4;border-radius:8px;padding:8px 10px;border-left:4px solid #22c55e" onclick="TTS.speak(\''+v.a.replace(/'/g,"\\'")+'\')">'
+      +'<div class="kor" style="font-size:14px">'+v.a+' '+ttsBtn(v.a)+'</div><div class="eng">'+v.eng+'</div>'
+      +'</div>').join('')+'</div>';
+  else content = '<div class="grid2">'+VOCAB_SHIPYARD_NOUNS.map(v=>'<div class="vocab-item" style="background:#fff7ed;border-radius:8px;padding:8px 10px;border-left:4px solid #ED7D31" onclick="TTS.speak(\''+v.a.replace(/'/g,"\\'")+'\')">'
+      +'<div class="kor" style="font-size:14px">'+v.a+' '+ttsBtn(v.a)+'</div><div class="eng">'+v.eng+'</div>'
+      +'</div>').join('')+'</div>';
+
+  return '<h2><span class="section-icon">📖</span>어휘 · Vocabulary</h2><p class="sub">13과 · Lesson 13 · 환경 ('+(VOCAB_PHONE.length+VOCAB_SHIPYARD.length+VOCAB_ADVANCED.length+VOCAB_SHIPYARD_NOUNS.length)+'단어)</p>'
+  +'<div class="tabs">'+tabs.map((tb,i)=>'<button class="tab '+(t===i?'active':'')+'" onclick="setState({vocabTab:'+i+',vocabReveal:{}})">'+tb+'</button>').join('')+'</div>'
+  +content;
+}
+
+function renderGrammar() {
+  return `<h2><span class="section-icon">📐</span>문법 · Grammar</h2><p class="sub">핵심 문법 구조</p>
+  <div class="tabs">${GRAMMAR.map((g,i)=>`<button class="tab ${state.gramIdx===i?'active':''}" onclick="setState({gramIdx:${i}})">${g.title}</button>`).join('')}</div>
+  ${GRAMMAR.map((g,i)=>`<div style="${state.gramIdx!==i?'display:none':''}">
+    <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:6px">${g.title}</div>
+      <div style="font-size:12px;color:var(--ocean);margin-bottom:6px">${g.eng}</div>
+      <div style="font-size:13px;color:#666;line-height:1.5">${g.desc}</div>
+      <div style="font-size:12px;color:#888;margin-top:6px">${g.descEng}</div>
+    </div>
+    <div class="card card-accent" style="background:#faf5ff">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:8px">📐 문법 공식</div>
+      <div style="background:#fff;border-radius:8px;padding:10px;margin-bottom:8px;font-family:monospace;font-size:12px;color:var(--navy);font-weight:600">${g.rule}</div>
+      <div style="font-size:11px;color:#666">${g.ruleEng}</div>
+    </div>
+    <div style="font-weight:700;color:var(--navy);margin:12px 0 8px">✏️ 예제 · Examples</div>
+    ${g.examples.map(ex=>`<div class="card card-green">
+      <div style="font-size:12px;color:var(--green);font-weight:700;margin-bottom:4px">예 ${g.examples.indexOf(ex)+1}</div>
+      <div style="font-size:14px;color:var(--navy);font-weight:600;margin-bottom:6px">${ex.a} ${ttsBtn(ex.a)}</div>
+      <div style="font-size:12px;color:#666;margin-bottom:4px">${ex.eng}</div>
+      <div style="font-size:11px;color:var(--orange);font-weight:600">💡 ${ex.note}</div>
+    </div>`).join('')}
+  </div>`).join('')}`;
+}
+
+function renderDialogue() {
+  const dlg = DIALOGUES[state.dlgIdx];
+  return `<h2><span class="section-icon">🎤</span>회화 · Dialogue</h2><p class="sub">${dlg.title} · ${dlg.eng}</p>
+  <div style="display:flex;gap:6px;margin-bottom:12px">
+    ${DIALOGUES.map((d,i)=>`<button class="tab ${state.dlgIdx===i?'active':''}" onclick="setState({dlgIdx:${i},dlgLine:-1})">${d.title}</button>`).join('')}
+  </div>
+  <div class="card" style="background:#f0f7ff;border:none;margin-bottom:10px">
+    <div style="text-align:center;font-weight:700;color:var(--navy);margin-bottom:8px">📢 역할 읽기 · Role Play</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center">
+      <button class="tab" onclick="setState({dlgShowEng:!state.dlgShowEng})">${state.dlgShowEng?'영어 숨기기':'영어 보기'}</button>
+    </div>
+  </div>
+  ${dlg.lines.map((line,i)=>`<div class="card" style="display:flex;gap:10px;align-items:flex-start">
+    <div style="flex-shrink:0;font-weight:700;color:var(--orange);font-size:12px;min-width:50px">${line.sp}</div>
+    <div style="flex:1">
+      <div style="font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px">${line.text} ${ttsBtn(line.text)}</div>
+      ${state.dlgShowEng?`<div style="font-size:12px;color:#666">${line.eng}</div>`:''}
+    </div>
+  </div>`).join('')}
+  <button onclick="dlg.lines.forEach(l=>TTS.speak(l.text))" class="btn btn-primary" style="margin-top:12px">🔊 전체 대화 듣기</button>`;
+}
+
+function renderReading() {
+  const r = READING_PASSAGES[state.rdIdx];
+  return `<h2><span class="section-icon">📖</span>읽기 · Reading</h2><p class="sub">${r.title} · ${r.eng}</p>
+  <div style="display:flex;gap:6px;margin-bottom:12px">
+    ${READING_PASSAGES.map((p,i)=>`<button class="tab ${state.rdIdx===i?'active':''}" onclick="setState({rdIdx:${i},rdAnswers:{}})">${p.title}</button>`).join('')}
+  </div>
+  <div class="card" style="background:#f0f7ff;border:2px solid var(--ocean)">
+    ${r.text.split('\n').map(t=>`<div style="font-size:15px;color:var(--navy);font-weight:600;margin-bottom:8px;line-height:1.5">${t}</div>`).join('')}
+  </div>
+  ${state.rdShowEng?`<div class="card" style="background:#f9f9f9;border:2px solid #ddd"><div style="font-size:13px;color:#666;line-height:1.6">${r.textEng}</div></div>`:'<button class="tab active" onclick="setState({rdShowEng:true})">영어 보기</button>'}
+  <div style="font-weight:700;color:var(--navy);margin:12px 0 8px">📝 이해 확인 · Comprehension</div>
+  ${r.questions.map((q,i)=>`<div class="card card-accent">
+    <div style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">${i+1}) ${q.q}</div>
+    ${state.rdAnswers[i]?`<div style="padding:6px 10px;background:#dcfce7;border-radius:6px;font-size:14px;color:var(--green);font-weight:600">✓ ${q.a} (${q.ae})</div>`
+    :`<button class="tab active" onclick="setState({rdAnswers:{...state.rdAnswers,${i}:true}})">정답 보기 · Show Answer</button>`}
+  </div>`).join('')}`;
+}
+
+function renderWriting() {
+  const preview = state.wrName ? `안녕하세요?
+저는 ${state.wrName}이에요/예요.
+${state.wrCountry?state.wrCountry+'에서 왔어요.':''}
+${state.wrJob?'저는 '+state.wrJob+'이에요/예요.':''}
+${state.wrExtra?state.wrExtra:''}
+한국에서 생활해요.
+환경을 생각하면서 살고 있습니다.
+만나서 반갑습니다.` : '';
+
+  return `<h2><span class="section-icon">✍️</span>쓰기 · Writing</h2><p class="sub">환경 에세이 · Environmental Essay</p>
+  <div class="card" style="background:#fff7ed;border:2px solid var(--orange)">
+    <b style="color:var(--orange)">📋 환경에 대한 자신의 생각을 써 보세요 · Write about your thoughts on the environment</b>
+  </div>
+  <div style="margin-top:12px">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">이름 Name</label>
+    <input class="input" placeholder="예: 라민 / Ramin" value="${state.wrName}" oninput="state.wrName=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">국적/나라 Country</label>
+    <input class="input" placeholder="예: 이집트 / Egypt" value="${state.wrCountry}" oninput="state.wrCountry=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">직업 Job</label>
+    <input class="input" placeholder="예: 회사원 / office worker" value="${state.wrJob}" oninput="state.wrJob=this.value;render()">
+    <label style="font-size:13px;font-weight:700;color:var(--navy)">환경에 대한 생각 Environmental thought</label>
+    <input class="input" placeholder="예: 환경을 지키겠습니다." value="${state.wrExtra}" oninput="state.wrExtra=this.value;render()">
+  </div>
+  ${preview?`
+  <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📄 미리보기 · Preview</div>
+  <div class="card card-accent" style="background:#f0f7ff">
+    ${preview.split('\n').filter(l=>l.trim()).map(l=>`<div style="font-size:16px;color:var(--navy);font-weight:600;margin-bottom:4px">${l}</div>`).join('')}
+  </div>
+  <button class="btn btn-primary" style="margin-top:10px" onclick="TTS.speak(preview.replace(/\n/g,' ').replace(/이에요\/예요/g,'이에요'),undefined,0.8)">🔊 발표 연습 · Practice Presentation</button>
+  `:'<div style="color:#ccc;text-align:center;margin:30px 0">위에 정보를 입력하면 자기소개서가 만들어집니다.<br/>Fill in the fields above to generate your introduction.</div>'}`;
+}
+
+function renderFlashcard() {
+  const all = [...VOCAB_PHONE.map(v=>({f:v.kor,b:v.eng})),...VOCAB_ADVANCED.map(v=>({f:v.kor,b:v.eng})),...VOCAB_SHIPYARD_NOUNS.map(v=>({f:v.kor,b:v.eng}))];
+  const card = all[state.fcIdx % all.length];
+  return `<h2>🃏 플래시카드 · Flashcards</h2>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">${(state.fcIdx%all.length)+1} / ${all.length}</span>
+    <span style="font-size:12px;color:var(--green);font-weight:600">✓ ${state.fcKnown}개 학습</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${((state.fcIdx%all.length)+1)/all.length*100}%;background:var(--orange)"></div></div>
+  <div onclick="setState({fcFlipped:!state.fcFlipped})"
+    style="background:${state.fcFlipped?'var(--navy)':'#fff'};border:2px solid var(--navy);border-radius:16px;padding:36px 20px;margin:18px 0;text-align:center;cursor:pointer;min-height:130px;display:flex;flex-direction:column;justify-content:center;align-items:center;transition:all .3s">
+    <div style="font-size:10px;color:${state.fcFlipped?'#8899BB':'#aaa'};margin-bottom:8px">${state.fcFlipped?'ENGLISH':'한국어'}</div>
+    <div style="font-size:${state.fcFlipped?'20px':'30px'};font-weight:700;color:${state.fcFlipped?'#fff':'var(--navy)'}">${state.fcFlipped?card.b:card.f}</div>
+    ${!state.fcFlipped?'<div style="font-size:11px;color:#ccc;margin-top:10px">탭하여 뒤집기 · Tap to flip</div>':''}
+  </div>
+  <div style="display:flex;gap:8px">
+    <button onclick="TTS.speak('${card.f}')" style="padding:12px;border-radius:10px;background:#f0f7ff;color:var(--ocean);font-size:20px;flex-shrink:0">🔊</button>
+    <button onclick="setState({fcIdx:state.fcIdx+1,fcFlipped:false})" style="flex:1;padding:12px;border-radius:10px;background:#fee2e2;color:var(--red);font-size:14px;font-weight:700">✕ 모르겠어요</button>
+    <button onclick="setState({fcIdx:state.fcIdx+1,fcFlipped:false,fcKnown:state.fcKnown+1})" style="flex:1;padding:12px;border-radius:10px;background:#dcfce7;color:var(--green);font-size:14px;font-weight:700">✓ 알겠어요!</button>
+  </div>`;
+}
+
+function renderQuiz() {
+  if (state.qDone) {
+    const pct = Math.round(state.qScore/QUIZ.length*100);
+    return `<div style="text-align:center;padding:20px 0">
+      <div style="font-size:56px">${pct>=80?'🎉':pct>=50?'👍':'💪'}</div>
+      <h2>퀴즈 결과 · Quiz Result</h2>
+      <div style="font-size:44px;font-weight:800;color:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'};margin:14px 0">${state.qScore}/${QUIZ.length}</div>
+      <div style="font-size:15px;color:#888;margin-bottom:20px">${pct}% 정답 · Correct</div>
+      <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
+      <button onclick="setState({qIdx:0,qSel:null,qScore:0,qDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
+    </div>`;
+  }
+  const q = QUIZ[state.qIdx];
+  return `<h2>🎯 퀴즈 · Quiz</h2>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문제 ${state.qIdx+1}/${QUIZ.length}</span>
+    <span style="font-size:12px;color:var(--ocean);font-weight:600">점수: ${state.qScore}</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.qIdx+1)/QUIZ.length*100}%;background:var(--ocean)"></div></div>
+  <div class="card" style="background:#f0f7ff;text-align:center;margin:14px 0">
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${q.q}</div>
+  </div>
+  ${q.o.map((opt,i)=>{
+    let cls = 'quiz-opt';
+    if(state.qSel!==null){
+      if(i===q.a) cls+=' quiz-correct';
+      else if(i===state.qSel) cls+=' quiz-wrong';
+    }
+    return `<button class="${cls}" onclick="${state.qSel===null?`setState({qSel:${i},qScore:state.qScore+${i===q.a?1:0}})`:''}">${String.fromCharCode(65+i)}. ${opt}</button>`;
+  }).join('')}
+  ${state.qSel!==null?`<button onclick="${state.qIdx<QUIZ.length-1?`setState({qIdx:state.qIdx+1,qSel:null})`:`setState({qDone:true})`}" class="btn btn-primary" style="margin-top:8px">${state.qIdx<QUIZ.length-1?'다음 문제 → Next':'결과 보기 → Result'}</button>`:''}`;
+}
+
+function renderCulture() {
+  return `<h2>🏛️ 문화와 정보 · Culture & Info</h2><p class="sub">한국의 환경 문화 · Korean Environmental Culture</p>
+  ${CULTURE.map(c=>`<div class="card" style="display:flex;gap:12px;align-items:flex-start">
+    <div style="font-size:34px;flex-shrink:0">${c.icon}</div>
+    <div>
+      <div style="font-weight:700;font-size:15px;color:var(--navy)">${c.t}</div>
+      <div style="font-size:11px;color:var(--ocean);margin-bottom:4px">${c.eng}</div>
+      <div style="font-size:13px;color:#333;line-height:1.5">${c.d}</div>
+      <div style="font-size:12px;color:#888;margin-top:2px">${c.de}</div>
+    </div>
+  </div>`).join('')}
+  <button onclick="setState({page:'geoje'})" class="btn btn-navy" style="margin-top:10px">🌿 한국 환경 정책 보기</button>`;
+}
+
+function renderReview() {
+  const tabs = ['복습 Review','예습 Preview','받아쓰기 Dictation'];
+  const t = state.rvTab;
+
+  if (t===0) {
+    const rv = REVIEW_DATA.review;
+    return `<h2><span class="section-icon">📝</span>익힘 · 복습</h2><p class="sub">${rv.desc} ${rv.descEng}</p>
+    <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+    ${rv.sections.map(s=>`
+      <div class="card card-accent">
+        <div style="font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px">${s.icon} ${s.title}</div>
+        ${s.items.map(item=>`<div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+          <span style="color:var(--green);font-size:14px">✓</span>
+          <span style="font-size:14px;color:#333">${item}</span>
+          ${!item.includes(' ')&&item.length<15?ttsBtn(item):''}
+        </div>`).join('')}
+      </div>`).join('')}
+    <button onclick="TTS.speak('${rv.sections[0].items.join('. ')}')" class="btn btn-primary" style="margin-top:8px">🔊 핵심 환경 용어 전체 듣기</button>`;
+  }
+  if (t===1) {
+    const pv = REVIEW_DATA.preview;
+    return `<h2><span class="section-icon">📝</span>익힘 · 예습</h2><p class="sub">${pv.desc} ${pv.descEng}</p>
+    <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+    <div class="card" style="background:linear-gradient(135deg,#f0f7ff,#fff7ed);border:2px solid var(--ocean)">
+      <div style="font-size:16px;font-weight:800;color:var(--navy);margin-bottom:4px">📖 다음 수업 미리보기 · Next Lesson Preview</div>
+      <div style="font-size:12px;color:#888;margin-bottom:12px">2-14과를 미리 살펴보세요!</div>
+    </div>
+    ${pv.items.map((item,i)=>`
+      <div class="card ${i%2===0?'card-accent':'card-orange'}">
+        <div style="font-size:12px;font-weight:700;color:var(--ocean)">${item.label}</div>
+        <div style="font-size:16px;font-weight:700;color:var(--navy);margin:4px 0">${item.val}</div>
+        <div style="font-size:12px;color:#888">${item.detail}</div>
+      </div>`).join('')}`;
+  }
+  const dict = REVIEW_DATA.dictation;
+  const d = dict[state.rvDictIdx];
+  const result = state.rvDictResults[state.rvDictIdx];
+  return `<h2><span class="section-icon">📝</span>익힘 · 받아쓰기</h2><p class="sub">Dictation Practice · 듣고 따라 쓰세요</p>
+  <div class="tabs">${tabs.map((tb,i)=>`<button class="tab ${t===i?'active':''}" onclick="setState({rvTab:${i}})">${tb}</button>`).join('')}</div>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문장 ${state.rvDictIdx+1}/${dict.length}</span>
+    <span style="font-size:12px;color:var(--green);font-weight:600">✓ ${Object.values(state.rvDictResults).filter(r=>r==='correct').length}개 정답</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.rvDictIdx+1)/dict.length*100}%;background:var(--ocean)"></div></div>
+  <div class="card" style="text-align:center;margin:16px 0;background:#f0f7ff;border:2px solid var(--ocean)">
+    <div style="font-size:14px;color:#888;margin-bottom:8px">🔊 듣고 한국어로 쓰세요 · Listen and write in Korean</div>
+    <button onclick="TTS.speak('${d}',undefined,0.7)" style="background:var(--ocean);color:#fff;border-radius:50%;width:56px;height:56px;font-size:28px;margin:8px 0">🔊</button>
+    <div style="font-size:11px;color:#aaa;margin-top:4px">버튼을 눌러 들으세요 · Press to listen</div>
+  </div>
+  <input class="input" style="font-size:18px;text-align:center;padding:14px" placeholder="여기에 쓰세요 · Write here"
+    value="${state.rvDictInput||''}" oninput="state.rvDictInput=this.value" id="dictInput">
+  ${result ? `<div class="card ${result==='correct'?'card-green':'card-orange'}" style="background:${result==='correct'?'var(--light-green)':'#fee2e2'}">
+    <div style="font-size:16px;font-weight:700;color:${result==='correct'?'var(--green)':'var(--red)'}">${result==='correct'?'✓ 정답입니다! Correct!':'✕ 다시 해 보세요.'}</div>
+    <div style="font-size:18px;font-weight:700;color:var(--navy);margin-top:6px">정답: ${d}</div>
+  </div>`:
+  `<button class="btn btn-primary" onclick="
+    var input=document.getElementById('dictInput').value.trim().replace(/[.?!]/g,'');
+    var answer='${d}'.replace(/[.?!]/g,'');
+    var r=input===answer?'correct':'wrong';
+    setState({rvDictResults:{...state.rvDictResults,[state.rvDictIdx]:r}})
+  ">✓ 확인 · Check</button>`}
+  ${result?`<button class="btn btn-navy" style="margin-top:8px" onclick="setState({rvDictIdx:Math.min(state.rvDictIdx+1,${dict.length-1}),rvDictInput:'',rvDictResults:state.rvDictResults})">${state.rvDictIdx<dict.length-1?'다음 문장 → Next':'완료! Finished!'}</button>`:''}
+  <button onclick="TTS.speak('${d}',undefined,0.6)" class="btn" style="margin-top:6px;background:#e5e7eb;color:#555">🔊 천천히 듣기 · Listen Slowly</button>`;
+}
+
+function renderKoreanLiterature() {
+  const lit = KOREAN_LITERATURE;
+  const s = lit.sentences[state.ftSentIdx];
+  const total = lit.sentences.length;
+  return `<h2><span class="section-icon">📜</span>현대시 · Korean Modern Poetry</h2>
+  <div class="card" style="background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border:none;margin-bottom:14px">
+    <div style="font-size:22px;font-weight:800;margin-bottom:2px">${lit.title}</div>
+    <div style="font-size:13px;opacity:.8">${lit.eng}</div>
+    <div style="font-size:12px;opacity:.7;margin-top:6px">${lit.desc}</div>
+    <div style="font-size:11px;opacity:.6">${lit.descEng}</div>
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문장 ${state.ftSentIdx+1}/${total}</span>
+    <div style="display:flex;gap:6px">
+      <button class="tab ${state.ftShowEng?'active':''}" onclick="setState({ftShowEng:!state.ftShowEng})">${state.ftShowEng?'영어 숨기기':'영어 보기'}</button>
+    </div>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.ftSentIdx+1)/total*100}%;background:#a855f7"></div></div>
+  <div class="card" style="margin:14px 0;padding:20px;text-align:center;background:#faf5ff;border:2px solid #a855f7;min-height:120px;display:flex;flex-direction:column;justify-content:center">
+    <div style="font-size:20px;font-weight:700;color:var(--navy);line-height:1.6;margin-bottom:8px">${s.a}</div>
+    ${state.ftShowEng?`<div style="font-size:14px;color:#888;line-height:1.4">${s.eng}</div>`:''}
+    <button onclick="TTS.speak('${s.a.replace(/'/g,"\\'")}')" style="margin:12px auto 0;background:#a855f7;color:#fff;border-radius:50%;width:48px;height:48px;font-size:22px">🔊</button>
+  </div>
+  <div style="display:flex;gap:8px;margin-bottom:12px">
+    <button onclick="setState({ftSentIdx:Math.max(0,state.ftSentIdx-1)})" class="btn" style="background:#e5e7eb;color:#555;flex:1">← 이전</button>
+    <button onclick="setState({ftSentIdx:Math.min(${total-1},state.ftSentIdx+1)})" class="btn" style="background:#a855f7;color:#fff;flex:1">다음 →</button>
+  </div>
+  <button onclick="var all=KOREAN_LITERATURE.sentences.map(s=>s.a).join('. ');TTS.speak(all,undefined,0.7)" class="btn btn-navy" style="margin-bottom:8px">🔊 전체 시 읽기 · Read Full Poem</button>
+  <button onclick="setState({page:'ftquiz'})" class="btn btn-orange">🧩 시 이해 퀴즈 풀기 · Take Poetry Quiz</button>
+  <div style="margin-top:16px;font-weight:700;color:var(--navy);margin-bottom:8px">📖 전체 시 줄 · All Lines</div>
+  <div style="max-height:300px;overflow-y:auto;border:1px solid #e5e7eb;border-radius:10px;padding:8px">
+    ${lit.sentences.map((sent,i)=>`
+      <div onclick="setState({ftSentIdx:${i}});TTS.speak('${sent.a.replace(/'/g,"\\'")}')"
+        style="padding:8px 10px;border-radius:8px;margin-bottom:4px;cursor:pointer;background:${i===state.ftSentIdx?'#f3e8ff':'transparent'};border-left:${i===state.ftSentIdx?'3px solid #a855f7':'3px solid transparent'}">
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <span style="color:#a855f7;font-weight:700;font-size:12px;min-width:20px">${i+1}</span>
+          <div>
+            <div style="font-size:14px;color:var(--navy);font-weight:${i===state.ftSentIdx?700:400}">${sent.a}</div>
+            ${state.ftShowEng?`<div style="font-size:11px;color:#888">${sent.eng}</div>`:''}
+          </div>
+        </div>
+      </div>
+    `).join('')}
+  </div>`;
+}
+
+function renderLiteratureQuiz() {
+  if (state.fqDone) {
+    const pct = Math.round(state.fqScore/LITERATURE_QUIZ.length*100);
+    return `<div style="text-align:center;padding:20px 0">
+      <div style="font-size:56px">${pct>=80?'🎉':pct>=50?'📖':'💪'}</div>
+      <h2>시 이해 퀴즈 결과 · Poetry Quiz Result</h2>
+      <div style="font-size:14px;color:#888;margin:6px 0">${KOREAN_LITERATURE.title} · ${KOREAN_LITERATURE.eng}</div>
+      <div style="font-size:44px;font-weight:800;color:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'};margin:14px 0">${state.fqScore}/${LITERATURE_QUIZ.length}</div>
+      <div style="font-size:15px;color:#888;margin-bottom:20px">${pct}% 정답 · Correct</div>
+      <div class="progress"><div class="progress-bar" style="width:${pct}%;background:${pct>=80?'var(--green)':pct>=50?'var(--orange)':'var(--red)'}"></div></div>
+      <button onclick="setState({fqIdx:0,fqSel:null,fqScore:0,fqDone:false})" class="btn btn-navy" style="margin-top:20px">↺ 다시 풀기 · Retry</button>
+      <button onclick="setState({page:'literature'})" class="btn" style="margin-top:8px;background:#e5e7eb;color:#555">📜 시 다시 읽기 · Read Poem Again</button>
+      <a href="/KIIP_Level2_Lesson14" style="display:block;text-decoration:none;margin-top:16px">
+        <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
+          ➡️ 다음 과: 2-14 교육 제도를 이해해요 · Next Lesson
+        </button>
+      </a>
+    </div>`;
+  }
+  const q = LITERATURE_QUIZ[state.fqIdx];
+  return `<h2><span class="section-icon">🧩</span>시 이해 퀴즈 · Poetry Quiz</h2>
+  <p class="sub">${KOREAN_LITERATURE.title} · ${KOREAN_LITERATURE.eng}</p>
+  <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+    <span style="font-size:12px;color:#888">문제 ${state.fqIdx+1}/${LITERATURE_QUIZ.length}</span>
+    <span style="font-size:12px;color:#a855f7;font-weight:600">점수: ${state.fqScore}</span>
+  </div>
+  <div class="progress"><div class="progress-bar" style="width:${(state.fqIdx+1)/LITERATURE_QUIZ.length*100}%;background:#a855f7"></div></div>
+  <div class="card" style="background:#faf5ff;text-align:center;margin:14px 0;border:2px solid #a855f7">
+    <div style="font-size:16px;font-weight:700;color:var(--navy)">${q.q}</div>
+    <button onclick="TTS.speak('${q.q.replace(/'/g,"\\'")}')" class="tts-btn" style="margin-top:8px;background:#a855f7">🔊</button>
+  </div>
+  ${q.o.map((opt,i)=>{
+    let cls='quiz-opt';
+    if(state.fqSel!==null){
+      if(i===q.a) cls+=' quiz-correct';
+      else if(i===state.fqSel) cls+=' quiz-wrong';
+    }
+    return `<button class="${cls}" onclick="${state.fqSel===null?`setState({fqSel:${i},fqScore:state.fqScore+${i===q.a?1:0}})`:''}">${String.fromCharCode(65+i)}. ${opt}</button>`;
+  }).join('')}
+  ${state.fqSel!==null?`<button onclick="${state.fqIdx<LITERATURE_QUIZ.length-1?`setState({fqIdx:state.fqIdx+1,fqSel:null})`:`setState({fqDone:true})`}" class="btn" style="margin-top:8px;background:#a855f7;color:#fff">${state.fqIdx<LITERATURE_QUIZ.length-1?'다음 문제 → Next':'결과 보기 → Result'}</button>`:''}`;
+}
+
+function speakTopikListening(idx) {
+  var item = TOPIK_PRACTICE.listening[idx];
+  if(!item) return;
+  var text = item.script || item.q;
+  var parts = text.split('\n\n');
+  if(parts.length > 1) {
+    text = parts.slice(1).join(' ');
+  }
+  text = text.replace(/\[.*?\]/g, '').replace(/'/g, '').trim();
+  TTS.speak(text);
+}
+
+function renderTopikPractice() {
+  const t = TOPIK_PRACTICE;
+  if (state.topikTab === undefined) setState({topikTab: 'info'});
+
+  const tabs = [
+    {id:'info', label:'📋 소개', icon:'ℹ️'},
+    {id:'reading', label:'📖 읽기'},
+    {id:'listening', label:'🎧 듣기'}
+  ];
+
+  if (state.topikTab === 'info') {
+    return `<h2><span class="section-icon">🎯</span>${t.title}</h2>
+    <p class="sub">${t.desc}</p>
+    <div style="background:#faf5ff;border:2px solid #8b5cf6;border-radius:10px;padding:14px;margin-bottom:14px">
+      <div style="font-size:13px;color:#666;margin-bottom:8px">${t.examInfo.descEng}</div>
+    </div>
+    <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">💡 시험 팁 · Tips</div>
+    ${t.examInfo.tips.map(tip => `<div class="card card-accent"><span style="color:#666;font-size:14px">${tip}</span></div>`).join('')}
+    <div style="margin-top:14px;display:flex;gap:8px">
+      <button onclick="setState({topikTab:'reading'})" class="btn" style="flex:1;background:#3b82f6;color:#fff">📖 읽기 연습</button>
+      <button onclick="setState({topikTab:'listening'})" class="btn" style="flex:1;background:#f59e0b;color:#fff">🎧 듣기 연습</button>
+    </div>`;
+  }
+
+  if (state.topikTab === 'reading') {
+    if (state.topikReadingIdx === undefined) setState({topikReadingIdx: 0});
+    const item = t.reading[state.topikReadingIdx];
+    return `<h2><span class="section-icon">📖</span>TOPIK I 읽기 · Reading Practice</h2>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+      <span style="font-size:12px;color:#888">문제 ${state.topikReadingIdx+1}/${t.reading.length}</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width:${(state.topikReadingIdx+1)/t.reading.length*100}%;background:#3b82f6"></div></div>
+
+    <div class="card" style="background:#eff6ff;border:2px solid #3b82f6;margin:14px 0">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:8px">${item.title}</div>
+      <div style="font-size:15px;line-height:1.7;color:#333;margin-bottom:8px">${item.text}</div>
+      <div style="font-size:13px;color:#666;line-height:1.6">${item.textEng}</div>
+    </div>
+
+    <div class="card" style="background:#faf5ff;border:2px solid #8b5cf6;margin:14px 0">
+      <div style="font-size:16px;font-weight:700;color:var(--navy)">${item.q}</div>
+    </div>
+    ${item.o.map((opt,i) => `<button class="quiz-opt" onclick="alert('${i===item.a?'정답입니다! ✓':'틀렸습니다. 다시 해보세요.'}');setState({topikReadingIdx:Math.min(${t.reading.length-1},state.topikReadingIdx+1)})">${String.fromCharCode(65+i)}. ${opt}</button>`).join('')}
+    `;
+  }
+
+  if (state.topikTab === 'listening') {
+    if (state.topikListeningIdx === undefined) setState({topikListeningIdx: 0});
+    const item = t.listening[state.topikListeningIdx];
+    return `<h2><span class="section-icon">🎧</span>TOPIK I 듣기 · Listening Practice</h2>
+    <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+      <span style="font-size:12px;color:#888">문제 ${state.topikListeningIdx+1}/${t.listening.length}</span>
+    </div>
+    <div class="progress"><div class="progress-bar" style="width:${(state.topikListeningIdx+1)/t.listening.length*100}%;background:#f59e0b"></div></div>
+
+    <div class="card" style="background:#fffbf0;border:2px solid #f59e0b;margin:14px 0">
+      <div style="font-weight:700;color:var(--navy);margin-bottom:8px">${item.title}</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:8px">📝 대본 · Script</div>
+      <div style="font-size:14px;line-height:1.7;color:#333;margin-bottom:8px">${item.script}</div>
+      <button onclick="speakTopikListening(${state.topikListeningIdx})" class="btn" style="width:100%;background:#f59e0b;color:#fff;margin:8px 0 0">🔊 다시 듣기 · Play Again</button>
+    </div>
+
+    <div class="card" style="background:#faf5ff;border:2px solid #8b5cf6;margin:14px 0">
+      <div style="font-size:16px;font-weight:700;color:var(--navy)">${item.q}</div>
+    </div>
+    ${item.o.map((opt,i) => `<button class="quiz-opt" onclick="alert('${i===item.a?'정답입니다! ✓':'틀렸습니다. 다시 해보세요.'}');setState({topikListeningIdx:Math.min(${t.listening.length-1},state.topikListeningIdx+1)})">${String.fromCharCode(65+i)}. ${opt}</button>`).join('')}
+    `;
+  }
+}
+
+function renderGeoje() {
+  const g = LOCAL_INFO;
+  return `<h2>⚓ ${g.title}</h2><p class="sub">${g.eng}</p>
+  <div class="card" style="background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border:none">
+    <div style="font-size:18px;font-weight:800;margin-bottom:10px">GlocalBridge · 글로컬 아카데미</div>
+    <div style="font-size:13px;line-height:1.7;opacity:.9">${g.desc}</div>
+    <div style="font-size:12px;line-height:1.6;opacity:.7;margin-top:8px">${g.descEng}</div>
+  </div>
+  <div style="font-weight:700;color:var(--navy);margin:14px 0 8px">📊 기본 정보 · Basic Info</div>
+  ${g.facts.map((f,i)=>`<div class="card ${i%2===0?'card-accent':'card-orange'}">
+    <div style="font-size:12px;font-weight:700;color:var(--ocean)">${f.label}</div>
+    <div style="font-size:14px;color:var(--navy);font-weight:600">${f.val}</div>
+  </div>`).join('')}
+  <div class="card" style="background:var(--light-green);border:2px solid var(--green)">
+    <b style="color:var(--green)">🌍 한국의 성장 원동력: 그린 에너지 & ESG</b>
+    <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      ${[
+        {item:'태양광',price:'친환경 에너지',emoji:'☀️',eng:'Solar'},
+        {item:'풍력',price:'지속가능 발전',emoji:'💨',eng:'Wind'},
+        {item:'ESG',price:'기업책임',emoji:'🌱',eng:'ESG'},
+        {item:'탄소중립',price:'2030년 목표',emoji:'🌍',eng:'Carbon Neutral'},
+        {item:'재활용',price:'자원순환',emoji:'♻️',eng:'Recycling'},
+        {item:'환경교육',price:'모두의책임',emoji:'📚',eng:'Education'},
+      ].map(p=>`
+        <div style="background:#fff;border-radius:10px;padding:10px;text-align:center">
+          <div style="font-size:20px">${p.emoji}</div>
+          <div style="font-size:13px;font-weight:700;color:var(--navy)">${p.item}</div>
+          <div style="font-size:13px;font-weight:800;color:var(--green)">${p.price}</div>
+          <div style="font-size:10px;color:#aaa">${p.eng}</div>
+        </div>
+      `).join('')}
+    </div>
+  </div>
+  <a href="/KIIP_Level2_Lesson14" style="display:block;text-decoration:none;margin-top:16px">
+    <button class="btn" style="width:100%;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;padding:14px;font-size:15px;font-weight:700;border:none;border-radius:12px">
+      ➡️ 다음 과: 2-14 교육 제도를 이해해요 · Next Lesson
+    </button>
+  </a>`;
+}
+
+
+// ===== AI 에이전트 (KIIP 특화) =====
+var AI_QUICK_BTNS = [
+  {emoji:'♻️',label:'분리수거 방법',
+   q:'분리수거 sorting recyclables 재활용분리 쓰레기분리를 알려주세요' },
+  {emoji:'🌱',label:'환경 보호',
+   q:'환경보호 environmental protection 환경지키기 친환경을 알려주세요' },
+  {emoji:'🔄',label:'재활용하기',
+   q:'재활용 recycling 재활용방법 재활용품을 알려주세요' },
+  {emoji:'📋',label:'환경 규정',
+   q:'환경규정 environmental regulation 환경법 규정을 알려주세요' },
+  {emoji:'📖',label:'환경 어휘',
+   q:'환경어휘 environmental vocabulary 환경단어 지구를 알려주세요' }
+];
+var AICHAT = {
+  msgs: [],
+  loading: false,
+  input: '',
+  addMsg: function(role, text) {
+    this.msgs.push({ role, text, time: new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'}) });
+    render();
+    setTimeout(function(){
+      var box = document.querySelector('.ai-msgbox');
+      if(box) box.scrollTop = box.scrollHeight;
+    }, 50);
+  },
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx];
+    if (!b || this.loading) return;
+    this.send(b.q, b.label);
+  },
+  send: async function(text, label) {
+    if (this.loading) return;
+    text = text || this.input.trim();
+    if (!text) return;
+    this.input = '';
+    this.loading = true;
+    var displayText = label || text;
+    this.addMsg('user', displayText);
+    try {
+      var sysP = 'You are a Korean environmental practices coach for workers in Korea. Lesson focus: environment vocabulary 환경(environment), 오염(pollution), 쓰레기(garbage), 분리수거(waste sorting), 재활용(recycling), obligation ~해야 해요 (must/should). Help workers follow Korean recycling rules. SHORT answers with English. LESSON:L2L13';
+      var url = '/api/chat';
+      var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+                  var data = await res.json();
+      var reply = data.choices[0].message.content;
+      this.loading = false;
+      var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
+      render();
+      var _full=reply, _i=0;
+      var _t=setInterval(function(){
+        if(_i<_full.length){_i++;AICHAT.msgs[_idx].text=_full.slice(0,_i);render();var _b=document.querySelector('.ai-msgbox');if(_b)_b.scrollTop=_b.scrollHeight;}
+        else clearInterval(_t);
+      },18);
+    } catch(e) {
+      this.loading = false;
+      this.addMsg('assistant', '⚠️ 연결 오류. 다시 시도해주세요.\nConnection error. Please try again.');
+    }
+  }
+};
+
+// ===== RECORDER (발음 코치 — 브라우저 내장 API) =====
+var RECORDER = {
+  recorders: {}, chunks: {}, audioURLs: {}, isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    var resultEl = document.getElementById('stt-result-' + idx);
+    var playBtn  = document.getElementById('play-btn-' + idx);
+    var scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, recBtn); return; }
+    var stream;
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({audio: true});
+    } catch(e) {
+      var msg = '';
+      var n = e.name || '';
+      if (n === 'NotAllowedError' || n === 'PermissionDeniedError')
+        msg = '❌ <strong>마이크 차단됨</strong> — 주소창 🔒 → 마이크 → <strong>허용</strong> 후 F5<br><span style="color:#555">Microphone blocked — click 🔒 → Microphone → Allow → F5</span>';
+      else if (n === 'NotFoundError')
+        msg = '❌ 마이크를 찾을 수 없어요 — Microphone not found';
+      else if (location.protocol === 'file:')
+        msg = '❌ 보안 오류 — <a href="https://elimg.com" target="_blank" style="color:#1d4ed8">elimg.com</a>에서 열어주세요 (HTTPS 필요)';
+      else
+        msg = '❌ 오류: ' + e.name + ' — Chrome/Edge에서 다시 시도하세요';
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    var mr = new MediaRecorder(stream);
+    this.recorders[idx] = mr;
+    var self = this;
+    mr.ondataavailable = function(e) { if (e.data.size > 0) self.chunks[idx].push(e.data); };
+    mr.onstop = function() {
+      if (self.audioURLs[idx]) URL.revokeObjectURL(self.audioURLs[idx]);
+      var blob = new Blob(self.chunks[idx], {type:'audio/webm'});
+      self.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false; playBtn.style.opacity = '1';
+        playBtn.onclick = function() { new Audio(self.audioURLs[idx]).play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지'; recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중... / Recording...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      var rec = new SR(); rec.lang = 'ko-KR'; rec.continuous = false; rec.interimResults = false;
+      rec.onresult = function(e) {
+        var said = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        var target = targetText.replace(/[\s,.?!]/g,'');
+        var conf = e.results[0][0].confidence;
+        var match = 0;
+        for (var i = 0; i < Math.min(said.length, target.length); i++) { if (said[i] === target[i]) match++; }
+        var pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        var final = Math.round(pct * 0.7 + Math.round((conf||0.5)*100) * 0.3);
+        var color = final >= 80 ? '#22c55e' : final >= 50 ? '#f59e0b' : '#ef4444';
+        var msg = final >= 80 ? '✅ 완벽해요! Great!' : final >= 50 ? '🔄 조금 더 연습! Keep going!' : '❌ 다시 시도! Try again!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식 / Heard: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = final + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = function() {};
+      rec.start();
+    }
+  },
+
+  stop(idx, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') this.recorders[idx].stop();
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음'; recBtn.style.background = '#059669';
+  },
+
+  async autoDetect() {
+    var stateEl = document.getElementById('mic-perm-state');
+    var blockedEl = document.getElementById('mic-blocked-guide');
+    var allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        var result = await navigator.permissions.query({name:'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨 — 바로 녹음하세요! / Microphone allowed!</div>';
+          if (allowBtn) { allowBtn.style.background='#166534'; allowBtn.textContent='✅ 허용됨 — 녹음 시작 / Start Recording'; }
+          if (blockedEl) blockedEl.style.display = 'none';
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 / Blocked — 아래 버튼 클릭</div>';
+          if (blockedEl) blockedEl.style.display = 'block';
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아래 버튼을 눌러 마이크를 허용하세요</div>';
+        }
+        result.onchange = function() { RECORDER.autoDetect(); };
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼으로 마이크를 허용하세요</div>';
+      }
+    }
+  },
+
+  async checkPermission(btn) {
+    var statusEl = document.getElementById('mic-status');
+    var box = document.getElementById('mic-check-box');
+    var blockedEl = document.getElementById('mic-blocked-guide');
+    var stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → <a href="https://elimg.com" target="_blank" style="color:#1d4ed8;font-weight:700">elimg.com에서 열기</a></span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      var stream = await navigator.mediaDevices.getUserMedia({audio:true});
+      stream.getTracks().forEach(function(t){t.stop();});
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 허용됨! / Allowed!</span>';
+      if (box) { box.style.background='#dcfce7'; box.style.borderColor='#86efac'; }
+      if (blockedEl) blockedEl.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 녹음 시작 / Start Recording'; btn.style.background='#166534'; btn.disabled=false;
+    } catch(e) {
+      btn.disabled = false;
+      if (e.name==='NotAllowedError'||e.name==='PermissionDeniedError') {
+        if (blockedEl) blockedEl.style.display='block';
+        if (stateEl) stateEl.innerHTML='<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 차단됨 — 아래 순서대로 해결 후 다시 클릭</div>';
+        btn.textContent='🔄 허용 완료 후 다시 클릭'; btn.style.background='#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML='<span style="color:#ef4444">오류 (' + e.name + ') — Chrome/Edge로 시도</span>';
+        btn.textContent='🔄 다시 시도'; btn.style.background='#92400e';
+      }
+    }
+  }
+};
+
+function startSTT(idx, targetText, recBtn) { RECORDER.start(idx, targetText, recBtn); }
+
+// ===== AI 에이전틱 G스택 렌더 =====
+function renderAI() {
+  setTimeout(function(){ RECORDER.autoDetect(); }, 100);
+  return `
+  <h2>🤖 AI 실습</h2>
+  <p class="sub">글로컬 아카데미 × 에이전틱 G스택</p>
+
+  <!-- 헤더 배너 -->
+  <div style="background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+    <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+    <div style="font-size:15px;font-weight:800;margin-bottom:6px">♻️ AI 환경 생활 가이드</div>
+    <div style="font-size:11px;opacity:0.85;line-height:1.7">분리수거 · 환경 규칙 · 한국 환경 문화<br>
+    <span style="color:#93c5fd">🔵 Eco Guide × Environmental Korean</span></div>
+  </div>
+
+  <!-- 앱 내 AI 채팅 — 로그인 불필요 -->
+  <div class="card" style="margin-bottom:10px;border:2px solid #3b82f6">
+    <div class="section-label" style="background:#1e40af">⚡ AI 채팅 · 로그인 불필요 · No Login Needed</div>
+    <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">
+      계정 없이 바로 AI에게 질문하세요<br>
+      <span style="font-size:11px;color:#3b82f6">Ask AI directly — no login needed · Free</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+      ${AI_QUICK_BTNS.map(function(b,i){return `
+        <button onclick="AICHAT.quickSend(${i})"
+          style="background:#f0f7ff;border:1px solid #3b82f6;color:#1e40af;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit">
+          ${b.emoji} ${b.label}
+        </button>`;}).join('')}
+    </div>
+    <div class="ai-msgbox" style="background:#fff;border-radius:12px;border:1px solid #e8edf2;min-height:120px;max-height:300px;overflow-y:auto;padding:12px;margin-bottom:10px;display:flex;flex-direction:column;gap:8px">
+      ${AICHAT.msgs.length === 0
+        ? `<div style="text-align:center;color:#aaa;padding:24px 16px;font-size:12px">
+            💡 버튼을 누르거나 아래에 입력하세요<br>
+            <span style="font-size:11px">Tap a button above or type below</span>
+          </div>`
+        : AICHAT.msgs.map(function(m){ return `
+          <div style="align-self:${m.role==='user'?'flex-end':'flex-start'};max-width:90%">
+            <div style="background:${m.role==='user'?'#3b82f6':'#f0f7ff'};color:${m.role==='user'?'#fff':'#1e40af'};border-radius:${m.role==='user'?'14px 14px 4px 14px':'14px 14px 14px 4px'};padding:10px 13px;font-size:13px;line-height:1.65;white-space:pre-wrap;word-break:break-word">${m.text}</div>
+            <div style="font-size:10px;color:#aaa;margin-top:3px;text-align:${m.role==='user'?'right':'left'}">${m.time}</div>
+          </div>`;}).join('')}
+      ${AICHAT.loading ? `<div style="align-self:flex-start;background:#f0f7ff;border-radius:14px 14px 14px 4px;padding:10px 14px;font-size:13px;color:#3b82f6">⏳ AI가 답하는 중... / Generating...</div>` : ''}
+    </div>
+    <div style="display:flex;gap:8px">
+      <input id="ai-input" type="text" placeholder="한국어 질문 / Ask a question..."
+        style="flex:1;padding:12px 14px;border:2px solid #e5e7eb;border-radius:10px;font-size:14px;font-family:inherit;outline:none"
+        onfocus="this.style.borderColor='#3b82f6'" onblur="this.style.borderColor='#e5e7eb'"
+        onkeydown="if(event.key==='Enter'){AICHAT.input=this.value;AICHAT.send();}">
+      <button onclick="AICHAT.input=document.getElementById('ai-input').value;AICHAT.send()"
+        style="background:#3b82f6;color:#fff;border-radius:10px;padding:0 18px;font-size:20px;min-width:52px;font-family:inherit;cursor:pointer;border:none">➤</button>
+    </div>
+    <div style="font-size:10px;color:#aaa;margin-top:6px;text-align:center">Enter로 전송 · 🆓 완전 무료 · No account needed</div>
+  </div>
+
+  <!-- 외부 AI 가이드 — 선택사항 -->
+  <div class="card" style="margin-bottom:10px">
+    <div class="section-label" style="background:#6b7280">🌐 외부 AI · 선택사항 · Optional</div>
+    <div style="font-size:11px;color:#888;margin:6px 0 8px">더 강력한 AI로 깊이 있게 학습 (로그인 필요 / Login required)</div>
+
+    <details style="margin-bottom:8px">
+      <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+        🔵 Gemini AI — Google 계정 로그인 / Free with Google account
+      </summary>
+      <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+        <strong style="color:#1d4ed8">① 접속:</strong> gemini.google.com<br>
+        <strong style="color:#1d4ed8">② KIIP 한국어 롤플레이 연습:</strong>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+          <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">💬 프롬프트 복사해서 붙여넣기</div>
+          <span style="font-family:monospace;background:#dbeafe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 한국에 사는 외국인이에요. 한국의 분리수거 방법과 환경 규칙을 이해하는 한국어 표현을 배우고 싶어요. 한국 생활 환경 규정도 영어로 설명해 주세요."</span>
+          Copy &amp; paste to Gemini for Korean life roleplay practice
+        </div>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #2563eb">
+          <div style="font-weight:700;color:#1d4ed8;margin-bottom:3px">📸 현장 사진 질문 (Gemini 특화)</div>
+          한국 분리수거 표지판 사진 → 업로드 → "이게 무슨 뜻이에요?"<br>
+          <span style="color:#555">Photo of Korean recycling signs → Upload → Ask what it means</span>
+        </div>
+        <a href="https://gemini.google.com" target="_blank" style="display:block;background:#1d4ed8;color:#fff;text-align:center;padding:8px;border-radius:8px;font-weight:700;margin-top:8px;font-size:13px">🔵 Gemini 열기 / Open Gemini →</a>
+      </div>
+    </details>
+
+    <details>
+      <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">
+        🟣 Claude AI — 이메일 가입 · Free with email
+      </summary>
+      <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9;color:#1a202c">
+        <strong style="color:#7c3aed">① 접속:</strong> claude.ai (이메일로 무료 가입)<br>
+        <strong style="color:#7c3aed">② 내 한국어 첨삭:</strong>
+        <div style="background:#fff;border-radius:6px;padding:8px;margin:4px 0;border-left:3px solid #7c3aed">
+          <div style="font-weight:700;color:#7c3aed;margin-bottom:3px">✏️ 문장 고치기 (Claude 특화)</div>
+          <span style="font-family:monospace;background:#ede9fe;padding:4px 8px;border-radius:4px;display:block;margin:4px 0;font-size:11px;line-height:1.6">"저는 KIIP 학습자입니다. 제 한국어 문장을 고쳐주세요: [내 문장]. 영어로 설명해 주세요."</span>
+          Copy your sentence → paste to Claude → get corrections in English
+        </div>
+        <a href="https://claude.ai" target="_blank" style="display:block;background:#7c3aed;color:#fff;text-align:center;padding:8px;border-radius:8px;font-weight:700;margin-top:8px;font-size:13px">🟣 Claude 열기 / Open Claude →</a>
+      </div>
+    </details>
+  </div>
+
+  <!-- 발음 코치 -->
+  <div class="card" style="background:#f0fdf4;border:1px solid #86efac;margin-bottom:10px">
+    <div class="section-label" style="background:#059669">🎤 발음 코치 · Pronunciation Coach</div>
+    <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">
+      원어민 듣기 → 내가 녹음 → 정확도 비교<br>
+      <span style="font-size:11px;color:#059669">Listen → Record → Compare accuracy</span>
+    </div>
+    <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:10px;font-size:11px;color:#166534">
+      🆓 브라우저 내장 API · 완전 무료 · Chrome/Edge 권장
+    </div>
+
+    <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:12px;margin-bottom:10px">
+      <div id="mic-perm-state" style="margin-bottom:8px"></div>
+      <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:10px;margin-bottom:8px;font-size:12px;line-height:1.9;color:#1a202c">
+        🚫 <strong>마이크 차단됨 해결 / Microphone Blocked:</strong><br>
+        PC Chrome/Edge: 주소창 🔒 → 마이크 → <strong>허용</strong> → F5 새로고침<br>
+        Android: ⋮ → 사이트 설정 → 마이크 → 허용<br>
+        <span style="color:#555">PC: Click 🔒 in address bar → Microphone → Allow → press F5</span>
+      </div>
+      <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+        style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:10px;font-size:13px;font-weight:700">
+        🎙️ 마이크 허용하기 / Allow Microphone
+      </button>
+      <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:14px"></div>
+    </div>
+
+    ${[
+      {sent:'여기서 분리수거해야 해요.', eng:'We need to sort waste here.'},
+      {sent:'플라스틱은 저 통에 버려요.', eng:'Put plastic in that bin.'},
+      {sent:'음식물 쓰레기는 따로 버려요.', eng:'Food waste goes in a separate bin.'},
+      {sent:'환경을 보호해야 해요.', eng:'We must protect the environment.'},
+      {sent:'쓰레기를 함부로 버리면 안 돼요.', eng:'You should not litter carelessly.'},
+    ].map(function(item,i){ return `
+      <div style="background:#fff;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+        <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:2px">${item.sent}</div>
+        <div style="font-size:10px;color:#059669;margin-bottom:8px">🇬🇧 ${item.eng}</div>
+        <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+          <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          <button onclick="var b=this;TTS.speak('${item.sent.replace(/'/g,"\\'")}');b.textContent='🔊 재생 중...';setTimeout(function(){b.textContent='🔊 원어민'},2000)"
+            style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🔊 원어민</button>
+          <button id="rec-btn-${i}" onclick="startSTT(${i},'${item.sent.replace(/'/g,"\\'")}',this)"
+            style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🎤 녹음</button>
+          <button id="play-btn-${i}" disabled
+            style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;opacity:0.4">▶ 내 발음</button>
+        </div>
+        <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:14px"></div>
+      </div>
+    `; }).join('')}
+
+    <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+      <strong>📖 사용법 / How to use:</strong><br>
+      1️⃣ <strong>🔊 원어민</strong> — 원어민 발음 먼저 들으세요 / Listen to native speaker<br>
+      2️⃣ <strong>🎤 녹음</strong> — 따라 말하고 다시 누르면 중지 / Speak then tap again to stop<br>
+      3️⃣ <strong>▶ 내 발음</strong> — 내 발음 들어보기 / Listen to yourself<br>
+      4️⃣ 점수: 🟢 80%+ 🟡 50~79% 🔴 50% 미만
+    </div>
+  </div>
+
+  <!-- G스택 학습법 -->
+  <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+    <div class="section-label" style="background:#059669">🌐 글로컬 G스택 학습법 · 4-Step AI Method</div>
+    <div style="font-size:12px;color:#166534;margin:8px 0;line-height:1.9">
+      <strong>글로컬 아카데미 AI 에이전트 기반 4단계:</strong><br>
+      <span style="color:#555">① 어휘/표현 → 앱 내 AI 또는 Gemini 질문</span><br>
+      <span style="color:#555">② 대화 → Gemini 롤플레이 실습</span><br>
+      <span style="color:#555">③ 발음 → 위 발음 코치에서 녹음 비교</span><br>
+      <span style="color:#555">④ 첨삭 → Claude AI에 내 문장 보내기</span><br>
+      <br>
+      <span style="color:#3b82f6;font-size:11px"><strong>🇬🇧 Glocal Academy 4-Step AI Method:</strong><br>
+      ① Vocab/Expressions → Ask in-app AI or Gemini<br>
+      ② Conversation → Gemini roleplay practice<br>
+      ③ Pronunciation → Record &amp; compare above<br>
+      ④ Correction → Send your text to Claude AI</span>
+    </div>
+  </div>
+  `;
+}
+
+// ===== INIT =====
+render();
+</script>
+<script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/sw.js').catch(()=>{});
+  });
+}
+</script>
+<script src="/hw-shared.js"></script>
+</body>
+</html>
+
