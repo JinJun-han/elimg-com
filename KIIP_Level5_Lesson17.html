@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>KIIP 5급 17과 · 한국의 종교</title>
+<meta name="theme-color" content="#059669"/>
+<meta property="og:title" content="KIIP 5급 17과 · 한국의 종교"/>
+<meta property="og:url" content="https://elimg.com/KIIP_Level5_Lesson17.html"/>
+<meta property="og:description" content="KIIP 5급 17과 한국의 종교 - 불교, 기독교, 유교, 종교의 자유, 다종교 공존"/>
+<script src="/i18n/translations.js" defer></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--green:#059669;--dark:#065f46;--mid:#047857;--lgreen:#22c55e;--red:#ef4444;--gray:#f0fdf4;--white:#fff;--text:#1a202c}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;padding-bottom:80px}
+.nav{background:var(--dark);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(6,79,70,0.3)}
+.nav a{color:#fff;text-decoration:none;font-size:14px;padding:6px 10px;border-radius:6px;background:rgba(255,255,255,0.15);transition:background 0.2s}
+.nav a:hover{background:rgba(255,255,255,0.3)}
+.nav-title{font-size:15px;font-weight:700;text-align:center;flex:1;padding:0 8px}
+.section-tabs{display:flex;overflow-x:auto;background:var(--white);border-bottom:2px solid #a7f3d0;position:sticky;top:49px;z-index:99;scrollbar-width:none}
+.section-tabs::-webkit-scrollbar{display:none}
+.tab-btn{flex:none;padding:10px 14px;border:none;background:none;cursor:pointer;font-size:12px;color:#64748b;white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green);font-weight:700}
+.tab-btn:hover{background:#ecfdf5}
+.page{max-width:700px;margin:0 auto;padding:16px}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid #a7f3d0;display:flex;z-index:100;box-shadow:0 -2px 8px rgba(6,79,70,0.1)}
+.bottom-nav a,.bottom-nav button{flex:1;padding:10px 4px;border:none;background:none;color:#64748b;font-size:11px;text-align:center;text-decoration:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px;transition:color 0.2s}
+.bottom-nav a:hover,.bottom-nav button:hover{color:var(--green)}
+.bottom-nav .icon{font-size:18px}
+.card{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;box-shadow:0 1px 4px rgba(6,79,70,0.08);border:1px solid #a7f3d0}
+.card-title{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+h2{font-size:20px;font-weight:800;color:var(--dark);margin-bottom:16px;padding-bottom:8px;border-bottom:3px solid var(--green)}
+h3{font-size:16px;font-weight:700;color:var(--mid);margin-bottom:10px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.vocab-card{background:var(--white);border:2px solid #a7f3d0;border-radius:10px;padding:12px;cursor:pointer;transition:all 0.25s;text-align:center;min-height:80px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+.vocab-card:hover{border-color:var(--green);transform:translateY(-2px);box-shadow:0 4px 12px rgba(5,150,105,0.15)}
+.vocab-card.flipped{background:var(--mid);color:#fff;border-color:var(--mid)}
+.vocab-ko{font-size:15px;font-weight:700;color:var(--dark)}
+.vocab-hanja{font-size:11px;color:#64748b;margin-top:2px}
+.vocab-eng{font-size:12px;color:var(--green);margin-top:4px}
+.vocab-card.flipped .vocab-ko,.vocab-card.flipped .vocab-hanja,.vocab-card.flipped .vocab-eng{color:#fff}
+.vocab-cat{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--green);margin:14px 0 8px;padding:4px 10px;background:#ecfdf5;border-radius:20px;display:inline-block}
+.tts-btn{background:none;border:none;cursor:pointer;font-size:16px;padding:2px 4px;opacity:0.7;transition:opacity 0.2s;vertical-align:middle}
+.tts-btn:hover{opacity:1}
+.concept-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.concept-tab{padding:8px 18px;border-radius:20px;border:2px solid #a7f3d0;background:var(--white);cursor:pointer;font-size:13px;font-weight:600;color:#64748b;transition:all 0.2s}
+.concept-tab.active{background:var(--green);color:#fff;border-color:var(--green)}
+.rule-box{background:#ecfdf5;border-left:4px solid var(--green);border-radius:0 8px 8px 0;padding:14px;margin-bottom:14px}
+.rule-box .rule-title{font-size:13px;font-weight:700;color:var(--mid);margin-bottom:6px}
+.timeline-item{background:#fff;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px;position:relative;padding-left:20px}
+.timeline-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--green);border-radius:4px 0 0 4px}
+.timeline-year{font-size:12px;font-weight:800;color:var(--green);margin-bottom:4px}
+.timeline-event{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px}
+.timeline-desc{font-size:13px;color:#475569;line-height:1.6}
+.topik-card{background:#ecfdf5;border:2px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.topik-card .q-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px;line-height:1.6}
+.topik-options{display:flex;flex-direction:column;gap:6px}
+.topik-opt{padding:8px 12px;border-radius:8px;border:1px solid #a7f3d0;background:#fff;cursor:pointer;font-size:13px;text-align:left;transition:all 0.2s}
+.topik-opt:hover{border-color:var(--green);background:#ecfdf5}
+.topik-opt.correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.topik-opt.wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.dialogue{background:#f0fdf4;border-radius:10px;padding:14px;margin-bottom:10px}
+.dialogue-line{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start}
+.dialogue-line.b{flex-direction:row-reverse}
+.speaker{font-size:11px;font-weight:700;color:var(--green);min-width:24px;margin-top:3px}
+.dialogue-line.b .speaker{color:var(--mid)}
+.bubble{background:#ecfdf5;border-radius:10px;padding:8px 12px;font-size:14px;line-height:1.5;max-width:85%}
+.dialogue-line.b .bubble{background:#a7f3d0}
+.listen-script-box{background:#f0fdf4;border:2px dashed #a7f3d0;border-radius:10px;padding:14px;margin-bottom:14px;font-size:14px;line-height:1.8;color:var(--dark)}
+.listen-q{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.listen-q .q-text{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:10px}
+.reveal-btn{background:var(--green);color:#fff;border:none;border-radius:8px;padding:8px 18px;font-size:13px;cursor:pointer;margin-bottom:12px}
+.reveal-btn:hover{background:var(--mid)}
+.reading-text{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:16px;font-size:14px;line-height:1.9;color:var(--text);margin-bottom:14px}
+.reading-text .highlight{color:var(--green);font-weight:700}
+.writing-guide{background:#ecfdf5;border-radius:10px;padding:14px;margin-bottom:12px}
+.writing-guide ul{padding-left:18px}
+.writing-guide ul li{margin-bottom:6px;font-size:14px;color:var(--dark)}
+textarea{width:100%;border:2px solid #a7f3d0;border-radius:10px;padding:12px;font-size:14px;min-height:160px;resize:vertical;font-family:inherit;color:var(--text);transition:border-color 0.2s}
+textarea:focus{outline:none;border-color:var(--green)}
+.sample-box{background:#ecfdf5;border-left:4px solid var(--green);border-radius:0 10px 10px 0;padding:14px;font-size:14px;line-height:1.8;color:var(--dark);margin-top:10px}
+.culture-section{background:#fff;border:1px solid #a7f3d0;border-radius:10px;padding:14px;margin-bottom:10px}
+.culture-section h4{color:var(--dark);font-size:15px;font-weight:700;margin-bottom:8px}
+.culture-section p{font-size:14px;line-height:1.7;color:#334155}
+.quiz-card{background:var(--white);border:2px solid #a7f3d0;border-radius:12px;padding:16px;margin-bottom:12px}
+.quiz-card.answered-correct{border-color:#22c55e;background:#f0fdf4}
+.quiz-card.answered-wrong{border-color:#ef4444;background:#fff1f2}
+.quiz-q{font-size:15px;font-weight:700;color:var(--dark);margin-bottom:12px;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:6px}
+.quiz-opt{padding:10px 14px;border-radius:8px;border:1px solid #a7f3d0;background:#f0fdf4;cursor:pointer;font-size:14px;text-align:left;transition:all 0.2s}
+.quiz-opt:hover:not(:disabled){border-color:var(--green);background:#ecfdf5}
+.quiz-opt:disabled{cursor:default}
+.quiz-opt.selected-correct{background:#dcfce7;border-color:#22c55e;color:#166534;font-weight:700}
+.quiz-opt.selected-wrong{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+.quiz-score{background:var(--dark);color:#fff;border-radius:12px;padding:20px;text-align:center;margin-top:16px}
+.quiz-score .score-num{font-size:40px;font-weight:900;color:#6ee7b7}
+.ai-section{background:var(--white);border-radius:12px;padding:16px;margin-bottom:14px;border:2px solid #a7f3d0}
+.pron-sent{background:#f0fdf4;border-radius:10px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.pron-sent .sent-text{font-size:15px;font-weight:600;color:var(--dark);flex:1}
+.rec-btn{background:var(--green);color:#fff;border:none;border-radius:20px;padding:8px 16px;font-size:13px;cursor:pointer;transition:background 0.2s}
+.rec-btn:hover{background:var(--mid)}
+.rec-btn.recording{background:#ef4444;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.6}}
+.score-badge{min-width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;border:2px solid #a7f3d0;color:#94a3b8}
+.score-badge.good{background:#dcfce7;border-color:#22c55e;color:#166534}
+.score-badge.ok{background:#fef9c3;border-color:#eab308;color:#854d0e}
+.score-badge.bad{background:#fee2e2;border-color:#ef4444;color:#991b1b}
+#rec-status{min-height:40px;margin-bottom:10px}
+.speaking-topics{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.speaking-topic{background:#ecfdf5;border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:10px 14px;font-size:14px;color:var(--dark)}
+.intro-hero{background:linear-gradient(135deg,var(--dark) 0%,var(--green) 100%);color:#fff;border-radius:16px;padding:24px;margin-bottom:16px;text-align:center}
+.intro-hero h1{font-size:24px;font-weight:900;margin-bottom:6px}
+.intro-hero .subtitle{font-size:14px;opacity:0.85;margin-bottom:14px}
+.intro-hero .level-badge{display:inline-block;background:rgba(255,255,255,0.2);padding:4px 14px;border-radius:20px;font-size:13px;font-weight:700}
+.objective-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.objective-list li{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--dark)}
+.objective-list li::before{content:'✓';color:var(--green);font-weight:900;min-width:16px}
+.section-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.section-nav-btn{background:var(--white);border:2px solid #a7f3d0;border-radius:10px;padding:12px 8px;text-align:center;cursor:pointer;transition:all 0.2s;font-size:12px;color:var(--dark)}
+.section-nav-btn:hover{border-color:var(--green);background:#ecfdf5;color:var(--green)}
+.section-nav-btn .nav-icon{font-size:20px;display:block;margin-bottom:4px}
+.check-btn{background:var(--green);color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:13px;cursor:pointer}
+.check-btn:hover{background:var(--mid)}
+.answer-reveal{color:#166534;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.wrong-reveal{color:#991b1b;font-weight:700;font-size:13px;margin-top:6px;display:block}
+.return-toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);z-index:999;background:#1e3a5f;color:#fff;border-radius:14px;padding:12px 16px;display:flex;align-items:center;gap:10px;max-width:calc(100vw - 32px);box-shadow:0 4px 20px rgba(0,0,0,0.3);opacity:0;transition:all 0.3s;pointer-events:none}
+.return-toast.show{opacity:1;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.return-toast-icon{font-size:24px;flex-shrink:0}
+.return-toast-body{flex:1;min-width:0}
+.return-toast-title{font-size:13px;font-weight:800;margin-bottom:2px}
+.return-toast-sub{font-size:11px;opacity:0.8;line-height:1.5}
+.return-toast-close{background:rgba(255,255,255,0.2);border:none;color:#fff;border-radius:50%;width:24px;height:24px;font-size:12px;cursor:pointer;flex-shrink:0}
+.return-toast-bar{position:absolute;bottom:0;left:0;height:3px;background:#f59e0b;border-radius:0 0 14px 14px;animation:toastTimer 8s linear forwards}
+@keyframes toastTimer{from{width:100%}to{width:0%}}
+@keyframes aiDot{0%,80%,100%{transform:scale(0.6);opacity:0.4}40%{transform:scale(1);opacity:1}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const TTS={
+  speak(text,lang='ko-KR',rate=0.8){
+    if(!window.speechSynthesis)return;
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(text);
+    u.lang=lang;u.rate=rate;
+    window.speechSynthesis.speak(u);
+  },
+  init(){if(window.speechSynthesis)window.speechSynthesis.getVoices();}
+};
+window.addEventListener('load',()=>{TTS.init();setTimeout(TTS.init,500);});
+
+function ttsBtn(text,lang='ko-KR'){
+  const safe=text.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+  return `<button class="tts-btn" onclick="TTS.speak('${safe}','${lang}');event.stopPropagation()">🔊</button>`;
+}
+
+const STATE={
+  section:0,vocabFlipped:{},
+  listenRevealed:false,listenAnswers:{},
+  conceptTab:0,topikAnswers:{},
+  readAnswers:{},
+  writingText:'',sampleShown:false,
+  quizAnswers:{},quizDone:false,
+  lang:localStorage.getItem('kiip_lang')||'ko',
+};
+function setState(newState){Object.assign(STATE,newState);render();}
+
+const SECTIONS=[
+  {id:0,label:'도입',icon:'🏠'},
+  {id:1,label:'어휘',icon:'📝'},
+  {id:2,label:'핵심',icon:'📜'},
+  {id:3,label:'말하기',icon:'💬'},
+  {id:4,label:'듣기',icon:'👂'},
+  {id:5,label:'연표',icon:'🗓️'},
+  {id:6,label:'읽기',icon:'📖'},
+  {id:7,label:'쓰기',icon:'✏️'},
+  {id:8,label:'문화',icon:'🎎'},
+  {id:9,label:'퀴즈',icon:'✅'},
+  {id:10,label:'AI실습',icon:'🤖'},
+];
+
+const LESSON_NUM = 17;
+const MODULE_TITLE = '한국의 종교';
+const MODULE_SUBTITLE = 'Religion in Korea';
+
+const VOCAB_DATA=[
+  {term:'불교', pron:'불교', meaning:'Buddhism (Korea\'s oldest religion)', example:'한국에는 불교 신자가 많습니다.'},
+  {term:'기독교', pron:'기독교', meaning:'Christianity (Protestant + Catholic)', example:'기독교는 한국에서 빠르게 성장했습니다.'},
+  {term:'유교', pron:'유교', meaning:'Confucianism (traditional values)', example:'유교는 한국의 가족 문화에 영향을 주었습니다.'},
+  {term:'종교의 자유', pron:'종교의 자유', meaning:'freedom of religion', example:'대한민국 헌법은 종교의 자유를 보장합니다.'},
+  {term:'신자', pron:'신자', meaning:'believer / follower', example:'한국의 불교 신자는 약 1,000만 명입니다.'},
+  {term:'절 (사찰)', pron:'절', meaning:'Buddhist temple', example:'불국사는 유명한 절입니다.'},
+  {term:'성당 / 교회', pron:'성당 / 교회', meaning:'Catholic church / Protestant church', example:'명동성당은 서울의 유명한 성당입니다.'},
+  {term:'무종교', pron:'무종교', meaning:'no religion (non-religious)', example:'한국인의 약 56%는 무종교입니다.'},
+];
+
+const PRON_SENTS_DATA=[
+  {text:'대한민국은 특정 국교가 없으며 종교의 자유를 보장합니다.', trans:'Korea has no state religion and guarantees freedom of religion.'},
+  {text:'불교는 삼국시대에 한국에 전래되었습니다.', trans:'Buddhism was introduced to Korea during the Three Kingdoms period.'},
+  {text:'기독교는 19세기 이후 한국에서 급속히 성장했습니다.', trans:'Christianity grew rapidly in Korea from the 19th century onward.'},
+  {text:'유교는 조선시대 국가 이념으로 현재도 한국 문화에 영향을 줍니다.', trans:'Confucianism was the state ideology of the Joseon Dynasty and still influences Korean culture.'},
+];
+
+const CONCEPT1={
+  title:'한국의 주요 종교',
+  icon:'🙏',
+  points:[
+    '🇰🇷 무종교 (56%): 한국인의 절반 이상이 특정 종교를 믿지 않습니다.',
+    '☸️ 불교 (16%): 삼국시대(4세기)에 전래. 사찰·연등회·템플스테이. 조계종이 대표 종단.',
+    '✝️ 개신교 (17%): 19세기 선교사를 통해 전파. 교회 수 세계 최다 수준.',
+    '✝️ 천주교(가톨릭) (11%): 18세기 자생적 수용 — 세계적으로 독특한 사례.',
+    '🈷️ 유교: 종교라기보다 생활철학. 제사·경로효친·가족 중시 문화에 영향.',
+    '🌟 기타: 원불교·천도교 등 한국 자생 종교도 있음.',
+  ],
+  summary:'📊 2021년 조사: 개신교 17% · 불교 16% · 가톨릭 11% · 무종교 56%',
+  questions:[
+    {q:'2021년 조사 기준 한국인 중 무종교 비율은?',opts:['약 30%','약 40%','약 56%','약 70%'],answer:2},
+    {q:'삼국시대에 한국에 전래된 종교는?',opts:['기독교','유교','불교','천도교'],answer:2},
+  ]
+};
+
+const CONCEPT2={
+  title:'종교의 자유와 한국 사회',
+  icon:'⚖️',
+  points:[
+    '📜 헌법 제20조: 모든 국민은 종교의 자유를 가진다. 국교는 인정되지 않는다.',
+    '🤝 종교 간 공존: 한 거리에 교회·절·성당이 공존하는 것이 일상적.',
+    '🎉 종교 공휴일: 부처님오신날(음력 4월 8일) · 성탄절(12월 25일) 모두 법정공휴일.',
+    '🏛️ 유교 문화 잔재: 제사, 명절 차례, 어른 공경 등 유교적 전통은 종교 여부와 무관하게 지속.',
+    '🌏 외국인과 종교: 한국에서도 자신의 종교를 자유롭게 믿고 예배할 수 있음. 이슬람 사원(모스크)도 있음.',
+    '⛪ 군종제도: 군대 내 불교·기독교·천주교 군종 장교 제도 운영.',
+  ],
+  summary:'💡 한국은 종교의 자유가 보장된 다종교 사회입니다.',
+  questions:[
+    {q:'한국 헌법이 보장하는 것은?',opts:['특정 종교 지원','종교의 자유','불교를 국교로 지정','모든 종교 금지'],answer:1},
+    {q:'한국의 법정공휴일인 종교 기념일 두 가지는?',opts:['부처님오신날과 성탄절','설날과 추석','현충일과 광복절','추석과 성탄절'],answer:0},
+  ]
+};
+
+const QUIZ=[
+  {q:'한국 헌법에서 종교에 관해 보장하는 것은?',opts:['특정 종교 지원','종교의 자유','불교를 국교로 지정','모든 종교 금지'],answer:1},
+  {q:'한국에서 법정공휴일인 종교 기념일 두 가지는?',opts:['부처님오신날과 성탄절','설날과 추석','현충일과 광복절','추석과 성탄절'],answer:0},
+  {q:'불교가 한국(고구려)에 공식 전래된 시기는?',opts:['고려시대 1000년','신라시대 7세기','372년 삼국시대','조선시대 15세기'],answer:2},
+  {q:'연등회의 유네스코 인류무형문화유산 등재 연도는?',opts:['2013년','2016년','2020년','2023년'],answer:2},
+  {q:'2021년 조사 기준 한국인의 종교 없음(무종교) 비율은?',opts:['약 30%','약 40%','약 56%','약 70%'],answer:2},
+];
+
+const RECORDER = {
+  streams: {},
+  recorders: {},
+  chunks: {},
+  audioURLs: {},
+  isRecording: {},
+
+  async start(idx, targetText, recBtn) {
+    const resultEl = document.getElementById('stt-result-' + idx);
+    const playBtn  = document.getElementById('play-btn-' + idx);
+    const scoreEl  = document.getElementById('score-bar-' + idx);
+    if (this.isRecording[idx]) { this.stop(idx, targetText, recBtn); return; }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      this.streams[idx] = stream;
+    } catch(e) {
+      const name = e.name || '';
+      let msg = '';
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        msg = '❌ <strong>마이크가 차단됨</strong> — 브라우저 주소창 🔒 → 마이크 → <strong>허용</strong> 후 새로고침';
+      } else if (name === 'NotFoundError' || name === 'DevicesNotFoundError') {
+        msg = '❌ <strong>마이크를 찾을 수 없어요</strong> — 마이크 연결을 확인하세요';
+      } else {
+        msg = '❌ <strong>오류: ' + name + '</strong> — Chrome/Edge에서 다시 시도하세요';
+      }
+      if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-size:11px;line-height:1.7">' + msg + '</span>';
+      return;
+    }
+    this.chunks[idx] = [];
+    const mr = new MediaRecorder(this.streams[idx]);
+    this.recorders[idx] = mr;
+    mr.ondataavailable = e => { if (e.data.size > 0) this.chunks[idx].push(e.data); };
+    mr.onstop = () => {
+      if (this.audioURLs[idx]) URL.revokeObjectURL(this.audioURLs[idx]);
+      const blob = new Blob(this.chunks[idx], {type: 'audio/webm'});
+      this.audioURLs[idx] = URL.createObjectURL(blob);
+      if (playBtn) {
+        playBtn.disabled = false;
+        playBtn.style.opacity = '1';
+        playBtn.onclick = () => { const a = new Audio(this.audioURLs[idx]); a.play(); };
+      }
+    };
+    mr.start();
+    this.isRecording[idx] = true;
+    recBtn.textContent = '⏹ 중지';
+    recBtn.style.background = '#ef4444';
+    if (resultEl) resultEl.innerHTML = '<span style="color:#ef4444;font-weight:700">● 녹음 중...</span>';
+    if (scoreEl) scoreEl.style.width = '0%';
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SR) {
+      const rec = new SR();
+      rec.lang = 'ko-KR';
+      rec.continuous = false;
+      rec.interimResults = false;
+      rec.onresult = (e) => {
+        const said   = e.results[0][0].transcript.replace(/[\s,.?!]/g,'');
+        const target = targetText.replace(/[\s,.?!]/g,'');
+        const conf   = e.results[0][0].confidence;
+        let match = 0;
+        const minLen = Math.min(said.length, target.length);
+        for (let i = 0; i < minLen; i++) { if (said[i] === target[i]) match++; }
+        const pct = target.length > 0 ? Math.round(match / target.length * 100) : 0;
+        const confPct = Math.round((conf || 0.5) * 100);
+        const finalPct = Math.round((pct * 0.7) + (confPct * 0.3));
+        const color = finalPct >= 80 ? '#22c55e' : finalPct >= 50 ? '#f59e0b' : '#ef4444';
+        const msg   = finalPct >= 80 ? '✅ 완벽해요!' : finalPct >= 50 ? '🔄 조금 더 연습!' : '❌ 다시 시도!';
+        if (resultEl) resultEl.innerHTML = '<span style="color:' + color + ';font-weight:800">' + msg + '</span><br><span style="font-size:10px;color:#555">인식: "' + e.results[0][0].transcript + '"</span>';
+        if (scoreEl) { scoreEl.style.width = finalPct + '%'; scoreEl.style.background = color; }
+      };
+      rec.onerror = () => {};
+      rec.start();
+    }
+  },
+
+  async autoDetect() {
+    const stateEl = document.getElementById('mic-perm-state');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const allowBtn = document.getElementById('mic-allow-btn');
+    if (!stateEl) return;
+    if (navigator.permissions) {
+      try {
+        const result = await navigator.permissions.query({name: 'microphone'});
+        if (result.state === 'granted') {
+          stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 이미 허용됨 — 바로 녹음하세요!</div>';
+          if (allowBtn) { allowBtn.style.background = '#166534'; allowBtn.textContent = '✅ 허용됨 — 바로 녹음하세요'; }
+          if (blockedGuide) blockedGuide.style.display = 'none';
+          return;
+        } else if (result.state === 'denied') {
+          stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 아래 안내대로 해결하세요</div>';
+          if (blockedGuide) blockedGuide.style.display = 'block';
+          if (allowBtn) { allowBtn.style.background = '#ef4444'; allowBtn.textContent = '⚠️ 차단됨 — 위 단계 완료 후 여기 클릭'; }
+          return;
+        } else {
+          stateEl.innerHTML = '<div style="background:#fef9c3;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#92400e">❓ 아직 허용 안 됨 — 아래 버튼을 눌러 허용해 주세요</div>';
+        }
+        result.onchange = () => RECORDER.autoDetect();
+      } catch(e) {
+        stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+      }
+    } else {
+      stateEl.innerHTML = '<div style="font-size:11px;color:#888">아래 버튼을 눌러 마이크 허용 여부를 확인하세요</div>';
+    }
+  },
+
+  async checkPermission(btn) {
+    const statusEl = document.getElementById('mic-status');
+    const box = document.getElementById('mic-check-box');
+    const blockedGuide = document.getElementById('mic-blocked-guide');
+    const stateEl = document.getElementById('mic-perm-state');
+    btn.textContent = '⏳ 확인 중...'; btn.disabled = true;
+    if (location.protocol === 'file:') {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ file:// 불가 → elimg.com에서 열기</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">❌ 미지원 브라우저 — Chrome 또는 Edge를 사용해 주세요</span>';
+      btn.textContent = '🎙️ 마이크 허용하기'; btn.disabled = false; return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      stream.getTracks().forEach(t => t.stop());
+      if (stateEl) stateEl.innerHTML = '<div style="background:#dcfce7;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#166534;font-weight:700">✅ 마이크 허용됨! 아래에서 바로 녹음하세요!</div>';
+      if (statusEl) statusEl.innerHTML = '<span style="color:#059669;font-weight:700">✅ 성공!</span>';
+      if (box) { box.style.background = '#dcfce7'; box.style.borderColor = '#86efac'; }
+      if (blockedGuide) blockedGuide.style.display = 'none';
+      btn.textContent = '✅ 허용됨 — 바로 녹음하세요!'; btn.style.background = '#166534'; btn.disabled = false;
+    } catch(e) {
+      const name = e.name || '';
+      btn.disabled = false;
+      if (name === 'NotAllowedError' || name === 'PermissionDeniedError') {
+        if (blockedGuide) blockedGuide.style.display = 'block';
+        if (stateEl) stateEl.innerHTML = '<div style="background:#fee2e2;border-radius:8px;padding:8px;text-align:center;font-size:12px;color:#991b1b;font-weight:700">🚫 마이크 차단됨 — 안내대로 해결 후 다시 클릭</div>';
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444;font-size:11px">🔒 허용 완료 후 이 버튼을 다시 눌러주세요</span>';
+        btn.textContent = '🔄 허용 완료 후 다시 클릭'; btn.style.background = '#ef4444';
+      } else {
+        if (statusEl) statusEl.innerHTML = '<span style="color:#ef4444">오류 (' + name + ') — Chrome/Edge에서 다시 시도</span>';
+        btn.textContent = '🔄 다시 시도'; btn.style.background = '#92400e';
+      }
+    }
+  },
+
+  stop(idx, targetText, recBtn) {
+    if (this.recorders[idx] && this.recorders[idx].state !== 'inactive') {
+      this.recorders[idx].stop();
+    }
+    if (this.streams[idx]) {
+      this.streams[idx].getTracks().forEach(t => t.stop());
+    }
+    this.isRecording[idx] = false;
+    recBtn.textContent = '🎤 다시 녹음';
+    recBtn.style.background = '#059669';
+  }
+};
+
+function startSTT(idx, targetText, recBtn) {
+  RECORDER.start(idx, targetText, recBtn);
+}
+
+function render(){
+  document.getElementById('app').innerHTML=`
+    <nav class="nav">
+      <a href="/KIIP_Level5_Lesson16">← 16과</a>
+      <span class="nav-title">5급 17과 · 한국의 종교</span>
+      <a href="/KIIP_Level5_Lesson18">18과 →</a>
+    </nav>
+    <div class="section-tabs">
+      ${SECTIONS.map(s=>`<button class="tab-btn${STATE.section===s.id?' active':''}" onclick="setState({section:${s.id}})">${s.icon} ${s.label}</button>`).join('')}
+    </div>
+    <div class="page">${renderSection()}</div>
+    <nav class="bottom-nav">
+      <a href="/KIIP_Level5_Index"><span class="icon">📚</span>목차</a>
+      <button onclick="setState({section:0})"><span class="icon">🏠</span>도입</button>
+      <button onclick="setState({section:9})"><span class="icon">✅</span>퀴즈</button>
+      <button onclick="setState({section:10})"><span class="icon">🤖</span>AI실습</button>
+      <a href="/KIIP_Level5_Lesson18"><span class="icon">➡️</span>18과</a>
+    </nav>
+  `;
+}
+
+function renderSection(){
+  switch(STATE.section){
+    case 0: return renderIntro();
+    case 1: return renderVocab();
+    case 2:{
+      let html;
+      if(STATE.conceptTab===0){html=renderConceptBlock(CONCEPT1,'c1');}
+      else{html=renderConceptBlock(CONCEPT2,'c2');}
+      return `<h2>📜 핵심 내용</h2>
+        <div class="concept-tabs">
+          <button class="concept-tab${STATE.conceptTab===0?' active':''}" onclick="setState({conceptTab:0})">1. 주요 종교</button>
+          <button class="concept-tab${STATE.conceptTab===1?' active':''}" onclick="setState({conceptTab:1})">2. 종교의 자유</button>
+        </div>${html}`;
+    }
+    case 3: return renderSpeaking();
+    case 4: return renderListening();
+    case 5: return renderTimeline();
+    case 6: return renderReading();
+    case 7: return renderWriting();
+    case 8: return renderCulture();
+    case 9: return renderQuiz();
+    case 10: return renderAI();
+    default: return '';
+  }
+}
+
+function renderIntro(){
+  return `
+    <div class="intro-hero">
+      <div class="level-badge">KIIP 5급 · 17과</div>
+      <h1>🙏 한국의 종교</h1>
+      <div class="subtitle">불교 · 기독교 · 유교 · 종교의 자유 · 다종교 공존<br>Buddhism · Christianity · Confucianism · Religious Freedom · Coexistence</div>
+    </div>
+    <div class="card">
+      <div class="card-title">📌 학습 목표</div>
+      <ul class="objective-list">
+        <li>한국의 주요 종교(불교·개신교·천주교·유교)의 특징과 역사를 설명할 수 있다.</li>
+        <li>한국 헌법의 종교의 자유 조항을 이해하고 설명할 수 있다.</li>
+        <li>한국이 다종교 사회임을 이해하고, 종교 관련 공휴일을 알 수 있다.</li>
+        <li>자국의 종교 문화와 한국의 종교 문화를 비교하여 말할 수 있다.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title">🙏 단원 개요</div>
+      <p style="font-size:14px;line-height:1.8;color:#334155">
+        한국은 헌법으로 종교의 자유를 보장하는 다종교 사회입니다. 불교·개신교·천주교·유교가 공존하며, 한 거리에 교회·절·성당이 함께 있는 모습을 볼 수 있습니다. 이번 과에서 한국의 다양한 종교 문화를 배워봅니다.
+      </p>
+    </div>
+    <div class="card">
+      <div class="card-title">📚 학습 내용</div>
+      <div class="section-nav-grid">
+        ${SECTIONS.slice(1).map(s=>`<button class="section-nav-btn" onclick="setState({section:${s.id}})"><span class="nav-icon">${s.icon}</span>${s.label}</button>`).join('')}
+      </div>
+    </div>`;
+}
+
+function renderVocab(){
+  return `<h2>📝 핵심 어휘</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">카드를 클릭하면 뜻이 나타납니다. 🔊 버튼으로 발음을 들어보세요.</p>
+    <div class="vocab-grid">
+      ${VOCAB_DATA.map((v,i)=>{
+        const key=v.term;
+        const flipped=STATE.vocabFlipped[key];
+        return `<div class="vocab-card${flipped?' flipped':''}" onclick="setState({vocabFlipped:{...STATE.vocabFlipped,'${key.replace(/'/g,"\\'")}':${!flipped}}})">
+          ${flipped
+            ?`<div class="vocab-ko" style="font-size:12px;line-height:1.5">${v.meaning}</div><div class="vocab-hanja" style="font-size:11px;margin-top:6px;color:#d1fae5">${v.example}</div>`
+            :`<div class="vocab-ko">${v.term} ${ttsBtn(v.pron)}</div>
+              <div class="vocab-eng">${v.meaning}</div>`
+          }
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+function renderConceptBlock(concept,prefix){
+  return `
+    <div class="card">
+      <div class="card-title">${concept.icon} ${concept.title}</div>
+      ${concept.points.map((p,i)=>`
+        <div class="rule-box">
+          <p style="font-size:14px;line-height:1.7;color:#334155">${p}</p>
+        </div>`).join('')}
+      <div style="background:#ecfdf5;border-radius:10px;padding:12px;margin-top:8px;font-size:14px;font-weight:700;color:var(--dark);line-height:1.7">${concept.summary}</div>
+    </div>
+    <div class="card">
+      <div class="card-title">❓ 확인 문제</div>
+      ${concept.questions.map((q,i)=>`
+        <div class="topik-card">
+          <div class="q-text">${i+1}. ${q.q}</div>
+          <div class="topik-options">
+            ${q.opts.map((opt,j)=>`
+              <button class="topik-opt${STATE.topikAnswers[prefix+i]===j?(j===q.answer?' correct':' wrong'):''}"
+                onclick="setState({topikAnswers:{...STATE.topikAnswers,'${prefix+i}':${j}}})"
+                ${STATE.topikAnswers[prefix+i]!==undefined?'disabled':''}>
+                ${j+1}. ${opt}
+              </button>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>`;
+}
+
+function renderSpeaking(){
+  return `<h2>💬 말하기 연습</h2>
+    <div class="card">
+      <div class="card-title">🎯 말하기 주제</div>
+      <div class="rule-box">
+        <div class="rule-title">💬 주제 (Topic)</div>
+        <p style="font-size:14px;line-height:1.7;color:#334155">당신의 나라에서 종교는 어떤 역할을 합니까? 한국과 비교해 보세요.</p>
+      </div>
+      <div class="rule-box" style="border-left-color:#047857">
+        <div class="rule-title">🇰🇷 모범 답변 (Korean)</div>
+        <p style="font-size:14px;line-height:1.7;color:#334155">저는 [나라]에서 왔는데, 우리나라에서는 [종교]가 중요한 역할을 합니다. 한국은 다양한 종교가 공존하는 점이 인상적입니다. ${ttsBtn('저는 [나라]에서 왔는데, 우리나라에서는 [종교]가 중요한 역할을 합니다. 한국은 다양한 종교가 공존하는 점이 인상적입니다.')}</p>
+      </div>
+      <div class="rule-box" style="border-left-color:#1d4ed8">
+        <div class="rule-title" style="color:#1d4ed8">🇺🇸 Model Answer (English)</div>
+        <p style="font-size:14px;line-height:1.7;color:#334155">In my country, [religion] plays an important role. I find it impressive that multiple religions coexist peacefully in Korea.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">💬 추가 말하기 주제</div>
+      <div class="speaking-topics">
+        <div class="speaking-topic">한국에서 본 종교 시설(절, 교회, 성당 등)에 대해 이야기해 보세요.</div>
+        <div class="speaking-topic">부처님오신날과 성탄절이 모두 공휴일인 것에 대해 어떻게 생각하나요?</div>
+        <div class="speaking-topic">한국의 종교 문화에서 인상적인 점은 무엇인가요?</div>
+      </div>
+    </div>`;
+}
+
+function renderListening(){
+  return `<h2>👂 듣기 · 이해하기</h2>
+    <div class="card">
+      <div class="card-title">🎧 다문화 가족의 종교 이야기 · A Multicultural Family's Story</div>
+      <p style="font-size:13px;color:#64748b;margin-bottom:12px">아래 내용을 읽고 질문에 답하세요.</p>
+      <div class="listen-script-box">
+        <strong>🇰🇷 한국어:</strong><br>
+        마리아는 필리핀 출신으로 가톨릭 신자입니다. 남편은 한국인으로 무종교입니다. 한국에서 명동성당에 다니고, 부처님오신날에는 절에도 방문합니다. 한국의 종교 자유가 편하다고 느낍니다.<br><br>
+        <strong>🇺🇸 English:</strong><br>
+        Maria is from the Philippines and is Catholic. Her Korean husband has no religion. She attends Myeongdong Cathedral in Seoul and sometimes visits a Buddhist temple on Buddha's Birthday. She feels comfortable with Korea's religious freedom.
+      </div>
+      <button class="reveal-btn" onclick="setState({listenRevealed:true})">📖 정답 확인</button>
+    </div>
+    <div class="listen-q">
+      <div class="q-text">1. 마리아의 종교는 무엇입니까?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 가톨릭(천주교)</div>`:''}
+    </div>
+    <div class="listen-q">
+      <div class="q-text">2. 남편의 종교는 무엇입니까?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 무종교 (종교 없음)</div>`:''}
+    </div>
+    <div class="listen-q">
+      <div class="q-text">3. 부처님오신날에 마리아는 어디에 갔습니까?</div>
+      ${STATE.listenRevealed?`<div class="answer-reveal">✅ 절 (불교 사찰)</div>`:''}
+    </div>`;
+}
+
+function renderTimeline(){
+  const events=[
+    {year:'372년', event:'불교 전래', detail:'고구려에 불교 공식 전래 (전진에서)'},
+    {year:'18세기', event:'천주교 자생적 수용', detail:'조선 실학자들이 서학(천주교)을 자발적으로 수용 — 세계적으로 독특한 사례'},
+    {year:'1885년', event:'개신교 선교사 입국', detail:'아펜젤러·언더우드 등 미국 선교사 도착. 학교·병원 설립'},
+    {year:'1860년', event:'동학 창시', detail:'최제우가 창시. 후에 천도교로 발전. 동학농민운동(1894)의 사상적 배경'},
+    {year:'1916년', event:'원불교 창시', detail:'소태산 박중빈이 창시한 한국 자생 종교'},
+    {year:'현재', event:'다종교 공존', detail:'개신교·불교·천주교·유교·원불교 등 다양한 종교가 자유롭게 공존'},
+  ];
+  return `<h2>🗓️ 한국 종교 역사 연표</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">한국 종교의 역사적 흐름을 순서대로 정리했습니다.</p>
+    ${events.map(e=>`
+      <div class="timeline-item">
+        <div class="timeline-year">📅 ${e.year}</div>
+        <div class="timeline-event">⭐ ${e.event}</div>
+        <div class="timeline-desc">${e.detail}</div>
+      </div>`).join('')}`;
+}
+
+function renderReading(){
+  return `<h2>📖 읽기</h2>
+    <div class="card">
+      <div class="card-title">📄 한국의 종교 문화 이해하기</div>
+      <div class="reading-text">
+        한국은 헌법으로 <span class="highlight">종교의 자유</span>를 보장하는 다종교 사회입니다. <span class="highlight">불교</span>는 가장 오랜 역사를 가지며 사찰과 연등회 문화가 유명합니다. <span class="highlight">기독교</span>(개신교와 천주교)는 근대 이후 급성장했고, <span class="highlight">유교</span>는 현재도 제사와 경로효친 문화로 남아 있습니다.<br><br>
+        외국인도 자유롭게 자신의 종교를 믿고 예배할 수 있으며, 이슬람 모스크, 힌두 사원 등도 한국에 있습니다.
+      </div>
+      <div class="listen-q">
+        <div class="q-text">한국에서 불교와 기독교 외에 어떤 종교를 믿는 사람들이 있나요?</div>
+        <button class="reveal-btn" onclick="setState({readAnswers:{...STATE.readAnswers,r1:true}})">정답 확인</button>
+        ${STATE.readAnswers.r1?`<div class="answer-reveal">✅ 이슬람교, 힌두교 등 다양한 종교를 가진 외국인들이 한국에서 자유롭게 신앙생활을 할 수 있습니다.</div>`:''}
+      </div>
+      <div class="listen-q">
+        <div class="q-text">유교는 현재 한국 문화에 어떤 형태로 남아 있나요?</div>
+        <button class="reveal-btn" onclick="setState({readAnswers:{...STATE.readAnswers,r2:true}})">정답 확인</button>
+        ${STATE.readAnswers.r2?`<div class="answer-reveal">✅ 제사와 경로효친(어른을 공경하는) 문화로 남아 있습니다.</div>`:''}
+      </div>
+    </div>`;
+}
+
+function renderWriting(){
+  return `<h2>✏️ 쓰기 연습</h2>
+    <div class="card">
+      <div class="card-title">📝 한국에서 경험한 종교 문화 쓰기</div>
+      <div class="writing-guide">
+        <p style="font-size:14px;font-weight:700;color:var(--dark);margin-bottom:8px">📌 다음 내용을 포함하여 써 보세요. (예: 절 방문, 교회, 명절 제사 등)</p>
+        <ul>
+          <li>한국에서 경험한 종교 문화 (절, 교회, 성당, 명절 등)</li>
+          <li>본국의 종교 문화와의 비교</li>
+          <li>한국의 종교 자유에 대한 느낌</li>
+        </ul>
+      </div>
+      <textarea placeholder="여기에 한국어로 써 보세요..." oninput="STATE.writingText=this.value">${STATE.writingText}</textarea>
+      <div style="text-align:right;font-size:12px;color:#64748b;margin-top:4px">${STATE.writingText.length}자</div>
+      <button class="reveal-btn" onclick="setState({sampleShown:!STATE.sampleShown})">${STATE.sampleShown?'예문 숨기기':'예문 보기'}</button>
+      ${STATE.sampleShown?`<div class="sample-box">
+        한국에 와서 처음으로 절에 가 보았습니다. 불국사는 정말 아름다웠습니다. 한국은 다양한 종교가 공존해서 좋습니다. 저는 [종교]를 믿는데 한국에서도 자유롭게 믿을 수 있어서 감사합니다.
+      </div>`:''}
+    </div>`;
+}
+
+function renderCulture(){
+  return `<h2>🎎 문화 알기</h2>
+    <div class="card">
+      <div class="card-title">🙏 한국의 종교 문화 체험</div>
+    </div>
+    <div class="culture-section">
+      <h4>🏮 연등회</h4>
+      <p>부처님오신날 전후 전국에서 열리는 연등 행렬. 유네스코 인류무형문화유산(2020년 등재). 형형색색의 연등이 거리를 수놓는 아름다운 행사입니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>⛩️ 템플스테이</h4>
+      <p>사찰에서 하룻밤 묵으며 명상·사찰음식 체험. 외국인에게도 큰 인기가 있습니다. 한국 불교 문화를 직접 체험할 수 있는 특별한 기회입니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>🕌 이태원 이슬람 사원</h4>
+      <p>서울 이태원의 한국 최초·최대 이슬람 사원(1976년 건립). 한국의 종교 다양성을 보여주는 상징적 공간입니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>🕍 명동성당</h4>
+      <p>서울 명동의 고딕 양식 천주교 성당. 민주화 운동의 역사적 공간이기도 합니다. 한국 천주교의 상징적인 장소입니다.</p>
+    </div>
+    <div class="culture-section">
+      <h4>📿 제사와 차례</h4>
+      <p>유교 전통에서 비롯된 조상 추모 의식. 설날·추석에 종교 관계없이 많은 가정에서 지냅니다. 종교가 없는 가정도 이 전통을 이어가는 경우가 많습니다.</p>
+    </div>`;
+}
+
+function renderQuiz(){
+  if(STATE.quizDone){
+    const correct=QUIZ.filter((q,i)=>STATE.quizAnswers[i]===q.answer).length;
+    return `<h2>✅ 퀴즈 결과</h2>
+      <div class="quiz-score">
+        <div class="score-num">${correct}/${QUIZ.length}</div>
+        <div style="font-size:16px;margin-top:8px">${correct>=4?'🎉 훌륭해요!':correct>=3?'👍 잘했어요!':'📚 다시 복습해 보세요'}</div>
+      </div>
+      <button class="reveal-btn" style="margin-top:16px;width:100%" onclick="setState({quizDone:false,quizAnswers:{}})">🔄 다시 풀기</button>`;
+  }
+  return `<h2>✅ 이해도 퀴즈</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:16px">한국의 종교에 대한 이해도를 확인하세요. (5문제)</p>
+    ${QUIZ.map((q,i)=>`
+      <div class="quiz-card${STATE.quizAnswers[i]!==undefined?(STATE.quizAnswers[i]===q.answer?' answered-correct':' answered-wrong'):''}">
+        <div class="quiz-q">${i+1}. ${q.q}</div>
+        <div class="quiz-opts">
+          ${q.opts.map((opt,j)=>`
+            <button class="quiz-opt${STATE.quizAnswers[i]===j?(j===q.answer?' selected-correct':' selected-wrong'):''}"
+              onclick="setState({quizAnswers:{...STATE.quizAnswers,${i}:${j}}})"
+              ${STATE.quizAnswers[i]!==undefined?'disabled':''}>
+              ${j+1}. ${opt}
+            </button>`).join('')}
+        </div>
+      </div>`).join('')}
+    ${Object.keys(STATE.quizAnswers).length===QUIZ.length
+      ?`<button class="reveal-btn" style="width:100%" onclick="setState({quizDone:true})">결과 보기 →</button>`:''}`;
+}
+
+var AI_QUICK_BTNS = [
+  { emoji:'☸️', label:'불교와 기독교 차이 설명해줘', q:'KIIP 5급 17과: 한국의 불교와 기독교의 주요 차이점과 역사를 쉽게 설명해 주세요.' },
+  { emoji:'🎉', label:'한국 종교 공휴일 알려줘', q:'한국의 종교 관련 법정공휴일(부처님오신날, 성탄절)에 대해 설명해 주세요.' },
+  { emoji:'🈷️', label:'유교가 현대 한국에 미치는 영향', q:'유교가 현대 한국 사회와 가족 문화에 미치는 영향을 설명해 주세요.' },
+  { emoji:'🌏', label:'외국인이 한국에서 종교 생활하는 방법', q:'외국인이 한국에서 자신의 종교를 믿고 예배할 수 있는 방법과 시설을 알려주세요.' },
+  { emoji:'🏮', label:'연등회에 대해 알려줘', q:'한국의 연등회(부처님오신날 행사)에 대해 자세히 설명해 주세요. 유네스코 등재 이유도 포함해서요.' },
+  { emoji:'⛩️', label:'템플스테이 신청 방법 알려줘', q:'한국 템플스테이 신청 방법과 어떤 체험을 할 수 있는지 알려주세요.' },
+];
+var AICHAT = {
+  history: [],
+  loading: false,
+  quickSend: function(idx) {
+    var b = AI_QUICK_BTNS[idx]; if (!b) return;
+    var inp = document.getElementById('ai-chat-input'); if (!inp) return;
+    inp.value = b.q; inp.style.borderColor = '#f59e0b';
+    if (idx === 3) { inp.focus(); return; }
+    this.send();
+  },
+  addMsg: function(role, text) {
+    var box = document.getElementById('ai-chat-messages'); if (!box) return;
+    var ph = box.querySelector('.ai-placeholder'); if (ph) ph.remove();
+    var isUser = role === 'user';
+    var d = document.createElement('div');
+    d.style.cssText = 'display:flex;flex-direction:column;align-items:' + (isUser?'flex-end':'flex-start') + ';gap:2px;margin-bottom:6px';
+    var safe = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+    d.innerHTML = '<div style="font-size:10px;color:#888;margin:0 4px">' + (isUser?'🙋 나':'🤖 AI') + '</div><div style="max-width:90%;padding:10px 13px;border-radius:' + (isUser?'14px 14px 4px 14px':'14px 14px 14px 4px') + ';background:' + (isUser?'#f59e0b':'#fff') + ';color:' + (isUser?'#fff':'#1a202c') + ';font-size:13px;line-height:1.7;border:1px solid ' + (isUser?'#d97706':'#fde68a') + ';word-break:break-word">' + safe + '</div>';
+    box.appendChild(d); box.scrollTop = box.scrollHeight;
+  },
+  setLoading: function(on) {
+    var box = document.getElementById('ai-chat-messages');
+    var el = document.getElementById('ai-loading-dot');
+    var btn = document.getElementById('ai-send-btn');
+    if (on) {
+      if (box && !el) {
+        var ld = document.createElement('div'); ld.id = 'ai-loading-dot';
+        ld.style.cssText = 'display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:6px';
+        ld.innerHTML = '<div style="display:flex;gap:4px"><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0s ease-in-out infinite"></div><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.2s ease-in-out infinite"></div><div style="width:9px;height:9px;border-radius:50%;background:#f59e0b;animation:aiDot 1s 0.4s ease-in-out infinite"></div></div><span style="font-size:12px;color:#888">AI 응답 중...</span>';
+        box.appendChild(ld); box.scrollTop = box.scrollHeight;
+      }
+      if (btn) { btn.textContent = '⏳'; btn.disabled = true; }
+    } else {
+      if (el) el.remove();
+      if (btn) { btn.textContent = '➤'; btn.disabled = false; }
+    }
+  },
+  send: async function() {
+    if (this.loading) return;
+    var inp = document.getElementById('ai-chat-input');
+    var text = inp ? inp.value.trim() : ''; if (!text) return;
+    this.history.push({role:'user', content:text});
+    this.addMsg('user', text);
+    if (inp) inp.value = '';
+    this.loading = true; this.setLoading(true);
+    var sys = 'You are a Korean civics tutor for KIIP Level 5 (한국사회이해). The student is preparing for Korean naturalization. Focus on Korean religion: Buddhism, Christianity (Protestant & Catholic), Confucianism, freedom of religion (헌법 제20조), multicultural religious coexistence, Yeondeunghoe (lantern festival), temple stay, and religious holidays (Buddha\'s Birthday, Christmas). Answer in Korean. Be concise and friendly.';
+    try {
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
+      if (!reply || reply.trim() === '') throw new Error('빈 응답');
+      this.history.push({role:'assistant', content:reply});
+      this.setLoading(false); this.addMsg('assistant', reply);
+    } catch(e) {
+      this.setLoading(false);
+      this.addMsg('assistant', '⚠️ AI 연결 오류\n오류: ' + e.message + '\n\n해결: 잠시 후 다시 시도해 주세요');
+    }
+    this.loading = false;
+  }
+};
+let _toastTimer = null;
+function showReturnToast(appName, icon) {
+  let toast = document.getElementById('return-toast');
+  if (!toast) { toast = document.createElement('div'); toast.id = 'return-toast'; toast.className = 'return-toast'; document.body.appendChild(toast); }
+  const shortcuts = /iPhone|iPad|iPod/i.test(navigator.userAgent) ? '하단 탭 버튼 → KIIP 탭 선택' : /Android/i.test(navigator.userAgent) ? '상단 탭 □ 버튼 → KIIP 탭 선택' : 'Ctrl+Tab 또는 탭 바에서 KIIP 탭 클릭';
+  toast.innerHTML = '<div class="return-toast-icon">' + icon + '</div><div class="return-toast-body"><div class="return-toast-title">📍 ' + appName + ' 새 탭에서 열렸어요</div><div class="return-toast-sub">돌아오려면: <strong>' + shortcuts + '</strong></div></div><button class="return-toast-close" onclick="hideReturnToast()">✕</button><div class="return-toast-bar"></div>';
+  requestAnimationFrame(() => { toast.classList.add('show'); });
+  clearTimeout(_toastTimer); _toastTimer = setTimeout(() => hideReturnToast(), 8000);
+}
+function hideReturnToast() {
+  const toast = document.getElementById('return-toast'); if (toast) toast.classList.remove('show'); clearTimeout(_toastTimer);
+}
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') hideReturnToast(); });
+function openGemini() { window.open('https://gemini.google.com/app', '_blank'); showReturnToast('Gemini AI', '🔵'); }
+function openClaudeFeedback() {
+  const text = STATE.writingText || '(쓰기 섹션에 글을 먼저 작성해 주세요)';
+  const prompt = 'KIIP 5급 17과 학습자의 글입니다. 한국사회이해(종교·문화) 내용이 정확한지 확인하고 첨삭해 주세요:\n\n' + text;
+  window.open('https://claude.ai/new?q=' + encodeURIComponent(prompt), '_blank');
+  showReturnToast('Claude AI', '🟣');
+}
+function openNotebookLM() { window.open('https://notebooklm.google.com', '_blank'); showReturnToast('NotebookLM', '📓'); }
+function copyNotebookContent() {
+  const content = 'KIIP 5급 17과 · 한국의 종교\n\n=== 핵심 내용 ===\n불교(16%): 삼국시대 전래, 사찰·연등회·템플스테이\n개신교(17%): 19세기 선교사 전파\n천주교(11%): 18세기 자생적 수용\n무종교(56%): 한국인의 절반 이상\n유교: 생활철학, 제사·경로효친 문화\n\n=== 헌법 제20조 ===\n모든 국민은 종교의 자유를 가진다. 국교는 인정되지 않는다.\n\n=== 종교 공휴일 ===\n부처님오신날 (음력 4월 8일) · 성탄절 (12월 25일)\n\n=== 학습 목표 ===\n한국의 종교 현황, 종교의 자유, 다종교 공존을 이해하고 설명할 수 있다.';
+  navigator.clipboard.writeText(content).then(() => {
+    const el = document.getElementById('copy-ok');
+    if (el) { el.textContent = '✅ 복사 완료!'; setTimeout(() => el.textContent = '', 3000); }
+  }).catch(() => { const el = document.getElementById('copy-ok'); if (el) el.textContent = '❌ 직접 복사하세요'; });
+}
+
+function renderAI(){
+  setTimeout(()=>RECORDER.autoDetect(),100);
+  const done={
+    vocab:Object.keys(STATE.vocabFlipped).length>0,
+    concept:Object.keys(STATE.topikAnswers||{}).length>0,
+    quiz:STATE.quizDone,
+  };
+  const pct=Math.round(Object.values(done).filter(Boolean).length/3*100);
+  return `
+    <h2>🤖 AI 실습</h2>
+    <p style="font-size:13px;color:#64748b;margin-bottom:12px">글로컬 아카데미 × 에이전틱 G스택 한국어 학습</p>
+
+    <div style="background:linear-gradient(135deg,#064e3b,#059669);color:#fff;border-radius:12px;padding:16px;margin-bottom:12px">
+      <div style="font-size:11px;opacity:0.7;margin-bottom:4px">GLOCAL ACADEMY · AI-POWERED · 글로컬아카데미</div>
+      <div style="font-size:15px;font-weight:800;margin-bottom:6px">에이전틱 G스택 한국사회이해 실습 플랫폼</div>
+      <div style="font-size:11px;opacity:0.85;line-height:1.7">Google Gemini · NotebookLM · Agent Harness 연계</div>
+    </div>
+
+    <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b">
+      <div class="card-title" style="color:#92400e">⚙️ Agent Harness · 학습 진도</div>
+      <div style="background:#fef3c7;border-radius:8px;padding:10px 12px;margin:8px 0">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:13px;font-weight:700;color:#92400e">진도율</span>
+          <span style="font-size:18px;font-weight:800;color:#f59e0b">${pct}%</span>
+        </div>
+        <div style="background:#fde68a;border-radius:8px;height:8px;overflow:hidden">
+          <div style="background:#f59e0b;height:100%;width:${pct}%;transition:width 0.5s"></div>
+        </div>
+      </div>
+      ${[
+        {label:'📝 어휘 학습 완료', done:done.vocab},
+        {label:'📜 핵심 내용 확인 완료', done:done.concept},
+        {label:'✅ 퀴즈 통과', done:done.quiz},
+      ].map(t=>`
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #fde68a">
+          <span style="font-size:15px">${t.done?'✅':'⬜'}</span>
+          <div style="font-size:13px;color:${t.done?'#166534':'#555'};font-weight:${t.done?'700':'400'}">${t.label}</div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="card" style="margin-bottom:10px;border:2px solid #f59e0b;background:#fffbeb">
+      <div class="card-title" style="color:#d97706">⚡ 앱 내 AI 채팅 · 로그인 불필요</div>
+      <div style="font-size:12px;color:#555;margin:6px 0 10px;line-height:1.6">계정 없이 바로 AI에게 질문하세요</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
+        ${AI_QUICK_BTNS.map((b,i)=>`
+          <button onclick="AICHAT.quickSend(${i})"
+            style="background:#fff;border:1px solid #fbbf24;color:#92400e;border-radius:20px;padding:6px 12px;font-size:12px;font-weight:700;cursor:pointer">
+            ${b.emoji} ${b.label}
+          </button>
+        `).join('')}
+      </div>
+      <div id="ai-chat-messages" style="max-height:300px;overflow-y:auto;margin-bottom:10px;display:flex;flex-direction:column;gap:8px;min-height:60px;background:#fafafa;border-radius:10px;padding:8px">
+        <div class="ai-placeholder" style="text-align:center;font-size:12px;color:#888;padding:16px">💡 버튼을 누르면 AI가 바로 답해줘요</div>
+      </div>
+      <div style="display:flex;gap:6px;align-items:flex-end">
+        <textarea id="ai-chat-input" placeholder="한국어로 질문하세요..."
+          style="flex:1;padding:12px;border:2px solid #fde68a;border-radius:10px;font-size:16px;font-family:inherit;min-height:48px;max-height:120px;resize:none;outline:none"
+          onfocus="this.style.borderColor='#f59e0b'" onblur="this.style.borderColor='#fde68a'"
+          onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();AICHAT.send()}"></textarea>
+        <button onclick="AICHAT.send()" id="ai-send-btn"
+          style="background:#f59e0b;color:#fff;border-radius:10px;padding:10px 14px;font-size:18px;font-weight:700;flex-shrink:0;height:44px">➤</button>
+      </div>
+      <div style="font-size:10px;color:#888;margin-top:4px">Enter로 전송 · Shift+Enter 줄바꿈 · 🆓 완전 무료</div>
+    </div>
+
+    <div class="card" style="margin-bottom:10px">
+      <div class="card-title">🌐 외부 AI 서비스 가이드</div>
+      <details style="margin-bottom:8px">
+        <summary style="background:linear-gradient(135deg,#1d4ed8,#2563eb);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">🔵 Gemini AI — Google 계정 필요</summary>
+        <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          gemini.google.com에서 한국 종교·연등회·템플스테이·종교의 자유 내용 질문, 토론 연습에 활용하세요.<br>
+          <button onclick="openGemini()" style="background:#1d4ed8;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">🔵 Gemini 열기</button>
+        </div>
+      </details>
+      <details style="margin-bottom:8px">
+        <summary style="background:linear-gradient(135deg,#7c3aed,#6d28d9);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">🟣 Claude AI — 이메일 계정 필요</summary>
+        <div style="background:#f5f3ff;border:1px solid #ddd6fe;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          쓰기 첨삭 및 내용 검토에 특화. 쓰기 섹션 글을 자동 전송합니다.<br>
+          <button onclick="openClaudeFeedback()" style="background:#7c3aed;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">🟣 내 글 첨삭 요청하기</button>
+        </div>
+      </details>
+      <details>
+        <summary style="background:linear-gradient(135deg,#ea4335,#fbbc04);color:#fff;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;list-style:none">📓 NotebookLM — Google 계정 필요</summary>
+        <div style="background:#fff8f0;border:1px solid #fed7aa;border-radius:0 0 8px 8px;padding:12px;font-size:12px;line-height:1.9">
+          이 과 내용을 복사해서 NotebookLM에 넣고 Q&A 정리에 활용하세요.<br>
+          <button onclick="copyNotebookContent()" style="background:#ea4335;color:#fff;border-radius:6px;padding:4px 10px;font-size:11px;font-weight:700;margin:4px 0;cursor:pointer">📋 이 과 학습 내용 복사하기</button>
+          <span id="copy-ok" style="font-size:11px;color:#059669;margin-left:6px"></span>
+        </div>
+      </details>
+    </div>
+
+    <div class="card" style="margin-bottom:10px;background:#f0fdf4;border:1px solid #86efac">
+      <div class="card-title" style="color:#059669">🎤 AI 발음 코치 · 녹음 & 재생</div>
+      <div style="font-size:12px;color:#555;margin:6px 0;line-height:1.6">원어민 듣기 → 내가 녹음 → 다시 들으며 비교</div>
+      <div style="background:#dcfce7;border-radius:8px;padding:8px 12px;margin-bottom:8px;font-size:11px;color:#166534">🆓 <strong>완전 무료</strong> — 브라우저 내장 API</div>
+
+      <div id="mic-check-box" style="background:#fef9c3;border:2px solid #fbbf24;border-radius:10px;padding:14px;margin-bottom:10px">
+        <div style="font-size:14px;font-weight:800;color:#92400e;margin-bottom:8px">🎙️ 마이크 허용 필요</div>
+        <div id="mic-perm-state" style="margin-bottom:10px"></div>
+        <div id="mic-blocked-guide" style="display:none;background:#fee2e2;border:1px solid #fca5a5;border-radius:8px;padding:12px;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:800;color:#991b1b;margin-bottom:8px">🚫 마이크 차단됨</div>
+          <div style="font-size:12px;line-height:2;color:#1a202c">
+            <strong>Chrome/Edge (PC):</strong> 🔒 → 마이크 → 허용 → F5<br>
+            <strong>Android:</strong> ⋮ → 사이트 설정 → 마이크 → 허용
+          </div>
+        </div>
+        <button id="mic-allow-btn" onclick="RECORDER.checkPermission(this)"
+          style="width:100%;background:#059669;color:#fff;border-radius:8px;padding:12px;font-size:14px;font-weight:800">
+          🎙️ 마이크 허용하기 (여기 클릭)
+        </button>
+        <div id="mic-status" style="font-size:11px;margin-top:6px;text-align:center;min-height:16px"></div>
+      </div>
+
+      ${PRON_SENTS_DATA.map((item,i)=>`
+        <div style="background:#f0fdf4;border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid #86efac">
+          <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:4px">${item.text}</div>
+          <div style="font-size:11px;color:#64748b;margin-bottom:8px;font-style:italic">${item.trans}</div>
+          <div style="background:#bbf7d0;border-radius:6px;height:6px;margin-bottom:8px;overflow:hidden">
+            <div id="score-bar-${i}" style="height:100%;width:0%;background:#22c55e;transition:width 0.5s;border-radius:6px"></div>
+          </div>
+          <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+            <button onclick="TTS.speak('${item.text.replace(/'/g,"\\'")}'); this.textContent='🔊 재생 중...'; setTimeout(()=>this.textContent='🔊 원어민',2000)"
+              style="background:#f59e0b;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🔊 원어민</button>
+            <button id="rec-btn-${i}" onclick="RECORDER.start(${i},'${item.text.replace(/'/g,"\\'")}',this)"
+              style="background:#059669;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700">🎤 녹음</button>
+            <button id="play-btn-${i}" disabled
+              style="background:#1d4ed8;color:#fff;border-radius:16px;padding:5px 12px;font-size:11px;font-weight:700;opacity:0.4">▶ 내 발음 듣기</button>
+          </div>
+          <div id="stt-result-${i}" style="font-size:11px;margin-top:6px;min-height:16px"></div>
+        </div>
+      `).join('')}
+
+      <div style="background:#f0fdf4;border-radius:8px;padding:10px;font-size:11px;color:#166534;line-height:1.8;margin-top:4px">
+        <strong>📖 사용법:</strong><br>
+        1️⃣ 🔊 원어민 — 먼저 들으세요 · 2️⃣ 🎤 녹음 — 말하기<br>
+        3️⃣ ▶ 내 발음 듣기 — 녹음 후 활성화 · 4️⃣ 🟢 80%+ · 🟡 50~79% · 🔴 50% 미만
+      </div>
+    </div>
+
+    <div class="card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:1px solid #86efac">
+      <div class="card-title" style="color:#059669">🌐 글로컬 G스택 학습법</div>
+      <div style="font-size:12px;color:#166634;margin:8px 0;line-height:1.8">
+        <strong>글로컬 아카데미 AI 에이전트 기반 4단계 학습법:</strong><br>
+        ① 어휘/핵심내용 → Gemini 설명 요청<br>
+        ② 말하기 → Gemini 토론 실습<br>
+        ③ 쓰기 → Claude AI 첨삭<br>
+        ④ 복습 → NotebookLM Q&A 정리
+      </div>
+    </div>
+  `;
+}
+
+render();
+</script>
+</body>
+</html>
