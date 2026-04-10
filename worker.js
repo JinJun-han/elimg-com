@@ -624,8 +624,8 @@ function faqAnswer(userMsg, sysPrompt) {
     + 'Ask in Korean or English — I\'ll help!';
 }
 
-/* ── FAQ 채팅 핸들러 (토큰 없음) ────────────────────────── */
-function handleChat(request, env) {
+/* ── Groq AI 채팅 핸들러 ────────────────────────── */
+async function handleChat(request, env) {
   const cors = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'POST, OPTIONS',
@@ -634,18 +634,45 @@ function handleChat(request, env) {
   };
   if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
 
-  return request.json().then(({ messages }) => {
-    const userMsg = [...messages].reverse().find(m => m.role === 'user')?.content || '';
-    const sysMsg = messages.find(m => m.role === 'system')?.content || '';
-    const reply = faqAnswer(userMsg, sysMsg);
+  try {
+    const { messages } = await request.json();
+    const apiKey = env.GROQ_API_KEY;
+
+    if (!apiKey) {
+      return new Response(JSON.stringify({
+        choices: [{ message: { content: '⚠️ GROQ_API_KEY가 설정되지 않았습니다.\nCloudflare → Workers & Pages → elimg-com → Settings → Variables and Secrets → GROQ_API_KEY 등록 필요' } }]
+      }), { headers: cors });
+    }
+
+    const res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + apiKey,
+      },
+      body: JSON.stringify({
+        model: 'llama-3.1-8b-instant',
+        messages: messages,
+        max_tokens: 600,
+        temperature: 0.7,
+      }),
+    });
+
+    if (!res.ok) {
+      const err = await res.text();
+      return new Response(JSON.stringify({
+        choices: [{ message: { content: '⚠️ Groq 오류 ' + res.status + ': ' + err.substring(0, 200) } }]
+      }), { headers: cors });
+    }
+
+    const data = await res.json();
+    return new Response(JSON.stringify(data), { headers: cors });
+
+  } catch (err) {
     return new Response(JSON.stringify({
-      choices: [{ message: { content: reply } }]
-    }), { headers: cors });
-  }).catch(() => {
-    return new Response(JSON.stringify({
-      choices: [{ message: { content: '질문을 다시 입력해 주세요. Please re-enter your question.' } }]
-    }), { headers: cors });
-  });
+      choices: [{ message: { content: '⚠️ 연결 오류: ' + (err.message || 'Unknown') } }]
+    }), { status: 200, headers: cors });
+  }
 }
 
 /* ── 피드백 저장 ─────────────────────────────────────── */
