@@ -1213,8 +1213,9 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean self-introduction coach for KIIP (사회통합프로그램) learners in Korea. Lesson focus: self-intro and hometown using ~(으)ㄴ/는데 (background/contrast), ~지만 (but/however), key vocab: 자신감(confidence), 성격(personality), 장점(strength), 단점(weakness), 경력(career), 고향(hometown), 목표(goal). Keep answers SHORT with English translations. LESSON:KIIP-L2L1';
-      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}],model:'openai',seed:42})});
-      var reply = await res.text();
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
       this.loading = false;
       var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
       render();

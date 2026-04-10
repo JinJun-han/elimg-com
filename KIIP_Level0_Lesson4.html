@@ -402,8 +402,9 @@ async function sendAI() {
 LESSON:L0L4`;
   const text = msg;
   try {
-    const res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:msg||text}],model:'openai',seed:42})});
-    const reply = await res.text();
+    const res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:msg||text}]})});
+    const data = await res.json();
+    const reply = data.choices[0].message.content;
     document.getElementById('ai-loading')?.remove();
     const _el=document.createElement('div');
     _el.className='bubble bubble-left';_el.style.marginBottom='8px';

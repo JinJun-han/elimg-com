@@ -1107,8 +1107,9 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean administrative documents coach for immigrants and foreign residents in Korea. Lesson focus: document vocabulary 서류(documents), 성명(full name), 국적(nationality), 여권(passport), 서명(signature), obligation ~아/어야 하다 (must/have to). Help users navigate Korean bureaucracy. SHORT answers with English. LESSON:L1L18';
-      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}],model:'openai',seed:42})});
-      var reply = await res.text();
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
       this.loading = false;
       var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
       render();

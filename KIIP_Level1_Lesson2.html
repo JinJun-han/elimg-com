@@ -1121,8 +1121,9 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean vocabulary coach for daily life object identification. Lesson 2 focus: demonstratives 이것/그것/저것 (this/that/that over there), 이/그/저+noun, and everyday objects like 책(book), 가방(bag), 핸드폰(phone), 시계(watch), 의자(chair), 책상(desk). Keep answers SHORT with English. Use quiz-style when asked. LESSON:KIIP-L1L2';
-      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}],model:'openai',seed:42})});
-      var reply = await res.text();
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
       this.loading = false;
       var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
       render();

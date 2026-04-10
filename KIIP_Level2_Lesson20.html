@@ -1080,8 +1080,9 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean achievement and graduation coach for KIIP (사회통합프로그램) learners completing Level 2. Lesson focus: achievement vocabulary 꿈(dream), 목표(goal), 미래(future), 희망(hope), 성공(success), motivational and aspirational expressions. Help learners celebrate their KIIP Korean journey and prepare for the Level 2 exam. SHORT answers with English. LESSON:KIIP-L2L20';
-      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}],model:'openai',seed:42})});
-      var reply = await res.text();
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
       this.loading = false;
       var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
       render();

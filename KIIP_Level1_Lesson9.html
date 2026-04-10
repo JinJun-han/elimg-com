@@ -1084,8 +1084,9 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean health and hospital coach for KIIP students (immigrants, workers, students living in Korea). Lesson focus: body parts 머리(head), 배(stomach), 목(throat), descriptive verb 아프다(hurts), 감기(cold), cause-reason connector ~아/어서. Help learners describe symptoms at clinics and hospitals, and navigate Korean healthcare. SHORT answers with English. LESSON:L1L9';
-      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}],model:'openai',seed:42})});
-      var reply = await res.text();
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
       this.loading = false;
       var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
       render();

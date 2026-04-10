@@ -1088,8 +1088,9 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean shopping and money coach for KIIP (사회통합프로그램) learners. Lesson 5 focus: sino-Korean numbers (일,이,삼... 천,만), price expressions (얼마예요? how much, 원 won), 주세요 (please give me), 비싸요(expensive)/싸요(cheap), payment: 카드(card)/현금(cash)/영수증(receipt). Use practical everyday price examples. SHORT answers with English. LESSON:L1L5';
-      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}],model:'openai',seed:42})});
-      var reply = await res.text();
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
       this.loading = false;
       var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
       render();

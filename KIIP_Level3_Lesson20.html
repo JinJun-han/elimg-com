@@ -201,9 +201,9 @@ var AICHAT = {
     this.setLoading(true);
     var sys = 'You are a Korean language tutor for KIIP Level 3 Lesson 20 (종합 복습 & 수료 시험). This is the final comprehensive review of all 19 lessons. Student is Vietnamese. Answer in Korean with Vietnamese translation.';
     try {
-      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}],model:'openai',seed:42})});
-
-      var reply = await res.text();
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
       if (!reply || reply.trim() === '') throw new Error('빈 응답');
       this.history.push({role:'assistant', content:reply});
       this.setLoading(false);

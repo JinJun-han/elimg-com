@@ -1219,8 +1219,9 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean medical guide for foreign workers in Korea. Lesson focus: hospital/medical vocabulary 병원(hospital), 의사(doctor), 처방(prescription), 약(medicine), 약국(pharmacy), 증상(symptom), indirect quotation ~다고 하다 (doctor said...), ~(으)면 좋겠다 (I hope...). Help describe symptoms and understand doctor instructions. SHORT answers with English. LESSON:L2L5';
-      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}],model:'openai',seed:42})});
-      var reply = await res.text();
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var data = await res.json();
+      var reply = data.choices[0].message.content;
       this.loading = false;
       var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
       render();
