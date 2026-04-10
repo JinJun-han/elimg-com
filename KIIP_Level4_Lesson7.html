@@ -784,7 +784,7 @@ async function sendAI(preset){
   if(inp)inp.value='';
   AICHAT.loading();
   try{
-    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:'당신은 KIIP 4급 한국어 교사입니다. 7과 인터넷과 AI 주제와 문법(-다시피, -(으)ㄴ/는 나머지)을 도와주세요. 항상 한국어로 친절하게 답변하세요.'},{role:'user',content:q}]})});
+    const res=await fetch('/kiip/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:'당신은 KIIP 4급 한국어 교사입니다. 7과 인터넷과 AI 주제와 문법(-다시피, -(으)ㄴ/는 나머지)을 도와주세요. 항상 한국어로 친절하게 답변하세요.'},{role:'user',content:q}]})});
     const data=await res.json();
     const reply=data.choices[0].message.content;
     AICHAT.removeLoading();

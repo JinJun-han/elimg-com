@@ -1228,7 +1228,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean hobbies and leisure coach for KIIP learners (office workers, students, immigrants). Lesson focus: hobby vocab 취미(hobby), 여가(leisure), 노래(song/singing), 춤(dance), 영화 보다(watch movies), like-doing expression ~는 것을 좋아하다. Help workers talk about personal interests. SHORT answers with English. LESSON:L1L17';
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

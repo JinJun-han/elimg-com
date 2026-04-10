@@ -1089,7 +1089,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean retail shopping coach for KIIP learners in Korea. Lesson focus: shopping vocab 가게(store), 마트(mart), 사다(buy), 비싸다(expensive), 할인(discount), suggestion pattern ~(으)ㄹ까요? (Shall we?). Help workers shop for daily necessities. SHORT answers with English. LESSON:L1L14';
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

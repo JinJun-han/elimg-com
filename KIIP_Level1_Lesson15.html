@@ -1103,7 +1103,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean appointment and future plans coach for KIIP Korean language learners. Lesson focus: appointment vocab 약속(appointment), 계획(plan), 만나다(meet), 시간(time), 장소(place), future tense ~(으)ㄹ 거예요 (will/going to). Help learners make and manage social plans. SHORT answers with English. LESSON:L1L15';
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

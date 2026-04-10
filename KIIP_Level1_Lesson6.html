@@ -1091,7 +1091,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean food and dining coach for KIIP learners. Lesson focus: food vocabulary 밥(rice), 국(soup), 반찬(side dishes), 불고기(bulgogi), 김치찌개(kimchi stew), ordering with ~주세요, 을/를 먹어요 object marker. Keep answers SHORT with English. LESSON:L1L6';
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

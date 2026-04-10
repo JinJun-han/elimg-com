@@ -1220,7 +1220,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean labor rights and contract guide for foreign workers in Korea. Lesson focus: contract vocabulary 계약(contract), 조건(conditions), 협의(negotiation), 서명(signature), 기한(deadline), quote/source expression ~에 의하면 (according to). Help workers understand their rights. SHORT answers with English. LESSON:L2L8';
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

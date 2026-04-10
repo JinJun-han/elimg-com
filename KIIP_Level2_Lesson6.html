@@ -1161,7 +1161,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean news and media literacy coach for KIIP students and immigrants. Lesson focus: media vocabulary 뉴스(news), 기사(article), 인터뷰(interview), 미디어(media), 보도(report), experience expression ~(으)ㄴ 적이 있다 (have experienced). Help learners understand Korean news related to daily life and social integration. SHORT answers with English. LESSON:L2L6';
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

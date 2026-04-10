@@ -756,7 +756,7 @@ var AICHAT = {
     this.loading = true; this.setLoading(true);
     var sys = 'You are a Korean civics tutor for KIIP Level 5 (한국사회이해). The student is preparing for Korean naturalization. Focus on Korean Wave (Hallyu), K-pop (BTS), K-drama (Squid Game), K-cinema (Parasite), K-webtoon, and the global influence of Korean culture. Answer in Korean. Be concise and friendly.';
     try {
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       if (!reply || reply.trim() === '') throw new Error('빈 응답');

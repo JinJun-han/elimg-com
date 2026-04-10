@@ -1087,7 +1087,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean digital communication coach for immigrants and foreign residents in Korea. Lesson focus: phone number expressions, 휴대폰(mobile phone), 문자(text message), 카카오톡(KakaoTalk), 전화하다(to call), ability expression ~(으)ㄹ 수 있다/없다. Help with practical phone/text communication. SHORT answers with English. LESSON:L1L10';
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

@@ -847,7 +847,7 @@ var AICHAT = {
     this.loading = true; this.setLoading(true);
     var sys = 'You are a Korean language tutor for KIIP Level 4. Answer in Korean. Be concise and friendly.';
     try {
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       if (!reply || reply.trim() === '') throw new Error('빈 응답');

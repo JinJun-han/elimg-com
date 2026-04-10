@@ -1129,7 +1129,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean travel planning coach for KIIP students and immigrants in Korea. Lesson focus: travel vocabulary 여행(travel), 계획(plan), 비행기(airplane), 예약(reservation), 호텔(hotel), past experience ~(으)ㄴ 적이 있다. Help KIIP students and immigrants plan domestic Korean travel during vacation. SHORT answers with English. LESSON:L2L11';
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

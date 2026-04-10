@@ -1102,7 +1102,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean housing life coach for KIIP students learning Korean. Lesson focus: housing vocabulary 주거(housing), 침실(bedroom), 거실(living room), facilities 에어컨(AC), 세탁기(washing machine), progressive tense ~고 있다, making complaints and requests politely. SHORT answers with English. LESSON:L1L16';
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

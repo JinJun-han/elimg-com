@@ -1128,7 +1128,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean public speaking and presentation coach for KIIP students (immigrants, workers, and students in Korea). Lesson focus: presentation vocabulary 발표(presentation), 준비(preparation), 주제(topic), 자료(material), 질문(question), imperative/instructional Korean forms. Help learners give confident presentations in Korean. SHORT answers with English. LESSON:KIIP-L2L19';
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
