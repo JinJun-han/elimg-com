@@ -1092,10 +1092,8 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean environmental practices coach for workers in Korea. Lesson focus: environment vocabulary 환경(environment), 오염(pollution), 쓰레기(garbage), 분리수거(waste sorting), 재활용(recycling), obligation ~해야 해요 (must/should). Help workers follow Korean recycling rules. SHORT answers with English. LESSON:L2L13';
-      var url = '/api/chat';
-      var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-                  var data = await res.json();
-      var reply = data.choices[0].message.content;
+      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}],model:'openai',seed:42})});
+      var reply = await res.text();
       this.loading = false;
       var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
       render();

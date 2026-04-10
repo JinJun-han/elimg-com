@@ -1077,10 +1077,8 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean labor law rights coach for foreign workers. Lesson focus: legal vocabulary 법(law), 권리(right), 의무(duty), 계약(contract), 위반(violation), imperative forms. Help workers understand their legal rights and report violations. SHORT answers with English. LESSON:L2L16';
-      var url = '/api/chat';
-      var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-                  var data = await res.json();
-      var reply = data.choices[0].message.content;
+      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}],model:'openai',seed:42})});
+      var reply = await res.text();
       this.loading = false;
       var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
       render();

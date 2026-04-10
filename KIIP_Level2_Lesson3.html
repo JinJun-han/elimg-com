@@ -1179,10 +1179,8 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean appointment and schedule coach for KIIP students and immigrants in Korea. Lesson focus: appointment change/cancel expressions like 약속 변경(appointment change), 취소(cancellation), 회의(meeting), 일정(schedule), ~(으)ㄴ/는데 for background explanation, date/time expressions for rescheduling. SHORT practical answers with English. LESSON:L2L3';
-      var url = '/api/chat';
-      var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-                  var data = await res.json();
-      var reply = data.choices[0].message.content;
+      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}],model:'openai',seed:42})});
+      var reply = await res.text();
       this.loading = false;
       var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
       render();

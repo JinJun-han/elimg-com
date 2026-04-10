@@ -1011,10 +1011,9 @@ var AICHAT = {
     this.setLoading(true);
     var sys = 'You are a Korean language tutor for KIIP Level 4. Answer in Korean. Be concise and friendly. Focus on KIIP 4급 content.';
     try {
-      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
-      if (!res.ok) throw new Error('HTTP ' + res.status);
-      var data = await res.json();
-      var reply = data.choices[0].message.content;
+      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}],model:'openai',seed:42})});
+
+      var reply = await res.text();
       if (!reply || reply.trim() === '') throw new Error('빈 응답');
       this.history.push({role:'assistant', content:reply});
       this.setLoading(false);

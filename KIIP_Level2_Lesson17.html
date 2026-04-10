@@ -948,10 +948,8 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean language coach for KIIP students (immigrants and foreign workers). Lesson focus: employment vocabulary 면접(interview), 이력서(resume), 경력(career experience), 채용(hiring), 복지(benefits). Help students succeed in Korean job interviews. SHORT answers with English. LESSON:KIIP-L2L17';
-      var url = '/api/chat';
-      var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-                  var data = await res.json();
-      var reply = data.choices[0].message.content;
+      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}],model:'openai',seed:42})});
+      var reply = await res.text();
       this.loading = false;
       var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
       render();

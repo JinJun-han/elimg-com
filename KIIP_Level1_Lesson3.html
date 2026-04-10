@@ -1119,10 +1119,8 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean location guide for KIIP learners. Lesson 3 focus: location words 여기(here)/거기(there)/저기(over there), 에 있어요/없어요 (exists/doesn\'t exist at location), ~은/는 어디예요? (Where is...?), everyday places: 식당(restaurant), 기숙사(dormitory), 보건실(health room), 강의실(classroom), 화장실(restroom). Give SHORT answers with English. LESSON:L1L3';
-      var url = '/api/chat';
-      var res = await fetch(url, {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
-                  var data = await res.json();
-      var reply = data.choices[0].message.content;
+      var res = await fetch('https://text.pollinations.ai/', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}],model:'openai',seed:42})});
+      var reply = await res.text();
       this.loading = false;
       var _idx=this.msgs.push({role:'assistant',text:'',time:new Date().toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit'})})-1;
       render();
