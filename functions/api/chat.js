@@ -24,11 +24,9 @@ export async function onRequestPost(context) {
     if (!apiKey) {
       return new Response(JSON.stringify({
         choices: [{ message: { content:
-          '⚠️ AI 설정 중입니다.\n\nCloudflare 대시보드에서 GROQ_API_KEY를 등록해 주세요.\n\n'
-          + '📌 설정 방법:\n1. dash.cloudflare.com → Workers & Pages → elimg-com\n'
-          + '2. Settings → Environment Variables\n'
-          + '3. GROQ_API_KEY = gsk_... (groq.com에서 무료 발급)\n\n'
-          + '설정 후 즉시 AI 사용 가능합니다!'
+          '[진단] Pages Function 호출됨 ✅ — 그러나 GROQ_API_KEY 없음 ❌\n\n'
+          + 'Cloudflare → Workers & Pages → elimg-com → Settings → Environment Variables\n'
+          + 'GROQ_API_KEY = gsk_... 등록 필요'
         }}]
       }), { headers: cors });
     }
@@ -50,10 +48,18 @@ export async function onRequestPost(context) {
 
     if (!res.ok) {
       const err = await res.text();
-      throw new Error('Groq error: ' + res.status + ' ' + err);
+      return new Response(JSON.stringify({
+        choices: [{ message: { content:
+          '[진단] Pages Function 호출됨 ✅ — Groq 오류 ❌ ' + res.status + '\n' + err.substring(0, 200)
+        }}]
+      }), { headers: cors });
     }
 
     const data = await res.json();
+    // 진단: Groq 성공 시 응답 앞에 마커 추가
+    if (data.choices && data.choices[0] && data.choices[0].message) {
+      data.choices[0].message.content = '[✅PF+Groq작동] ' + data.choices[0].message.content;
+    }
     return new Response(JSON.stringify(data), { headers: cors });
 
   } catch (err) {
