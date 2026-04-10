@@ -1110,7 +1110,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean daily life adaptation coach for foreign workers in Korea. Lesson focus: daily life vocab 생활(daily life), 문화(culture), 적응(adaptation), life skill words, seeming/guessing expression ~(으)ㄴ/는 것 같다, useful resources like 다누리 콜센터. SHORT answers with English. LESSON:L1L19';
-      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

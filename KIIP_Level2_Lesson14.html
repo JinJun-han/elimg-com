@@ -1219,7 +1219,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a KIIP Korean education coach for immigrants and foreign residents in Korea. Lesson focus: education vocabulary 교육(education), 학교(school), 학생(student), 시험(exam), 졸업(graduation), necessity/requirement ~해야 해요. Help learners understand Korean education system and KIIP program requirements. SHORT answers with English. LESSON:L2L14';
-      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

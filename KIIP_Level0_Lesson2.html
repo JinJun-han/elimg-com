@@ -398,7 +398,7 @@ async function sendAI() {
   try {
     const model = 'openai';
     const sysP = 'You are a Korean language tutor for KIIP Level 0 beginners learning Hangul. Keep answers SHORT, include romanization, give English translations, encourage learners. Focus on the current lesson topic.';
-    const res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:msg}]})});
+    const res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:msg}]})});
     const data = await res.json();
     const reply = data.choices[0].message.content;
     document.getElementById('ai-loading')?.remove();

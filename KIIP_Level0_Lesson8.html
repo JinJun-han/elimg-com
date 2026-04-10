@@ -159,7 +159,7 @@ async function sendAI() {
   const text = msg;
   const sysP = systemPrompt;
   try {
-    const res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:msg||text}]})});
+    const res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:msg||text}]})});
     const data = await res.json();
     const reply = data.choices[0].message.content;
     document.getElementById('ai-loading')?.remove();

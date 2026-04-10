@@ -1330,7 +1330,7 @@ var AICHAT = {
     try {
       var sysP = "You are a Korean language coach for KIIP learners. Lesson focus: hobbies and frequency expressions like 자주(often), 가끔(sometimes), 매일(every day), 취미가 뭐예요?(What is your hobby?), 등산해요(I go hiking), 노래해요(I sing). Also demonstratives 이것/그것/저것. SHORT answers with English.
 LESSON:L2L2";
-      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

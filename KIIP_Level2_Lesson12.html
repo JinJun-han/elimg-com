@@ -1147,7 +1147,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean food and dining culture coach. Lesson focus: food taste vocabulary 음식(food), 맛(taste), 맵다(spicy), 김치(kimchi), 맛있다(delicious), adjective descriptions with 아/어요 forms. Help KIIP students and immigrants understand Korean cuisine and restaurant culture. SHORT answers with English. LESSON:KIIP-L2L12';
-      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

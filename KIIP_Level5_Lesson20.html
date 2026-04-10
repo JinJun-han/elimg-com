@@ -776,7 +776,7 @@ var AICHAT = {
     this.loading = true; this.setLoading(true);
     var sys = 'You are a Korean civics tutor for KIIP Level 5 (한국사회이해). The student has completed the full KIIP Level 5 course and is now preparing for the Korean naturalization exam. Help them review: Korean constitution (Article 1), the three branches of government, president term (5 years, single term), National Assembly (300 members, 4-year term), key historical events (1945 광복, 1948 정부수립, 1950 6.25전쟁, 4.19혁명, 5.18민주화운동, 1988 서울올림픽), economy (한강의 기적, OECD 1996), culture (K-pop, UNESCO heritage, 김장문화), social welfare for foreigners, and naturalization procedures. Answer in Korean. Be concise, encouraging, and thorough.';
     try {
-      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       if (!reply || reply.trim() === '') throw new Error('빈 응답');

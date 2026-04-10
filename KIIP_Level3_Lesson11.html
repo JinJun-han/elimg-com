@@ -488,7 +488,7 @@ var AICHAT = {
     var sys = 'You are a Korean language tutor for KIIP Level 3 (교육 / Education). The student is likely Vietnamese. This lesson covers -(으)ㄴ/는지 (indirect questions) and -든지 (any option is fine). Answer in Korean with Vietnamese translation. Be concise and friendly.';
 
     try {
-      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sys},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       if (!reply || reply.trim() === '') throw new Error('빈 응답');

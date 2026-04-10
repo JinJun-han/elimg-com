@@ -1092,7 +1092,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean environmental practices coach for workers in Korea. Lesson focus: environment vocabulary 환경(environment), 오염(pollution), 쓰레기(garbage), 분리수거(waste sorting), 재활용(recycling), obligation ~해야 해요 (must/should). Help workers follow Korean recycling rules. SHORT answers with English. LESSON:L2L13';
-      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

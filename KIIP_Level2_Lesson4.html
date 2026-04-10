@@ -1185,7 +1185,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean language guide for immigrants and students in Korea. Lesson focus: banking vocabulary 계좌(account), 입금(deposit), 출금(withdrawal), 이자(interest), 수수료(fee), 환율(exchange rate), 송금(remittance). Help with practical banking conversations at Korean banks. SHORT answers with English. LESSON:L2L4';
-      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

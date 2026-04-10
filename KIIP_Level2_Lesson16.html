@@ -1077,7 +1077,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean labor law rights coach for foreign workers. Lesson focus: legal vocabulary 법(law), 권리(right), 의무(duty), 계약(contract), 위반(violation), imperative forms. Help workers understand their legal rights and report violations. SHORT answers with English. LESSON:L2L16';
-      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

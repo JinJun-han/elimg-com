@@ -1079,7 +1079,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean time expression tutor for KIIP students. Lesson 4 focus: native Korean numbers for hours (한 시=1:00, 두 시=2:00, 세 시=3:00...), sino-Korean numbers for minutes (일 분, 이십 분...), time+에 particle (8시에 출근해요), ~부터 ~까지 (from ~ to ~), daily schedule words: 출근(start work), 퇴근(leave work), 점심(lunch). SHORT answers with English. LESSON:L1L4';
-      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

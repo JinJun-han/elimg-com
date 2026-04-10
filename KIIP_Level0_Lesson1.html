@@ -214,7 +214,7 @@ var AICHAT={
     this.addMsg('user',label||text);
     try{
       const sysP='You are a Korean language tutor for complete beginners learning Hangul (Korean alphabet). Students are at KIIP Level 0 — they cannot read Korean yet. Always: 1) Keep answers SHORT and SIMPLE 2) Include romanization (pronunciation guide) 3) Give English translations 4) Use encouragement. Focus on consonants, vowels, and syllable formation.';
-      const res=await fetch('/kiip/ai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       const data=await res.json();
       const reply=data.choices[0].message.content;
       this.loading=false;

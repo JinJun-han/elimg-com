@@ -870,7 +870,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean language coach for KIIP students (immigrants and foreign workers). Lesson focus: economic vocabulary 경제(economy), 뉴스(news), 무역(trade), 수출(export), 투자(investment), article reading patterns. Help students understand Korean economic news in daily life context. SHORT answers with English. LESSON:KIIP-L2L15';
-      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;

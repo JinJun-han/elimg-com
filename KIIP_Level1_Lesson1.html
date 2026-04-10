@@ -1059,7 +1059,7 @@ var AICHAT = {
     this.addMsg('user', displayText);
     try {
       var sysP = 'You are a Korean self-introduction coach for KIIP learners in Korea. Lesson 1 focus: greetings (안녕하세요), name/nationality/job introductions using 이에요/예요 and 은/는 topic markers. Keep answers SHORT. Always include English translations. Use examples like: 저는 라민이에요, 직업은 회사원이에요. LESSON:L1L1';
-      var res = await fetch('/kiip/ai', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
+      var res = await fetch('/api/chat', {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:[{role:'system',content:sysP},{role:'user',content:text}]})});
       var data = await res.json();
       var reply = data.choices[0].message.content;
       this.loading = false;
