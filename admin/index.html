@@ -1,0 +1,473 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>엘림G행정법무소 | AI 서류 체크리스트 생성 시스템</title>
+<style>
+:root{
+  --f:#1C4A1E;--fm:#2C6B2F;--fl:#4A8C4E;
+  --gold:#C9951A;--gl:#E8B830;
+  --earth:#A8411E;--teal:#0F6E56;
+  --cream:#F5F1E8;--sand:#EDE8D5;--sd:#C8BFA8;
+  --dk:#13291A;--mt:#6B8C6E;--wh:#FFFFFF;
+  --r:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans KR','Segoe UI',sans-serif;background:var(--cream);color:var(--dk);font-size:14px;line-height:1.7}
+/* ── header ── */
+.hdr{background:var(--f);color:var(--cream);padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+.hdr-left{display:flex;align-items:center;gap:12px}
+.logo{width:38px;height:38px;background:var(--gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:var(--dk)}
+.hdr-title{font-size:16px;font-weight:700}
+.hdr-sub{font-size:11px;color:var(--mt);margin-top:1px}
+.hdr-badge{background:var(--gold);color:var(--dk);font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:1px}
+/* ── layout ── */
+.wrap{max-width:1000px;margin:0 auto;padding:24px 16px;display:grid;grid-template-columns:340px 1fr;gap:20px}
+@media(max-width:720px){.wrap{grid-template-columns:1fr}}
+/* ── panel ── */
+.panel{background:var(--wh);border:1px solid var(--sd);border-radius:var(--r);overflow:hidden}
+.panel-hdr{background:var(--fm);color:var(--cream);padding:12px 16px;font-size:13px;font-weight:700}
+.panel-body{padding:16px}
+/* ── service cards ── */
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:14px}
+.svc-card{border:1.5px solid var(--sd);border-radius:8px;padding:9px 10px;cursor:pointer;transition:all .15s}
+.svc-card:hover{border-color:var(--fm)}
+.svc-card.sel{border-color:var(--fm);background:#E1F5EE}
+.svc-code{font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:3px}
+.svc-name{font-size:12px;font-weight:700;color:var(--dk)}
+.svc-sub{font-size:10px;color:var(--mt);margin-top:1px}
+/* ── selects & inputs ── */
+label{font-size:12px;font-weight:700;color:var(--fm);display:block;margin-bottom:4px}
+select,textarea{width:100%;border:1px solid var(--sd);border-radius:8px;padding:8px 10px;font-family:inherit;font-size:13px;background:var(--wh);color:var(--dk);outline:none;transition:border-color .15s}
+select:focus,textarea:focus{border-color:var(--fm)}
+.field{margin-bottom:12px}
+textarea{resize:vertical;min-height:72px;line-height:1.6}
+/* ── chips ── */
+.chip-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.chip{font-size:11px;padding:4px 10px;border:1px solid var(--sd);border-radius:20px;cursor:pointer;transition:all .15s;color:var(--mt);background:transparent}
+.chip:hover{border-color:var(--fm);color:var(--fm)}
+.chip.sel{background:var(--gold);color:var(--dk);border-color:var(--gold);font-weight:700}
+/* ── generate btn ── */
+.gen-btn{width:100%;padding:12px;border-radius:8px;border:none;background:var(--f);color:var(--cream);font-size:14px;font-weight:700;cursor:pointer;transition:opacity .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.gen-btn:hover{opacity:.88}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed}
+/* ── loader ── */
+.loader{display:none;flex-direction:column;align-items:center;gap:12px;padding:40px;color:var(--mt);font-size:13px}
+.spin{width:28px;height:28px;border:3px solid var(--sd);border-top-color:var(--fm);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* ── output ── */
+.output-area{min-height:400px}
+.placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:400px;color:var(--mt);text-align:center;gap:12px}
+.ph-icon{width:56px;height:56px;border-radius:50%;background:var(--sand);display:flex;align-items:center;justify-content:center;font-size:24px}
+/* ── rendered checklist ── */
+.checklist-out{padding:20px;font-size:13px;line-height:1.75}
+.checklist-out h2{font-size:16px;font-weight:700;color:var(--f);margin:0 0 4px;padding-bottom:8px;border-bottom:2px solid var(--sd)}
+.checklist-out .meta{font-size:11px;color:var(--mt);margin-bottom:16px}
+.checklist-out h3{font-size:13px;font-weight:700;color:var(--fm);margin:16px 0 8px;display:flex;align-items:center;gap:6px}
+.sec-badge{font-size:10px;padding:2px 8px;border-radius:20px;font-weight:700}
+.sb-a{background:#E1F5EE;color:#085041}
+.sb-b{background:#FAEEDA;color:#633806}
+.sb-c{background:#EEEDFE;color:#3C3489}
+.sb-d{background:#E6F1FB;color:#0C447C}
+.sb-e{background:#FAECE7;color:#712B13}
+.checklist-out table{width:100%;border-collapse:collapse;margin-bottom:12px;font-size:12px}
+.checklist-out th{background:var(--fm);color:var(--cream);padding:7px 10px;text-align:left;font-weight:700}
+.checklist-out td{padding:7px 10px;border-bottom:1px solid var(--sd);vertical-align:top}
+.checklist-out tr:nth-child(even) td{background:#F9F7F2}
+.checklist-out ul{padding-left:18px;margin-bottom:8px}
+.checklist-out li{margin-bottom:4px}
+.checklist-out .warn{background:#FAECE7;border-left:4px solid var(--earth);padding:10px 12px;border-radius:0 8px 8px 0;margin:8px 0;font-size:12px;color:#4A1B0C}
+.checklist-out .vi-section{background:var(--sand);border-radius:8px;padding:14px 16px;margin-top:20px;border:1px solid var(--sd)}
+.checklist-out .vi-label{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--mt);margin-bottom:8px}
+/* ── action bar ── */
+.action-bar{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--sd);background:var(--sand)}
+.act-btn{padding:7px 14px;border-radius:8px;border:1px solid var(--sd);background:var(--wh);color:var(--dk);font-size:12px;font-weight:700;cursor:pointer;transition:all .15s}
+.act-btn:hover{border-color:var(--fm);color:var(--fm)}
+.act-btn.primary{background:var(--f);color:var(--cream);border-color:var(--f)}
+.act-btn.primary:hover{opacity:.88}
+/* ── prompt box ── */
+.prompt-box{background:#1A2E1B;border-radius:8px;padding:14px 16px;font-family:monospace;font-size:11px;color:#9FE1CB;line-height:1.7;margin-top:12px;white-space:pre-wrap;word-break:break-all;max-height:200px;overflow-y:auto}
+.toggle-btn{font-size:11px;color:var(--fm);cursor:pointer;background:none;border:none;padding:4px 0;text-decoration:underline;margin-top:6px}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="logo">엘림</div>
+    <div>
+      <div class="hdr-title">엘림G행정법무소</div>
+      <div class="hdr-sub">AI 서류 체크리스트 생성 시스템 v1.0 · 관할: 부산출입국·외국인청 김해출장소</div>
+    </div>
+  </div>
+  <div class="hdr-badge">AI POWERED</div>
+</div>
+
+<div class="wrap">
+
+  <!-- ── 좌측: 입력 패널 ── -->
+  <div>
+    <div class="panel">
+      <div class="panel-hdr">서비스 유형 선택</div>
+      <div class="panel-body">
+        <div class="svc-grid" id="svc-grid"></div>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:14px">
+      <div class="panel-hdr">의뢰인 정보</div>
+      <div class="panel-body">
+
+        <div class="field">
+          <label>국적 선택</label>
+          <div class="chip-row" id="nat-chips"></div>
+        </div>
+
+        <div class="field">
+          <label>현재 체류자격</label>
+          <select id="sel-visa">
+            <option value="">-- 선택하세요 --</option>
+            <optgroup label="취업">
+              <option value="E-9">E-9 (비전문취업 / EPS)</option>
+              <option value="E-6">E-6 (예술흥행)</option>
+              <option value="E-7">E-7 (특정활동)</option>
+              <option value="H-2">H-2 (방문취업)</option>
+            </optgroup>
+            <optgroup label="유학">
+              <option value="D-2">D-2 (유학)</option>
+              <option value="D-4">D-4 (어학연수)</option>
+            </optgroup>
+            <optgroup label="가족·결혼">
+              <option value="F-1">F-1 (방문동거)</option>
+              <option value="F-3">F-3 (동반)</option>
+              <option value="F-6">F-6 (결혼이민)</option>
+            </optgroup>
+            <optgroup label="거주·영주">
+              <option value="F-2">F-2 (거주)</option>
+              <option value="F-5">F-5 (영주)</option>
+            </optgroup>
+            <optgroup label="기타">
+              <option value="G-1">G-1 (기타)</option>
+              <option value="C-3">C-3 (단기방문)</option>
+              <option value="미등록">미등록 (긴급)</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>국내 체류 기간</label>
+          <select id="sel-stay">
+            <option value="1년 미만">1년 미만</option>
+            <option value="1~3년">1~3년</option>
+            <option value="3~5년" selected>3~5년</option>
+            <option value="5~10년">5~10년</option>
+            <option value="10년 이상">10년 이상</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>특이사항 / 추가 상황 (선택)</label>
+          <textarea id="extra" placeholder="예: 사업장 변경 이력 있음, 범칙금 미납 이력, 배우자 한국인, 자녀 한국 출생 등"></textarea>
+        </div>
+
+        <button class="gen-btn" id="gen-btn" onclick="generate()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          AI 체크리스트 생성
+        </button>
+
+        <button class="toggle-btn" onclick="togglePrompt()">사용 중인 시스템 프롬프트 보기 ▾</button>
+        <div class="prompt-box" id="prompt-box" style="display:none"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 우측: 출력 패널 ── -->
+  <div class="panel" style="display:flex;flex-direction:column">
+    <div class="panel-hdr" style="display:flex;align-items:center;justify-content:space-between">
+      <span>생성된 서류 체크리스트</span>
+      <span id="output-meta" style="font-size:11px;font-weight:400;opacity:.7"></span>
+    </div>
+
+    <div class="output-area" id="output-area" style="flex:1">
+      <div class="placeholder" id="placeholder">
+        <div class="ph-icon">&#128196;</div>
+        <div>
+          <div style="font-weight:700;margin-bottom:4px">서비스 유형과 의뢰인 정보를 선택하세요</div>
+          <div style="font-size:12px">AI가 한국어 + 모국어 이중 언어<br>서류 체크리스트를 즉시 생성합니다</div>
+        </div>
+      </div>
+      <div class="loader" id="loader">
+        <div class="spin"></div>
+        <div id="loader-msg">체크리스트 생성 중...</div>
+      </div>
+      <div id="result-area" style="display:none"></div>
+    </div>
+
+    <div class="action-bar" id="action-bar" style="display:none">
+      <button class="act-btn primary" onclick="copyResult()">복사</button>
+      <button class="act-btn" onclick="printResult()">인쇄</button>
+      <button class="act-btn" onclick="saveResult()">저장</button>
+      <div style="flex:1"></div>
+      <button class="act-btn" onclick="sendKakao()" style="background:#FEE500;border-color:#FEE500;color:#000">카카오 공유</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const SVCS = [
+  {code:"A",name:"체류자격 연장",sub:"E-9·E-6·F계열",color:"#085041"},
+  {code:"B",name:"체류자격 변경",sub:"E-9→F-2/F-5",color:"#633806"},
+  {code:"C",name:"외국인 등록",sub:"신규·재발급",color:"#3C3489"},
+  {code:"D",name:"영주·귀화",sub:"F-5·귀화신청",color:"#712B13"},
+  {code:"E",name:"가족 초청",sub:"F-1·F-3초청장",color:"#0C447C"},
+  {code:"F",name:"사업장 변경",sub:"EPS 근로자",color:"#27500A"},
+  {code:"G",name:"긴급 이의신청",sub:"강제퇴거·보호",color:"#A32D2D"},
+  {code:"H",name:"기타 서류",sub:"각종 증명서",color:"#2C2C2A"},
+];
+
+const NATS = [
+  {code:"vi",name:"베트남",lang:"Tiếng Việt"},
+  {code:"ne",name:"네팔",lang:"नेपाली"},
+  {code:"si",name:"스리랑카",lang:"සිංහල"},
+  {code:"uz",name:"우즈벡",lang:"O'zbek"},
+  {code:"ph",name:"필리핀",lang:"Filipino"},
+  {code:"km",name:"캄보디아",lang:"ភាសាខ្មែរ"},
+  {code:"id",name:"인도네시아",lang:"Bahasa"},
+  {code:"th",name:"태국",lang:"ภาษาไทย"},
+  {code:"my",name:"미얀마",lang:"မြန်မာ"},
+  {code:"zh",name:"중국",lang:"中文"},
+  {code:"mn",name:"몽골",lang:"Монгол"},
+  {code:"en",name:"기타/영어",lang:"English"},
+];
+
+let selSvc = null, selNat = null;
+
+function buildSvcGrid(){
+  document.getElementById('svc-grid').innerHTML = SVCS.map((s,i)=>`
+  <div class="svc-card" id="sc${i}" onclick="selService(${i})">
+    <div class="svc-code" style="color:${s.color}">${s.code}</div>
+    <div class="svc-name">${s.name}</div>
+    <div class="svc-sub">${s.sub}</div>
+  </div>`).join('');
+}
+
+function selService(i){
+  selSvc = i;
+  document.querySelectorAll('.svc-card').forEach((c,j)=>c.classList.toggle('sel',j===i));
+}
+
+function buildNatChips(){
+  document.getElementById('nat-chips').innerHTML = NATS.map((n,i)=>`
+  <div class="chip" id="nc${i}" onclick="selNation(${i})">${n.name}</div>`).join('');
+}
+
+function selNation(i){
+  selNat = i;
+  document.querySelectorAll('.chip').forEach((c,j)=>c.classList.toggle('sel',j===i));
+}
+
+const SYSTEM_PROMPT = `당신은 엘림G행정법무소 AI 서류 체크리스트 생성 전문가입니다.
+
+[기관 정보]
+행정사: 한진준 대표 (부산남부노회 파송 이주민 전문 사역자 · 행정사)
+관할: 부산출입국·외국인청 김해출장소
+사역 철학: 행정 서비스가 곧 이주민 목회의 시작
+
+[생성 규칙]
+1. 출입국관리법·시행규칙·시행령 현행 기준 적용
+2. 부산출입국·외국인청 김해출장소 관할 기준 우선
+3. 서류별 발급처·유효기간·수수료·주의사항 반드시 포함
+4. 의뢰인이 자주 실수하는 "함정 포인트" ⚠️ 표시로 강조
+5. 한국어 체크리스트 완성 후 반드시 의뢰인 모국어 번역본 추가
+6. 불확실한 규정은 추측 금지 — "출입국사무소 개별 확인 필요" 명시
+
+[출력 형식 — 반드시 준수]
+
+## 서류 체크리스트: [서비스명]
+**의뢰인**: [국적] / [체류자격] / [체류기간] / [특이사항]
+**접수처**: 부산출입국·외국인청 김해출장소 (055-322-4000)
+**생성일**: [오늘 날짜]
+
+### A. 필수 서류
+(마크다운 표: 번호 | 서류명 | 발급처 | 유효기간/부수 | ⚠️주의사항)
+
+### B. 조건부 서류
+(해당자에게만 필요한 서류 - 조건 명시)
+
+### C. 제출 전 체크리스트
+- [ ] 항목들 (체크박스 형식)
+
+### D. 예상 처리 기간 및 수수료
+- 표준 처리: XX일 / 수수료: XXXX원
+- 우선 처리: XX일 / 수수료: XXXX원 (해당시)
+
+### E. ⚠️ 오류 다발 포인트 (절대 주의)
+(가장 자주 실수하는 3-5가지)
+
+### F. 엘림G 추가 안내
+(서비스 완료 후 연결 가능한 지원 정보)
+
+---
+## [모국어명] 서류 안내 / Document Guide
+(A~F 전체를 의뢰인 모국어로 번역)`;
+
+function togglePrompt(){
+  const box = document.getElementById('prompt-box');
+  box.style.display = box.style.display==='none' ? 'block' : 'none';
+  box.textContent = SYSTEM_PROMPT;
+}
+
+async function generate(){
+  if(selSvc === null){ alert('서비스 유형을 선택해주세요'); return; }
+  if(selNat === null){ alert('국적을 선택해주세요'); return; }
+  const visa = document.getElementById('sel-visa').value;
+  const stay = document.getElementById('sel-stay').value;
+  const extra = document.getElementById('extra').value;
+
+  const svc = SVCS[selSvc];
+  const nat = NATS[selNat];
+
+  document.getElementById('placeholder').style.display = 'none';
+  document.getElementById('loader').style.display = 'flex';
+  document.getElementById('result-area').style.display = 'none';
+  document.getElementById('action-bar').style.display = 'none';
+  document.getElementById('gen-btn').disabled = true;
+
+  const msgs = [
+    "출입국관리법 검토 중...",
+    "필요 서류 목록 생성 중...",
+    "모국어 번역 준비 중...",
+    "체크리스트 완성 중..."
+  ];
+  let mi = 0;
+  const interval = setInterval(()=>{
+    document.getElementById('loader-msg').textContent = msgs[mi % msgs.length];
+    mi++;
+  }, 1800);
+
+  const userMsg = `서비스: ${svc.name} (코드 ${svc.code})
+국적: ${nat.name} (${nat.lang})
+현재 체류자격: ${visa || '미확인'}
+국내 체류 기간: ${stay}
+특이사항: ${extra || '없음'}
+
+위 의뢰인을 위한 서류 체크리스트를 생성해주세요.
+모국어 번역은 ${nat.lang}로 해주세요.
+오늘 날짜: ${new Date().toLocaleDateString('ko-KR')}`;
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:3500,
+        system: SYSTEM_PROMPT,
+        messages:[{role:'user', content: userMsg}]
+      })
+    });
+    const data = await resp.json();
+    clearInterval(interval);
+    const text = data.content?.[0]?.text || '오류가 발생했습니다.';
+    renderResult(text, svc, nat);
+  } catch(e) {
+    clearInterval(interval);
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('result-area').style.display = 'block';
+    document.getElementById('result-area').innerHTML = `<div style="padding:20px;color:#A32D2D">오류: ${e.message}<br><br>API 키를 확인하거나 네트워크 상태를 확인해주세요.</div>`;
+  }
+  document.getElementById('gen-btn').disabled = false;
+}
+
+function renderResult(text, svc, nat){
+  document.getElementById('loader').style.display = 'none';
+  document.getElementById('action-bar').style.display = 'flex';
+  document.getElementById('output-meta').textContent = `${svc.name} · ${nat.name} · ${new Date().toLocaleTimeString('ko-KR')}`;
+
+  let html = text
+    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
+    .replace(/^### ([A-H]\. .+)$/gm, (m,s)=>{
+      const codes={'A':'sb-a','B':'sb-b','C':'sb-c','D':'sb-d','E':'sb-e','F':'sb-a'};
+      const letter = s[0];
+      return `<h3><span class="sec-badge ${codes[letter]||'sb-a'}">${s[0]}</span>${s.slice(2)}</h3>`;
+    })
+    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    .replace(/^\*\*(.+?)\*\*: (.+)$/gm, '<div class="meta"><strong>$1</strong>: $2</div>')
+    .replace(/^⚠️(.+)$/gm, '<div class="warn">⚠️$1</div>')
+    .replace(/^\- \[ \] (.+)$/gm, '<li style="list-style:none;padding-left:4px">☐ $1</li>')
+    .replace(/^\- (.+)$/gm, '<li>$1</li>')
+    .replace(/^---$/gm, '<hr style="border:none;border-top:2px solid var(--sd);margin:20px 0">')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+  // 표 변환
+  html = html.replace(/(\|.+\|[\s\S]*?)(?=\n\n|\n###|\n##|$)/g, (m) => {
+    const rows = m.trim().split('\n').filter(r => r.includes('|'));
+    if(rows.length < 2) return m;
+    let table = '<table>';
+    rows.forEach((r,i) => {
+      if(r.replace(/[\|\s\-]/g,'').length === 0) return;
+      const cells = r.split('|').filter((_,j,a) => j>0 && j<a.length-1);
+      const tag = i===0 ? 'th' : 'td';
+      table += `<tr>${cells.map(c=>`<${tag}>${c.trim()}</${tag}>`).join('')}</tr>`;
+    });
+    return table + '</table>';
+  });
+
+  // 모국어 섹션 박스
+  html = html.replace(/<hr[^>]*>\s*<h2>([^<]+(?:안내|Guide|Hướng dẫn|Гайд|Panduan|Руководство|แนะนำ|ガイド|가이드)[^<]*)<\/h2>/,
+    '<div class="vi-section"><div class="vi-label">모국어 안내</div><h2>$1</h2>');
+  if(html.includes('vi-section') && !html.endsWith('</div></div>')) html += '</div>';
+
+  const area = document.getElementById('result-area');
+  area.innerHTML = `<div class="checklist-out">${html}</div>`;
+  area.style.display = 'block';
+}
+
+function copyResult(){
+  const el = document.getElementById('result-area');
+  const text = el.innerText;
+  navigator.clipboard.writeText(text).then(()=>alert('복사되었습니다.')).catch(()=>{
+    const t = document.createElement('textarea');
+    t.value = text; document.body.appendChild(t);
+    t.select(); document.execCommand('copy');
+    document.body.removeChild(t); alert('복사되었습니다.');
+  });
+}
+
+function printResult(){
+  const content = document.getElementById('result-area').innerHTML;
+  const w = window.open('','_blank');
+  w.document.write(`<html><head><title>서류 체크리스트 — 엘림G행정법무소</title>
+  <style>body{font-family:'Noto Sans KR',sans-serif;padding:30px;font-size:13px;line-height:1.7}
+  h2{color:#1C4A1E;border-bottom:2px solid #C8BFA8;padding-bottom:6px}
+  h3{color:#2C6B2F;margin:14px 0 6px}
+  table{width:100%;border-collapse:collapse;margin-bottom:10px}
+  th{background:#2C6B2F;color:white;padding:6px 10px;text-align:left}
+  td{padding:6px 10px;border-bottom:1px solid #C8BFA8}
+  .warn{background:#FAECE7;padding:8px 12px;border-left:4px solid #A8411E;margin:6px 0}
+  </style></head><body>${content}</body></html>`);
+  w.document.close(); w.print();
+}
+
+function saveResult(){
+  const text = document.getElementById('result-area').innerText;
+  const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `엘림G_서류체크리스트_${new Date().toLocaleDateString('ko-KR').replace(/\./g,'')}.txt`;
+  a.click();
+}
+
+function sendKakao(){
+  alert('카카오 공유 기능은 KakaoTalk API 연동 후 활성화됩니다.\n\n현재는 복사 → 카카오 붙여넣기로 공유해주세요.');
+}
+
+buildSvcGrid();
+buildNatChips();
+selService(0);
+selNation(0);
+</script>
+</body>
+</html>
