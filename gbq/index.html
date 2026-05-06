@@ -1,0 +1,651 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GBQ 수강생 모집 | 글로컬 브릿지 퀘스트 1기 · Tuyển sinh Glocal Bridge Quest</title>
+<style>
+  :root {
+    --forest: #1C4A1E; --forest-mid: #2C6B2F; --forest-light: #4A8C4E;
+    --gold: #C9951A; --gold-light: #E8B830;
+    --earth: #A8411E; --earth-light: #C8623C;
+    --purple: #4A2878; --purple-light: #7B4FB0;
+    --teal: #0F6E56; --teal-light: #1D9E75;
+    --cream: #F5F1E8; --sand: #EDE8D5; --sand-dark: #C8BFA8;
+    --white: #FFFFFF; --dark: #13291A; --muted: #6B8C6E;
+    --radius: 10px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Noto Sans KR', 'Segoe UI', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    line-height: 1.75;
+  }
+
+  /* ── 언어 토글 ── */
+  .lang-bar {
+    background: var(--dark);
+    padding: 8px 24px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+  }
+  .lang-btn {
+    padding: 4px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.25);
+    background: transparent;
+    color: rgba(255,255,255,.6);
+    font-size: 12px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .lang-btn.active {
+    background: var(--gold);
+    color: var(--dark);
+    border-color: var(--gold);
+    font-weight: 700;
+  }
+  .ko-only, .vi-only { display: block; }
+  body.vi .ko-only { display: none; }
+  body.vi .vi-only { display: block; }
+  body.ko .vi-only { display: none; }
+  body.ko .ko-only { display: block; }
+
+  /* ── 히어로 ── */
+  .hero {
+    background: var(--forest);
+    color: var(--cream);
+    padding: 52px 24px 44px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: var(--forest-mid);
+    opacity: .4;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: var(--forest-light);
+    opacity: .25;
+  }
+  .hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 4px 16px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .hero-sub {
+    font-size: clamp(14px, 2.5vw, 18px);
+    color: var(--sand-dark);
+    margin-bottom: 20px;
+  }
+  .hero-divider {
+    width: 50px; height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+    margin: 0 auto 18px;
+  }
+  .hero-tagline {
+    font-size: 14px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .hstat { text-align: center; }
+  .hstat-n { font-size: 28px; font-weight: 700; color: var(--gold-light); display: block; }
+  .hstat-l { font-size: 11px; color: var(--muted); }
+
+  /* ── 메인 ── */
+  main { max-width: 820px; margin: 0 auto; padding: 40px 20px 80px; }
+  section { margin-bottom: 40px; }
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--forest);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--sand-dark);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  h2 .sec-num {
+    width: 28px; height: 28px;
+    background: var(--forest);
+    color: var(--gold-light);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ── 여정 3단계 ── */
+  .journey {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .j-card { border-radius: var(--radius); padding: 18px 16px; }
+  .j-wild { background: #FAEEDA; }
+  .j-elim { background: #E1F5EE; }
+  .j-caan { background: #EEEDFE; }
+  .j-num { font-size: 10px; font-weight: 700; letter-spacing: 2px; margin-bottom: 6px; }
+  .j-wild .j-num { color: #854F0B; }
+  .j-elim .j-num { color: #085041; }
+  .j-caan .j-num { color: #3C3489; }
+  .j-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .j-wild .j-name { color: #633806; }
+  .j-elim .j-name { color: #04342C; }
+  .j-caan .j-name { color: #26215C; }
+  .j-desc { font-size: 12px; line-height: 1.5; }
+  .j-wild .j-desc { color: #854F0B; }
+  .j-elim .j-desc { color: #085041; }
+  .j-caan .j-desc { color: #3C3489; }
+
+  /* ── 클래스 카드 ── */
+  .classes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cls-card {
+    background: var(--white);
+    border: 1px solid var(--sand-dark);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+  .cls-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .ic-a { background: #FAEEDA; }
+  .ic-b { background: #E1F5EE; }
+  .ic-c { background: #EEEDFE; }
+  .ic-d { background: #FAECE7; }
+  .cls-name { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .cls-sub { font-size: 12px; color: var(--muted); }
+
+  /* ── 혜택 그리드 ── */
+  .benefit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .ben-card {
+    background: var(--white);
+    border-left: 4px solid var(--forest-mid);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 14px 16px;
+  }
+  .ben-title { font-size: 13px; font-weight: 700; color: var(--forest); margin-bottom: 4px; }
+  .ben-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── 신청 박스 ── */
+  .apply-box {
+    background: var(--forest);
+    color: var(--cream);
+    border-radius: var(--radius);
+    padding: 32px 28px;
+    text-align: center;
+  }
+  .apply-box h2 {
+    color: var(--gold-light);
+    border: none;
+    padding: 0;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .apply-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 20px 0;
+    text-align: left;
+  }
+  .ai-item { background: rgba(255,255,255,.08); border-radius: 8px; padding: 12px 14px; }
+  .ai-label { font-size: 10px; letter-spacing: 2px; color: var(--gold); margin-bottom: 4px; font-weight: 700; }
+  .ai-val { font-size: 13px; color: var(--cream); line-height: 1.5; }
+  .fee-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+  .apply-cta {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark);
+    font-weight: 700;
+    font-size: 15px;
+    padding: 13px 36px;
+    border-radius: 30px;
+    text-decoration: none;
+    margin-top: 16px;
+    transition: opacity .2s;
+  }
+  .apply-cta:hover { opacity: .88; }
+  .contact-line {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+  .contact-line a { color: var(--gold-light); }
+
+  /* ── 스톤 배지 ── */
+  .stone-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .stone { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+  .s-gold   { background: #FAEEDA; color: #854F0B; }
+  .s-teal   { background: #E1F5EE; color: #085041; }
+  .s-purple { background: #EEEDFE; color: #3C3489; }
+  .s-amber  { background: #FAC775; color: #633806; }
+
+  /* ── 체크리스트 ── */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    padding: 7px 0 7px 28px;
+    border-bottom: 1px solid var(--sand-dark);
+    font-size: 14px;
+    position: relative;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: '';
+    position: absolute;
+    left: 4px; top: 12px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--teal-light);
+  }
+  .checklist li::after {
+    content: '✓';
+    position: absolute;
+    left: 7px; top: 11px;
+    font-size: 9px;
+    color: white;
+    font-weight: 700;
+  }
+
+  /* ── 강조 인용 ── */
+  .quote-box {
+    background: var(--forest-mid);
+    color: var(--cream);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    margin: 16px 0;
+  }
+  .quote-text { font-size: 16px; font-style: italic; line-height: 1.6; margin-bottom: 8px; }
+  .quote-cite { font-size: 12px; color: var(--gold-light); }
+
+  /* ── 주의사항 ── */
+  .notice {
+    background: var(--sand);
+    border: 1px solid var(--sand-dark);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* ── 푸터 ── */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,.45);
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  footer a { color: var(--gold); text-decoration: none; }
+
+  @media(max-width: 520px) {
+    .journey { grid-template-columns: 1fr; }
+    .classes { grid-template-columns: 1fr; }
+    .benefit-grid { grid-template-columns: 1fr; }
+    .apply-info { grid-template-columns: 1fr; }
+    .hero-stats { gap: 20px; }
+  }
+</style>
+</head>
+<body class="ko">
+
+<!-- 언어 토글 -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('ko',this)">한국어</button>
+  <button class="lang-btn" onclick="setLang('vi',this)">Tiếng Việt</button>
+</div>
+
+<!-- ══ HERO ══════════════════════════════════════════════ -->
+<div class="hero">
+  <div class="hero-inner">
+    <!-- 한국어 -->
+    <div class="ko-only">
+      <div class="hero-badge">2025 · 1기 모집 · 글로컬브릿지연구소</div>
+      <h1>글로컬 브릿지 퀘스트<br><span style="color:var(--gold-light)">GBQ 1기</span> 수강생 모집</h1>
+      <div class="hero-sub">AI로 무장한 글로컬 사역자를 세웁니다</div>
+      <div class="hero-divider"></div>
+      <div class="hero-tagline">광야를 통과한 자에게 가나안이 열린다 — 8주 게임형 AI 사역 훈련</div>
+    </div>
+    <!-- 베트남어 -->
+    <div class="vi-only">
+      <div class="hero-badge">2025 · Khoá 1 · Viện Nghiên Cứu Glocal Bridge</div>
+      <h1>Glocal Bridge Quest<br><span style="color:var(--gold-light)">GBQ Khoá 1</span> Tuyển Sinh</h1>
+      <div class="hero-sub">Trang bị AI để phục vụ cộng đồng người nhập cư toàn cầu</div>
+      <div class="hero-divider"></div>
+      <div class="hero-tagline">Từ đồng hoang đến miền hứa — Hành trình 8 tuần huấn luyện AI sứ vụ</div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hstat">
+        <span class="hstat-n">8</span>
+        <span class="hstat-l ko-only">주 커리큘럼</span>
+        <span class="hstat-l vi-only">Tuần học</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-n">20</span>
+        <span class="hstat-l ko-only">명 선착순</span>
+        <span class="hstat-l vi-only">Suất học</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-n">30</span>
+        <span class="hstat-l ko-only">개국 네트워크</span>
+        <span class="hstat-l vi-only">Quốc gia mạng lưới</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-n">4</span>
+        <span class="hstat-l ko-only">개 플레이어 클래스</span>
+        <span class="hstat-l vi-only">Lớp nhân vật</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MAIN ══════════════════════════════════════════════ -->
+<main>
+
+  <!-- ① 프로그램 소개 -->
+  <section>
+    <!-- 한국어 -->
+    <div class="ko-only">
+      <h2><span class="sec-num">1</span> 이 프로그램은 무엇입니까?</h2>
+      <div class="quote-box">
+        <div class="quote-text">"전문성 없이 AI를 쓰면 그럴듯해 보이는 빈껍데기만 남는다. 30년 사역 경험이 AI의 연료입니다."</div>
+        <div class="quote-cite">— 글로컬 브릿지 퀘스트 설계 원칙</div>
+      </div>
+      <p style="font-size:14px;line-height:1.8;margin-bottom:12px">
+        글로컬 브릿지 퀘스트(GBQ)는 <strong>이주민 사역·BAM·교육·설교</strong> 분야 전문가들이 AI를 자신의 사역에 실질적으로 결합할 수 있도록 설계된 <strong>8주 게임형 훈련 프로그램</strong>입니다.
+      </p>
+      <p style="font-size:14px;line-height:1.8">
+        IP MARBLE의 게임 기반 학습 철학을 이주민 사역 현장에 접목하여, 수강생은 매주 실제 배포 가능한 산출물을 만들며 AI 역량을 체득합니다. 이론이 아닌 실전입니다.
+      </p>
+    </div>
+    <!-- 베트남어 -->
+    <div class="vi-only">
+      <h2><span class="sec-num">1</span> Chương trình này là gì?</h2>
+      <div class="quote-box">
+        <div class="quote-text">"Dùng AI mà không có chuyên môn thì chỉ tạo ra vỏ hào nhoáng rỗng tuếch. 30 năm kinh nghiệm mục vụ chính là nhiên liệu của AI."</div>
+        <div class="quote-cite">— Nguyên tắc thiết kế Glocal Bridge Quest</div>
+      </div>
+      <p style="font-size:14px;line-height:1.8;margin-bottom:12px">
+        Glocal Bridge Quest (GBQ) là <strong>chương trình huấn luyện AI theo hình thức game 8 tuần</strong>, dành cho những người phục vụ trong lĩnh vực <strong>sứ vụ người nhập cư, BAM, giáo dục và giảng đạo</strong>.
+      </p>
+      <p style="font-size:14px;line-height:1.8">
+        Lấy cảm hứng từ triết lý học qua game của IP MARBLE, mỗi tuần học viên tạo ra sản phẩm thực tế có thể triển khai ngay — không phải lý thuyết, mà là thực chiến.
+      </p>
+    </div>
+  </section>
+
+  <!-- ② 여정 구조 -->
+  <section>
+    <div class="ko-only">
+      <h2><span class="sec-num">2</span> 8주 여정 구조 (광야→엘림→가나안)</h2>
+    </div>
+    <div class="vi-only">
+      <h2><span class="sec-num">2</span> Cấu trúc 8 tuần (Đồng Hoang → Ê-lim → Ca-na-an)</h2>
+    </div>
+    <div class="journey">
+      <div class="j-card j-wild">
+        <div class="j-num">PHASE 1 · W1–W2</div>
+        <div class="j-name ko-only">광야 — AI 무장</div>
+        <div class="j-name vi-only">Đồng Hoang — Trang bị AI</div>
+        <div class="j-desc ko-only">도메인 혁명 + 프롬프트 연금술. 나의 30년 전문성이 AI의 연료임을 발견하는 단계.</div>
+        <div class="j-desc vi-only">Khám phá chuyên môn + Luyện prompt. Khám phá rằng 30 năm kinh nghiệm của bạn chính là nhiên liệu cho AI.</div>
+      </div>
+      <div class="j-card j-elim">
+        <div class="j-num">PHASE 2 · W3–W5</div>
+        <div class="j-name ko-only">엘림 — 사역 훈련</div>
+        <div class="j-name vi-only">Ê-lim — Huấn luyện sứ vụ</div>
+        <div class="j-desc ko-only">SMAT 파이프라인 + 27개국어 + BAM 전략. 말씀과 비즈니스가 AI로 융합되는 훈련장.</div>
+        <div class="j-desc vi-only">Đường ống SMAT + 27 ngôn ngữ + Chiến lược BAM. Nơi Lời Chúa và kinh doanh hòa quyện qua AI.</div>
+      </div>
+      <div class="j-card j-caan">
+        <div class="j-num">PHASE 3 · W6–W8</div>
+        <div class="j-name ko-only">가나안 — 플랫폼 구축</div>
+        <div class="j-name vi-only">Ca-na-an — Xây dựng nền tảng</div>
+        <div class="j-desc ko-only">디지털 성전 + 글로컬 방송국 + 브릿지 완성. AI 사역자로 완성되는 단계.</div>
+        <div class="j-desc vi-only">Đền thờ kỹ thuật số + Đài phát thanh Glocal + Hoàn thiện cầu nối. Bước trở thành người hầu việc AI toàn cầu.</div>
+      </div>
+    </div>
+    <div class="stone-row">
+      <span class="stone s-gold ko-only">황금 스톤 — 말씀 전문성</span>
+      <span class="stone s-teal ko-only">청록 스톤 — 다문화 연결</span>
+      <span class="stone s-purple ko-only">보라 스톤 — BAM 비즈니스</span>
+      <span class="stone s-amber ko-only">호박 스톤 — 플랫폼 기술</span>
+      <span class="stone s-gold vi-only">Đá Vàng — Chuyên môn Lời Chúa</span>
+      <span class="stone s-teal vi-only">Đá Xanh — Kết nối đa văn hóa</span>
+      <span class="stone s-purple vi-only">Đá Tím — Kinh doanh BAM</span>
+      <span class="stone s-amber vi-only">Đá Hổ Phách — Công nghệ nền tảng</span>
+    </div>
+  </section>
+
+  <!-- ③ 모집 대상 -->
+  <section>
+    <div class="ko-only">
+      <h2><span class="sec-num">3</span> 이런 분을 찾습니다</h2>
+      <ul class="checklist">
+        <li>이주민 사역에 뛰어들었지만 AI 활용이 막막한 목사·전도사·선교사</li>
+        <li>CBMC 비즈니스 원칙을 AI로 실현하고 싶은 BAM 사역자</li>
+        <li>KIIP 한국어 교육을 AI로 더 효율적으로 운영하고 싶은 교사</li>
+        <li>드라마 설교·멀티플랫폼 콘텐츠를 체계적으로 제작하고 싶은 설교자</li>
+        <li>엘림G브릿지 네트워크에서 함께 사역하고 싶은 모든 분</li>
+        <li>30개국 이주민 네트워크와 연결되어 글로컬 영향력을 키우고 싶은 분</li>
+      </ul>
+    </div>
+    <div class="vi-only">
+      <h2><span class="sec-num">3</span> Chúng tôi tìm kiếm những ai?</h2>
+      <ul class="checklist">
+        <li>Mục sư, phó tế, nhà truyền giáo đang phục vụ người nhập cư nhưng chưa biết ứng dụng AI</li>
+        <li>Người làm BAM muốn thực hành các nguyên tắc CBMC qua AI</li>
+        <li>Giáo viên dạy tiếng Hàn (KIIP) muốn nâng cao hiệu quả qua AI</li>
+        <li>Người giảng đạo muốn tạo bài giảng dạng kịch và nội dung đa nền tảng</li>
+        <li>Ai muốn tham gia mạng lưới Elim G Bridge và phục vụ cùng nhau</li>
+        <li>Ai muốn kết nối với mạng lưới 30 quốc gia để mở rộng ảnh hưởng toàn cầu</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ④ 플레이어 클래스 -->
+  <section>
+    <div class="ko-only">
+      <h2><span class="sec-num">4</span> 나의 플레이어 클래스를 선택하세요</h2>
+    </div>
+    <div class="vi-only">
+      <h2><span class="sec-num">4</span> Chọn lớp nhân vật của bạn</h2>
+    </div>
+    <div class="classes">
+      <div class="cls-card">
+        <div class="cls-icon ic-a">&#9876;</div>
+        <div class="cls-name ko-only">선포자 (Proclaimer)</div>
+        <div class="cls-name vi-only">Người Công Bố (Proclaimer)</div>
+        <div class="cls-sub ko-only">목사 · 전도사 · 드라마 설교자<br>황금 스톤 2배 획득</div>
+        <div class="cls-sub vi-only">Mục sư · Phó tế · Người giảng đạo kịch<br>Nhận 2x Đá Vàng</div>
+      </div>
+      <div class="cls-card">
+        <div class="cls-icon ic-b">&#9783;</div>
+        <div class="cls-name ko-only">브릿지 빌더 (Bridge Builder)</div>
+        <div class="cls-name vi-only">Người Xây Cầu (Bridge Builder)</div>
+        <div class="cls-sub ko-only">이주민 사역자 · 엘림G브릿지<br>청록 스톤 2배 획득</div>
+        <div class="cls-sub vi-only">Người hầu việc nhập cư · Elim G Bridge<br>Nhận 2x Đá Xanh</div>
+      </div>
+      <div class="cls-card">
+        <div class="cls-icon ic-c">&#9670;</div>
+        <div class="cls-name ko-only">BAM 파이오니어 (Pioneer)</div>
+        <div class="cls-name vi-only">Tiên Phong BAM (Pioneer)</div>
+        <div class="cls-sub ko-only">CBMC · 창업 코치 · 비즈니스 사역<br>보라 스톤 2배 획득</div>
+        <div class="cls-sub vi-only">CBMC · Huấn luyện khởi nghiệp · BAM<br>Nhận 2x Đá Tím</div>
+      </div>
+      <div class="cls-card">
+        <div class="cls-icon ic-d">&#9998;</div>
+        <div class="cls-name ko-only">에듀케이터 (Educator)</div>
+        <div class="cls-name vi-only">Nhà Giáo Dục (Educator)</div>
+        <div class="cls-sub ko-only">KIIP 교사 · AI 아카데미 강사<br>호박 스톤 2배 획득</div>
+        <div class="cls-sub vi-only">Giáo viên KIIP · Giảng viên AI Academy<br>Nhận 2x Đá Hổ Phách</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 수료 혜택 -->
+  <section>
+    <div class="ko-only">
+      <h2><span class="sec-num">5</span> 수료 후 받는 것들</h2>
+    </div>
+    <div class="vi-only">
+      <h2><span class="sec-num">5</span> Sau khi hoàn thành bạn nhận được gì?</h2>
+    </div>
+    <div class="benefit-grid">
+      <div class="ben-card">
+        <div class="ben-title ko-only">글로컬 브릿지 네트워크 합류</div>
+        <div class="ben-title vi-only">Gia nhập mạng lưới Glocal Bridge</div>
+        <div class="ben-desc ko-only">30개국 이주민 사역자 네트워크에 공식 등록. 좋은 만남·연결·연합의 공동체.</div>
+        <div class="ben-desc vi-only">Đăng ký chính thức vào mạng lưới sứ vụ 30 quốc gia. Cộng đồng gặp gỡ tốt lành.</div>
+      </div>
+      <div class="ben-card">
+        <div class="ben-title ko-only">수료증 발급 (글로컬브릿지연구소)</div>
+        <div class="ben-title vi-only">Cấp chứng chỉ (Viện Glocal Bridge)</div>
+        <div class="ben-desc ko-only">글로컬 AI 사역자 역량 인증. 노회 보고 및 사역 소개서에 활용 가능.</div>
+        <div class="ben-desc vi-only">Chứng nhận năng lực sứ vụ AI toàn cầu. Dùng được cho báo cáo hội đồng và giới thiệu sứ vụ.</div>
+      </div>
+      <div class="ben-card">
+        <div class="ben-title ko-only">BAM 장학금 우선 심사</div>
+        <div class="ben-title vi-only">Ưu tiên xét học bổng BAM</div>
+        <div class="ben-desc ko-only">이주민 BAM 창업 장학금 우선 심사 대상. 전액 수익금은 이주민 BAM 장학금으로 사용됩니다.</div>
+        <div class="ben-desc vi-only">Ưu tiên xét học bổng BAM khởi nghiệp. Toàn bộ lợi nhuận dùng cho học bổng BAM người nhập cư.</div>
+      </div>
+      <div class="ben-card">
+        <div class="ben-title ko-only">AI 사역 포트폴리오 완성</div>
+        <div class="ben-title vi-only">Hoàn thiện portfolio sứ vụ AI</div>
+        <div class="ben-desc ko-only">8주 동안 제작한 설교 드라마·KIIP 자료·BAM 사업계획서·웹사이트 등 실전 포트폴리오.</div>
+        <div class="ben-desc vi-only">Portfolio thực tế gồm bài giảng kịch, tài liệu KIIP, kế hoạch kinh doanh BAM, website trong 8 tuần.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑥ 신청 안내 -->
+  <div class="apply-box">
+    <h2>
+      <span class="ko-only">신청 안내</span>
+      <span class="vi-only">Thông Tin Đăng Ký</span>
+    </h2>
+    <div class="apply-info">
+      <div class="ai-item">
+        <div class="ai-label ko-only">모집 인원</div>
+        <div class="ai-label vi-only">SỐ LƯỢNG</div>
+        <div class="ai-val ko-only">선착순 20명 (길드 4팀 구성)</div>
+        <div class="ai-val vi-only">20 học viên đầu tiên (4 nhóm Guild)</div>
+      </div>
+      <div class="ai-item">
+        <div class="ai-label ko-only">수강료</div>
+        <div class="ai-label vi-only">HỌC PHÍ</div>
+        <div class="ai-val ko-only">10만원 / 8주</div>
+        <div class="ai-val vi-only">100,000 KRW / 8 tuần</div>
+      </div>
+      <div class="ai-item">
+        <div class="ai-label ko-only">운영 방식</div>
+        <div class="ai-label vi-only">HÌNH THỨC</div>
+        <div class="ai-val ko-only">온라인 + 엘림G브릿지 정기 모임 연계</div>
+        <div class="ai-val vi-only">Online + Kết hợp buổi họp định kỳ Elim G Bridge</div>
+      </div>
+      <div class="ai-item">
+        <div class="ai-label ko-only">필요 준비물</div>
+        <div class="ai-label vi-only">YÊU CẦU</div>
+        <div class="ai-val ko-only">노트북 + Claude 계정 (무료 가능)</div>
+        <div class="ai-val vi-only">Laptop + Tài khoản Claude (miễn phí được)</div>
+      </div>
+    </div>
+    <div class="fee-note ko-only">전액 수익금은 이주민 BAM 장학금으로 사용됩니다</div>
+    <div class="fee-note vi-only">Toàn bộ lợi nhuận được dùng làm học bổng BAM cho người nhập cư</div>
+
+    <a href="https://elimg.kr" class="apply-cta ko-only">지금 신청하기 →</a>
+    <a href="https://elimg.kr" class="apply-cta vi-only">Đăng Ký Ngay →</a>
+
+    <div class="contact-line">
+      <span class="ko-only">문의 및 신청: <a href="https://elimg.kr">elimg.kr</a> · <a href="https://elimg.com">elimg.com</a> · 엘림G선교회 · 글로컬브릿지연구소</span>
+      <span class="vi-only">Liên hệ & Đăng ký: <a href="https://elimg.kr">elimg.kr</a> · <a href="https://elimg.com">elimg.com</a> · Hội Truyền Giáo Elim G · Viện Glocal Bridge</span>
+    </div>
+  </div>
+
+  <!-- 주의사항 -->
+  <div class="notice" style="margin-top:20px">
+    <span class="ko-only">
+      본 과정은 엘림G선교회·글로컬브릿지연구소 공동 주관입니다. 수강 인원이 충족되지 않을 경우 일정이 조정될 수 있습니다. 구체적인 일정은 신청 접수 후 개별 안내드립니다. 길드 배치는 신청 시 선택한 플레이어 클래스를 기반으로 진행됩니다.
+    </span>
+    <span class="vi-only">
+      Khóa học này được tổ chức chung bởi Hội Truyền Giáo Elim G và Viện Nghiên Cứu Glocal Bridge. Lịch học có thể điều chỉnh nếu không đủ số lượng học viên. Lịch cụ thể sẽ được thông báo sau khi đăng ký. Việc phân nhóm Guild dựa trên lớp nhân vật bạn chọn khi đăng ký.
+    </span>
+  </div>
+</main>
+
+<footer>
+  <p>엘림G선교회 · 글로컬브릿지연구소 · 부산남부노회 파송</p>
+  <p>좋은 만남 · 좋은 연결 · 좋은 연합</p>
+  <p style="margin-top:6px">
+    <a href="https://elimg.kr">elimg.kr</a> &nbsp;·&nbsp;
+    <a href="https://elimg.com">elimg.com</a>
+  </p>
+  <p style="margin-top:8px;font-size:11px;opacity:.5">
+    Hội Truyền Giáo Elim G · Viện Nghiên Cứu Glocal Bridge · Phái đoàn Hội Đồng Trưởng Lão Nam Busan
+  </p>
+</footer>
+
+<script>
+function setLang(lang, btn) {
+  document.body.className = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
