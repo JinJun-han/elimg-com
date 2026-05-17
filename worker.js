@@ -26,10 +26,14 @@ export default {
     const lessonMatch = url.pathname.match(/HanwhaOcean_Level(\d)_Lesson(\d+)/i);
     if (lessonMatch) {
       const response = await env.ASSETS.fetch(request);
-      if (response.ok && response.headers.get('content-type')?.includes('html')) {
-        return injectProgress(response, parseInt(lessonMatch[1]), parseInt(lessonMatch[2]));
+      if (!response.ok) {
+        return new Response('ASSETS Error: ' + response.status + ' path=' + url.pathname, {status:200,headers:{'content-type':'text/plain'}});
       }
-      return response;
+      try {
+        return await injectProgress(response, parseInt(lessonMatch[1]), parseInt(lessonMatch[2]));
+      } catch(e) {
+        return new Response('injectProgress Error: ' + e.message, {status:200,headers:{'content-type':'text/plain'}});
+      }
     }
 
     return env.ASSETS.fetch(request);
