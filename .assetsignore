@@ -1,0 +1,58 @@
+# wrangler 4.x assets ignore (https://developers.cloudflare.com/workers/static-assets/)
+
+# ─── 보안 (절대 노출 금지) ───
+.git
+.gitignore
+.claude
+.wrangler
+.vercel
+.env
+.env.*
+*.key
+*.pem
+
+# ─── 배포·운영 스크립트 ───
+*.bat
+*.log
+*.ps1
+deploy.bat
+set_secret.js
+
+# ─── 임시·개발 Node 스크립트 ───
+fix_*.js
+check_*.js
+patch_*.js
+restore_*.js
+customize_*.js
+add_*.js
+build_*.js
+upgrade_*.js
+extract_*.js
+inject_shared.js
+hw-shared.js
+tmp_script.js
+test_*.js
+test18*.js
+test19*.js
+test20*.js
+
+# ─── 백업·언더스코어 임시 파일 ───
+_*.js
+_*.ps1
+_*.html
+_*.txt
+_*.log
+*_old.*
+*.tmp
+
+# ─── og-generator 관리 도구 ───
+og-generator.html
+og-save-server.js
+og-inject.js
+og-welcome.html
+
+# ─── wrangler·git 메타 파일 ───
+.assetsignore
+.wranglerignore
+wrangler.toml
+worker.js
