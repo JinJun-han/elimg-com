@@ -1,0 +1,21 @@
+# elimg.com — AI 친화적 하이브리드 정책
+# 검색 색인: 허용 (Google·Naver 등 검색엔진)
+# AI 실시간 인용·RAG: 허용 (ChatGPT·Claude·Perplexity가 답변 시 elimg.com 인용 가능)
+# AI 모델 학습: 차단 (모델 가중치에 콘텐츠 흡수 차단)
+#
+# 근거:
+# - elimg.com 콘텐츠는 이미 AI로 생성·큐레이션된 교육 자료 (KIIP, 한화오션 AI 챗봇 등)
+# - AI 검색 시대 (1-2년 내 Google 트래픽 30% 잠식) 대비
+# - "AI로 잇는 하나님 나라" 미션 일관성
+# - 진짜 보호할 사역 콘텐츠는 elimg-han-sermon에서 별도 정책으로 보호
+#
+# Content Signals 프로토콜: https://contentsignals.org
+
+User-agent: *
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+Allow: /
+Disallow: /admin
+Disallow: /api
+Disallow: /scripts/
+
+Sitemap: https://elimg.com/sitemap.xml
