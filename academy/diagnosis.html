@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="글로컬 AI 아카데미 사전 진단 설문 — 5분이면 충분합니다. 본인에게 맞는 학습 자료를 미리 준비해 드립니다.">
+<title>사전 진단 설문 | 글로컬 AI 아카데미</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--nd:#0a1f35;--gl:#b8892e;--gold:#C49A22;--bg:#faf8f4;--cream:#fdfbf7;--txt:#2c2c2c;--g3:#d1d5db;--g5:#6b7280;--g7:#374151;--w:#fff;--border:#e5e1d8;--wine:#5B2C3F;--green:#1A5C38;--red:#9b2a2a}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--txt);line-height:1.7;-webkit-font-smoothing:antialiased}
+
+.nav{background:var(--nd);color:var(--w);padding:.85rem 1.5rem;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:50}
+.nav a{color:var(--w);text-decoration:none;font-size:.85rem;font-weight:600}
+.nav .brand{font-family:'Nanum Myeongjo',serif;font-weight:800}
+
+.hero{background:linear-gradient(135deg,#0a1f35 0%,#1a3654 100%);color:#fff;padding:3rem 1.5rem 2.5rem;text-align:center}
+.hero .label{font-family:'Playfair Display',serif;font-style:italic;font-size:.78rem;letter-spacing:3px;color:var(--gl);font-weight:400;margin-bottom:.7rem;text-transform:uppercase}
+.hero h1{font-family:'Nanum Myeongjo',serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;line-height:1.4;margin-bottom:.7rem}
+.hero p{font-size:.92rem;color:rgba(255,255,255,.75);max-width:620px;margin:0 auto;line-height:1.85}
+.progress{max-width:780px;margin:1.2rem auto 0;background:rgba(255,255,255,.1);height:4px;border-radius:2px;overflow:hidden}
+.progress-bar{height:100%;background:var(--gl);width:0%;transition:width .3s}
+
+main{max-width:780px;margin:0 auto;padding:2.5rem 1.5rem 4rem}
+form{display:flex;flex-direction:column;gap:1.8rem}
+.section{background:var(--w);border:1px solid var(--border);border-radius:14px;padding:1.7rem}
+.section-num{font-family:'Playfair Display',serif;font-style:italic;font-size:.78rem;letter-spacing:2px;color:var(--gl);font-weight:400;margin-bottom:.3rem;text-transform:uppercase}
+.section h2{font-family:'Nanum Myeongjo',serif;font-size:1.15rem;font-weight:800;color:var(--nd);margin-bottom:.4rem}
+.section-desc{font-size:.85rem;color:var(--g5);margin-bottom:1.3rem;line-height:1.85}
+
+.field{margin-bottom:1.1rem}
+.field:last-child{margin-bottom:0}
+.field-label{display:block;font-size:.88rem;font-weight:600;color:var(--nd);margin-bottom:.5rem}
+.field-label .req{color:var(--red);margin-left:3px}
+.field-hint{font-size:.75rem;color:var(--g5);margin-top:.3rem;line-height:1.6}
+.field input[type="text"],.field input[type="email"],.field input[type="tel"],.field select,.field textarea{
+  width:100%;padding:.7rem .9rem;background:var(--cream);border:1px solid var(--g3);border-radius:8px;font-family:inherit;font-size:.92rem;color:var(--txt);outline:none;transition:all .2s
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gl);background:var(--w);box-shadow:0 0 0 3px rgba(184,137,46,.1)}
+.field textarea{resize:vertical;min-height:80px;font-family:inherit}
+
+/* 라디오·체크박스 카드 */
+.choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.6rem}
+.choice{position:relative;cursor:pointer}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.choice-label{display:flex;flex-direction:column;align-items:center;padding:1rem .7rem;background:var(--cream);border:1.5px solid var(--g3);border-radius:10px;transition:all .2s;text-align:center;cursor:pointer}
+.choice-label .ico{font-size:1.4rem;margin-bottom:.3rem}
+.choice-label .name{font-size:.82rem;font-weight:600;color:var(--nd);margin-bottom:.15rem}
+.choice-label .desc{font-size:.7rem;color:var(--g5);line-height:1.5}
+.choice input:checked + .choice-label{border-color:var(--gl);background:#fef9ef;box-shadow:0 4px 14px rgba(184,137,46,.15)}
+.choice input:checked + .choice-label .name{color:var(--wine)}
+
+/* 작은 라디오 (one row) */
+.radio-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.radio-row .choice-label{padding:.55rem 1rem;flex-direction:row;text-align:left}
+.radio-row .choice-label .name{font-size:.85rem;margin-bottom:0}
+
+/* 체크박스 multi */
+.check-grid{display:flex;gap:.5rem;flex-wrap:wrap}
+.check-grid .choice-label{padding:.5rem .9rem;flex-direction:row;text-align:left}
+.check-grid .choice-label .name{font-size:.82rem;margin-bottom:0}
+
+/* 동의 영역 */
+.consent{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem}
+.consent-row{display:flex;align-items:flex-start;gap:.7rem;padding:.5rem 0}
+.consent-row input{margin-top:.3rem;flex-shrink:0;width:18px;height:18px;cursor:pointer;accent-color:var(--gl)}
+.consent-row label{font-size:.83rem;color:var(--g7);line-height:1.7;cursor:pointer}
+.consent-row label strong{color:var(--nd)}
+.consent-row label .opt{color:var(--g5);font-weight:400}
+
+/* 제출 */
+.submit-area{position:sticky;bottom:0;background:linear-gradient(180deg,transparent,var(--bg) 30%);padding:1.5rem 0 0;margin-top:.5rem}
+button.submit{width:100%;padding:1.1rem;background:var(--gl);color:var(--w);border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;transition:all .3s;font-family:inherit}
+button.submit:hover{background:#d8a040;box-shadow:0 8px 24px rgba(184,137,46,.3);transform:translateY(-2px)}
+button.submit:disabled{background:var(--g5);cursor:not-allowed;transform:none}
+
+/* 알림 */
+.alert{padding:1rem 1.3rem;border-radius:10px;margin-bottom:1.5rem;display:none}
+.alert.show{display:block}
+.alert.success{background:#d1fae5;border:1px solid #10b981;color:#065f46}
+.alert.error{background:#fee2e2;border:1px solid #ef4444;color:#7f1d1d}
+
+/* 완료 화면 */
+.done{display:none;text-align:center;padding:3rem 1.5rem;background:var(--w);border:1px solid var(--border);border-radius:14px}
+.done.show{display:block}
+.done .ico{font-size:3.5rem;margin-bottom:1rem}
+.done h2{font-family:'Nanum Myeongjo',serif;font-size:1.5rem;color:var(--nd);margin-bottom:.6rem}
+.done p{font-size:.95rem;color:var(--g7);max-width:520px;margin:0 auto 1rem;line-height:1.85}
+.done .next-steps{background:var(--cream);border-radius:10px;padding:1.5rem;margin-top:1.5rem;text-align:left}
+.done .next-steps h3{font-size:1rem;font-weight:800;color:var(--nd);margin-bottom:.6rem;display:flex;align-items:center;gap:8px}
+.done .next-steps ul{list-style:none;padding:0}
+.done .next-steps li{font-size:.85rem;color:var(--g7);padding:.4rem 0 .4rem 1.5rem;position:relative;line-height:1.75}
+.done .next-steps li::before{content:'→';position:absolute;left:0;color:var(--gl);font-weight:800}
+
+footer{background:#08172a;color:rgba(255,255,255,.5);padding:1.5rem;text-align:center;font-size:.72rem}
+footer a{color:var(--gl);text-decoration:none}
+
+@media(max-width:640px){
+  .section{padding:1.3rem}
+  .choice-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/academy/" class="brand">← 글로컬 AI 아카데미</a>
+  <a href="/academy/">소개로 돌아가기</a>
+</nav>
+
+<section class="hero">
+  <div class="label">Pre-Diagnosis Survey</div>
+  <h1>사전 진단 설문</h1>
+  <p>5분이면 충분합니다. 답변해 주신 내용으로<br>본인에게 맞는 학습 자료를 미리 준비해 드립니다.</p>
+  <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+</section>
+
+<main>
+
+<div class="alert" id="alertSuccess">설문 답변이 등록되었습니다. 1주 안에 카카오톡으로 환영 메시지를 보내드립니다.</div>
+<div class="alert error" id="alertError">제출 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.</div>
+
+<form id="diagForm">
+
+<!-- 1. 기본 정보 -->
+<div class="section">
+  <div class="section-num">Section 1</div>
+  <h2>기본 정보</h2>
+  <p class="section-desc">연락드릴 수 있는 방법을 알려주세요. 비공개로 안전히 보관됩니다.</p>
+
+  <div class="field">
+    <label class="field-label" for="name">성함 <span class="req">*</span></label>
+    <input type="text" id="name" name="name" required maxlength="40" placeholder="실명을 적어주세요">
+  </div>
+  <div class="field">
+    <label class="field-label" for="phone">연락처 (휴대전화) <span class="req">*</span></label>
+    <input type="tel" id="phone" name="phone" required maxlength="20" placeholder="010-0000-0000">
+  </div>
+  <div class="field">
+    <label class="field-label" for="kakao_id">카카오톡 ID (선택)</label>
+    <input type="text" id="kakao_id" name="kakao_id" maxlength="40" placeholder="카카오톡으로 안내드릴 때 사용">
+    <div class="field-hint">카카오톡 ID를 알려주시면 학습자 채널 초대를 더 빠르게 진행할 수 있습니다.</div>
+  </div>
+  <div class="field">
+    <label class="field-label" for="email">이메일 (선택)</label>
+    <input type="email" id="email" name="email" maxlength="80" placeholder="example@email.com">
+  </div>
+  <div class="field">
+    <label class="field-label" for="age_group">연령대 <span class="req">*</span></label>
+    <select id="age_group" name="age_group" required>
+      <option value="">선택해 주세요</option>
+      <option value="teens">10대</option>
+      <option value="20s">20대</option>
+      <option value="30s">30대</option>
+      <option value="40s">40대</option>
+      <option value="50s">50대</option>
+      <option value="60s">60대</option>
+      <option value="70s+">70대 이상</option>
+    </select>
+  </div>
+  <div class="field">
+    <label class="field-label" for="region">거주 지역</label>
+    <input type="text" id="region" name="region" maxlength="40" placeholder="예: 김해, 부산, 거제, 창원 등">
+  </div>
+</div>
+
+<!-- 2. 본인 그룹 -->
+<div class="section">
+  <div class="section-num">Section 2</div>
+  <h2>본인은 어느 그룹에 가장 가까우신가요?</h2>
+  <p class="section-desc">하나만 선택해 주세요. 본인 직업·상황에 맞는 강의 사례·실습 과제를 준비합니다.</p>
+
+  <div class="choice-grid">
+    <label class="choice"><input type="radio" name="target_group" value="immigrant_worker" required><span class="choice-label"><span class="ico">👷</span><span class="name">이주민 근로자</span><span class="desc">한국에서 일하는 외국인</span></span></label>
+    <label class="choice"><input type="radio" name="target_group" value="overseas_student"><span class="choice-label"><span class="ico">🎓</span><span class="name">외국인 유학생</span><span class="desc">한국에서 공부 중</span></span></label>
+    <label class="choice"><input type="radio" name="target_group" value="multicultural"><span class="choice-label"><span class="ico">🌱</span><span class="name">다문화 가정</span><span class="desc">국제결혼·자녀 양육</span></span></label>
+    <label class="choice"><input type="radio" name="target_group" value="small_business"><span class="choice-label"><span class="ico">🏪</span><span class="name">자영업·소상공</span><span class="desc">사업하는 분</span></span></label>
+    <label class="choice"><input type="radio" name="target_group" value="office_worker"><span class="choice-label"><span class="ico">💼</span><span class="name">직장인</span><span class="desc">회사·기관 근무</span></span></label>
+    <label class="choice"><input type="radio" name="target_group" value="minister"><span class="choice-label"><span class="ico">✝</span><span class="name">사역자·목회자</span><span class="desc">교회·선교 사역</span></span></label>
+    <label class="choice"><input type="radio" name="target_group" value="parent"><span class="choice-label"><span class="ico">👨‍👩‍👧</span><span class="name">학부모</span><span class="desc">자녀 교육·진로</span></span></label>
+    <label class="choice"><input type="radio" name="target_group" value="senior"><span class="choice-label"><span class="ico">🧓</span><span class="name">시니어</span><span class="desc">60대 이상</span></span></label>
+    <label class="choice"><input type="radio" name="target_group" value="other"><span class="choice-label"><span class="ico">✨</span><span class="name">기타</span><span class="desc">학생·취업 준비 등</span></span></label>
+  </div>
+</div>
+
+<!-- 3. 이주민/한국어 (조건부) -->
+<div class="section">
+  <div class="section-num">Section 3</div>
+  <h2>국적·언어 (이주민·유학생만)</h2>
+  <p class="section-desc">한국 시민이시면 건너뛰셔도 됩니다. 이주민·유학생이시면 모국어 자료를 함께 제공해 드립니다.</p>
+
+  <div class="field">
+    <label class="field-label" for="nationality">국적</label>
+    <input type="text" id="nationality" name="nationality" maxlength="40" value="한국" placeholder="예: 한국, 네팔, 베트남, 필리핀, 태국 등">
+  </div>
+  <div class="field">
+    <label class="field-label">선호 강의 자료 언어</label>
+    <div class="radio-row">
+      <label class="choice"><input type="radio" name="language_pref" value="ko" checked><span class="choice-label"><span class="name">🇰🇷 한국어</span></span></label>
+      <label class="choice"><input type="radio" name="language_pref" value="en"><span class="choice-label"><span class="name">🇺🇸 English</span></span></label>
+      <label class="choice"><input type="radio" name="language_pref" value="vi"><span class="choice-label"><span class="name">🇻🇳 Tiếng Việt</span></span></label>
+      <label class="choice"><input type="radio" name="language_pref" value="ne"><span class="choice-label"><span class="name">🇳🇵 नेपाली</span></span></label>
+      <label class="choice"><input type="radio" name="language_pref" value="th"><span class="choice-label"><span class="name">🇹🇭 ไทย</span></span></label>
+      <label class="choice"><input type="radio" name="language_pref" value="other"><span class="choice-label"><span class="name">기타</span></span></label>
+    </div>
+  </div>
+</div>
+
+<!-- 4. AI 사용 경험 -->
+<div class="section">
+  <div class="section-num">Section 4</div>
+  <h2>AI 사용 경험을 알려주세요</h2>
+  <p class="section-desc">정답이 없습니다. 솔직히 답해주실수록 맞춤 도움이 가능합니다.</p>
+
+  <div class="field">
+    <label class="field-label">AI 사용 빈도 <span class="req">*</span></label>
+    <div class="radio-row">
+      <label class="choice"><input type="radio" name="ai_level" value="none" required><span class="choice-label"><span class="name">전혀 안 써봤다</span></span></label>
+      <label class="choice"><input type="radio" name="ai_level" value="tried"><span class="choice-label"><span class="name">한두 번 써봤다</span></span></label>
+      <label class="choice"><input type="radio" name="ai_level" value="occasional"><span class="choice-label"><span class="name">가끔 사용한다</span></span></label>
+      <label class="choice"><input type="radio" name="ai_level" value="frequent"><span class="choice-label"><span class="name">자주 사용한다</span></span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">사용해 본 AI 도구 (해당 항목 모두 선택)</label>
+    <div class="check-grid">
+      <label class="choice"><input type="checkbox" name="ai_tools" value="chatgpt"><span class="choice-label"><span class="name">ChatGPT</span></span></label>
+      <label class="choice"><input type="checkbox" name="ai_tools" value="claude"><span class="choice-label"><span class="name">Claude</span></span></label>
+      <label class="choice"><input type="checkbox" name="ai_tools" value="gemini"><span class="choice-label"><span class="name">Gemini</span></span></label>
+      <label class="choice"><input type="checkbox" name="ai_tools" value="copilot"><span class="choice-label"><span class="name">Copilot</span></span></label>
+      <label class="choice"><input type="checkbox" name="ai_tools" value="perplexity"><span class="choice-label"><span class="name">Perplexity</span></span></label>
+      <label class="choice"><input type="checkbox" name="ai_tools" value="other"><span class="choice-label"><span class="name">기타</span></span></label>
+      <label class="choice"><input type="checkbox" name="ai_tools" value="none"><span class="choice-label"><span class="name">없음</span></span></label>
+    </div>
+  </div>
+</div>
+
+<!-- 5. 학습 목표 -->
+<div class="section">
+  <div class="section-num">Section 5</div>
+  <h2>AI로 무엇을 해보고 싶으신가요?</h2>
+  <p class="section-desc">짧게라도 좋습니다. 답해주신 내용으로 1주차 실습 사례를 준비합니다.</p>
+
+  <div class="field">
+    <label class="field-label" for="goal_text">AI로 도움 받고 싶은 일</label>
+    <textarea id="goal_text" name="goal_text" maxlength="500" placeholder="예: 영어 메일 빠르게 쓰기, 자녀 학교 안내문 이해, 사업 홍보 글, 설교 자료 정리, 매출 표 분석 등"></textarea>
+  </div>
+
+  <div class="field">
+    <label class="field-label" for="challenge_text">현재 어려운 점 (선택)</label>
+    <textarea id="challenge_text" name="challenge_text" maxlength="500" placeholder="예: 어디서부터 시작할지 모르겠다, 영어가 어렵다, 컴퓨터를 잘 못한다 등"></textarea>
+  </div>
+</div>
+
+<!-- 6. 참여 방식 -->
+<div class="section">
+  <div class="section-num">Section 6</div>
+  <h2>어떻게 참여하시겠습니까?</h2>
+  <p class="section-desc">온라인 라이브 + 김해 오프라인 동시 진행됩니다. 편한 방식을 선택해 주세요.</p>
+
+  <div class="field">
+    <label class="field-label">참여 방식 <span class="req">*</span></label>
+    <div class="choice-grid">
+      <label class="choice"><input type="radio" name="attendance_mode" value="online" required><span class="choice-label"><span class="ico">💻</span><span class="name">온라인 라이브</span><span class="desc">Zoom + YouTube Live</span></span></label>
+      <label class="choice"><input type="radio" name="attendance_mode" value="offline_gimhae"><span class="choice-label"><span class="ico">🏢</span><span class="name">오프라인 김해</span><span class="desc">반석인더스트리즈</span></span></label>
+      <label class="choice"><input type="radio" name="attendance_mode" value="both"><span class="choice-label"><span class="ico">🔀</span><span class="name">병행</span><span class="desc">상황 따라 자유롭게</span></span></label>
+      <label class="choice"><input type="radio" name="attendance_mode" value="recorded_only"><span class="choice-label"><span class="ico">📺</span><span class="name">녹화만 시청</span><span class="desc">라이브 시간 어려움</span></span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label">매주 수요일 저녁 7-9시에 라이브 참여 가능하신가요?</label>
+    <div class="radio-row">
+      <label class="choice"><input type="radio" name="available_evening" value="true" checked><span class="choice-label"><span class="name">예, 가능합니다</span></span></label>
+      <label class="choice"><input type="radio" name="available_evening" value="false"><span class="choice-label"><span class="name">아니오 (녹화 시청 위주)</span></span></label>
+    </div>
+  </div>
+</div>
+
+<!-- 7. 인지 경로 -->
+<div class="section">
+  <div class="section-num">Section 7</div>
+  <h2>어떻게 알게 되셨나요?</h2>
+  <p class="section-desc">홍보 방식을 개선하는 데 도움이 됩니다.</p>
+
+  <div class="field">
+    <label class="field-label">알게 된 경로</label>
+    <div class="check-grid">
+      <label class="choice"><input type="radio" name="source" value="kakao"><span class="choice-label"><span class="name">💬 카카오톡</span></span></label>
+      <label class="choice"><input type="radio" name="source" value="email"><span class="choice-label"><span class="name">📧 이메일</span></span></label>
+      <label class="choice"><input type="radio" name="source" value="blog"><span class="choice-label"><span class="name">📝 블로그</span></span></label>
+      <label class="choice"><input type="radio" name="source" value="youtube"><span class="choice-label"><span class="name">📺 YouTube</span></span></label>
+      <label class="choice"><input type="radio" name="source" value="word_of_mouth"><span class="choice-label"><span class="name">🗣 지인 추천</span></span></label>
+      <label class="choice"><input type="radio" name="source" value="search"><span class="choice-label"><span class="name">🔍 검색</span></span></label>
+      <label class="choice"><input type="radio" name="source" value="other"><span class="choice-label"><span class="name">기타</span></span></label>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="field-label" for="referrer_name">추천하신 분 성함 (선택)</label>
+    <input type="text" id="referrer_name" name="referrer_name" maxlength="40" placeholder="누가 추천해 주셨는지 알려주시면 감사 인사를 드립니다.">
+  </div>
+</div>
+
+<!-- 8. 동의 -->
+<div class="section">
+  <div class="section-num">Section 8</div>
+  <h2>개인정보 처리 동의</h2>
+  <p class="section-desc">엘림G브릿지가 본 설문 답변을 1기 운영 목적으로 안전히 보관·사용합니다.</p>
+
+  <div class="consent">
+    <div class="consent-row">
+      <input type="checkbox" id="consent_pi" name="consent_personal_info" required>
+      <label for="consent_pi">
+        <strong>개인정보 수집·이용 동의 (필수)</strong><br>
+        <span class="opt">수집 항목: 이름·연락처·이메일·답변 내용 / 보관 기간: 1기 종료 후 1년 / 목적: 학습 운영·후속 안내</span>
+      </label>
+    </div>
+    <div class="consent-row">
+      <input type="checkbox" id="consent_com" name="consent_communication">
+      <label for="consent_com">
+        <strong>학습 외 안내 수신 동의 (선택)</strong><br>
+        <span class="opt">2기·3기 모집, 후속 트랙(적용·심화), 엘림G브릿지 사역 소식 등</span>
+      </label>
+    </div>
+  </div>
+</div>
+
+<div class="submit-area">
+  <button type="submit" class="submit" id="submitBtn">설문 제출하고 1기 후보로 등록하기 →</button>
+</div>
+
+</form>
+
+<div class="done" id="doneScreen">
+  <div class="ico">🎉</div>
+  <h2>설문 답변을 받았습니다</h2>
+  <p>
+    답변 내용을 검토해 본인에게 맞는 학습 자료를 준비해 드립니다.<br>
+    1주일 안에 카카오톡 또는 전화로 환영 안내를 드릴 예정입니다.
+  </p>
+
+  <div class="next-steps">
+    <h3>📌 다음 단계</h3>
+    <ul>
+      <li>1주 안에 카카오톡 1:1 환영 메시지가 도착합니다</li>
+      <li>학습자 카카오톡 채널 초대 링크를 함께 보내드립니다</li>
+      <li>2026년 7월 중순 — 1주차 사전 준비 자료가 발송됩니다</li>
+      <li>2026년 8월 5일 — 1주차 라이브 강의 시작 (저녁 7-9시)</li>
+    </ul>
+  </div>
+
+  <p style="margin-top:1.5rem;font-size:.85rem;color:var(--g5)">
+    문의: 010-2083-3106 · kodhjj@gmail.com<br>
+    카카오톡 채널: 엘림G브릿지
+  </p>
+</div>
+
+</main>
+
+<footer>
+  © 2026 엘림G브릿지 · 글로컬 AI 아카데미<br>
+  <a href="/academy/">아카데미 소개</a> · <a href="/">elimg.com</a> · <a href="https://elim-g-bridge.netlify.app">elimgbridge</a>
+</footer>
+
+<script>
+const SUPABASE_URL  = 'https://zaygzrbfuwulbceppamx.supabase.co';
+const SUPABASE_ANON = 'sb_publishable_h5bShUw6eWi-00fNH4drcA_OdllSAEf';
+
+// 진행률 표시
+const totalSections = 8;
+function updateProgress() {
+  let filled = 0;
+  const fields = [
+    document.querySelector('#name').value,
+    document.querySelector('#phone').value,
+    document.querySelector('#age_group').value,
+    document.querySelector('input[name="target_group"]:checked'),
+    null, // section 3 — optional
+    document.querySelector('input[name="ai_level"]:checked'),
+    document.querySelector('#goal_text').value,
+    document.querySelector('input[name="attendance_mode"]:checked'),
+  ];
+  filled = fields.filter(f => f).length;
+  const pct = Math.min(100, (filled / 7) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+}
+document.querySelectorAll('input, select, textarea').forEach(el => {
+  el.addEventListener('input', updateProgress);
+  el.addEventListener('change', updateProgress);
+});
+
+document.getElementById('diagForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  const fd = new FormData(e.target);
+
+  const payload = {
+    name: fd.get('name'),
+    phone: fd.get('phone'),
+    email: fd.get('email') || null,
+    kakao_id: fd.get('kakao_id') || null,
+    age_group: fd.get('age_group'),
+    nationality: fd.get('nationality') || '한국',
+    region: fd.get('region') || null,
+    language_pref: fd.get('language_pref') || 'ko',
+    target_group: fd.get('target_group'),
+    ai_level: fd.get('ai_level'),
+    ai_tools: fd.getAll('ai_tools'),
+    goal_text: fd.get('goal_text') || null,
+    challenge_text: fd.get('challenge_text') || null,
+    attendance_mode: fd.get('attendance_mode'),
+    available_evening: fd.get('available_evening') === 'true',
+    source: fd.get('source') || null,
+    referrer_name: fd.get('referrer_name') || null,
+    consent_personal_info: !!fd.get('consent_personal_info'),
+    consent_communication: !!fd.get('consent_communication')
+  };
+
+  btn.disabled = true;
+  btn.textContent = '제출 중...';
+
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/register_academy`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON,
+        'Authorization': `Bearer ${SUPABASE_ANON}`
+      },
+      body: JSON.stringify({ payload })
+    });
+
+    if (res.ok) {
+      document.getElementById('diagForm').style.display = 'none';
+      document.getElementById('doneScreen').classList.add('show');
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    } else {
+      const err = await res.text();
+      console.error('Submit failed:', err);
+      document.getElementById('alertError').classList.add('show');
+      btn.disabled = false;
+      btn.textContent = '설문 제출하고 1기 후보로 등록하기 →';
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  } catch (err) {
+    console.error('Network error:', err);
+    document.getElementById('alertError').classList.add('show');
+    btn.disabled = false;
+    btn.textContent = '설문 제출하고 1기 후보로 등록하기 →';
+  }
+});
+</script>
+
+</body>
+</html>
