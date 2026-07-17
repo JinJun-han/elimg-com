@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+═══════════════════════════════════════════════════════════
+ elimg.com/blog 글 표준 템플릿 (생산 라인용 — 발행물 아님)
+ 라인: horizon/scribe/harbor(초안) → alfred(SEO) → kitt(검수) → wall-e(발행)
+ 규칙:
+ 1. 파일명: 영문 슬러그 (예: e9-workplace-change-2026.html) → blog/posts/에 저장
+ 2. 제목 공식: [문제/대상] + [숫자 or 총정리] + (2026)
+ 3. 본문 1,500자 이상, 결론 먼저(3줄 요약), H2 4~6개, 내부링크 3개+
+ 4. 면책 문구·기준일 필수, 수수료·기간은 "변동 가능" 표기
+ 5. 발행 시 blog/index.html 목록 맨 위에 post-card 추가
+ 6. E-9 근로자 대상 글은 hermes 베트남어판 별도 생성 (파일명-vi.html)
+═══════════════════════════════════════════════════════════
+-->
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{제목}} | 엘림G브릿지</title>
+<meta name="description" content="{{검색 의도에 답하는 120~150자 요약}}">
+<link rel="canonical" href="https://elimg.com/blog/posts/{{슬러그}}.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{제목}}">
+<meta property="og:description" content="{{요약 축약}}">
+<meta property="og:url" content="https://elimg.com/blog/posts/{{슬러그}}.html">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/blog/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article",
+"headline":"{{제목}}",
+"datePublished":"{{YYYY-MM-DD}}","dateModified":"{{YYYY-MM-DD}}",
+"author":{"@type":"Organization","name":"엘림G브릿지","url":"https://elimg.com"},
+"publisher":{"@type":"Organization","name":"엘림G브릿지"},
+"mainEntityOfPage":"https://elimg.com/blog/posts/{{슬러그}}.html"}
+</script>
+<!-- AdSense: 승인 후 사이트 코드 삽입 위치 -->
+</head>
+<body>
+<header class="blog-top">
+  <div class="wrap">
+    <a class="brand" href="/">엘림<span>G</span>브릿지</a>
+    <nav><a href="/blog/">블로그 홈</a><a href="/blog/about.html">소개</a></nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <article class="post">
+      <h1>{{제목}}</h1>
+      <div class="meta">{{카테고리: 사업주 가이드|근로자·체류|유학생|가족·영주}} · {{YYYY-MM-DD}} · 엘림G브릿지</div>
+
+      <div class="tldr">
+        <strong>3줄 요약</strong>
+        <ul>
+          <li>{{핵심 결론 1 — 검색자가 가장 알고 싶은 답}}</li>
+          <li>{{핵심 결론 2 — 기한·장소·서류 등 행동 정보}}</li>
+          <li>{{핵심 결론 3 — 주의사항}}</li>
+        </ul>
+      </div>
+
+      <div class="ad-slot"><!-- AdSense 본문 상단 슬롯 --></div>
+
+      <h2>{{H2-1: 대상·요건 (누가/언제)}}</h2>
+      <p>{{...}}</p>
+
+      <h2>{{H2-2: 절차 (어디서/어떻게 — 번호 목록)}}</h2>
+      <ol><li>{{...}}</li></ol>
+
+      <h2>{{H2-3: 서류·비용 (표 사용)}}</h2>
+      <table><tr><th>구분</th><th>서류</th><th>비고</th></tr></table>
+
+      <h2>{{H2-4: 기간·처리}}</h2>
+      <p>{{...}}</p>
+
+      <div class="ad-slot"><!-- AdSense 본문 중단 슬롯 --></div>
+
+      <h2>자주 하는 실수 {{N}}가지</h2>
+      <h3>1. {{실수 — 현장 사례 기반, 이 블로그의 차별점}}</h3>
+
+      <h2>함께 보면 좋은 글</h2>
+      <div class="related">
+        <ul>
+          <li><a href="{{내부링크1}}">{{제목1}}</a></li>
+          <li><a href="{{내부링크2}}">{{제목2}}</a></li>
+          <li><a href="{{내부링크3}}">{{제목3}}</a></li>
+        </ul>
+      </div>
+
+      <div class="cta">
+        <strong>{{독자 상황 공감 한 줄}}</strong>
+        <p>엘림G브릿지가 부울경 이주민·사업주의 행정 여정을 돕습니다.</p>
+        <a href="/blog/about.html">문의하기</a>
+      </div>
+
+      <div class="disclaimer">
+        ⚠️ 본 글은 일반 정보 제공 목적으로 작성되었으며 법률 자문이 아닙니다. 수수료·처리 기간·필요 서류는 관할 기관과 시기에 따라 달라질 수 있으므로, 개별 사안은 관할 출입국·외국인청(☎1345) 또는 행정사 등 전문가에게 확인하시기 바랍니다. 기준일: {{YYYY-MM-DD}}.
+      </div>
+    </article>
+  </div>
+</main>
+
+<footer class="blog-foot">
+  <div class="wrap">
+    <p>© 엘림G브릿지 (elimg.com)</p>
+    <p><a href="/blog/">블로그 홈</a>|<a href="/blog/about.html">소개·문의</a>|<a href="/blog/privacy.html">개인정보처리방침</a></p>
+  </div>
+</footer>
+</body>
+</html>

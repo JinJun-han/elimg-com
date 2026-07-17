@@ -9,3 +9,5 @@
 /shop/*      /shop/:splat    200
 /member      /member/        301
 /member/*    /member/:splat  200
+/blog        /blog/          301
+/blog/*      /blog/:splat    200
