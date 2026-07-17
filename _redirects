@@ -1,3 +1,7 @@
+# 연차 사역·재정 보고 (연도별 구조 — /report 는 항상 최신본)
+/report      /report-2025  302
+/2025        /report-2025  301
+
 /ai          /               301
 /builders    /builders/      301
 /builders/*  /builders/:splat 200
