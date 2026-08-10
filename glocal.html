@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="엘림G브릿지 글로컬 인재 양성 — 이주민·유학생·청소년을 세계를 잇는 인재로. KIIP·AI·직업훈련·한국어교육 통합 플랫폼." />
+<meta property="og:title" content="엘림G브릿지 | 글로컬 인재 양성 플랫폼" />
+<meta property="og:description" content="탁월성·정체성·다양성·연결성·지속성·확장성·영속성 — 하나님 나라를 잇는 글로컬 브릿지" />
+<meta property="og:url" content="https://elimg.com/glocal" />
+<meta property="og:image" content="https://elimg.com/images/og.svg" />
+<title>글로컬 인재 양성 | 엘림G브릿지 ElimG Bridge</title>
+
+<!-- Remix Icons (화신사이버대 방식) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" />
+<!-- Bootstrap 5 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+<!-- Swiper -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet" />
+
+<style>
+/* ======= Design Tokens ======= */
+:root{
+  --navy:#1B3A6B; --navy-deep:#0D1F3C; --navy-mid:#243F72;
+  --gold:#C49A22; --gold-light:#E8C05A; --gold-pale:#FDF6E3;
+  --white:#fff; --off-white:#F8F9FC; --gray-light:#EEF1F8;
+  --gray:#8896B0; --text:#1A2340; --green:#1A5C38;
+  --teal:#0e9488;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;color:var(--text);overflow-x:hidden}
+
+/* ======= NAV (화신사이버대 구조 + elimg.com 스타일) ======= */
+.site-header{position:sticky;top:0;z-index:200;background:rgba(11,22,45,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(196,154,34,.2)}
+.topbar{padding:6px 4%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.06);font-size:12px}
+.topbar a,.topbar span{color:rgba(255,255,255,.6);text-decoration:none;margin-left:18px;transition:color .2s}
+.topbar a:hover{color:var(--gold-light)}
+.topbar .login-btn{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy-deep)!important;padding:3px 14px;border-radius:20px;font-weight:700;font-size:11px}
+.navbar{padding:0 4%;height:62px;display:flex;align-items:center;justify-content:space-between}
+.navbar-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--navy-deep)}
+.brand-en{font-family:'Playfair Display',serif;font-size:14px;color:#fff;letter-spacing:1px;display:block}
+.brand-kr{font-size:10px;color:var(--gold-light);display:block}
+.nav-links{display:flex;gap:6px;align-items:center;list-style:none;margin:0;padding:0}
+.nav-links > li > a{color:rgba(255,255,255,.75);text-decoration:none;font-size:13px;font-weight:500;padding:8px 14px;border-radius:6px;display:block;transition:all .2s;white-space:nowrap}
+.nav-links > li > a:hover,.nav-links > li.active > a{color:var(--gold-light);background:rgba(196,154,34,.1)}
+.nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold-light))!important;color:var(--navy-deep)!important;font-weight:700!important;padding:8px 18px!important}
+.mobile-toggle{display:none;background:none;border:none;color:#fff;font-size:24px;cursor:pointer}
+@media(max-width:992px){
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--navy-deep);flex-direction:column;padding:16px;gap:2px;border-top:1px solid rgba(196,154,34,.2)}
+  .nav-links.open{display:flex}
+  .mobile-toggle{display:block}
+}
+
+/* ======= HERO SLIDER (화신사이버대 swiper 방식) ======= */
+.hero-swiper{height:580px;position:relative;overflow:hidden}
+@media(max-width:768px){.hero-swiper{height:420px}}
+.hero-slide{position:relative;width:100%;height:100%;display:flex;align-items:center;overflow:hidden}
+.hero-bg-overlay{position:absolute;inset:0;z-index:1}
+.hero-slide-1 .hero-bg-overlay{background:linear-gradient(135deg,rgba(13,31,60,.92) 0%,rgba(27,58,107,.75) 60%,rgba(196,154,34,.15) 100%)}
+.hero-slide-2 .hero-bg-overlay{background:linear-gradient(135deg,rgba(26,92,56,.9) 0%,rgba(14,148,136,.5) 100%)}
+.hero-slide-3 .hero-bg-overlay{background:linear-gradient(135deg,rgba(13,31,60,.88) 0%,rgba(30,50,100,.7) 100%)}
+.hero-bg-img{position:absolute;inset:0;background-size:cover;background-position:center;z-index:0}
+.s1-bg{background-image:linear-gradient(135deg,#0D1F3C 0%,#243F72 60%,#1B3A6B 100%)}
+.s2-bg{background-image:linear-gradient(135deg,#1A5C38 0%,#0e9488 100%)}
+.s3-bg{background-image:linear-gradient(135deg,#1e3264 0%,#2d4e8f 100%)}
+.hero-content-wrap{position:relative;z-index:2;width:100%;max-width:1200px;margin:0 auto;padding:0 5%}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(196,154,34,.18);border:1px solid rgba(196,154,34,.35);color:var(--gold-light);padding:5px 16px;border-radius:20px;font-size:11px;letter-spacing:1.5px;margin-bottom:20px;font-weight:600;text-transform:uppercase}
+.hero-title{font-family:'Noto Serif KR',serif;font-size:clamp(26px,4vw,50px);color:#fff;font-weight:900;line-height:1.3;margin-bottom:16px}
+.hero-title em{color:var(--gold-light);font-style:normal}
+.hero-desc{font-size:clamp(13px,1.5vw,16px);color:rgba(255,255,255,.72);line-height:1.95;margin-bottom:30px;max-width:520px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-hero-primary{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--navy-deep);padding:12px 26px;border-radius:8px;font-weight:700;font-size:13.5px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:transform .2s,box-shadow .2s}
+.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,154,34,.4);color:var(--navy-deep)}
+.btn-hero-outline{border:1px solid rgba(255,255,255,.3);color:#fff;padding:12px 26px;border-radius:8px;font-weight:500;font-size:13.5px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.btn-hero-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-swiper .swiper-button-next,.hero-swiper .swiper-button-prev{color:var(--gold-light)}
+.hero-swiper .swiper-pagination-bullet-active{background:var(--gold-light)}
+
+/* ======= 7 VALUES STRIP (정체성) ======= */
+.values-strip{background:var(--gold-pale);padding:0}
+.values-inner{max-width:1200px;margin:0 auto;padding:0 4%;display:grid;grid-template-columns:repeat(7,1fr)}
+@media(max-width:900px){.values-inner{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:580px){.values-inner{grid-template-columns:repeat(2,1fr)}}
+.value-item{padding:22px 14px;text-align:center;border-right:1px solid rgba(196,154,34,.2);transition:background .2s;cursor:default}
+.value-item:last-child{border-right:none}
+.value-item:hover{background:rgba(196,154,34,.12)}
+.value-icon{font-size:22px;color:var(--gold);margin-bottom:6px}
+.value-name{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:.5px;display:block;margin-bottom:3px}
+.value-en{font-size:10px;color:var(--gray);letter-spacing:.5px}
+
+/* ======= CONTACT INFO BOXES (화신사이버대 방식, 3열) ======= */
+.info-boxes{background:var(--navy)}
+.info-boxes-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
+@media(max-width:768px){.info-boxes-inner{grid-template-columns:1fr}}
+.info-box{padding:36px 28px;border-right:1px solid rgba(255,255,255,.1);display:flex;gap:20px;align-items:flex-start;transition:background .2s}
+.info-box:last-child{border-right:none}
+.info-box:hover{background:rgba(196,154,34,.07)}
+.info-box-icon{width:52px;height:52px;background:linear-gradient(135deg,rgba(196,154,34,.2),rgba(196,154,34,.05));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;color:var(--gold-light);flex-shrink:0}
+.info-box h4{font-size:15px;color:var(--gold-light);font-weight:700;margin-bottom:8px}
+.info-box p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:10px}
+.info-box a{font-size:12px;color:var(--gold);text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:5px;transition:gap .2s}
+.info-box a:hover{gap:9px}
+
+/* ======= PROGRAM CALENDAR (slick-style 화신사이버대 참조) ======= */
+.prog-calendar{background:var(--navy-deep);padding:60px 0 0}
+.prog-cal-header{max-width:1200px;margin:0 auto;padding:0 4%;display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+.prog-cal-header h3{font-family:'Noto Serif KR',serif;font-size:22px;color:#fff;font-weight:700;display:flex;align-items:center;gap:10px}
+.prog-cal-header a{font-size:13px;color:var(--gold);text-decoration:none}
+.cal-scroll{overflow-x:auto;padding:0 4% 40px;scrollbar-width:thin;scrollbar-color:var(--gold) transparent}
+.cal-track{display:flex;gap:16px;min-width:max-content}
+.cal-item{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:22px 20px;width:200px;flex-shrink:0;transition:all .25s;cursor:default}
+.cal-item:hover,.cal-item.is-now{background:rgba(196,154,34,.1);border-color:rgba(196,154,34,.4)}
+.cal-item.is-now .cal-badge{background:var(--gold);color:var(--navy-deep)}
+.cal-month{font-size:11px;color:var(--gold);font-weight:700;margin-bottom:8px;letter-spacing:1px}
+.cal-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(255,255,255,.1);color:rgba(255,255,255,.7);margin-bottom:10px}
+.cal-title{font-size:14px;color:#fff;font-weight:700;line-height:1.45;margin-bottom:6px}
+.cal-sub{font-size:12px;color:rgba(255,255,255,.5);line-height:1.6}
+
+/* ======= NEWS BOARD TABS (화신사이버대 방식 직접 차용) ======= */
+.news-section{background:linear-gradient(180deg,var(--navy-deep) 0%,#0a1628 100%);padding:60px 0 80px}
+.news-inner{max-width:1200px;margin:0 auto;padding:0 4%}
+.sec-label{display:inline-block;font-size:11px;letter-spacing:2px;color:var(--gold);font-weight:600;text-transform:uppercase;margin-bottom:8px}
+.sec-title{font-family:'Noto Serif KR',serif;font-size:clamp(20px,3vw,30px);color:#fff;font-weight:700;margin-bottom:32px;display:flex;align-items:center;gap:10px}
+.board-tabs-nav{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap}
+.board-tab-btn{background:none;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);padding:8px 20px;border-radius:20px;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit;display:flex;align-items:center;gap:8px}
+.board-tab-btn.is-active,.board-tab-btn:hover{background:rgba(196,154,34,.15);border-color:rgba(196,154,34,.5);color:var(--gold-light)}
+.board-more{font-size:11px;font-weight:400;opacity:.7}
+.board-pane{display:none}
+.board-pane.is-active{display:block}
+.board-row{display:grid;grid-template-columns:80px 110px 1fr 110px;gap:14px;align-items:center;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer;border-radius:8px;transition:background .15s}
+.board-row:hover{background:rgba(255,255,255,.04)}
+.board-badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:700;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);white-space:nowrap}
+.board-badge.is-notice{background:#e11d48;border-color:#e11d48;color:#fff}
+.board-category{font-size:12px;color:rgba(255,255,255,.6);white-space:nowrap}
+.board-title{font-size:13.5px;color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.board-date{font-size:11.5px;color:rgba(255,255,255,.45);text-align:right;white-space:nowrap}
+@media(max-width:700px){
+  .board-row{grid-template-columns:70px 1fr;gap:8px}
+  .board-category,.board-date{display:none}
+}
+
+/* ======= PROGRAMS GRID (개설과정 안내, 화신사이버대 feature-layout2 참조) ======= */
+.programs-section{background:var(--off-white);padding:80px 0}
+.programs-inner{max-width:1200px;margin:0 auto;padding:0 4%}
+.section-head{margin-bottom:50px}
+.section-head .sec-label{color:var(--gold)}
+.section-head h2{font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,34px);color:var(--navy);font-weight:700;line-height:1.45;margin-bottom:12px}
+.section-head p{font-size:14px;color:var(--gray);line-height:1.85;max-width:560px}
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+.prog-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--gray-light);transition:all .3s}
+.prog-card:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(27,58,107,.12);border-color:rgba(27,58,107,.15)}
+.prog-card-top{height:140px;display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;overflow:hidden}
+.prog-card-body{padding:22px}
+.prog-tag{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:block}
+.prog-card-body h3{font-family:'Noto Serif KR',serif;font-size:16px;color:var(--navy);font-weight:700;margin-bottom:10px;line-height:1.45}
+.prog-card-body p{font-size:12.5px;color:#5A6880;line-height:1.8;margin-bottom:14px}
+.prog-langs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+.lang-tag{font-size:10px;padding:2px 9px;border-radius:12px;background:var(--gray-light);color:var(--navy);font-weight:600}
+.prog-link{font-size:12.5px;color:var(--navy);font-weight:700;text-decoration:none;display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid var(--gray-light);transition:color .2s}
+.prog-link:hover{color:var(--gold)}
+.prog-link i{transition:transform .2s}
+.prog-link:hover i{transform:translateX(4px)}
+
+/* ======= MINISTRY MAP (국가별 사역, 화신사이버대 blog-grid 참조) ======= */
+.ministry-section{background:#fff;padding:80px 0}
+.ministry-inner{max-width:1200px;margin:0 auto;padding:0 4%}
+.ministry-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.ministry-card{border-radius:14px;padding:24px 20px;border:1px solid var(--gray-light);background:var(--off-white);transition:all .3s;text-align:center}
+.ministry-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(27,58,107,.1);border-color:rgba(27,58,107,.15);background:#fff}
+.ministry-flag{font-size:36px;margin-bottom:12px}
+.ministry-country{font-size:11px;letter-spacing:1px;color:var(--gray);font-weight:600;text-transform:uppercase;margin-bottom:5px}
+.ministry-card h3{font-size:15px;color:var(--navy);font-weight:700;margin-bottom:8px}
+.ministry-card p{font-size:12px;color:#6B7A8D;line-height:1.7;margin-bottom:12px}
+.ministry-link{font-size:12px;color:var(--green);text-decoration:none;font-weight:700;display:inline-flex;align-items:center;gap:4px;transition:gap .2s}
+.ministry-link:hover{gap:8px}
+
+/* ======= DIFFERENTIATORS (화신사이버대와의 차이점, elimg.com diff 섹션) ======= */
+.diff-section{background:var(--navy-deep);padding:80px 0}
+.diff-inner{max-width:1200px;margin:0 auto;padding:0 4%}
+.diff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;margin-top:48px}
+.diff-item{padding:36px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);transition:background .3s}
+.diff-item:hover{background:rgba(196,154,34,.07)}
+.diff-num{font-family:'Playfair Display',serif;font-size:42px;color:rgba(196,154,34,.2);line-height:1;margin-bottom:14px}
+.diff-item h3{font-size:15.5px;color:var(--gold-light);font-weight:700;margin-bottom:10px}
+.diff-item p{font-size:13px;color:rgba(255,255,255,.5);line-height:1.85}
+
+/* ======= MAGAZINE / 성과스토리 (화신사이버대 team-layout2 참조) ======= */
+.stories-section{background:var(--off-white);padding:80px 0}
+.stories-inner{max-width:1200px;margin:0 auto;padding:0 4%}
+.story-swiper{padding-bottom:40px!important}
+.story-card{background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--gray-light);height:100%}
+.story-img{height:160px;display:flex;align-items:center;justify-content:center;font-size:60px;background:var(--gray-light)}
+.story-body{padding:20px}
+.story-body .year{font-size:11px;color:var(--gray);font-weight:600;margin-bottom:4px}
+.story-body h4{font-family:'Noto Serif KR',serif;font-size:15px;color:var(--navy);font-weight:700;margin-bottom:8px;line-height:1.4}
+.story-body p{font-size:12px;color:#5A6880;line-height:1.7;margin-bottom:14px}
+.story-link{font-size:12px;color:var(--gold);text-decoration:none;font-weight:700;display:inline-flex;align-items:center;gap:5px}
+
+/* ======= PARTNERS (화신사이버대 contact-layout3 방식) ======= */
+.partners-section{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-deep) 100%);padding:50px 0}
+.partners-inner{max-width:1200px;margin:0 auto;padding:0 4%;text-align:center}
+.partners-inner h4{font-size:13px;letter-spacing:2px;color:var(--gold);font-weight:600;text-transform:uppercase;margin-bottom:28px}
+.partners-row{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+.partner-tag{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.65);padding:8px 20px;border-radius:8px;font-size:13px;font-weight:600;transition:all .2s;text-decoration:none;display:inline-block}
+.partner-tag:hover{background:rgba(196,154,34,.12);border-color:rgba(196,154,34,.4);color:var(--gold-light)}
+
+/* ======= FOOTER (화신사이버대 방식) ======= */
+.site-footer{background:#070e1c;padding:60px 0 0}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 4%;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.footer-inner{grid-template-columns:1fr}}
+.footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:16px;text-decoration:none}
+.footer-brand-en{font-family:'Playfair Display',serif;font-size:16px;color:#fff;display:block}
+.footer-brand-kr{font-size:11px;color:var(--gold-light);display:block}
+.footer-desc{font-size:12.5px;color:rgba(255,255,255,.45);line-height:1.8;margin-bottom:20px}
+.footer-contact-item{font-size:12.5px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.footer-contact-item i{color:var(--gold)}
+.footer-col h5{font-size:13px;color:#fff;font-weight:700;margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.08)}
+.footer-col ul{list-style:none;padding:0;margin:0}
+.footer-col li{margin-bottom:9px}
+.footer-col a{font-size:12.5px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.footer-col a:hover{color:var(--gold-light)}
+.footer-sns{display:flex;gap:10px;margin-top:18px}
+.sns-icon{width:34px;height:34px;border-radius:8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);text-decoration:none;font-size:15px;transition:all .2s}
+.sns-icon:hover{background:rgba(196,154,34,.15);border-color:rgba(196,154,34,.4);color:var(--gold-light)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);margin-top:44px;padding:18px 4%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-bottom span,.footer-bottom a{font-size:12px;color:rgba(255,255,255,.3);text-decoration:none}
+.footer-bottom a:hover{color:var(--gold)}
+
+/* ======= SCROLL TOP BTN ======= */
+#scrollTopBtn{position:fixed;bottom:24px;right:24px;z-index:300;width:42px;height:42px;background:var(--gold);color:var(--navy-deep);border:none;border-radius:50%;font-size:18px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(196,154,34,.4);transition:transform .2s}
+#scrollTopBtn.visible{display:flex}
+#scrollTopBtn:hover{transform:translateY(-3px)}
+
+/* ======= QUICK MENU (화신사이버대 aside 방식) ======= */
+.quick-menu{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:150;display:flex;flex-direction:column;gap:2px}
+.quick-btn{width:52px;height:52px;background:var(--navy);border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;text-decoration:none;transition:background .2s;border-left:3px solid transparent}
+.quick-btn:hover{background:var(--navy-mid);border-left-color:var(--gold)}
+.quick-btn i{font-size:18px;color:var(--gold-light)}
+.quick-btn span{font-size:9px;color:rgba(255,255,255,.7);letter-spacing:.5px;white-space:nowrap}
+@media(max-width:768px){.quick-menu{display:none}}
+
+/* ======= UTILITIES ======= */
+.container-xl{max-width:1200px;margin:0 auto;padding:0 4%}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.anim-up{animation:fadeUp .7s ease both}
+</style>
+</head>
+<body>
+
+<!-- =========== QUICK MENU (화신사이버대 방식) =========== -->
+<aside class="quick-menu">
+  <a href="https://elimg.kr" target="_blank" class="quick-btn"><i class="ri-home-4-fill"></i><span>사역현장</span></a>
+  <a href="https://elimg.kr#kiip" target="_blank" class="quick-btn"><i class="ri-book-open-fill"></i><span>KIIP</span></a>
+  <a href="https://elimg.com/shop" target="_blank" class="quick-btn"><i class="ri-robot-fill"></i><span>AI아카데미</span></a>
+  <a href="https://pf.kakao.com/_hjqsd/chat" target="_blank" class="quick-btn"><i class="ri-kakao-talk-fill"></i><span>카카오상담</span></a>
+  <a href="#contact" class="quick-btn"><i class="ri-heart-fill"></i><span>후원</span></a>
+</aside>
+
+<!-- =========== HEADER =========== -->
+<header class="site-header">
+  <div class="topbar">
+    <span><i class="ri-global-line"></i> 글로컬 인재 양성 플랫폼</span>
+    <div>
+      <a href="https://elimg.kr" target="_blank">사역현장(elimg.kr)</a>
+      <a href="https://elimg.com" target="_blank">비즈니스(elimg.com)</a>
+      <a href="https://pf.kakao.com/_hjqsd/chat" target="_blank" class="login-btn">카카오 상담</a>
+    </div>
+  </div>
+  <nav class="navbar">
+    <a href="/glocal.html" class="navbar-brand">
+      <div class="brand-icon">🌉</div>
+      <div>
+        <span class="brand-en">ElimG Bridge</span>
+        <span class="brand-kr">엘림G브릿지 글로컬 인재 양성</span>
+      </div>
+    </a>
+    <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <i class="ri-menu-3-line"></i>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#programs"><i class="ri-book-2-line"></i> 교육과정</a></li>
+      <li><a href="#ministry"><i class="ri-earth-line"></i> 사역현장</a></li>
+      <li><a href="#news"><i class="ri-news-line"></i> 대학소식</a></li>
+      <li><a href="#stories"><i class="ri-trophy-line"></i> 성과스토리</a></li>
+      <li><a href="#contact"><i class="ri-heart-line"></i> 후원·참여</a></li>
+      <li><a href="https://elimg.com/shop" target="_blank" class="nav-cta"><i class="ri-robot-fill"></i> AI아카데미</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- =========== HERO SLIDER (Swiper, 화신사이버대 방식) =========== -->
+<div class="swiper hero-swiper">
+  <div class="swiper-wrapper">
+
+    <!-- Slide 1: 탁월성 + 정체성 -->
+    <div class="swiper-slide hero-slide hero-slide-1">
+      <div class="hero-bg-img s1-bg"></div>
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-content-wrap">
+        <div class="hero-eyebrow"><span style="width:7px;height:7px;background:var(--gold-light);border-radius:50%;display:inline-block;animation:pulse 2s infinite"></span> 글로컬 인재 양성 플랫폼</div>
+        <h1 class="hero-title">하나님 나라를 잇는<br /><em>엘림G브릿지</em></h1>
+        <p class="hero-desc">30년 이주민 사역 경험 × AI 기술 × 글로컬 네트워크<br />이주민·유학생·청소년을 세계를 이끄는 인재로 세웁니다.</p>
+        <div class="hero-btns">
+          <a href="#programs" class="btn-hero-primary"><i class="ri-book-open-fill"></i> 교육과정 보기</a>
+          <a href="https://elimg.kr" target="_blank" class="btn-hero-outline"><i class="ri-external-link-line"></i> 사역현장 방문</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: 다양성 + 연결성 -->
+    <div class="swiper-slide hero-slide hero-slide-2">
+      <div class="hero-bg-img s2-bg"></div>
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-content-wrap">
+        <div class="hero-eyebrow">🌏 10개국+ 다문화 교육</div>
+        <h1 class="hero-title">언어의 장벽을 넘어<br /><em>세계를 품다</em></h1>
+        <p class="hero-desc">네팔·스리랑카·베트남·미얀마·인도네시아…<br />KIIP 한국어교육부터 AI 아카데미까지, 다국어·다문화 통합 교육.</p>
+        <div class="hero-btns">
+          <a href="#ministry" class="btn-hero-primary"><i class="ri-earth-fill"></i> 사역현장 보기</a>
+          <a href="#programs" class="btn-hero-outline"><i class="ri-graduation-cap-line"></i> 프로그램 안내</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: 확장성 + 영속성 -->
+    <div class="swiper-slide hero-slide hero-slide-3">
+      <div class="hero-bg-img s3-bg"></div>
+      <div class="hero-bg-overlay"></div>
+      <div class="hero-content-wrap">
+        <div class="hero-eyebrow">🤖 2026 AI 아카데미 개강</div>
+        <h1 class="hero-title">AI로 확장하는<br /><em>글로컬 미래</em></h1>
+        <p class="hero-desc">기업 AI 컨설팅 + 이주민 AI 교육의 선순환.<br />지역사회와 세계를 잇는 지속 가능한 인재 생태계를 만듭니다.</p>
+        <div class="hero-btns">
+          <a href="https://elimg.com/shop" target="_blank" class="btn-hero-primary"><i class="ri-robot-fill"></i> AI아카데미 신청</a>
+          <a href="#contact" class="btn-hero-outline"><i class="ri-heart-line"></i> 후원·참여</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<!-- =========== 7 VALUES STRIP (정체성) =========== -->
+<section class="values-strip" title="글로컬 인재 양성 7대 가치">
+  <div class="values-inner">
+    <div class="value-item"><div class="value-icon"><i class="ri-medal-fill"></i></div><span class="value-name">탁월성</span><span class="value-en">Excellence</span></div>
+    <div class="value-item"><div class="value-icon"><i class="ri-fingerprint-fill"></i></div><span class="value-name">정체성</span><span class="value-en">Identity</span></div>
+    <div class="value-item"><div class="value-icon"><i class="ri-global-fill"></i></div><span class="value-name">다양성</span><span class="value-en">Diversity</span></div>
+    <div class="value-item"><div class="value-icon"><i class="ri-links-fill"></i></div><span class="value-name">연결성</span><span class="value-en">Connectivity</span></div>
+    <div class="value-item"><div class="value-icon"><i class="ri-leaf-fill"></i></div><span class="value-name">지속성</span><span class="value-en">Continuity</span></div>
+    <div class="value-item"><div class="value-icon"><i class="ri-expand-diagonal-fill"></i></div><span class="value-name">확장성</span><span class="value-en">Scalability</span></div>
+    <div class="value-item"><div class="value-icon"><i class="ri-hourglass-fill"></i></div><span class="value-name">영속성</span><span class="value-en">Permanence</span></div>
+  </div>
+</section>
+
+<!-- =========== INFO BOXES (3열, 화신사이버대 contact-info 방식) =========== -->
+<section class="info-boxes">
+  <div class="info-boxes-inner">
+    <div class="info-box">
+      <div class="info-box-icon"><i class="ri-graduation-cap-fill"></i></div>
+      <div>
+        <h4>KIIP 한국어교육</h4>
+        <p>사회통합프로그램 0~5급 전과정 운영.<br />국적취득·영주권 준비 이주민 집중 지원.</p>
+        <a href="https://elimg.kr" target="_blank">자세히 보기 <i class="ri-arrow-right-line"></i></a>
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="info-box-icon"><i class="ri-robot-fill"></i></div>
+      <div>
+        <h4>AI 아카데미 (2026)</h4>
+        <p>이주민·청소년 대상 AI 리터러시 교육.<br />기업 AI 컨설팅 수익으로 무료 제공.</p>
+        <a href="https://elimg.com/shop" target="_blank">프로그램 신청 <i class="ri-arrow-right-line"></i></a>
+      </div>
+    </div>
+    <div class="info-box">
+      <div class="info-box-icon"><i class="ri-briefcase-fill"></i></div>
+      <div>
+        <h4>직업훈련 & 취업연계</h4>
+        <p>조선업 기업 매칭·직무교육·현장실습.<br />한화오션·현대중공업·삼성 협력.</p>
+        <a href="https://elimg.com" target="_blank">기업 파트너십 <i class="ri-arrow-right-line"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== PROGRAM CALENDAR (화신사이버대 학사일정 방식) =========== -->
+<section class="prog-calendar" id="schedule">
+  <div class="prog-cal-header">
+    <h3><i class="ri-calendar-event-fill" style="color:var(--gold)"></i> 2026년 교육일정</h3>
+    <a href="https://elimg.kr" target="_blank">전체일정 <i class="ri-add-fill"></i></a>
+  </div>
+  <div class="cal-scroll">
+    <div class="cal-track">
+      <div class="cal-item"><div class="cal-month">2026.03</div><div class="cal-badge">신학기</div><div class="cal-title">KIIP 1학기 개강</div><div class="cal-sub">거제·기장·부산 센터</div></div>
+      <div class="cal-item is-now"><div class="cal-month">2026.04</div><div class="cal-badge is-notice">진행중</div><div class="cal-title">중간 실력평가</div><div class="cal-sub">KIIP 1~5급 공통</div></div>
+      <div class="cal-item"><div class="cal-month">2026.05</div><div class="cal-badge">특강</div><div class="cal-title">AI 리터러시 특강</div><div class="cal-sub">이주민 청소년 대상</div></div>
+      <div class="cal-item"><div class="cal-month">2026.06</div><div class="cal-badge">수료</div><div class="cal-title">1학기 수료식</div><div class="cal-sub">성적 우수자 장학금</div></div>
+      <div class="cal-item"><div class="cal-month">2026.07</div><div class="cal-badge">집중반</div><div class="cal-title">여름 집중 한국어반</div><div class="cal-sub">신규 이주민 대상</div></div>
+      <div class="cal-item"><div class="cal-month">2026.08</div><div class="cal-badge">현장</div><div class="cal-title">해외 사역 팀 파견</div><div class="cal-sub">네팔·스리랑카</div></div>
+      <div class="cal-item"><div class="cal-month">2026.09</div><div class="cal-badge">신학기</div><div class="cal-title">KIIP 2학기 개강</div><div class="cal-sub">+ AI 아카데미 동반</div></div>
+      <div class="cal-item"><div class="cal-month">2026.10</div><div class="cal-badge">특강</div><div class="cal-title">취업연계 박람회</div><div class="cal-sub">기업 파트너 7개사</div></div>
+      <div class="cal-item"><div class="cal-month">2026.12</div><div class="cal-badge">수료</div><div class="cal-title">연간 수료식·시상</div><div class="cal-sub">우수 인재 장학 시상</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== NEWS BOARD (화신사이버대 대학소식 탭 방식 직접 차용) =========== -->
+<section class="news-section" id="news">
+  <div class="news-inner">
+    <div class="sec-label"><i class="ri-news-fill"></i> 최신소식</div>
+    <div class="sec-title">엘림G브릿지 소식</div>
+
+    <div class="board-tabs-nav" role="tablist">
+      <button class="board-tab-btn is-active" data-pane="pane-notice">
+        공지사항 <span class="board-more">더보기 <i class="ri-add-fill"></i></span>
+      </button>
+      <button class="board-tab-btn" data-pane="pane-news">
+        사역소식 <span class="board-more">더보기 <i class="ri-add-fill"></i></span>
+      </button>
+      <button class="board-tab-btn" data-pane="pane-job">
+        취업정보 <span class="board-more">더보기 <i class="ri-add-fill"></i></span>
+      </button>
+    </div>
+
+    <div id="pane-notice" class="board-pane is-active">
+      <div class="board-row"><span class="board-badge is-notice">공지</span><span class="board-category">KIIP 교육</span><span class="board-title">2026년 1학기 KIIP 한국어교육 수강생 모집 안내</span><span class="board-date">2026.03.01</span></div>
+      <div class="board-row"><span class="board-badge is-notice">공지</span><span class="board-category">AI아카데미</span><span class="board-title">AI 아카데미 2026 개강 안내 — 이주민 청소년 무료 수강</span><span class="board-date">2026.02.20</span></div>
+      <div class="board-row"><span class="board-badge">일반</span><span class="board-category">행사</span><span class="board-title">2026 글로컬 인재 양성 포럼 개최 안내 (5월 예정)</span><span class="board-date">2026.02.10</span></div>
+      <div class="board-row"><span class="board-badge">일반</span><span class="board-category">장학</span><span class="board-title">2025년 하반기 우수 수료생 장학금 수여 결과 발표</span><span class="board-date">2025.12.28</span></div>
+      <div class="board-row"><span class="board-badge">일반</span><span class="board-category">파트너십</span><span class="board-title">한화오션 × 엘림G브릿지 산학협력 협약 체결</span><span class="board-date">2025.11.15</span></div>
+    </div>
+
+    <div id="pane-news" class="board-pane">
+      <div class="board-row"><span class="board-badge is-notice">특집</span><span class="board-category">네팔</span><span class="board-title">네팔 포카라 센터 2025년 연간 사역 리포트</span><span class="board-date">2026.01.10</span></div>
+      <div class="board-row"><span class="board-badge">소식</span><span class="board-category">스리랑카</span><span class="board-title">스리랑카 한국어반 수료생 10명 입국·취업 연계 성공</span><span class="board-date">2025.12.05</span></div>
+      <div class="board-row"><span class="board-badge">소식</span><span class="board-category">거제</span><span class="board-title">거제센터 KIIP 4급 합격률 98% 달성 — 전국 최고 수준</span><span class="board-date">2025.11.20</span></div>
+      <div class="board-row"><span class="board-badge">소식</span><span class="board-category">베트남</span><span class="board-title">베트남 결혼이민자 한국어 특강 성황리 마무리</span><span class="board-date">2025.10.08</span></div>
+      <div class="board-row"><span class="board-badge">소식</span><span class="board-category">기장</span><span class="board-title">기장 다문화가족지원센터와 MOU 체결</span><span class="board-date">2025.09.14</span></div>
+    </div>
+
+    <div id="pane-job" class="board-pane">
+      <div class="board-row"><span class="board-badge is-notice">채용</span><span class="board-category">제조업</span><span class="board-title">[한화오션] E7 비자 이주민 생산직 10명 모집 — 엘림G 우선 추천</span><span class="board-date">2026.03.10</span></div>
+      <div class="board-row"><span class="board-badge">채용</span><span class="board-category">IT</span><span class="board-title">[부산 스타트업] AI 데이터 라벨링 파트타임 — KIIP 수료자 우대</span><span class="board-date">2026.02.28</span></div>
+      <div class="board-row"><span class="board-badge">채용</span><span class="board-category">서비스</span><span class="board-title">[거제 호텔] 다국어 서비스 스태프 — 영어·네팔어 가능자</span><span class="board-date">2026.02.15</span></div>
+      <div class="board-row"><span class="board-badge">정보</span><span class="board-category">자격증</span><span class="board-title">이주민 대상 한국 국가기술자격 취득 지원 사업 안내</span><span class="board-date">2026.01.25</span></div>
+      <div class="board-row"><span class="board-badge">정보</span><span class="board-category">창업</span><span class="board-title">글로컬 소셜 창업 경진대회 참가자 모집 (상금 300만원)</span><span class="board-date">2026.01.10</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== PROGRAMS GRID (개설과정, 화신사이버대 features-layout2) =========== -->
+<section class="programs-section" id="programs">
+  <div class="programs-inner">
+    <div class="section-head">
+      <div class="sec-label">CURRICULUM</div>
+      <h2>글로컬 인재 양성 교육과정</h2>
+      <p>이주민·유학생·청소년이 대한민국과 세계를 잇는 인재로 성장할 수 있도록 단계별·맞춤형 통합 교육과정을 제공합니다.</p>
+    </div>
+    <div class="prog-grid">
+
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:linear-gradient(135deg,#1B3A6B,#243F72)">🇰🇷</div>
+        <div class="prog-card-body">
+          <span class="prog-tag">KIIP · 탁월성</span>
+          <h3>사회통합프로그램 (KIIP) 한국어교육</h3>
+          <p>0~5급 전과정. 영주권·국적 취득을 위한 체계적 커리큘럼. 합격률 전국 상위권.</p>
+          <div class="prog-langs"><span class="lang-tag">🇳🇵 네팔어</span><span class="lang-tag">🇻🇳 베트남어</span><span class="lang-tag">🇱🇰 스리랑카</span><span class="lang-tag">🇲🇲 미얀마</span></div>
+          <a href="https://elimg.kr" target="_blank" class="prog-link">자세히 보기 <i class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:linear-gradient(135deg,#0e9488,#1A5C38)">🤖</div>
+        <div class="prog-card-body">
+          <span class="prog-tag">AI ACADEMY · 확장성</span>
+          <h3>AI 리터러시 아카데미</h3>
+          <p>ChatGPT·Claude 활용, 데이터 분석, AI 창업. 이주민 무료 / 기업 수익 교차 보조.</p>
+          <div class="prog-langs"><span class="lang-tag">🇰🇷 한국어</span><span class="lang-tag">🇺🇸 English</span><span class="lang-tag">다국어 지원</span></div>
+          <a href="https://elimg.com/shop" target="_blank" class="prog-link">수강 신청 <i class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:linear-gradient(135deg,#7c3aed,#4f46e5)">⚓</div>
+        <div class="prog-card-body">
+          <span class="prog-tag">SHIPYARD · 연결성</span>
+          <h3>조선업 직업훈련 & 취업연계</h3>
+          <p>한화오션·현대중공업·삼성중공업 협력. 언어교육 → 직무훈련 → 취업까지 원스톱.</p>
+          <div class="prog-langs"><span class="lang-tag">🇳🇵 네팔어</span><span class="lang-tag">🇻🇳 베트남어</span><span class="lang-tag">🇮🇩 인도네시아</span></div>
+          <a href="https://elimg.com" target="_blank" class="prog-link">기업 파트너십 <i class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:linear-gradient(135deg,#dc2626,#f97316)">✝️</div>
+        <div class="prog-card-body">
+          <span class="prog-tag">BIBLE · 정체성</span>
+          <h3>성경 통독 & 신앙 양육</h3>
+          <p>모국어 성경 통독, 신앙 공동체 훈련. 하나님 나라 가치 위에 세워진 인재 양성의 근거.</p>
+          <div class="prog-langs"><span class="lang-tag">🇳🇵 네팔어</span><span class="lang-tag">🇱🇰 싱할라어</span><span class="lang-tag">🇻🇳 베트남어</span></div>
+          <a href="https://elimg.kr" target="_blank" class="prog-link">더 알아보기 <i class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:linear-gradient(135deg,#C49A22,#E8C05A)">🎓</div>
+        <div class="prog-card-body">
+          <span class="prog-tag">YOUTH · 지속성</span>
+          <h3>이주민 청소년 진로교육</h3>
+          <p>다문화 청소년 학업 지원, 멘토링, 대학 진학 컨설팅. 2세대 리더 양성.</p>
+          <div class="prog-langs"><span class="lang-tag">한국어</span><span class="lang-tag">English</span></div>
+          <a href="https://elimg.kr" target="_blank" class="prog-link">자세히 보기 <i class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+
+      <div class="prog-card">
+        <div class="prog-card-top" style="background:linear-gradient(135deg,#0369a1,#0284c7)">🌐</div>
+        <div class="prog-card-body">
+          <span class="prog-tag">GLOBAL · 영속성</span>
+          <h3>해외 현지 사역 & 파송</h3>
+          <p>네팔·스리랑카·베트남 현지 센터 운영. 훈련된 인재의 역파송으로 영구적 현지화.</p>
+          <div class="prog-langs"><span class="lang-tag">🇳🇵 카트만두</span><span class="lang-tag">🇱🇰 콜롬보</span><span class="lang-tag">🇻🇳 하노이</span></div>
+          <a href="https://elimg.kr" target="_blank" class="prog-link">현장 보기 <i class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =========== MINISTRY MAP (사역현장별 카드, 화신사이버대 blog-grid 방식) =========== -->
+<section class="ministry-section" id="ministry">
+  <div class="ministry-inner">
+    <div class="section-head">
+      <div class="sec-label">MISSION FIELDS</div>
+      <h2>글로컬 사역 현장</h2>
+      <p>국내외 10개국+ 이주민 커뮤니티와 현지 교회가 연결된 통합 네트워크.</p>
+    </div>
+    <div class="ministry-grid">
+      <div class="ministry-card"><div class="ministry-flag">🇳🇵</div><div class="ministry-country">Nepal</div><h3>네팔 포카라</h3><p>2000년대부터 운영. 한국어반, 성경학교, 청소년 센터.</p><a href="https://elimg.kr" target="_blank" class="ministry-link">방문하기 <i class="ri-arrow-right-line"></i></a></div>
+      <div class="ministry-card"><div class="ministry-flag">🇱🇰</div><div class="ministry-country">Sri Lanka</div><h3>스리랑카 콜롬보</h3><p>입국 전 한국어·직업훈련. 취업 후 귀환 재정착 지원.</p><a href="https://elimg.kr" target="_blank" class="ministry-link">방문하기 <i class="ri-arrow-right-line"></i></a></div>
+      <div class="ministry-card"><div class="ministry-flag">🇻🇳</div><div class="ministry-country">Vietnam</div><h3>베트남 결혼이민</h3><p>결혼이민자 한국어·문화 적응. 부산·경남 정착 네트워크.</p><a href="https://elimg.kr" target="_blank" class="ministry-link">방문하기 <i class="ri-arrow-right-line"></i></a></div>
+      <div class="ministry-card"><div class="ministry-flag">⚓</div><div class="ministry-country">Geoje · Korea</div><h3>거제 이주노동자</h3><p>조선업 이주노동자 KIIP, 법률상담, 생활 지원.</p><a href="https://elimg.kr" target="_blank" class="ministry-link">방문하기 <i class="ri-arrow-right-line"></i></a></div>
+      <div class="ministry-card"><div class="ministry-flag">🌊</div><div class="ministry-country">Gijang · Korea</div><h3>기장 다문화 센터</h3><p>부산 기장군 다문화가족지원센터 협력 운영.</p><a href="https://elimg.kr" target="_blank" class="ministry-link">방문하기 <i class="ri-arrow-right-line"></i></a></div>
+      <div class="ministry-card"><div class="ministry-flag">🇲🇲</div><div class="ministry-country">Myanmar</div><h3>미얀마 & 동남아</h3><p>미얀마 난민·이주민 긴급 지원, 한국어 원격교육.</p><a href="https://elimg.kr" target="_blank" class="ministry-link">방문하기 <i class="ri-arrow-right-line"></i></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== DIFFERENTIATORS (화신사이버대 대비 차별점) =========== -->
+<section class="diff-section">
+  <div class="diff-inner">
+    <div class="sec-label">WHY ELIMG G BRIDGE</div>
+    <h2 style="font-family:'Noto Serif KR',serif;font-size:clamp(22px,3vw,32px);color:#fff;font-weight:700;line-height:1.4;margin-bottom:0">화신사이버대 vs 엘림G브릿지<br /><span style="color:var(--gold-light)">글로컬 인재 양성의 차별점</span></h2>
+    <div class="diff-grid">
+      <div class="diff-item"><div class="diff-num">01</div><h3>탁월성 — 현장 기반 교육</h3><p>이론 중심 사이버 강의 대신, 30년 이주민 사역 현장에서 검증된 커리큘럼. KIIP 합격률 전국 상위권이 그 증거.</p></div>
+      <div class="diff-item"><div class="diff-num">02</div><h3>정체성 — 신앙과 사명의 통합</h3><p>일반 대학의 스펙 교육을 넘어, 하나님 나라 가치 위에 세워진 인재. 직업·언어·신앙이 분리되지 않는 전인 교육.</p></div>
+      <div class="diff-item"><div class="diff-num">03</div><h3>다양성 — 10개국+ 다문화 설계</h3><p>단일 민족 대상 교육 플랫폼이 아닌, 네팔·스리랑카·베트남 등 학습자 모국어로 설계된 진정한 다문화 시스템.</p></div>
+      <div class="diff-item"><div class="diff-num">04</div><h3>연결성 — 산학·교회·국제 네트워크</h3><p>기업(한화오션 등) + 교회 + 해외 현지 파트너가 하나의 생태계로 연결. 학습자가 졸업 후에도 네트워크 안에.</p></div>
+      <div class="diff-item"><div class="diff-num">05</div><h3>지속성 — AI 수익으로 교육 무료화</h3><p>기업 AI 컨설팅 수익 → 이주민 무료 교육으로 환류. 후원 의존도 낮은 자생적 재정 모델로 지속 운영.</p></div>
+      <div class="diff-item"><div class="diff-num">06</div><h3>확장성 — 디지털 + 오프라인 하이브리드</h3><p>Cloudflare 글로벌 엣지 배포 + 현지 센터. 코드 한 줄로 새 국가·언어로 확장 가능한 디지털 인프라.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== STORIES / MAGAZINE (화신사이버대 HSCU Magazine 방식) =========== -->
+<section class="stories-section" id="stories">
+  <div class="stories-inner">
+    <div class="section-head">
+      <div class="sec-label">IMPACT STORIES</div>
+      <h2>글로컬 인재 성과 스토리</h2>
+    </div>
+    <div class="swiper story-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><div class="story-card"><div class="story-img">🏆</div><div class="story-body"><div class="year">2025년 12월</div><h4>KIIP 전국 합격률 1위<br />거제 센터 달성</h4><p>2025년 KIIP 4급 시험에서 거제센터 수강생 전원 합격. 전국 평균 72% 대비 100% 달성.</p><a href="https://elimg.kr" class="story-link">읽어보기 <i class="ri-arrow-right-line"></i></a></div></div></div>
+        <div class="swiper-slide"><div class="story-card"><div class="story-img">⚓</div><div class="story-body"><div class="year">2025년 10월</div><h4>한화오션 취업연계<br />1기 15명 입사</h4><p>엘림G브릿지 직업훈련 수료 이주민 15명이 한화오션 거제 공장에 정규직으로 취업.</p><a href="https://elimg.com" class="story-link">읽어보기 <i class="ri-arrow-right-line"></i></a></div></div></div>
+        <div class="swiper-slide"><div class="story-card"><div class="story-img">🇳🇵</div><div class="story-body"><div class="year">2025년 8월</div><h4>네팔 포카라 센터<br />25주년 기념 행사</h4><p>2000년 개소 이후 누적 졸업생 3,200명. 한국 정착·귀환 후 현지 리더로 활동 중.</p><a href="https://elimg.kr" class="story-link">읽어보기 <i class="ri-arrow-right-line"></i></a></div></div></div>
+        <div class="swiper-slide"><div class="story-card"><div class="story-img">🤖</div><div class="story-body"><div class="year">2026년 예정</div><h4>AI 아카데미 1기<br />이주민 50명 수료 목표</h4><p>기업 AI 컨설팅 수익으로 이주민 청소년 50명에게 AI 리터러시를 무료 제공하는 첫 코호트.</p><a href="https://elimg.com/shop" class="story-link">신청하기 <i class="ri-arrow-right-line"></i></a></div></div></div>
+        <div class="swiper-slide"><div class="story-card"><div class="story-img">✝️</div><div class="story-body"><div class="year">2025년 5월</div><h4>스리랑카 귀환 선교사<br />3가정 현지 개척</h4><p>엘림G 훈련생 출신 3가정이 스리랑카로 귀환, 현지 교회와 한국어학교를 직접 개척.</p><a href="https://elimg.kr" class="story-link">읽어보기 <i class="ri-arrow-right-line"></i></a></div></div></div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========== PARTNERS (화신사이버대 client 섹션 방식) =========== -->
+<section class="partners-section" id="contact">
+  <div class="partners-inner">
+    <h4>PARTNERS & NETWORK</h4>
+    <div class="partners-row">
+      <a href="https://www.hanwha-ocean.com" target="_blank" class="partner-tag">⚓ 한화오션</a>
+      <a href="#" class="partner-tag">🚢 현대중공업</a>
+      <a href="#" class="partner-tag">🛳 삼성중공업</a>
+      <a href="https://www.hikorea.go.kr" target="_blank" class="partner-tag">🏛 출입국외국인정책본부</a>
+      <a href="https://www.kosaf.go.kr" target="_blank" class="partner-tag">📚 한국장학재단</a>
+      <a href="https://www.cbmc.kr" target="_blank" class="partner-tag">🤝 CBMC</a>
+      <a href="#" class="partner-tag">🇳🇵 네팔 XISS대학</a>
+      <a href="#" class="partner-tag">⛪ 협력교회 30+</a>
+      <a href="https://life.hscu.ac.kr" target="_blank" class="partner-tag">🎓 화신사이버대 부설 평생교육원</a>
+    </div>
+  </div>
+</section>
+
+<!-- =========== FOOTER (화신사이버대 구조 + elimg.com 스타일) =========== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <a href="/glocal.html" class="footer-logo">
+        <div class="brand-icon">🌉</div>
+        <div><span class="footer-brand-en">ElimG Bridge</span><span class="footer-brand-kr">엘림G브릿지</span></div>
+      </a>
+      <p class="footer-desc">30년 이주민 사역 경험 × AI 기술 × 글로컬 네트워크<br />하나님 나라를 잇는 글로컬 인재 양성 플랫폼</p>
+      <div class="footer-contact-item"><i class="ri-phone-fill"></i><span>1588-ELIM (상담시간 평일 09~18시)</span></div>
+      <div class="footer-contact-item"><i class="ri-map-pin-fill"></i><span>경남 거제 · 부산 기장 · 해외 현지</span></div>
+      <div class="footer-contact-item"><i class="ri-mail-fill"></i><a href="mailto:info@elimg.com" style="color:var(--gold)">info@elimg.com</a></div>
+      <div class="footer-sns">
+        <a href="https://pf.kakao.com/_hjqsd/chat" target="_blank" class="sns-icon"><i class="ri-kakao-talk-fill"></i></a>
+        <a href="https://www.youtube.com/@elimgbridge" target="_blank" class="sns-icon"><i class="ri-youtube-fill"></i></a>
+        <a href="https://www.instagram.com/elimgbridge" target="_blank" class="sns-icon"><i class="ri-instagram-fill"></i></a>
+        <a href="https://blog.naver.com/elimgbridge" target="_blank" class="sns-icon"><i class="ri-blogger-fill"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>교육과정</h5>
+      <ul>
+        <li><a href="#programs">KIIP 한국어교육</a></li>
+        <li><a href="https://elimg.com/shop">AI 아카데미</a></li>
+        <li><a href="#programs">직업훈련 연계</a></li>
+        <li><a href="#programs">청소년 진로교육</a></li>
+        <li><a href="#programs">성경 통독반</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>사역현장</h5>
+      <ul>
+        <li><a href="https://elimg.kr">네팔 포카라</a></li>
+        <li><a href="https://elimg.kr">스리랑카 콜롬보</a></li>
+        <li><a href="https://elimg.kr">베트남 결혼이민</a></li>
+        <li><a href="https://elimg.kr">거제 이주노동자</a></li>
+        <li><a href="https://elimg.kr">기장 다문화센터</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>정보 & 후원</h5>
+      <ul>
+        <li><a href="https://elimg.kr">후원하기</a></li>
+        <li><a href="https://elimg.kr">자원봉사 신청</a></li>
+        <li><a href="https://elimg.com">기업 AI 파트너십</a></li>
+        <li><a href="#news">공지사항</a></li>
+        <li><a href="https://elimg.kr" style="color:#e11d48">개인정보처리방침</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 엘림G브릿지 ElimG Bridge — 글로컬 인재 양성 플랫폼</span>
+    <div>
+      <a href="https://elimg.kr">elimg.kr (사역)</a>&nbsp;|&nbsp;
+      <a href="https://elimg.com">elimg.com (비즈니스)</a>
+    </div>
+  </div>
+</footer>
+
+<button id="scrollTopBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="ri-arrow-up-long-line"></i></button>
+
+<!-- =========== Scripts =========== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+// Hero Swiper
+new Swiper('.hero-swiper', {
+  loop: true,
+  autoplay: { delay: 5500, disableOnInteraction: false },
+  pagination: { el: '.hero-swiper .swiper-pagination', clickable: true },
+  navigation: { nextEl: '.hero-swiper .swiper-button-next', prevEl: '.hero-swiper .swiper-button-prev' }
+});
+
+// Story Swiper
+new Swiper('.story-swiper', {
+  slidesPerView: 1, spaceBetween: 20, loop: true, autoplay: true,
+  breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+  pagination: { el: '.story-swiper .swiper-pagination', clickable: true },
+  navigation: { nextEl: '.story-swiper .swiper-button-next', prevEl: '.story-swiper .swiper-button-prev' }
+});
+
+// Board Tabs (화신사이버대 방식 재현)
+document.querySelectorAll('.board-tab-btn').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    if (e.target.closest('a')) return; // 더보기 클릭 통과
+    const paneId = this.dataset.pane;
+    document.querySelectorAll('.board-tab-btn').forEach(b => b.classList.remove('is-active'));
+    document.querySelectorAll('.board-pane').forEach(p => p.classList.remove('is-active'));
+    this.classList.add('is-active');
+    document.getElementById(paneId).classList.add('is-active');
+  });
+});
+
+// Scroll Top Button
+const scrollBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => scrollBtn.classList.toggle('visible', window.scrollY > 400));
+</script>
+</body>
+</html>

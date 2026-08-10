@@ -398,6 +398,7 @@ footer{background:var(--dk);color:rgba(255,255,255,.55);padding:48px 20px 28px;}
 
 /* RESPONSIVE */
 @media(max-width:1024px){
+  .nav-back{display:none!important;}
   .rm-grid{grid-template-columns:repeat(2,1fr);}
   .lv-grid{grid-template-columns:repeat(2,1fr);}
   .tb-grid{grid-template-columns:repeat(2,1fr);}
@@ -432,9 +433,63 @@ footer{background:var(--dk);color:rgba(255,255,255,.55);padding:48px 20px 28px;}
 </head>
 <body>
 
+<!-- MEMBERS-ONLY GATE -->
+<div id="bGate" style="position:fixed;inset:0;z-index:9999;background:linear-gradient(160deg,#022C22,#065F46 65%,#047857);display:flex;align-items:center;justify-content:center;padding:20px;font-family:'Noto Sans KR',sans-serif;">
+  <div style="max-width:420px;width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:36px 30px;text-align:center;backdrop-filter:blur(6px);">
+    <div style="font-size:40px;margin-bottom:10px;">🌍🔒</div>
+    <h1 style="font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;">AI 글로컬 Builders — 회원 전용</h1>
+    <p style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.7;margin-bottom:22px;">이 공간은 회원 접근 코드가 있어야 입장할 수 있습니다.<br/>기존 회원은 자동으로 인식됩니다.</p>
+    <form id="bGateForm" style="display:flex;gap:8px;margin-bottom:10px;">
+      <input type="text" id="bGateCode" placeholder="접근 코드 입력" autocomplete="off" required style="flex:1;padding:12px 14px;border-radius:8px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font-size:14px;text-transform:uppercase;">
+      <button type="submit" style="padding:12px 20px;border:none;border-radius:8px;background:#F59E0B;color:#111827;font-weight:800;font-size:14px;cursor:pointer;white-space:nowrap;">입장</button>
+    </form>
+    <div id="bGateErr" style="display:none;color:#FCA5A5;font-size:12.5px;margin-bottom:14px;">코드가 올바르지 않습니다.</div>
+    <div style="border-top:1px solid rgba(255,255,255,.12);padding-top:16px;margin-top:6px;">
+      <p style="font-size:12px;color:rgba(255,255,255,.55);margin-bottom:10px;">아직 회원이 아니신가요?</p>
+      <a href="/#contact" style="display:inline-block;padding:9px 18px;border:1.5px solid rgba(255,255,255,.35);border-radius:8px;color:#fff;font-size:12.5px;font-weight:700;text-decoration:none;">무료 상담 신청하기 →</a>
+    </div>
+  </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const GATE_CODES=['GLOCAL2026','BRIDGE2026','ELIMG2026','GLOCALADMIN'];
+  const gate=document.getElementById('bGate');
+  const content=document.getElementById('pageContent');
+  const form=document.getElementById('bGateForm');
+  const input=document.getElementById('bGateCode');
+  const err=document.getElementById('bGateErr');
+
+  function unlock(){
+    gate.style.display='none';
+    content.style.display='';
+  }
+
+  try{
+    if(localStorage.getItem('gb_member_session')) unlock();
+  }catch(e){}
+
+  if(window.location.search.includes('admin')) unlock();
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const code=input.value.trim().toUpperCase();
+    if(GATE_CODES.includes(code)){
+      err.style.display='none';
+      unlock();
+    }else{
+      err.style.display='block';
+      input.value='';
+      input.focus();
+    }
+  });
+});
+</script>
+
+<div id="pageContent" style="display:none">
 <!-- NAV -->
 <nav id="nb">
   <div class="ni">
+    <a href="https://elimg.com" class="nav-back" title="GlocalBridge 메인으로" style="display:flex;align-items:center;gap:5px;color:rgba(255,255,255,.75);font-size:12px;font-weight:600;text-decoration:none;padding:6px 10px;border:1px solid rgba(255,255,255,.25);border-radius:6px;white-space:nowrap;flex-shrink:0;">← GlocalBridge</a>
     <div class="nl">
       <a href="/builders/">
         <div class="ld">🌍</div>
@@ -462,6 +517,7 @@ footer{background:var(--dk);color:rgba(255,255,255,.55);padding:48px 20px 28px;}
     <button class="hbg" onclick="toggleMenu()"><span></span><span></span><span></span></button>
   </div>
   <div class="mm" id="mm">
+    <a href="https://elimg.com">← GlocalBridge 메인으로</a>
     <a href="#intro" onclick="toggleMenu()">소개</a>
     <a href="#textbook" onclick="toggleMenu()">교재</a>
     <a href="#prompt" onclick="toggleMenu()">프롬프트</a>
@@ -1137,6 +1193,8 @@ footer{background:var(--dk);color:rgba(255,255,255,.55);padding:48px 20px 28px;}
 </div>
 
 <div class="toast" id="toast"></div>
+
+</div>
 
 <script>
 // NAV toggle
