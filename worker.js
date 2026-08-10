@@ -14,6 +14,9 @@ export default {
     if (url.pathname === '/api/chat') return handleChat(request, env);
     if (url.pathname === '/api/feedback') return handleFeedback(request, env);
     if (url.pathname === '/api/feedback/list') return handleFeedbackList(request, env);
+    if (url.pathname === '/api/lead') return handleLead(request, env);
+    if (url.pathname === '/api/lead/list') return handleLeadList(request, env);
+    if (url.pathname === '/api/lead/update') return handleLeadUpdate(request, env);
 
     // .html 확장자 → 확장자 없는 URL 리다이렉트 (307)
     if (url.pathname.endsWith('.html') && !url.pathname.startsWith('/api/')) {
@@ -708,11 +711,118 @@ async function handleFeedback(request, env) {
   }
 }
 
+/* ── 리드(문의·신청) 수집 ────────────────────────────
+   피드백과 달리 '연락처가 담긴 영업 자산'이므로 만료 없이 보관하고
+   조회 키를 별도(env.ADMIN_KEY)로 둔다. */
+async function handleLead(request, env) {
+  const cors = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json',
+  };
+  if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
+  if (request.method !== 'POST') return new Response('Method not allowed', { status: 405 });
+
+  try {
+    const body = await request.json();
+    const s = (v, n) => String(v == null ? '' : v).slice(0, n);
+
+    // 연락처가 없으면 후속 영업이 불가능하므로 접수하지 않는다
+    const contact = s(body.contact || body.phone || body.email, 100).trim();
+    if (!contact) {
+      return new Response(JSON.stringify({ ok: false, error: '연락처를 입력해 주세요' }), { status: 400, headers: cors });
+    }
+
+    const key = 'lead_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
+    const data = {
+      ts: new Date().toISOString(),
+      name: s(body.name, 50),
+      contact,
+      org: s(body.org, 100),          // 소속(기업·기관·교회)
+      kind: s(body.kind, 40),         // 문의 유형: 교육·컨설팅·웹·기타
+      message: s(body.message, 1000),
+      from: s(body.from, 120),        // 유입 페이지
+      status: 'new',                  // new → contacted → proposal → won/lost
+      extra: body.extra ? s(JSON.stringify(body.extra), 4000) : '',
+    };
+    await env.FEEDBACK.put(key, JSON.stringify(data)); // 만료 없음
+    return new Response(JSON.stringify({ ok: true, key }), { headers: cors });
+  } catch (err) {
+    return new Response(JSON.stringify({ ok: false, error: err.message }), { status: 500, headers: cors });
+  }
+}
+
+/* ── 리드 조회 (관리자 전용) ─────────────────────────── */
+async function handleLeadList(request, env) {
+  const url = new URL(request.url);
+  // ADMIN_KEY 미설정 시 expected가 undefined가 되어 인증이 무력화될 수 있으므로 먼저 막는다
+  if (!env.ADMIN_KEY || url.searchParams.get('key') !== env.ADMIN_KEY) {
+    return new Response('Unauthorized', { status: 401 });
+  }
+  const list = await env.FEEDBACK.list({ prefix: 'lead_' });
+  const fetched = await Promise.all(
+    list.keys.map(async k => {
+      const val = await env.FEEDBACK.get(k.name);
+      // 삭제 직후 KV 키 목록은 잠시 캐시되어 남는다(값은 이미 null).
+      // 그대로 두면 화면에 빈 카드가 뜨므로 걸러낸다.
+      return val ? { key: k.name, ...JSON.parse(val) } : null;
+    })
+  );
+  const items = fetched.filter(Boolean);
+  items.sort((a, b) => b.ts > a.ts ? 1 : -1);
+  return new Response(JSON.stringify({ count: items.length, items }, null, 2), {
+    headers: { 'Content-Type': 'application/json; charset=utf-8' }
+  });
+}
+
+/* ── 리드 상태 변경·삭제 (관리자 전용) ───────────────── */
+async function handleLeadUpdate(request, env) {
+  const cors = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Content-Type': 'application/json',
+  };
+  if (request.method === 'OPTIONS') return new Response(null, { headers: cors });
+  if (request.method !== 'POST') return new Response('Method not allowed', { status: 405 });
+
+  try {
+    const body = await request.json();
+    // ADMIN_KEY가 없으면 둘 다 undefined가 되어 무인증 삭제가 가능해진다. 먼저 차단한다
+    if (!env.ADMIN_KEY || body.key !== env.ADMIN_KEY) {
+      return new Response(JSON.stringify({ ok: false, error: 'Unauthorized' }), { status: 401, headers: cors });
+    }
+
+    // 실수로 다른 접두사(피드백 등)를 지우지 못하게 막는다
+    const k = String(body.target || '');
+    if (!k.startsWith('lead_')) return new Response(JSON.stringify({ ok: false, error: 'lead_ 키만 가능' }), { status: 400, headers: cors });
+
+    const raw = await env.FEEDBACK.get(k);
+    if (!raw) return new Response(JSON.stringify({ ok: false, error: '없는 항목' }), { status: 404, headers: cors });
+
+    if (body.action === 'delete') {
+      await env.FEEDBACK.delete(k);
+      return new Response(JSON.stringify({ ok: true, deleted: k }), { headers: cors });
+    }
+
+    const data = JSON.parse(raw);
+    const ALLOWED = ['new', 'contacted', 'proposal', 'won', 'lost'];
+    if (body.status && ALLOWED.indexOf(body.status) >= 0) data.status = body.status;
+    if (typeof body.memo === 'string') data.memo = body.memo.slice(0, 1000);
+    data.updated = new Date().toISOString();
+    await env.FEEDBACK.put(k, JSON.stringify(data));
+    return new Response(JSON.stringify({ ok: true, data }), { headers: cors });
+  } catch (err) {
+    return new Response(JSON.stringify({ ok: false, error: err.message }), { status: 500, headers: cors });
+  }
+}
+
 /* ── 피드백 조회 (관리자) ────────────────────────────── */
 async function handleFeedbackList(request, env) {
   const url = new URL(request.url);
   const adminKey = url.searchParams.get('key');
-  if (adminKey !== 'glocal2024admin') {
+  if (!env.ADMIN_KEY || adminKey !== env.ADMIN_KEY) {
     return new Response('Unauthorized', { status: 401 });
   }
   const list = await env.FEEDBACK.list();

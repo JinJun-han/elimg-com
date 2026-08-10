@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<!-- Google Analytics 4 (elimg.kr과 동일 속성) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JCKB12TDT8"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JCKB12TDT8');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
@@ -318,7 +321,8 @@ footer a{color:var(--gl);text-decoration:none}
       <input type="checkbox" id="consent_pi" name="consent_personal_info" required>
       <label for="consent_pi">
         <strong>개인정보 수집·이용 동의 (필수)</strong><br>
-        <span class="opt">수집 항목: 이름·연락처·이메일·답변 내용 / 보관 기간: 1기 종료 후 1년 / 목적: 학습 운영·후속 안내</span>
+        <span class="opt">수집 항목: 이름·연락처·이메일·답변 내용 / 보관 기간: 1기 종료 후 1년 / 목적: 학습 운영·후속 안내
+        · <a href="/privacy" target="_blank" rel="noopener" style="color:var(--gl);text-decoration:underline">개인정보 처리방침</a></span>
       </label>
     </div>
     <div class="consent-row">
@@ -369,8 +373,8 @@ footer a{color:var(--gl);text-decoration:none}
 </footer>
 
 <script>
-const SUPABASE_URL  = 'https://zaygzrbfuwulbceppamx.supabase.co';
-const SUPABASE_ANON = 'sb_publishable_h5bShUw6eWi-00fNH4drcA_OdllSAEf';
+// 제출 대상: /api/lead (Cloudflare Worker + KV).
+// 이전 Supabase 프로젝트는 삭제되어 DNS 해석조차 되지 않아 제출이 전부 실패했었다.
 
 // 진행률 표시
 const totalSections = 8;
@@ -426,23 +430,27 @@ document.getElementById('diagForm').addEventListener('submit', async (e) => {
   btn.textContent = '제출 중...';
 
   try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/register_academy`, {
+    const res = await fetch('/api/lead', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'apikey': SUPABASE_ANON,
-        'Authorization': `Bearer ${SUPABASE_ANON}`
-      },
-      body: JSON.stringify({ payload })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: payload.name,
+        contact: payload.phone,
+        org: payload.region || '',
+        kind: 'AI아카데미 진단설문',
+        message: [payload.goal_text, payload.challenge_text].filter(Boolean).join(' / '),
+        from: location.pathname,
+        extra: payload
+      })
     });
+    const out = await res.json().catch(() => ({}));
 
-    if (res.ok) {
+    if (res.ok && out.ok) {
       document.getElementById('diagForm').style.display = 'none';
       document.getElementById('doneScreen').classList.add('show');
       window.scrollTo({top: 0, behavior: 'smooth'});
     } else {
-      const err = await res.text();
-      console.error('Submit failed:', err);
+      console.error('Submit failed:', out.error || res.status);
       document.getElementById('alertError').classList.add('show');
       btn.disabled = false;
       btn.textContent = '설문 제출하고 1기 후보로 등록하기 →';
