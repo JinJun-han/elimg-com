@@ -59,3 +59,10 @@ og-welcome.html
 .wranglerignore
 wrangler.toml
 worker.js
+
+# 백업 파일 (공개 금지) — 2026-08-03 보안감사 반영
+*.bak
+*.bak-*
+*.backup
+*.orig
+*~
