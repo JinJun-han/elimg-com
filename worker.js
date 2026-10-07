@@ -11,6 +11,10 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
 
+    if (url.pathname === '/ministry-dashboard' || url.pathname === '/ministry-dashboard/') {
+      return Response.redirect('https://glocal-mission.pages.dev/', 302);
+    }
+
     if (url.pathname === '/api/chat') return handleChat(request, env);
     if (url.pathname === '/api/feedback') return handleFeedback(request, env);
     if (url.pathname === '/api/feedback/list') return handleFeedbackList(request, env);
