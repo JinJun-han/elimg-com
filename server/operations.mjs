@@ -1,7 +1,7 @@
 const PURPOSES = Object.freeze({ business: 'OPS_BUSINESS', visa: 'OPS_VISA', care: 'OPS_CARE', mission: 'OPS_MISSION' });
 const STATUSES = new Set(['new', 'review', 'working', 'done']);
 const encoder = new TextEncoder();
-const COOKIE = 'elimg_ops';
+const COOKIE = '__Host-elimg_ops';
 const securityHeaders = { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff', 'X-Robots-Tag': 'noindex, nofollow', 'Referrer-Policy': 'no-referrer' };
 const json = (data, status = 200, headers = {}) => new Response(JSON.stringify(data), { status, headers: { ...securityHeaders, ...headers } });
 const clean = (value, max) => String(value ?? '').trim().slice(0, max);
@@ -27,7 +27,9 @@ async function authenticated(request, secret) {
     return data.role === 'owner' && Number.isFinite(data.exp) && data.exp > Date.now() && data.exp <= Date.now() + 3601000;
   } catch { return false; }
 }
-function sessionCookie(value, maxAge) { return `${COOKIE}=${value}; Path=/api/ops/; HttpOnly; Secure; SameSite=Strict; Max-Age=${maxAge}`; }
+export function operationsAvailable(env) { return env.OPS_ENABLED === 'true' && typeof env.OPS_OWNER_KEY === 'string' && env.OPS_OWNER_KEY.length >= 32; }
+export async function isOwnerAuthenticated(request, env) { return operationsAvailable(env) && authenticated(request, env.OPS_OWNER_KEY); }
+function sessionCookie(value, maxAge) { return `${COOKIE}=${value}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=${maxAge}`; }
 async function readBody(request) {
   const raw = await request.text();
   if (encoder.encode(raw).byteLength > 16000) throw new Error('body-too-large');
@@ -43,18 +45,17 @@ export function prepareRequest(input, purpose, now = new Date().toISOString()) {
 }
 export async function handleOperations(request, env) {
   const url = new URL(request.url), path = url.pathname;
-  if (env.OPS_ENABLED !== 'true') return json({ error: '운영실이 아직 활성화되지 않았습니다. 검증용 예시 화면을 이용해 주세요.' }, 503);
-  if (!env.ADMIN_KEY) return json({ error: '관리자 인증 설정이 필요합니다.' }, 503);
+  if (!operationsAvailable(env)) return json({ error: '운영실이 비활성 상태이거나 전용 인증 설정이 필요합니다.' }, 503);
   if (!['GET', 'POST', 'PATCH', 'DELETE'].includes(request.method)) return json({ error: '허용되지 않은 요청입니다.' }, 405);
   if (request.method !== 'GET' && request.headers.get('Origin') !== url.origin) return json({ error: '같은 사이트에서만 요청할 수 있습니다.' }, 403);
   if (path === '/api/ops/session' && request.method === 'POST') {
     try {
       const input = await readBody(request);
-      if (!await equalSecret(clean(input.key, 512), env.ADMIN_KEY)) return json({ error: '관리자 키가 일치하지 않습니다.' }, 401);
-      return json({ ok: true }, 200, { 'Set-Cookie': sessionCookie(await signSession(env.ADMIN_KEY), 3600) });
+      if (!await equalSecret(clean(input.key, 512), env.OPS_OWNER_KEY)) return json({ error: '관리자 키가 일치하지 않습니다.' }, 401);
+      return json({ ok: true }, 200, { 'Set-Cookie': sessionCookie(await signSession(env.OPS_OWNER_KEY), 3600) });
     } catch { return json({ error: '인증 요청 형식을 확인해 주세요.' }, 400); }
   }
-  if (!await authenticated(request, env.ADMIN_KEY)) return json({ error: '관리자 로그인이 필요합니다.' }, 401);
+  if (!await isOwnerAuthenticated(request, env)) return json({ error: '관리자 로그인이 필요합니다.' }, 401);
   if (path === '/api/ops/session' && request.method === 'DELETE') return json({ ok: true }, 200, { 'Set-Cookie': sessionCookie('', 0) });
   if (path === '/api/ops/config' && request.method === 'GET') return json({ owner: true, purposes: Object.keys(PURPOSES).map(p => ({ purpose: p, ready: Boolean(env[PURPOSES[p]]) })), externalAI: false });
   if (path !== '/api/ops/requests') return json({ error: '경로를 찾을 수 없습니다.' }, 404);

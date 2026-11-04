@@ -11,7 +11,7 @@ function el(tag, text, className) { const node = document.createElement(tag); if
 async function api(path, options = {}) {
   const response = await fetch('/api/ops/' + path, { ...options, credentials: 'same-origin', headers: { 'Content-Type': 'application/json', ...(options.headers || {}) } });
   const data = await response.json().catch(() => ({}));
-  if (response.status === 401) { ready = false; items = []; selected = null; $('workspace').hidden = true; $('login').hidden = false; $('logout').hidden = true; }
+  if (response.status === 401) { ready = false; items = []; selected = null; $('workspace').hidden = true; $('login').hidden = false; $('logout').hidden = true; if (!demo) location.replace('/ops/login'); }
   if (!response.ok) throw new Error(data.error || '요청을 처리하지 못했습니다.');
   return data;
 }
@@ -60,7 +60,7 @@ async function load(append = false) {
   finally { if (generation === requestGeneration) $('refresh').disabled = false; }
 }
 $('login-form').addEventListener('submit', async event => { event.preventDefault(); const key = $('admin-key').value; $('admin-key').value = ''; const button = event.currentTarget.querySelector('button'); button.disabled = true; try { await api('session', { method: 'POST', body: JSON.stringify({ key }) }); enter(); await load(); } catch (e) { notice(e.message); } finally { button.disabled = false; } });
-$('logout').addEventListener('click', async () => { try { await api('session', { method: 'DELETE' }); ready = false; items = []; selected = null; render(); $('workspace').hidden = true; $('login').hidden = false; $('logout').hidden = true; $('mode').textContent = '로그아웃'; notice('로그아웃했습니다.'); } catch (e) { notice(e.message); } });
+$('logout').addEventListener('click', async () => { try { await api('session', { method: 'DELETE' }); ready = false; items = []; selected = null; render(); $('workspace').hidden = true; $('login').hidden = false; $('logout').hidden = true; $('mode').textContent = '로그아웃'; notice('로그아웃했습니다.'); location.replace('/ops/login'); } catch (e) { notice(e.message); } });
 document.querySelectorAll('[data-purpose]').forEach(button => button.addEventListener('click', () => { purpose = button.dataset.purpose; document.querySelectorAll('[data-purpose]').forEach(b => b.classList.toggle('active', b === button)); $('search').value = ''; $('filter').value = 'all'; if (ready) load(); }));
 $('search').addEventListener('input', render); $('filter').addEventListener('change', render); $('refresh').addEventListener('click', () => load()); $('more').addEventListener('click', () => load(true));
 $('new-request').addEventListener('click', () => { $('create-error').textContent = ''; $('create-purpose').textContent = purposes[purpose][0] + ' 전용 공간에 등록합니다.'; $('create-dialog').showModal(); });
@@ -79,3 +79,5 @@ $('export').addEventListener('click', () => {
   const url = URL.createObjectURL(new Blob([data], { type: 'application/json' })); const a = el('a'); a.href = url; a.download = 'elimg-' + purpose + '-' + new Date().toISOString().slice(0, 10) + '.json'; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000); notice('현재 불러온 목록을 내보냈습니다. 개인정보가 포함될 수 있으므로 비공개로 보관해 주세요.');
 });
 if (demo) { enter(); load(); } else api('config').then(() => { enter(); return load(); }).catch(e => notice(e.message));
+
+window.addEventListener('pageshow', event => { if (!demo && event.persisted) location.reload(); });

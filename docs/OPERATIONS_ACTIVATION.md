@@ -11,7 +11,7 @@
 
 - 로컬 검증용. 운영 배포·DNS 변경·새 저장소 생성·유료 가입은 하지 않았습니다.
 - /ops/?demo=1은 가상 예시이며 새로고침하면 초기화됩니다. 개인정보를 입력하지 마십시오.
-- 실제 모드는 OPS_ENABLED=true와 ADMIN_KEY가 모두 설정되어야 열립니다.
+- 실제 모드는 OPS_ENABLED=true와 32자 이상의 무작위 OPS_OWNER_KEY가 모두 설정되어야 열립니다. 기존 ADMIN_KEY는 운영실 로그인에 사용하지 않습니다.
 - OPS_BUSINESS, OPS_VISA, OPS_CARE, OPS_MISSION에 각각 별도의 KV namespace를 바인딩해야 합니다.
 - 기존 FEEDBACK 저장소를 재사용하지 않습니다. 누락된 바인딩은 저장 성공처럼 표시하지 않고 503을 반환합니다.
 - 기존 /api/lead 수집, Netlify 양식, 과거 백업은 아직 운영실로 자동 수집·이관하지 않습니다.
@@ -21,8 +21,8 @@
 
 1. 현재 운영 소스·배포 버전·DNS·설정·운영 데이터 백업 및 별도 환경 복구 검증.
 2. 새 KV namespace 4개의 목적·보관 범위와 무료 사용량 한도 확인. 비밀값은 저장소에 커밋하지 않음.
-3. /api/ops/session 로그인 경로의 시도 제한과 소유자 인증 체계 점검. 현재 HMAC 서명 쿠키는 1시간 후 만료.
-4. 현재 ADMIN_KEY 회전 시 기존 leads 관리자 기능에도 영향을 주므로 별도 관리 키 도입을 검토.
+3. OPS_OWNER_KEY를 주인님만 보관하는 무작위 비밀값으로 설정하고 공유하지 않음. 인증은 키 소지 증명이며 실명/이메일 계정 확인은 아님. 로그인 시도 제한 및 별도 계정 인증은 운영 전 점검. HMAC 서명 쿠키는 1시간 후 만료.
+4. 운영실 전용 OPS_OWNER_KEY는 기존 ADMIN_KEY와 독립. 전용 키 회전은 운영실 세션을 무효화함. 로그아웃은 현재 브라우저의 쿠키를 지우며, 복사된 토큰을 서버에서 개별 철회하는 기능은 없음.
 5. Cloudflare KV는 eventual consistency이며 트랜잭션·동시 수정 충돌 검사가 없습니다. 단독 운영 범위에서만 사용.
 6. 운영실 상태 변경·접수 생성 이후 일시적인 읽기 지연을 수용할지 결정. 쓰기 오류 후 무조건 재시도하면 중복될 수 있음.
 7. 기존 접수 연동에는 목적 분류와 중복 방지 ID가 필요. 현재는 직접 등록만 가능.
@@ -41,3 +41,16 @@
 승인 후 분리된 검증 환경에서 시작합니다. 자동 배포가 켜진 main에는 승인 전 푸시하지 않습니다.
 이전 배포 버전과 환경 바인딩을 기록하고, 기능 중단 시 OPS_ENABLED를 끄면 신규 운영실 API가 차단됩니다.
 이는 즉시 차단 방법일 뿐 기존 데이터 백업·삭제·완전 복구를 대신하지 않습니다.
+
+## 소유자 전용 화면 보호
+
+- /ops/login은 최소 로그인 화면만 제공하며 운영 화면·신청 데이터는 포함하지 않습니다.
+- /ops/, /ops/index.html 및 예시 쿼리도 인증 없이는 로그인 화면으로 이동합니다. JS/CSS 직접 주소도 401로 차단합니다.
+- ops/ 원본 폴더를 정적 자산에서 제외하고 server/ops-assets.mjs에 문자열로 번들링합니다. 인증된 Worker만 이를 응답합니다.
+- wrangler assets.run_worker_first에는 /ops, /ops/*, /api/ops/*를 지정하여 정적 자산보다 인증 검사를 먼저 수행합니다. 공개 홈페이지 경로는 변경하지 않습니다.
+- __Host-elimg_ops 쿠키는 Secure, HttpOnly, SameSite=Strict, Path=/이며 키는 URL·브라우저 localStorage에 저장하지 않습니다.
+- 브라우저 뒤로가기로 복원되는 화면은 다시 인증 확인하도록 새로고침합니다. 모든 운영실 응답은 no-store입니다.
+- 화면 파일 수정 후 node scripts/build-ops-assets.mjs를 실행합니다. node scripts/build-ops-assets.mjs --check로 동기화를 검사합니다.
+- 별도 다운로드용 체험판 HTML은 예시 전용 파일이며 운영 데이터·인증 기능과 연결되지 않습니다.
+
+기술 근거: https://developers.cloudflare.com/workers/static-assets/binding/
