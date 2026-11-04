@@ -1,11 +1,25 @@
 import legacy from './worker.js';
-import { handleOperations, operationsAvailable, isOwnerAuthenticated } from './server/operations.mjs';
+import { handleOperations, operationsAvailable, isOwnerAuthenticated, prepareRequest } from './server/operations.mjs';
+import { mirrorLead } from './server/lead-bridge.mjs';
 import { privateAssets } from './server/ops-assets.mjs';
 import { loginPage } from './server/owner-login.mjs';
 
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    if (url.pathname === '/api/lead' && request.method === 'POST') {
+      // Keep the original receipt authoritative. A derived workflow failure must
+      // never turn a successfully saved enquiry into a rejected submission.
+      const response = await legacy.fetch(request, env, ctx);
+      if (response.ok && operationsAvailable(env)) {
+        const receipt = await response.clone().json().catch(() => null);
+        if (receipt?.ok && receipt.key) {
+          const job = mirrorLead(receipt.key, env, prepareRequest).catch(() => ({ result: 'retry-on-owner-sync' }));
+          if (ctx?.waitUntil) ctx.waitUntil(job); else await job;
+        }
+      }
+      return response;
+    }
     if (url.pathname.startsWith('/api/ops/')) return handleOperations(request, env);
     if (url.pathname === '/ops' || url.pathname.startsWith('/ops/')) {
       if (!operationsAvailable(env)) return new Response('운영실이 비활성 상태입니다.', { status: 503, headers: { 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex, nofollow' } });

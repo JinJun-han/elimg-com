@@ -10,10 +10,10 @@
     <div id="workspace" hidden>
       <section class="metrics" aria-label="현재 불러온 요청 집계"><article><span>불러온 접수</span><strong id="count-total">0</strong><small>선택한 업무 · 현재 목록</small></article><article><span>검토 필요</span><strong id="count-review">0</strong><small>신규·검토 대기</small></article><article><span>진행 중</span><strong id="count-working">0</strong><small>다음 행동이 필요한 요청</small></article><article><span>완료</span><strong id="count-done">0</strong><small>처리 결과 확인</small></article></section>
       <section class="flow"><div><span class="flow-icon">↗</span><strong>반복 업무는 자동으로, 중요한 결정은 직접.</strong><p>등록 → 규칙 기반 분류·초안 → 대표 검토 → 진행·완료</p></div><span class="badge quiet">외부 AI 미연결 · API 호출 없음</span></section>
-      <section class="work-heading"><div><span class="eyebrow" id="purpose-caption">BUSINESS & EDUCATION</span><h2 id="purpose-title">사업·교육 요청</h2></div><div class="actions"><button id="refresh" class="secondary">새로고침</button><button id="export" class="secondary">현재 목록 백업</button><button id="new-request" class="primary">＋ 새 접수</button></div></section>
+      <section class="work-heading"><div><span class="eyebrow" id="purpose-caption">BUSINESS & EDUCATION</span><h2 id="purpose-title">사업·교육 요청</h2></div><div class="actions"><button id="sync-leads" class="secondary">상담 신청 연동</button><button id="refresh" class="secondary">새로고침</button><button id="export" class="secondary">현재 목록 백업</button><button id="new-request" class="primary">＋ 새 접수</button></div></section>
       <div class="toolbar"><label class="search"><span>⌕</span><input id="search" aria-label="요청 검색" placeholder="제목·내용·연락처 검색"></label><select id="filter" aria-label="처리 상태 필터"><option value="all">모든 상태</option><option value="new">신규</option><option value="review">검토 대기</option><option value="working">진행 중</option><option value="done">완료</option></select><span id="result-count"></span></div>
       <div class="work-grid"><section id="requests" aria-label="접수 목록"></section><section id="detail" aria-label="접수 상세" class="detail"><p class="empty">목록에서 요청을 선택해 주세요.</p></section></div>
-      <button id="more" class="secondary load-more" hidden>다음 접수 불러오기</button><p class="footnote">업무별 전용 저장소를 사용합니다. 기존 홈페이지 접수 및 과거 백업은 아직 자동 연결하지 않았습니다. 서버 저장은 반영이 지연될 수 있습니다.</p>
+      <button id="more" class="secondary load-more" hidden>다음 접수 불러오기</button><p class="footnote">업무별 전용 저장소를 사용합니다. elimg.com 상담 신청 연동을 지원합니다. Netlify 신청과 과거 백업 파일은 아직 연결하지 않았습니다. 서버 저장은 반영이 지연될 수 있습니다.</p>
     </div>
     <footer>ELIMG BRIDGE <span>좋은 만남 · 좋은 연결 · 좋은 연합 · 좋은 시너지</span></footer>
   </main>

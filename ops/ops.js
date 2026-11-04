@@ -4,6 +4,7 @@ const purposes = { business: ['사업·교육', 'BUSINESS & EDUCATION'], visa: [
 const statuses = { new: '신규', review: '검토 대기', working: '진행 중', done: '완료' };
 const demo = new URLSearchParams(location.search).get('demo') === '1';
 let purpose = 'business', items = [], selected = null, cursor = null, ready = false, requestGeneration = 0;
+const syncCursors = {};
 const demoRecords = { business: [{ id: 'demo-business-1', title: '소규모 기업 AI 업무 교육 문의', message: '직원들이 안내문과 회의록을 작성하는 시간을 줄이고 싶습니다. 주 1회 실습 교육을 문의합니다.', contact: '검증용 예시 · 실제 연락처 없음', status: 'review', priority: 'normal' }, { id: 'demo-business-2', title: '근로자 한국어 수업 과정 상담', message: '근무 시간에 맞는 한국어 수업과 학습 자료를 찾고 있습니다.', contact: '', status: 'working', priority: 'normal' }], visa: [], care: [], mission: [] };
 for (const [p, rows] of Object.entries(demoRecords)) rows.forEach(r => Object.assign(r, { purpose: p, createdAt: new Date().toISOString(), source: '검증용 예시', automation: { engine: 'rules-v1', summary: r.message, nextSteps: ['교육 목적과 참여 인원 확인', '가능한 일정 확인', '검토 후 회신'], draft: '문의해 주셔서 감사합니다. 요청 사항과 가능한 일정을 확인한 뒤 안내드리겠습니다.', externalAI: false } }));
 function notice(message) { $('notice').textContent = message; }
@@ -40,6 +41,7 @@ function renderDetail() {
   if (!item) { panel.append(el('p', '목록에서 요청을 선택해 주세요.', 'empty')); return; }
   panel.append(el('span', purposes[purpose][0], 'eyebrow'), el('h2', item.title), el('p', item.source + ' · ' + new Date(item.createdAt).toLocaleString('ko-KR'), 'detail-meta'));
   if (item.contact) panel.append(el('p', '연락 방법: ' + item.contact));
+  if (item.applicantName) panel.append(el('p', '신청자: ' + item.applicantName));
   panel.append(el('h3', '접수 내용'), el('p', item.message), el('h3', '자동으로 정리한 다음 행동 · 규칙 기반'));
   const steps = el('ul'); (item.automation?.nextSteps || []).forEach(text => steps.append(el('li', text))); panel.append(steps);
   panel.append(el('h3', '회신 초안 · 대표 검토 필요'), el('div', item.automation?.draft || '초안이 없습니다.', 'draft'));
@@ -63,6 +65,17 @@ $('login-form').addEventListener('submit', async event => { event.preventDefault
 $('logout').addEventListener('click', async () => { try { await api('session', { method: 'DELETE' }); ready = false; items = []; selected = null; render(); $('workspace').hidden = true; $('login').hidden = false; $('logout').hidden = true; $('mode').textContent = '로그아웃'; notice('로그아웃했습니다.'); location.replace('/ops/login'); } catch (e) { notice(e.message); } });
 document.querySelectorAll('[data-purpose]').forEach(button => button.addEventListener('click', () => { purpose = button.dataset.purpose; document.querySelectorAll('[data-purpose]').forEach(b => b.classList.toggle('active', b === button)); $('search').value = ''; $('filter').value = 'all'; if (ready) load(); }));
 $('search').addEventListener('input', render); $('filter').addEventListener('change', render); $('refresh').addEventListener('click', () => load()); $('more').addEventListener('click', () => load(true));
+$('sync-leads').addEventListener('click', async () => {
+  if (demo) { notice('검증용 예시에서는 실제 신청 자료를 불러오지 않습니다.'); return; }
+  const activePurpose = purpose, button = $('sync-leads'), previousCursor = syncCursors[activePurpose]; button.disabled = true;
+  try {
+    const outcome = await api('sync?purpose=' + activePurpose + (previousCursor ? '&cursor=' + encodeURIComponent(previousCursor) : ''), { method: 'POST', body: '{}' });
+    syncCursors[activePurpose] = outcome.failed ? previousCursor : outcome.cursor;
+    if (purpose === activePurpose) await load();
+    notice(purposes[activePurpose][0] + ': ' + outcome.scanned + '건 확인 · 새 연결 ' + outcome.imported + '건 · 기존 연결 ' + outcome.existing + '건. 미분류 ' + outcome.review + '건은 원본에 보존했습니다.' + (outcome.failed ? ' 실패 ' + outcome.failed + '건은 같은 페이지에서 다시 연동해 주세요.' : outcome.cursor ? ' 다음 신청 연동을 눌러 나머지를 계속 확인해 주세요.' : ' 현재 원본 목록의 끝까지 확인했습니다.') + ' 저장 반영에는 잠시 시간이 걸릴 수 있습니다.');
+  } catch (e) { notice(e.message); }
+  finally { button.disabled = false; button.textContent = syncCursors[purpose] ? '다음 신청 연동' : '상담 신청 연동'; }
+});
 $('new-request').addEventListener('click', () => { $('create-error').textContent = ''; $('create-purpose').textContent = purposes[purpose][0] + ' 전용 공간에 등록합니다.'; $('create-dialog').showModal(); });
 $('close-dialog').addEventListener('click', () => $('create-dialog').close());
 $('create-form').addEventListener('submit', async event => {

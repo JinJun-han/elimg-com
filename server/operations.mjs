@@ -1,3 +1,4 @@
+import { syncLegacyLeads } from './lead-bridge.mjs';
 const PURPOSES = Object.freeze({ business: 'OPS_BUSINESS', visa: 'OPS_VISA', care: 'OPS_CARE', mission: 'OPS_MISSION' });
 const STATUSES = new Set(['new', 'review', 'working', 'done']);
 const encoder = new TextEncoder();
@@ -58,6 +59,13 @@ export async function handleOperations(request, env) {
   if (!await isOwnerAuthenticated(request, env)) return json({ error: '관리자 로그인이 필요합니다.' }, 401);
   if (path === '/api/ops/session' && request.method === 'DELETE') return json({ ok: true }, 200, { 'Set-Cookie': sessionCookie('', 0) });
   if (path === '/api/ops/config' && request.method === 'GET') return json({ owner: true, purposes: Object.keys(PURPOSES).map(p => ({ purpose: p, ready: Boolean(env[PURPOSES[p]]) })), externalAI: false });
+  if (path === '/api/ops/sync' && request.method === 'POST') {
+    try {
+      const outcome = await syncLegacyLeads(env, url.searchParams.get('purpose'), url.searchParams.get('cursor'), prepareRequest);
+      if (outcome.error) return json({ error: outcome.error === 'invalid-purpose' ? '업무 분야를 확인해 주세요.' : '원본 또는 전용 저장소 연결이 필요합니다.' }, outcome.error === 'invalid-purpose' ? 400 : 503);
+      return json(outcome);
+    } catch { return json({ error: '접수 연동에 실패했습니다. 원본 신청은 유지됩니다.' }, 503); }
+  }
   if (path !== '/api/ops/requests') return json({ error: '경로를 찾을 수 없습니다.' }, 404);
   const purpose = url.searchParams.get('purpose');
   if (!Object.hasOwn(PURPOSES, purpose)) return json({ error: '업무 분야를 지정해 주세요.' }, 400);
@@ -67,7 +75,11 @@ export async function handleOperations(request, env) {
     if (request.method === 'GET') {
       const page = await db.list({ prefix: 'request:', limit: 100, ...(url.searchParams.get('cursor') ? { cursor: url.searchParams.get('cursor') } : {}) });
       const values = await Promise.all(page.keys.map(k => db.get(k.name)));
-      const items = values.filter(Boolean).map(v => JSON.parse(v)).filter(v => v.purpose === purpose);
+      const items = await Promise.all(values.filter(Boolean).map(v => JSON.parse(v)).filter(v => v.purpose === purpose).map(async item => {
+        if (!item.sourceLeadKey) return item;
+        const state = await db.get('state:' + item.id);
+        return state ? { ...item, ...JSON.parse(state), id: item.id, purpose: item.purpose } : item;
+      }));
       items.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
       return json({ items, cursor: page.list_complete ? null : page.cursor, consistency: 'KV 반영에 지연이 있을 수 있습니다.' });
     }
@@ -83,8 +95,11 @@ export async function handleOperations(request, env) {
       if (!raw) return json({ error: '접수 내역을 찾을 수 없습니다.' }, 404);
       const item = JSON.parse(raw);
       if (item.purpose !== purpose) return json({ error: '업무 분야가 일치하지 않습니다.' }, 403);
-      item.status = input.status; item.updatedAt = new Date().toISOString(); item.revision = (item.revision || 1) + 1;
-      await db.put('request:' + item.id, JSON.stringify(item));
+      const previous = item.sourceLeadKey ? await db.get('state:' + item.id) : null;
+      const state = previous ? JSON.parse(previous) : item;
+      item.status = input.status; item.updatedAt = new Date().toISOString(); item.revision = (state.revision || 1) + 1;
+      if (item.sourceLeadKey) await db.put('state:' + item.id, JSON.stringify({ status: item.status, updatedAt: item.updatedAt, revision: item.revision }));
+      else await db.put('request:' + item.id, JSON.stringify(item));
       return json({ item });
     }
     return json({ error: '이 화면에서는 자료를 삭제하지 않습니다.' }, 405);

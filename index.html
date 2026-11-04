@@ -1863,6 +1863,8 @@ footer{background:#070E1A;padding:48px 5% 28px;border-top:1px solid rgba(196,154
           <textarea id="cf-msg" placeholder="현재 상황과 도움이 필요한 내용을 간략히 적어주세요. 30분 무료 상담으로 시작합니다."></textarea>
         </div>
       </div>
+      <label style="display:block;font-size:12px;line-height:1.8;margin:16px 0;color:var(--text-muted,#b2bdc8)"><input id="cf-consent" type="checkbox"> 상담 안내와 후속 연락을 위해 이름·연락처·문의 내용을 수집·이용하는 데 동의합니다. <a href="/privacy">개인정보 안내</a></label>
+      <p id="cfStatus" role="status" aria-live="polite" style="font-size:13px;line-height:1.8"></p>
       <button class="cf-submit" onclick="submitForm()">✦ 무료 상담 신청하기</button>
       <div class="cf-sent" id="cfSent">✅ 감사합니다! 1-2 영업일 내로 연락드리겠습니다.</div>
     </div>
@@ -2001,18 +2003,7 @@ window.addEventListener('scroll', () => {
 
 // Contact form
 function submitForm() {
-  const name = document.getElementById('cf-name').value.trim();
-  const contact = document.getElementById('cf-contact').value.trim();
-  if (!name || !contact) { alert('이름과 연락처를 입력해주세요.'); return; }
-  document.getElementById('cfSent').style.display = 'block';
-  document.querySelector('.cf-submit').style.display = 'none';
-  const mailto = 'mailto:kodhjj@gmail.com?subject=글로컬브릿지 AI 상담 신청 — ' + encodeURIComponent(name) + '&body=' + encodeURIComponent(
-    '이름: ' + name + '\n연락처: ' + (document.getElementById('cf-contact').value) +
-    '\n문의유형: ' + (document.getElementById('cf-type').value) +
-    '\n국가: ' + (document.getElementById('cf-country').value) +
-    '\n\n내용:\n' + (document.getElementById('cf-msg').value)
-  );
-  setTimeout(() => { window.location.href = mailto; }, 800);
+  document.getElementById('cfStatus').textContent = '접수 기능을 불러오지 못했습니다. 새로고침하거나 전화·카카오 채널로 문의해 주세요.';
 }
 
 // Network cards toggle
@@ -2024,5 +2015,6 @@ function toggleNetCards() {
   btn.textContent = isRevealed ? '+ 전체 네트워크 보기 (103개)' : '− 접기';
 }
 </script>
+<script src="/contact-intake.js" defer></script>
 </body>
 </html>
