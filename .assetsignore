@@ -5,6 +5,7 @@
 .gitignore
 .claude
 .wrangler
+.openai/
 .vercel
 .env
 .env.*
@@ -20,6 +21,9 @@ set_secret.js
 
 # ─── 정리된 임시 스크립트 폴더 (51개 카테고리화) ───
 scripts/
+server/
+tests/
+docs/
 
 # ─── 임시·개발 Node 스크립트 (루트 잔존 대비) ───
 fix_*.js
@@ -59,6 +63,7 @@ og-welcome.html
 .wranglerignore
 wrangler.toml
 worker.js
+operations-worker.mjs
 
 # 백업 파일 (공개 금지) — 2026-08-03 보안감사 반영
 *.bak

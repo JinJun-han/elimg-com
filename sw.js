@@ -30,6 +30,7 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
+  if (url.pathname.startsWith('/api/ops/') || url.pathname === '/ops' || url.pathname.startsWith('/ops/')) return;
   if (event.request.method !== 'GET') return;
   if (!url.origin.includes(self.location.origin) && !url.hostname.includes('elimg.com')) return;
 
